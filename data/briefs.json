@@ -1,0 +1,57 @@
+[
+  {
+    "id": "lp-warm",
+    "type": "ambiguous",
+    "text": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。"
+  },
+  {
+    "id": "release-mail",
+    "type": "ambiguous",
+    "text": "新機能のリリース告知メールを、堅すぎない感じで書いて。既存ユーザー向け。"
+  },
+  {
+    "id": "cafe-insta",
+    "type": "ambiguous",
+    "text": "うちのカフェのInstagramプロフィールと固定投稿を、いい感じにしてほしい。開店1周年なので。"
+  },
+  {
+    "id": "precise-pricing",
+    "type": "ambiguous",
+    "text": "B2B SaaSの料金ページ。プランは3つ(Starter 980円/Pro 2,980円/Enterprise 問い合わせ)。年払いは2ヶ月分無料。FAQを5問。CTAは14日間無料トライアル。トーンは実直で誇張なし。"
+  },
+  {
+    "id": "scout-mail",
+    "type": "ambiguous",
+    "text": "エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。"
+  },
+  {
+    "id": "event-page",
+    "type": "ambiguous",
+    "text": "来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。"
+  },
+  {
+    "id": "portfolio",
+    "type": "ambiguous",
+    "text": "転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。"
+  },
+  {
+    "id": "internal-deck",
+    "type": "ambiguous",
+    "text": "来週の全社会議で新しい取り組みを発表するスライドを作って。偉い人も見るけど、堅苦しくしたくない。"
+  },
+  {
+    "id": "ec-product",
+    "type": "ambiguous",
+    "text": "ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。"
+  },
+  {
+    "id": "youtube-about",
+    "type": "ambiguous",
+    "text": "YouTubeチャンネルの概要欄を書き直したい。登録につながる感じで、長すぎないやつがいい。"
+  },
+  {
+    "id": "control-banner",
+    "type": "control_zero",
+    "text": "セール告知バナーを1枚。サイズは1200x628px。背景色は#1A2B4C単色。テキストは3行のみ: 1行目「SUMMER SALE」(白 #FFFFFF、太字、72px)、2行目「全品20%OFF」(黄 #FFD700、太字、96px)、3行目「8/1(土)0:00〜8/7(金)23:59」(白 #FFFFFF、通常、36px)。フォントはNoto Sans JPのみ。全行中央揃え、行間は各行の上下に48px。画像・イラスト・ロゴ・ボタン・装飾は一切入れない。余白は上下左右とも均等配置で自動計算。これ以外の要素追加は禁止。"
+  }
+]

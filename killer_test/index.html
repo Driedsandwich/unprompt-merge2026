@@ -1,0 +1,664 @@
+<!doctype html>
+<!--
+  GYAKUMON — Intent Compiler / キラーテスト・ハーネス (Day1)
+
+  実行方法: python3 -m http.server をリポジトリルートで起動し /killer_test/ を開く
+    例) cd .../outputs/dev/gyakumon && python3 -m http.server 8000
+        → ブラウザで http://localhost:8000/killer_test/ を開く
+    (リポジトリ最上位で起動した場合は /outputs/dev/gyakumon/killer_test/ を開く)
+  注意: file:// 直開きでは fetch(../prompts, ../data) が失敗しうる。必ず http.server 経由で開くこと。
+
+  構成: ビルドレス・サーバレス・バニラJS・単一HTML(インラインscript)。npm/Node/バンドラ不使用。
+  実行時読込:
+    ../prompts/extraction_v0.txt … 抽出システムプロンプト(可視タクソノミー設計)
+    ../data/briefs.json          … ブリーフ11本
+  API: Anthropic Messages API をブラウザから直接呼ぶ(非ストリーミング、tool useで構造化出力を強制)。
+  APIキーは画面のpassword入力→sessionStorageのみ。コード・リポジトリには書かない。
+
+  機械判定(本ハーネスの責務):
+    - anchor検査: 各 anchor_words がブリーフ原文の「連続部分文字列」として一字一句存在するか
+    - options数 2〜3 / branches数 ≤5 / スキーマ必須フィールド充足
+    - レイテンシ実測(performance.now())と 8秒線の合否
+  有効分岐率などの「意味判定」は管制塔が行う。本ハーネスはエクスポートJSONを供給するのみ。
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GYAKUMON キラーテスト・ハーネス</title>
+<style>
+  :root {
+    --ok: #0a7a2f; --ok-bg: #e4f6ea;
+    --ng: #b00020; --ng-bg: #fde7ea;
+    --warn: #8a6d00; --warn-bg: #fff6d6;
+    --line: #d0d4da; --muted: #667085;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; margin: 0; padding: 16px 20px 60px; color: #1a1f24; background: #fafbfc; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 12px; margin-bottom: 14px; }
+  fieldset { border: 1px solid var(--line); border-radius: 8px; margin: 0 0 12px; padding: 10px 14px; background: #fff; }
+  legend { font-size: 12px; color: var(--muted); padding: 0 6px; }
+  label { font-size: 13px; margin-right: 6px; }
+  input[type=password] { width: 340px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; }
+  select, button { padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; font-size: 13px; }
+  button { cursor: pointer; background: #f2f4f7; }
+  button.primary { background: #1849a9; color: #fff; border-color: #1849a9; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 6px 0; }
+  #progress { font-size: 13px; margin: 10px 0; padding: 8px 12px; border-radius: 6px; background: #eef2f6; min-height: 20px; white-space: pre-wrap; }
+  #assetStatus { font-size: 12px; }
+  #summary { font-size: 13px; margin: 10px 0; padding: 8px 12px; border-radius: 6px; background: #fff; border: 1px solid var(--line); }
+  table { border-collapse: collapse; width: 100%; background: #fff; font-size: 12.5px; }
+  th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #f2f4f7; font-weight: 600; }
+  .ok   { color: var(--ok);   background: var(--ok-bg);   }
+  .ng   { color: var(--ng);   background: var(--ng-bg);   }
+  .warn { color: var(--warn); background: var(--warn-bg); }
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 11.5px; margin: 1px 2px 1px 0; }
+  .badge.ok   { border: 1px solid var(--ok); }
+  .badge.ng   { border: 1px solid var(--ng); }
+  .badge.warn { border: 1px solid var(--warn); }
+  .anchor-ok { color: var(--ok); }
+  .anchor-ng { color: var(--ng); font-weight: 700; }
+  details { margin: 4px 0; }
+  summary { cursor: pointer; font-size: 12px; color: #175cd3; }
+  pre { background: #f6f8fa; border: 1px solid var(--line); border-radius: 6px; padding: 8px; font-size: 11.5px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; max-height: 420px; overflow-y: auto; }
+  .err-box { color: var(--ng); background: var(--ng-bg); border: 1px solid var(--ng); border-radius: 6px; padding: 6px 8px; font-size: 12px; white-space: pre-wrap; word-break: break-all; }
+  .note { font-size: 11.5px; color: var(--muted); }
+  .branch-block { border-left: 3px solid #d0d4da; padding-left: 8px; margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<h1>GYAKUMON — Intent Compiler / キラーテスト・ハーネス</h1>
+<div class="sub">
+  抽出品質の実測(機械判定のみ)。合格線: 10本中8本で有効分岐率70%以上(意味判定は管制塔)+ anchor原文実在 + 各ブリーフに対照ペア1組以上 + 送信→初回応答8秒以内。対照ブリーフ(完全指定)では分岐を捏造しないこと。
+</div>
+
+<fieldset>
+  <legend>設定</legend>
+  <div class="row">
+    <label for="apiKey">APIキー</label>
+    <input type="password" id="apiKey" placeholder="sk-ant-..." autocomplete="off">
+    <span class="note">sessionStorageのみに保存。コード・リポジトリには書かれない。</span>
+  </div>
+  <div class="row">
+    <label for="model">モデル</label>
+    <select id="model">
+      <option value="claude-sonnet-5" selected>claude-sonnet-5(既定)</option>
+      <option value="claude-fable-5">claude-fable-5</option>
+    </select>
+    <span id="assetStatus">アセット読込中…</span>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>実行(逐次処理 — レイテンシ実測を汚さないため並列にしない)</legend>
+  <div class="row">
+    <button id="btnRunAll" class="primary" disabled>全ブリーフ実行</button>
+    <label for="briefSelect">対象:</label>
+    <select id="briefSelect" disabled></select>
+    <button id="btnRunOne" disabled>1本のみ実行</button>
+    <button id="btnAbort" disabled>中断(現在のブリーフ完了後に停止)</button>
+  </div>
+  <div class="row">
+    <button id="btnExportDl" disabled>生結果JSONをダウンロード</button>
+    <button id="btnExportCp" disabled>生結果JSONをクリップボードへコピー</button>
+    <span class="note">プロンプト全文・モデル名・タイムスタンプ・レイテンシ込み。管制塔の意味判定に使う。</span>
+  </div>
+</fieldset>
+
+<div id="progress">待機中。</div>
+<div id="summary" hidden></div>
+<div id="resultsWrap"></div>
+
+<script>
+'use strict';
+
+/* ========= 定数 ========= */
+const API_URL = 'https://api.anthropic.com/v1/messages';
+const ANTHROPIC_VERSION = '2023-06-01';
+const KEY_STORAGE = 'gyakumon_api_key';
+const LATENCY_LIMIT_MS = 8000;   // 送信→初回応答 8秒線
+const FETCH_TIMEOUT_MS = 60000;  // APIハング対策(タイムアウト時は記録して次ブリーフへ)
+const MAX_TOKENS = 4000;
+const PROMPT_PATH = '../prompts/extraction_v0.txt';
+const BRIEFS_PATH = '../data/briefs.json';
+
+/* 抽出スキーマ(この順序で固定) */
+const EXTRACTION_SCHEMA = {
+  type: 'object',
+  properties: {
+    residual_ambiguity_assessment: { type: 'string', description: '残存曖昧性の評価' },
+    missing_materials: {
+      type: 'array', items: { type: 'string' },
+      description: '選択では解決できず情報提供が必要な欠落'
+    },
+    branches: {
+      type: 'array', maxItems: 5,
+      items: {
+        type: 'object',
+        properties: {
+          question_point: { type: 'string' },
+          anchor_words: {
+            type: 'array', minItems: 1, items: { type: 'string' },
+            description: '原文の連続部分文字列をそのまま・可能な限り最長フレーズで'
+          },
+          downstream_impact: { type: 'string' },
+          options: {
+            type: 'array', minItems: 2, maxItems: 3,
+            items: {
+              type: 'object',
+              properties: {
+                label: { type: 'string' },
+                thumbnail_description: { type: 'string' },
+                px200_rationale: { type: 'string', description: '200pxで判別できる根拠' }
+              },
+              required: ['label', 'thumbnail_description', 'px200_rationale']
+            }
+          },
+          default_if_unresolved: { type: 'string' }
+        },
+        required: ['question_point', 'anchor_words', 'downstream_impact', 'options', 'default_if_unresolved']
+      }
+    }
+  },
+  required: ['residual_ambiguity_assessment', 'missing_materials', 'branches']
+};
+
+const REQUIRED_TOP = ['residual_ambiguity_assessment', 'missing_materials', 'branches'];
+const REQUIRED_BRANCH = ['question_point', 'anchor_words', 'downstream_impact', 'options', 'default_if_unresolved'];
+const REQUIRED_OPTION = ['label', 'thumbnail_description', 'px200_rationale'];
+
+/* ========= 状態 ========= */
+let promptText = null;      // extraction_v0.txt 全文
+let briefs = [];            // 正規化済みブリーフ
+let results = new Map();    // brief.id -> result
+let running = false;
+let abortRequested = false;
+
+/* ========= DOM ========= */
+const $ = (id) => document.getElementById(id);
+const el = {
+  apiKey: $('apiKey'), model: $('model'), assetStatus: $('assetStatus'),
+  btnRunAll: $('btnRunAll'), briefSelect: $('briefSelect'), btnRunOne: $('btnRunOne'),
+  btnAbort: $('btnAbort'), btnExportDl: $('btnExportDl'), btnExportCp: $('btnExportCp'),
+  progress: $('progress'), summary: $('summary'), resultsWrap: $('resultsWrap')
+};
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/* ========= 初期化 ========= */
+(function init() {
+  const saved = sessionStorage.getItem(KEY_STORAGE);
+  if (saved) el.apiKey.value = saved;
+  el.apiKey.addEventListener('input', () => sessionStorage.setItem(KEY_STORAGE, el.apiKey.value.trim()));
+
+  el.btnRunAll.addEventListener('click', runAll);
+  el.btnRunOne.addEventListener('click', () => {
+    const id = el.briefSelect.value;
+    const b = briefs.find(x => x.id === id);
+    if (b) runSequence([b]);
+  });
+  el.btnAbort.addEventListener('click', () => {
+    abortRequested = true;
+    setProgress('中断要求を受け付けた。現在のブリーフ完了後に停止する。');
+  });
+  el.btnExportDl.addEventListener('click', () => exportJson('download'));
+  el.btnExportCp.addEventListener('click', () => exportJson('clipboard'));
+
+  // 結果テーブル内のリトライボタン(イベント委譲)
+  el.resultsWrap.addEventListener('click', (ev) => {
+    const t = ev.target;
+    if (t && t.dataset && t.dataset.retryId !== undefined) {
+      const b = briefs.find(x => x.id === t.dataset.retryId);
+      if (b && !running) runSequence([b]);
+    }
+  });
+
+  loadAssets();
+})();
+
+async function loadAssets() {
+  const problems = [];
+  try {
+    const r = await fetch(PROMPT_PATH);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    promptText = await r.text();
+  } catch (e) {
+    problems.push('プロンプト読込失敗 (' + PROMPT_PATH + '): ' + e.message);
+  }
+  try {
+    const r = await fetch(BRIEFS_PATH);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    briefs = normalizeBriefs(await r.json());
+    if (briefs.length === 0) problems.push('briefs.json にブリーフが見つからない。');
+  } catch (e) {
+    problems.push('ブリーフ読込失敗 (' + BRIEFS_PATH + '): ' + e.message);
+  }
+
+  if (problems.length) {
+    el.assetStatus.innerHTML = '<span class="ng badge">読込エラー</span> ' + escapeHtml(problems.join(' / ')) +
+      ' <span class="note">file:// 直開きでは fetch が失敗する。python3 -m http.server 経由で開くこと。</span>';
+    return;
+  }
+  el.assetStatus.innerHTML = '<span class="ok badge">読込OK</span> プロンプト ' + promptText.length +
+    ' 文字 / ブリーフ ' + briefs.length + ' 本';
+
+  el.briefSelect.innerHTML = briefs.map(b =>
+    '<option value="' + escapeHtml(b.id) + '">' + escapeHtml(b.id + ' — ' + b.title) + '</option>').join('');
+  el.btnRunAll.disabled = false;
+  el.btnRunOne.disabled = false;
+  el.briefSelect.disabled = false;
+}
+
+/* briefs.json の形の揺れを許容して正規化する */
+function normalizeBriefs(json) {
+  let arr = Array.isArray(json) ? json : (json && (json.briefs || json.items || json.data));
+  if (!Array.isArray(arr)) return [];
+  return arr.map((raw, i) => {
+    if (typeof raw === 'string') raw = { text: raw };
+    const text = raw.text ?? raw.body ?? raw.brief ?? raw.content ?? '';
+    const id = String(raw.id ?? raw.name ?? ('brief_' + String(i + 1).padStart(2, '0')));
+    const title = String(raw.title ?? raw.label ?? id);
+    // 対照(完全指定)ブリーフのメタデータ。ある場合のみ機械警告に使う。
+    const isControl = raw.control === true || raw.fully_specified === true ||
+      raw.is_control === true ||
+      (typeof raw.type === 'string' && raw.type.startsWith('control')) ||   // 'control', 'control_zero' 等
+      raw.expected_branches === 0;
+    return { id, title, text: String(text), isControl, raw };
+  }).filter(b => b.text.length > 0);
+}
+
+/* ========= 実行 ========= */
+function setProgress(msg) { el.progress.textContent = msg; }
+
+function setRunning(v) {
+  running = v;
+  el.btnRunAll.disabled = v || briefs.length === 0;
+  el.btnRunOne.disabled = v || briefs.length === 0;
+  el.btnAbort.disabled = !v;
+  el.model.disabled = v;
+}
+
+async function runAll() { await runSequence(briefs); }
+
+async function runSequence(list) {
+  if (running) return;
+  const apiKey = el.apiKey.value.trim();
+  if (!apiKey) { setProgress('APIキーが未入力。password欄に入力すること。'); return; }
+  if (!promptText) { setProgress('プロンプト未読込のため実行不可。'); return; }
+
+  abortRequested = false;
+  setRunning(true);
+  const model = el.model.value;
+
+  for (let i = 0; i < list.length; i++) {
+    if (abortRequested) { setProgress('中断した(' + i + '/' + list.length + ' 完了)。'); break; }
+    const b = list[i];
+    setProgress('実行中 ' + (i + 1) + '/' + list.length + ': ' + b.id + ' — ' + b.title +
+      '(モデル: ' + model + '、逐次処理)');
+    const res = await runBrief(b, apiKey, model);
+    results.set(b.id, res);
+    render();
+  }
+
+  if (!abortRequested) setProgress('完了: ' + list.length + ' 本を処理した。エクスポートして管制塔の意味判定に回すこと。');
+  setRunning(false);
+  el.btnExportDl.disabled = results.size === 0;
+  el.btnExportCp.disabled = results.size === 0;
+}
+
+async function runBrief(brief, apiKey, model) {
+  const requestBody = {
+    model: model,
+    max_tokens: MAX_TOKENS,
+    system: promptText,
+    messages: [{ role: 'user', content: brief.text }],
+    tools: [{
+      name: 'report_branches',
+      description: 'ブリーフから抽出した分岐点を固定スキーマで報告する。',
+      input_schema: EXTRACTION_SCHEMA
+    }],
+    tool_choice: { type: 'tool', name: 'report_branches' }
+  };
+
+  const result = {
+    brief_id: brief.id,
+    brief_title: brief.title,
+    brief_is_control: brief.isControl,
+    model: model,
+    timestamp_start: new Date().toISOString(),
+    ttfb_ms: null,          // 送信→初回応答(fetch解決=ヘッダ受信)
+    total_ms: null,         // 送信→本文パース完了
+    http_status: null,
+    stop_reason: null,
+    usage: null,
+    extraction: null,       // report_branches の input
+    checks: null,           // 機械判定
+    error: null,
+    raw_response: null,
+    request_body: requestBody   // APIキーは含まない
+  };
+
+  const t0 = performance.now();
+  let resp;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
+  try {
+    resp = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': ANTHROPIC_VERSION,
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify(requestBody),
+      signal: ctrl.signal
+    });
+  } catch (e) {
+    clearTimeout(timer);
+    result.total_ms = Math.round(performance.now() - t0);
+    if (ctrl.signal.aborted) {
+      result.error = { kind: 'timeout', message: 'タイムアウト(' + FETCH_TIMEOUT_MS +
+        'ms)。API無応答のため打ち切り。次のブリーフへ進む。「再実行」で再試行可。' };
+    } else {
+      result.error = { kind: 'network', message: String(e && e.message || e) +
+        '(ネットワーク/CORS失敗。http.server経由か、キー・接続を確認)' };
+    }
+    return result;
+  }
+  clearTimeout(timer);
+  result.ttfb_ms = Math.round(performance.now() - t0);
+  result.http_status = resp.status;
+
+  const bodyText = await resp.text();
+  result.total_ms = Math.round(performance.now() - t0);
+
+  if (!resp.ok) {
+    let hint = '';
+    if (resp.status === 429) {
+      const ra = resp.headers.get('retry-after');
+      hint = ' → 429: レート制限。' + (ra ? ra + '秒' : 'しばらく(60秒程度)') +
+        '待ってから、このブリーフの「再実行」ボタンを押すこと。';
+    } else if (resp.status === 401) {
+      hint = ' → 401: APIキーを確認。';
+    } else if (resp.status === 404) {
+      hint = ' → 404: モデルIDを確認(エイリアスが無効な場合、日付付きスナップショットIDが必要な可能性)。';
+    } else if (resp.status === 529 || resp.status >= 500) {
+      hint = ' → ' + resp.status + ': APIサーバ過負荷/一時障害。数十秒待ってこのブリーフの「再実行」ボタンで再試行(キーは無関係)。';
+    }
+    result.error = { kind: 'http', status: resp.status, body: bodyText, hint: hint };
+    return result;
+  }
+
+  let data;
+  try { data = JSON.parse(bodyText); }
+  catch (e) {
+    result.error = { kind: 'parse', message: '応答JSONのパース失敗: ' + e.message, body: bodyText };
+    return result;
+  }
+  result.raw_response = data;
+  result.stop_reason = data.stop_reason ?? null;
+  result.usage = data.usage ?? null;
+  // max_tokens 到達時は tool input が不完全になり得る。原因と対処を操作者に明示する。
+  result.max_tokens_hit = data.stop_reason === 'max_tokens';
+
+  const toolBlock = Array.isArray(data.content)
+    ? data.content.find(c => c.type === 'tool_use' && c.name === 'report_branches')
+    : null;
+  if (!toolBlock) {
+    result.error = { kind: 'no_tool_use', message: 'report_branches の tool_use ブロックが応答に無い。' +
+      (result.max_tokens_hit ? ' stop_reason=max_tokens: MAX_TOKENS を増やして再実行。' : '') };
+    return result;
+  }
+  result.extraction = toolBlock.input;
+  result.checks = machineChecks(brief, toolBlock.input, result.ttfb_ms);
+  return result;
+}
+
+/* ========= 機械判定 ========= */
+function machineChecks(brief, ex, ttfbMs) {
+  const c = {
+    missing_fields: [],        // スキーマ必須フィールドの欠落(パス表記)
+    branches_count: 0,
+    branches_le5: true,
+    options_count_ok: true,    // 全分岐で 2〜3
+    anchor_total: 0,
+    anchor_violations: 0,
+    latency_ok: ttfbMs != null && ttfbMs <= LATENCY_LIMIT_MS,
+    control_fabrication_warning: false,  // 対照(完全指定)ブリーフなのに分岐が出た
+    per_branch: []
+  };
+  if (!ex || typeof ex !== 'object') {
+    c.missing_fields.push('(extraction全体が欠落)');
+    c.schema_ok = false;
+    return c;
+  }
+  for (const k of REQUIRED_TOP) {
+    if (!(k in ex) || ex[k] == null) c.missing_fields.push(k);
+  }
+  if ('missing_materials' in ex && !Array.isArray(ex.missing_materials)) c.missing_fields.push('missing_materials(配列でない)');
+  if ('branches' in ex && ex.branches != null && !Array.isArray(ex.branches)) c.missing_fields.push('branches(配列でない)');
+  if ('residual_ambiguity_assessment' in ex && ex.residual_ambiguity_assessment != null &&
+      typeof ex.residual_ambiguity_assessment !== 'string') c.missing_fields.push('residual_ambiguity_assessment(文字列でない)');
+
+  const branches = Array.isArray(ex.branches) ? ex.branches : [];
+  c.branches_count = branches.length;
+  c.branches_le5 = branches.length <= 5;
+  if (brief.isControl && branches.length > 0) c.control_fabrication_warning = true;
+
+  branches.forEach((br, bi) => {
+    const pb = { index: bi, question_point: '', anchors: [], options_count: 0, options_ok: true, missing: [] };
+    if (br && typeof br === 'object') {
+      for (const k of REQUIRED_BRANCH) {
+        if (!(k in br) || br[k] == null) pb.missing.push(k);
+      }
+      pb.question_point = typeof br.question_point === 'string' ? br.question_point : '(欠落)';
+      const anchors = Array.isArray(br.anchor_words) ? br.anchor_words : [];
+      if (anchors.length === 0) {
+        // anchor ゼロの分岐は原文根拠なし=違反(空虚な合格を防ぐ)
+        c.anchor_violations++;
+        pb.missing.push('anchor_words(空)');
+      }
+      for (const a of anchors) {
+        const s = String(a);
+        // 空文字・空白のみは includes('') が常に true になるため違反扱い
+        const found = s.trim().length > 0 && brief.text.includes(s);   // 連続部分文字列として一字一句
+        pb.anchors.push({ text: s, found: found });
+        c.anchor_total++;
+        if (!found) c.anchor_violations++;
+      }
+      const opts = Array.isArray(br.options) ? br.options : [];
+      pb.options_count = opts.length;
+      pb.options_ok = opts.length >= 2 && opts.length <= 3;
+      if (!pb.options_ok) c.options_count_ok = false;
+      opts.forEach((op, oi) => {
+        if (!op || typeof op !== 'object') { pb.missing.push('options[' + oi + ']'); return; }
+        for (const k of REQUIRED_OPTION) {
+          if (!(k in op) || op[k] == null) pb.missing.push('options[' + oi + '].' + k);
+        }
+      });
+    } else {
+      pb.missing.push('(branch自体が不正)');
+    }
+    if (pb.missing.length) c.missing_fields.push(...pb.missing.map(m => 'branches[' + bi + '].' + m));
+    c.per_branch.push(pb);
+  });
+
+  c.schema_ok = c.missing_fields.length === 0;
+  c.machine_pass = c.schema_ok && c.branches_le5 && c.options_count_ok &&
+                   c.anchor_violations === 0 && c.latency_ok;
+  return c;
+}
+
+/* ========= 描画 ========= */
+function badge(ok, okText, ngText) {
+  return ok ? '<span class="badge ok">' + okText + '</span>'
+            : '<span class="badge ng">' + ngText + '</span>';
+}
+
+function render() {
+  const ordered = briefs.filter(b => results.has(b.id)).map(b => results.get(b.id));
+  if (ordered.length === 0) { el.resultsWrap.innerHTML = ''; el.summary.hidden = true; return; }
+
+  // サマリ
+  const ran = ordered.length;
+  const withChecks = ordered.filter(r => r.checks);
+  const machinePass = withChecks.filter(r => r.checks.machine_pass).length;
+  const latOk = withChecks.filter(r => r.checks.latency_ok).length;
+  const anchorViol = withChecks.reduce((s, r) => s + r.checks.anchor_violations, 0);
+  const errors = ordered.filter(r => r.error).length;
+  el.summary.hidden = false;
+  el.summary.innerHTML =
+    '<b>サマリ(機械判定のみ)</b>: 実行 ' + ran + '/' + briefs.length + ' 本 | 機械判定パス ' +
+    machinePass + ' 本 | 8秒線クリア ' + latOk + ' 本 | anchor違反合計 ' + anchorViol +
+    ' | エラー ' + errors + ' 本<br><span class="note">合格線のうち「有効分岐率70%(10本中8本)」「対照ペアの妥当性」は意味判定であり管制塔が行う。本表は機械判定のみ。</span>';
+
+  // テーブル
+  let html = '<table><thead><tr>' +
+    '<th>ブリーフ</th><th>状態</th><th>分岐数</th><th>anchor違反</th>' +
+    '<th>レイテンシ(初回応答/合計 ms)</th><th>機械判定</th><th>詳細</th><th>操作</th>' +
+    '</tr></thead><tbody>';
+
+  for (const r of ordered) {
+    html += '<tr>';
+    html += '<td><b>' + escapeHtml(r.brief_id) + '</b><br><span class="note">' + escapeHtml(r.brief_title) +
+      (r.brief_is_control ? ' <span class="badge warn">対照(完全指定)</span>' : '') + '</span></td>';
+
+    if (r.error) {
+      const e = r.error;
+      let msg = e.kind === 'http'
+        ? 'HTTP ' + e.status + (e.hint || '') + '\n' + (e.body || '')
+        : (e.message || JSON.stringify(e));
+      html += '<td class="ng">エラー</td><td>—</td><td>—</td>' +
+        '<td>' + (r.ttfb_ms != null ? r.ttfb_ms + ' / ' + r.total_ms : '—') + '</td>' +
+        '<td colspan="2"><div class="err-box">' + escapeHtml(msg) + '</div></td>';
+    } else if (r.checks) {
+      const c = r.checks;
+      html += '<td class="' + (c.machine_pass ? 'ok' : 'ng') + '">' + (c.machine_pass ? '合格' : '違反あり') + '</td>';
+      html += '<td>' + c.branches_count + (c.branches_le5 ? '' : ' <span class="badge ng">&gt;5</span>') +
+        (c.control_fabrication_warning ? ' <span class="badge warn">対照なのに分岐=捏造疑い</span>' : '') + '</td>';
+      html += '<td class="' + (c.anchor_violations ? 'ng' : 'ok') + '">' + c.anchor_violations + ' / ' + c.anchor_total + '</td>';
+      html += '<td class="' + (c.latency_ok ? 'ok' : 'ng') + '">' + r.ttfb_ms + ' / ' + r.total_ms +
+        (c.latency_ok ? '' : ' <span class="badge ng">8秒超</span>') + '</td>';
+      html += '<td>' +
+        badge(c.schema_ok, 'スキーマ充足', '必須欠落:' + c.missing_fields.length) +
+        badge(c.options_count_ok, 'options 2〜3', 'options数違反') +
+        badge(c.branches_le5, '分岐≤5', '分岐>5') +
+        badge(c.anchor_violations === 0, 'anchor原文実在', 'anchor違反') +
+        badge(c.latency_ok, '8秒以内', '8秒超過') +
+        (r.max_tokens_hit ? ' <span class="badge warn">max_tokens到達 — MAX_TOKENS を増やして再実行</span>' : '') +
+        (c.missing_fields.length ? '<div class="note">' + escapeHtml(c.missing_fields.join(', ')) + '</div>' : '') +
+        '</td>';
+      html += '<td>' + renderDetail(r) + '</td>';
+    } else {
+      html += '<td class="warn">結果なし</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>';
+    }
+    html += '<td><button data-retry-id="' + escapeHtml(r.brief_id) + '">再実行</button></td>';
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  // 再描画で閉じてしまう <details> の open 状態を復元(走行中の中間精査用)
+  const openKeys = new Set();
+  el.resultsWrap.querySelectorAll('details[data-key][open]').forEach(d => openKeys.add(d.dataset.key));
+  el.resultsWrap.innerHTML = html;
+  el.resultsWrap.querySelectorAll('details[data-key]').forEach(d => {
+    if (openKeys.has(d.dataset.key)) d.open = true;
+  });
+  el.btnExportDl.disabled = results.size === 0;
+  el.btnExportCp.disabled = results.size === 0;
+}
+
+function renderDetail(r) {
+  const c = r.checks;
+  let inner = '';
+  for (const pb of c.per_branch) {
+    inner += '<div class="branch-block"><b>#' + (pb.index + 1) + '</b> ' + escapeHtml(pb.question_point) + '<br>';
+    inner += 'anchor: ' + (pb.anchors.length === 0 ? '<span class="anchor-ng">(なし)</span>' :
+      pb.anchors.map(a =>
+        '<span class="' + (a.found ? 'anchor-ok' : 'anchor-ng') + '">「' + escapeHtml(a.text) + '」' +
+        (a.found ? '' : '(原文に不在)') + '</span>').join(' / '));
+    inner += '<br><span class="note">options: ' + pb.options_count + '</span></div>';
+  }
+  const key = escapeHtml(r.brief_id);
+  const full = '<details data-key="' + key + ':json"><summary>分岐の中身(全文JSON)を開く</summary><pre>' +
+    escapeHtml(JSON.stringify(r.extraction, null, 2)) + '</pre></details>';
+  return '<details data-key="' + key + ':branches"><summary>分岐一覧(' + c.per_branch.length + ')</summary>' + inner + '</details>' + full;
+}
+
+/* ========= エクスポート ========= */
+function buildExport() {
+  return {
+    tool: 'gyakumon-killer-test-harness',
+    version: 'day1-v0',
+    exported_at: new Date().toISOString(),
+    model_selected: el.model.value,
+    latency_limit_ms: LATENCY_LIMIT_MS,
+    prompt_file: PROMPT_PATH,
+    prompt_text: promptText,
+    extraction_schema: EXTRACTION_SCHEMA,
+    pass_line_note: '10本中8本で有効分岐率70%以上(意味判定は管制塔)+anchor原文実在+対照ペア1組以上+初回応答8秒以内。対照(完全指定)では分岐を捏造しない。注: 非ストリーミングのため ttfb_ms は応答完了(全生成)時刻とほぼ同値であり、CORSプリフライト往復も含む。8秒線はこの保守的な定義で判定される。',
+    briefs_total: briefs.length,
+    results: briefs.filter(b => results.has(b.id)).map(b => {
+      const r = results.get(b.id);
+      return {
+        brief_id: r.brief_id,
+        brief_title: r.brief_title,
+        brief_is_control: r.brief_is_control,
+        brief_text: b.text,
+        model: r.model,
+        timestamp_start: r.timestamp_start,
+        ttfb_ms: r.ttfb_ms,
+        total_ms: r.total_ms,
+        http_status: r.http_status,
+        stop_reason: r.stop_reason,
+        max_tokens_hit: r.max_tokens_hit === true,
+        usage: r.usage,
+        machine_checks: r.checks,
+        extraction: r.extraction,
+        error: r.error,
+        request_body: r.request_body,
+        raw_response: r.raw_response
+      };
+    })
+  };
+}
+
+async function exportJson(mode) {
+  const json = JSON.stringify(buildExport(), null, 2);
+  if (mode === 'download') {
+    const blob = new Blob([json], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'gyakumon_killer_test_' + new Date().toISOString().replace(/[:.]/g, '-') + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    setProgress('生結果JSONをダウンロードした(' + json.length + ' 文字)。');
+  } else {
+    try {
+      await navigator.clipboard.writeText(json);
+      setProgress('生結果JSONをクリップボードへコピーした(' + json.length + ' 文字)。');
+    } catch (e) {
+      // クリップボードAPIが使えない環境向けフォールバック
+      const ta = document.createElement('textarea');
+      ta.value = json;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); setProgress('コピーした(フォールバック経由)。'); }
+      catch (e2) { setProgress('クリップボードコピー失敗: ' + e.message + '。ダウンロードを使うこと。'); }
+      ta.remove();
+    }
+  }
+}
+</script>
+</body>
+</html>
