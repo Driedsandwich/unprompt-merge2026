@@ -1,0 +1,4 @@
+{"ts": "2026-07-28T19:12:44.930346+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 16475, "api_ms": 4846, "ok": true}
+{"ts": "2026-07-28T19:13:09.323385+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 16271, "api_ms": 3535, "ok": true}
+{"ts": "2026-07-28T19:13:09.361848+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 16306, "api_ms": 3380, "ok": true}
+{"ts": "2026-07-28T19:13:10.239367+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 17187, "api_ms": 4233, "ok": true}

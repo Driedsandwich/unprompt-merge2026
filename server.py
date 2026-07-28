@@ -82,7 +82,7 @@ COMPILE_PROMPT_PATH = PROMPTS_DIR / "compile_v0.txt"
 DEFAULT_PORT = 8321
 DEFAULT_HOST = "127.0.0.1"          # localhost のみバインド(拘束)
 DEFAULT_MODEL = "sonnet"            # /api/explode, /api/compile
-DEFAULT_RENDER_MODEL = "haiku"      # /api/render
+DEFAULT_RENDER_MODEL = "sonnet"     # /api/render(実測: haiku は effort low でも多弁で40秒級、sonnet は簡潔で速い)
 DEFAULT_EFFORT = "low"              # --effort。実測でスリムスキーマと合わせて 110s→8.8s
 DEFAULT_TIMEOUT_S = 120             # claude 呼び出し1本あたり(拘束)
 DEFAULT_MAX_CONCURRENCY = 6         # 同時に走らせる claude 子プロセス数の上限
@@ -374,6 +374,7 @@ class ClaudeRunner:
         cmd = [self.claude_bin,
                "--system-prompt", system_prompt,
                "--strict-mcp-config",
+               "--setting-sources", "project",
                "--effort", self.effort,
                "--model", model, "--output-format", "json",
                "-p", "--", user_prompt]

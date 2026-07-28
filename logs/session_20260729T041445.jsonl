@@ -1,0 +1,5 @@
+{"ts": "2026-07-28T19:15:19.823753+00:00", "endpoint": "/api/explode", "model": "sonnet", "wall_ms": 26341, "api_ms": 16946, "ok": true}
+{"ts": "2026-07-28T19:16:26.388933+00:00", "endpoint": "/api/render", "model": "haiku", "wall_ms": 50439, "api_ms": 37842, "ok": true}
+{"ts": "2026-07-28T19:16:29.246287+00:00", "endpoint": "/api/render", "model": "haiku", "wall_ms": 53299, "api_ms": 40861, "ok": true}
+{"ts": "2026-07-28T19:16:29.246447+00:00", "endpoint": "/api/render", "model": "haiku", "wall_ms": 53299, "api_ms": 40872, "ok": true}
+{"ts": "2026-07-28T19:16:53.128359+00:00", "endpoint": "/api/compile", "model": "sonnet", "wall_ms": 14805, "api_ms": 4876, "ok": true}

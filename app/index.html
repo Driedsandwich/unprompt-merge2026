@@ -919,18 +919,18 @@ function tokensMini(tokens){
 }
 
 // /api/render は並列 fetch。到着順にスロットへ着地(スロットは固定寸法なのでリフローなし)。
+// 対照性は sibling_labels(同じ判断点に並ぶ他オプションのラベル)を渡して担保する。
+// レンダラーが「離れるべき方向」を直接知るので、3枚が中庸な値へ収束しない。
 function startRenders(){
   S.branches.forEach((b, bi) => {
     const options = Array.isArray(b.options) ? b.options : [];
+    const labels = options.map(o => String((o && o.label) || ''));
     options.forEach(async (o, oi) => {
       const r = await postJSON(API.render, {
         brief: S.brief,
         question_point: String(b.question_point || ''),
-        downstream_impact: String(b.downstream_impact || ''),
-        option: {
-          label: String((o && o.label) || ''),
-          thumbnail_description: String((o && o.thumbnail_description) || '')
-        }
+        option: { label: labels[oi] },
+        sibling_labels: labels.filter((_, k) => k !== oi && labels[k] !== '')
       });
       if (r.err || !r.j || r.j.ok !== true){
         S.renders[bi][oi] = {state: 'error', error: r.err || (r.j && r.j.error) || 'render failed'};
@@ -1333,20 +1333,21 @@ function buildJSON(){
       const rec = {
         question_point: String(b.question_point || ''),
         anchor_words: Array.isArray(b.anchor_words) ? b.anchor_words.map(String) : [],
-        downstream_impact: String(b.downstream_impact || ''),
         status: d.status === 'decided' ? 'decided' : 'delegated',
         chosen: null,
         default_if_unresolved: String(b.default_if_unresolved || ''),
         rationale: S.rationales[b.question_point] ? String(S.rationales[b.question_point]) : null
       };
+      // downstream_impact はスリムスキーマには無い。来た場合だけ載せる(空文字を吐かない)。
+      if (b.downstream_impact) rec.downstream_impact = String(b.downstream_impact);
       if (d.status === 'decided'){
         const opt = (Array.isArray(b.options) ? b.options : [])[d.oi] || {};
         const st = (S.renders[bi] || [])[d.oi];
         rec.chosen = {
           label: String(opt.label || ''),
-          thumbnail_description: String(opt.thumbnail_description || ''),
           tokens: (st && st.state === 'ok') ? st.tokens : null
         };
+        if (opt.thumbnail_description) rec.chosen.thumbnail_description = String(opt.thumbnail_description);
       }
       return rec;
     }),
