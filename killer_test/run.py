@@ -271,7 +271,7 @@ def machine_checks(brief_text: str, is_control: bool, ex, api_ms):
 
 # ========= claude -p 1回実行 =========
 def run_claude_once(claude_bin: str, system_prompt: str, user_prompt: str,
-                    model: str, timeout_s: int, workdir: str):
+                    model: str, timeout_s: int, workdir: str, effort: str = "low"):
     """1回の claude -p 実行。attempt レコード(生データ込み)を返す。
 
     - 抽出プロンプトは --append-system-prompt で system 側へ渡す(ブラウザ版の
@@ -293,8 +293,14 @@ def run_claude_once(claude_bin: str, system_prompt: str, user_prompt: str,
         "extraction": None,          # 本文から抽出したJSONオブジェクト
         "error": None                # {"kind": ..., "message": ...}
     }
+    # v3: --system-prompt 完全置換(Claude Code既定プロンプト23Kと拡張思考を排除)+
+    #     --strict-mcp-config(MCPサーバ読込による起動オーバーヘッド排除)+ --effort(既定low)。
+    #     実測根拠: 同一ブリーフで append方式110s/8.5Ktok → 置換+low 44.5s/2.7Ktok →
+    #     スリムスキーマ併用 8.8s/543tok(EVIDENCE/killer_test/ 参照)。
     cmd = [claude_bin, "-p", user_prompt,
-           "--append-system-prompt", system_prompt,
+           "--system-prompt", system_prompt,
+           "--strict-mcp-config",
+           "--effort", effort,
            "--model", model, "--output-format", "json"]
     t0 = time.monotonic()
     try:
@@ -351,14 +357,14 @@ def run_claude_once(claude_bin: str, system_prompt: str, user_prompt: str,
     return attempt
 
 
-def run_brief(brief, prompt_prefix, claude_bin, model, timeout_s, workdir):
+def run_brief(brief, prompt_prefix, claude_bin, model, timeout_s, workdir, effort="low"):
     """1ブリーフ処理。パース失敗(cli_json_parse / result_json_parse)は1回だけ再実行。"""
     attempts = []
     attempt = run_claude_once(claude_bin, prompt_prefix, brief["text"], model, timeout_s, workdir)
     attempts.append(attempt)
     if attempt["error"] and attempt["error"]["kind"] in ("cli_json_parse", "result_json_parse"):
         print("    パース失敗(%s)。1回だけ再実行する。" % attempt["error"]["kind"], flush=True)
-        attempt = run_claude_once(claude_bin, prompt_prefix, brief["text"], model, timeout_s, workdir)
+        attempt = run_claude_once(claude_bin, prompt_prefix, brief["text"], model, timeout_s, workdir, effort)
         attempts.append(attempt)
 
     final = attempts[-1]
@@ -398,8 +404,8 @@ def write_results_json(path, model, prompt_prefix, extraction_prompt_raw, result
             "cwd はリポジトリ外の一時ディレクトリで、CLAUDE.md / .claude 設定の祖先探索による"
             "無関係な指示の注入を遮断している。"
         ),
-        "command_template": ("claude -p <brief_text> --append-system-prompt <prompt_prefix_full> "
-                             "--model %s --output-format json" % model),
+        "command_template": ("claude -p <brief_text> --system-prompt <prompt_prefix_full> "
+                             "--strict-mcp-config --effort <effort> --model %s --output-format json" % model),
         "cwd": workdir,
         "model": model,
         "timeout_s_per_brief": timeout_s,
@@ -491,7 +497,18 @@ def main():
     ap.add_argument("--model", default=DEFAULT_MODEL, help="claude -p の --model(既定: sonnet。比較用に fable 等)")
     ap.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT_S, help="1ブリーフあたりのタイムアウト秒(既定: 180)")
     ap.add_argument("--claude-bin", default="claude", help="claude CLI のパス(既定: PATH上の claude)")
+    ap.add_argument("--prompt-file", default=None, help="抽出プロンプトファイル(既定: prompts/extraction_v0.txt)")
+    ap.add_argument("--schema", choices=["full", "slim"], default="full",
+                    help="スキーマ検査モード。slim=製品用(プロンプトファイルをそのままsystemに使用し、branch必須={question_point,anchor_words,options,default_if_unresolved}, option必須={label})")
+    ap.add_argument("--effort", default="low", help="claude -p の --effort(既定: low)")
     args = ap.parse_args()
+
+    global PROMPT_PATH, REQUIRED_BRANCH, REQUIRED_OPTION
+    if args.prompt_file:
+        PROMPT_PATH = Path(args.prompt_file).resolve()
+    if args.schema == "slim":
+        REQUIRED_BRANCH = ["question_point", "anchor_words", "options", "default_if_unresolved"]
+        REQUIRED_OPTION = ["label"]
 
     # 1. アセット読込(スクリプト位置基準)
     try:
@@ -542,7 +559,8 @@ def main():
         print("エラー: briefs.json にブリーフが見つからない。", file=sys.stderr)
         return 1
 
-    prompt_prefix = build_prompt_prefix(extraction_prompt_raw)
+    # slim: プロンプトファイル自体がスキーマ+出力規則を含む前提でそのまま system に使う
+    prompt_prefix = extraction_prompt_raw if args.schema == "slim" else build_prompt_prefix(extraction_prompt_raw)
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
     results_path = EVIDENCE_DIR / ("results_%s.json" % ts)
@@ -564,7 +582,7 @@ def main():
     results = []
     for i, b in enumerate(briefs):
         print("[%d/%d] %s (%s) 実行中…" % (i + 1, len(briefs), b["id"], b["type"]), flush=True)
-        r = run_brief(b, prompt_prefix, args.claude_bin, args.model, args.timeout, workdir)
+        r = run_brief(b, prompt_prefix, args.claude_bin, args.model, args.timeout, workdir, args.effort)
         results.append(r)
         if r["error"]:
             print("    エラー: %s — %s" % (r["error"]["kind"], r["error"]["message"]), flush=True)

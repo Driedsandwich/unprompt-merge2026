@@ -13,13 +13,18 @@ GYAKUMON — Intent Compiler ローカルサーバ(python3 標準ライブラリ
 
 エンドポイント:
   POST /api/explode  {brief}
-       → --model <model>       + prompts/extraction_v0.txt
+       → --model <model>       + prompts/extraction_product_v1.txt(スリムスキーマ)
        → {ok, branches[], residual_ambiguity_assessment, missing_materials[], timing}
+         branches[] = {id, question_point, anchor_words[], options:[{label}], default_if_unresolved}
+         downstream_impact / thumbnail_description / px200_rationale は存在しない(スリム化で削除)。
          anchor_words は「ブリーフ原文の連続部分文字列」であることをサーバ側で機械検証し、
          不合格の分岐は棄却してから返す(棄却理由は rejected_branches に残す)。
-  POST /api/render   {brief, question_point, downstream_impact, option:{label, thumbnail_description}}
+  POST /api/render   {brief, question_point, option:{label}, sibling_labels:[同じ判断点の他オプションのlabel...]}
        → --model <render_model> + prompts/render_v0.txt
        → {ok, tokens:{palette[3], heading_font, density, corner, tone_sample}, timing}
+         対照性は sibling_labels(差別化すべき兄弟オプションのラベル群)を入力に含めることで
+         担保する。レンダラーが「何から離れるべきか」を直接知る方式。
+         旧フィールド(downstream_impact / option.thumbnail_description)が来ても無視する。
   POST /api/compile  {brief, decisions:[{question_point, anchor_words, status, chosen_label?, chosen_tokens?}]}
        → --model <model>       + prompts/compile_v0.txt
        → {ok, rationales:{question_point→1文}, timing}
@@ -29,8 +34,10 @@ GYAKUMON — Intent Compiler ローカルサーバ(python3 標準ライブラリ
 規律(killer_test/run.py の流儀を踏襲):
   - 子プロセスの cwd は必ずリポジトリ外の一時ディレクトリ。CLAUDE.md / .claude 設定の
     祖先探索を遮断し、無関係な指示が抽出・生成へ注入されるのを防ぐ(設定汚染防止)。
-  - プロンプトファイルは --append-system-prompt で system 側へ渡し、ユーザープロンプトは
-    対象データ(ブリーフ原文 / JSONペイロード)のみとする。
+  - プロンプトファイルは --system-prompt で system を「完全置換」して渡す(既定の
+    Claude Code 用システムプロンプトを載せない)。--strict-mcp-config で MCP を遮断し、
+    --effort low で思考量を絞る。実測: 同一ブリーフで 110s/8.5Ktok → 8.8s/543tok。
+    ユーザープロンプトは対象データ(ブリーフ原文 / JSONペイロード)のみとする。
   - 出力スキーマはサーバ側の「出力規則」で上書き明記する(プロンプトファイルの文言に依存しない)。
   - 応答本文からのJSON抽出は波括弧対応の頑健抽出(コードフェンス・前置き混入に耐性)。
   - stdin は DEVNULL(親の stdin 継承によるハング防止)。タイムアウトは既定120秒。
@@ -68,7 +75,7 @@ APP_DIR = BASE_DIR / "app"
 PROMPTS_DIR = BASE_DIR / "prompts"
 LOGS_DIR = BASE_DIR / "logs"
 
-EXTRACTION_PROMPT_PATH = PROMPTS_DIR / "extraction_v0.txt"
+EXTRACTION_PROMPT_PATH = PROMPTS_DIR / "extraction_product_v1.txt"
 RENDER_PROMPT_PATH = PROMPTS_DIR / "render_v0.txt"
 COMPILE_PROMPT_PATH = PROMPTS_DIR / "compile_v0.txt"
 
@@ -76,6 +83,7 @@ DEFAULT_PORT = 8321
 DEFAULT_HOST = "127.0.0.1"          # localhost のみバインド(拘束)
 DEFAULT_MODEL = "sonnet"            # /api/explode, /api/compile
 DEFAULT_RENDER_MODEL = "haiku"      # /api/render
+DEFAULT_EFFORT = "low"              # --effort。実測でスリムスキーマと合わせて 110s→8.8s
 DEFAULT_TIMEOUT_S = 120             # claude 呼び出し1本あたり(拘束)
 DEFAULT_MAX_CONCURRENCY = 6         # 同時に走らせる claude 子プロセス数の上限
 SLOT_WAIT_MARGIN_S = 60             # 実行枠の待ち行列で待てる追加秒数
@@ -133,22 +141,19 @@ EXTRACTION_SCHEMA = {
                         "type": "array", "minItems": 1, "items": {"type": "string"},
                         "description": "原文の連続部分文字列をそのまま・可能な限り最長フレーズで"
                     },
-                    "downstream_impact": {"type": "string"},
                     "options": {
                         "type": "array", "minItems": 2, "maxItems": 3,
                         "items": {
                             "type": "object",
                             "properties": {
-                                "label": {"type": "string"},
-                                "thumbnail_description": {"type": "string"},
-                                "px200_rationale": {"type": "string", "description": "200pxで判別できる根拠"}
+                                "label": {"type": "string", "description": "解釈名(12字以内)"}
                             },
-                            "required": ["label", "thumbnail_description", "px200_rationale"]
+                            "required": ["label"]
                         }
                     },
                     "default_if_unresolved": {"type": "string"}
                 },
-                "required": ["question_point", "anchor_words", "downstream_impact",
+                "required": ["question_point", "anchor_words",
                              "options", "default_if_unresolved"]
             }
         }
@@ -187,7 +192,11 @@ EXTRACTION_REQUIRED_TOP = ["residual_ambiguity_assessment", "missing_materials",
 
 # ========= プロンプト合成 =========
 def build_extraction_system(extraction_prompt: str) -> str:
-    """抽出プロンプト + 出力規則(単一JSONのみ + スキーマ全文)。run.py と同一方針。"""
+    """抽出プロンプト + 出力規則(単一JSONのみ + スキーマ全文)。run.py と同一方針。
+
+    prompts/extraction_product_v1.txt(スリムスキーマ)を前提とする。
+    旧 extraction_v0.txt を --extraction-prompt 相当で差し込んだ場合に備え、
+    report_branches ツール前提の文言だけは読み替える。"""
     adapted = extraction_prompt.replace(
         "出力は必ず report_branches ツール呼び出しのみで行う。地の文・前置き・後書きを書かない。",
         "出力は単一のJSONオブジェクトのみで行う。地の文・前置き・後書きを書かない。"
@@ -195,10 +204,8 @@ def build_extraction_system(extraction_prompt: str) -> str:
     schema_text = json.dumps(EXTRACTION_SCHEMA, ensure_ascii=False, indent=2)
     rules = (
         "\n\n## 出力規則(この実行環境での上書き)\n\n"
-        "この実行環境ではツール(report_branches)は使用できない。"
-        "上記プロンプト中に report_branches ツール呼び出しへの言及が残っている場合、"
-        "それはすべて次の規則に読み替える。\n\n"
         "- コードフェンス(```)・説明・前置き・後書きを一切付けず、単一のJSONオブジェクトのみを出力せよ。\n"
+        "- 思考・分析・検討過程を書かない。即座に結論のJSONだけを書く。\n"
         "- そのJSONオブジェクトは次のJSONスキーマに厳密に従うこと(フィールド順もスキーマの順とする):\n\n"
         + schema_text +
         "\n\n- スキーマの required をすべて満たし、スキーマにないフィールドを追加しないこと。\n"
@@ -221,10 +228,13 @@ def build_render_system(render_prompt: str) -> str:
         "\n\n- 列挙値は英小文字リテラルのみ。palette は3要素・すべて \"#RRGGBB\" 形式の16進6桁。\n"
         "- tone_sample は合計40字以内(超過分はサーバ側で切り詰められる)。\n"
         "- スキーマにないフィールドを追加しないこと。null を入れないこと。\n"
+        "- 思考・分析・検討過程を書かない。即座に結論のJSONだけを書く。\n"
         "\n## 入力\n\n"
         "ユーザーメッセージとして単一のJSONオブジェクトが与えられる。"
-        "brief(ブリーフ原文)・question_point(判断点)・downstream_impact(下流影響)・"
-        "option(label と thumbnail_description)を読み、その option 1件分のトークンだけを返せ。\n"
+        "brief(ブリーフ原文)・question_point(判断点)・option(対象オプションの label)・"
+        "sibling_labels(同じ判断点に並ぶ他オプションの label 群)を読み、"
+        "その option 1件分のトークンだけを返せ。"
+        "sibling_labels は「離れるべき方向」を示す。それらが取りそうな値域を避けよ。\n"
     )
     return render_prompt + rules
 
@@ -307,11 +317,13 @@ class ClaudeRunner:
       --allow-api-key 指定時のみ除去しない。
     """
 
-    def __init__(self, claude_bin, timeout_s, max_concurrency, allow_api_key=False):
+    def __init__(self, claude_bin, timeout_s, max_concurrency, allow_api_key=False,
+                 effort=DEFAULT_EFFORT):
         self.claude_bin = claude_bin
         self.timeout_s = timeout_s
         self.max_concurrency = max_concurrency
         self.allow_api_key = allow_api_key
+        self.effort = effort
         self.base_dir = tempfile.mkdtemp(prefix="gyakumon_server_")
         self.slots = queue.Queue()
         for i in range(max_concurrency):
@@ -352,8 +364,17 @@ class ClaudeRunner:
         # オプション終端子 "--" の後ろに最後の位置引数として置く。
         # 検証済み: claude 2.1.220 で `claude --model ... --output-format json -p -- "--settings=..."` が
         # 本文をプロンプトとして扱い、json 出力も維持される。
+        #
+        # --system-prompt(--append-system-prompt ではない): 既定の Claude Code 用
+        #   システムプロンプトを「完全置換」する。抽出器はエージェントではないので、
+        #   ツール利用・作業手順・環境説明を読ませる必要がない。
+        # --strict-mcp-config: --mcp-config を与えていないので MCP サーバを一切載せない。
+        # --effort: 思考量の上限。抽出/レンダは分類タスクなので low で足りる。
+        # 実測(同一ブリーフ): 既定 110s/8.5Ktok → この3点 + スリムスキーマで 8.8s/543tok。
         cmd = [self.claude_bin,
-               "--append-system-prompt", system_prompt,
+               "--system-prompt", system_prompt,
+               "--strict-mcp-config",
+               "--effort", self.effort,
                "--model", model, "--output-format", "json",
                "-p", "--", user_prompt]
         t0 = time.monotonic()
@@ -441,9 +462,6 @@ def validate_extraction(brief_text, ex):
         qp = br.get("question_point")
         if not _nonempty_str(qp):
             reasons.append("question_point が空")
-        impact = br.get("downstream_impact")
-        if not _nonempty_str(impact):
-            reasons.append("downstream_impact が空")
 
         anchors_raw = br.get("anchor_words") if isinstance(br.get("anchor_words"), list) else []
         anchors, bad_anchors = [], []
@@ -460,19 +478,22 @@ def validate_extraction(brief_text, ex):
             reasons.append("anchor_words が原文の連続部分文字列でない: " +
                            " / ".join(repr(x)[:60] for x in bad_anchors[:3]))
 
+        # スリムスキーマ: option は label のみが必須。thumbnail_description /
+        # px200_rationale はスキーマから外したので、来ても要求しない(来たら捨てる)。
         opts_raw = br.get("options") if isinstance(br.get("options"), list) else []
         options = []
         for op in opts_raw:
+            if isinstance(op, str):
+                # label だけを裸の文字列で返した場合の救済
+                if _nonempty_str(op):
+                    options.append({"label": op.strip()})
+                continue
             if not isinstance(op, dict):
                 continue
             label = op.get("label")
-            thumb = op.get("thumbnail_description")
-            if not _nonempty_str(label) or not _nonempty_str(thumb):
+            if not _nonempty_str(label):
                 continue
-            o = {"label": label.strip(), "thumbnail_description": thumb.strip()}
-            if _nonempty_str(op.get("px200_rationale")):
-                o["px200_rationale"] = op["px200_rationale"].strip()
-            options.append(o)
+            options.append({"label": label.strip()})
         if not (2 <= len(options) <= 3):
             reasons.append("options が2〜3件でない(有効 %d 件)" % len(options))
 
@@ -486,7 +507,6 @@ def validate_extraction(brief_text, ex):
             "id": "b%d" % idx,
             "question_point": qp.strip(),
             "anchor_words": anchors,
-            "downstream_impact": impact.strip(),
             "options": options,
             "default_if_unresolved": (br.get("default_if_unresolved").strip()
                                       if _nonempty_str(br.get("default_if_unresolved")) else "")
@@ -662,7 +682,8 @@ class ServerState:
         self.render_model = args.render_model
         self.compile_model = args.compile_model or args.model
         self.runner = ClaudeRunner(args.claude_bin, args.timeout, args.max_concurrency,
-                                   allow_api_key=args.allow_api_key)
+                                   allow_api_key=args.allow_api_key,
+                                   effort=args.effort)
         LOGS_DIR.mkdir(parents=True, exist_ok=True)
         ts = datetime.now().strftime("%Y%m%dT%H%M%S")
         self.log = SessionLog(LOGS_DIR / ("session_%s.jsonl" % ts))
@@ -719,7 +740,7 @@ def handle_explode(body):
     system_prompt = STATE.prompts.get("explode")
     if system_prompt is None:
         return err(STATE.prompt_errors.get("explode", "抽出プロンプトが読めない"),
-                   "prompts/extraction_v0.txt を確認してサーバを再起動する。"), None, STATE.model
+                   "prompts/extraction_product_v1.txt を確認してサーバを再起動する。"), None, STATE.model
 
     model = STATE.model
     rec, timing = call_claude("/api/explode", system_prompt, brief, model)
@@ -757,9 +778,14 @@ def handle_explode(body):
 
 
 def handle_render(body):
+    """{brief, question_point, option:{label}, sibling_labels:[...]} を受ける。
+
+    対照性は sibling_labels(同じ判断点に並ぶ他オプションのラベル群)をモデルへ渡すことで
+    担保する。レンダラーが「離れるべき方向」を直接知るので、中庸な値へ収束しにくい。
+    旧契約のフィールド(downstream_impact, option.thumbnail_description)が来ても無視する。
+    """
     brief = body.get("brief")
     question_point = body.get("question_point")
-    downstream_impact = body.get("downstream_impact")
     option = body.get("option")
     model = STATE.render_model
 
@@ -767,10 +793,21 @@ def handle_render(body):
         return err("brief が空である", "ブリーフ原文を添えて送る。"), None, model
     if not _nonempty_str(question_point):
         return err("question_point が空である", "対象の判断点を添えて送る。"), None, model
-    if not isinstance(option, dict) or not _nonempty_str(option.get("label")) \
-            or not _nonempty_str(option.get("thumbnail_description")):
-        return err("option.label / option.thumbnail_description が必要である",
-                   "抽出結果のオプションをそのまま渡す。"), None, model
+    # option は {label} が必須。文字列で来た場合も label として受ける。
+    if isinstance(option, str):
+        option = {"label": option}
+    if not isinstance(option, dict) or not _nonempty_str(option.get("label")):
+        return err("option.label が必要である",
+                   "抽出結果のオプションの label をそのまま渡す。"), None, model
+
+    siblings_raw = body.get("sibling_labels")
+    label = option["label"].strip()
+    siblings = []
+    if isinstance(siblings_raw, list):
+        for s in siblings_raw:
+            t = s.strip() if isinstance(s, str) else ""
+            if t and t != label and t not in siblings:
+                siblings.append(t)
 
     system_prompt = STATE.prompts.get("render")
     if system_prompt is None:
@@ -780,9 +817,8 @@ def handle_render(body):
     user_payload = json.dumps({
         "brief": brief,
         "question_point": question_point,
-        "downstream_impact": downstream_impact if isinstance(downstream_impact, str) else "",
-        "option": {"label": option["label"],
-                   "thumbnail_description": option["thumbnail_description"]},
+        "option": {"label": label},
+        "sibling_labels": siblings,
     }, ensure_ascii=False, indent=2)
 
     rec, timing = call_claude("/api/render", system_prompt, user_payload, model)
@@ -1002,6 +1038,7 @@ class Handler(BaseHTTPRequestHandler):
                 "model": STATE.model,
                 "render_model": STATE.render_model,
                 "compile_model": STATE.compile_model,
+                "effort": STATE.args.effort,
                 "max_concurrency": STATE.args.max_concurrency,
                 "timeout_s": STATE.args.timeout,
                 "session_log": str(STATE.log.path),
@@ -1113,6 +1150,9 @@ def main():
     ap.add_argument("--model", default=DEFAULT_MODEL, help="/api/explode と /api/compile のモデル(既定: sonnet)")
     ap.add_argument("--render-model", default=DEFAULT_RENDER_MODEL, help="/api/render のモデル(既定: haiku)")
     ap.add_argument("--compile-model", default=None, help="/api/compile を別モデルにする場合(既定: --model と同じ)")
+    ap.add_argument("--effort", default=DEFAULT_EFFORT,
+                    help="claude の --effort(既定: %s。抽出/レンダは分類タスクなので low で足りる)"
+                         % DEFAULT_EFFORT)
     ap.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT_S, help="claude 1呼び出しのタイムアウト秒(既定: 120)")
     ap.add_argument("--max-concurrency", type=int, default=DEFAULT_MAX_CONCURRENCY,
                     help="claude 子プロセスの同時実行上限(既定: 6。超過はキュー)")
@@ -1143,8 +1183,9 @@ def main():
     print("")
     print("  モデル: explode/compile=%s, render=%s" % (STATE.model, STATE.render_model)
           + ("" if STATE.compile_model == STATE.model else " (compile=%s)" % STATE.compile_model))
-    print("  claude: %s / タイムアウト %d秒 / 同時実行上限 %d"
-          % (args.claude_bin, args.timeout, args.max_concurrency))
+    print("  claude: %s / effort=%s / タイムアウト %d秒 / 同時実行上限 %d"
+          % (args.claude_bin, args.effort, args.timeout, args.max_concurrency))
+    print("  system は --system-prompt で完全置換 / --strict-mcp-config で MCP 遮断")
     print("  子プロセス作業Dir: %s(リポジトリ外・CLAUDE.md 注入遮断)" % STATE.runner.base_dir)
     print("  セッションログ: %s" % STATE.log.path)
     if STATE.runner.stripped_env_keys:
