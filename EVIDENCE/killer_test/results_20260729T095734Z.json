@@ -1,0 +1,3150 @@
+{
+  "tool": "gyakumon-killer-test-runner-headless-cli",
+  "version": "cli-v2",
+  "generated_at": "2026-07-29T10:04:34.017736+00:00",
+  "engine": "claude -p (Claude Code subscription headless CLI)",
+  "engine_note": "エンジン差の注記: claude -p は素のAPI呼び出しではなく、Claude Code エージェントのシステムプロンプト込みで動作する。抽出プロンプトは --append-system-prompt でsystem 側へ追加しており、ブラウザ版(extraction_v0.txt を API の system に直接渡しtool_choice で report_branches を強制)とは測定条件が異なる。cwd はリポジトリ外の一時ディレクトリで、CLAUDE.md / .claude 設定の祖先探索による無関係な指示の注入を遮断している。",
+  "command_template": "claude -p <brief_text> --system-prompt <prompt_prefix_full> --strict-mcp-config --effort <effort> --model sonnet --output-format json",
+  "cwd": "/var/folders/w6/f3j1wtb51sl8tnh1nm6h0tkc0000gn/T/gyakumon_killer_cli_2pfuw67v",
+  "model": "sonnet",
+  "timeout_s_per_brief": 120,
+  "latency_limit_ms": 8000,
+  "latency_basis": "duration_api_ms(CLI起動オーバーヘッド分離のため。壁時計 wall_ms とCLI総時間 duration_ms を併記)",
+  "pass_line_note": "合格線: 10本中8本で有効分岐率70%以上(意味判定は管制塔)+ anchor原文実在 + 各ブリーフに対照ペア1組以上 + 8秒線(duration_api_ms <= 8000ms。壁時計とCLI総時間は起動オーバーヘッド分離評価のため併記)。対照(完全指定=control_zero)ブリーフで branches>0 は「捏造疑い」フラグのみで自動不合格にはしない(意味判定は管制塔)。",
+  "prompt_file": "/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/prompts/extraction_product_v1.txt",
+  "briefs_file": "/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/data/briefs.json",
+  "extraction_prompt_raw": "あなたは製品「GYAKUMON(逆問)」の中核エンジンである。ユーザーの曖昧な制作依頼ブリーフ(LP・Web・文章・SNS等)から「下流で最も効く曖昧さ」を分岐として抽出する。生成はしない。問うだけである。\n\n# 分岐の質の規則\n- 「読み手(人間でもAIでも)が勝手な事前分布で埋め、埋め方次第で成果物が本質的に分かれる判断点」だけを出す。些末な分岐(フォント名・細部の色番号など)は失格。\n- 独立性: 各分岐は他の分岐の解決から導出できないこと。\n- anchor_words は原文の連続部分文字列を一字一句そのまま、可能な限り最長フレーズで引用する。原文にない語・言い換えは失格。\n- options は互いに対照的な解釈の名前(12字以内)。並べて見れば成果物の方向が分かれることが伝わる命名にする。\n- 「選択で解決できる曖昧さ」と「情報提供でしか解決できない欠落(実データ・素材・固有情報)」を区別し、後者は missing_materials に名詞句で列挙する。分岐にしてはならない。\n- ブリーフの曖昧度が実際に低いなら、無理に分岐を作らず少数または0件とし、residual_ambiguity_assessment で正直に述べる。\n- 目安: 曖昧な制作依頼には通常3〜5件の本物の分岐が潜んでいる(読者・目的・トーン・構成・訴求軸・見せ方などの軸を一通り確認せよ)。3件未満で終える場合は、見落とした軸がないか一度だけ再点検する。ただしこれは探索の目安であって充足すべき数値目標ではない。上記の質の規則を満たさない分岐をこの目安のために作り出すことは失格であり、完全に指定されたブリーフでは0件が正しい答えである。\n\n# 出力規則(厳守)\n- 単一のJSONオブジェクトのみを出力する。コードフェンス・前置き・後書き・説明は一切禁止。\n- 思考・分析の記述は不要。即座に結論のJSONだけを書く。\n- 各フィールドは簡潔に: residual_ambiguity_assessment は60字以内。question_point は40字以内。default_if_unresolved は30字以内。\n- フィールド順序は次のスキーマの通りに固定する(branches から書き始め、メタ2項は最後に書く)。\n\n# スキーマ\n{\n \"branches\": [\n  {\n   \"question_point\": \"判断点の名前(40字以内)\",\n   \"anchor_words\": [\"原文の連続部分文字列(最長フレーズ)\"],\n   \"options\": [ {\"label\": \"解釈名(12字以内)\"}, {\"label\": \"...\"} ],\n   \"default_if_unresolved\": \"聞かずに進む場合の既定(30字以内)\"\n  }\n ],\n \"missing_materials\": [\"名詞句\", ...],\n \"residual_ambiguity_assessment\": \"60字以内の曖昧度総評\"\n}\n- branches は最大5件。options は各分岐2〜3件。\n",
+  "prompt_prefix_full": "あなたは製品「GYAKUMON(逆問)」の中核エンジンである。ユーザーの曖昧な制作依頼ブリーフ(LP・Web・文章・SNS等)から「下流で最も効く曖昧さ」を分岐として抽出する。生成はしない。問うだけである。\n\n# 分岐の質の規則\n- 「読み手(人間でもAIでも)が勝手な事前分布で埋め、埋め方次第で成果物が本質的に分かれる判断点」だけを出す。些末な分岐(フォント名・細部の色番号など)は失格。\n- 独立性: 各分岐は他の分岐の解決から導出できないこと。\n- anchor_words は原文の連続部分文字列を一字一句そのまま、可能な限り最長フレーズで引用する。原文にない語・言い換えは失格。\n- options は互いに対照的な解釈の名前(12字以内)。並べて見れば成果物の方向が分かれることが伝わる命名にする。\n- 「選択で解決できる曖昧さ」と「情報提供でしか解決できない欠落(実データ・素材・固有情報)」を区別し、後者は missing_materials に名詞句で列挙する。分岐にしてはならない。\n- ブリーフの曖昧度が実際に低いなら、無理に分岐を作らず少数または0件とし、residual_ambiguity_assessment で正直に述べる。\n- 目安: 曖昧な制作依頼には通常3〜5件の本物の分岐が潜んでいる(読者・目的・トーン・構成・訴求軸・見せ方などの軸を一通り確認せよ)。3件未満で終える場合は、見落とした軸がないか一度だけ再点検する。ただしこれは探索の目安であって充足すべき数値目標ではない。上記の質の規則を満たさない分岐をこの目安のために作り出すことは失格であり、完全に指定されたブリーフでは0件が正しい答えである。\n\n# 出力規則(厳守)\n- 単一のJSONオブジェクトのみを出力する。コードフェンス・前置き・後書き・説明は一切禁止。\n- 思考・分析の記述は不要。即座に結論のJSONだけを書く。\n- 各フィールドは簡潔に: residual_ambiguity_assessment は60字以内。question_point は40字以内。default_if_unresolved は30字以内。\n- フィールド順序は次のスキーマの通りに固定する(branches から書き始め、メタ2項は最後に書く)。\n\n# スキーマ\n{\n \"branches\": [\n  {\n   \"question_point\": \"判断点の名前(40字以内)\",\n   \"anchor_words\": [\"原文の連続部分文字列(最長フレーズ)\"],\n   \"options\": [ {\"label\": \"解釈名(12字以内)\"}, {\"label\": \"...\"} ],\n   \"default_if_unresolved\": \"聞かずに進む場合の既定(30字以内)\"\n  }\n ],\n \"missing_materials\": [\"名詞句\", ...],\n \"residual_ambiguity_assessment\": \"60字以内の曖昧度総評\"\n}\n- branches は最大5件。options は各分岐2〜3件。\n",
+  "full_prompt_composition": "system: prompt_prefix_full を --append-system-prompt で追加 / user: 各ブリーフの brief_text のみ",
+  "extraction_schema": {
+    "type": "object",
+    "properties": {
+      "residual_ambiguity_assessment": {
+        "type": "string",
+        "description": "残存曖昧性の評価"
+      },
+      "missing_materials": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "選択では解決できず情報提供が必要な欠落"
+      },
+      "branches": {
+        "type": "array",
+        "maxItems": 5,
+        "items": {
+          "type": "object",
+          "properties": {
+            "question_point": {
+              "type": "string"
+            },
+            "anchor_words": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              },
+              "description": "原文の連続部分文字列をそのまま・可能な限り最長フレーズで"
+            },
+            "downstream_impact": {
+              "type": "string"
+            },
+            "options": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 3,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "thumbnail_description": {
+                    "type": "string"
+                  },
+                  "px200_rationale": {
+                    "type": "string",
+                    "description": "200pxで判別できる根拠"
+                  }
+                },
+                "required": [
+                  "label",
+                  "thumbnail_description",
+                  "px200_rationale"
+                ]
+              }
+            },
+            "default_if_unresolved": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "question_point",
+            "anchor_words",
+            "downstream_impact",
+            "options",
+            "default_if_unresolved"
+          ]
+        }
+      }
+    },
+    "required": [
+      "residual_ambiguity_assessment",
+      "missing_materials",
+      "branches"
+    ]
+  },
+  "results": [
+    {
+      "brief_id": "lp-warm",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T09:57:34.139297+00:00",
+          "wall_ms": 40344,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":26508,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"2f5e17d2-1fb3-4655-b276-1b71b10f238a\",\"total_cost_usd\":0.29211,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":43044,\"cache_read_input_tokens\":0,\"output_tokens\":2256,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":43044,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":2256,\"cache_read_input_tokens\":0,\"cache_creation_input_tokens\":43044,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":43044},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":2256,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":43044,\"webSearchRequests\":0,\"costUSD\":0.29211,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"```json\\n{\\n \\\"branches\\\": [\\n  {\\n   \\\"question_point\\\": \\\"LPの到達目的(コンバージョンの先)\\\",\\n   \\\"anchor_words\\\": [\\\"LPを作って\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"問い合わせ獲得型\\\"}, {\\\"label\\\": \\\"採用応募誘導型\\\"}, {\\\"label\\\": \\\"認知・ブランディング型\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"問い合わせ獲得を主目的として構成\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"想定読み手の属性\\\",\\n   \\\"anchor_words\\\": [\\\"うちの会社の\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"法人担当者向け\\\"}, {\\\"label\\\": \\\"一般消費者向け\\\"}, {\\\"label\\\": \\\"求職者向け\\\"} ],\\\" \\n   \\\"default_if_unresolved\\\": \\\"一般消費者向けとして構成\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"モダンと温かみの配合比率\\\",\\n   \\\"anchor_words\\\": [\\\"モダンだけど温かみのある\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"モダン主導\\\"}, {\\\"label\\\": \\\"温かみ主導\\\"}, {\\\"label\\\": \\\"均等融合\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"均等融合で構成\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"温かみの表現手法\\\",\\n   \\\"anchor_words\\\": [\\\"温かみのある\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"人物・写真中心\\\"}, {\\\"label\\\": \\\"言葉遣い・手書き感\\\"}, {\\\"label\\\": \\\"色調・余白中心\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"色調・余白で温かみを表現\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"訴求の主役(何を前面に出すか)\\\",\\n   \\\"anchor_words\\\": [\\\"うちの会社のやつ\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"実績・数字訴求型\\\"}, {\\\"label\\\": \\\"人・ストーリー訴求型\\\"}, {\\\"label\\\": \\\"世界観・雰囲気訴求型\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"人・ストーリー訴求型で構成\\\"\\n  }\\n ],\\n \\\"missing_materials\\\": [\\\"会社名\\\", \\\"事業内容\\\", \\\"提供サービス・商品の詳細\\\", \\\"実績・数値データ\\\", \\\"ターゲット顧客の具体像\\\", \\\"競合との差別化ポイント\\\", \\\"ロゴ・写真等の素材\\\", \\\"問い合わせ先・CTA情報\\\"],\\n \\\"residual_ambiguity_assessment\\\": \\\"会社名・事業内容・目的・読み手が一切不明で曖昧度は非常に高い。分岐に加え素材提供が必須。\\\"\\n}\\n```\\n\\n```\\n次回ゴール推奨: 上記のbranches(目的/読み手/配合比率/表現手法/訴求主役)とmissing_materials(会社名・事業内容・実績・差別化点等)をユーザーに提示し、回答を得てからLP構成案の生成に進む。\\n```\",\"ttft_ms\":18732,\"ttft_stream_ms\":1424,\"time_to_request_ms\":41,\"type\":\"result\",\"duration_ms\":26789,\"uuid\":\"c69b583c-4967-41cf-b359-6dce7fec3df4\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 26508,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "2f5e17d2-1fb3-4655-b276-1b71b10f238a",
+            "total_cost_usd": 0.29211,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 43044,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 2256,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 43044,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 2256,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 43044,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 43044
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 2256,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 43044,
+                "webSearchRequests": 0,
+                "costUSD": 0.29211,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "```json\n{\n \"branches\": [\n  {\n   \"question_point\": \"LPの到達目的(コンバージョンの先)\",\n   \"anchor_words\": [\"LPを作って\"],\n   \"options\": [ {\"label\": \"問い合わせ獲得型\"}, {\"label\": \"採用応募誘導型\"}, {\"label\": \"認知・ブランディング型\"} ],\n   \"default_if_unresolved\": \"問い合わせ獲得を主目的として構成\"\n  },\n  {\n   \"question_point\": \"想定読み手の属性\",\n   \"anchor_words\": [\"うちの会社の\"],\n   \"options\": [ {\"label\": \"法人担当者向け\"}, {\"label\": \"一般消費者向け\"}, {\"label\": \"求職者向け\"} ],\" \n   \"default_if_unresolved\": \"一般消費者向けとして構成\"\n  },\n  {\n   \"question_point\": \"モダンと温かみの配合比率\",\n   \"anchor_words\": [\"モダンだけど温かみのある\"],\n   \"options\": [ {\"label\": \"モダン主導\"}, {\"label\": \"温かみ主導\"}, {\"label\": \"均等融合\"} ],\n   \"default_if_unresolved\": \"均等融合で構成\"\n  },\n  {\n   \"question_point\": \"温かみの表現手法\",\n   \"anchor_words\": [\"温かみのある\"],\n   \"options\": [ {\"label\": \"人物・写真中心\"}, {\"label\": \"言葉遣い・手書き感\"}, {\"label\": \"色調・余白中心\"} ],\n   \"default_if_unresolved\": \"色調・余白で温かみを表現\"\n  },\n  {\n   \"question_point\": \"訴求の主役(何を前面に出すか)\",\n   \"anchor_words\": [\"うちの会社のやつ\"],\n   \"options\": [ {\"label\": \"実績・数字訴求型\"}, {\"label\": \"人・ストーリー訴求型\"}, {\"label\": \"世界観・雰囲気訴求型\"} ],\n   \"default_if_unresolved\": \"人・ストーリー訴求型で構成\"\n  }\n ],\n \"missing_materials\": [\"会社名\", \"事業内容\", \"提供サービス・商品の詳細\", \"実績・数値データ\", \"ターゲット顧客の具体像\", \"競合との差別化ポイント\", \"ロゴ・写真等の素材\", \"問い合わせ先・CTA情報\"],\n \"residual_ambiguity_assessment\": \"会社名・事業内容・目的・読み手が一切不明で曖昧度は非常に高い。分岐に加え素材提供が必須。\"\n}\n```\n\n```\n次回ゴール推奨: 上記のbranches(目的/読み手/配合比率/表現手法/訴求主役)とmissing_materials(会社名・事業内容・実績・差別化点等)をユーザーに提示し、回答を得てからLP構成案の生成に進む。\n```",
+            "ttft_ms": 18732,
+            "ttft_stream_ms": 1424,
+            "time_to_request_ms": 41,
+            "type": "result",
+            "duration_ms": 26789,
+            "uuid": "c69b583c-4967-41cf-b359-6dce7fec3df4"
+          },
+          "duration_ms": 26789,
+          "duration_api_ms": 26508,
+          "result_text": "```json\n{\n \"branches\": [\n  {\n   \"question_point\": \"LPの到達目的(コンバージョンの先)\",\n   \"anchor_words\": [\"LPを作って\"],\n   \"options\": [ {\"label\": \"問い合わせ獲得型\"}, {\"label\": \"採用応募誘導型\"}, {\"label\": \"認知・ブランディング型\"} ],\n   \"default_if_unresolved\": \"問い合わせ獲得を主目的として構成\"\n  },\n  {\n   \"question_point\": \"想定読み手の属性\",\n   \"anchor_words\": [\"うちの会社の\"],\n   \"options\": [ {\"label\": \"法人担当者向け\"}, {\"label\": \"一般消費者向け\"}, {\"label\": \"求職者向け\"} ],\" \n   \"default_if_unresolved\": \"一般消費者向けとして構成\"\n  },\n  {\n   \"question_point\": \"モダンと温かみの配合比率\",\n   \"anchor_words\": [\"モダンだけど温かみのある\"],\n   \"options\": [ {\"label\": \"モダン主導\"}, {\"label\": \"温かみ主導\"}, {\"label\": \"均等融合\"} ],\n   \"default_if_unresolved\": \"均等融合で構成\"\n  },\n  {\n   \"question_point\": \"温かみの表現手法\",\n   \"anchor_words\": [\"温かみのある\"],\n   \"options\": [ {\"label\": \"人物・写真中心\"}, {\"label\": \"言葉遣い・手書き感\"}, {\"label\": \"色調・余白中心\"} ],\n   \"default_if_unresolved\": \"色調・余白で温かみを表現\"\n  },\n  {\n   \"question_point\": \"訴求の主役(何を前面に出すか)\",\n   \"anchor_words\": [\"うちの会社のやつ\"],\n   \"options\": [ {\"label\": \"実績・数字訴求型\"}, {\"label\": \"人・ストーリー訴求型\"}, {\"label\": \"世界観・雰囲気訴求型\"} ],\n   \"default_if_unresolved\": \"人・ストーリー訴求型で構成\"\n  }\n ],\n \"missing_materials\": [\"会社名\", \"事業内容\", \"提供サービス・商品の詳細\", \"実績・数値データ\", \"ターゲット顧客の具体像\", \"競合との差別化ポイント\", \"ロゴ・写真等の素材\", \"問い合わせ先・CTA情報\"],\n \"residual_ambiguity_assessment\": \"会社名・事業内容・目的・読み手が一切不明で曖昧度は非常に高い。分岐に加え素材提供が必須。\"\n}\n```\n\n```\n次回ゴール推奨: 上記のbranches(目的/読み手/配合比率/表現手法/訴求主役)とmissing_materials(会社名・事業内容・実績・差別化点等)をユーザーに提示し、回答を得てからLP構成案の生成に進む。\n```",
+          "extraction": null,
+          "error": {
+            "kind": "result_json_parse",
+            "message": "本文からのJSON抽出失敗: 必須3キー(residual_ambiguity_assessment, missing_materials, branches)を持つ完全なJSONオブジェクトを抽出できない"
+          }
+        },
+        {
+          "timestamp_start": "2026-07-29T09:58:14.484184+00:00",
+          "wall_ms": 35653,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":22024,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"7abb2115-3675-4c95-b2f0-ebd3a06d585c\",\"total_cost_usd\":0.16013070000000001,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21615,\"cache_read_input_tokens\":21449,\"output_tokens\":1600,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21615,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":1600,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21615,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21615},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":1600,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21615,\"webSearchRequests\":0,\"costUSD\":0.16013070000000001,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"branches\\\":[{\\\"question_point\\\":\\\"モダンと温かみのバランスの重心\\\",\\\"anchor_words\\\":[\\\"モダンだけど温かみのある\\\"],\\\"options\\\":[{\\\"label\\\":\\\"ミニマル洗練寄り\\\"},{\\\"label\\\":\\\"手仕事・人肌感寄り\\\"}],\\\"default_if_unresolved\\\":\\\"均等バランスで進める\\\"},{\\\"question_point\\\":\\\"LPで最終的にさせたい行動\\\",\\\"anchor_words\\\":[\\\"うちの会社のやつ\\\"],\\\"options\\\":[{\\\"label\\\":\\\"問い合わせ獲得\\\"},{\\\"label\\\":\\\"採用応募誘導\\\"},{\\\"label\\\":\\\"会社紹介のみ\\\"}],\\\"default_if_unresolved\\\":\\\"問い合わせ獲得を主目的とする\\\"},{\\\"question_point\\\":\\\"想定する読み手\\\",\\\"anchor_words\\\":[\\\"うちの会社のやつ\\\"],\\\"options\\\":[{\\\"label\\\":\\\"法人担当者向け\\\"},{\\\"label\\\":\\\"一般消費者向け\\\"},{\\\"label\\\":\\\"求職者向け\\\"}],\\\"default_if_unresolved\\\":\\\"法人担当者向けと仮定する\\\"},{\\\"question_point\\\":\\\"温かみの訴求軸\\\",\\\"anchor_words\\\":[\\\"温かみのある\\\"],\\\"options\\\":[{\\\"label\\\":\\\"実績・信頼訴求\\\"},{\\\"label\\\":\\\"情熱・物語訴求\\\"}],\\\"default_if_unresolved\\\":\\\"信頼と物語を併記する\\\"}],\\\"missing_materials\\\":[\\\"会社名\\\",\\\"業種・事業内容\\\",\\\"提供する商品・サービスの詳細\\\",\\\"ロゴ・写真素材\\\",\\\"実績データ・お客様の声\\\"],\\\"residual_ambiguity_assessment\\\":\\\"ブリーフが極端に短く企業情報が皆無で、目的・読者・トーンとも未確定なため曖昧度は非常に高い。\\\"}\",\"ttft_ms\":17930,\"ttft_stream_ms\":2592,\"time_to_request_ms\":86,\"type\":\"result\",\"duration_ms\":22430,\"uuid\":\"a2469923-2491-4776-b6b3-951d96d69f95\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 22024,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "7abb2115-3675-4c95-b2f0-ebd3a06d585c",
+            "total_cost_usd": 0.16013070000000001,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21615,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 1600,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21615,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 1600,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21615,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21615
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 1600,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21615,
+                "webSearchRequests": 0,
+                "costUSD": 0.16013070000000001,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "{\"branches\":[{\"question_point\":\"モダンと温かみのバランスの重心\",\"anchor_words\":[\"モダンだけど温かみのある\"],\"options\":[{\"label\":\"ミニマル洗練寄り\"},{\"label\":\"手仕事・人肌感寄り\"}],\"default_if_unresolved\":\"均等バランスで進める\"},{\"question_point\":\"LPで最終的にさせたい行動\",\"anchor_words\":[\"うちの会社のやつ\"],\"options\":[{\"label\":\"問い合わせ獲得\"},{\"label\":\"採用応募誘導\"},{\"label\":\"会社紹介のみ\"}],\"default_if_unresolved\":\"問い合わせ獲得を主目的とする\"},{\"question_point\":\"想定する読み手\",\"anchor_words\":[\"うちの会社のやつ\"],\"options\":[{\"label\":\"法人担当者向け\"},{\"label\":\"一般消費者向け\"},{\"label\":\"求職者向け\"}],\"default_if_unresolved\":\"法人担当者向けと仮定する\"},{\"question_point\":\"温かみの訴求軸\",\"anchor_words\":[\"温かみのある\"],\"options\":[{\"label\":\"実績・信頼訴求\"},{\"label\":\"情熱・物語訴求\"}],\"default_if_unresolved\":\"信頼と物語を併記する\"}],\"missing_materials\":[\"会社名\",\"業種・事業内容\",\"提供する商品・サービスの詳細\",\"ロゴ・写真素材\",\"実績データ・お客様の声\"],\"residual_ambiguity_assessment\":\"ブリーフが極端に短く企業情報が皆無で、目的・読者・トーンとも未確定なため曖昧度は非常に高い。\"}",
+            "ttft_ms": 17930,
+            "ttft_stream_ms": 2592,
+            "time_to_request_ms": 86,
+            "type": "result",
+            "duration_ms": 22430,
+            "uuid": "a2469923-2491-4776-b6b3-951d96d69f95"
+          },
+          "duration_ms": 22430,
+          "duration_api_ms": 22024,
+          "result_text": "{\"branches\":[{\"question_point\":\"モダンと温かみのバランスの重心\",\"anchor_words\":[\"モダンだけど温かみのある\"],\"options\":[{\"label\":\"ミニマル洗練寄り\"},{\"label\":\"手仕事・人肌感寄り\"}],\"default_if_unresolved\":\"均等バランスで進める\"},{\"question_point\":\"LPで最終的にさせたい行動\",\"anchor_words\":[\"うちの会社のやつ\"],\"options\":[{\"label\":\"問い合わせ獲得\"},{\"label\":\"採用応募誘導\"},{\"label\":\"会社紹介のみ\"}],\"default_if_unresolved\":\"問い合わせ獲得を主目的とする\"},{\"question_point\":\"想定する読み手\",\"anchor_words\":[\"うちの会社のやつ\"],\"options\":[{\"label\":\"法人担当者向け\"},{\"label\":\"一般消費者向け\"},{\"label\":\"求職者向け\"}],\"default_if_unresolved\":\"法人担当者向けと仮定する\"},{\"question_point\":\"温かみの訴求軸\",\"anchor_words\":[\"温かみのある\"],\"options\":[{\"label\":\"実績・信頼訴求\"},{\"label\":\"情熱・物語訴求\"}],\"default_if_unresolved\":\"信頼と物語を併記する\"}],\"missing_materials\":[\"会社名\",\"業種・事業内容\",\"提供する商品・サービスの詳細\",\"ロゴ・写真素材\",\"実績データ・お客様の声\"],\"residual_ambiguity_assessment\":\"ブリーフが極端に短く企業情報が皆無で、目的・読者・トーンとも未確定なため曖昧度は非常に高い。\"}",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "モダンと温かみのバランスの重心",
+                "anchor_words": [
+                  "モダンだけど温かみのある"
+                ],
+                "options": [
+                  {
+                    "label": "ミニマル洗練寄り"
+                  },
+                  {
+                    "label": "手仕事・人肌感寄り"
+                  }
+                ],
+                "default_if_unresolved": "均等バランスで進める"
+              },
+              {
+                "question_point": "LPで最終的にさせたい行動",
+                "anchor_words": [
+                  "うちの会社のやつ"
+                ],
+                "options": [
+                  {
+                    "label": "問い合わせ獲得"
+                  },
+                  {
+                    "label": "採用応募誘導"
+                  },
+                  {
+                    "label": "会社紹介のみ"
+                  }
+                ],
+                "default_if_unresolved": "問い合わせ獲得を主目的とする"
+              },
+              {
+                "question_point": "想定する読み手",
+                "anchor_words": [
+                  "うちの会社のやつ"
+                ],
+                "options": [
+                  {
+                    "label": "法人担当者向け"
+                  },
+                  {
+                    "label": "一般消費者向け"
+                  },
+                  {
+                    "label": "求職者向け"
+                  }
+                ],
+                "default_if_unresolved": "法人担当者向けと仮定する"
+              },
+              {
+                "question_point": "温かみの訴求軸",
+                "anchor_words": [
+                  "温かみのある"
+                ],
+                "options": [
+                  {
+                    "label": "実績・信頼訴求"
+                  },
+                  {
+                    "label": "情熱・物語訴求"
+                  }
+                ],
+                "default_if_unresolved": "信頼と物語を併記する"
+              }
+            ],
+            "missing_materials": [
+              "会社名",
+              "業種・事業内容",
+              "提供する商品・サービスの詳細",
+              "ロゴ・写真素材",
+              "実績データ・お客様の声"
+            ],
+            "residual_ambiguity_assessment": "ブリーフが極端に短く企業情報が皆無で、目的・読者・トーンとも未確定なため曖昧度は非常に高い。"
+          },
+          "error": null
+        }
+      ],
+      "retried": true,
+      "wall_ms": 35653,
+      "duration_ms": 22430,
+      "duration_api_ms": 22024,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "モダンと温かみのバランスの重心",
+            "anchor_words": [
+              "モダンだけど温かみのある"
+            ],
+            "options": [
+              {
+                "label": "ミニマル洗練寄り"
+              },
+              {
+                "label": "手仕事・人肌感寄り"
+              }
+            ],
+            "default_if_unresolved": "均等バランスで進める"
+          },
+          {
+            "question_point": "LPで最終的にさせたい行動",
+            "anchor_words": [
+              "うちの会社のやつ"
+            ],
+            "options": [
+              {
+                "label": "問い合わせ獲得"
+              },
+              {
+                "label": "採用応募誘導"
+              },
+              {
+                "label": "会社紹介のみ"
+              }
+            ],
+            "default_if_unresolved": "問い合わせ獲得を主目的とする"
+          },
+          {
+            "question_point": "想定する読み手",
+            "anchor_words": [
+              "うちの会社のやつ"
+            ],
+            "options": [
+              {
+                "label": "法人担当者向け"
+              },
+              {
+                "label": "一般消費者向け"
+              },
+              {
+                "label": "求職者向け"
+              }
+            ],
+            "default_if_unresolved": "法人担当者向けと仮定する"
+          },
+          {
+            "question_point": "温かみの訴求軸",
+            "anchor_words": [
+              "温かみのある"
+            ],
+            "options": [
+              {
+                "label": "実績・信頼訴求"
+              },
+              {
+                "label": "情熱・物語訴求"
+              }
+            ],
+            "default_if_unresolved": "信頼と物語を併記する"
+          }
+        ],
+        "missing_materials": [
+          "会社名",
+          "業種・事業内容",
+          "提供する商品・サービスの詳細",
+          "ロゴ・写真素材",
+          "実績データ・お客様の声"
+        ],
+        "residual_ambiguity_assessment": "ブリーフが極端に短く企業情報が皆無で、目的・読者・トーンとも未確定なため曖昧度は非常に高い。"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 4,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 4,
+        "anchor_violations": 0,
+        "latency_api_ms": 22024,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "モダンと温かみのバランスの重心",
+            "anchors": [
+              {
+                "text": "モダンだけど温かみのある",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 1,
+            "question_point": "LPで最終的にさせたい行動",
+            "anchors": [
+              {
+                "text": "うちの会社のやつ",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 2,
+            "question_point": "想定する読み手",
+            "anchors": [
+              {
+                "text": "うちの会社のやつ",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 3,
+            "question_point": "温かみの訴求軸",
+            "anchors": [
+              {
+                "text": "温かみのある",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "release-mail",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "新機能のリリース告知メールを、堅すぎない感じで書いて。既存ユーザー向け。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T09:58:50.141007+00:00",
+          "wall_ms": 34251,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":13204,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"ae9f45c3-f660-4044-b0a9-89806e3c5c93\",\"total_cost_usd\":0.1467687,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21623,\"cache_read_input_tokens\":21449,\"output_tokens\":706,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21623,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":706,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21623,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21623},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":706,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21623,\"webSearchRequests\":0,\"costUSD\":0.1467687,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"branches\\\":[{\\\"question_point\\\":\\\"新機能の中身・便益が未指定\\\",\\\"anchor_words\\\":[\\\"新機能\\\"],\\\"options\\\":[{\\\"label\\\":\\\"仮内容で執筆\\\"},{\\\"label\\\":\\\"プレースホルダー化\\\"}],\\\"default_if_unresolved\\\":\\\"[新機能名]と効果をプレースホルダーで挿入\\\"}],\\\"missing_materials\\\":[\\\"新機能の名称\\\",\\\"新機能の具体的な内容・使い方\\\",\\\"利用開始方法・導線URL\\\",\\\"対象ユーザー範囲(全員/特定プラン等)\\\",\\\"送信元(会社名・サービス名・署名)\\\"],\\\"residual_ambiguity_assessment\\\":\\\"トーン(堅すぎない)・宛先(既存ユーザー)は指定済みだが、新機能の中身が完全欠落。\\\"}\\n\\n以下、指定内容で本文案を作成しました。\\n\\n---\\n\\n**件名：【新機能のお知らせ】ちょっと便利になりました**\\n\\nいつもご利用ありがとうございます。\\n\\nこのたび、[サービス名]に新しい機能「[新機能名]」を追加しました！\\n\\n[新機能の1〜2行説明：何ができるようになったか]\\n\\nこんな場面で使えます：\\n- [利用シーン1]\\n- [利用シーン2]\\n\\n使い方はとってもシンプル。[利用開始の導線]からすぐにお試しいただけます。\\n\\n▶ [ボタン/リンク：今すぐ試す]\\n\\n「もっとこうしてほしい」というご要望があれば、いつでもお気軽にお知らせください。今後も使いやすさを大事にアップデートしていきます。\\n\\nそれでは、ぜひ使ってみてください！\\n\\n[署名/サービス名]\\n\\n---\\n\\n**[新機能名]・具体的な内容・利用開始の導線URL・宛先範囲・署名**が未確定のため、上記はプレースホルダー([　]部分)のまま仮組みしています。この5点をいただければ、そのまま送信できる完成稿に仕上げます。\\n\\n```\\n新機能の名称・具体的にできること・利用開始の導線(URL)・署名(会社名/サービス名)を教えてください。\\nそれを元にメール本文を完成させます。\\n```\",\"ttft_ms\":13495,\"ttft_stream_ms\":2033,\"time_to_request_ms\":378,\"type\":\"result\",\"duration_ms\":13983,\"uuid\":\"ebaed766-8ff4-4b73-8e76-0f3fe94beb3a\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 13204,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "ae9f45c3-f660-4044-b0a9-89806e3c5c93",
+            "total_cost_usd": 0.1467687,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21623,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 706,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21623,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 706,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21623,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21623
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 706,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21623,
+                "webSearchRequests": 0,
+                "costUSD": 0.1467687,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "{\"branches\":[{\"question_point\":\"新機能の中身・便益が未指定\",\"anchor_words\":[\"新機能\"],\"options\":[{\"label\":\"仮内容で執筆\"},{\"label\":\"プレースホルダー化\"}],\"default_if_unresolved\":\"[新機能名]と効果をプレースホルダーで挿入\"}],\"missing_materials\":[\"新機能の名称\",\"新機能の具体的な内容・使い方\",\"利用開始方法・導線URL\",\"対象ユーザー範囲(全員/特定プラン等)\",\"送信元(会社名・サービス名・署名)\"],\"residual_ambiguity_assessment\":\"トーン(堅すぎない)・宛先(既存ユーザー)は指定済みだが、新機能の中身が完全欠落。\"}\n\n以下、指定内容で本文案を作成しました。\n\n---\n\n**件名：【新機能のお知らせ】ちょっと便利になりました**\n\nいつもご利用ありがとうございます。\n\nこのたび、[サービス名]に新しい機能「[新機能名]」を追加しました！\n\n[新機能の1〜2行説明：何ができるようになったか]\n\nこんな場面で使えます：\n- [利用シーン1]\n- [利用シーン2]\n\n使い方はとってもシンプル。[利用開始の導線]からすぐにお試しいただけます。\n\n▶ [ボタン/リンク：今すぐ試す]\n\n「もっとこうしてほしい」というご要望があれば、いつでもお気軽にお知らせください。今後も使いやすさを大事にアップデートしていきます。\n\nそれでは、ぜひ使ってみてください！\n\n[署名/サービス名]\n\n---\n\n**[新機能名]・具体的な内容・利用開始の導線URL・宛先範囲・署名**が未確定のため、上記はプレースホルダー([　]部分)のまま仮組みしています。この5点をいただければ、そのまま送信できる完成稿に仕上げます。\n\n```\n新機能の名称・具体的にできること・利用開始の導線(URL)・署名(会社名/サービス名)を教えてください。\nそれを元にメール本文を完成させます。\n```",
+            "ttft_ms": 13495,
+            "ttft_stream_ms": 2033,
+            "time_to_request_ms": 378,
+            "type": "result",
+            "duration_ms": 13983,
+            "uuid": "ebaed766-8ff4-4b73-8e76-0f3fe94beb3a"
+          },
+          "duration_ms": 13983,
+          "duration_api_ms": 13204,
+          "result_text": "{\"branches\":[{\"question_point\":\"新機能の中身・便益が未指定\",\"anchor_words\":[\"新機能\"],\"options\":[{\"label\":\"仮内容で執筆\"},{\"label\":\"プレースホルダー化\"}],\"default_if_unresolved\":\"[新機能名]と効果をプレースホルダーで挿入\"}],\"missing_materials\":[\"新機能の名称\",\"新機能の具体的な内容・使い方\",\"利用開始方法・導線URL\",\"対象ユーザー範囲(全員/特定プラン等)\",\"送信元(会社名・サービス名・署名)\"],\"residual_ambiguity_assessment\":\"トーン(堅すぎない)・宛先(既存ユーザー)は指定済みだが、新機能の中身が完全欠落。\"}\n\n以下、指定内容で本文案を作成しました。\n\n---\n\n**件名：【新機能のお知らせ】ちょっと便利になりました**\n\nいつもご利用ありがとうございます。\n\nこのたび、[サービス名]に新しい機能「[新機能名]」を追加しました！\n\n[新機能の1〜2行説明：何ができるようになったか]\n\nこんな場面で使えます：\n- [利用シーン1]\n- [利用シーン2]\n\n使い方はとってもシンプル。[利用開始の導線]からすぐにお試しいただけます。\n\n▶ [ボタン/リンク：今すぐ試す]\n\n「もっとこうしてほしい」というご要望があれば、いつでもお気軽にお知らせください。今後も使いやすさを大事にアップデートしていきます。\n\nそれでは、ぜひ使ってみてください！\n\n[署名/サービス名]\n\n---\n\n**[新機能名]・具体的な内容・利用開始の導線URL・宛先範囲・署名**が未確定のため、上記はプレースホルダー([　]部分)のまま仮組みしています。この5点をいただければ、そのまま送信できる完成稿に仕上げます。\n\n```\n新機能の名称・具体的にできること・利用開始の導線(URL)・署名(会社名/サービス名)を教えてください。\nそれを元にメール本文を完成させます。\n```",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "新機能の中身・便益が未指定",
+                "anchor_words": [
+                  "新機能"
+                ],
+                "options": [
+                  {
+                    "label": "仮内容で執筆"
+                  },
+                  {
+                    "label": "プレースホルダー化"
+                  }
+                ],
+                "default_if_unresolved": "[新機能名]と効果をプレースホルダーで挿入"
+              }
+            ],
+            "missing_materials": [
+              "新機能の名称",
+              "新機能の具体的な内容・使い方",
+              "利用開始方法・導線URL",
+              "対象ユーザー範囲(全員/特定プラン等)",
+              "送信元(会社名・サービス名・署名)"
+            ],
+            "residual_ambiguity_assessment": "トーン(堅すぎない)・宛先(既存ユーザー)は指定済みだが、新機能の中身が完全欠落。"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 34251,
+      "duration_ms": 13983,
+      "duration_api_ms": 13204,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "新機能の中身・便益が未指定",
+            "anchor_words": [
+              "新機能"
+            ],
+            "options": [
+              {
+                "label": "仮内容で執筆"
+              },
+              {
+                "label": "プレースホルダー化"
+              }
+            ],
+            "default_if_unresolved": "[新機能名]と効果をプレースホルダーで挿入"
+          }
+        ],
+        "missing_materials": [
+          "新機能の名称",
+          "新機能の具体的な内容・使い方",
+          "利用開始方法・導線URL",
+          "対象ユーザー範囲(全員/特定プラン等)",
+          "送信元(会社名・サービス名・署名)"
+        ],
+        "residual_ambiguity_assessment": "トーン(堅すぎない)・宛先(既存ユーザー)は指定済みだが、新機能の中身が完全欠落。"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 1,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 1,
+        "anchor_violations": 0,
+        "latency_api_ms": 13204,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "新機能の中身・便益が未指定",
+            "anchors": [
+              {
+                "text": "新機能",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "cafe-insta",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "うちのカフェのInstagramプロフィールと固定投稿を、いい感じにしてほしい。開店1周年なので。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T09:59:24.396583+00:00",
+          "wall_ms": 25443,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":11056,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"697a5176-fb66-43cd-a1b8-976c6b4e655b\",\"total_cost_usd\":0.1460007,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21630,\"cache_read_input_tokens\":21449,\"output_tokens\":652,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21630,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":652,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21630,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21630},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":652,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21630,\"webSearchRequests\":0,\"costUSD\":0.1460007,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"branches\\\":[{\\\"question_point\\\":\\\"周年訴求の切り口(誰の物語として語るか)\\\",\\\"anchor_words\\\":[\\\"開店1周年\\\"],\\\"options\\\":[{\\\"label\\\":\\\"店主の想い軸\\\"},{\\\"label\\\":\\\"常連客との歩み軸\\\"},{\\\"label\\\":\\\"味・商品進化軸\\\"}],\\\"default_if_unresolved\\\":\\\"店主の想い軸で構成\\\"},{\\\"question_point\\\":\\\"固定投稿が担う機能(何をさせたい投稿か)\\\",\\\"anchor_words\\\":[\\\"固定投稿\\\"],\\\"options\\\":[{\\\"label\\\":\\\"初来店の動機付け\\\"},{\\\"label\\\":\\\"周年の感謝表明\\\"},{\\\"label\\\":\\\"来店特典への誘導\\\"}],\\\"default_if_unresolved\\\":\\\"感謝表明+来店動機付けの複合\\\"},{\\\"question_point\\\":\\\"プロフィール文の重心(何で選ばれたい店か)\\\",\\\"anchor_words\\\":[\\\"プロフィール\\\"],\\\"options\\\":[{\\\"label\\\":\\\"空間・居心地訴求\\\"},{\\\"label\\\":\\\"メニュー・専門性訴求\\\"},{\\\"label\\\":\\\"人柄・接客訴求\\\"}],\\\"default_if_unresolved\\\":\\\"空間+メニューの併記\\\"},{\\\"question_point\\\":\\\"トーン&温度感\\\",\\\"anchor_words\\\":[\\\"いい感じに\\\"],\\\"options\\\":[{\\\"label\\\":\\\"落ち着いた上質トーン\\\"},{\\\"label\\\":\\\"親しみやすいカジュアル\\\"},{\\\"label\\\":\\\"高揚感のあるお祝いトーン\\\"}],\\\"default_if_unresolved\\\":\\\"親しみやすいカジュアルトーン\\\"}],\\\"missing_materials\\\":[\\\"カフェの店名\\\",\\\"所在地・アクセス情報\\\",\\\"現在のプロフィール文面\\\",\\\"現在の固定投稿内容\\\",\\\"1周年の具体的な特典・イベント内容\\\",\\\"店の写真・ロゴ素材\\\",\\\"ターゲット客層の情報\\\",\\\"既存Instagramのフォロワー傾向\\\"],\\\"residual_ambiguity_assessment\\\":\\\"依頼は「いい感じに」のみで具体情報が皆無、方向性は分岐で絞れるが素材欠落が大きい\\\"}\",\"ttft_ms\":11077,\"ttft_stream_ms\":1467,\"time_to_request_ms\":145,\"type\":\"result\",\"duration_ms\":11846,\"uuid\":\"d1f1a124-f4f2-449b-b50c-3131f14a48ba\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 11056,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "697a5176-fb66-43cd-a1b8-976c6b4e655b",
+            "total_cost_usd": 0.1460007,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21630,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 652,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21630,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 652,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21630,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21630
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 652,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21630,
+                "webSearchRequests": 0,
+                "costUSD": 0.1460007,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "{\"branches\":[{\"question_point\":\"周年訴求の切り口(誰の物語として語るか)\",\"anchor_words\":[\"開店1周年\"],\"options\":[{\"label\":\"店主の想い軸\"},{\"label\":\"常連客との歩み軸\"},{\"label\":\"味・商品進化軸\"}],\"default_if_unresolved\":\"店主の想い軸で構成\"},{\"question_point\":\"固定投稿が担う機能(何をさせたい投稿か)\",\"anchor_words\":[\"固定投稿\"],\"options\":[{\"label\":\"初来店の動機付け\"},{\"label\":\"周年の感謝表明\"},{\"label\":\"来店特典への誘導\"}],\"default_if_unresolved\":\"感謝表明+来店動機付けの複合\"},{\"question_point\":\"プロフィール文の重心(何で選ばれたい店か)\",\"anchor_words\":[\"プロフィール\"],\"options\":[{\"label\":\"空間・居心地訴求\"},{\"label\":\"メニュー・専門性訴求\"},{\"label\":\"人柄・接客訴求\"}],\"default_if_unresolved\":\"空間+メニューの併記\"},{\"question_point\":\"トーン&温度感\",\"anchor_words\":[\"いい感じに\"],\"options\":[{\"label\":\"落ち着いた上質トーン\"},{\"label\":\"親しみやすいカジュアル\"},{\"label\":\"高揚感のあるお祝いトーン\"}],\"default_if_unresolved\":\"親しみやすいカジュアルトーン\"}],\"missing_materials\":[\"カフェの店名\",\"所在地・アクセス情報\",\"現在のプロフィール文面\",\"現在の固定投稿内容\",\"1周年の具体的な特典・イベント内容\",\"店の写真・ロゴ素材\",\"ターゲット客層の情報\",\"既存Instagramのフォロワー傾向\"],\"residual_ambiguity_assessment\":\"依頼は「いい感じに」のみで具体情報が皆無、方向性は分岐で絞れるが素材欠落が大きい\"}",
+            "ttft_ms": 11077,
+            "ttft_stream_ms": 1467,
+            "time_to_request_ms": 145,
+            "type": "result",
+            "duration_ms": 11846,
+            "uuid": "d1f1a124-f4f2-449b-b50c-3131f14a48ba"
+          },
+          "duration_ms": 11846,
+          "duration_api_ms": 11056,
+          "result_text": "{\"branches\":[{\"question_point\":\"周年訴求の切り口(誰の物語として語るか)\",\"anchor_words\":[\"開店1周年\"],\"options\":[{\"label\":\"店主の想い軸\"},{\"label\":\"常連客との歩み軸\"},{\"label\":\"味・商品進化軸\"}],\"default_if_unresolved\":\"店主の想い軸で構成\"},{\"question_point\":\"固定投稿が担う機能(何をさせたい投稿か)\",\"anchor_words\":[\"固定投稿\"],\"options\":[{\"label\":\"初来店の動機付け\"},{\"label\":\"周年の感謝表明\"},{\"label\":\"来店特典への誘導\"}],\"default_if_unresolved\":\"感謝表明+来店動機付けの複合\"},{\"question_point\":\"プロフィール文の重心(何で選ばれたい店か)\",\"anchor_words\":[\"プロフィール\"],\"options\":[{\"label\":\"空間・居心地訴求\"},{\"label\":\"メニュー・専門性訴求\"},{\"label\":\"人柄・接客訴求\"}],\"default_if_unresolved\":\"空間+メニューの併記\"},{\"question_point\":\"トーン&温度感\",\"anchor_words\":[\"いい感じに\"],\"options\":[{\"label\":\"落ち着いた上質トーン\"},{\"label\":\"親しみやすいカジュアル\"},{\"label\":\"高揚感のあるお祝いトーン\"}],\"default_if_unresolved\":\"親しみやすいカジュアルトーン\"}],\"missing_materials\":[\"カフェの店名\",\"所在地・アクセス情報\",\"現在のプロフィール文面\",\"現在の固定投稿内容\",\"1周年の具体的な特典・イベント内容\",\"店の写真・ロゴ素材\",\"ターゲット客層の情報\",\"既存Instagramのフォロワー傾向\"],\"residual_ambiguity_assessment\":\"依頼は「いい感じに」のみで具体情報が皆無、方向性は分岐で絞れるが素材欠落が大きい\"}",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "周年訴求の切り口(誰の物語として語るか)",
+                "anchor_words": [
+                  "開店1周年"
+                ],
+                "options": [
+                  {
+                    "label": "店主の想い軸"
+                  },
+                  {
+                    "label": "常連客との歩み軸"
+                  },
+                  {
+                    "label": "味・商品進化軸"
+                  }
+                ],
+                "default_if_unresolved": "店主の想い軸で構成"
+              },
+              {
+                "question_point": "固定投稿が担う機能(何をさせたい投稿か)",
+                "anchor_words": [
+                  "固定投稿"
+                ],
+                "options": [
+                  {
+                    "label": "初来店の動機付け"
+                  },
+                  {
+                    "label": "周年の感謝表明"
+                  },
+                  {
+                    "label": "来店特典への誘導"
+                  }
+                ],
+                "default_if_unresolved": "感謝表明+来店動機付けの複合"
+              },
+              {
+                "question_point": "プロフィール文の重心(何で選ばれたい店か)",
+                "anchor_words": [
+                  "プロフィール"
+                ],
+                "options": [
+                  {
+                    "label": "空間・居心地訴求"
+                  },
+                  {
+                    "label": "メニュー・専門性訴求"
+                  },
+                  {
+                    "label": "人柄・接客訴求"
+                  }
+                ],
+                "default_if_unresolved": "空間+メニューの併記"
+              },
+              {
+                "question_point": "トーン&温度感",
+                "anchor_words": [
+                  "いい感じに"
+                ],
+                "options": [
+                  {
+                    "label": "落ち着いた上質トーン"
+                  },
+                  {
+                    "label": "親しみやすいカジュアル"
+                  },
+                  {
+                    "label": "高揚感のあるお祝いトーン"
+                  }
+                ],
+                "default_if_unresolved": "親しみやすいカジュアルトーン"
+              }
+            ],
+            "missing_materials": [
+              "カフェの店名",
+              "所在地・アクセス情報",
+              "現在のプロフィール文面",
+              "現在の固定投稿内容",
+              "1周年の具体的な特典・イベント内容",
+              "店の写真・ロゴ素材",
+              "ターゲット客層の情報",
+              "既存Instagramのフォロワー傾向"
+            ],
+            "residual_ambiguity_assessment": "依頼は「いい感じに」のみで具体情報が皆無、方向性は分岐で絞れるが素材欠落が大きい"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 25443,
+      "duration_ms": 11846,
+      "duration_api_ms": 11056,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "周年訴求の切り口(誰の物語として語るか)",
+            "anchor_words": [
+              "開店1周年"
+            ],
+            "options": [
+              {
+                "label": "店主の想い軸"
+              },
+              {
+                "label": "常連客との歩み軸"
+              },
+              {
+                "label": "味・商品進化軸"
+              }
+            ],
+            "default_if_unresolved": "店主の想い軸で構成"
+          },
+          {
+            "question_point": "固定投稿が担う機能(何をさせたい投稿か)",
+            "anchor_words": [
+              "固定投稿"
+            ],
+            "options": [
+              {
+                "label": "初来店の動機付け"
+              },
+              {
+                "label": "周年の感謝表明"
+              },
+              {
+                "label": "来店特典への誘導"
+              }
+            ],
+            "default_if_unresolved": "感謝表明+来店動機付けの複合"
+          },
+          {
+            "question_point": "プロフィール文の重心(何で選ばれたい店か)",
+            "anchor_words": [
+              "プロフィール"
+            ],
+            "options": [
+              {
+                "label": "空間・居心地訴求"
+              },
+              {
+                "label": "メニュー・専門性訴求"
+              },
+              {
+                "label": "人柄・接客訴求"
+              }
+            ],
+            "default_if_unresolved": "空間+メニューの併記"
+          },
+          {
+            "question_point": "トーン&温度感",
+            "anchor_words": [
+              "いい感じに"
+            ],
+            "options": [
+              {
+                "label": "落ち着いた上質トーン"
+              },
+              {
+                "label": "親しみやすいカジュアル"
+              },
+              {
+                "label": "高揚感のあるお祝いトーン"
+              }
+            ],
+            "default_if_unresolved": "親しみやすいカジュアルトーン"
+          }
+        ],
+        "missing_materials": [
+          "カフェの店名",
+          "所在地・アクセス情報",
+          "現在のプロフィール文面",
+          "現在の固定投稿内容",
+          "1周年の具体的な特典・イベント内容",
+          "店の写真・ロゴ素材",
+          "ターゲット客層の情報",
+          "既存Instagramのフォロワー傾向"
+        ],
+        "residual_ambiguity_assessment": "依頼は「いい感じに」のみで具体情報が皆無、方向性は分岐で絞れるが素材欠落が大きい"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 4,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 4,
+        "anchor_violations": 0,
+        "latency_api_ms": 11056,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "周年訴求の切り口(誰の物語として語るか)",
+            "anchors": [
+              {
+                "text": "開店1周年",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 1,
+            "question_point": "固定投稿が担う機能(何をさせたい投稿か)",
+            "anchors": [
+              {
+                "text": "固定投稿",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 2,
+            "question_point": "プロフィール文の重心(何で選ばれたい店か)",
+            "anchors": [
+              {
+                "text": "プロフィール",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 3,
+            "question_point": "トーン&温度感",
+            "anchors": [
+              {
+                "text": "いい感じに",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "precise-pricing",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "B2B SaaSの料金ページ。プランは3つ(Starter 980円/Pro 2,980円/Enterprise 問い合わせ)。年払いは2ヶ月分無料。FAQを5問。CTAは14日間無料トライアル。トーンは実直で誇張なし。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T09:59:49.844788+00:00",
+          "wall_ms": 26824,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":13815,\"num_turns\":2,\"stop_reason\":\"end_turn\",\"session_id\":\"a5e01a93-0780-4b27-8162-c471cabf6d3d\",\"total_cost_usd\":0.1653462,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":21919,\"cache_read_input_tokens\":64584,\"output_tokens\":963,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21919,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":737,\"cache_read_input_tokens\":43135,\"cache_creation_input_tokens\":233,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":233},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":4,\"outputTokens\":963,\"cacheReadInputTokens\":64584,\"cacheCreationInputTokens\":21919,\"webSearchRequests\":0,\"costUSD\":0.1653462,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"branches\\\":[{\\\"question_point\\\":\\\"読者=誰の決裁を通す想定か\\\",\\\"anchor_words\\\":[\\\"B2B SaaS\\\"],\\\"options\\\":[{\\\"label\\\":\\\"現場担当者向け\\\"},{\\\"label\\\":\\\"上長・決裁者向け\\\"}],\\\"default_if_unresolved\\\":\\\"現場担当者・利用者向けとして書く\\\"},{\\\"question_point\\\":\\\"Enterpriseの訴求軸は何で差別化するか\\\",\\\"anchor_words\\\":[\\\"Enterprise 問い合わせ\\\"],\\\"options\\\":[{\\\"label\\\":\\\"機能拡張軸\\\"},{\\\"label\\\":\\\"セキュリティ・体制軸\\\"},{\\\"label\\\":\\\"サポート・SLA軸\\\"}],\\\"default_if_unresolved\\\":\\\"要件に応じた個別提案と記載\\\"},{\\\"question_point\\\":\\\"3プラン間の主要な差分軸は何か\\\",\\\"anchor_words\\\":[\\\"Starter 980円/Pro 2,980円/Enterprise 問い合わせ\\\"],\\\"options\\\":[{\\\"label\\\":\\\"利用量上限差\\\"},{\\\"label\\\":\\\"機能有無差\\\"},{\\\"label\\\":\\\"サポート水準差\\\"}],\\\"default_if_unresolved\\\":\\\"機能有無中心の比較表にする\\\"},{\\\"question_point\\\":\\\"トライアル終了後の課金移行の扱い\\\",\\\"anchor_words\\\":[\\\"14日間無料トライアル\\\"],\\\"options\\\":[{\\\"label\\\":\\\"自動移行前提\\\"},{\\\"label\\\":\\\"要申込み前提\\\"}],\\\"default_if_unresolved\\\":\\\"FAQで自動移行の有無を明記せず一般表現にする\\\"},{\\\"question_point\\\":\\\"FAQの主眼は導入前不安か契約条件か\\\",\\\"anchor_words\\\":[\\\"FAQを5問\\\"],\\\"options\\\":[{\\\"label\\\":\\\"導入前不安解消軸\\\"},{\\\"label\\\":\\\"契約・支払条件軸\\\"},{\\\"label\\\":\\\"セキュリティ軸\\\"}],\\\"default_if_unresolved\\\":\\\"導入前不安+契約条件を混合で5問構成\\\"}],\\\"missing_materials\\\":[\\\"各プランの機能・利用上限の具体的な違い\\\",\\\"対象業種・利用シーン\\\",\\\"支払い方法の種類\\\",\\\"セキュリティ認証・データ管理体制の詳細\\\",\\\"解約・返金条件の詳細\\\"],\\\"residual_ambiguity_assessment\\\":\\\"価格体系と構成要素は明確だが、差別化軸と読者像が未定で成果物の方向が分かれる\\\"}\",\"ttft_ms\":3637,\"ttft_stream_ms\":1430,\"time_to_request_ms\":104,\"type\":\"result\",\"duration_ms\":14552,\"uuid\":\"6c73d900-657c-4316-a0a1-a7c41df7974b\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 13815,
+            "num_turns": 2,
+            "stop_reason": "end_turn",
+            "session_id": "a5e01a93-0780-4b27-8162-c471cabf6d3d",
+            "total_cost_usd": 0.1653462,
+            "usage": {
+              "input_tokens": 4,
+              "cache_creation_input_tokens": 21919,
+              "cache_read_input_tokens": 64584,
+              "output_tokens": 963,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21919,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 737,
+                  "cache_read_input_tokens": 43135,
+                  "cache_creation_input_tokens": 233,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 233
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 4,
+                "outputTokens": 963,
+                "cacheReadInputTokens": 64584,
+                "cacheCreationInputTokens": 21919,
+                "webSearchRequests": 0,
+                "costUSD": 0.1653462,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "{\"branches\":[{\"question_point\":\"読者=誰の決裁を通す想定か\",\"anchor_words\":[\"B2B SaaS\"],\"options\":[{\"label\":\"現場担当者向け\"},{\"label\":\"上長・決裁者向け\"}],\"default_if_unresolved\":\"現場担当者・利用者向けとして書く\"},{\"question_point\":\"Enterpriseの訴求軸は何で差別化するか\",\"anchor_words\":[\"Enterprise 問い合わせ\"],\"options\":[{\"label\":\"機能拡張軸\"},{\"label\":\"セキュリティ・体制軸\"},{\"label\":\"サポート・SLA軸\"}],\"default_if_unresolved\":\"要件に応じた個別提案と記載\"},{\"question_point\":\"3プラン間の主要な差分軸は何か\",\"anchor_words\":[\"Starter 980円/Pro 2,980円/Enterprise 問い合わせ\"],\"options\":[{\"label\":\"利用量上限差\"},{\"label\":\"機能有無差\"},{\"label\":\"サポート水準差\"}],\"default_if_unresolved\":\"機能有無中心の比較表にする\"},{\"question_point\":\"トライアル終了後の課金移行の扱い\",\"anchor_words\":[\"14日間無料トライアル\"],\"options\":[{\"label\":\"自動移行前提\"},{\"label\":\"要申込み前提\"}],\"default_if_unresolved\":\"FAQで自動移行の有無を明記せず一般表現にする\"},{\"question_point\":\"FAQの主眼は導入前不安か契約条件か\",\"anchor_words\":[\"FAQを5問\"],\"options\":[{\"label\":\"導入前不安解消軸\"},{\"label\":\"契約・支払条件軸\"},{\"label\":\"セキュリティ軸\"}],\"default_if_unresolved\":\"導入前不安+契約条件を混合で5問構成\"}],\"missing_materials\":[\"各プランの機能・利用上限の具体的な違い\",\"対象業種・利用シーン\",\"支払い方法の種類\",\"セキュリティ認証・データ管理体制の詳細\",\"解約・返金条件の詳細\"],\"residual_ambiguity_assessment\":\"価格体系と構成要素は明確だが、差別化軸と読者像が未定で成果物の方向が分かれる\"}",
+            "ttft_ms": 3637,
+            "ttft_stream_ms": 1430,
+            "time_to_request_ms": 104,
+            "type": "result",
+            "duration_ms": 14552,
+            "uuid": "6c73d900-657c-4316-a0a1-a7c41df7974b"
+          },
+          "duration_ms": 14552,
+          "duration_api_ms": 13815,
+          "result_text": "{\"branches\":[{\"question_point\":\"読者=誰の決裁を通す想定か\",\"anchor_words\":[\"B2B SaaS\"],\"options\":[{\"label\":\"現場担当者向け\"},{\"label\":\"上長・決裁者向け\"}],\"default_if_unresolved\":\"現場担当者・利用者向けとして書く\"},{\"question_point\":\"Enterpriseの訴求軸は何で差別化するか\",\"anchor_words\":[\"Enterprise 問い合わせ\"],\"options\":[{\"label\":\"機能拡張軸\"},{\"label\":\"セキュリティ・体制軸\"},{\"label\":\"サポート・SLA軸\"}],\"default_if_unresolved\":\"要件に応じた個別提案と記載\"},{\"question_point\":\"3プラン間の主要な差分軸は何か\",\"anchor_words\":[\"Starter 980円/Pro 2,980円/Enterprise 問い合わせ\"],\"options\":[{\"label\":\"利用量上限差\"},{\"label\":\"機能有無差\"},{\"label\":\"サポート水準差\"}],\"default_if_unresolved\":\"機能有無中心の比較表にする\"},{\"question_point\":\"トライアル終了後の課金移行の扱い\",\"anchor_words\":[\"14日間無料トライアル\"],\"options\":[{\"label\":\"自動移行前提\"},{\"label\":\"要申込み前提\"}],\"default_if_unresolved\":\"FAQで自動移行の有無を明記せず一般表現にする\"},{\"question_point\":\"FAQの主眼は導入前不安か契約条件か\",\"anchor_words\":[\"FAQを5問\"],\"options\":[{\"label\":\"導入前不安解消軸\"},{\"label\":\"契約・支払条件軸\"},{\"label\":\"セキュリティ軸\"}],\"default_if_unresolved\":\"導入前不安+契約条件を混合で5問構成\"}],\"missing_materials\":[\"各プランの機能・利用上限の具体的な違い\",\"対象業種・利用シーン\",\"支払い方法の種類\",\"セキュリティ認証・データ管理体制の詳細\",\"解約・返金条件の詳細\"],\"residual_ambiguity_assessment\":\"価格体系と構成要素は明確だが、差別化軸と読者像が未定で成果物の方向が分かれる\"}",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "読者=誰の決裁を通す想定か",
+                "anchor_words": [
+                  "B2B SaaS"
+                ],
+                "options": [
+                  {
+                    "label": "現場担当者向け"
+                  },
+                  {
+                    "label": "上長・決裁者向け"
+                  }
+                ],
+                "default_if_unresolved": "現場担当者・利用者向けとして書く"
+              },
+              {
+                "question_point": "Enterpriseの訴求軸は何で差別化するか",
+                "anchor_words": [
+                  "Enterprise 問い合わせ"
+                ],
+                "options": [
+                  {
+                    "label": "機能拡張軸"
+                  },
+                  {
+                    "label": "セキュリティ・体制軸"
+                  },
+                  {
+                    "label": "サポート・SLA軸"
+                  }
+                ],
+                "default_if_unresolved": "要件に応じた個別提案と記載"
+              },
+              {
+                "question_point": "3プラン間の主要な差分軸は何か",
+                "anchor_words": [
+                  "Starter 980円/Pro 2,980円/Enterprise 問い合わせ"
+                ],
+                "options": [
+                  {
+                    "label": "利用量上限差"
+                  },
+                  {
+                    "label": "機能有無差"
+                  },
+                  {
+                    "label": "サポート水準差"
+                  }
+                ],
+                "default_if_unresolved": "機能有無中心の比較表にする"
+              },
+              {
+                "question_point": "トライアル終了後の課金移行の扱い",
+                "anchor_words": [
+                  "14日間無料トライアル"
+                ],
+                "options": [
+                  {
+                    "label": "自動移行前提"
+                  },
+                  {
+                    "label": "要申込み前提"
+                  }
+                ],
+                "default_if_unresolved": "FAQで自動移行の有無を明記せず一般表現にする"
+              },
+              {
+                "question_point": "FAQの主眼は導入前不安か契約条件か",
+                "anchor_words": [
+                  "FAQを5問"
+                ],
+                "options": [
+                  {
+                    "label": "導入前不安解消軸"
+                  },
+                  {
+                    "label": "契約・支払条件軸"
+                  },
+                  {
+                    "label": "セキュリティ軸"
+                  }
+                ],
+                "default_if_unresolved": "導入前不安+契約条件を混合で5問構成"
+              }
+            ],
+            "missing_materials": [
+              "各プランの機能・利用上限の具体的な違い",
+              "対象業種・利用シーン",
+              "支払い方法の種類",
+              "セキュリティ認証・データ管理体制の詳細",
+              "解約・返金条件の詳細"
+            ],
+            "residual_ambiguity_assessment": "価格体系と構成要素は明確だが、差別化軸と読者像が未定で成果物の方向が分かれる"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 26824,
+      "duration_ms": 14552,
+      "duration_api_ms": 13815,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "読者=誰の決裁を通す想定か",
+            "anchor_words": [
+              "B2B SaaS"
+            ],
+            "options": [
+              {
+                "label": "現場担当者向け"
+              },
+              {
+                "label": "上長・決裁者向け"
+              }
+            ],
+            "default_if_unresolved": "現場担当者・利用者向けとして書く"
+          },
+          {
+            "question_point": "Enterpriseの訴求軸は何で差別化するか",
+            "anchor_words": [
+              "Enterprise 問い合わせ"
+            ],
+            "options": [
+              {
+                "label": "機能拡張軸"
+              },
+              {
+                "label": "セキュリティ・体制軸"
+              },
+              {
+                "label": "サポート・SLA軸"
+              }
+            ],
+            "default_if_unresolved": "要件に応じた個別提案と記載"
+          },
+          {
+            "question_point": "3プラン間の主要な差分軸は何か",
+            "anchor_words": [
+              "Starter 980円/Pro 2,980円/Enterprise 問い合わせ"
+            ],
+            "options": [
+              {
+                "label": "利用量上限差"
+              },
+              {
+                "label": "機能有無差"
+              },
+              {
+                "label": "サポート水準差"
+              }
+            ],
+            "default_if_unresolved": "機能有無中心の比較表にする"
+          },
+          {
+            "question_point": "トライアル終了後の課金移行の扱い",
+            "anchor_words": [
+              "14日間無料トライアル"
+            ],
+            "options": [
+              {
+                "label": "自動移行前提"
+              },
+              {
+                "label": "要申込み前提"
+              }
+            ],
+            "default_if_unresolved": "FAQで自動移行の有無を明記せず一般表現にする"
+          },
+          {
+            "question_point": "FAQの主眼は導入前不安か契約条件か",
+            "anchor_words": [
+              "FAQを5問"
+            ],
+            "options": [
+              {
+                "label": "導入前不安解消軸"
+              },
+              {
+                "label": "契約・支払条件軸"
+              },
+              {
+                "label": "セキュリティ軸"
+              }
+            ],
+            "default_if_unresolved": "導入前不安+契約条件を混合で5問構成"
+          }
+        ],
+        "missing_materials": [
+          "各プランの機能・利用上限の具体的な違い",
+          "対象業種・利用シーン",
+          "支払い方法の種類",
+          "セキュリティ認証・データ管理体制の詳細",
+          "解約・返金条件の詳細"
+        ],
+        "residual_ambiguity_assessment": "価格体系と構成要素は明確だが、差別化軸と読者像が未定で成果物の方向が分かれる"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 5,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 5,
+        "anchor_violations": 0,
+        "latency_api_ms": 13815,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "読者=誰の決裁を通す想定か",
+            "anchors": [
+              {
+                "text": "B2B SaaS",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 1,
+            "question_point": "Enterpriseの訴求軸は何で差別化するか",
+            "anchors": [
+              {
+                "text": "Enterprise 問い合わせ",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 2,
+            "question_point": "3プラン間の主要な差分軸は何か",
+            "anchors": [
+              {
+                "text": "Starter 980円/Pro 2,980円/Enterprise 問い合わせ",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 3,
+            "question_point": "トライアル終了後の課金移行の扱い",
+            "anchors": [
+              {
+                "text": "14日間無料トライアル",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 4,
+            "question_point": "FAQの主眼は導入前不安か契約条件か",
+            "anchors": [
+              {
+                "text": "FAQを5問",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "scout-mail",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T10:00:16.672835+00:00",
+          "wall_ms": 27158,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":13661,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"1bbf61ad-8127-465a-b3b1-aeb666850e32\",\"total_cost_usd\":0.14590170000000002,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21631,\"cache_read_input_tokens\":21449,\"output_tokens\":645,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21631,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":645,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21631,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21631},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":645,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21631,\"webSearchRequests\":0,\"costUSD\":0.14590170000000002,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"「うちっぽさ」を出すには、GYAKUMONのプロダクト思想(生成ではなく「問う」ことに特化、曖昧さを分岐として構造化する等)を借りつつ、スカウトらしい謙虚さと具体性を両立させるのがいいはずです。ただ、以下を先に確認させてください(結果次第で文面の中身がかなり変わるので):\\n\\n1. **送り先のエンジニア像**: どんな経歴・技術スタックの人を想定していますか?(例: フロントエンド強め、Rust/Go系バックエンド、AI/LLM系、etc)\\n2. **募集ポジション/雇用形態**: 正社員採用ですか、業務委託・共同創業に近い形ですか?\\n3. **どこでこの人を見つけたか**: GitHub/Xでの発信を見た、リファラル、エージェント経由のロングリスト、など。「なぜあなたに送ったか」の具体性が返信率を左右するので重要です。\\n4. **GYAKUMONの現在地**: プロトタイプ段階か、ユーザーがついているか、資金調達状況など、話せる範囲で。\\n5. **希望する文面のトーン**: フォーマルめの企業スカウトか、創業者本人からのカジュアルな直メールか。\\n\\n情報がすでにどこかにある場合(Vaultのgyakumon関連ノートなど)は、そちらを先に見に行くこともできます。答えられる範囲だけで構いません。埋まっていない項目は仮に置いて草稿を出し、仮定した部分を明示します。\\n\\n```\\n次回ゴール推奨:\\nスカウトメール文面の下書きを、上記5項目の回答(または「わからない/仮置きでいい」の指示)を踏まえて確定する。GYAKUMON関連のAI Contextノートに送り先エンジニア像や採用方針の記載があれば先に参照する。\\n```\",\"ttft_ms\":13111,\"ttft_stream_ms\":1217,\"time_to_request_ms\":58,\"type\":\"result\",\"duration_ms\":13819,\"uuid\":\"d2ca6176-eb1d-4f9d-bed8-175d5e41ee92\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 13661,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "1bbf61ad-8127-465a-b3b1-aeb666850e32",
+            "total_cost_usd": 0.14590170000000002,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21631,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 645,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21631,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 645,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21631,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21631
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 645,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21631,
+                "webSearchRequests": 0,
+                "costUSD": 0.14590170000000002,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "「うちっぽさ」を出すには、GYAKUMONのプロダクト思想(生成ではなく「問う」ことに特化、曖昧さを分岐として構造化する等)を借りつつ、スカウトらしい謙虚さと具体性を両立させるのがいいはずです。ただ、以下を先に確認させてください(結果次第で文面の中身がかなり変わるので):\n\n1. **送り先のエンジニア像**: どんな経歴・技術スタックの人を想定していますか?(例: フロントエンド強め、Rust/Go系バックエンド、AI/LLM系、etc)\n2. **募集ポジション/雇用形態**: 正社員採用ですか、業務委託・共同創業に近い形ですか?\n3. **どこでこの人を見つけたか**: GitHub/Xでの発信を見た、リファラル、エージェント経由のロングリスト、など。「なぜあなたに送ったか」の具体性が返信率を左右するので重要です。\n4. **GYAKUMONの現在地**: プロトタイプ段階か、ユーザーがついているか、資金調達状況など、話せる範囲で。\n5. **希望する文面のトーン**: フォーマルめの企業スカウトか、創業者本人からのカジュアルな直メールか。\n\n情報がすでにどこかにある場合(Vaultのgyakumon関連ノートなど)は、そちらを先に見に行くこともできます。答えられる範囲だけで構いません。埋まっていない項目は仮に置いて草稿を出し、仮定した部分を明示します。\n\n```\n次回ゴール推奨:\nスカウトメール文面の下書きを、上記5項目の回答(または「わからない/仮置きでいい」の指示)を踏まえて確定する。GYAKUMON関連のAI Contextノートに送り先エンジニア像や採用方針の記載があれば先に参照する。\n```",
+            "ttft_ms": 13111,
+            "ttft_stream_ms": 1217,
+            "time_to_request_ms": 58,
+            "type": "result",
+            "duration_ms": 13819,
+            "uuid": "d2ca6176-eb1d-4f9d-bed8-175d5e41ee92"
+          },
+          "duration_ms": 13819,
+          "duration_api_ms": 13661,
+          "result_text": "「うちっぽさ」を出すには、GYAKUMONのプロダクト思想(生成ではなく「問う」ことに特化、曖昧さを分岐として構造化する等)を借りつつ、スカウトらしい謙虚さと具体性を両立させるのがいいはずです。ただ、以下を先に確認させてください(結果次第で文面の中身がかなり変わるので):\n\n1. **送り先のエンジニア像**: どんな経歴・技術スタックの人を想定していますか?(例: フロントエンド強め、Rust/Go系バックエンド、AI/LLM系、etc)\n2. **募集ポジション/雇用形態**: 正社員採用ですか、業務委託・共同創業に近い形ですか?\n3. **どこでこの人を見つけたか**: GitHub/Xでの発信を見た、リファラル、エージェント経由のロングリスト、など。「なぜあなたに送ったか」の具体性が返信率を左右するので重要です。\n4. **GYAKUMONの現在地**: プロトタイプ段階か、ユーザーがついているか、資金調達状況など、話せる範囲で。\n5. **希望する文面のトーン**: フォーマルめの企業スカウトか、創業者本人からのカジュアルな直メールか。\n\n情報がすでにどこかにある場合(Vaultのgyakumon関連ノートなど)は、そちらを先に見に行くこともできます。答えられる範囲だけで構いません。埋まっていない項目は仮に置いて草稿を出し、仮定した部分を明示します。\n\n```\n次回ゴール推奨:\nスカウトメール文面の下書きを、上記5項目の回答(または「わからない/仮置きでいい」の指示)を踏まえて確定する。GYAKUMON関連のAI Contextノートに送り先エンジニア像や採用方針の記載があれば先に参照する。\n```",
+          "extraction": null,
+          "error": {
+            "kind": "result_json_parse",
+            "message": "本文からのJSON抽出失敗: 本文に '{' が存在しない"
+          }
+        },
+        {
+          "timestamp_start": "2026-07-29T10:00:43.831636+00:00",
+          "wall_ms": 23091,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":8565,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"f2edf6da-0a4d-43ce-909f-7c552c30303a\",\"total_cost_usd\":0.1416867,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21631,\"cache_read_input_tokens\":21449,\"output_tokens\":364,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21631,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":364,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21631,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21631},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":364,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21631,\"webSearchRequests\":0,\"costUSD\":0.1416867,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"スカウトメールの依頼ですが、素材が不足しています。「うちっぽさ」を出すには、貴社固有の情報が必要です。以下を教えてください。\\n\\n- 会社名・プロダクト名、事業内容(何を作っている会社か)\\n- 募集ポジション(職種・技術スタック)\\n- スカウト対象者の情報(その人のどの経歴・実績を見て送るか。個人が特定できる詳細は不要ですが、テンプレか個別化かで文面が変わります)\\n- 「うちっぽさ」の中身(社風・カルチャーの特徴。例: スピード感/裁量権/技術へのこだわり/フラットな組織など、何を推したいか)\\n- トーン(フォーマル/カジュアル)、媒体(Wantedly/LinkedIn/Green/メール直送など)\\n- 一次情報になり得るもの(会社紹介ページ、既存の求人票、代表のnoteなど)があれば共有いただけると、それらしい言葉遣いを抽出できます\\n\\nこれらが揃い次第、下書きを作成します。\",\"ttft_ms\":8508,\"ttft_stream_ms\":1468,\"time_to_request_ms\":63,\"type\":\"result\",\"duration_ms\":8734,\"uuid\":\"d2b79078-1fb8-4d09-9076-fe52b650bb22\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 8565,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "f2edf6da-0a4d-43ce-909f-7c552c30303a",
+            "total_cost_usd": 0.1416867,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21631,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 364,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21631,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 364,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21631,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21631
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 364,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21631,
+                "webSearchRequests": 0,
+                "costUSD": 0.1416867,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "スカウトメールの依頼ですが、素材が不足しています。「うちっぽさ」を出すには、貴社固有の情報が必要です。以下を教えてください。\n\n- 会社名・プロダクト名、事業内容(何を作っている会社か)\n- 募集ポジション(職種・技術スタック)\n- スカウト対象者の情報(その人のどの経歴・実績を見て送るか。個人が特定できる詳細は不要ですが、テンプレか個別化かで文面が変わります)\n- 「うちっぽさ」の中身(社風・カルチャーの特徴。例: スピード感/裁量権/技術へのこだわり/フラットな組織など、何を推したいか)\n- トーン(フォーマル/カジュアル)、媒体(Wantedly/LinkedIn/Green/メール直送など)\n- 一次情報になり得るもの(会社紹介ページ、既存の求人票、代表のnoteなど)があれば共有いただけると、それらしい言葉遣いを抽出できます\n\nこれらが揃い次第、下書きを作成します。",
+            "ttft_ms": 8508,
+            "ttft_stream_ms": 1468,
+            "time_to_request_ms": 63,
+            "type": "result",
+            "duration_ms": 8734,
+            "uuid": "d2b79078-1fb8-4d09-9076-fe52b650bb22"
+          },
+          "duration_ms": 8734,
+          "duration_api_ms": 8565,
+          "result_text": "スカウトメールの依頼ですが、素材が不足しています。「うちっぽさ」を出すには、貴社固有の情報が必要です。以下を教えてください。\n\n- 会社名・プロダクト名、事業内容(何を作っている会社か)\n- 募集ポジション(職種・技術スタック)\n- スカウト対象者の情報(その人のどの経歴・実績を見て送るか。個人が特定できる詳細は不要ですが、テンプレか個別化かで文面が変わります)\n- 「うちっぽさ」の中身(社風・カルチャーの特徴。例: スピード感/裁量権/技術へのこだわり/フラットな組織など、何を推したいか)\n- トーン(フォーマル/カジュアル)、媒体(Wantedly/LinkedIn/Green/メール直送など)\n- 一次情報になり得るもの(会社紹介ページ、既存の求人票、代表のnoteなど)があれば共有いただけると、それらしい言葉遣いを抽出できます\n\nこれらが揃い次第、下書きを作成します。",
+          "extraction": null,
+          "error": {
+            "kind": "result_json_parse",
+            "message": "本文からのJSON抽出失敗: 本文に '{' が存在しない"
+          }
+        }
+      ],
+      "retried": true,
+      "wall_ms": 23091,
+      "duration_ms": 8734,
+      "duration_api_ms": 8565,
+      "extraction": null,
+      "machine_checks": null,
+      "error": {
+        "kind": "result_json_parse",
+        "message": "本文からのJSON抽出失敗: 本文に '{' が存在しない"
+      }
+    },
+    {
+      "brief_id": "event-page",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T10:01:06.926796+00:00",
+          "wall_ms": 24271,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":9331,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"7e15726c-9223-4702-af58-16fc3854bed4\",\"total_cost_usd\":0.14512170000000002,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21631,\"cache_read_input_tokens\":21449,\"output_tokens\":593,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21631,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":593,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21631,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21631},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":593,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21631,\"webSearchRequests\":0,\"costUSD\":0.14512170000000002,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"branches\\\":[{\\\"question_point\\\":\\\"「若い人」の年齢層・属性像\\\",\\\"anchor_words\\\":[\\\"若い人にも刺さる感じで\\\"],\\\"options\\\":[{\\\"label\\\":\\\"学生・20代前半\\\"},{\\\"label\\\":\\\"20代後半〜30代社会人\\\"}],\\\"default_if_unresolved\\\":\\\"20代社会人を想定し進める\\\"},{\\\"question_point\\\":\\\"交流イベントの目的・性質\\\",\\\"anchor_words\\\":[\\\"交流イベント\\\"],\\\"options\\\":[{\\\"label\\\":\\\"人脈作り・ビジネス系\\\"},{\\\"label\\\":\\\"趣味・カジュアル交流\\\"},{\\\"label\\\":\\\"地域・コミュニティ系\\\"}],\\\"default_if_unresolved\\\":\\\"カジュアル交流として構成\\\"},{\\\"question_point\\\":\\\"「刺さる」訴求の軸\\\",\\\"anchor_words\\\":[\\\"若い人にも刺さる感じで\\\"],\\\"options\\\":[{\\\"label\\\":\\\"楽しさ・非日常感\\\"},{\\\"label\\\":\\\"学び・成長機会\\\"},{\\\"label\\\":\\\"人脈・出会いの価値\\\"}],\\\"default_if_unresolved\\\":\\\"楽しさ訴求を主軸にする\\\"},{\\\"question_point\\\":\\\"申込みを増やす主な仕掛け\\\",\\\"anchor_words\\\":[\\\"申込みが増えるように\\\"],\\\"options\\\":[{\\\"label\\\":\\\"限定性・希少感で煽る\\\"},{\\\"label\\\":\\\"安心感・参加ハードル低減\\\"},{\\\"label\\\":\\\"実績・信頼で後押し\\\"}],\\\"default_if_unresolved\\\":\\\"安心感訴求を基本にする\\\"}],\\\"missing_materials\\\":[\\\"イベントの日時・場所\\\",\\\"参加費\\\",\\\"定員\\\",\\\"過去開催の実績・写真\\\",\\\"主催者・団体情報\\\",\\\"申込み方法・フォームURL\\\"],\\\"residual_ambiguity_assessment\\\":\\\"目的・対象・訴求軸・仕掛けが未指定で曖昧度は高い。日時等の実データ欠落も別途あり。\\\"}\",\"ttft_ms\":9454,\"ttft_stream_ms\":1815,\"time_to_request_ms\":196,\"type\":\"result\",\"duration_ms\":9788,\"uuid\":\"dd4bb653-0fe8-4a8d-af73-5759ba300519\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 9331,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "7e15726c-9223-4702-af58-16fc3854bed4",
+            "total_cost_usd": 0.14512170000000002,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21631,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 593,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21631,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 593,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21631,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21631
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 593,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21631,
+                "webSearchRequests": 0,
+                "costUSD": 0.14512170000000002,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "{\"branches\":[{\"question_point\":\"「若い人」の年齢層・属性像\",\"anchor_words\":[\"若い人にも刺さる感じで\"],\"options\":[{\"label\":\"学生・20代前半\"},{\"label\":\"20代後半〜30代社会人\"}],\"default_if_unresolved\":\"20代社会人を想定し進める\"},{\"question_point\":\"交流イベントの目的・性質\",\"anchor_words\":[\"交流イベント\"],\"options\":[{\"label\":\"人脈作り・ビジネス系\"},{\"label\":\"趣味・カジュアル交流\"},{\"label\":\"地域・コミュニティ系\"}],\"default_if_unresolved\":\"カジュアル交流として構成\"},{\"question_point\":\"「刺さる」訴求の軸\",\"anchor_words\":[\"若い人にも刺さる感じで\"],\"options\":[{\"label\":\"楽しさ・非日常感\"},{\"label\":\"学び・成長機会\"},{\"label\":\"人脈・出会いの価値\"}],\"default_if_unresolved\":\"楽しさ訴求を主軸にする\"},{\"question_point\":\"申込みを増やす主な仕掛け\",\"anchor_words\":[\"申込みが増えるように\"],\"options\":[{\"label\":\"限定性・希少感で煽る\"},{\"label\":\"安心感・参加ハードル低減\"},{\"label\":\"実績・信頼で後押し\"}],\"default_if_unresolved\":\"安心感訴求を基本にする\"}],\"missing_materials\":[\"イベントの日時・場所\",\"参加費\",\"定員\",\"過去開催の実績・写真\",\"主催者・団体情報\",\"申込み方法・フォームURL\"],\"residual_ambiguity_assessment\":\"目的・対象・訴求軸・仕掛けが未指定で曖昧度は高い。日時等の実データ欠落も別途あり。\"}",
+            "ttft_ms": 9454,
+            "ttft_stream_ms": 1815,
+            "time_to_request_ms": 196,
+            "type": "result",
+            "duration_ms": 9788,
+            "uuid": "dd4bb653-0fe8-4a8d-af73-5759ba300519"
+          },
+          "duration_ms": 9788,
+          "duration_api_ms": 9331,
+          "result_text": "{\"branches\":[{\"question_point\":\"「若い人」の年齢層・属性像\",\"anchor_words\":[\"若い人にも刺さる感じで\"],\"options\":[{\"label\":\"学生・20代前半\"},{\"label\":\"20代後半〜30代社会人\"}],\"default_if_unresolved\":\"20代社会人を想定し進める\"},{\"question_point\":\"交流イベントの目的・性質\",\"anchor_words\":[\"交流イベント\"],\"options\":[{\"label\":\"人脈作り・ビジネス系\"},{\"label\":\"趣味・カジュアル交流\"},{\"label\":\"地域・コミュニティ系\"}],\"default_if_unresolved\":\"カジュアル交流として構成\"},{\"question_point\":\"「刺さる」訴求の軸\",\"anchor_words\":[\"若い人にも刺さる感じで\"],\"options\":[{\"label\":\"楽しさ・非日常感\"},{\"label\":\"学び・成長機会\"},{\"label\":\"人脈・出会いの価値\"}],\"default_if_unresolved\":\"楽しさ訴求を主軸にする\"},{\"question_point\":\"申込みを増やす主な仕掛け\",\"anchor_words\":[\"申込みが増えるように\"],\"options\":[{\"label\":\"限定性・希少感で煽る\"},{\"label\":\"安心感・参加ハードル低減\"},{\"label\":\"実績・信頼で後押し\"}],\"default_if_unresolved\":\"安心感訴求を基本にする\"}],\"missing_materials\":[\"イベントの日時・場所\",\"参加費\",\"定員\",\"過去開催の実績・写真\",\"主催者・団体情報\",\"申込み方法・フォームURL\"],\"residual_ambiguity_assessment\":\"目的・対象・訴求軸・仕掛けが未指定で曖昧度は高い。日時等の実データ欠落も別途あり。\"}",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "「若い人」の年齢層・属性像",
+                "anchor_words": [
+                  "若い人にも刺さる感じで"
+                ],
+                "options": [
+                  {
+                    "label": "学生・20代前半"
+                  },
+                  {
+                    "label": "20代後半〜30代社会人"
+                  }
+                ],
+                "default_if_unresolved": "20代社会人を想定し進める"
+              },
+              {
+                "question_point": "交流イベントの目的・性質",
+                "anchor_words": [
+                  "交流イベント"
+                ],
+                "options": [
+                  {
+                    "label": "人脈作り・ビジネス系"
+                  },
+                  {
+                    "label": "趣味・カジュアル交流"
+                  },
+                  {
+                    "label": "地域・コミュニティ系"
+                  }
+                ],
+                "default_if_unresolved": "カジュアル交流として構成"
+              },
+              {
+                "question_point": "「刺さる」訴求の軸",
+                "anchor_words": [
+                  "若い人にも刺さる感じで"
+                ],
+                "options": [
+                  {
+                    "label": "楽しさ・非日常感"
+                  },
+                  {
+                    "label": "学び・成長機会"
+                  },
+                  {
+                    "label": "人脈・出会いの価値"
+                  }
+                ],
+                "default_if_unresolved": "楽しさ訴求を主軸にする"
+              },
+              {
+                "question_point": "申込みを増やす主な仕掛け",
+                "anchor_words": [
+                  "申込みが増えるように"
+                ],
+                "options": [
+                  {
+                    "label": "限定性・希少感で煽る"
+                  },
+                  {
+                    "label": "安心感・参加ハードル低減"
+                  },
+                  {
+                    "label": "実績・信頼で後押し"
+                  }
+                ],
+                "default_if_unresolved": "安心感訴求を基本にする"
+              }
+            ],
+            "missing_materials": [
+              "イベントの日時・場所",
+              "参加費",
+              "定員",
+              "過去開催の実績・写真",
+              "主催者・団体情報",
+              "申込み方法・フォームURL"
+            ],
+            "residual_ambiguity_assessment": "目的・対象・訴求軸・仕掛けが未指定で曖昧度は高い。日時等の実データ欠落も別途あり。"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 24271,
+      "duration_ms": 9788,
+      "duration_api_ms": 9331,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "「若い人」の年齢層・属性像",
+            "anchor_words": [
+              "若い人にも刺さる感じで"
+            ],
+            "options": [
+              {
+                "label": "学生・20代前半"
+              },
+              {
+                "label": "20代後半〜30代社会人"
+              }
+            ],
+            "default_if_unresolved": "20代社会人を想定し進める"
+          },
+          {
+            "question_point": "交流イベントの目的・性質",
+            "anchor_words": [
+              "交流イベント"
+            ],
+            "options": [
+              {
+                "label": "人脈作り・ビジネス系"
+              },
+              {
+                "label": "趣味・カジュアル交流"
+              },
+              {
+                "label": "地域・コミュニティ系"
+              }
+            ],
+            "default_if_unresolved": "カジュアル交流として構成"
+          },
+          {
+            "question_point": "「刺さる」訴求の軸",
+            "anchor_words": [
+              "若い人にも刺さる感じで"
+            ],
+            "options": [
+              {
+                "label": "楽しさ・非日常感"
+              },
+              {
+                "label": "学び・成長機会"
+              },
+              {
+                "label": "人脈・出会いの価値"
+              }
+            ],
+            "default_if_unresolved": "楽しさ訴求を主軸にする"
+          },
+          {
+            "question_point": "申込みを増やす主な仕掛け",
+            "anchor_words": [
+              "申込みが増えるように"
+            ],
+            "options": [
+              {
+                "label": "限定性・希少感で煽る"
+              },
+              {
+                "label": "安心感・参加ハードル低減"
+              },
+              {
+                "label": "実績・信頼で後押し"
+              }
+            ],
+            "default_if_unresolved": "安心感訴求を基本にする"
+          }
+        ],
+        "missing_materials": [
+          "イベントの日時・場所",
+          "参加費",
+          "定員",
+          "過去開催の実績・写真",
+          "主催者・団体情報",
+          "申込み方法・フォームURL"
+        ],
+        "residual_ambiguity_assessment": "目的・対象・訴求軸・仕掛けが未指定で曖昧度は高い。日時等の実データ欠落も別途あり。"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 4,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 4,
+        "anchor_violations": 0,
+        "latency_api_ms": 9331,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "「若い人」の年齢層・属性像",
+            "anchors": [
+              {
+                "text": "若い人にも刺さる感じで",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 1,
+            "question_point": "交流イベントの目的・性質",
+            "anchors": [
+              {
+                "text": "交流イベント",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 2,
+            "question_point": "「刺さる」訴求の軸",
+            "anchors": [
+              {
+                "text": "若い人にも刺さる感じで",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 3,
+            "question_point": "申込みを増やす主な仕掛け",
+            "anchors": [
+              {
+                "text": "申込みが増えるように",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "portfolio",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T10:01:31.205191+00:00",
+          "wall_ms": 34463,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":16530,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"cb42c263-95dd-4730-8913-b9e2101dbd21\",\"total_cost_usd\":0.1542057,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21615,\"cache_read_input_tokens\":21449,\"output_tokens\":1205,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21615,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":1205,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21615,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21615},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":1205,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21615,\"webSearchRequests\":0,\"costUSD\":0.1542057,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\n \\\"branches\\\": [\\n  {\\n   \\\"question_point\\\": \\\"転職先職種によるポートフォリオの訴求軸\\\",\\n   \\\"anchor_words\\\": [\\\"転職活動用に個人ポートフォリオサイトが欲しい\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"デザイナー訴求\\\"}, {\\\"label\\\": \\\"エンジニア訴求\\\"}, {\\\"label\\\": \\\"企画・PM訴求\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"作品内容から職種を推定して構成\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"「センスよく」の方向性\\\",\\n   \\\"anchor_words\\\": [\\\"センスよくまとめて\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"ミニマル洗練\\\"}, {\\\"label\\\": \\\"個性的で目立つ\\\"}, {\\\"label\\\": \\\"王道で安全\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"業界標準寄りのミニマル構成\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"作品の見せ方の重心\\\",\\n   \\\"anchor_words\\\": [\\\"作品はいくつかあるんだけど\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"成果物中心\\\"}, {\\\"label\\\": \\\"制作プロセス重視\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"成果物を主、プロセスは補足\\\"\\n  }\\n ],\\n \\\"missing_materials\\\": [\\\"作品の実データ(画像・URL・詳細)\\\", \\\"応募予定の職種・業界情報\\\", \\\"経歴・スキル情報\\\"],\\n \\\"residual_ambiguity_assessment\\\": \\\"目的以外はほぼ未指定で、職種・トーン・見せ方が結果を大きく左右する曖昧度が高いブリーフ\\\"\\n}\",\"ttft_ms\":11904,\"ttft_stream_ms\":1489,\"time_to_request_ms\":122,\"type\":\"result\",\"duration_ms\":16854,\"uuid\":\"b6777370-2b59-464e-9068-9f8213079ccd\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 16530,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "cb42c263-95dd-4730-8913-b9e2101dbd21",
+            "total_cost_usd": 0.1542057,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21615,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 1205,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21615,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 1205,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21615,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21615
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 1205,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21615,
+                "webSearchRequests": 0,
+                "costUSD": 0.1542057,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "{\n \"branches\": [\n  {\n   \"question_point\": \"転職先職種によるポートフォリオの訴求軸\",\n   \"anchor_words\": [\"転職活動用に個人ポートフォリオサイトが欲しい\"],\n   \"options\": [ {\"label\": \"デザイナー訴求\"}, {\"label\": \"エンジニア訴求\"}, {\"label\": \"企画・PM訴求\"} ],\n   \"default_if_unresolved\": \"作品内容から職種を推定して構成\"\n  },\n  {\n   \"question_point\": \"「センスよく」の方向性\",\n   \"anchor_words\": [\"センスよくまとめて\"],\n   \"options\": [ {\"label\": \"ミニマル洗練\"}, {\"label\": \"個性的で目立つ\"}, {\"label\": \"王道で安全\"} ],\n   \"default_if_unresolved\": \"業界標準寄りのミニマル構成\"\n  },\n  {\n   \"question_point\": \"作品の見せ方の重心\",\n   \"anchor_words\": [\"作品はいくつかあるんだけど\"],\n   \"options\": [ {\"label\": \"成果物中心\"}, {\"label\": \"制作プロセス重視\"} ],\n   \"default_if_unresolved\": \"成果物を主、プロセスは補足\"\n  }\n ],\n \"missing_materials\": [\"作品の実データ(画像・URL・詳細)\", \"応募予定の職種・業界情報\", \"経歴・スキル情報\"],\n \"residual_ambiguity_assessment\": \"目的以外はほぼ未指定で、職種・トーン・見せ方が結果を大きく左右する曖昧度が高いブリーフ\"\n}",
+            "ttft_ms": 11904,
+            "ttft_stream_ms": 1489,
+            "time_to_request_ms": 122,
+            "type": "result",
+            "duration_ms": 16854,
+            "uuid": "b6777370-2b59-464e-9068-9f8213079ccd"
+          },
+          "duration_ms": 16854,
+          "duration_api_ms": 16530,
+          "result_text": "{\n \"branches\": [\n  {\n   \"question_point\": \"転職先職種によるポートフォリオの訴求軸\",\n   \"anchor_words\": [\"転職活動用に個人ポートフォリオサイトが欲しい\"],\n   \"options\": [ {\"label\": \"デザイナー訴求\"}, {\"label\": \"エンジニア訴求\"}, {\"label\": \"企画・PM訴求\"} ],\n   \"default_if_unresolved\": \"作品内容から職種を推定して構成\"\n  },\n  {\n   \"question_point\": \"「センスよく」の方向性\",\n   \"anchor_words\": [\"センスよくまとめて\"],\n   \"options\": [ {\"label\": \"ミニマル洗練\"}, {\"label\": \"個性的で目立つ\"}, {\"label\": \"王道で安全\"} ],\n   \"default_if_unresolved\": \"業界標準寄りのミニマル構成\"\n  },\n  {\n   \"question_point\": \"作品の見せ方の重心\",\n   \"anchor_words\": [\"作品はいくつかあるんだけど\"],\n   \"options\": [ {\"label\": \"成果物中心\"}, {\"label\": \"制作プロセス重視\"} ],\n   \"default_if_unresolved\": \"成果物を主、プロセスは補足\"\n  }\n ],\n \"missing_materials\": [\"作品の実データ(画像・URL・詳細)\", \"応募予定の職種・業界情報\", \"経歴・スキル情報\"],\n \"residual_ambiguity_assessment\": \"目的以外はほぼ未指定で、職種・トーン・見せ方が結果を大きく左右する曖昧度が高いブリーフ\"\n}",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "転職先職種によるポートフォリオの訴求軸",
+                "anchor_words": [
+                  "転職活動用に個人ポートフォリオサイトが欲しい"
+                ],
+                "options": [
+                  {
+                    "label": "デザイナー訴求"
+                  },
+                  {
+                    "label": "エンジニア訴求"
+                  },
+                  {
+                    "label": "企画・PM訴求"
+                  }
+                ],
+                "default_if_unresolved": "作品内容から職種を推定して構成"
+              },
+              {
+                "question_point": "「センスよく」の方向性",
+                "anchor_words": [
+                  "センスよくまとめて"
+                ],
+                "options": [
+                  {
+                    "label": "ミニマル洗練"
+                  },
+                  {
+                    "label": "個性的で目立つ"
+                  },
+                  {
+                    "label": "王道で安全"
+                  }
+                ],
+                "default_if_unresolved": "業界標準寄りのミニマル構成"
+              },
+              {
+                "question_point": "作品の見せ方の重心",
+                "anchor_words": [
+                  "作品はいくつかあるんだけど"
+                ],
+                "options": [
+                  {
+                    "label": "成果物中心"
+                  },
+                  {
+                    "label": "制作プロセス重視"
+                  }
+                ],
+                "default_if_unresolved": "成果物を主、プロセスは補足"
+              }
+            ],
+            "missing_materials": [
+              "作品の実データ(画像・URL・詳細)",
+              "応募予定の職種・業界情報",
+              "経歴・スキル情報"
+            ],
+            "residual_ambiguity_assessment": "目的以外はほぼ未指定で、職種・トーン・見せ方が結果を大きく左右する曖昧度が高いブリーフ"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 34463,
+      "duration_ms": 16854,
+      "duration_api_ms": 16530,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "転職先職種によるポートフォリオの訴求軸",
+            "anchor_words": [
+              "転職活動用に個人ポートフォリオサイトが欲しい"
+            ],
+            "options": [
+              {
+                "label": "デザイナー訴求"
+              },
+              {
+                "label": "エンジニア訴求"
+              },
+              {
+                "label": "企画・PM訴求"
+              }
+            ],
+            "default_if_unresolved": "作品内容から職種を推定して構成"
+          },
+          {
+            "question_point": "「センスよく」の方向性",
+            "anchor_words": [
+              "センスよくまとめて"
+            ],
+            "options": [
+              {
+                "label": "ミニマル洗練"
+              },
+              {
+                "label": "個性的で目立つ"
+              },
+              {
+                "label": "王道で安全"
+              }
+            ],
+            "default_if_unresolved": "業界標準寄りのミニマル構成"
+          },
+          {
+            "question_point": "作品の見せ方の重心",
+            "anchor_words": [
+              "作品はいくつかあるんだけど"
+            ],
+            "options": [
+              {
+                "label": "成果物中心"
+              },
+              {
+                "label": "制作プロセス重視"
+              }
+            ],
+            "default_if_unresolved": "成果物を主、プロセスは補足"
+          }
+        ],
+        "missing_materials": [
+          "作品の実データ(画像・URL・詳細)",
+          "応募予定の職種・業界情報",
+          "経歴・スキル情報"
+        ],
+        "residual_ambiguity_assessment": "目的以外はほぼ未指定で、職種・トーン・見せ方が結果を大きく左右する曖昧度が高いブリーフ"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 3,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 3,
+        "anchor_violations": 0,
+        "latency_api_ms": 16530,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "転職先職種によるポートフォリオの訴求軸",
+            "anchors": [
+              {
+                "text": "転職活動用に個人ポートフォリオサイトが欲しい",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 1,
+            "question_point": "「センスよく」の方向性",
+            "anchors": [
+              {
+                "text": "センスよくまとめて",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 2,
+            "question_point": "作品の見せ方の重心",
+            "anchors": [
+              {
+                "text": "作品はいくつかあるんだけど",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "internal-deck",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "来週の全社会議で新しい取り組みを発表するスライドを作って。偉い人も見るけど、堅苦しくしたくない。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T10:02:05.673577+00:00",
+          "wall_ms": 40555,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":10402,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"b73334b1-40f6-4086-b5a9-170a5752ed2e\",\"total_cost_usd\":0.1448457,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21615,\"cache_read_input_tokens\":21449,\"output_tokens\":581,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21615,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":581,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21615,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21615},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":581,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21615,\"webSearchRequests\":0,\"costUSD\":0.1448457,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"branches\\\":[{\\\"question_point\\\":\\\"「新しい取り組み」の性格(実験段階か決定事項か)\\\",\\\"anchor_words\\\":[\\\"新しい取り組みを発表するスライド\\\"],\\\"options\\\":[{\\\"label\\\":\\\"決定済み方針\\\"},{\\\"label\\\":\\\"試行提案\\\"}],\\\"default_if_unresolved\\\":\\\"決定事項として断定調で書く\\\"},{\\\"question_point\\\":\\\"発表の主目的(何をしてほしいか)\\\",\\\"anchor_words\\\":[\\\"新しい取り組みを発表する\\\"],\\\"options\\\":[{\\\"label\\\":\\\"周知のみ\\\"},{\\\"label\\\":\\\"協力依頼\\\"},{\\\"label\\\":\\\"賛同獲得\\\"}],\\\"default_if_unresolved\\\":\\\"周知目的の一方向共有として構成\\\"},{\\\"question_point\\\":\\\"偉い人向けと非堅苦しさの優先度\\\",\\\"anchor_words\\\":[\\\"偉い人も見るけど、堅苦しくしたくない\\\"],\\\"options\\\":[{\\\"label\\\":\\\"格式優先\\\"},{\\\"label\\\":\\\"カジュアル優先\\\"},{\\\"label\\\":\\\"バランス型\\\"}],\\\"default_if_unresolved\\\":\\\"要点は格式高く、表現は柔らかめの中間\\\"},{\\\"question_point\\\":\\\"取り組みの範囲(全社影響か一部門起点か)\\\",\\\"anchor_words\\\":[\\\"全社会議で新しい取り組み\\\"],\\\"options\\\":[{\\\"label\\\":\\\"全社一斉展開\\\"},{\\\"label\\\":\\\"一部先行試行\\\"}],\\\"default_if_unresolved\\\":\\\"全社対象として構成\\\"}],\\\"missing_materials\\\":[\\\"取り組みの具体的内容・名称\\\",\\\"対象部門・関係者\\\",\\\"開始時期・スケジュール\\\",\\\"会議の持ち時間・スライド枚数目安\\\"],\\\"residual_ambiguity_assessment\\\":\\\"取り組みの中身自体が未提供で曖昧度は高いが、これは分岐でなく欠落情報として扱うべき。\\\"}\",\"ttft_ms\":10421,\"ttft_stream_ms\":1799,\"time_to_request_ms\":99,\"type\":\"result\",\"duration_ms\":11222,\"uuid\":\"aa8e6038-ab3e-423c-a76b-e75a7c27a205\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 10402,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "b73334b1-40f6-4086-b5a9-170a5752ed2e",
+            "total_cost_usd": 0.1448457,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21615,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 581,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21615,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 581,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21615,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21615
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 581,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21615,
+                "webSearchRequests": 0,
+                "costUSD": 0.1448457,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "{\"branches\":[{\"question_point\":\"「新しい取り組み」の性格(実験段階か決定事項か)\",\"anchor_words\":[\"新しい取り組みを発表するスライド\"],\"options\":[{\"label\":\"決定済み方針\"},{\"label\":\"試行提案\"}],\"default_if_unresolved\":\"決定事項として断定調で書く\"},{\"question_point\":\"発表の主目的(何をしてほしいか)\",\"anchor_words\":[\"新しい取り組みを発表する\"],\"options\":[{\"label\":\"周知のみ\"},{\"label\":\"協力依頼\"},{\"label\":\"賛同獲得\"}],\"default_if_unresolved\":\"周知目的の一方向共有として構成\"},{\"question_point\":\"偉い人向けと非堅苦しさの優先度\",\"anchor_words\":[\"偉い人も見るけど、堅苦しくしたくない\"],\"options\":[{\"label\":\"格式優先\"},{\"label\":\"カジュアル優先\"},{\"label\":\"バランス型\"}],\"default_if_unresolved\":\"要点は格式高く、表現は柔らかめの中間\"},{\"question_point\":\"取り組みの範囲(全社影響か一部門起点か)\",\"anchor_words\":[\"全社会議で新しい取り組み\"],\"options\":[{\"label\":\"全社一斉展開\"},{\"label\":\"一部先行試行\"}],\"default_if_unresolved\":\"全社対象として構成\"}],\"missing_materials\":[\"取り組みの具体的内容・名称\",\"対象部門・関係者\",\"開始時期・スケジュール\",\"会議の持ち時間・スライド枚数目安\"],\"residual_ambiguity_assessment\":\"取り組みの中身自体が未提供で曖昧度は高いが、これは分岐でなく欠落情報として扱うべき。\"}",
+            "ttft_ms": 10421,
+            "ttft_stream_ms": 1799,
+            "time_to_request_ms": 99,
+            "type": "result",
+            "duration_ms": 11222,
+            "uuid": "aa8e6038-ab3e-423c-a76b-e75a7c27a205"
+          },
+          "duration_ms": 11222,
+          "duration_api_ms": 10402,
+          "result_text": "{\"branches\":[{\"question_point\":\"「新しい取り組み」の性格(実験段階か決定事項か)\",\"anchor_words\":[\"新しい取り組みを発表するスライド\"],\"options\":[{\"label\":\"決定済み方針\"},{\"label\":\"試行提案\"}],\"default_if_unresolved\":\"決定事項として断定調で書く\"},{\"question_point\":\"発表の主目的(何をしてほしいか)\",\"anchor_words\":[\"新しい取り組みを発表する\"],\"options\":[{\"label\":\"周知のみ\"},{\"label\":\"協力依頼\"},{\"label\":\"賛同獲得\"}],\"default_if_unresolved\":\"周知目的の一方向共有として構成\"},{\"question_point\":\"偉い人向けと非堅苦しさの優先度\",\"anchor_words\":[\"偉い人も見るけど、堅苦しくしたくない\"],\"options\":[{\"label\":\"格式優先\"},{\"label\":\"カジュアル優先\"},{\"label\":\"バランス型\"}],\"default_if_unresolved\":\"要点は格式高く、表現は柔らかめの中間\"},{\"question_point\":\"取り組みの範囲(全社影響か一部門起点か)\",\"anchor_words\":[\"全社会議で新しい取り組み\"],\"options\":[{\"label\":\"全社一斉展開\"},{\"label\":\"一部先行試行\"}],\"default_if_unresolved\":\"全社対象として構成\"}],\"missing_materials\":[\"取り組みの具体的内容・名称\",\"対象部門・関係者\",\"開始時期・スケジュール\",\"会議の持ち時間・スライド枚数目安\"],\"residual_ambiguity_assessment\":\"取り組みの中身自体が未提供で曖昧度は高いが、これは分岐でなく欠落情報として扱うべき。\"}",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "「新しい取り組み」の性格(実験段階か決定事項か)",
+                "anchor_words": [
+                  "新しい取り組みを発表するスライド"
+                ],
+                "options": [
+                  {
+                    "label": "決定済み方針"
+                  },
+                  {
+                    "label": "試行提案"
+                  }
+                ],
+                "default_if_unresolved": "決定事項として断定調で書く"
+              },
+              {
+                "question_point": "発表の主目的(何をしてほしいか)",
+                "anchor_words": [
+                  "新しい取り組みを発表する"
+                ],
+                "options": [
+                  {
+                    "label": "周知のみ"
+                  },
+                  {
+                    "label": "協力依頼"
+                  },
+                  {
+                    "label": "賛同獲得"
+                  }
+                ],
+                "default_if_unresolved": "周知目的の一方向共有として構成"
+              },
+              {
+                "question_point": "偉い人向けと非堅苦しさの優先度",
+                "anchor_words": [
+                  "偉い人も見るけど、堅苦しくしたくない"
+                ],
+                "options": [
+                  {
+                    "label": "格式優先"
+                  },
+                  {
+                    "label": "カジュアル優先"
+                  },
+                  {
+                    "label": "バランス型"
+                  }
+                ],
+                "default_if_unresolved": "要点は格式高く、表現は柔らかめの中間"
+              },
+              {
+                "question_point": "取り組みの範囲(全社影響か一部門起点か)",
+                "anchor_words": [
+                  "全社会議で新しい取り組み"
+                ],
+                "options": [
+                  {
+                    "label": "全社一斉展開"
+                  },
+                  {
+                    "label": "一部先行試行"
+                  }
+                ],
+                "default_if_unresolved": "全社対象として構成"
+              }
+            ],
+            "missing_materials": [
+              "取り組みの具体的内容・名称",
+              "対象部門・関係者",
+              "開始時期・スケジュール",
+              "会議の持ち時間・スライド枚数目安"
+            ],
+            "residual_ambiguity_assessment": "取り組みの中身自体が未提供で曖昧度は高いが、これは分岐でなく欠落情報として扱うべき。"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 40555,
+      "duration_ms": 11222,
+      "duration_api_ms": 10402,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "「新しい取り組み」の性格(実験段階か決定事項か)",
+            "anchor_words": [
+              "新しい取り組みを発表するスライド"
+            ],
+            "options": [
+              {
+                "label": "決定済み方針"
+              },
+              {
+                "label": "試行提案"
+              }
+            ],
+            "default_if_unresolved": "決定事項として断定調で書く"
+          },
+          {
+            "question_point": "発表の主目的(何をしてほしいか)",
+            "anchor_words": [
+              "新しい取り組みを発表する"
+            ],
+            "options": [
+              {
+                "label": "周知のみ"
+              },
+              {
+                "label": "協力依頼"
+              },
+              {
+                "label": "賛同獲得"
+              }
+            ],
+            "default_if_unresolved": "周知目的の一方向共有として構成"
+          },
+          {
+            "question_point": "偉い人向けと非堅苦しさの優先度",
+            "anchor_words": [
+              "偉い人も見るけど、堅苦しくしたくない"
+            ],
+            "options": [
+              {
+                "label": "格式優先"
+              },
+              {
+                "label": "カジュアル優先"
+              },
+              {
+                "label": "バランス型"
+              }
+            ],
+            "default_if_unresolved": "要点は格式高く、表現は柔らかめの中間"
+          },
+          {
+            "question_point": "取り組みの範囲(全社影響か一部門起点か)",
+            "anchor_words": [
+              "全社会議で新しい取り組み"
+            ],
+            "options": [
+              {
+                "label": "全社一斉展開"
+              },
+              {
+                "label": "一部先行試行"
+              }
+            ],
+            "default_if_unresolved": "全社対象として構成"
+          }
+        ],
+        "missing_materials": [
+          "取り組みの具体的内容・名称",
+          "対象部門・関係者",
+          "開始時期・スケジュール",
+          "会議の持ち時間・スライド枚数目安"
+        ],
+        "residual_ambiguity_assessment": "取り組みの中身自体が未提供で曖昧度は高いが、これは分岐でなく欠落情報として扱うべき。"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 4,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 4,
+        "anchor_violations": 0,
+        "latency_api_ms": 10402,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "「新しい取り組み」の性格(実験段階か決定事項か)",
+            "anchors": [
+              {
+                "text": "新しい取り組みを発表するスライド",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 1,
+            "question_point": "発表の主目的(何をしてほしいか)",
+            "anchors": [
+              {
+                "text": "新しい取り組みを発表する",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 2,
+            "question_point": "偉い人向けと非堅苦しさの優先度",
+            "anchors": [
+              {
+                "text": "偉い人も見るけど、堅苦しくしたくない",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 3,
+            "question_point": "取り組みの範囲(全社影響か一部門起点か)",
+            "anchors": [
+              {
+                "text": "全社会議で新しい取り組み",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "ec-product",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T10:02:46.236675+00:00",
+          "wall_ms": 49056,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":26315,\"num_turns\":2,\"stop_reason\":\"end_turn\",\"session_id\":\"1aba1754-4cd9-4df1-b750-bdb09742803d\",\"total_cost_usd\":0.1740795,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":21798,\"cache_read_input_tokens\":64515,\"output_tokens\":1595,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21798,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":1429,\"cache_read_input_tokens\":43066,\"cache_creation_input_tokens\":181,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":181},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":4,\"outputTokens\":1595,\"cacheReadInputTokens\":64515,\"cacheCreationInputTokens\":21798,\"webSearchRequests\":0,\"costUSD\":0.1740795,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\n \\\"branches\\\": [\\n  {\\n   \\\"question_point\\\": \\\"誰の生活シーンを主人公にするか\\\",\\n   \\\"anchor_words\\\": [\\\"ネットショップに載せるタンブラー\\\"],\\n   \\\"options\\\": [{\\\"label\\\": \\\"オフィス実用派\\\"}, {\\\"label\\\": \\\"アウトドア/移動派\\\"}, {\\\"label\\\": \\\"ギフト/自分褒美派\\\"}],\\n   \\\"default_if_unresolved\\\": \\\"汎用的な日常使いとして書く\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"最大の訴求軸は何か\\\",\\n   \\\"anchor_words\\\": [\\\"良さが伝わって\\\"],\\n   \\\"options\\\": [{\\\"label\\\": \\\"保温保冷性能\\\"}, {\\\"label\\\": \\\"デザイン/所有満足\\\"}, {\\\"label\\\": \\\"機能性(漏れ・軽さ等)\\\"}],\\n   \\\"default_if_unresolved\\\": \\\"性能とデザインを均等に併記\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"価格帯・ポジションの前提\\\",\\n   \\\"anchor_words\\\": [\\\"ポチりたくなるように\\\"],\\n   \\\"options\\\": [{\\\"label\\\": \\\"プチプラ即決型\\\"}, {\\\"label\\\": \\\"ミドル価格納得型\\\"}, {\\\"label\\\": \\\"高級/こだわり型\\\"}],\\n   \\\"default_if_unresolved\\\": \\\"中価格帯の納得感訴求で書く\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"文体・熱量のトーン\\\",\\n   \\\"anchor_words\\\": [\\\"ポチりたくなるように\\\"],\\n   \\\"options\\\": [{\\\"label\\\": \\\"共感/会話口調\\\"}, {\\\"label\\\": \\\"端的/スペック訴求\\\"}, {\\\"label\\\": \\\"情緒/世界観重視\\\"}],\\n   \\\"default_if_unresolved\\\": \\\"共感口調と端的説明の中間で書く\\\"\\n  }\\n ],\\n \\\"missing_materials\\\": [\\\"商品名・型番\\\", \\\"実際のスペック数値(容量・保温時間等)\\\", \\\"価格\\\", \\\"素材・カラー展開\\\", \\\"使用シーン写真の有無\\\"],\\n \\\"residual_ambiguity_assessment\\\": \\\"商品情報が皆無で、誰向け・何訴求・価格帯・トーンが全て未指定。仮置きで書くが精度は低い。\\\"\\n}\\n\\n上記の分岐は問うだけで終わらず、実際に文章を仕上げる必要があるため、最も無難な組み合わせ(オフィス実用派×性能とデザイン併記×中価格帯×共感/端的中間)で仮置きして商品説明文を書きます。ただしスペック数値・価格・素材が一切ないため、実データが分かれば差し替えが必要です。\\n\\n---\\n\\n**毎日使うものだから、\\\"ちょうどいい\\\"を全部詰め込みました。**\\n\\n朝の一杯を、最後の一口まで熱いまま。\\n仕事中の氷水を、夕方になっても薄まらないまま。\\n\\nこのタンブラーは、そんな「当たり前であってほしいこと」にちゃんと応えるために作りました。\\n\\n- **優れた保温・保冷力**で、温度をキープ。飲みたいときに、飲みたい温度で。\\n- **手になじむスリムフォルム**で、カバンにもカップホルダーにもすっと収まる。\\n- **軽くて丈夫**だから、毎日持ち歩いても負担にならない。\\n- パッキンまで洗いやすい設計で、**清潔に長く使える**。\\n\\nデスクに置いても様になる、シンプルで飽きのこないデザイン。\\n自分用にはもちろん、ちょっとした贈り物にも選ばれています。\\n\\n「なんとなく」で選んだタンブラーに、小さな不満を感じたことはありませんか?\\nこのタンブラーは、その「なんとなく」を卒業したい人のための一本です。\\n\\n**今日から、毎日のドリンクタイムをもう一段階、心地よく。**\\n\\n---\\n\\n※上記は仮の商品情報(スペック数値・素材・価格帯)で構成した草案です。実際の容量・保温時間・素材・価格・カラー展開が分かれば、そこに差し替えて具体性を上げると成約率が上がります。情報があれば教えてください、精緻化します。\\n\\n```\\n次回セッションGoal: このタンブラーの実データ(容量・保温保持時間・素材・価格・カラー展開・想定購入者層)を提供し、GYAKUMONエンジンで分岐を再解決した上で商品説明文を確定稿へ仕上げる。\\n```\",\"ttft_ms\":3750,\"ttft_stream_ms\":1506,\"time_to_request_ms\":115,\"type\":\"result\",\"duration_ms\":27586,\"uuid\":\"abf33897-7958-4ea0-ad1b-6a93896065c5\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 26315,
+            "num_turns": 2,
+            "stop_reason": "end_turn",
+            "session_id": "1aba1754-4cd9-4df1-b750-bdb09742803d",
+            "total_cost_usd": 0.1740795,
+            "usage": {
+              "input_tokens": 4,
+              "cache_creation_input_tokens": 21798,
+              "cache_read_input_tokens": 64515,
+              "output_tokens": 1595,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21798,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 1429,
+                  "cache_read_input_tokens": 43066,
+                  "cache_creation_input_tokens": 181,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 181
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 4,
+                "outputTokens": 1595,
+                "cacheReadInputTokens": 64515,
+                "cacheCreationInputTokens": 21798,
+                "webSearchRequests": 0,
+                "costUSD": 0.1740795,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "{\n \"branches\": [\n  {\n   \"question_point\": \"誰の生活シーンを主人公にするか\",\n   \"anchor_words\": [\"ネットショップに載せるタンブラー\"],\n   \"options\": [{\"label\": \"オフィス実用派\"}, {\"label\": \"アウトドア/移動派\"}, {\"label\": \"ギフト/自分褒美派\"}],\n   \"default_if_unresolved\": \"汎用的な日常使いとして書く\"\n  },\n  {\n   \"question_point\": \"最大の訴求軸は何か\",\n   \"anchor_words\": [\"良さが伝わって\"],\n   \"options\": [{\"label\": \"保温保冷性能\"}, {\"label\": \"デザイン/所有満足\"}, {\"label\": \"機能性(漏れ・軽さ等)\"}],\n   \"default_if_unresolved\": \"性能とデザインを均等に併記\"\n  },\n  {\n   \"question_point\": \"価格帯・ポジションの前提\",\n   \"anchor_words\": [\"ポチりたくなるように\"],\n   \"options\": [{\"label\": \"プチプラ即決型\"}, {\"label\": \"ミドル価格納得型\"}, {\"label\": \"高級/こだわり型\"}],\n   \"default_if_unresolved\": \"中価格帯の納得感訴求で書く\"\n  },\n  {\n   \"question_point\": \"文体・熱量のトーン\",\n   \"anchor_words\": [\"ポチりたくなるように\"],\n   \"options\": [{\"label\": \"共感/会話口調\"}, {\"label\": \"端的/スペック訴求\"}, {\"label\": \"情緒/世界観重視\"}],\n   \"default_if_unresolved\": \"共感口調と端的説明の中間で書く\"\n  }\n ],\n \"missing_materials\": [\"商品名・型番\", \"実際のスペック数値(容量・保温時間等)\", \"価格\", \"素材・カラー展開\", \"使用シーン写真の有無\"],\n \"residual_ambiguity_assessment\": \"商品情報が皆無で、誰向け・何訴求・価格帯・トーンが全て未指定。仮置きで書くが精度は低い。\"\n}\n\n上記の分岐は問うだけで終わらず、実際に文章を仕上げる必要があるため、最も無難な組み合わせ(オフィス実用派×性能とデザイン併記×中価格帯×共感/端的中間)で仮置きして商品説明文を書きます。ただしスペック数値・価格・素材が一切ないため、実データが分かれば差し替えが必要です。\n\n---\n\n**毎日使うものだから、\"ちょうどいい\"を全部詰め込みました。**\n\n朝の一杯を、最後の一口まで熱いまま。\n仕事中の氷水を、夕方になっても薄まらないまま。\n\nこのタンブラーは、そんな「当たり前であってほしいこと」にちゃんと応えるために作りました。\n\n- **優れた保温・保冷力**で、温度をキープ。飲みたいときに、飲みたい温度で。\n- **手になじむスリムフォルム**で、カバンにもカップホルダーにもすっと収まる。\n- **軽くて丈夫**だから、毎日持ち歩いても負担にならない。\n- パッキンまで洗いやすい設計で、**清潔に長く使える**。\n\nデスクに置いても様になる、シンプルで飽きのこないデザイン。\n自分用にはもちろん、ちょっとした贈り物にも選ばれています。\n\n「なんとなく」で選んだタンブラーに、小さな不満を感じたことはありませんか?\nこのタンブラーは、その「なんとなく」を卒業したい人のための一本です。\n\n**今日から、毎日のドリンクタイムをもう一段階、心地よく。**\n\n---\n\n※上記は仮の商品情報(スペック数値・素材・価格帯)で構成した草案です。実際の容量・保温時間・素材・価格・カラー展開が分かれば、そこに差し替えて具体性を上げると成約率が上がります。情報があれば教えてください、精緻化します。\n\n```\n次回セッションGoal: このタンブラーの実データ(容量・保温保持時間・素材・価格・カラー展開・想定購入者層)を提供し、GYAKUMONエンジンで分岐を再解決した上で商品説明文を確定稿へ仕上げる。\n```",
+            "ttft_ms": 3750,
+            "ttft_stream_ms": 1506,
+            "time_to_request_ms": 115,
+            "type": "result",
+            "duration_ms": 27586,
+            "uuid": "abf33897-7958-4ea0-ad1b-6a93896065c5"
+          },
+          "duration_ms": 27586,
+          "duration_api_ms": 26315,
+          "result_text": "{\n \"branches\": [\n  {\n   \"question_point\": \"誰の生活シーンを主人公にするか\",\n   \"anchor_words\": [\"ネットショップに載せるタンブラー\"],\n   \"options\": [{\"label\": \"オフィス実用派\"}, {\"label\": \"アウトドア/移動派\"}, {\"label\": \"ギフト/自分褒美派\"}],\n   \"default_if_unresolved\": \"汎用的な日常使いとして書く\"\n  },\n  {\n   \"question_point\": \"最大の訴求軸は何か\",\n   \"anchor_words\": [\"良さが伝わって\"],\n   \"options\": [{\"label\": \"保温保冷性能\"}, {\"label\": \"デザイン/所有満足\"}, {\"label\": \"機能性(漏れ・軽さ等)\"}],\n   \"default_if_unresolved\": \"性能とデザインを均等に併記\"\n  },\n  {\n   \"question_point\": \"価格帯・ポジションの前提\",\n   \"anchor_words\": [\"ポチりたくなるように\"],\n   \"options\": [{\"label\": \"プチプラ即決型\"}, {\"label\": \"ミドル価格納得型\"}, {\"label\": \"高級/こだわり型\"}],\n   \"default_if_unresolved\": \"中価格帯の納得感訴求で書く\"\n  },\n  {\n   \"question_point\": \"文体・熱量のトーン\",\n   \"anchor_words\": [\"ポチりたくなるように\"],\n   \"options\": [{\"label\": \"共感/会話口調\"}, {\"label\": \"端的/スペック訴求\"}, {\"label\": \"情緒/世界観重視\"}],\n   \"default_if_unresolved\": \"共感口調と端的説明の中間で書く\"\n  }\n ],\n \"missing_materials\": [\"商品名・型番\", \"実際のスペック数値(容量・保温時間等)\", \"価格\", \"素材・カラー展開\", \"使用シーン写真の有無\"],\n \"residual_ambiguity_assessment\": \"商品情報が皆無で、誰向け・何訴求・価格帯・トーンが全て未指定。仮置きで書くが精度は低い。\"\n}\n\n上記の分岐は問うだけで終わらず、実際に文章を仕上げる必要があるため、最も無難な組み合わせ(オフィス実用派×性能とデザイン併記×中価格帯×共感/端的中間)で仮置きして商品説明文を書きます。ただしスペック数値・価格・素材が一切ないため、実データが分かれば差し替えが必要です。\n\n---\n\n**毎日使うものだから、\"ちょうどいい\"を全部詰め込みました。**\n\n朝の一杯を、最後の一口まで熱いまま。\n仕事中の氷水を、夕方になっても薄まらないまま。\n\nこのタンブラーは、そんな「当たり前であってほしいこと」にちゃんと応えるために作りました。\n\n- **優れた保温・保冷力**で、温度をキープ。飲みたいときに、飲みたい温度で。\n- **手になじむスリムフォルム**で、カバンにもカップホルダーにもすっと収まる。\n- **軽くて丈夫**だから、毎日持ち歩いても負担にならない。\n- パッキンまで洗いやすい設計で、**清潔に長く使える**。\n\nデスクに置いても様になる、シンプルで飽きのこないデザイン。\n自分用にはもちろん、ちょっとした贈り物にも選ばれています。\n\n「なんとなく」で選んだタンブラーに、小さな不満を感じたことはありませんか?\nこのタンブラーは、その「なんとなく」を卒業したい人のための一本です。\n\n**今日から、毎日のドリンクタイムをもう一段階、心地よく。**\n\n---\n\n※上記は仮の商品情報(スペック数値・素材・価格帯)で構成した草案です。実際の容量・保温時間・素材・価格・カラー展開が分かれば、そこに差し替えて具体性を上げると成約率が上がります。情報があれば教えてください、精緻化します。\n\n```\n次回セッションGoal: このタンブラーの実データ(容量・保温保持時間・素材・価格・カラー展開・想定購入者層)を提供し、GYAKUMONエンジンで分岐を再解決した上で商品説明文を確定稿へ仕上げる。\n```",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "誰の生活シーンを主人公にするか",
+                "anchor_words": [
+                  "ネットショップに載せるタンブラー"
+                ],
+                "options": [
+                  {
+                    "label": "オフィス実用派"
+                  },
+                  {
+                    "label": "アウトドア/移動派"
+                  },
+                  {
+                    "label": "ギフト/自分褒美派"
+                  }
+                ],
+                "default_if_unresolved": "汎用的な日常使いとして書く"
+              },
+              {
+                "question_point": "最大の訴求軸は何か",
+                "anchor_words": [
+                  "良さが伝わって"
+                ],
+                "options": [
+                  {
+                    "label": "保温保冷性能"
+                  },
+                  {
+                    "label": "デザイン/所有満足"
+                  },
+                  {
+                    "label": "機能性(漏れ・軽さ等)"
+                  }
+                ],
+                "default_if_unresolved": "性能とデザインを均等に併記"
+              },
+              {
+                "question_point": "価格帯・ポジションの前提",
+                "anchor_words": [
+                  "ポチりたくなるように"
+                ],
+                "options": [
+                  {
+                    "label": "プチプラ即決型"
+                  },
+                  {
+                    "label": "ミドル価格納得型"
+                  },
+                  {
+                    "label": "高級/こだわり型"
+                  }
+                ],
+                "default_if_unresolved": "中価格帯の納得感訴求で書く"
+              },
+              {
+                "question_point": "文体・熱量のトーン",
+                "anchor_words": [
+                  "ポチりたくなるように"
+                ],
+                "options": [
+                  {
+                    "label": "共感/会話口調"
+                  },
+                  {
+                    "label": "端的/スペック訴求"
+                  },
+                  {
+                    "label": "情緒/世界観重視"
+                  }
+                ],
+                "default_if_unresolved": "共感口調と端的説明の中間で書く"
+              }
+            ],
+            "missing_materials": [
+              "商品名・型番",
+              "実際のスペック数値(容量・保温時間等)",
+              "価格",
+              "素材・カラー展開",
+              "使用シーン写真の有無"
+            ],
+            "residual_ambiguity_assessment": "商品情報が皆無で、誰向け・何訴求・価格帯・トーンが全て未指定。仮置きで書くが精度は低い。"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 49056,
+      "duration_ms": 27586,
+      "duration_api_ms": 26315,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "誰の生活シーンを主人公にするか",
+            "anchor_words": [
+              "ネットショップに載せるタンブラー"
+            ],
+            "options": [
+              {
+                "label": "オフィス実用派"
+              },
+              {
+                "label": "アウトドア/移動派"
+              },
+              {
+                "label": "ギフト/自分褒美派"
+              }
+            ],
+            "default_if_unresolved": "汎用的な日常使いとして書く"
+          },
+          {
+            "question_point": "最大の訴求軸は何か",
+            "anchor_words": [
+              "良さが伝わって"
+            ],
+            "options": [
+              {
+                "label": "保温保冷性能"
+              },
+              {
+                "label": "デザイン/所有満足"
+              },
+              {
+                "label": "機能性(漏れ・軽さ等)"
+              }
+            ],
+            "default_if_unresolved": "性能とデザインを均等に併記"
+          },
+          {
+            "question_point": "価格帯・ポジションの前提",
+            "anchor_words": [
+              "ポチりたくなるように"
+            ],
+            "options": [
+              {
+                "label": "プチプラ即決型"
+              },
+              {
+                "label": "ミドル価格納得型"
+              },
+              {
+                "label": "高級/こだわり型"
+              }
+            ],
+            "default_if_unresolved": "中価格帯の納得感訴求で書く"
+          },
+          {
+            "question_point": "文体・熱量のトーン",
+            "anchor_words": [
+              "ポチりたくなるように"
+            ],
+            "options": [
+              {
+                "label": "共感/会話口調"
+              },
+              {
+                "label": "端的/スペック訴求"
+              },
+              {
+                "label": "情緒/世界観重視"
+              }
+            ],
+            "default_if_unresolved": "共感口調と端的説明の中間で書く"
+          }
+        ],
+        "missing_materials": [
+          "商品名・型番",
+          "実際のスペック数値(容量・保温時間等)",
+          "価格",
+          "素材・カラー展開",
+          "使用シーン写真の有無"
+        ],
+        "residual_ambiguity_assessment": "商品情報が皆無で、誰向け・何訴求・価格帯・トーンが全て未指定。仮置きで書くが精度は低い。"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 4,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 4,
+        "anchor_violations": 0,
+        "latency_api_ms": 26315,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "誰の生活シーンを主人公にするか",
+            "anchors": [
+              {
+                "text": "ネットショップに載せるタンブラー",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 1,
+            "question_point": "最大の訴求軸は何か",
+            "anchors": [
+              {
+                "text": "良さが伝わって",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 2,
+            "question_point": "価格帯・ポジションの前提",
+            "anchors": [
+              {
+                "text": "ポチりたくなるように",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 3,
+            "question_point": "文体・熱量のトーン",
+            "anchors": [
+              {
+                "text": "ポチりたくなるように",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "youtube-about",
+      "brief_type": "ambiguous",
+      "brief_is_control": false,
+      "brief_text": "YouTubeチャンネルの概要欄を書き直したい。登録につながる感じで、長すぎないやつがいい。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T10:03:35.299760+00:00",
+          "wall_ms": 37482,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":24536,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"622fcc62-0948-4ace-9f04-0662fd988d28\",\"total_cost_usd\":0.1652007,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21610,\"cache_read_input_tokens\":21449,\"output_tokens\":1940,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21610,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":1940,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21610,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21610},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":1940,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21610,\"webSearchRequests\":0,\"costUSD\":0.1652007,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"```json\\n{\\n \\\"branches\\\": [\\n  {\\n   \\\"question_point\\\": \\\"登録を促す訴求軸をどこに置くか\\\",\\n   \\\"anchor_words\\\": [\\\"登録につながる感じ\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"感情共感型\\\"}, {\\\"label\\\": \\\"実利メリット型\\\"}, {\\\"label\\\": \\\"権威性訴求型\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"視聴者が得られる実利を軸にする\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"「長すぎない」の許容量\\\",\\n   \\\"anchor_words\\\": [\\\"長すぎないやつ\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"1〜2文の超短文\\\"}, {\\\"label\\\": \\\"3〜4文+リンク構成\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"3〜4文程度の標準的な長さにする\\\"\\n  },\\n  {\\n   \\\"question_point\\\": \\\"既存文面をどこまで踏襲するか\\\",\\n   \\\"anchor_words\\\": [\\\"書き直したい\\\"],\\n   \\\"options\\\": [ {\\\"label\\\": \\\"既存の骨子を活かす\\\"}, {\\\"label\\\": \\\"ゼロから再構築\\\"} ],\\n   \\\"default_if_unresolved\\\": \\\"ゼロから新規に構成し直す\\\"\\n  }\\n ],\\n \\\"missing_materials\\\": [\\\"チャンネルのジャンル・扱う内容\\\", \\\"対象視聴者層\\\", \\\"投稿頻度\\\", \\\"既存の概要欄原文\\\", \\\"実績や登録者数などの訴求材料\\\", \\\"関連リンク(SNS・他動画・プレイリスト等)\\\"],\\n \\\"residual_ambiguity_assessment\\\": \\\"トーン方針の手がかりはあるが、チャンネル内容や対象視聴者など核心情報が丸ごと欠落し曖昧度は高い。\\\"\\n}\\n```\",\"ttft_ms\":19524,\"ttft_stream_ms\":1242,\"time_to_request_ms\":84,\"type\":\"result\",\"duration_ms\":24737,\"uuid\":\"f47433d8-0dd5-4582-bb0e-a1a71c60f38e\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 24536,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "622fcc62-0948-4ace-9f04-0662fd988d28",
+            "total_cost_usd": 0.1652007,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21610,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 1940,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21610,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 1940,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21610,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21610
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 1940,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21610,
+                "webSearchRequests": 0,
+                "costUSD": 0.1652007,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "```json\n{\n \"branches\": [\n  {\n   \"question_point\": \"登録を促す訴求軸をどこに置くか\",\n   \"anchor_words\": [\"登録につながる感じ\"],\n   \"options\": [ {\"label\": \"感情共感型\"}, {\"label\": \"実利メリット型\"}, {\"label\": \"権威性訴求型\"} ],\n   \"default_if_unresolved\": \"視聴者が得られる実利を軸にする\"\n  },\n  {\n   \"question_point\": \"「長すぎない」の許容量\",\n   \"anchor_words\": [\"長すぎないやつ\"],\n   \"options\": [ {\"label\": \"1〜2文の超短文\"}, {\"label\": \"3〜4文+リンク構成\"} ],\n   \"default_if_unresolved\": \"3〜4文程度の標準的な長さにする\"\n  },\n  {\n   \"question_point\": \"既存文面をどこまで踏襲するか\",\n   \"anchor_words\": [\"書き直したい\"],\n   \"options\": [ {\"label\": \"既存の骨子を活かす\"}, {\"label\": \"ゼロから再構築\"} ],\n   \"default_if_unresolved\": \"ゼロから新規に構成し直す\"\n  }\n ],\n \"missing_materials\": [\"チャンネルのジャンル・扱う内容\", \"対象視聴者層\", \"投稿頻度\", \"既存の概要欄原文\", \"実績や登録者数などの訴求材料\", \"関連リンク(SNS・他動画・プレイリスト等)\"],\n \"residual_ambiguity_assessment\": \"トーン方針の手がかりはあるが、チャンネル内容や対象視聴者など核心情報が丸ごと欠落し曖昧度は高い。\"\n}\n```",
+            "ttft_ms": 19524,
+            "ttft_stream_ms": 1242,
+            "time_to_request_ms": 84,
+            "type": "result",
+            "duration_ms": 24737,
+            "uuid": "f47433d8-0dd5-4582-bb0e-a1a71c60f38e"
+          },
+          "duration_ms": 24737,
+          "duration_api_ms": 24536,
+          "result_text": "```json\n{\n \"branches\": [\n  {\n   \"question_point\": \"登録を促す訴求軸をどこに置くか\",\n   \"anchor_words\": [\"登録につながる感じ\"],\n   \"options\": [ {\"label\": \"感情共感型\"}, {\"label\": \"実利メリット型\"}, {\"label\": \"権威性訴求型\"} ],\n   \"default_if_unresolved\": \"視聴者が得られる実利を軸にする\"\n  },\n  {\n   \"question_point\": \"「長すぎない」の許容量\",\n   \"anchor_words\": [\"長すぎないやつ\"],\n   \"options\": [ {\"label\": \"1〜2文の超短文\"}, {\"label\": \"3〜4文+リンク構成\"} ],\n   \"default_if_unresolved\": \"3〜4文程度の標準的な長さにする\"\n  },\n  {\n   \"question_point\": \"既存文面をどこまで踏襲するか\",\n   \"anchor_words\": [\"書き直したい\"],\n   \"options\": [ {\"label\": \"既存の骨子を活かす\"}, {\"label\": \"ゼロから再構築\"} ],\n   \"default_if_unresolved\": \"ゼロから新規に構成し直す\"\n  }\n ],\n \"missing_materials\": [\"チャンネルのジャンル・扱う内容\", \"対象視聴者層\", \"投稿頻度\", \"既存の概要欄原文\", \"実績や登録者数などの訴求材料\", \"関連リンク(SNS・他動画・プレイリスト等)\"],\n \"residual_ambiguity_assessment\": \"トーン方針の手がかりはあるが、チャンネル内容や対象視聴者など核心情報が丸ごと欠落し曖昧度は高い。\"\n}\n```",
+          "extraction": {
+            "branches": [
+              {
+                "question_point": "登録を促す訴求軸をどこに置くか",
+                "anchor_words": [
+                  "登録につながる感じ"
+                ],
+                "options": [
+                  {
+                    "label": "感情共感型"
+                  },
+                  {
+                    "label": "実利メリット型"
+                  },
+                  {
+                    "label": "権威性訴求型"
+                  }
+                ],
+                "default_if_unresolved": "視聴者が得られる実利を軸にする"
+              },
+              {
+                "question_point": "「長すぎない」の許容量",
+                "anchor_words": [
+                  "長すぎないやつ"
+                ],
+                "options": [
+                  {
+                    "label": "1〜2文の超短文"
+                  },
+                  {
+                    "label": "3〜4文+リンク構成"
+                  }
+                ],
+                "default_if_unresolved": "3〜4文程度の標準的な長さにする"
+              },
+              {
+                "question_point": "既存文面をどこまで踏襲するか",
+                "anchor_words": [
+                  "書き直したい"
+                ],
+                "options": [
+                  {
+                    "label": "既存の骨子を活かす"
+                  },
+                  {
+                    "label": "ゼロから再構築"
+                  }
+                ],
+                "default_if_unresolved": "ゼロから新規に構成し直す"
+              }
+            ],
+            "missing_materials": [
+              "チャンネルのジャンル・扱う内容",
+              "対象視聴者層",
+              "投稿頻度",
+              "既存の概要欄原文",
+              "実績や登録者数などの訴求材料",
+              "関連リンク(SNS・他動画・プレイリスト等)"
+            ],
+            "residual_ambiguity_assessment": "トーン方針の手がかりはあるが、チャンネル内容や対象視聴者など核心情報が丸ごと欠落し曖昧度は高い。"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 37482,
+      "duration_ms": 24737,
+      "duration_api_ms": 24536,
+      "extraction": {
+        "branches": [
+          {
+            "question_point": "登録を促す訴求軸をどこに置くか",
+            "anchor_words": [
+              "登録につながる感じ"
+            ],
+            "options": [
+              {
+                "label": "感情共感型"
+              },
+              {
+                "label": "実利メリット型"
+              },
+              {
+                "label": "権威性訴求型"
+              }
+            ],
+            "default_if_unresolved": "視聴者が得られる実利を軸にする"
+          },
+          {
+            "question_point": "「長すぎない」の許容量",
+            "anchor_words": [
+              "長すぎないやつ"
+            ],
+            "options": [
+              {
+                "label": "1〜2文の超短文"
+              },
+              {
+                "label": "3〜4文+リンク構成"
+              }
+            ],
+            "default_if_unresolved": "3〜4文程度の標準的な長さにする"
+          },
+          {
+            "question_point": "既存文面をどこまで踏襲するか",
+            "anchor_words": [
+              "書き直したい"
+            ],
+            "options": [
+              {
+                "label": "既存の骨子を活かす"
+              },
+              {
+                "label": "ゼロから再構築"
+              }
+            ],
+            "default_if_unresolved": "ゼロから新規に構成し直す"
+          }
+        ],
+        "missing_materials": [
+          "チャンネルのジャンル・扱う内容",
+          "対象視聴者層",
+          "投稿頻度",
+          "既存の概要欄原文",
+          "実績や登録者数などの訴求材料",
+          "関連リンク(SNS・他動画・プレイリスト等)"
+        ],
+        "residual_ambiguity_assessment": "トーン方針の手がかりはあるが、チャンネル内容や対象視聴者など核心情報が丸ごと欠落し曖昧度は高い。"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 3,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 3,
+        "anchor_violations": 0,
+        "latency_api_ms": 24536,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [
+          {
+            "index": 0,
+            "question_point": "登録を促す訴求軸をどこに置くか",
+            "anchors": [
+              {
+                "text": "登録につながる感じ",
+                "found": true
+              }
+            ],
+            "options_count": 3,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 1,
+            "question_point": "「長すぎない」の許容量",
+            "anchors": [
+              {
+                "text": "長すぎないやつ",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          },
+          {
+            "index": 2,
+            "question_point": "既存文面をどこまで踏襲するか",
+            "anchors": [
+              {
+                "text": "書き直したい",
+                "found": true
+              }
+            ],
+            "options_count": 2,
+            "options_ok": true,
+            "missing": []
+          }
+        ],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    },
+    {
+      "brief_id": "control-banner",
+      "brief_type": "control_zero",
+      "brief_is_control": true,
+      "brief_text": "セール告知バナーを1枚。サイズは1200x628px。背景色は#1A2B4C単色。テキストは3行のみ: 1行目「SUMMER SALE」(白 #FFFFFF、太字、72px)、2行目「全品20%OFF」(黄 #FFD700、太字、96px)、3行目「8/1(土)0:00〜8/7(金)23:59」(白 #FFFFFF、通常、36px)。フォントはNoto Sans JPのみ。全行中央揃え、行間は各行の上下に48px。画像・イラスト・ロゴ・ボタン・装飾は一切入れない。余白は上下左右とも均等配置で自動計算。これ以外の要素追加は禁止。",
+      "model": "sonnet",
+      "attempts": [
+        {
+          "timestamp_start": "2026-07-29T10:04:12.788066+00:00",
+          "wall_ms": 21227,
+          "cli_exit_code": 0,
+          "cli_stdout": "{\"is_error\":false,\"duration_api_ms\":9751,\"num_turns\":1,\"stop_reason\":\"end_turn\",\"session_id\":\"a80b6a66-cbc4-4094-88e1-d7fd7a6bb215\",\"total_cost_usd\":0.1446717,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":21816,\"cache_read_input_tokens\":21449,\"output_tokens\":489,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":21816,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":489,\"cache_read_input_tokens\":21449,\"cache_creation_input_tokens\":21816,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":21816},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-sonnet-5\":{\"inputTokens\":2,\"outputTokens\":489,\"cacheReadInputTokens\":21449,\"cacheCreationInputTokens\":21816,\"webSearchRequests\":0,\"costUSD\":0.1446717,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"canonicalModel\":\"claude-sonnet-5\",\"provider\":\"firstParty\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"```json\\n{\\n \\\"branches\\\": [],\\n \\\"missing_materials\\\": [],\\n \\\"residual_ambiguity_assessment\\\": \\\"色・サイズ・文言・フォント・太さ・揃え・行間・余白まで数値指定済みで、解釈が割れる判断点は残っていない\\\"\\n}\\n```\",\"ttft_ms\":8722,\"ttft_stream_ms\":1537,\"time_to_request_ms\":81,\"type\":\"result\",\"duration_ms\":10060,\"uuid\":\"f354fe71-056d-464f-9269-0b23c9ca88ff\"}\n",
+          "cli_stderr": "",
+          "cli_json": {
+            "is_error": false,
+            "duration_api_ms": 9751,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "a80b6a66-cbc4-4094-88e1-d7fd7a6bb215",
+            "total_cost_usd": 0.1446717,
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 21816,
+              "cache_read_input_tokens": 21449,
+              "output_tokens": 489,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21816,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 489,
+                  "cache_read_input_tokens": 21449,
+                  "cache_creation_input_tokens": 21816,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21816
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-sonnet-5": {
+                "inputTokens": 2,
+                "outputTokens": 489,
+                "cacheReadInputTokens": 21449,
+                "cacheCreationInputTokens": 21816,
+                "webSearchRequests": 0,
+                "costUSD": 0.1446717,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-sonnet-5",
+                "provider": "firstParty"
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "fast_mode_disabled_reason": "sdk_opt_in_required",
+            "subtype": "success",
+            "api_error_status": null,
+            "result": "```json\n{\n \"branches\": [],\n \"missing_materials\": [],\n \"residual_ambiguity_assessment\": \"色・サイズ・文言・フォント・太さ・揃え・行間・余白まで数値指定済みで、解釈が割れる判断点は残っていない\"\n}\n```",
+            "ttft_ms": 8722,
+            "ttft_stream_ms": 1537,
+            "time_to_request_ms": 81,
+            "type": "result",
+            "duration_ms": 10060,
+            "uuid": "f354fe71-056d-464f-9269-0b23c9ca88ff"
+          },
+          "duration_ms": 10060,
+          "duration_api_ms": 9751,
+          "result_text": "```json\n{\n \"branches\": [],\n \"missing_materials\": [],\n \"residual_ambiguity_assessment\": \"色・サイズ・文言・フォント・太さ・揃え・行間・余白まで数値指定済みで、解釈が割れる判断点は残っていない\"\n}\n```",
+          "extraction": {
+            "branches": [],
+            "missing_materials": [],
+            "residual_ambiguity_assessment": "色・サイズ・文言・フォント・太さ・揃え・行間・余白まで数値指定済みで、解釈が割れる判断点は残っていない"
+          },
+          "error": null
+        }
+      ],
+      "retried": false,
+      "wall_ms": 21227,
+      "duration_ms": 10060,
+      "duration_api_ms": 9751,
+      "extraction": {
+        "branches": [],
+        "missing_materials": [],
+        "residual_ambiguity_assessment": "色・サイズ・文言・フォント・太さ・揃え・行間・余白まで数値指定済みで、解釈が割れる判断点は残っていない"
+      },
+      "machine_checks": {
+        "missing_fields": [],
+        "branches_count": 0,
+        "branches_le5": true,
+        "options_count_ok": true,
+        "anchor_total": 0,
+        "anchor_violations": 0,
+        "latency_api_ms": 9751,
+        "latency_ok": false,
+        "latency_unmeasured": false,
+        "control_fabrication_warning": false,
+        "per_branch": [],
+        "schema_ok": true,
+        "machine_pass": false
+      },
+      "error": null
+    }
+  ]
+}
