@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用情報 | 〈会社名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 「モダン」の表現軸 = 大胆グラフィック系 */
+:root{
+  --bg:#1c1c1e;
+  --sub:#3a3f58;
+  --gold:#c9a24b;
+  --warm-red:#e8432c;
+  --warm-yellow:#f2c230;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+/* GYAKUMON-CHOICE: 読み手(想定顧客)の立場 = 採用候補者 */
+body{
+  background:var(--bg);
+  color:#f5ede1;
+  font-family:"Hiragino Maru Gothic ProN","Rounded Mplus 1c",sans-serif;
+  line-height:1.9;
+}
+h1,h2,h3{font-family:"Hiragino Maru Gothic ProN","Rounded Mplus 1c",sans-serif;font-weight:700;}
+section{padding:96px 24px;}
+.wrap{max-width:880px;margin:0 auto;}
+
+/* GYAKUMON-CHOICE: 密度 = normal */
+.hero{
+  min-height:88vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at 20% 30%, var(--warm-red) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--warm-yellow) 0%, transparent 35%),
+    var(--bg);
+  position:relative;
+  overflow:hidden;
+}
+.hero h1{
+  font-size:clamp(2.2rem,6vw,4rem);
+  color:#fff;
+  letter-spacing:.02em;
+  text-shadow:0 4px 24px rgba(0,0,0,.4);
+}
+.hero p{
+  margin-top:24px;
+  font-size:1.2rem;
+  color:var(--warm-yellow);
+}
+.shape{
+  position:absolute;
+  border-radius:50%;
+}
+.shape.a{width:220px;height:220px;background:var(--warm-red);opacity:.35;top:-60px;left:-60px;}
+.shape.b{width:160px;height:160px;background:var(--warm-yellow);opacity:.3;bottom:-40px;right:10%;}
+
+/* GYAKUMON-CHOICE: 「温かみ」の表現軸 = 手書き・柔らかい書体 */
+.value{
+  background:#f5ede1;
+  color:#2a241d;
+  border-radius:32px;
+  margin:0 24px;
+}
+.value .wrap{text-align:center;}
+.value h2{
+  font-size:2rem;
+  color:#8b4b2a;
+  border-bottom:3px dashed #c99a6c;
+  display:inline-block;
+  padding-bottom:8px;
+  margin-bottom:24px;
+}
+.value p{font-size:1.15rem;color:#4a3f33;}
+
+/* GYAKUMON-CHOICE: 構成の重心(何で説得するか) = 世界観・共感訴求 */
+.story{
+  background:#2a241d;
+}
+.story h2{
+  font-family:serif;
+  font-size:2.2rem;
+  color:var(--gold);
+  margin-bottom:32px;
+}
+.story p{
+  font-family:serif;
+  font-size:1.15rem;
+  color:#e8dcc8;
+  max-width:640px;
+  margin-bottom:20px;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.feature{
+  background:var(--sub);
+  border-radius:24px;
+  padding:36px 24px;
+  text-align:center;
+}
+.feature .icon{font-size:2.4rem;margin-bottom:16px;}
+.feature h3{color:var(--gold);margin-bottom:12px;font-size:1.1rem;}
+.feature p{font-size:.95rem;color:#e8dcc8;}
+
+.about{
+  background:linear-gradient(135deg,#1c1c1e 60%,var(--sub));
+  border-radius:32px;
+  margin:0 24px;
+}
+.about h2{color:var(--gold);font-size:1.8rem;margin-bottom:20px;}
+.about p{color:#e8dcc8;max-width:640px;}
+.placeholder{
+  display:inline-block;
+  border:1px dashed var(--gold);
+  border-radius:12px;
+  padding:2px 10px;
+  color:var(--gold);
+  font-size:.9rem;
+}
+
+.cta{
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 0%, var(--warm-red), var(--bg) 70%);
+  border-radius:32px;
+  margin:0 24px 24px;
+}
+.cta h2{font-size:2rem;color:#fff;margin-bottom:20px;}
+.cta a{
+  display:inline-block;
+  background:var(--warm-yellow);
+  color:#1a1512;
+  font-weight:700;
+  padding:18px 48px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:1.1rem;
+  box-shadow:0 8px 24px rgba(232,67,44,.4);
+}
+
+footer{
+  padding:40px 24px;
+  text-align:center;
+  color:#8a8578;
+  font-size:.85rem;
+}
+
+@media(max-width:680px){
+  .features{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="shape a"></div>
+  <div class="shape b"></div>
+  <h1>あなたの成長を、<br>この会社で。</h1>
+  <p>私たちと働く一日を想像してください。</p>
+</section>
+
+<section class="value">
+  <div class="wrap">
+    <h2>会社案内、手書きの温もりで。</h2>
+    <p>〈会社名〉は、〈事業内容〉を通じて社会に価値を届けています。<br>
+    ここには、一人ひとりの想いが積み重なった時間があります。</p>
+  </div>
+</section>
+
+<section class="story">
+  <div class="wrap">
+    <h2>会社の歩みが、あなたの毎日に寄り添う。</h2>
+    <p>〈創業の背景〉から始まった歩みは、今も続いています。私たちが大切にしてきたのは、目の前の一人と丁寧に向き合うこと。</p>
+    <p>その積み重ねが、働く仲間の日々にもそのまま息づいています。あなたがここに加わることで、その物語はまた少し先へ進みます。</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="features">
+    <div class="feature">
+      <div class="icon">🌱</div>
+      <h3>特徴1</h3>
+      <p>〈具体的な特徴・制度などをご提供ください〉</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🤝</div>
+      <h3>特徴2</h3>
+      <p>〈具体的な特徴・制度などをご提供ください〉</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🔥</div>
+      <h3>特徴3</h3>
+      <p>〈具体的な特徴・制度などをご提供ください〉</p>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <h2>会社の想い、色と形にぶつけます。</h2>
+    <p>会社名：<span class="placeholder">会社名未提供</span><br>
+    事業内容：<span class="placeholder">事業内容未提供</span><br>
+    実績：<span class="placeholder">実績データ未提供</span></p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>あなたの物語を、ここから。</h2>
+    <a href="#">採用情報を見る</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 〈会社名〉All Rights Reserved.
+</footer>
+
+</body>
+</html>

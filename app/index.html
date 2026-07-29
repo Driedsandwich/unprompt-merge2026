@@ -442,7 +442,7 @@
   }
 
   /* ============ (g) 並置証明 SplitCompare ============
-     app/compare/*.html(事前生成物)を iframe で並べる。生成物は外部依存ゼロの
+     app/compare/<brief_id>/*.html(事前生成物)を iframe で並べる。生成物は外部依存ゼロの
      自己完結HTMLなので sandbox="" で全能力を落として読み込む(スクリプト・フォーム不許可)。 */
   #btnCompare{
     display:block; margin:26px auto 0; background:transparent;
@@ -486,6 +486,28 @@
     display:block; margin:30px auto 0; background:transparent; border:0;
     font-size:10.5px; color:var(--muted); letter-spacing:.12em; text-decoration:underline;
     text-underline-offset:3px;
+  }
+
+  /* ============ 走査する朱(静寂中のローディング表現) ============
+     文字色そのものに朱の帯が通り抜ける。行折返しにも自然に追従する。
+     スピナーを置かないのは意図: 「待たせている」のではなく「読んでいる」。 */
+  #briefText.scanning{
+    background-image:linear-gradient(100deg,
+      var(--ink) 0%, var(--ink) 42%, var(--shu) 50%, var(--ink) 58%, var(--ink) 100%);
+    background-size:280% 100%;
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+    animation:scanShu 3.2s linear infinite;
+  }
+  @keyframes scanShu{
+    from{background-position:140% 0}
+    to{background-position:-140% 0}
+  }
+  @media (prefers-reduced-motion: reduce){
+    #briefText.scanning{
+      animation:none; background:none;
+      -webkit-text-fill-color:currentColor; color:var(--ink);
+    }
   }
 
   /* ============ reduced-motion(必須): 派手な一瞬を畳む ============
@@ -578,12 +600,15 @@
 </section>
 
 <!-- ============ (g) 並置証明 SplitCompare ============
-     左右とも app/compare/ の事前生成物(scripts/pregen_compare.py が実生成)。
-     manifest.json に生成時刻・api_ms・使用プロンプト全文・選択の機械照合結果が残る。 -->
+     左右とも app/compare/<brief_id>/ の事前生成物(scripts/pregen_compare.py が実生成)。
+     ホームの例文チップ5種それぞれにペアがあり、セッションの依頼文に一致するものを出す。
+     manifest.json に依頼文全文・決定一覧・生成時刻・api_ms・使用プロンプト全文・
+     選択の機械照合結果が残る。 -->
 <section id="screenCompare" hidden>
   <h2>同じモデルに、同じ仕事をさせた</h2>
   <!-- 事前生成であることの常設ラベル(開示: DISCLOSURE #7)。
-       その場生成ではないので、どの依頼文で作った実例かを必ず先に名乗る。 -->
+       その場生成ではないので、どの依頼文で作った実例かを必ず先に名乗る。
+       本文は表示するペアが決まった時点で JS が入れ替える(既定は lp-warm ペア)。 -->
   <p id="compareFixture">事前生成の実例 — 依頼文「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」による</p>
   <p id="compareMismatch" hidden>いまの依頼文とは別の実例です(その場生成は行いません)</p>
   <p id="compareLead">
@@ -862,6 +887,8 @@ let silenceRAF = 0, silenceT0 = 0, silenceDone = false;
 let transitionTimer = 0;      // 送信 → ステージ表示(380ms)のタイマー。爆散が先に来たら取り消す
 function startSilence(){
   if (silenceDone) return;      // 既に止まった静寂を、後から届く遷移タイマーで再開させない
+  // 走査する朱: AIが文を読み「問いを打つ場所」を探している比喩。爆散の圏点への伏線
+  elBriefText.classList.add('scanning');
   const tick = () => {
     const ms = performance.now() - silenceT0;
     elSilenceNum.textContent = (ms / 1000).toFixed(1);
@@ -1155,6 +1182,7 @@ function beginExplode(){
     elStage.hidden = false;
     elBriefText.textContent = S.brief;
   }
+  elBriefText.classList.remove('scanning');              // 走査を止め、見つけた場所に圏点が打たれる
   stopSilence();                                         // 静寂の実測値 = 最初のカードが出るまで
   reserveBriefHeight();
   renderBriefWithSpans();                                // この時点ではスパン0本(原文そのまま)
@@ -2477,57 +2505,90 @@ $('btnRestart').addEventListener('click', () => location.reload());
 
 /* =========================================================================
    (g) 並置証明 SplitCompare
-   左右とも app/compare/ の事前生成物。ここでは生成しない(開示: DISCLOSURE #7)。
+   左右とも app/compare/<brief_id>/ の事前生成物。ここでは生成しない(開示: DISCLOSURE #7)。
+   ホームの例文チップ5種それぞれにペアがあり、manifest.json から
+   「いまのセッションの依頼文と一字一句同じ brief を持つペア」を選んで表示する。
+   一致するペアが無ければ既定ペア(lp-warm)を出し、不一致の注記を添える。
    iframe の src はボタンを押した時に初めて入れる(コンパイル画面までは1バイトも読まない)。
    ========================================================================= */
-const COMPARE = { raw: 'compare/raw.html', compiled: 'compare/compiled.html',
-                  manifest: 'compare/manifest.json' };
-// 事前生成に使った依頼文(manifest.brief と同値)。画面の常設ラベルと同じ文字列を持ち、
-// いまのセッションの依頼文と違うときだけ「別の実例です」の注記を出す。
-const COMPARE_BRIEF = 'モダンだけど温かみのあるLPを作って。うちの会社のやつ。';
-let compareLoaded = false;
+const COMPARE_BASE = 'compare/';
+const COMPARE_MANIFEST = 'compare/manifest.json';
+// manifest が読めないときの最後の受け皿(静的マークアップの既定ラベルと同じ組)。
+const COMPARE_FALLBACK = {
+  brief_id: 'lp-warm',
+  brief: 'モダンだけど温かみのあるLPを作って。うちの会社のやつ。',
+  outputs: { raw: 'lp-warm/raw.html', compiled: 'lp-warm/compiled.html' },
+};
+let compareManifest = null;      // 一度読めたら使い回す
+let compareManifestTried = false;
+let compareShownId = null;       // いま iframe に入っているペアのID
 
-// 常設ラベルは静的マークアップ(常に出る)。注記だけを依頼文の一致で出し分ける。
-function paintCompareFixture(){
-  const n = $('compareMismatch');
-  if (!n) return;
-  n.hidden = (String(S.brief || '').trim() === COMPARE_BRIEF);
-}
-
-async function paintCompareNote(){
-  const el = $('compareNote');
-  el.textContent = '事前生成物(実生成・manifest付き)。左右は同一モデル・同一 effort。';
+async function loadCompareManifest(){
+  if (compareManifestTried) return compareManifest;
+  compareManifestTried = true;
   try{
-    const r = await fetch(COMPARE.manifest, {cache:'no-store'});
-    if (!r.ok) return;
+    const r = await fetch(COMPARE_MANIFEST, {cache:'no-store'});
+    if (!r.ok) return null;
     const m = await r.json();
-    const v = (m.verification && m.verification.compiled) || {};
-    const t = m.timings || {};
-    const bits = ['事前生成物(実生成・manifest付き)。左右は同一モデル(' + (m.engine && m.engine.model) +
-                  ')・同一 effort(' + (m.engine && m.engine.effort) + ')。'];
-    if (typeof v.traced === 'number'){
-      bits.push('右のHTMLに埋まった選択の痕跡: ' + v.traced + '/' + v.of + '(左は 0/' + v.of + ')。');
-    }
-    if (t.raw_lp && t.compiled_lp){
-      bits.push('生成 API 実時間 左 ' + (t.raw_lp.api_ms/1000).toFixed(1) + '秒 / 右 ' +
-                (t.compiled_lp.api_ms/1000).toFixed(1) + '秒。');
-    }
-    if (m.generated_at) bits.push('生成 ' + m.generated_at + '。');
-    el.textContent = bits.join(' ');
-  }catch(e){ /* manifest が読めなくても並置自体は成立する */ }
+    if (!m || !Array.isArray(m.pairs) || !m.pairs.length) return null;
+    compareManifest = m;
+  }catch(e){ /* manifest が読めなくても既定ペアで並置自体は成立する */ }
+  return compareManifest;
 }
 
-$('btnCompare').addEventListener('click', () => {
-  paintCompareFixture();
-  if (!compareLoaded){
-    $('frameRaw').src = COMPARE.raw;
-    $('frameCompiled').src = COMPARE.compiled;
-    compareLoaded = true;
-    paintCompareNote();
+// セッションの依頼文に一致するペアを選ぶ。無ければ既定ペア + 不一致扱い。
+function pickComparePair(m){
+  const mine = String(S.brief || '').trim();
+  if (!m) return { pair: COMPARE_FALLBACK, matched: mine === COMPARE_FALLBACK.brief };
+  const usable = m.pairs.filter(p => p && p.outputs && p.outputs.raw && p.outputs.compiled);
+  if (!usable.length) return { pair: COMPARE_FALLBACK, matched: mine === COMPARE_FALLBACK.brief };
+  const hit = usable.find(p => String(p.brief || '').trim() === mine);
+  if (hit) return { pair: hit, matched: true };
+  const def = usable.find(p => p.brief_id === (m.default_pair || 'lp-warm')) || usable[0];
+  return { pair: def, matched: false };
+}
+
+// 常設ラベルには「いま左右に出ているペアの依頼文」を必ず書く(事前生成である以上、
+// どの依頼文で作った実例かを名乗らずに見せない)。不一致の注記はその下に足す。
+function paintComparePair(pair, matched){
+  $('compareFixture').textContent = '事前生成の実例 — 依頼文「' + pair.brief + '」による';
+  const n = $('compareMismatch');
+  if (n) n.hidden = !!matched;
+  if (compareShownId !== pair.brief_id){
+    $('frameRaw').src = COMPARE_BASE + pair.outputs.raw;
+    $('frameCompiled').src = COMPARE_BASE + pair.outputs.compiled;
+    compareShownId = pair.brief_id;
   }
+}
+
+function paintCompareNote(m, pair){
+  const el = $('compareNote');
+  const eng = (m && m.engine) || null;
+  const bits = [eng
+    ? ('事前生成物(実生成・manifest付き)。左右は同一モデル(' + eng.model +
+       ')・同一 effort(' + eng.effort + ')。')
+    : '事前生成物(実生成・manifest付き)。左右は同一モデル・同一 effort。'];
+  const v = (pair.verification && pair.verification.compiled) || {};
+  if (typeof v.traced === 'number'){
+    bits.push('右のHTMLに埋まった選択の痕跡: ' + v.traced + '/' + v.of + '(左は 0/' + v.of + ')。');
+  }
+  const t = pair.timings || {};
+  if (t.raw && t.compiled){
+    bits.push('生成 API 実時間 左 ' + (t.raw.api_ms/1000).toFixed(1) + '秒 / 右 ' +
+              (t.compiled.api_ms/1000).toFixed(1) + '秒。');
+  }
+  if (pair.generated_at) bits.push('生成 ' + pair.generated_at + '。');
+  el.textContent = bits.join(' ');
+}
+
+$('btnCompare').addEventListener('click', async () => {
   elCompiled.hidden = true;
   $('screenCompare').hidden = false;
   window.scrollTo(0, 0);
+  const m = await loadCompareManifest();
+  const sel = pickComparePair(m);
+  paintComparePair(sel.pair, sel.matched);
+  paintCompareNote(m, sel.pair);
 });
 $('btnCompareBack').addEventListener('click', () => {
   $('screenCompare').hidden = true;

@@ -62,7 +62,12 @@ const document = {
   createElementNS: (ns, t) => new El(t),
   createTextNode: t => { const e = new El('#text'); e._text = String(t); return e; },
   getElementById: id => registry[id] || (registry[id] = new El('div')),
-  addEventListener(){}, body: new El('body'), documentElement: new El('html')
+  addEventListener(){},
+  // 例文チップの配線 document.querySelectorAll('.ex-chip') で script 評価が落ちないようにする。
+  // シムは静的マークアップを持たないので空配列でよい(EVIDENCE/compare/domtest_compare.js と同じ流儀)。
+  querySelectorAll: () => [],
+  querySelector: () => null,
+  body: new El('body'), documentElement: new El('html')
 };
 // HTML 上で hidden 属性が付いている要素は、シム側でも hidden=true から始める
 ids.forEach(id => {

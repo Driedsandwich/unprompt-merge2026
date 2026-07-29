@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈会社名〉 | 公式サイト</title>
+<style>
+  :root{
+    --bg:#fdf8f3;
+    --ink:#3a2f28;
+    --accent:#e0704a;
+    --accent-soft:#f4d9c6;
+    --sub:#7a6a5d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.8;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+
+  header.hero{
+    padding:100px 0 120px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 20% 20%, #f9e4d3 0%, transparent 45%),
+      radial-gradient(circle at 80% 80%, #fbe9da 0%, transparent 50%),
+      linear-gradient(160deg,#fff7ef,#fdf1e4);
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute;
+    bottom:-60px;left:50%;
+    width:600px;height:200px;
+    transform:translateX(-50%);
+    background:radial-gradient(ellipse,var(--accent-soft) 0%,transparent 70%);
+    opacity:.6;
+  }
+  .eyebrow{
+    display:inline-block;
+    background:var(--accent-soft);
+    color:var(--accent);
+    padding:6px 18px;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:bold;
+    margin-bottom:24px;
+  }
+  h1{
+    font-size:2.4rem;
+    font-weight:800;
+    letter-spacing:.02em;
+    margin-bottom:20px;
+  }
+  header.hero p{
+    font-size:1.1rem;
+    color:var(--sub);
+    max-width:560px;
+    margin:0 auto 36px;
+  }
+  .btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    padding:16px 44px;
+    border-radius:50px;
+    font-weight:bold;
+    box-shadow:0 10px 24px -8px rgba(224,112,74,.6);
+    transition:transform .2s;
+  }
+  .btn:hover{transform:translateY(-3px);}
+
+  section{padding:90px 0;}
+  .section-title{
+    text-align:center;
+    font-size:1.7rem;
+    font-weight:800;
+    margin-bottom:16px;
+  }
+  .section-sub{
+    text-align:center;
+    color:var(--sub);
+    max-width:600px;
+    margin:0 auto 56px;
+  }
+
+  .value{
+    background:#fff;
+    border-radius:24px;
+    padding:56px 40px;
+    text-align:center;
+    box-shadow:0 20px 40px -20px rgba(58,47,40,.15);
+  }
+  .value p{color:var(--sub);max-width:620px;margin:16px auto 0;}
+
+  .features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  .feature{
+    background:#fff;
+    border-radius:20px;
+    padding:36px 28px;
+    text-align:center;
+    box-shadow:0 14px 30px -18px rgba(58,47,40,.18);
+  }
+  .icon{
+    width:64px;height:64px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;
+  }
+  .feature h3{font-size:1.1rem;margin-bottom:10px;}
+  .feature p{color:var(--sub);font-size:.95rem;}
+
+  .about{
+    background:linear-gradient(160deg,#fff7ef,#fdf1e4);
+    border-radius:28px;
+    padding:56px 44px;
+    display:flex;
+    gap:40px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .about .mark{
+    width:96px;height:96px;flex:none;border-radius:24px;
+    background:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:2rem;font-weight:800;
+  }
+  .about-text{flex:1;min-width:260px;}
+  .about-text h2{font-size:1.4rem;margin-bottom:12px;}
+  .about-text p{color:var(--sub);}
+
+  .cta{
+    text-align:center;
+    background:linear-gradient(135deg,var(--accent),#c9552f);
+    border-radius:28px;
+    padding:70px 40px;
+    color:#fff;
+  }
+  .cta h2{font-size:1.8rem;margin-bottom:16px;}
+  .cta p{opacity:.9;margin-bottom:32px;}
+  .cta .btn{background:#fff;color:var(--accent);box-shadow:0 10px 24px -8px rgba(0,0,0,.25);}
+
+  footer{
+    padding:40px 0;
+    text-align:center;
+    color:var(--sub);
+    font-size:.85rem;
+  }
+
+  @media (max-width:720px){
+    .features{grid-template-columns:1fr;}
+    h1{font-size:1.8rem;}
+    .about{flex-direction:column;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">〈会社名〉 公式</span>
+    <h1>まいにちに、<br>あたたかい価値を。</h1>
+    <p>〈会社名〉は、誠実なものづくりと丁寧なサポートで、お客様の毎日にそっと寄り添うサービスを提供しています。</p>
+    <a href="#contact" class="btn">まずはお問い合わせ</a>
+  </div>
+</header>
+
+<section id="value">
+  <div class="wrap">
+    <div class="value">
+      <div class="section-title">私たちが大切にしていること</div>
+      <p>効率だけを追い求めるのではなく、ひとつひとつのやり取りに丁寧さを込める。〈会社名〉は、お客様との信頼関係を何より大切にし、長く安心してお付き合いいただけるサービスづくりを目指しています。</p>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-title">選ばれる3つの理由</div>
+    <div class="section-sub">〈会社名〉が大切にしている、サービスの特徴をご紹介します。</div>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">🤝</div>
+        <h3>丁寧な伴走サポート</h3>
+        <p>ご相談から導入後まで、専任担当が寄り添いながらサポートいたします。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🌱</div>
+        <h3>誠実なものづくり</h3>
+        <p>目先の数字だけでなく、お客様にとって本当に良いものを追求しています。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">💡</div>
+        <h3>柔軟な対応力</h3>
+        <p>ひとつひとつのご要望に合わせ、最適な形をご提案いたします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about">
+      <div class="mark">〈社〉</div>
+      <div class="about-text">
+        <h2>〈会社名〉について</h2>
+        <p>〈会社名〉は、お客様の課題に真摯に向き合うことを理念に活動しています。詳細な会社情報やサービス内容については、お気軽にお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta">
+      <h2>まずはお気軽にご相談ください</h2>
+      <p>〈会社名〉のサービスについて、詳しくご案内いたします。</p>
+      <a href="mailto:info@example.com" class="btn">お問い合わせはこちら</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; 〈会社名〉. All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>

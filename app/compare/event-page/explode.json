@@ -1,0 +1,119 @@
+{
+  "payload": {
+    "branches": [
+      {
+        "id": "b0",
+        "question_point": "想定読者(参加者)の属性",
+        "anchor_words": [
+          "若い人にも刺さる感じで"
+        ],
+        "options": [
+          {
+            "label": "学生・10代20代"
+          },
+          {
+            "label": "若手社会人"
+          },
+          {
+            "label": "既存参加者中心"
+          }
+        ],
+        "default_if_unresolved": "20代社会人向けとする"
+      },
+      {
+        "id": "b1",
+        "question_point": "イベントの目的・得られる価値",
+        "anchor_words": [
+          "交流イベント"
+        ],
+        "options": [
+          {
+            "label": "人脈形成重視"
+          },
+          {
+            "label": "学び・情報交換重視"
+          },
+          {
+            "label": "純粋な楽しさ重視"
+          }
+        ],
+        "default_if_unresolved": "人脈形成を主軸にする"
+      },
+      {
+        "id": "b2",
+        "question_point": "トーン・世界観",
+        "anchor_words": [
+          "若い人にも刺さる感じで"
+        ],
+        "options": [
+          {
+            "label": "カジュアル砕けた"
+          },
+          {
+            "label": "おしゃれ洗練"
+          },
+          {
+            "label": "フォーマル信頼感"
+          }
+        ],
+        "default_if_unresolved": "カジュアルで親しみやすいトーン"
+      },
+      {
+        "id": "b3",
+        "question_point": "申込増加のための訴求軸",
+        "anchor_words": [
+          "申込みが増えるように"
+        ],
+        "options": [
+          {
+            "label": "限定感・希少性訴求"
+          },
+          {
+            "label": "参加メリット列挙訴求"
+          },
+          {
+            "label": "実績・権威訴求"
+          }
+        ],
+        "default_if_unresolved": "参加メリット列挙で訴求する"
+      },
+      {
+        "id": "b4",
+        "question_point": "ページ構成のボリューム",
+        "anchor_words": [
+          "告知ページ"
+        ],
+        "options": [
+          {
+            "label": "1枚完結LP"
+          },
+          {
+            "label": "詳細多セクション構成"
+          }
+        ],
+        "default_if_unresolved": "1枚完結の標準LP構成にする"
+      }
+    ],
+    "residual_ambiguity_assessment": "日時・場所・費用等の実データが未提供な上、読者像やトーンなど方向性を左右する判断点も多数未確定。",
+    "missing_materials": [
+      "イベントの開催日時",
+      "開催場所・会場",
+      "参加費",
+      "イベント内容・プログラム詳細",
+      "登壇者・主催者情報",
+      "定員人数"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+  },
+  "meta": {
+    "attempts": 1,
+    "input_form": "raw_brief_text",
+    "api_ms": 15367,
+    "wall_ms": 23558,
+    "failed_attempts": [],
+    "from_cache": false
+  },
+  "brief": "来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。",
+  "cached_at": "2026-07-29T15:54:04.109723+00:00"
+}

@@ -1313,6 +1313,16 @@ def err(message, hint=""):
     return {"ok": False, "error": message, "hint": hint}
 
 
+def _sum_ms(vals):
+    """None 混じりの ms 値を合計する。1つも数値がなければ None。
+
+    ゼロ二重確認で2回 claude を回したとき、timing を「合計の実測」にするために使う。
+    片方が欠測(CLI が duration_api_ms を返さなかった等)でも、取れた分は捨てない。
+    """
+    nums = [v for v in vals if isinstance(v, (int, float)) and not isinstance(v, bool)]
+    return round(sum(nums)) if nums else None
+
+
 def call_claude(endpoint, system_prompt, user_prompt, model):
     """claude 実行 + セッションログ追記。(rec, timing) を返す。
 
@@ -1326,6 +1336,18 @@ def call_claude(endpoint, system_prompt, user_prompt, model):
 
 
 def handle_explode(body):
+    """一括抽出。分岐0件のときだけ「ゼロ二重確認」で1回だけ引き直す。
+
+    ゼロ二重確認(2026-07-30 追加):
+      本番で ec-product(明らかに曖昧な依頼文)に対し 0 件が誤発動した。
+      0 件はサンプリング揺らぎで起こりうる偽陰性であり、かつ 0 件のときだけは
+      「ユーザーに何も返さない」という最悪の結果になる。そこで branches が 0 件だった
+      場合に限り、同一プロンプトで自動的にもう1回だけ再サンプリングする。
+      2回目が非0ならそれを採用し、両方0なら zero_confirmed:true を付けて 0 を返す。
+      対照ブリーフ(完全指定)の 0 件は、この二重確認を通っても 0 のままである
+      = 「聞くことがないブリーフには聞かない」という誠実性は落とさない。
+      追加コストは 0 件のときだけの +1 回。
+    """
     brief = body.get("brief")
     if not _nonempty_str(brief):
         return err("brief が空である", "ブリーフ本文を1文以上入力する。"), None, STATE.model
@@ -1335,36 +1357,73 @@ def handle_explode(body):
                    "prompts/extraction_product_v1.txt を確認してサーバを再起動する。"), None, STATE.model
 
     model = STATE.model
-    rec, timing = call_claude("/api/explode", system_prompt, brief, model)
-    if not rec["ok"]:
-        out = err(rec["error"], rec["hint"] or "")
-        out["timing"] = timing
-        return out, rec, model
 
     def accept(o):
         return all(k in o for k in EXTRACTION_REQUIRED_TOP)
 
-    ex, why = extract_json_object(rec["result_text"], accept)
-    if ex is None:
-        out = err("抽出結果のJSONを読み取れなかった(%s)" % why,
-                  "同じブリーフでもう一度送信する。繰り返す場合は --model を確認する。")
-        out["timing"] = timing
-        return out, rec, model
+    def one_attempt():
+        """1回分。(payload|None, err_out|None, rec, timing) を返す。"""
+        rec, timing = call_claude("/api/explode", system_prompt, brief, model)
+        if not rec["ok"]:
+            out = err(rec["error"], rec["hint"] or "")
+            out["timing"] = timing
+            return None, out, rec, timing
+        ex, why = extract_json_object(rec["result_text"], accept)
+        if ex is None:
+            out = err("抽出結果のJSONを読み取れなかった(%s)" % why,
+                      "同じブリーフでもう一度送信する。繰り返す場合は --model を確認する。")
+            out["timing"] = timing
+            return None, out, rec, timing
+        payload, why = validate_extraction(brief, ex)
+        if payload is None:
+            out = err("抽出結果の検証に失敗した(%s)" % why, "同じブリーフでもう一度送信する。")
+            out["timing"] = timing
+            return None, out, rec, timing
+        return payload, None, rec, timing
 
-    payload, why = validate_extraction(brief, ex)
+    payload, out_err, rec, timing = one_attempt()
     if payload is None:
-        out = err("抽出結果の検証に失敗した(%s)" % why, "同じブリーフでもう一度送信する。")
-        out["timing"] = timing
-        return out, rec, model
+        return out_err, rec, model
+
+    attempts = [{"branches": len(payload["branches"]),
+                 "branches_returned_by_model": payload["branches_returned_by_model"],
+                 "rejected": len(payload["rejected_branches"]),
+                 "wall_ms": timing["wall_ms"], "api_ms": timing["api_ms"]}]
+    zero_confirmed = False
+
+    if not payload["branches"]:
+        payload2, _out_err2, rec2, timing2 = one_attempt()
+        # 2回目が失敗(CLIエラー/JSON不成立)なら1回目の0件をそのまま返す。
+        # 「1回目は成立していた」という事実を、2回目の事故で潰さない。
+        if payload2 is not None:
+            attempts.append({"branches": len(payload2["branches"]),
+                             "branches_returned_by_model": payload2["branches_returned_by_model"],
+                             "rejected": len(payload2["rejected_branches"]),
+                             "wall_ms": timing2["wall_ms"], "api_ms": timing2["api_ms"]})
+            if payload2["branches"]:
+                payload, rec = payload2, rec2          # 2回目を採用(偽陰性を救った)
+            else:
+                zero_confirmed = True                  # 2回とも0 = 本当に0件
+        else:
+            attempts.append({"branches": None, "error": True,
+                             "wall_ms": timing2["wall_ms"], "api_ms": timing2["api_ms"]})
+        timing = {"wall_ms": _sum_ms(a.get("wall_ms") for a in attempts),
+                  "api_ms": _sum_ms(a.get("api_ms") for a in attempts)}
 
     if not payload["branches"]:
         # 分岐0件は「完全指定に近いブリーフ」では正当な結果。棄却が原因の0件と区別できるよう
         # note を添えて ok:true で返す(クライアントが文言を出し分ける)。
-        payload["note"] = ("判断点は抽出されなかった(モデル出力 %d 件 / 検証で棄却 %d 件)"
-                           % (payload["branches_returned_by_model"], len(payload["rejected_branches"])))
+        payload["note"] = ("判断点は抽出されなかった(モデル出力 %d 件 / 検証で棄却 %d 件%s)"
+                           % (payload["branches_returned_by_model"], len(payload["rejected_branches"]),
+                              " / 二重確認済み" if zero_confirmed else ""))
 
     out = {"ok": True}
     out.update(payload)
+    if len(attempts) > 1:
+        out["zero_retry"] = True
+        out["attempts"] = attempts
+    if zero_confirmed:
+        out["zero_confirmed"] = True
     out["timing"] = timing
     return out, rec, model
 
@@ -1379,8 +1438,10 @@ def handle_explode_stream(body, emit):
     送るイベント:
       {"type":"meta",   residual_ambiguity_assessment, missing_materials, partial, elapsed_ms}
       {"type":"branch", index, branch:{...}, elapsed_ms}   ← 検証を通った分岐のみ
+      {"type":"retry",  reason:"branches_zero", attempt:2, elapsed_ms}  ← ゼロ二重確認の再抽出開始
       {"type":"done",   ok:true, branches, residual_ambiguity_assessment, missing_materials,
                         rejected_branches, branches_returned_by_model, note?,
+                        zero_retry?, zero_confirmed?, attempts?,
                         timing:{wall_ms, api_ms}, api_ms, first_branch_ms}
       {"type":"error",  error, hint, timing}
 
@@ -1389,6 +1450,24 @@ def handle_explode_stream(body, emit):
     ok は「done イベントをクライアントへ届け切れた」ことを指す(N3)。
     done を作れても書き出しに失敗した場合は ok=False, client_gone=True になる。
     サーバ側で全分岐を確定できたのに届かなかった、という状態を成功として数えない。
+
+    ゼロ二重確認(2026-07-30 追加)
+    ------------------------------------------------------------------
+    本番で ec-product(明らかに曖昧な依頼文)に 0 件が誤発動した。0 件は
+    サンプリング揺らぎで起こる偽陰性でありうるうえ、0 件のときだけは
+    「ユーザーに何も返さない」という最悪の結果になる。そこで1回目のストリームが
+    分岐0件で終わったときに限り、同一プロンプトでもう1回だけ引き直す。
+      - 2回目が非0 → それを採用する(偽陰性を救う)
+      - 両方0     → zero_confirmed:true を付けて0を返す
+        (完全指定の対照ブリーフでは0のままであり、「聞くことがないなら聞かない」
+         という誠実性は落とさない)
+    0件のときは branch イベントを1件も出していないので、2回目の index を 0 から
+    振り直しても画面と矛盾しない。追加コストは0件のときだけの +1 回。
+
+    retry は既存クライアントが知らないイベント型である。app/index.html の SSE
+    ハンドラは type が meta / branch / done / error のいずれでもないオブジェクトを
+    何もせず読み飛ばす実装であることを確認したうえで採用した(app は無改造で動く)。
+    再抽出中も run_stream の idle からハートビート(SSEコメント)が出続ける。
     """
     model = STATE.model
     t0 = time.monotonic()
@@ -1407,107 +1486,167 @@ def handle_explode_stream(body, emit):
               "hint": "prompts/extraction_product_v1.txt を確認してサーバを再起動する。"})
         return False, model, ms(), None, first_branch_ms, False
 
-    parser = StreamingExtractionParser()
-    accepted, rejected = [], []
-    raw_seen = 0
-    meta_sent ={"residual_ambiguity_assessment": "", "missing_materials": []}
-    final_rec = None
+    def run_attempt():
+        """1回分のストリーム抽出。(st, fail) を返す。
 
-    def push_branch(obj, raw_idx):
-        """1分岐を検証し、通ったものだけを送る。戻り値: 送ったら True。"""
+        st   … {"accepted","rejected","raw_seen","meta","final_rec"}
+        fail … None なら正常終了。失敗時は {"kind": "gone"|"error"|"noresult", "val": ...}。
+               error イベントの送出は呼び出し側が決める(2回目が事故ったときに
+               1回目の成立していた0件を error で潰さないため)。
+        """
         nonlocal first_branch_ms
-        br, reasons = validate_branch(brief, obj, raw_idx)
-        if br is None:
-            qp = obj.get("question_point") if isinstance(obj, dict) else ""
-            rejected.append({"index": raw_idx, "question_point": qp if isinstance(qp, str) else "",
-                             "reasons": reasons})
-            return True
-        if len(accepted) >= MAX_BRANCHES:
-            rejected.append({"index": raw_idx, "question_point": br["question_point"],
-                             "reasons": ["上限%d件を超過したため切り捨て" % MAX_BRANCHES]})
-            return True
-        accepted.append(br)
-        if first_branch_ms is None:
-            first_branch_ms = ms()
-        return emit({"type": "branch", "index": len(accepted) - 1, "branch": br,
-                     "elapsed_ms": ms()}) is not False
+        parser = StreamingExtractionParser()
+        st = {"accepted": [], "rejected": [], "raw_seen": 0, "final_rec": None,
+              "meta": {"residual_ambiguity_assessment": "", "missing_materials": []}}
 
-    alive = True
-    # 生成器は必ず close する(finally)。途中で break したときに claude 子プロセスの
-    # 後始末(run_stream の finally)が走る時点を参照カウントに委ねない。
-    stream = STATE.runner.run_stream(system_prompt, brief, model)
-    try:
-        for kind, val in stream:
-            if kind == "idle":
-                # 生成中であることをコネクション上で示す(SSE コメント行。クライアントは無視する)
-                if emit(None) is False:
-                    alive = False
-                    break
-                continue
-            if kind == "text":
-                for ev_kind, obj, raw_idx in parser.feed(val):
-                    if ev_kind == "meta":
-                        meta_sent = {"residual_ambiguity_assessment": obj["residual_ambiguity_assessment"],
-                                     "missing_materials": obj["missing_materials"]}
-                        if emit({"type": "meta", "partial": obj["partial"],
-                                 "residual_ambiguity_assessment": obj["residual_ambiguity_assessment"],
-                                 "missing_materials": obj["missing_materials"],
-                                 "elapsed_ms": ms()}) is False:
-                            alive = False
-                            break
-                    elif ev_kind == "branch":
-                        raw_seen = max(raw_seen, raw_idx + 1)
-                        if not push_branch(obj, raw_idx):
-                            alive = False
-                            break
-                if not alive:
-                    break
-                continue
-            if kind == "error":
-                emit({"type": "error", "error": val["error"], "hint": val["hint"] or "",
-                      "timing": {"wall_ms": val["wall_ms"], "api_ms": val["api_ms"]}})
-                return False, model, val["wall_ms"] or ms(), val["api_ms"], first_branch_ms, False
-            if kind == "result":
-                final_rec = val
-    finally:
-        stream.close()
+        def push_branch(obj, raw_idx):
+            """1分岐を検証し、通ったものだけを送る。戻り値: 送ったら True。"""
+            nonlocal first_branch_ms
+            br, reasons = validate_branch(brief, obj, raw_idx)
+            if br is None:
+                qp = obj.get("question_point") if isinstance(obj, dict) else ""
+                st["rejected"].append({"index": raw_idx,
+                                       "question_point": qp if isinstance(qp, str) else "",
+                                       "reasons": reasons})
+                return True
+            if len(st["accepted"]) >= MAX_BRANCHES:
+                st["rejected"].append({"index": raw_idx, "question_point": br["question_point"],
+                                       "reasons": ["上限%d件を超過したため切り捨て" % MAX_BRANCHES]})
+                return True
+            st["accepted"].append(br)
+            if first_branch_ms is None:
+                first_branch_ms = ms()
+            return emit({"type": "branch", "index": len(st["accepted"]) - 1, "branch": br,
+                         "elapsed_ms": ms()}) is not False
 
-    if not alive:
-        # クライアント切断。子プロセスは run_stream の finally で始末済み。
-        return False, model, ms(), (final_rec or {}).get("api_ms"), first_branch_ms, True
+        alive = True
+        # 生成器は必ず close する(finally)。途中で break したときに claude 子プロセスの
+        # 後始末(run_stream の finally)が走る時点を参照カウントに委ねない。
+        stream = STATE.runner.run_stream(system_prompt, brief, model)
+        try:
+            for kind, val in stream:
+                if kind == "idle":
+                    # 生成中であることをコネクション上で示す(SSE コメント行。クライアントは無視する)
+                    if emit(None) is False:
+                        alive = False
+                        break
+                    continue
+                if kind == "text":
+                    for ev_kind, obj, raw_idx in parser.feed(val):
+                        if ev_kind == "meta":
+                            st["meta"] = {"residual_ambiguity_assessment": obj["residual_ambiguity_assessment"],
+                                          "missing_materials": obj["missing_materials"]}
+                            if emit({"type": "meta", "partial": obj["partial"],
+                                     "residual_ambiguity_assessment": obj["residual_ambiguity_assessment"],
+                                     "missing_materials": obj["missing_materials"],
+                                     "elapsed_ms": ms()}) is False:
+                                alive = False
+                                break
+                        elif ev_kind == "branch":
+                            st["raw_seen"] = max(st["raw_seen"], raw_idx + 1)
+                            if not push_branch(obj, raw_idx):
+                                alive = False
+                                break
+                    if not alive:
+                        break
+                    continue
+                if kind == "error":
+                    return st, {"kind": "error", "val": val}
+                if kind == "result":
+                    st["final_rec"] = val
+        finally:
+            stream.close()
 
-    if final_rec is None:
+        if not alive:
+            # クライアント切断。子プロセスは run_stream の finally で始末済み。
+            return st, {"kind": "gone"}
+
+        if st["final_rec"] is None:
+            return st, {"kind": "noresult"}
+
+        # 完了時に全文をもう一度厳密に解釈し、これを権威とする。
+        # 増分パーサが取りこぼした分岐(まず起きないが)を done の前に追送し、
+        # 「画面に出たカード」と「最終JSON」が必ず一致する状態にする。
+        payload = None
+        if isinstance(st["final_rec"].get("result_text"), str):
+            ex, _why = extract_json_object(st["final_rec"]["result_text"],
+                                           lambda o: all(k in o for k in EXTRACTION_REQUIRED_TOP))
+            if ex is not None:
+                payload, _why2 = validate_extraction(brief, ex)
+
+        if payload is not None:
+            st["meta"] = {"residual_ambiguity_assessment": payload["residual_ambiguity_assessment"],
+                          "missing_materials": payload["missing_materials"]}
+            st["raw_seen"] = max(st["raw_seen"], payload["branches_returned_by_model"])
+            known = {b["id"] for b in st["accepted"]}
+            for br in payload["branches"]:
+                if br["id"] in known or len(st["accepted"]) >= MAX_BRANCHES:
+                    continue
+                st["accepted"].append(br)
+                if first_branch_ms is None:
+                    first_branch_ms = ms()
+                if emit({"type": "branch", "index": len(st["accepted"]) - 1, "branch": br,
+                         "elapsed_ms": ms(), "late": True}) is False:
+                    return st, {"kind": "gone"}
+            # 棄却理由は全文側のほうが完全(増分側は打ち切りで欠けうる)
+            if len(payload["rejected_branches"]) >= len(st["rejected"]):
+                st["rejected"] = payload["rejected_branches"]
+        return st, None
+
+    def emit_fail(st, fail):
+        """失敗を error イベントとして送り、handle_explode_stream の戻り値を作る。"""
+        if fail["kind"] == "gone":
+            return False, model, ms(), (st["final_rec"] or {}).get("api_ms"), first_branch_ms, True
+        if fail["kind"] == "error":
+            val = fail["val"]
+            emit({"type": "error", "error": val["error"], "hint": val["hint"] or "",
+                  "timing": {"wall_ms": val["wall_ms"], "api_ms": val["api_ms"]}})
+            return False, model, val["wall_ms"] or ms(), val["api_ms"], first_branch_ms, False
         emit({"type": "error", "error": "ストリームが result を返さずに終了した",
               "hint": "同じブリーフでもう一度送信する。"})
         return False, model, ms(), None, first_branch_ms, False
 
-    # 完了時に全文をもう一度厳密に解釈し、これを権威とする。
-    # 増分パーサが取りこぼした分岐(まず起きないが)を done の前に追送し、
-    # 「画面に出たカード」と「最終JSON」が必ず一致する状態にする。
-    payload = None
-    if isinstance(final_rec.get("result_text"), str):
-        ex, _why = extract_json_object(final_rec["result_text"],
-                                       lambda o: all(k in o for k in EXTRACTION_REQUIRED_TOP))
-        if ex is not None:
-            payload, _why2 = validate_extraction(brief, ex)
+    def stat(st, fail):
+        rec = st["final_rec"] or {}
+        return {"branches": len(st["accepted"]), "branches_returned_by_model": st["raw_seen"],
+                "rejected": len(st["rejected"]), "wall_ms": rec.get("wall_ms"),
+                "api_ms": rec.get("api_ms"),
+                "failed": (fail["kind"] if fail else None)}
 
-    if payload is not None:
-        meta_sent = {"residual_ambiguity_assessment": payload["residual_ambiguity_assessment"],
-                     "missing_materials": payload["missing_materials"]}
-        raw_seen = max(raw_seen, payload["branches_returned_by_model"])
-        known = {b["id"] for b in accepted}
-        for br in payload["branches"]:
-            if br["id"] in known or len(accepted) >= MAX_BRANCHES:
-                continue
-            accepted.append(br)
-            if first_branch_ms is None:
-                first_branch_ms = ms()
-            if emit({"type": "branch", "index": len(accepted) - 1, "branch": br,
-                     "elapsed_ms": ms(), "late": True}) is False:
-                return False, model, ms(), final_rec.get("api_ms"), first_branch_ms, True
-        # 棄却理由は全文側のほうが完全(増分側は打ち切りで欠けうる)
-        if len(payload["rejected_branches"]) >= len(rejected):
-            rejected = payload["rejected_branches"]
+    st, fail = run_attempt()
+    if fail is not None:
+        return emit_fail(st, fail)
+
+    attempts = [stat(st, None)]
+    zero_confirmed = False
+
+    if not st["accepted"]:
+        # ---- ゼロ二重確認: 0件のときだけ、もう1回だけ引き直す ----
+        if emit({"type": "retry", "reason": "branches_zero", "attempt": 2,
+                 "elapsed_ms": ms()}) is False:
+            return False, model, (st["final_rec"] or {}).get("wall_ms") or ms(), \
+                   (st["final_rec"] or {}).get("api_ms"), first_branch_ms, True
+        st2, fail2 = run_attempt()
+        attempts.append(stat(st2, fail2))
+        if fail2 is None:
+            if st2["accepted"]:
+                st = st2                     # 2回目が非0 → 偽陰性を救った
+            else:
+                zero_confirmed = True
+                # 残存曖昧性の所見は2回目を優先し、空なら1回目を残す。
+                if st2["meta"]["residual_ambiguity_assessment"]:
+                    st = st2
+                elif st2["rejected"]:
+                    st["rejected"] = st2["rejected"]
+        elif fail2["kind"] == "gone":
+            return emit_fail(st2, fail2)     # 切断は done を送れない
+        # 2回目が error / noresult のときは、成立していた1回目の0件をそのまま done にする
+        # (「2回目の事故」でユーザーへ出す答えを差し替えない)。
+
+    accepted = st["accepted"]
+    rejected = st["rejected"]
+    raw_seen = st["raw_seen"]
+    meta_sent = st["meta"]
 
     out = {
         "type": "done",
@@ -1517,19 +1656,26 @@ def handle_explode_stream(body, emit):
         "missing_materials": meta_sent["missing_materials"],
         "rejected_branches": rejected,
         "branches_returned_by_model": raw_seen,
-        "timing": {"wall_ms": final_rec["wall_ms"], "api_ms": final_rec["api_ms"]},
-        "api_ms": final_rec["api_ms"],
+        "timing": {"wall_ms": _sum_ms(a.get("wall_ms") for a in attempts),
+                   "api_ms": _sum_ms(a.get("api_ms") for a in attempts)},
+        "api_ms": _sum_ms(a.get("api_ms") for a in attempts),
         "first_branch_ms": first_branch_ms,
         "elapsed_ms": ms(),
     }
+    if len(attempts) > 1:
+        out["zero_retry"] = True
+        out["attempts"] = attempts
+    if zero_confirmed:
+        out["zero_confirmed"] = True
     if not accepted:
-        out["note"] = ("判断点は抽出されなかった(モデル出力 %d 件 / 検証で棄却 %d 件)"
-                       % (raw_seen, len(rejected)))
+        out["note"] = ("判断点は抽出されなかった(モデル出力 %d 件 / 検証で棄却 %d 件%s)"
+                       % (raw_seen, len(rejected), " / 二重確認済み" if zero_confirmed else ""))
     # done を「送ったつもり」で成功にしない。書き出しに失敗したら ok=False + client_gone(N3)。
     # クライアント側も done 未着を成功にしない(一括で取り直して照合する。M1)ので、
     # ここで嘘の成功を記録すると、ログと画面の食い違いだけが残る。
     delivered = emit(out) is not False
-    return (delivered, model, final_rec["wall_ms"], final_rec["api_ms"],
+    # wall/api はゼロ二重確認で2回回した場合の合計(1回で終われば従来と同じ値)。
+    return (delivered, model, out["timing"]["wall_ms"], out["timing"]["api_ms"],
             first_branch_ms, not delivered)
 
 

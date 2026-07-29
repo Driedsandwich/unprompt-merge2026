@@ -62,7 +62,12 @@ const document = {
   createElementNS: (ns, t) => new El(t),
   createTextNode: t => { const e = new El('#text'); e._text = String(t); return e; },
   getElementById: id => registry[id] || (registry[id] = new El('div')),
-  addEventListener(){}, body: new El('body'), documentElement: new El('html')
+  addEventListener(){},
+  // 例文チップの配線 document.querySelectorAll('.ex-chip') で script 評価が落ちないようにする。
+  // シムは静的マークアップを持たないので空配列でよい(EVIDENCE/compare/domtest_compare.js と同じ流儀)。
+  querySelectorAll: () => [],
+  querySelector: () => null,
+  body: new El('body'), documentElement: new El('html')
 };
 // HTML 上で hidden 属性が付いている要素は、シム側でも hidden=true から始める
 ids.forEach(id => {
@@ -203,6 +208,21 @@ const chk=(n,c,e)=>{console.log((c?'OK   ':'FAIL ')+n+(e?'  '+e:'')); if(!c) FAI
   chk('done 後 streaming クラスが外れる', registry['cards'].classList.contains('streaming') === false);
   chk('途中の決定が done 後も保持される', mid.decisions[0].status === 'decided');
 
-  console.log(FAILS.length ? '\n--- FAILED: ' + FAILS.join(' / ') : '\n--- フォールバック/途中状態: すべて期待どおり');
+  console.log('\n=== 4) 走査の朱(#briefText.scanning)が静寂で灯り、爆散で消える ===');
+  // 2026-07-30 追加。startSilence(遷移 380ms)が付け、beginExplode(最初の分岐)が外す。
+  // 分岐が 380ms より遅く着く経路でしか観測できないので、到着間隔を広げて確かめる。
+  MODE = 'stream'; EVENT_GAP_MS = 500;
+  const ctx4 = fresh();
+  registry['briefInput'].value = 'モダンだけど温かみのあるLPを作って。うちの会社のやつ。';
+  ctx4.__submit();
+  const bt = registry['briefText'];
+  chk('送信直後はまだ走査していない', bt.classList.contains('scanning') === false);
+  for (let i = 0; i < 200 && !bt.classList.contains('scanning'); i++){ flushRAF(2); await sleep(10); }
+  chk('静寂に入ると走査の朱が灯る', bt.classList.contains('scanning') === true, JSON.stringify(bt.className));
+  for (let i = 0; i < 400 && ctx4.__S.exploded !== true; i++){ flushRAF(2); await sleep(10); }
+  chk('前提: 最初の分岐で爆散が始まっている', ctx4.__S.exploded === true);
+  chk('爆散(圏点を打つ)で走査が止まる', bt.classList.contains('scanning') === false, JSON.stringify(bt.className));
+
+  console.log(FAILS.length ? '\n--- FAILED: ' + FAILS.join(' / ') : '\n--- フォールバック/途中状態/走査の朱: すべて期待どおり');
   process.exit(FAILS.length ? 1 : 0);
 })().catch(e => { console.error('THREW:', e && e.stack || e); process.exit(2); });

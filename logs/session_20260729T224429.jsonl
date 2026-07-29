@@ -38,3 +38,5 @@
 {"ts": "2026-07-29T15:14:34.031156+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 8053, "api_ms": 6553, "first_branch_ms": null, "ok": true}
 {"ts": "2026-07-29T15:14:34.382558+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 8803, "api_ms": 4238, "first_branch_ms": null, "ok": true}
 {"ts": "2026-07-29T15:15:33.341800+00:00", "endpoint": "/api/compile", "model": "sonnet", "wall_ms": 9674, "api_ms": 6887, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:50:17.909370+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 20342, "api_ms": 11590, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:50:55.136337+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 16568, "api_ms": 13826, "first_branch_ms": null, "ok": true}

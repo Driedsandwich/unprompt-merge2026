@@ -73,6 +73,10 @@ const document = {
   createTextNode: t => { const e = new El('#text'); e._text = String(t); return e; },
   getElementById: id => registry[id] || (registry[id] = new El('div')),
   addEventListener(t, fn){ (docHandlers[t] = docHandlers[t] || []).push(fn); },
+  // 例文チップの配線 document.querySelectorAll('.ex-chip') で script 評価が落ちないようにする。
+  // シムは静的マークアップを持たないので空配列でよい(EVIDENCE/compare/domtest_compare.js と同じ流儀)。
+  querySelectorAll: () => [],
+  querySelector: () => null,
   body: new El('body'), documentElement: new El('html')
 };
 let REDUCE_MATCH = false;        // E) で prefers-reduced-motion: reduce を再現する
@@ -327,12 +331,25 @@ const optsOpen = (bi) => {
       html.indexOf('<p id="compareFixture">事前生成の実例 — 依頼文「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」による</p>') > 0);
   chk('不一致の注記の文面が承認どおり',
       html.indexOf('いまの依頼文とは別の実例です(その場生成は行いません)') > 0);
+  // 実装は paintCompareFixture() から pickComparePair() + paintComparePair() へ分かれた
+  // (2026-07-30 の5パターン化)。ここでは「manifest 無し = 既定ペア」の経路で、
+  // 一致/不一致が毎回 S.brief から導出されることを見る。manifest 有りの5パターンと
+  // iframe の遅延読み込みは EVIDENCE/compare/domtest_compare.js が担当する。
+  const paint = 'var __sel = pickComparePair(null); paintComparePair(__sel.pair, __sel.matched);';
   ctx = await runToDone();
-  vm.runInContext('paintCompareFixture();', ctx);
+  vm.runInContext(paint, ctx);
   chk('依頼文が事前生成と同じなら注記は出ない', registry['compareMismatch'].hidden === true);
-  vm.runInContext('S.brief = "社内向けの資料をいい感じにして。"; paintCompareFixture();', ctx);
+  chk('常設ラベルは表示中ペアの依頼文を名乗る',
+      registry['compareFixture'].textContent ===
+        '事前生成の実例 — 依頼文「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」による',
+      JSON.stringify(registry['compareFixture'].textContent));
+  vm.runInContext('S.brief = "社内向けの資料をいい感じにして。"; ' + paint, ctx);
   chk('★依頼文が違うときだけ注記が出る', registry['compareMismatch'].hidden === false);
-  vm.runInContext('S.brief = "モダンだけど温かみのあるLPを作って。うちの会社のやつ。"; paintCompareFixture();', ctx);
+  chk('不一致でもラベルは表示中ペアの依頼文のまま(セッションの依頼文を名乗らない)',
+      registry['compareFixture'].textContent.indexOf('社内向けの資料') < 0 &&
+      registry['compareFixture'].textContent.indexOf('モダンだけど温かみのある') > 0,
+      JSON.stringify(registry['compareFixture'].textContent));
+  vm.runInContext('S.brief = "モダンだけど温かみのあるLPを作って。うちの会社のやつ。"; ' + paint, ctx);
   chk('一致に戻せば注記も引っ込む(毎回導出している)', registry['compareMismatch'].hidden === true);
 
   /* ================= G) 生活語への置換が画面文言に残っている ================= */

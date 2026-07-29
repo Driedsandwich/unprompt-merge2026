@@ -1,10 +1,8 @@
 {
-  "format": "gyakumon.split_compare.v0",
-  "generated_at": "2026-07-29T07:18:31.690155+00:00",
-  "finished_at": "2026-07-29T07:20:44.149193+00:00",
-  "total_wall_ms": 132458,
+  "format": "gyakumon.split_compare.v1",
+  "updated_at": "2026-07-29T16:16:58.796921+00:00",
   "pregenerated": true,
-  "disclosure": "並置比較の2枚は事前生成物である。デモ実行時にその場で生成していない。RAW/COMPILED は同一モデル・同一 effort・同一 LP制作者 system 骨格で、違いはユーザープロンプト(一文 vs コンパイル済みブリーフ)のみ。",
+  "disclosure": "並置比較の各ペア(左右2枚)は事前生成物である。デモ実行時にその場で生成していない。RAW/COMPILED は同一モデル・同一 effort・同一の制作者 system 骨格で、違いはユーザープロンプト(一文 vs コンパイル済みブリーフ)のみ。COMPILED 側の system にのみ2項目の追加がある(視覚トークンの厳守 / 選択ラベルのコメント埋め込み)。",
   "engine": {
     "cli": "claude",
     "model": "sonnet",
@@ -22,185 +20,1527 @@
     "cwd": "リポジトリ外の一時ディレクトリ(CLAUDE.md 注入遮断)",
     "auth": "Claude Code サブスクリプション(ANTHROPIC_API_KEY は子プロセス env から除去)"
   },
-  "brief": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。",
-  "option_index": 0,
-  "decisions": [
-    {
-      "question_point": "LPの目的(何を達成させたいか)",
-      "anchor_words": [
-        "うちの会社のやつ"
-      ],
-      "options": [
-        "商品・サービス訴求",
-        "採用募集",
-        "会社紹介・信頼構築"
-      ],
-      "picked_index": 0,
-      "chosen_label": "商品・サービス訴求",
-      "tokens": {
-        "palette": [
-          "#1b1210",
-          "#c0521f",
-          "#f2a65a"
-        ],
-        "heading_font": "sans",
-        "density": "normal",
-        "corner": "soft",
-        "tone_sample": "この一台が、あなたの毎日を変える。"
-      },
-      "render_error": null,
-      "rationale": "「うちの会社のやつ」という曖昧な依頼を商品・サービス訴求と確定し、以降の構成要素は訴求軸に沿って一意に組み立てられる。"
-    },
-    {
-      "question_point": "モダンさと温かみの配分",
-      "anchor_words": [
-        "モダンだけど温かみのある"
-      ],
-      "options": [
-        "モダン優先",
-        "温かみ優先",
-        "均等ミックス"
-      ],
-      "picked_index": 0,
-      "chosen_label": "モダン優先",
-      "tokens": {
-        "palette": [
-          "#0b0b0e",
-          "#1a1d24",
-          "#00e5b8"
-        ],
-        "heading_font": "sans",
-        "density": "airy",
-        "corner": "sharp",
-        "tone_sample": "会社案内、再構築。無駄を削ぎ落とした機能美。"
-      },
-      "render_error": null,
-      "rationale": "「モダンだけど温かみのある」の対立軸をモダン優先と確定し、配色・レイアウト等の下流判断はモダン基調を主とする方向で定まる。"
-    }
+  "default_pair": "lp-warm",
+  "pair_ids": [
+    "lp-warm",
+    "event-page",
+    "portfolio",
+    "scout-mail",
+    "ec-product"
   ],
-  "residual_ambiguity_assessment": "目的・対象・トーン配分が未指定で、曖昧度は非常に高い",
-  "missing_materials": [
-    "会社名",
-    "業種",
-    "商品・サービスの詳細",
-    "ターゲット顧客像",
-    "既存のブランドカラーやロゴ"
-  ],
-  "rejected_branches": [],
-  "compiled_brief_md": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> モダンだけど温かみのあるLPを作って。うちの会社のやつ。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 2\n\n## 決めた判断点\n\n### LPの目的(何を達成させたいか)\n\n- 選択: 商品・サービス訴求\n- 原文の根拠語: 「うちの会社のやつ」\n- 視覚トークン: パレット #1b1210 / #c0521f / #f2a65a、見出し=sans、密度=normal、角=soft\n- トーン例: この一台が、あなたの毎日を変える。\n- 意図: 「うちの会社のやつ」という曖昧な依頼を商品・サービス訴求と確定し、以降の構成要素は訴求軸に沿って一意に組み立てられる。\n\n### モダンさと温かみの配分\n\n- 選択: モダン優先\n- 原文の根拠語: 「モダンだけど温かみのある」\n- 視覚トークン: パレット #0b0b0e / #1a1d24 / #00e5b8、見出し=sans、密度=airy、角=sharp\n- トーン例: 会社案内、再構築。無駄を削ぎ落とした機能美。\n- 意図: 「モダンだけど温かみのある」の対立軸をモダン優先と確定し、配色・レイアウト等の下流判断はモダン基調を主とする方向で定まる。\n\n## 残存曖昧度\n\n目的・対象・トーン配分が未指定で、曖昧度は非常に高い\n\n## 発注者からの提供が必要な材料\n\n- 会社名\n- 業種\n- 商品・サービスの詳細\n- ターゲット顧客像\n- 既存のブランドカラーやロゴ\n\n---\n\nこのブリーフは、上の1文と 2 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
-  "timings": {
-    "explode": {
-      "api_ms": 17519,
-      "wall_ms": 20475
-    },
-    "render": [
-      {
-        "api_ms": 5547,
-        "ok": true
+  "pairs": [
+    {
+      "brief_id": "lp-warm",
+      "brief": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。",
+      "deliverable_kind": "page",
+      "deliverable": "企業のランディングページ",
+      "generated_at": "2026-07-29T15:57:51.865923+00:00",
+      "finished_at": "2026-07-29T16:00:03.508115+00:00",
+      "total_wall_ms": 131625,
+      "outputs": {
+        "raw": "lp-warm/raw.html",
+        "compiled": "lp-warm/compiled.html",
+        "compiled_brief": "lp-warm/compiled_brief.md",
+        "explode_cache": "lp-warm/explode.json"
       },
-      {
-        "api_ms": 6385,
-        "ok": true
+      "picks_source": "baked_contrast_picks",
+      "picked_indices": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "expected_label_check": {
+        "match": true,
+        "expected": [
+          "採用候補者",
+          "手書き・柔らかい書体",
+          "大胆グラフィック系",
+          "世界観・共感訴求"
+        ],
+        "got": [
+          "採用候補者",
+          "手書き・柔らかい書体",
+          "大胆グラフィック系",
+          "世界観・共感訴求"
+        ]
+      },
+      "explode_meta": {
+        "attempts": 1,
+        "input_form": "raw_brief_text",
+        "api_ms": 16031,
+        "wall_ms": 25506,
+        "failed_attempts": [],
+        "from_cache": true
+      },
+      "decisions": [
+        {
+          "question_point": "読み手(想定顧客)の立場",
+          "anchor_words": [
+            "うちの会社のやつ"
+          ],
+          "options": [
+            "toB意思決定者",
+            "toC一般消費者",
+            "採用候補者"
+          ],
+          "picked_index": 2,
+          "chosen_label": "採用候補者",
+          "tokens": {
+            "palette": [
+              "#1c1c1e",
+              "#3a3f58",
+              "#c9a24b"
+            ],
+            "heading_font": "sans",
+            "density": "normal",
+            "corner": "soft",
+            "tone_sample": "あなたの成長を、この会社で。私たちと働く一日を想像してください。"
+          },
+          "render_error": null,
+          "rationale": "読み手を採用候補者と確定させたことで、以降の訴求は求人・転職検討者向けの情報設計に一意に定まる。"
+        },
+        {
+          "question_point": "「温かみ」の表現軸",
+          "anchor_words": [
+            "温かみのある"
+          ],
+          "options": [
+            "人物・写真訴求",
+            "手書き・柔らかい書体",
+            "色彩の柔らかさ"
+          ],
+          "picked_index": 1,
+          "chosen_label": "手書き・柔らかい書体",
+          "tokens": {
+            "palette": [
+              "#f5ede1",
+              "#c99a6c",
+              "#8b4b2a"
+            ],
+            "heading_font": "rounded",
+            "density": "airy",
+            "corner": "soft",
+            "tone_sample": "会社案内、手書きの温もりで。"
+          },
+          "render_error": null,
+          "rationale": "温かみを手書き・柔らかい書体と定めたことで、フォントや線画装飾など視覚要素の方向が一意に定まる。"
+        },
+        {
+          "question_point": "「モダン」の表現軸",
+          "anchor_words": [
+            "モダンだけど"
+          ],
+          "options": [
+            "ミニマル余白系",
+            "大胆グラフィック系",
+            "テック的先進感"
+          ],
+          "picked_index": 1,
+          "chosen_label": "大胆グラフィック系",
+          "tokens": {
+            "palette": [
+              "#1a1512",
+              "#e8432c",
+              "#f2c230"
+            ],
+            "heading_font": "rounded",
+            "density": "dense",
+            "corner": "soft",
+            "tone_sample": "会社の想い、色と形にぶつけます。"
+          },
+          "render_error": null,
+          "rationale": "モダンを大胆グラフィック系と定めたことで、レイアウトは大きな図形や強いコントラストを用いる方向に一意に定まる。"
+        },
+        {
+          "question_point": "構成の重心(何で説得するか)",
+          "anchor_words": [
+            "LPを作って"
+          ],
+          "options": [
+            "実績・数字訴求",
+            "世界観・共感訴求",
+            "機能・仕様訴求"
+          ],
+          "picked_index": 1,
+          "chosen_label": "世界観・共感訴求",
+          "tokens": {
+            "palette": [
+              "#2a241d",
+              "#8c6f4e",
+              "#d8b26a"
+            ],
+            "heading_font": "serif",
+            "density": "airy",
+            "corner": "soft",
+            "tone_sample": "会社の歩みが、あなたの毎日に寄り添う。"
+          },
+          "render_error": null,
+          "rationale": "説得軸を世界観・共感訴求と定めたことで、構成は機能列挙でなく物語的な体験提示を中心に組まれる。"
+        }
+      ],
+      "residual_ambiguity_assessment": "読者・目的・トーン表現・構成軸が未指定で、日常語のみの依頼のため曖昧度は高い。",
+      "missing_materials": [
+        "会社名・事業内容",
+        "商品・サービスの具体的な特徴",
+        "実績データ・数値",
+        "写真・ロゴ素材"
+      ],
+      "rejected_branches": [
+        {
+          "index": 1,
+          "question_point": "LPの目的・コンバージョン行動",
+          "reasons": [
+            "options が2〜3件でない(有効 4 件)"
+          ]
+        }
+      ],
+      "compiled_brief_md": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> モダンだけど温かみのあるLPを作って。うちの会社のやつ。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 4\n\n## 決めた判断点\n\n### 読み手(想定顧客)の立場\n\n- 選択: 採用候補者\n- 原文の根拠語: 「うちの会社のやつ」\n- 視覚トークン: パレット #1c1c1e / #3a3f58 / #c9a24b、見出し=sans、密度=normal、角=soft\n- トーン例: あなたの成長を、この会社で。私たちと働く一日を想像してください。\n- 意図: 読み手を採用候補者と確定させたことで、以降の訴求は求人・転職検討者向けの情報設計に一意に定まる。\n\n### 「温かみ」の表現軸\n\n- 選択: 手書き・柔らかい書体\n- 原文の根拠語: 「温かみのある」\n- 視覚トークン: パレット #f5ede1 / #c99a6c / #8b4b2a、見出し=rounded、密度=airy、角=soft\n- トーン例: 会社案内、手書きの温もりで。\n- 意図: 温かみを手書き・柔らかい書体と定めたことで、フォントや線画装飾など視覚要素の方向が一意に定まる。\n\n### 「モダン」の表現軸\n\n- 選択: 大胆グラフィック系\n- 原文の根拠語: 「モダンだけど」\n- 視覚トークン: パレット #1a1512 / #e8432c / #f2c230、見出し=rounded、密度=dense、角=soft\n- トーン例: 会社の想い、色と形にぶつけます。\n- 意図: モダンを大胆グラフィック系と定めたことで、レイアウトは大きな図形や強いコントラストを用いる方向に一意に定まる。\n\n### 構成の重心(何で説得するか)\n\n- 選択: 世界観・共感訴求\n- 原文の根拠語: 「LPを作って」\n- 視覚トークン: パレット #2a241d / #8c6f4e / #d8b26a、見出し=serif、密度=airy、角=soft\n- トーン例: 会社の歩みが、あなたの毎日に寄り添う。\n- 意図: 説得軸を世界観・共感訴求と定めたことで、構成は機能列挙でなく物語的な体験提示を中心に組まれる。\n\n## 残存曖昧度\n\n読者・目的・トーン表現・構成軸が未指定で、日常語のみの依頼のため曖昧度は高い。\n\n## 発注者からの提供が必要な材料\n\n- 会社名・事業内容\n- 商品・サービスの具体的な特徴\n- 実績データ・数値\n- 写真・ロゴ素材\n\n---\n\nこのブリーフは、上の1文と 4 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+      "timings": {
+        "explode": {
+          "api_ms": 16031,
+          "wall_ms": 25506,
+          "from_cache": true
+        },
+        "render": [
+          {
+            "api_ms": 7382,
+            "ok": true
+          },
+          {
+            "api_ms": 10370,
+            "ok": true
+          },
+          {
+            "api_ms": 8122,
+            "ok": true
+          },
+          {
+            "api_ms": 8294,
+            "ok": true
+          }
+        ],
+        "compile": {
+          "api_ms": 6667,
+          "wall_ms": 8505,
+          "error": null
+        },
+        "raw": {
+          "api_ms": 51636,
+          "wall_ms": 57315
+        },
+        "compiled": {
+          "api_ms": 29605,
+          "wall_ms": 37150
+        }
+      },
+      "verification": {
+        "compiled": {
+          "gyakumon_choice_comments_total": 5,
+          "traced": 4,
+          "of": 4,
+          "traces": [
+            {
+              "question_point": "読み手(想定顧客)の立場",
+              "chosen_label": "採用候補者",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 読み手(想定顧客)の立場 = 採用候補者"
+            },
+            {
+              "question_point": "「温かみ」の表現軸",
+              "chosen_label": "手書き・柔らかい書体",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 「温かみ」の表現軸 = 手書き・柔らかい書体"
+            },
+            {
+              "question_point": "「モダン」の表現軸",
+              "chosen_label": "大胆グラフィック系",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 「モダン」の表現軸 = 大胆グラフィック系"
+            },
+            {
+              "question_point": "構成の重心(何で説得するか)",
+              "chosen_label": "世界観・共感訴求",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 構成の重心(何で説得するか) = 世界観・共感訴求"
+            }
+          ]
+        },
+        "raw_signature": {
+          "hex_colors_unique": [
+            "#3a2f28",
+            "#7a6a5d",
+            "#c9552f",
+            "#e0704a",
+            "#f4d9c6",
+            "#f9e4d3",
+            "#fbe9da",
+            "#fdf1e4",
+            "#fdf8f3",
+            "#fff7ef"
+          ],
+          "hex_colors_count": 12,
+          "bytes": 6843
+        },
+        "compiled_signature": {
+          "hex_colors_unique": [
+            "#1a1512",
+            "#1c1c1e",
+            "#2a241d",
+            "#3a3f58",
+            "#4a3f33",
+            "#8a8578",
+            "#8b4b2a",
+            "#c99a6c",
+            "#c9a24b",
+            "#e8432c",
+            "#e8dcc8",
+            "#f2c230",
+            "#f5ede1"
+          ],
+          "hex_colors_count": 18,
+          "bytes": 5892
+        },
+        "shared_hex_colors": [],
+        "text_overlap": {
+          "ngram": 8,
+          "jaccard": 0.0183,
+          "raw_chars": 548,
+          "compiled_chars": 448
+        }
+      },
+      "prompts": {
+        "maker_system_raw": "あなたはLP制作者である。与えられた発注内容だけを根拠に、企業のランディングページを1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のページ。ヒーロー / 価値提案 / 特徴3点 / 会社について / CTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 発注内容に書かれていない事実(社名・実績・数値・日付・固有名)を断定的に作らない。\n  必要なら〈会社名〉のようなプレースホルダを使う。\n",
+        "maker_system_compiled": "あなたはLP制作者である。与えられた発注内容だけを根拠に、企業のランディングページを1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のページ。ヒーロー / 価値提案 / 特徴3点 / 会社について / CTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 発注内容に書かれていない事実(社名・実績・数値・日付・固有名)を断定的に作らない。\n  必要なら〈会社名〉のようなプレースホルダを使う。\n\n## コンパイル済みブリーフの扱い(この実行に固有)\n\n- 入力は GYAKUMON が出力した「コンパイル済みブリーフ」である。発注者が確定した判断点が\n  明示されている。書かれている決定はすべて実装に反映せよ。解釈で薄めない。\n- 「視覚トークン」に書かれたパレット(16進3色)・見出し書体(serif/sans/rounded)・\n  密度(airy/normal/dense)・角(sharp/soft)は厳密に実装する。パレットの3色は\n  [地色, 主要色, 強調色] の役割で使い、他の色相を勝手に足さない。\n  密度 airy は余白を大きく行間を広く、dense は詰めて情報量を多く、\n  角 sharp は border-radius:0、soft は大きめの border-radius とする。\n- 「トーン例」の文体をコピーの基調にする。\n- 各決定を反映した要素の直前に、次の形の HTML コメントを1つ置く(機械照合に使う):\n  <!-- GYAKUMON-CHOICE: 判断点 = 選択ラベル -->\n  判断点と選択ラベルはブリーフに書かれている文字列をそのまま使う。すべての決定について1回以上置く。\n  <style> 内の CSS 規則に印を付ける場合は同じ本文を CSS コメント\n  /* GYAKUMON-CHOICE: 判断点 = 選択ラベル */ の形で書く。\n",
+        "user_raw": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。",
+        "user_compiled": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> モダンだけど温かみのあるLPを作って。うちの会社のやつ。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 4\n\n## 決めた判断点\n\n### 読み手(想定顧客)の立場\n\n- 選択: 採用候補者\n- 原文の根拠語: 「うちの会社のやつ」\n- 視覚トークン: パレット #1c1c1e / #3a3f58 / #c9a24b、見出し=sans、密度=normal、角=soft\n- トーン例: あなたの成長を、この会社で。私たちと働く一日を想像してください。\n- 意図: 読み手を採用候補者と確定させたことで、以降の訴求は求人・転職検討者向けの情報設計に一意に定まる。\n\n### 「温かみ」の表現軸\n\n- 選択: 手書き・柔らかい書体\n- 原文の根拠語: 「温かみのある」\n- 視覚トークン: パレット #f5ede1 / #c99a6c / #8b4b2a、見出し=rounded、密度=airy、角=soft\n- トーン例: 会社案内、手書きの温もりで。\n- 意図: 温かみを手書き・柔らかい書体と定めたことで、フォントや線画装飾など視覚要素の方向が一意に定まる。\n\n### 「モダン」の表現軸\n\n- 選択: 大胆グラフィック系\n- 原文の根拠語: 「モダンだけど」\n- 視覚トークン: パレット #1a1512 / #e8432c / #f2c230、見出し=rounded、密度=dense、角=soft\n- トーン例: 会社の想い、色と形にぶつけます。\n- 意図: モダンを大胆グラフィック系と定めたことで、レイアウトは大きな図形や強いコントラストを用いる方向に一意に定まる。\n\n### 構成の重心(何で説得するか)\n\n- 選択: 世界観・共感訴求\n- 原文の根拠語: 「LPを作って」\n- 視覚トークン: パレット #2a241d / #8c6f4e / #d8b26a、見出し=serif、密度=airy、角=soft\n- トーン例: 会社の歩みが、あなたの毎日に寄り添う。\n- 意図: 説得軸を世界観・共感訴求と定めたことで、構成は機能列挙でなく物語的な体験提示を中心に組まれる。\n\n## 残存曖昧度\n\n読者・目的・トーン表現・構成軸が未指定で、日常語のみの依頼のため曖昧度は高い。\n\n## 発注者からの提供が必要な材料\n\n- 会社名・事業内容\n- 商品・サービスの具体的な特徴\n- 実績データ・数値\n- 写真・ロゴ素材\n\n---\n\nこのブリーフは、上の1文と 4 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+        "extraction_prompt_file": "prompts/extraction_product_v1.txt",
+        "render_prompt_file": "prompts/render_v0.txt",
+        "compile_prompt_file": "prompts/compile_v0.txt"
       }
-    ],
-    "compile": {
-      "api_ms": 6124,
-      "wall_ms": 8949,
-      "error": null
     },
-    "raw_lp": {
-      "api_ms": 27273,
-      "wall_ms": 30148
+    {
+      "brief_id": "event-page",
+      "brief": "来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。",
+      "deliverable_kind": "page",
+      "deliverable": "交流イベントの告知ページ",
+      "generated_at": "2026-07-29T16:00:03.521969+00:00",
+      "finished_at": "2026-07-29T16:03:32.709766+00:00",
+      "total_wall_ms": 209188,
+      "outputs": {
+        "raw": "event-page/raw.html",
+        "compiled": "event-page/compiled.html",
+        "compiled_brief": "event-page/compiled_brief.md",
+        "explode_cache": "event-page/explode.json"
+      },
+      "picks_source": "baked_contrast_picks",
+      "picked_indices": [
+        0,
+        2,
+        1,
+        0,
+        1
+      ],
+      "expected_label_check": {
+        "match": true,
+        "expected": [
+          "学生・10代20代",
+          "純粋な楽しさ重視",
+          "おしゃれ洗練",
+          "限定感・希少性訴求",
+          "詳細多セクション構成"
+        ],
+        "got": [
+          "学生・10代20代",
+          "純粋な楽しさ重視",
+          "おしゃれ洗練",
+          "限定感・希少性訴求",
+          "詳細多セクション構成"
+        ]
+      },
+      "explode_meta": {
+        "attempts": 1,
+        "input_form": "raw_brief_text",
+        "api_ms": 15367,
+        "wall_ms": 23558,
+        "failed_attempts": [],
+        "from_cache": true
+      },
+      "decisions": [
+        {
+          "question_point": "想定読者(参加者)の属性",
+          "anchor_words": [
+            "若い人にも刺さる感じで"
+          ],
+          "options": [
+            "学生・10代20代",
+            "若手社会人",
+            "既存参加者中心"
+          ],
+          "picked_index": 0,
+          "chosen_label": "学生・10代20代",
+          "tokens": {
+            "palette": [
+              "#0d0d14",
+              "#ff3366",
+              "#cfff3d"
+            ],
+            "heading_font": "rounded",
+            "density": "dense",
+            "corner": "soft",
+            "tone_sample": "学生集まれ!来月の交流イベント、申込みラッシュ中"
+          },
+          "render_error": null,
+          "rationale": "「学生・10代20代」の選択により文体語彙とビジュアル訴求の基準読者が定まり訴求内容が一意化する。"
+        },
+        {
+          "question_point": "イベントの目的・得られる価値",
+          "anchor_words": [
+            "交流イベント"
+          ],
+          "options": [
+            "人脈形成重視",
+            "学び・情報交換重視",
+            "純粋な楽しさ重視"
+          ],
+          "picked_index": 2,
+          "chosen_label": "純粋な楽しさ重視",
+          "tokens": {
+            "palette": [
+              "#1a1230",
+              "#ff2e93",
+              "#ffd400"
+            ],
+            "heading_font": "rounded",
+            "density": "dense",
+            "corner": "soft",
+            "tone_sample": "今夜、はしゃぎ尽くそう。交流イベントは笑いが止まらない一夜。"
+          },
+          "render_error": null,
+          "rationale": "「純粋な楽しさ重視」により交流イベントの曖昧な目的が娯楽性中心の価値提示へと確定する。"
+        },
+        {
+          "question_point": "トーン・世界観",
+          "anchor_words": [
+            "若い人にも刺さる感じで"
+          ],
+          "options": [
+            "カジュアル砕けた",
+            "おしゃれ洗練",
+            "フォーマル信頼感"
+          ],
+          "picked_index": 1,
+          "chosen_label": "おしゃれ洗練",
+          "tokens": {
+            "palette": [
+              "#141414",
+              "#c9a86a",
+              "#efe6d3"
+            ],
+            "heading_font": "serif",
+            "density": "airy",
+            "corner": "sharp",
+            "tone_sample": "交流の夜、洗練された出会いを。招待制サロンへようこそ。"
+          },
+          "render_error": null,
+          "rationale": "「おしゃれ洗練」の選択で若年層向け訴求の曖昧なトーン軸が世界観の統一基準として定まる。"
+        },
+        {
+          "question_point": "申込増加のための訴求軸",
+          "anchor_words": [
+            "申込みが増えるように"
+          ],
+          "options": [
+            "限定感・希少性訴求",
+            "参加メリット列挙訴求",
+            "実績・権威訴求"
+          ],
+          "picked_index": 0,
+          "chosen_label": "限定感・希少性訴求",
+          "tokens": {
+            "palette": [
+              "#0d0d12",
+              "#3a2a1a",
+              "#c9a24b"
+            ],
+            "heading_font": "serif",
+            "density": "airy",
+            "corner": "sharp",
+            "tone_sample": "定員わずか、招待制の交流会。今夜、席が埋まる。"
+          },
+          "render_error": null,
+          "rationale": "「限定感・希少性訴求」により申込増加の手段が定員や期間限定の強調表現へと一意に決まる。"
+        },
+        {
+          "question_point": "ページ構成のボリューム",
+          "anchor_words": [
+            "告知ページ"
+          ],
+          "options": [
+            "1枚完結LP",
+            "詳細多セクション構成"
+          ],
+          "picked_index": 1,
+          "chosen_label": "詳細多セクション構成",
+          "tokens": {
+            "palette": [
+              "#101820",
+              "#2e4a3d",
+              "#c7a552"
+            ],
+            "heading_font": "serif",
+            "density": "dense",
+            "corner": "sharp",
+            "tone_sample": "交流イベント全容ご案内―プログラム・登壇者・会場を詳細解説"
+          },
+          "render_error": null,
+          "rationale": "「詳細多セクション構成」の選択で告知ページの情報量と章立ての粒度が確定する。"
+        }
+      ],
+      "residual_ambiguity_assessment": "日時・場所・費用等の実データが未提供な上、読者像やトーンなど方向性を左右する判断点も多数未確定。",
+      "missing_materials": [
+        "イベントの開催日時",
+        "開催場所・会場",
+        "参加費",
+        "イベント内容・プログラム詳細",
+        "登壇者・主催者情報",
+        "定員人数"
+      ],
+      "rejected_branches": [],
+      "compiled_brief_md": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> 来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 5\n\n## 決めた判断点\n\n### 想定読者(参加者)の属性\n\n- 選択: 学生・10代20代\n- 原文の根拠語: 「若い人にも刺さる感じで」\n- 視覚トークン: パレット #0d0d14 / #ff3366 / #cfff3d、見出し=rounded、密度=dense、角=soft\n- トーン例: 学生集まれ!来月の交流イベント、申込みラッシュ中\n- 意図: 「学生・10代20代」の選択により文体語彙とビジュアル訴求の基準読者が定まり訴求内容が一意化する。\n\n### イベントの目的・得られる価値\n\n- 選択: 純粋な楽しさ重視\n- 原文の根拠語: 「交流イベント」\n- 視覚トークン: パレット #1a1230 / #ff2e93 / #ffd400、見出し=rounded、密度=dense、角=soft\n- トーン例: 今夜、はしゃぎ尽くそう。交流イベントは笑いが止まらない一夜。\n- 意図: 「純粋な楽しさ重視」により交流イベントの曖昧な目的が娯楽性中心の価値提示へと確定する。\n\n### トーン・世界観\n\n- 選択: おしゃれ洗練\n- 原文の根拠語: 「若い人にも刺さる感じで」\n- 視覚トークン: パレット #141414 / #c9a86a / #efe6d3、見出し=serif、密度=airy、角=sharp\n- トーン例: 交流の夜、洗練された出会いを。招待制サロンへようこそ。\n- 意図: 「おしゃれ洗練」の選択で若年層向け訴求の曖昧なトーン軸が世界観の統一基準として定まる。\n\n### 申込増加のための訴求軸\n\n- 選択: 限定感・希少性訴求\n- 原文の根拠語: 「申込みが増えるように」\n- 視覚トークン: パレット #0d0d12 / #3a2a1a / #c9a24b、見出し=serif、密度=airy、角=sharp\n- トーン例: 定員わずか、招待制の交流会。今夜、席が埋まる。\n- 意図: 「限定感・希少性訴求」により申込増加の手段が定員や期間限定の強調表現へと一意に決まる。\n\n### ページ構成のボリューム\n\n- 選択: 詳細多セクション構成\n- 原文の根拠語: 「告知ページ」\n- 視覚トークン: パレット #101820 / #2e4a3d / #c7a552、見出し=serif、密度=dense、角=sharp\n- トーン例: 交流イベント全容ご案内―プログラム・登壇者・会場を詳細解説\n- 意図: 「詳細多セクション構成」の選択で告知ページの情報量と章立ての粒度が確定する。\n\n## 残存曖昧度\n\n日時・場所・費用等の実データが未提供な上、読者像やトーンなど方向性を左右する判断点も多数未確定。\n\n## 発注者からの提供が必要な材料\n\n- イベントの開催日時\n- 開催場所・会場\n- 参加費\n- イベント内容・プログラム詳細\n- 登壇者・主催者情報\n- 定員人数\n\n---\n\nこのブリーフは、上の1文と 5 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+      "timings": {
+        "explode": {
+          "api_ms": 15367,
+          "wall_ms": 23558,
+          "from_cache": true
+        },
+        "render": [
+          {
+            "api_ms": 11131,
+            "ok": true
+          },
+          {
+            "api_ms": 16186,
+            "ok": true
+          },
+          {
+            "api_ms": 14248,
+            "ok": true
+          },
+          {
+            "api_ms": 11674,
+            "ok": true
+          },
+          {
+            "api_ms": 8058,
+            "ok": true
+          }
+        ],
+        "compile": {
+          "api_ms": 11080,
+          "wall_ms": 26405,
+          "error": null
+        },
+        "raw": {
+          "api_ms": 44981,
+          "wall_ms": 81747
+        },
+        "compiled": {
+          "api_ms": 60015,
+          "wall_ms": 67357
+        }
+      },
+      "verification": {
+        "compiled": {
+          "gyakumon_choice_comments_total": 5,
+          "traced": 5,
+          "of": 5,
+          "traces": [
+            {
+              "question_point": "想定読者(参加者)の属性",
+              "chosen_label": "学生・10代20代",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 想定読者(参加者)の属性 = 学生・10代20代"
+            },
+            {
+              "question_point": "イベントの目的・得られる価値",
+              "chosen_label": "純粋な楽しさ重視",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: イベントの目的・得られる価値 = 純粋な楽しさ重視"
+            },
+            {
+              "question_point": "トーン・世界観",
+              "chosen_label": "おしゃれ洗練",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: トーン・世界観 = おしゃれ洗練"
+            },
+            {
+              "question_point": "申込増加のための訴求軸",
+              "chosen_label": "限定感・希少性訴求",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 申込増加のための訴求軸 = 限定感・希少性訴求"
+            },
+            {
+              "question_point": "ページ構成のボリューム",
+              "chosen_label": "詳細多セクション構成",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: ページ構成のボリューム = 詳細多セクション構成"
+            }
+          ]
+        },
+        "raw_signature": {
+          "hex_colors_unique": [
+            "#0f0c29",
+            "#4ade80",
+            "#7873f5",
+            "#8888b0",
+            "#a5a5d9",
+            "#e6e6f5",
+            "#ff6ec4"
+          ],
+          "hex_colors_count": 14,
+          "bytes": 6025
+        },
+        "compiled_signature": {
+          "hex_colors_unique": [
+            "#0c1015",
+            "#0d0d12",
+            "#0d0d14",
+            "#101820",
+            "#141414",
+            "#141420",
+            "#1a1230",
+            "#2e4a3d",
+            "#3a2a1a",
+            "#8a8a8a",
+            "#c7a552",
+            "#c9a24b",
+            "#c9a86a",
+            "#cfff3d",
+            "#efe6d3",
+            "#ff2e93",
+            "#ff3366",
+            "#ffd400"
+          ],
+          "hex_colors_count": 35,
+          "bytes": 5914
+        },
+        "shared_hex_colors": [],
+        "text_overlap": {
+          "ngram": 8,
+          "jaccard": 0.0119,
+          "raw_chars": 412,
+          "compiled_chars": 467
+        }
+      },
+      "prompts": {
+        "maker_system_raw": "あなたはイベント告知ページの制作者である。与えられた発注内容だけを根拠に、交流イベントの告知ページを1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のページ。イベント名の見出し / 日時・場所 / どんな会かの説明 / 見どころ3点 / 参加費と定員 / 申込みCTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 発注内容に書かれていない事実(社名・実績・数値・日付・固有名)を断定的に作らない。\n  必要なら〈イベント名〉〈開催日〉〈会場〉のようなプレースホルダを使う。\n",
+        "maker_system_compiled": "あなたはイベント告知ページの制作者である。与えられた発注内容だけを根拠に、交流イベントの告知ページを1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のページ。イベント名の見出し / 日時・場所 / どんな会かの説明 / 見どころ3点 / 参加費と定員 / 申込みCTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 発注内容に書かれていない事実(社名・実績・数値・日付・固有名)を断定的に作らない。\n  必要なら〈イベント名〉〈開催日〉〈会場〉のようなプレースホルダを使う。\n\n## コンパイル済みブリーフの扱い(この実行に固有)\n\n- 入力は GYAKUMON が出力した「コンパイル済みブリーフ」である。発注者が確定した判断点が\n  明示されている。書かれている決定はすべて実装に反映せよ。解釈で薄めない。\n- 「視覚トークン」に書かれたパレット(16進3色)・見出し書体(serif/sans/rounded)・\n  密度(airy/normal/dense)・角(sharp/soft)は厳密に実装する。パレットの3色は\n  [地色, 主要色, 強調色] の役割で使い、他の色相を勝手に足さない。\n  密度 airy は余白を大きく行間を広く、dense は詰めて情報量を多く、\n  角 sharp は border-radius:0、soft は大きめの border-radius とする。\n- 「トーン例」の文体をコピーの基調にする。\n- 各決定を反映した要素の直前に、次の形の HTML コメントを1つ置く(機械照合に使う):\n  <!-- GYAKUMON-CHOICE: 判断点 = 選択ラベル -->\n  判断点と選択ラベルはブリーフに書かれている文字列をそのまま使う。すべての決定について1回以上置く。\n  <style> 内の CSS 規則に印を付ける場合は同じ本文を CSS コメント\n  /* GYAKUMON-CHOICE: 判断点 = 選択ラベル */ の形で書く。\n",
+        "user_raw": "来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。",
+        "user_compiled": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> 来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 5\n\n## 決めた判断点\n\n### 想定読者(参加者)の属性\n\n- 選択: 学生・10代20代\n- 原文の根拠語: 「若い人にも刺さる感じで」\n- 視覚トークン: パレット #0d0d14 / #ff3366 / #cfff3d、見出し=rounded、密度=dense、角=soft\n- トーン例: 学生集まれ!来月の交流イベント、申込みラッシュ中\n- 意図: 「学生・10代20代」の選択により文体語彙とビジュアル訴求の基準読者が定まり訴求内容が一意化する。\n\n### イベントの目的・得られる価値\n\n- 選択: 純粋な楽しさ重視\n- 原文の根拠語: 「交流イベント」\n- 視覚トークン: パレット #1a1230 / #ff2e93 / #ffd400、見出し=rounded、密度=dense、角=soft\n- トーン例: 今夜、はしゃぎ尽くそう。交流イベントは笑いが止まらない一夜。\n- 意図: 「純粋な楽しさ重視」により交流イベントの曖昧な目的が娯楽性中心の価値提示へと確定する。\n\n### トーン・世界観\n\n- 選択: おしゃれ洗練\n- 原文の根拠語: 「若い人にも刺さる感じで」\n- 視覚トークン: パレット #141414 / #c9a86a / #efe6d3、見出し=serif、密度=airy、角=sharp\n- トーン例: 交流の夜、洗練された出会いを。招待制サロンへようこそ。\n- 意図: 「おしゃれ洗練」の選択で若年層向け訴求の曖昧なトーン軸が世界観の統一基準として定まる。\n\n### 申込増加のための訴求軸\n\n- 選択: 限定感・希少性訴求\n- 原文の根拠語: 「申込みが増えるように」\n- 視覚トークン: パレット #0d0d12 / #3a2a1a / #c9a24b、見出し=serif、密度=airy、角=sharp\n- トーン例: 定員わずか、招待制の交流会。今夜、席が埋まる。\n- 意図: 「限定感・希少性訴求」により申込増加の手段が定員や期間限定の強調表現へと一意に決まる。\n\n### ページ構成のボリューム\n\n- 選択: 詳細多セクション構成\n- 原文の根拠語: 「告知ページ」\n- 視覚トークン: パレット #101820 / #2e4a3d / #c7a552、見出し=serif、密度=dense、角=sharp\n- トーン例: 交流イベント全容ご案内―プログラム・登壇者・会場を詳細解説\n- 意図: 「詳細多セクション構成」の選択で告知ページの情報量と章立ての粒度が確定する。\n\n## 残存曖昧度\n\n日時・場所・費用等の実データが未提供な上、読者像やトーンなど方向性を左右する判断点も多数未確定。\n\n## 発注者からの提供が必要な材料\n\n- イベントの開催日時\n- 開催場所・会場\n- 参加費\n- イベント内容・プログラム詳細\n- 登壇者・主催者情報\n- 定員人数\n\n---\n\nこのブリーフは、上の1文と 5 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+        "extraction_prompt_file": "prompts/extraction_product_v1.txt",
+        "render_prompt_file": "prompts/render_v0.txt",
+        "compile_prompt_file": "prompts/compile_v0.txt"
+      }
     },
-    "compiled_lp": {
-      "api_ms": 45621,
-      "wall_ms": 47744
+    {
+      "brief_id": "portfolio",
+      "brief": "転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。",
+      "deliverable_kind": "page",
+      "deliverable": "転職活動用の個人ポートフォリオサイト(1ページ)",
+      "generated_at": "2026-07-29T16:03:32.735394+00:00",
+      "finished_at": "2026-07-29T16:06:05.996173+00:00",
+      "total_wall_ms": 153260,
+      "outputs": {
+        "raw": "portfolio/raw.html",
+        "compiled": "portfolio/compiled.html",
+        "compiled_brief": "portfolio/compiled_brief.md",
+        "explode_cache": "portfolio/explode.json"
+      },
+      "picks_source": "baked_contrast_picks",
+      "picked_indices": [
+        2,
+        2,
+        1,
+        2,
+        1
+      ],
+      "expected_label_check": {
+        "match": true,
+        "expected": [
+          "経営層/クライアント",
+          "実績/成果数値重視",
+          "個別ケーススタディ型",
+          "堅実/信頼感",
+          "経歴・スキルも含む総合構成"
+        ],
+        "got": [
+          "経営層/クライアント",
+          "実績/成果数値重視",
+          "個別ケーススタディ型",
+          "堅実/信頼感",
+          "経歴・スキルも含む総合構成"
+        ]
+      },
+      "explode_meta": {
+        "attempts": 1,
+        "input_form": "raw_brief_text",
+        "api_ms": 12252,
+        "wall_ms": 22238,
+        "failed_attempts": [],
+        "from_cache": true
+      },
+      "decisions": [
+        {
+          "question_point": "閲覧者(採用側)の職種・専門性",
+          "anchor_words": [
+            "転職活動用に個人ポートフォリオサイトが欲しい"
+          ],
+          "options": [
+            "人事採用担当",
+            "現場エンジニア/デザイナー",
+            "経営層/クライアント"
+          ],
+          "picked_index": 2,
+          "chosen_label": "経営層/クライアント",
+          "tokens": {
+            "palette": [
+              "#1c1c1c",
+              "#3a3630",
+              "#a8895a"
+            ],
+            "heading_font": "serif",
+            "density": "airy",
+            "corner": "sharp",
+            "tone_sample": "実績が導く意思決定。ポートフォリオが語る、確かな成果。"
+          },
+          "render_error": null,
+          "rationale": "経営層/クライアントを想定読者に確定したことで、専門技術用語を避け成果と信頼性を伝える表現方針が下流で一意に定まる。"
+        },
+        {
+          "question_point": "志望職種・アピール軸",
+          "anchor_words": [
+            "作品はいくつかあるんだけど"
+          ],
+          "options": [
+            "技術力重視",
+            "デザイン/表現力重視",
+            "実績/成果数値重視"
+          ],
+          "picked_index": 2,
+          "chosen_label": "実績/成果数値重視",
+          "tokens": {
+            "palette": [
+              "#0b1220",
+              "#16305c",
+              "#f2a900"
+            ],
+            "heading_font": "sans",
+            "density": "dense",
+            "corner": "sharp",
+            "tone_sample": "売上180%改善、開発効率40%向上——数字で語る成果一覧。"
+          },
+          "render_error": null,
+          "rationale": "実績/成果数値重視を選んだことで、作品はいくつかあるんだけにとどまらず定量的な成果訴求が構成の軸になる。"
+        },
+        {
+          "question_point": "作品の見せ方の粒度",
+          "anchor_words": [
+            "センスよくまとめて"
+          ],
+          "options": [
+            "一覧ギャラリー型",
+            "個別ケーススタディ型"
+          ],
+          "picked_index": 1,
+          "chosen_label": "個別ケーススタディ型",
+          "tokens": {
+            "palette": [
+              "#1c1c1c",
+              "#3a3a38",
+              "#b08d57"
+            ],
+            "heading_font": "serif",
+            "density": "airy",
+            "corner": "sharp",
+            "tone_sample": "この一枚に至るまで—プロジェクトの設計判断を辿る"
+          },
+          "render_error": null,
+          "rationale": "個別ケーススタディ型を選んだことで、センスよくまとめての曖昧さが作品ごとの背景・課題・成果を分けて記述する形式に一意化される。"
+        },
+        {
+          "question_point": "「センスよく」のトーン解釈",
+          "anchor_words": [
+            "センスよくまとめて"
+          ],
+          "options": [
+            "ミニマル/洗練",
+            "個性的/クリエイティブ",
+            "堅実/信頼感"
+          ],
+          "picked_index": 2,
+          "chosen_label": "堅実/信頼感",
+          "tokens": {
+            "palette": [
+              "#1c2b3a",
+              "#2f4f6b",
+              "#b8925a"
+            ],
+            "heading_font": "serif",
+            "density": "normal",
+            "corner": "sharp",
+            "tone_sample": "実績で語る、確かな仕事。転職活動へ向けた制作実績一覧。"
+          },
+          "render_error": null,
+          "rationale": "堅実/信頼感を選んだことで、センスよくまとめてが指す方向性が装飾的な華やかさではなく落ち着いた誠実さの表現に確定する。"
+        },
+        {
+          "question_point": "サイト全体の情報構成",
+          "anchor_words": [
+            "個人ポートフォリオサイトが欲しい"
+          ],
+          "options": [
+            "作品中心のシンプル構成",
+            "経歴・スキルも含む総合構成"
+          ],
+          "picked_index": 1,
+          "chosen_label": "経歴・スキルも含む総合構成",
+          "tokens": {
+            "palette": [
+              "#12161c",
+              "#2e3a4a",
+              "#c9a24b"
+            ],
+            "heading_font": "serif",
+            "density": "dense",
+            "corner": "sharp",
+            "tone_sample": "経歴・スキル・実績を一望できる、転職活動のための総合ポートフォリオ。"
+          },
+          "render_error": null,
+          "rationale": "経歴・スキルも含む総合構成を選んだことで、個人ポートフォリオサイトが欲しいの範囲が作品紹介単体ではなく経歴やスキルを含む総合的な構成に定まる。"
+        }
+      ],
+      "residual_ambiguity_assessment": "依頼は目的以外ほぼ未指定で、読者・アピール軸・トーン・構成いずれも解釈が大きく分かれる。",
+      "missing_materials": [
+        "作品の具体的な内容・画像・URL",
+        "経歴・スキル・自己紹介文",
+        "応募先業界・職種の情報",
+        "連絡先・SNSリンク"
+      ],
+      "rejected_branches": [],
+      "compiled_brief_md": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> 転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 5\n\n## 決めた判断点\n\n### 閲覧者(採用側)の職種・専門性\n\n- 選択: 経営層/クライアント\n- 原文の根拠語: 「転職活動用に個人ポートフォリオサイトが欲しい」\n- 視覚トークン: パレット #1c1c1c / #3a3630 / #a8895a、見出し=serif、密度=airy、角=sharp\n- トーン例: 実績が導く意思決定。ポートフォリオが語る、確かな成果。\n- 意図: 経営層/クライアントを想定読者に確定したことで、専門技術用語を避け成果と信頼性を伝える表現方針が下流で一意に定まる。\n\n### 志望職種・アピール軸\n\n- 選択: 実績/成果数値重視\n- 原文の根拠語: 「作品はいくつかあるんだけど」\n- 視覚トークン: パレット #0b1220 / #16305c / #f2a900、見出し=sans、密度=dense、角=sharp\n- トーン例: 売上180%改善、開発効率40%向上——数字で語る成果一覧。\n- 意図: 実績/成果数値重視を選んだことで、作品はいくつかあるんだけにとどまらず定量的な成果訴求が構成の軸になる。\n\n### 作品の見せ方の粒度\n\n- 選択: 個別ケーススタディ型\n- 原文の根拠語: 「センスよくまとめて」\n- 視覚トークン: パレット #1c1c1c / #3a3a38 / #b08d57、見出し=serif、密度=airy、角=sharp\n- トーン例: この一枚に至るまで—プロジェクトの設計判断を辿る\n- 意図: 個別ケーススタディ型を選んだことで、センスよくまとめての曖昧さが作品ごとの背景・課題・成果を分けて記述する形式に一意化される。\n\n### 「センスよく」のトーン解釈\n\n- 選択: 堅実/信頼感\n- 原文の根拠語: 「センスよくまとめて」\n- 視覚トークン: パレット #1c2b3a / #2f4f6b / #b8925a、見出し=serif、密度=normal、角=sharp\n- トーン例: 実績で語る、確かな仕事。転職活動へ向けた制作実績一覧。\n- 意図: 堅実/信頼感を選んだことで、センスよくまとめてが指す方向性が装飾的な華やかさではなく落ち着いた誠実さの表現に確定する。\n\n### サイト全体の情報構成\n\n- 選択: 経歴・スキルも含む総合構成\n- 原文の根拠語: 「個人ポートフォリオサイトが欲しい」\n- 視覚トークン: パレット #12161c / #2e3a4a / #c9a24b、見出し=serif、密度=dense、角=sharp\n- トーン例: 経歴・スキル・実績を一望できる、転職活動のための総合ポートフォリオ。\n- 意図: 経歴・スキルも含む総合構成を選んだことで、個人ポートフォリオサイトが欲しいの範囲が作品紹介単体ではなく経歴やスキルを含む総合的な構成に定まる。\n\n## 残存曖昧度\n\n依頼は目的以外ほぼ未指定で、読者・アピール軸・トーン・構成いずれも解釈が大きく分かれる。\n\n## 発注者からの提供が必要な材料\n\n- 作品の具体的な内容・画像・URL\n- 経歴・スキル・自己紹介文\n- 応募先業界・職種の情報\n- 連絡先・SNSリンク\n\n---\n\nこのブリーフは、上の1文と 5 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+      "timings": {
+        "explode": {
+          "api_ms": 12252,
+          "wall_ms": 22238,
+          "from_cache": true
+        },
+        "render": [
+          {
+            "api_ms": 7542,
+            "ok": true
+          },
+          {
+            "api_ms": 5941,
+            "ok": true
+          },
+          {
+            "api_ms": 5596,
+            "ok": true
+          },
+          {
+            "api_ms": 5632,
+            "ok": true
+          },
+          {
+            "api_ms": 9644,
+            "ok": true
+          }
+        ],
+        "compile": {
+          "api_ms": 9500,
+          "wall_ms": 24559,
+          "error": null
+        },
+        "raw": {
+          "api_ms": 41846,
+          "wall_ms": 47505
+        },
+        "compiled": {
+          "api_ms": 55221,
+          "wall_ms": 57941
+        }
+      },
+      "verification": {
+        "compiled": {
+          "gyakumon_choice_comments_total": 5,
+          "traced": 5,
+          "of": 5,
+          "traces": [
+            {
+              "question_point": "閲覧者(採用側)の職種・専門性",
+              "chosen_label": "経営層/クライアント",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 閲覧者(採用側)の職種・専門性 = 経営層/クライアント"
+            },
+            {
+              "question_point": "志望職種・アピール軸",
+              "chosen_label": "実績/成果数値重視",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 志望職種・アピール軸 = 実績/成果数値重視"
+            },
+            {
+              "question_point": "作品の見せ方の粒度",
+              "chosen_label": "個別ケーススタディ型",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 作品の見せ方の粒度 = 個別ケーススタディ型"
+            },
+            {
+              "question_point": "「センスよく」のトーン解釈",
+              "chosen_label": "堅実/信頼感",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 「センスよく」のトーン解釈 = 堅実/信頼感"
+            },
+            {
+              "question_point": "サイト全体の情報構成",
+              "chosen_label": "経歴・スキルも含む総合構成",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: サイト全体の情報構成 = 経歴・スキルも含む総合構成"
+            }
+          ]
+        },
+        "raw_signature": {
+          "hex_colors_unique": [
+            "#0f1115",
+            "#161923",
+            "#7c9cff",
+            "#8fe3c7",
+            "#9aa3b2",
+            "#eef0f4"
+          ],
+          "hex_colors_count": 7,
+          "bytes": 4869
+        },
+        "compiled_signature": {
+          "hex_colors_unique": [
+            "#12161c",
+            "#2e3a4a",
+            "#3a4658",
+            "#9aa3ad",
+            "#c9a24b",
+            "#e7e5e0"
+          ],
+          "hex_colors_count": 6,
+          "bytes": 5993
+        },
+        "shared_hex_colors": [],
+        "text_overlap": {
+          "ngram": 8,
+          "jaccard": 0.1187,
+          "raw_chars": 361,
+          "compiled_chars": 501
+        }
+      },
+      "prompts": {
+        "maker_system_raw": "あなたは個人サイトの制作者である。与えられた発注内容だけを根拠に、転職活動用の個人ポートフォリオサイト(1ページ)を1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のページ。名前と肩書きのヒーロー / 自己紹介 / 作品3点(タイトル・役割・一言) / できること / 経歴サマリ / 連絡先CTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 発注内容に書かれていない事実(社名・実績・数値・日付・固有名)を断定的に作らない。\n  必要なら〈氏名〉〈作品タイトル〉のようなプレースホルダを使う。\n",
+        "maker_system_compiled": "あなたは個人サイトの制作者である。与えられた発注内容だけを根拠に、転職活動用の個人ポートフォリオサイト(1ページ)を1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のページ。名前と肩書きのヒーロー / 自己紹介 / 作品3点(タイトル・役割・一言) / できること / 経歴サマリ / 連絡先CTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 発注内容に書かれていない事実(社名・実績・数値・日付・固有名)を断定的に作らない。\n  必要なら〈氏名〉〈作品タイトル〉のようなプレースホルダを使う。\n\n## コンパイル済みブリーフの扱い(この実行に固有)\n\n- 入力は GYAKUMON が出力した「コンパイル済みブリーフ」である。発注者が確定した判断点が\n  明示されている。書かれている決定はすべて実装に反映せよ。解釈で薄めない。\n- 「視覚トークン」に書かれたパレット(16進3色)・見出し書体(serif/sans/rounded)・\n  密度(airy/normal/dense)・角(sharp/soft)は厳密に実装する。パレットの3色は\n  [地色, 主要色, 強調色] の役割で使い、他の色相を勝手に足さない。\n  密度 airy は余白を大きく行間を広く、dense は詰めて情報量を多く、\n  角 sharp は border-radius:0、soft は大きめの border-radius とする。\n- 「トーン例」の文体をコピーの基調にする。\n- 各決定を反映した要素の直前に、次の形の HTML コメントを1つ置く(機械照合に使う):\n  <!-- GYAKUMON-CHOICE: 判断点 = 選択ラベル -->\n  判断点と選択ラベルはブリーフに書かれている文字列をそのまま使う。すべての決定について1回以上置く。\n  <style> 内の CSS 規則に印を付ける場合は同じ本文を CSS コメント\n  /* GYAKUMON-CHOICE: 判断点 = 選択ラベル */ の形で書く。\n",
+        "user_raw": "転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。",
+        "user_compiled": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> 転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 5\n\n## 決めた判断点\n\n### 閲覧者(採用側)の職種・専門性\n\n- 選択: 経営層/クライアント\n- 原文の根拠語: 「転職活動用に個人ポートフォリオサイトが欲しい」\n- 視覚トークン: パレット #1c1c1c / #3a3630 / #a8895a、見出し=serif、密度=airy、角=sharp\n- トーン例: 実績が導く意思決定。ポートフォリオが語る、確かな成果。\n- 意図: 経営層/クライアントを想定読者に確定したことで、専門技術用語を避け成果と信頼性を伝える表現方針が下流で一意に定まる。\n\n### 志望職種・アピール軸\n\n- 選択: 実績/成果数値重視\n- 原文の根拠語: 「作品はいくつかあるんだけど」\n- 視覚トークン: パレット #0b1220 / #16305c / #f2a900、見出し=sans、密度=dense、角=sharp\n- トーン例: 売上180%改善、開発効率40%向上——数字で語る成果一覧。\n- 意図: 実績/成果数値重視を選んだことで、作品はいくつかあるんだけにとどまらず定量的な成果訴求が構成の軸になる。\n\n### 作品の見せ方の粒度\n\n- 選択: 個別ケーススタディ型\n- 原文の根拠語: 「センスよくまとめて」\n- 視覚トークン: パレット #1c1c1c / #3a3a38 / #b08d57、見出し=serif、密度=airy、角=sharp\n- トーン例: この一枚に至るまで—プロジェクトの設計判断を辿る\n- 意図: 個別ケーススタディ型を選んだことで、センスよくまとめての曖昧さが作品ごとの背景・課題・成果を分けて記述する形式に一意化される。\n\n### 「センスよく」のトーン解釈\n\n- 選択: 堅実/信頼感\n- 原文の根拠語: 「センスよくまとめて」\n- 視覚トークン: パレット #1c2b3a / #2f4f6b / #b8925a、見出し=serif、密度=normal、角=sharp\n- トーン例: 実績で語る、確かな仕事。転職活動へ向けた制作実績一覧。\n- 意図: 堅実/信頼感を選んだことで、センスよくまとめてが指す方向性が装飾的な華やかさではなく落ち着いた誠実さの表現に確定する。\n\n### サイト全体の情報構成\n\n- 選択: 経歴・スキルも含む総合構成\n- 原文の根拠語: 「個人ポートフォリオサイトが欲しい」\n- 視覚トークン: パレット #12161c / #2e3a4a / #c9a24b、見出し=serif、密度=dense、角=sharp\n- トーン例: 経歴・スキル・実績を一望できる、転職活動のための総合ポートフォリオ。\n- 意図: 経歴・スキルも含む総合構成を選んだことで、個人ポートフォリオサイトが欲しいの範囲が作品紹介単体ではなく経歴やスキルを含む総合的な構成に定まる。\n\n## 残存曖昧度\n\n依頼は目的以外ほぼ未指定で、読者・アピール軸・トーン・構成いずれも解釈が大きく分かれる。\n\n## 発注者からの提供が必要な材料\n\n- 作品の具体的な内容・画像・URL\n- 経歴・スキル・自己紹介文\n- 応募先業界・職種の情報\n- 連絡先・SNSリンク\n\n---\n\nこのブリーフは、上の1文と 5 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+        "extraction_prompt_file": "prompts/extraction_product_v1.txt",
+        "render_prompt_file": "prompts/render_v0.txt",
+        "compile_prompt_file": "prompts/compile_v0.txt"
+      }
+    },
+    {
+      "brief_id": "scout-mail",
+      "brief": "エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。",
+      "deliverable_kind": "text",
+      "deliverable": "エンジニア宛のスカウトメールの文面",
+      "generated_at": "2026-07-29T16:06:06.010613+00:00",
+      "finished_at": "2026-07-29T16:08:10.804841+00:00",
+      "total_wall_ms": 124790,
+      "outputs": {
+        "raw": "scout-mail/raw.html",
+        "compiled": "scout-mail/compiled.html",
+        "compiled_brief": "scout-mail/compiled_brief.md",
+        "explode_cache": "scout-mail/explode.json"
+      },
+      "picks_source": "baked_contrast_picks",
+      "picked_indices": [
+        2,
+        1,
+        1,
+        2,
+        1
+      ],
+      "expected_label_check": {
+        "match": true,
+        "expected": [
+          "転職潜在層",
+          "文化・人柄アピール",
+          "カジュアル親近感",
+          "プロダクト共感訴求",
+          "個人経歴言及型"
+        ],
+        "got": [
+          "転職潜在層",
+          "文化・人柄アピール",
+          "カジュアル親近感",
+          "プロダクト共感訴求",
+          "個人経歴言及型"
+        ]
+      },
+      "explode_meta": {
+        "attempts": 2,
+        "input_form": "wrapped_in_brief_tag",
+        "api_ms": 17432,
+        "wall_ms": 29600,
+        "failed_attempts": [
+          "attempt1: JSONを読めない(本文に '{' が存在しない)"
+        ],
+        "from_cache": true
+      },
+      "decisions": [
+        {
+          "question_point": "読み手であるエンジニアの想定層",
+          "anchor_words": [
+            "エンジニアに送るスカウトメール"
+          ],
+          "options": [
+            "若手・成長志向",
+            "ハイスキル即戦力",
+            "転職潜在層"
+          ],
+          "picked_index": 2,
+          "chosen_label": "転職潜在層",
+          "tokens": {
+            "palette": [
+              "#1c1c1e",
+              "#3a3a3c",
+              "#8e6a4f"
+            ],
+            "heading_font": "serif",
+            "density": "airy",
+            "corner": "sharp",
+            "tone_sample": "エンジニアという仕事、まだ好きですか。"
+          },
+          "render_error": null,
+          "rationale": "読み手を転職潜在層と確定させたことで、緊急転職者向けの煽り文言ではなく興味喚起型の文面設計が一意に定まる。"
+        },
+        {
+          "question_point": "「うちっぽさ」の中身",
+          "anchor_words": [
+            "うちっぽさが伝わって"
+          ],
+          "options": [
+            "技術・裁量アピール",
+            "文化・人柄アピール",
+            "事業・裁量アピール"
+          ],
+          "picked_index": 1,
+          "chosen_label": "文化・人柄アピール",
+          "tokens": {
+            "palette": [
+              "#3e3226",
+              "#b5895a",
+              "#e8934a"
+            ],
+            "heading_font": "rounded",
+            "density": "airy",
+            "corner": "soft",
+            "tone_sample": "エンジニアのあなたへ、雑談から始まる採用面談。"
+          },
+          "render_error": null,
+          "rationale": "うちっぽさを文化・人柄アピールと確定させ、原文の曖昧な自社らしさの表現軸を制度紹介ではなく人物・雰囲気描写に絞り込んだ。"
+        },
+        {
+          "question_point": "文面のトーン",
+          "anchor_words": [
+            "返信したくなるやつ"
+          ],
+          "options": [
+            "フォーマル丁寧",
+            "カジュアル親近感"
+          ],
+          "picked_index": 1,
+          "chosen_label": "カジュアル親近感",
+          "tokens": {
+            "palette": [
+              "#fff4db",
+              "#ff7a3d",
+              "#2e2a22"
+            ],
+            "heading_font": "rounded",
+            "density": "airy",
+            "corner": "soft",
+            "tone_sample": "そのコード、うちで話そ。エンジニアが気軽に返信したくなる一通。"
+          },
+          "render_error": null,
+          "rationale": "返信したくなるやつをカジュアル親近感のトーンと確定させ、堅い定型文ではなく話しかけるような文体で書くことが定まった。"
+        },
+        {
+          "question_point": "スカウトの訴求軸",
+          "anchor_words": [
+            "返信したくなるやつ"
+          ],
+          "options": [
+            "待遇・条件訴求",
+            "技術挑戦訴求",
+            "プロダクト共感訴求"
+          ],
+          "picked_index": 2,
+          "chosen_label": "プロダクト共感訴求",
+          "tokens": {
+            "palette": [
+              "#12261f",
+              "#1f5240",
+              "#7fe6b8"
+            ],
+            "heading_font": "rounded",
+            "density": "airy",
+            "corner": "soft",
+            "tone_sample": "そのプロダクト、あなたと創りたい理由があります"
+          },
+          "render_error": null,
+          "rationale": "返信したくなるやつの訴求軸をプロダクト共感訴求と確定させ、待遇面ではなく事業内容や作るものへの共感喚起を軸に据えた。"
+        },
+        {
+          "question_point": "個別カスタマイズの度合い",
+          "anchor_words": [
+            "エンジニアに送るスカウトメール"
+          ],
+          "options": [
+            "汎用テンプレ型",
+            "個人経歴言及型"
+          ],
+          "picked_index": 1,
+          "chosen_label": "個人経歴言及型",
+          "tokens": {
+            "palette": [
+              "#12100e",
+              "#4a3628",
+              "#c99a5b"
+            ],
+            "heading_font": "serif",
+            "density": "airy",
+            "corner": "sharp",
+            "tone_sample": "○○さんのあの登壇、刺さりました。うちで、その続きを。"
+          },
+          "render_error": null,
+          "rationale": "個別カスタマイズの度合いを個人経歴言及型と確定させ、汎用文面ではなく相手固有の経歴に触れる構成が下流で定まった。"
+        }
+      ],
+      "residual_ambiguity_assessment": "対象・トーン・訴求軸など未指定で、曖昧さの残存度は高い。",
+      "missing_materials": [
+        "自社の名称・事業内容",
+        "募集ポジションの詳細",
+        "候補者のプロフィール情報",
+        "待遇・条件の具体情報"
+      ],
+      "rejected_branches": [],
+      "compiled_brief_md": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 5\n\n## 決めた判断点\n\n### 読み手であるエンジニアの想定層\n\n- 選択: 転職潜在層\n- 原文の根拠語: 「エンジニアに送るスカウトメール」\n- 視覚トークン: パレット #1c1c1e / #3a3a3c / #8e6a4f、見出し=serif、密度=airy、角=sharp\n- トーン例: エンジニアという仕事、まだ好きですか。\n- 意図: 読み手を転職潜在層と確定させたことで、緊急転職者向けの煽り文言ではなく興味喚起型の文面設計が一意に定まる。\n\n### 「うちっぽさ」の中身\n\n- 選択: 文化・人柄アピール\n- 原文の根拠語: 「うちっぽさが伝わって」\n- 視覚トークン: パレット #3e3226 / #b5895a / #e8934a、見出し=rounded、密度=airy、角=soft\n- トーン例: エンジニアのあなたへ、雑談から始まる採用面談。\n- 意図: うちっぽさを文化・人柄アピールと確定させ、原文の曖昧な自社らしさの表現軸を制度紹介ではなく人物・雰囲気描写に絞り込んだ。\n\n### 文面のトーン\n\n- 選択: カジュアル親近感\n- 原文の根拠語: 「返信したくなるやつ」\n- 視覚トークン: パレット #fff4db / #ff7a3d / #2e2a22、見出し=rounded、密度=airy、角=soft\n- トーン例: そのコード、うちで話そ。エンジニアが気軽に返信したくなる一通。\n- 意図: 返信したくなるやつをカジュアル親近感のトーンと確定させ、堅い定型文ではなく話しかけるような文体で書くことが定まった。\n\n### スカウトの訴求軸\n\n- 選択: プロダクト共感訴求\n- 原文の根拠語: 「返信したくなるやつ」\n- 視覚トークン: パレット #12261f / #1f5240 / #7fe6b8、見出し=rounded、密度=airy、角=soft\n- トーン例: そのプロダクト、あなたと創りたい理由があります\n- 意図: 返信したくなるやつの訴求軸をプロダクト共感訴求と確定させ、待遇面ではなく事業内容や作るものへの共感喚起を軸に据えた。\n\n### 個別カスタマイズの度合い\n\n- 選択: 個人経歴言及型\n- 原文の根拠語: 「エンジニアに送るスカウトメール」\n- 視覚トークン: パレット #12100e / #4a3628 / #c99a5b、見出し=serif、密度=airy、角=sharp\n- トーン例: ○○さんのあの登壇、刺さりました。うちで、その続きを。\n- 意図: 個別カスタマイズの度合いを個人経歴言及型と確定させ、汎用文面ではなく相手固有の経歴に触れる構成が下流で定まった。\n\n## 残存曖昧度\n\n対象・トーン・訴求軸など未指定で、曖昧さの残存度は高い。\n\n## 発注者からの提供が必要な材料\n\n- 自社の名称・事業内容\n- 募集ポジションの詳細\n- 候補者のプロフィール情報\n- 待遇・条件の具体情報\n\n---\n\nこのブリーフは、上の1文と 5 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+      "timings": {
+        "explode": {
+          "api_ms": 17432,
+          "wall_ms": 29600,
+          "from_cache": true
+        },
+        "render": [
+          {
+            "api_ms": 4363,
+            "ok": true
+          },
+          {
+            "api_ms": 7336,
+            "ok": true
+          },
+          {
+            "api_ms": 6130,
+            "ok": true
+          },
+          {
+            "api_ms": 5114,
+            "ok": true
+          },
+          {
+            "api_ms": 5925,
+            "ok": true
+          }
+        ],
+        "compile": {
+          "api_ms": 10278,
+          "wall_ms": 13846,
+          "error": null
+        },
+        "raw": {
+          "api_ms": 34784,
+          "wall_ms": 35886
+        },
+        "compiled": {
+          "api_ms": 41340,
+          "wall_ms": 46958
+        }
+      },
+      "verification": {
+        "compiled": {
+          "gyakumon_choice_comments_total": 5,
+          "traced": 5,
+          "of": 5,
+          "traces": [
+            {
+              "question_point": "読み手であるエンジニアの想定層",
+              "chosen_label": "転職潜在層",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 読み手であるエンジニアの想定層 = 転職潜在層"
+            },
+            {
+              "question_point": "「うちっぽさ」の中身",
+              "chosen_label": "文化・人柄アピール",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 「うちっぽさ」の中身 = 文化・人柄アピール"
+            },
+            {
+              "question_point": "文面のトーン",
+              "chosen_label": "カジュアル親近感",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 文面のトーン = カジュアル親近感"
+            },
+            {
+              "question_point": "スカウトの訴求軸",
+              "chosen_label": "プロダクト共感訴求",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: スカウトの訴求軸 = プロダクト共感訴求"
+            },
+            {
+              "question_point": "個別カスタマイズの度合い",
+              "chosen_label": "個人経歴言及型",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 個別カスタマイズの度合い = 個人経歴言及型"
+            }
+          ]
+        },
+        "raw_signature": {
+          "hex_colors_unique": [
+            "#2b2b28",
+            "#4a4844",
+            "#8a8880",
+            "#e0ded8",
+            "#f4f4f2",
+            "#ffffff"
+          ],
+          "hex_colors_count": 9,
+          "bytes": 3215
+        },
+        "compiled_signature": {
+          "hex_colors_unique": [
+            "#2e2a22",
+            "#8e6a4f",
+            "#ff7a3d",
+            "#ffe0b0",
+            "#fff4db"
+          ],
+          "hex_colors_count": 9,
+          "bytes": 3358
+        },
+        "shared_hex_colors": [],
+        "text_overlap": {
+          "ngram": 8,
+          "jaccard": 0.0183,
+          "raw_chars": 594,
+          "compiled_chars": 490
+        }
+      },
+      "prompts": {
+        "maker_system_raw": "あなたは採用担当のライターである。与えられた発注内容だけを根拠に、エンジニア宛のスカウトメールの文面を1本書く。\n\n## 成果物の性質\n\n- 成果物は「読み手に届ける文面」そのものである。HTML はその文面を画面で読ませるための枠にすぎない。\n  枠の作り込みではなく、文面の中身(誰に何をどの順で言うか・語彙・文体)で勝負する。\n- 本文はそのままコピーして使える日本語の文章にする。タグでしか意味が通じない書き方をしない。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 枠は横幅 720px 程度・中央寄せ・縦1カラムの文書とし、次の順で構成する: 件名 / 宛名 / 本文(段落を分ける) / 結びと次の一歩 / 署名。\n- 文面の分量は件名1行と本文 400〜600 字程度。全体で概ね 140 行以内に収める。\n- 発注内容に書かれていない事実(社名・実績・数値・価格・日付・固有名)を断定的に作らない。\n  必要なら〈会社名〉〈候補者名〉〈担当者名〉のようなプレースホルダを使う。\n",
+        "maker_system_compiled": "あなたは採用担当のライターである。与えられた発注内容だけを根拠に、エンジニア宛のスカウトメールの文面を1本書く。\n\n## 成果物の性質\n\n- 成果物は「読み手に届ける文面」そのものである。HTML はその文面を画面で読ませるための枠にすぎない。\n  枠の作り込みではなく、文面の中身(誰に何をどの順で言うか・語彙・文体)で勝負する。\n- 本文はそのままコピーして使える日本語の文章にする。タグでしか意味が通じない書き方をしない。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 枠は横幅 720px 程度・中央寄せ・縦1カラムの文書とし、次の順で構成する: 件名 / 宛名 / 本文(段落を分ける) / 結びと次の一歩 / 署名。\n- 文面の分量は件名1行と本文 400〜600 字程度。全体で概ね 140 行以内に収める。\n- 発注内容に書かれていない事実(社名・実績・数値・価格・日付・固有名)を断定的に作らない。\n  必要なら〈会社名〉〈候補者名〉〈担当者名〉のようなプレースホルダを使う。\n\n## コンパイル済みブリーフの扱い(この実行に固有)\n\n- 入力は GYAKUMON が出力した「コンパイル済みブリーフ」である。発注者が確定した判断点が\n  明示されている。書かれている決定はすべて文面に反映せよ。解釈で薄めない。\n  決定が「誰に向けるか」「何を主張するか」「どの語り口か」を指しているなら、\n  それが読んで分かる形で文面の中身を変える。無難な最大公約数の文面にしない。\n- 「トーン例」の文体を本文の基調にする(そのまま引き写すのではなく、語彙と距離感を合わせる)。\n- 「視覚トークン」のパレット(16進3色)は枠の [地色, 主要色, 強調色] として使い、\n  他の色相を勝手に足さない。見出し書体(serif/sans/rounded)・密度(airy/normal/dense)・\n  角(sharp/soft)も枠に反映する。密度 airy は行間と余白を大きく、dense は詰める。\n- 各決定を反映した箇所の直前に、次の形の HTML コメントを1つ置く(機械照合に使う):\n  <!-- GYAKUMON-CHOICE: 判断点 = 選択ラベル -->\n  判断点と選択ラベルはブリーフに書かれている文字列をそのまま使う。すべての決定について1回以上置く。\n  <style> 内の CSS 規則に印を付ける場合は同じ本文を CSS コメント\n  /* GYAKUMON-CHOICE: 判断点 = 選択ラベル */ の形で書く。\n",
+        "user_raw": "エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。",
+        "user_compiled": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 5\n\n## 決めた判断点\n\n### 読み手であるエンジニアの想定層\n\n- 選択: 転職潜在層\n- 原文の根拠語: 「エンジニアに送るスカウトメール」\n- 視覚トークン: パレット #1c1c1e / #3a3a3c / #8e6a4f、見出し=serif、密度=airy、角=sharp\n- トーン例: エンジニアという仕事、まだ好きですか。\n- 意図: 読み手を転職潜在層と確定させたことで、緊急転職者向けの煽り文言ではなく興味喚起型の文面設計が一意に定まる。\n\n### 「うちっぽさ」の中身\n\n- 選択: 文化・人柄アピール\n- 原文の根拠語: 「うちっぽさが伝わって」\n- 視覚トークン: パレット #3e3226 / #b5895a / #e8934a、見出し=rounded、密度=airy、角=soft\n- トーン例: エンジニアのあなたへ、雑談から始まる採用面談。\n- 意図: うちっぽさを文化・人柄アピールと確定させ、原文の曖昧な自社らしさの表現軸を制度紹介ではなく人物・雰囲気描写に絞り込んだ。\n\n### 文面のトーン\n\n- 選択: カジュアル親近感\n- 原文の根拠語: 「返信したくなるやつ」\n- 視覚トークン: パレット #fff4db / #ff7a3d / #2e2a22、見出し=rounded、密度=airy、角=soft\n- トーン例: そのコード、うちで話そ。エンジニアが気軽に返信したくなる一通。\n- 意図: 返信したくなるやつをカジュアル親近感のトーンと確定させ、堅い定型文ではなく話しかけるような文体で書くことが定まった。\n\n### スカウトの訴求軸\n\n- 選択: プロダクト共感訴求\n- 原文の根拠語: 「返信したくなるやつ」\n- 視覚トークン: パレット #12261f / #1f5240 / #7fe6b8、見出し=rounded、密度=airy、角=soft\n- トーン例: そのプロダクト、あなたと創りたい理由があります\n- 意図: 返信したくなるやつの訴求軸をプロダクト共感訴求と確定させ、待遇面ではなく事業内容や作るものへの共感喚起を軸に据えた。\n\n### 個別カスタマイズの度合い\n\n- 選択: 個人経歴言及型\n- 原文の根拠語: 「エンジニアに送るスカウトメール」\n- 視覚トークン: パレット #12100e / #4a3628 / #c99a5b、見出し=serif、密度=airy、角=sharp\n- トーン例: ○○さんのあの登壇、刺さりました。うちで、その続きを。\n- 意図: 個別カスタマイズの度合いを個人経歴言及型と確定させ、汎用文面ではなく相手固有の経歴に触れる構成が下流で定まった。\n\n## 残存曖昧度\n\n対象・トーン・訴求軸など未指定で、曖昧さの残存度は高い。\n\n## 発注者からの提供が必要な材料\n\n- 自社の名称・事業内容\n- 募集ポジションの詳細\n- 候補者のプロフィール情報\n- 待遇・条件の具体情報\n\n---\n\nこのブリーフは、上の1文と 5 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+        "extraction_prompt_file": "prompts/extraction_product_v1.txt",
+        "render_prompt_file": "prompts/render_v0.txt",
+        "compile_prompt_file": "prompts/compile_v0.txt"
+      }
+    },
+    {
+      "brief_id": "ec-product",
+      "brief": "ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。",
+      "deliverable_kind": "text",
+      "deliverable": "タンブラーの商品説明文",
+      "generated_at": "2026-07-29T16:14:51.651850+00:00",
+      "finished_at": "2026-07-29T16:16:58.789639+00:00",
+      "total_wall_ms": 127130,
+      "outputs": {
+        "raw": "ec-product/raw.html",
+        "compiled": "ec-product/compiled.html",
+        "compiled_brief": "ec-product/compiled_brief.md",
+        "explode_cache": "ec-product/explode.json"
+      },
+      "picks_source": "cli_picks",
+      "picked_indices": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "expected_label_check": {
+        "match": false,
+        "got": [
+          "若年層・ギフト志向",
+          "デザイン性訴求",
+          "熱量高いセールス調",
+          "限定感・お得感訴求"
+        ],
+        "expected_at_run": [
+          "高価格帯こだわり層",
+          "ライフスタイル訴求",
+          "落ち着いた上質調",
+          "使用シーン訴求"
+        ],
+        "expected_now": [
+          "若年層・ギフト志向",
+          "デザイン性訴求",
+          "熱量高いセールス調",
+          "限定感・お得感訴求"
+        ],
+        "note": "生成は --picks 0,1,0,2 による1回だけの組替え再生成。実行時点の BRIEF_SPECS の焼き付け値は旧組(高価格帯こだわり層/ライフスタイル訴求/落ち着いた上質調/使用シーン訴求)だったため match:false が記録された。生成後に焼き付け値を実際に採用した組へ更新したので、現在のスクリプトで再実行すれば同じ組になる。この note と expected_now の2項目のみ2026-07-30 に手で追記した(他のフィールドは生成時のまま)。"
+      },
+      "explode_meta": {
+        "attempts": 1,
+        "input_form": "raw_brief_text",
+        "api_ms": 12371,
+        "wall_ms": 15990,
+        "failed_attempts": [],
+        "from_cache": true
+      },
+      "decisions": [
+        {
+          "question_point": "想定読者の年代・属性",
+          "anchor_words": [
+            "ネットショップに載せるタンブラーの商品説明文"
+          ],
+          "options": [
+            "若年層・ギフト志向",
+            "実用重視の一般層",
+            "高価格帯こだわり層"
+          ],
+          "picked_index": 0,
+          "chosen_label": "若年層・ギフト志向",
+          "tokens": {
+            "palette": [
+              "#fff7fb",
+              "#ff6fa5",
+              "#7a5cfa"
+            ],
+            "heading_font": "rounded",
+            "density": "airy",
+            "corner": "soft",
+            "tone_sample": "friendに贈る、笑顔になるタンブラー。"
+          },
+          "render_error": null,
+          "rationale": "若年層・ギフト志向の読者に定めたことで、以降の語彙選択や訴求の切り口が贈り物需要を意識したものに一本化される。"
+        },
+        {
+          "question_point": "訴求の中心軸",
+          "anchor_words": [
+            "ちゃんと良さが伝わって"
+          ],
+          "options": [
+            "機能性訴求",
+            "デザイン性訴求",
+            "ライフスタイル訴求"
+          ],
+          "picked_index": 1,
+          "chosen_label": "デザイン性訴求",
+          "tokens": {
+            "palette": [
+              "#0b0b0d",
+              "#1e1d24",
+              "#c9a063"
+            ],
+            "heading_font": "serif",
+            "density": "airy",
+            "corner": "sharp",
+            "tone_sample": "削ぎ落とした一脚。手にした瞬間、タンブラーが佇まいになる。"
+          },
+          "render_error": null,
+          "rationale": "「良さが伝わって」という曖昧な要望をデザイン性訴求に絞ったことで、機能面よりも見た目・所有満足度を中心に文章を組み立てる方針が定まる。"
+        },
+        {
+          "question_point": "文章のトーン",
+          "anchor_words": [
+            "ポチりたくなるように"
+          ],
+          "options": [
+            "熱量高いセールス調",
+            "落ち着いた上質調",
+            "親しみやすい会話調"
+          ],
+          "picked_index": 0,
+          "chosen_label": "熱量高いセールス調",
+          "tokens": {
+            "palette": [
+              "#1a0000",
+              "#ff2400",
+              "#ffd400"
+            ],
+            "heading_font": "sans",
+            "density": "dense",
+            "corner": "sharp",
+            "tone_sample": "今すぐ確保!売切必至のタンブラー、逃したら後悔"
+          },
+          "render_error": null,
+          "rationale": "「ポチりたくなるように」を熱量高いセールス調と定めたことで、淡々とした説明ではなく購買を煽る文体で全体を統一する方針が確定する。"
+        },
+        {
+          "question_point": "購買を後押しする決め手の種類",
+          "anchor_words": [
+            "ポチりたくなるように"
+          ],
+          "options": [
+            "機能スペック訴求",
+            "使用シーン訴求",
+            "限定感・お得感訴求"
+          ],
+          "picked_index": 2,
+          "chosen_label": "限定感・お得感訴求",
+          "tokens": {
+            "palette": [
+              "#1a0f08",
+              "#8c1d2b",
+              "#e8b84b"
+            ],
+            "heading_font": "serif",
+            "density": "dense",
+            "corner": "sharp",
+            "tone_sample": "数量限定タンブラー、今だけ特別価格でご案内。"
+          },
+          "render_error": null,
+          "rationale": "決め手を限定感・お得感訴求と定めたことで、品質保証や機能列挙ではなく今買う理由を強調する構成に一意化される。"
+        }
+      ],
+      "residual_ambiguity_assessment": "目的は述べられているが、対象読者・トーン・訴求軸・使用シーンが未指定で分岐が複数残る",
+      "missing_materials": [
+        "タンブラーの型番・仕様(容量・素材・保温性能など)",
+        "価格",
+        "商品写真・素材画像",
+        "ブランド名・既存の世界観資料"
+      ],
+      "rejected_branches": [],
+      "compiled_brief_md": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 4\n\n## 決めた判断点\n\n### 想定読者の年代・属性\n\n- 選択: 若年層・ギフト志向\n- 原文の根拠語: 「ネットショップに載せるタンブラーの商品説明文」\n- 視覚トークン: パレット #fff7fb / #ff6fa5 / #7a5cfa、見出し=rounded、密度=airy、角=soft\n- トーン例: friendに贈る、笑顔になるタンブラー。\n- 意図: 若年層・ギフト志向の読者に定めたことで、以降の語彙選択や訴求の切り口が贈り物需要を意識したものに一本化される。\n\n### 訴求の中心軸\n\n- 選択: デザイン性訴求\n- 原文の根拠語: 「ちゃんと良さが伝わって」\n- 視覚トークン: パレット #0b0b0d / #1e1d24 / #c9a063、見出し=serif、密度=airy、角=sharp\n- トーン例: 削ぎ落とした一脚。手にした瞬間、タンブラーが佇まいになる。\n- 意図: 「良さが伝わって」という曖昧な要望をデザイン性訴求に絞ったことで、機能面よりも見た目・所有満足度を中心に文章を組み立てる方針が定まる。\n\n### 文章のトーン\n\n- 選択: 熱量高いセールス調\n- 原文の根拠語: 「ポチりたくなるように」\n- 視覚トークン: パレット #1a0000 / #ff2400 / #ffd400、見出し=sans、密度=dense、角=sharp\n- トーン例: 今すぐ確保!売切必至のタンブラー、逃したら後悔\n- 意図: 「ポチりたくなるように」を熱量高いセールス調と定めたことで、淡々とした説明ではなく購買を煽る文体で全体を統一する方針が確定する。\n\n### 購買を後押しする決め手の種類\n\n- 選択: 限定感・お得感訴求\n- 原文の根拠語: 「ポチりたくなるように」\n- 視覚トークン: パレット #1a0f08 / #8c1d2b / #e8b84b、見出し=serif、密度=dense、角=sharp\n- トーン例: 数量限定タンブラー、今だけ特別価格でご案内。\n- 意図: 決め手を限定感・お得感訴求と定めたことで、品質保証や機能列挙ではなく今買う理由を強調する構成に一意化される。\n\n## 残存曖昧度\n\n目的は述べられているが、対象読者・トーン・訴求軸・使用シーンが未指定で分岐が複数残る\n\n## 発注者からの提供が必要な材料\n\n- タンブラーの型番・仕様(容量・素材・保温性能など)\n- 価格\n- 商品写真・素材画像\n- ブランド名・既存の世界観資料\n\n---\n\nこのブリーフは、上の1文と 4 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+      "timings": {
+        "explode": {
+          "api_ms": 12371,
+          "wall_ms": 15990,
+          "from_cache": true
+        },
+        "render": [
+          {
+            "api_ms": 5673,
+            "ok": true
+          },
+          {
+            "api_ms": 6449,
+            "ok": true
+          },
+          {
+            "api_ms": 6764,
+            "ok": true
+          },
+          {
+            "api_ms": 6357,
+            "ok": true
+          }
+        ],
+        "compile": {
+          "api_ms": 8452,
+          "wall_ms": 11401,
+          "error": null
+        },
+        "raw": {
+          "api_ms": 32251,
+          "wall_ms": 40104
+        },
+        "compiled": {
+          "api_ms": 43206,
+          "wall_ms": 47958
+        }
+      },
+      "verification": {
+        "compiled": {
+          "gyakumon_choice_comments_total": 7,
+          "traced": 4,
+          "of": 4,
+          "traces": [
+            {
+              "question_point": "想定読者の年代・属性",
+              "chosen_label": "若年層・ギフト志向",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 想定読者の年代・属性 = 若年層・ギフト志向"
+            },
+            {
+              "question_point": "訴求の中心軸",
+              "chosen_label": "デザイン性訴求",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 訴求の中心軸 = デザイン性訴求"
+            },
+            {
+              "question_point": "文章のトーン",
+              "chosen_label": "熱量高いセールス調",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 文章のトーン = 熱量高いセールス調"
+            },
+            {
+              "question_point": "購買を後押しする決め手の種類",
+              "chosen_label": "限定感・お得感訴求",
+              "found_in_comment": true,
+              "comment": "GYAKUMON-CHOICE: 購買を後押しする決め手の種類 = 限定感・お得感訴求"
+            }
+          ]
+        },
+        "raw_signature": {
+          "hex_colors_unique": [
+            "#2c2a26",
+            "#6b5b3e",
+            "#a37b3d",
+            "#f4f1ec",
+            "#f9f7f3",
+            "#ffffff"
+          ],
+          "hex_colors_count": 7,
+          "bytes": 3145
+        },
+        "compiled_signature": {
+          "hex_colors_unique": [
+            "#1a0f08",
+            "#241209",
+            "#8c1d2b",
+            "#e8b84b",
+            "#e9d9c9",
+            "#f2e6d6",
+            "#fff2e0",
+            "#ffffff"
+          ],
+          "hex_colors_count": 8,
+          "bytes": 3813
+        },
+        "shared_hex_colors": [
+          "#ffffff"
+        ],
+        "text_overlap": {
+          "ngram": 8,
+          "jaccard": 0.005,
+          "raw_chars": 439,
+          "compiled_chars": 384
+        }
+      },
+      "prompts": {
+        "maker_system_raw": "あなたはネットショップのコピーライターである。与えられた発注内容だけを根拠に、タンブラーの商品説明文を1本書く。\n\n## 成果物の性質\n\n- 成果物は「読み手に届ける文面」そのものである。HTML はその文面を画面で読ませるための枠にすぎない。\n  枠の作り込みではなく、文面の中身(誰に何をどの順で言うか・語彙・文体)で勝負する。\n- 本文はそのままコピーして使える日本語の文章にする。タグでしか意味が通じない書き方をしない。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 枠は横幅 720px 程度・中央寄せ・縦1カラムの文書とし、次の順で構成する: 商品名 / キャッチコピー1行 / 説明本文(段落を分ける) / 仕様の箇条書き / 購入ボタン(押せない飾り)。\n- 文面の分量はキャッチ1行と本文 350〜550 字程度。全体で概ね 140 行以内に収める。\n- 発注内容に書かれていない事実(社名・実績・数値・価格・日付・固有名)を断定的に作らない。\n  必要なら〈商品名〉〈容量〉〈価格〉のようなプレースホルダを使う。\n",
+        "maker_system_compiled": "あなたはネットショップのコピーライターである。与えられた発注内容だけを根拠に、タンブラーの商品説明文を1本書く。\n\n## 成果物の性質\n\n- 成果物は「読み手に届ける文面」そのものである。HTML はその文面を画面で読ませるための枠にすぎない。\n  枠の作り込みではなく、文面の中身(誰に何をどの順で言うか・語彙・文体)で勝負する。\n- 本文はそのままコピーして使える日本語の文章にする。タグでしか意味が通じない書き方をしない。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 枠は横幅 720px 程度・中央寄せ・縦1カラムの文書とし、次の順で構成する: 商品名 / キャッチコピー1行 / 説明本文(段落を分ける) / 仕様の箇条書き / 購入ボタン(押せない飾り)。\n- 文面の分量はキャッチ1行と本文 350〜550 字程度。全体で概ね 140 行以内に収める。\n- 発注内容に書かれていない事実(社名・実績・数値・価格・日付・固有名)を断定的に作らない。\n  必要なら〈商品名〉〈容量〉〈価格〉のようなプレースホルダを使う。\n\n## コンパイル済みブリーフの扱い(この実行に固有)\n\n- 入力は GYAKUMON が出力した「コンパイル済みブリーフ」である。発注者が確定した判断点が\n  明示されている。書かれている決定はすべて文面に反映せよ。解釈で薄めない。\n  決定が「誰に向けるか」「何を主張するか」「どの語り口か」を指しているなら、\n  それが読んで分かる形で文面の中身を変える。無難な最大公約数の文面にしない。\n- 「トーン例」の文体を本文の基調にする(そのまま引き写すのではなく、語彙と距離感を合わせる)。\n- 「視覚トークン」のパレット(16進3色)は枠の [地色, 主要色, 強調色] として使い、\n  他の色相を勝手に足さない。見出し書体(serif/sans/rounded)・密度(airy/normal/dense)・\n  角(sharp/soft)も枠に反映する。密度 airy は行間と余白を大きく、dense は詰める。\n- 各決定を反映した箇所の直前に、次の形の HTML コメントを1つ置く(機械照合に使う):\n  <!-- GYAKUMON-CHOICE: 判断点 = 選択ラベル -->\n  判断点と選択ラベルはブリーフに書かれている文字列をそのまま使う。すべての決定について1回以上置く。\n  <style> 内の CSS 規則に印を付ける場合は同じ本文を CSS コメント\n  /* GYAKUMON-CHOICE: 判断点 = 選択ラベル */ の形で書く。\n",
+        "user_raw": "ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。",
+        "user_compiled": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 4\n\n## 決めた判断点\n\n### 想定読者の年代・属性\n\n- 選択: 若年層・ギフト志向\n- 原文の根拠語: 「ネットショップに載せるタンブラーの商品説明文」\n- 視覚トークン: パレット #fff7fb / #ff6fa5 / #7a5cfa、見出し=rounded、密度=airy、角=soft\n- トーン例: friendに贈る、笑顔になるタンブラー。\n- 意図: 若年層・ギフト志向の読者に定めたことで、以降の語彙選択や訴求の切り口が贈り物需要を意識したものに一本化される。\n\n### 訴求の中心軸\n\n- 選択: デザイン性訴求\n- 原文の根拠語: 「ちゃんと良さが伝わって」\n- 視覚トークン: パレット #0b0b0d / #1e1d24 / #c9a063、見出し=serif、密度=airy、角=sharp\n- トーン例: 削ぎ落とした一脚。手にした瞬間、タンブラーが佇まいになる。\n- 意図: 「良さが伝わって」という曖昧な要望をデザイン性訴求に絞ったことで、機能面よりも見た目・所有満足度を中心に文章を組み立てる方針が定まる。\n\n### 文章のトーン\n\n- 選択: 熱量高いセールス調\n- 原文の根拠語: 「ポチりたくなるように」\n- 視覚トークン: パレット #1a0000 / #ff2400 / #ffd400、見出し=sans、密度=dense、角=sharp\n- トーン例: 今すぐ確保!売切必至のタンブラー、逃したら後悔\n- 意図: 「ポチりたくなるように」を熱量高いセールス調と定めたことで、淡々とした説明ではなく購買を煽る文体で全体を統一する方針が確定する。\n\n### 購買を後押しする決め手の種類\n\n- 選択: 限定感・お得感訴求\n- 原文の根拠語: 「ポチりたくなるように」\n- 視覚トークン: パレット #1a0f08 / #8c1d2b / #e8b84b、見出し=serif、密度=dense、角=sharp\n- トーン例: 数量限定タンブラー、今だけ特別価格でご案内。\n- 意図: 決め手を限定感・お得感訴求と定めたことで、品質保証や機能列挙ではなく今買う理由を強調する構成に一意化される。\n\n## 残存曖昧度\n\n目的は述べられているが、対象読者・トーン・訴求軸・使用シーンが未指定で分岐が複数残る\n\n## 発注者からの提供が必要な材料\n\n- タンブラーの型番・仕様(容量・素材・保温性能など)\n- 価格\n- 商品写真・素材画像\n- ブランド名・既存の世界観資料\n\n---\n\nこのブリーフは、上の1文と 4 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+        "extraction_prompt_file": "prompts/extraction_product_v1.txt",
+        "render_prompt_file": "prompts/render_v0.txt",
+        "compile_prompt_file": "prompts/compile_v0.txt"
+      }
     }
-  },
-  "verification": {
-    "compiled": {
-      "gyakumon_choice_comments_total": 2,
-      "traced": 2,
-      "of": 2,
-      "traces": [
-        {
-          "question_point": "LPの目的(何を達成させたいか)",
-          "chosen_label": "商品・サービス訴求",
-          "found_in_comment": true,
-          "comment": "GYAKUMON-CHOICE: LPの目的(何を達成させたいか) = 商品・サービス訴求"
-        },
-        {
-          "question_point": "モダンさと温かみの配分",
-          "chosen_label": "モダン優先",
-          "found_in_comment": true,
-          "comment": "GYAKUMON-CHOICE: モダンさと温かみの配分 = モダン優先"
-        }
-      ]
-    },
-    "raw_signature": {
-      "hex_colors_unique": [
-        "#3a2e28",
-        "#7a6a60",
-        "#e8672f",
-        "#fdf1e6",
-        "#fdf8f2",
-        "#ff8a5c",
-        "#ffb88c",
-        "#ffe8d6",
-        "#fff5ec",
-        "#fff8f2",
-        "#ffffff"
-      ],
-      "hex_colors_count": 15,
-      "bytes": 5901
-    },
-    "compiled_signature": {
-      "hex_colors_unique": [
-        "#00e5b8",
-        "#0b0b0e",
-        "#1a1d24",
-        "#6c6e75",
-        "#9a9ca3",
-        "#b8bac1",
-        "#c7c9cf",
-        "#f5f5f7"
-      ],
-      "hex_colors_count": 12,
-      "bytes": 4601
-    },
-    "raw_control": {
-      "gyakumon_choice_comments_total": 0,
-      "traced": 0,
-      "of": 2,
-      "traces": [
-        {
-          "question_point": "LPの目的(何を達成させたいか)",
-          "chosen_label": "商品・サービス訴求",
-          "found_in_comment": false,
-          "comment": null
-        },
-        {
-          "question_point": "モダンさと温かみの配分",
-          "chosen_label": "モダン優先",
-          "found_in_comment": false,
-          "comment": null
-        }
-      ]
-    },
-    "note": "照合は HTMLコメントと <style> 内 CSSコメントの双方を対象にする。raw_control は RAW 側に選択の痕跡が無いこと(0件)の対照確認。"
-  },
-  "prompts": {
-    "lp_system_raw": "あなたはLP制作者である。与えられた発注内容だけを根拠に、企業のランディングページを1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のLP。ヒーロー / 価値提案 / 特徴3点 / 会社について / CTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 会社名や実績などブリーフに書かれていない事実を断定的に作らない。必要なら〈会社名〉のような\n  プレースホルダを使う。\n",
-    "lp_system_compiled": "あなたはLP制作者である。与えられた発注内容だけを根拠に、企業のランディングページを1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のLP。ヒーロー / 価値提案 / 特徴3点 / 会社について / CTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 会社名や実績などブリーフに書かれていない事実を断定的に作らない。必要なら〈会社名〉のような\n  プレースホルダを使う。\n\n## コンパイル済みブリーフの扱い(この実行に固有)\n\n- 入力は GYAKUMON が出力した「コンパイル済みブリーフ」である。発注者が確定した判断点が\n  明示されている。書かれている決定はすべて実装に反映せよ。解釈で薄めない。\n- 「視覚トークン」に書かれたパレット(16進3色)・見出し書体(serif/sans/rounded)・\n  密度(airy/normal/dense)・角(sharp/soft)は厳密に実装する。パレットの3色は\n  [地色, 主要色, 強調色] の役割で使い、他の色相を勝手に足さない。\n  密度 airy は余白を大きく行間を広く、dense は詰めて情報量を多く、\n  角 sharp は border-radius:0、soft は大きめの border-radius とする。\n- 「トーン例」の文体をコピーの基調にする。\n- 各決定を反映した要素の直前に、次の形の HTML コメントを1つ置く(機械照合に使う):\n  <!-- GYAKUMON-CHOICE: 判断点 = 選択ラベル -->\n  判断点と選択ラベルはブリーフに書かれている文字列をそのまま使う。すべての決定について1回以上置く。\n  <style> 内の CSS 規則に印を付ける場合は同じ本文を CSS コメント\n  /* GYAKUMON-CHOICE: 判断点 = 選択ラベル */ の形で書く。\n",
-    "lp_user_raw": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。",
-    "lp_user_compiled": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> モダンだけど温かみのあるLPを作って。うちの会社のやつ。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 2\n\n## 決めた判断点\n\n### LPの目的(何を達成させたいか)\n\n- 選択: 商品・サービス訴求\n- 原文の根拠語: 「うちの会社のやつ」\n- 視覚トークン: パレット #1b1210 / #c0521f / #f2a65a、見出し=sans、密度=normal、角=soft\n- トーン例: この一台が、あなたの毎日を変える。\n- 意図: 「うちの会社のやつ」という曖昧な依頼を商品・サービス訴求と確定し、以降の構成要素は訴求軸に沿って一意に組み立てられる。\n\n### モダンさと温かみの配分\n\n- 選択: モダン優先\n- 原文の根拠語: 「モダンだけど温かみのある」\n- 視覚トークン: パレット #0b0b0e / #1a1d24 / #00e5b8、見出し=sans、密度=airy、角=sharp\n- トーン例: 会社案内、再構築。無駄を削ぎ落とした機能美。\n- 意図: 「モダンだけど温かみのある」の対立軸をモダン優先と確定し、配色・レイアウト等の下流判断はモダン基調を主とする方向で定まる。\n\n## 残存曖昧度\n\n目的・対象・トーン配分が未指定で、曖昧度は非常に高い\n\n## 発注者からの提供が必要な材料\n\n- 会社名\n- 業種\n- 商品・サービスの詳細\n- ターゲット顧客像\n- 既存のブランドカラーやロゴ\n\n---\n\nこのブリーフは、上の1文と 2 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
-    "extraction_prompt_file": "prompts/extraction_product_v1.txt",
-    "render_prompt_file": "prompts/render_v0.txt",
-    "compile_prompt_file": "prompts/compile_v0.txt"
-  },
-  "outputs": {
-    "raw": "raw.html",
-    "compiled": "compiled.html",
-    "compiled_brief": "compiled_brief.md"
-  }
+  ]
 }

@@ -1,0 +1,7 @@
+{"ts": "2026-07-29T15:54:09.440677+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 25900, "api_ms": 22191, "first_branch_ms": 20142, "ok": true, "client_gone": false}
+{"ts": "2026-07-29T15:54:25.099841+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 15600, "api_ms": 12443, "first_branch_ms": 8699, "ok": true, "client_gone": false}
+{"ts": "2026-07-29T15:54:55.538899+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 30331, "api_ms": 15439, "first_branch_ms": 24588, "ok": true, "client_gone": false}
+{"ts": "2026-07-29T15:55:21.249923+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 25673, "api_ms": 13796, "first_branch_ms": 20055, "ok": true, "client_gone": false}
+{"ts": "2026-07-29T15:55:37.990380+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 16723, "api_ms": 15193, "first_branch_ms": 11178, "ok": true, "client_gone": false}
+{"ts": "2026-07-29T15:56:08.197115+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 21186, "api_ms": 11147, "first_branch_ms": null, "ok": true, "client_gone": false}
+{"ts": "2026-07-29T15:56:39.366201+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 30824, "api_ms": 19092, "first_branch_ms": null, "ok": true, "client_gone": false}

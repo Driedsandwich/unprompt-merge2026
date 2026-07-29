@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉| ポートフォリオ</title>
+<style>
+  /* GYAKUMON-CHOICE: 「センスよく」のトーン解釈 = 堅実/信頼感 */
+  :root{
+    --bg:#12161c;
+    --sub:#2e3a4a;
+    --accent:#c9a24b;
+    --text:#e7e5e0;
+    --muted:#9aa3ad;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    line-height:1.9;
+    border-radius:0;
+  }
+  h1,h2,h3{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;letter-spacing:.04em;}
+  section{padding:64px 8vw;border-top:1px solid var(--sub);}
+  a{color:var(--accent);text-decoration:none;}
+
+  /* GYAKUMON-CHOICE: 閲覧者(採用側)の職種・専門性 = 経営層/クライアント */
+  .hero{
+    min-height:60vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:10vh 8vw;
+    background:linear-gradient(160deg,var(--bg) 60%,var(--sub) 100%);
+    border-top:none;
+  }
+  .hero .role{color:var(--accent);letter-spacing:.2em;font-size:.85rem;margin-bottom:18px;}
+  .hero h1{font-size:3rem;margin-bottom:20px;}
+  .hero p{color:var(--muted);max-width:44ch;font-size:1.05rem;}
+
+  .about p{max-width:60ch;color:var(--text);}
+  section h2{font-size:1.6rem;margin-bottom:28px;border-left:4px solid var(--accent);padding-left:16px;}
+
+  /* GYAKUMON-CHOICE: 作品の見せ方の粒度 = 個別ケーススタディ型 */
+  .works{display:flex;flex-direction:column;gap:40px;}
+  .case{
+    background:var(--sub);
+    padding:32px;
+    border:1px solid #3a4658;
+    border-radius:0;
+  }
+  .case .tag{color:var(--accent);font-size:.8rem;letter-spacing:.15em;margin-bottom:8px;}
+  .case h3{font-size:1.3rem;margin-bottom:12px;}
+  .case dl{display:grid;grid-template-columns:100px 1fr;gap:8px 16px;color:var(--muted);font-size:.95rem;}
+  .case dt{color:var(--text);}
+
+  /* GYAKUMON-CHOICE: 志望職種・アピール軸 = 実績/成果数値重視 */
+  .metrics{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px;}
+  .metric{background:var(--bg);border:1px solid var(--accent);padding:14px 20px;min-width:140px;}
+  .metric .num{font-family:sans-serif;font-size:1.8rem;color:var(--accent);font-weight:700;}
+  .metric .label{font-size:.8rem;color:var(--muted);}
+
+  .skills ul{list-style:none;display:flex;flex-wrap:wrap;gap:12px;}
+  .skills li{border:1px solid var(--sub);padding:8px 16px;color:var(--text);font-size:.9rem;}
+
+  /* GYAKUMON-CHOICE: サイト全体の情報構成 = 経歴・スキルも含む総合構成 */
+  .history ol{list-style:none;}
+  .history li{display:flex;gap:24px;padding:12px 0;border-bottom:1px dashed var(--sub);}
+  .history .year{color:var(--accent);min-width:80px;font-family:sans-serif;}
+
+  .contact{text-align:center;background:var(--sub);}
+  .contact h2{border:none;padding:0;justify-content:center;}
+  .contact p{color:var(--muted);margin-bottom:24px;}
+  .cta{
+    display:inline-block;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    padding:14px 40px;
+    font-size:1rem;
+    letter-spacing:.1em;
+  }
+  .cta:hover{background:var(--accent);color:var(--bg);}
+
+  footer{padding:32px 8vw;text-align:center;color:var(--muted);font-size:.8rem;border-top:1px solid var(--sub);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="role">PORTFOLIO / 転職活動用</div>
+  <h1>〈氏名〉</h1>
+  <p>実績が導く意思決定。ポートフォリオが語る、確かな成果。数字と経緯で、これまでの仕事を丁寧にお伝えします。</p>
+</div>
+
+<section class="about">
+  <h2>自己紹介</h2>
+  <p>〈自己紹介文をここに記載〉。誠実な仕事の積み重ねを大切にし、成果につながる取り組みを続けてきました。詳しい経歴・実績は下記をご覧ください。</p>
+</section>
+
+<section class="works">
+  <h2>作品</h2>
+  <div class="case">
+    <div class="tag">CASE STUDY 01</div>
+    <h3>〈作品タイトル1〉</h3>
+    <dl>
+      <dt>役割</dt><dd>〈担当役割〉</dd>
+      <dt>概要</dt><dd>この一枚に至るまで—プロジェクトの設計判断を辿る</dd>
+    </dl>
+    <div class="metrics">
+      <div class="metric"><div class="num">〈%〉</div><div class="label">成果指標</div></div>
+    </div>
+  </div>
+  <div class="case">
+    <div class="tag">CASE STUDY 02</div>
+    <h3>〈作品タイトル2〉</h3>
+    <dl>
+      <dt>役割</dt><dd>〈担当役割〉</dd>
+      <dt>概要</dt><dd>〈一言サマリ〉</dd>
+    </dl>
+    <div class="metrics">
+      <div class="metric"><div class="num">〈%〉</div><div class="label">成果指標</div></div>
+    </div>
+  </div>
+  <div class="case">
+    <div class="tag">CASE STUDY 03</div>
+    <h3>〈作品タイトル3〉</h3>
+    <dl>
+      <dt>役割</dt><dd>〈担当役割〉</dd>
+      <dt>概要</dt><dd>〈一言サマリ〉</dd>
+    </dl>
+    <div class="metrics">
+      <div class="metric"><div class="num">〈%〉</div><div class="label">成果指標</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="skills">
+  <h2>できること</h2>
+  <ul>
+    <li>〈スキル1〉</li>
+    <li>〈スキル2〉</li>
+    <li>〈スキル3〉</li>
+    <li>〈スキル4〉</li>
+  </ul>
+</section>
+
+<section class="history">
+  <h2>経歴サマリ</h2>
+  <ol>
+    <li><span class="year">〈年〉</span><span>〈経歴項目1〉</span></li>
+    <li><span class="year">〈年〉</span><span>〈経歴項目2〉</span></li>
+    <li><span class="year">〈年〉</span><span>〈経歴項目3〉</span></li>
+  </ol>
+</section>
+
+<section class="contact">
+  <h2>お問い合わせ</h2>
+  <p>ご興味をお持ちいただけましたら、お気軽にご連絡ください。</p>
+  <a class="cta" href="mailto:〈連絡先メールアドレス〉">CONTACT</a>
+</section>
+
+<footer>
+  &copy; 〈氏名〉 — Portfolio for Career Change
+</footer>
+
+</body>
+</html>

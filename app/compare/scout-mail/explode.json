@@ -1,0 +1,116 @@
+{
+  "payload": {
+    "branches": [
+      {
+        "id": "b0",
+        "question_point": "読み手であるエンジニアの想定層",
+        "anchor_words": [
+          "エンジニアに送るスカウトメール"
+        ],
+        "options": [
+          {
+            "label": "若手・成長志向"
+          },
+          {
+            "label": "ハイスキル即戦力"
+          },
+          {
+            "label": "転職潜在層"
+          }
+        ],
+        "default_if_unresolved": "ハイスキル即戦力層向けに作成"
+      },
+      {
+        "id": "b1",
+        "question_point": "「うちっぽさ」の中身",
+        "anchor_words": [
+          "うちっぽさが伝わって"
+        ],
+        "options": [
+          {
+            "label": "技術・裁量アピール"
+          },
+          {
+            "label": "文化・人柄アピール"
+          },
+          {
+            "label": "事業・裁量アピール"
+          }
+        ],
+        "default_if_unresolved": "技術力と裁量を軸に表現"
+      },
+      {
+        "id": "b2",
+        "question_point": "文面のトーン",
+        "anchor_words": [
+          "返信したくなるやつ"
+        ],
+        "options": [
+          {
+            "label": "フォーマル丁寧"
+          },
+          {
+            "label": "カジュアル親近感"
+          }
+        ],
+        "default_if_unresolved": "カジュアルめの丁寧文で作成"
+      },
+      {
+        "id": "b3",
+        "question_point": "スカウトの訴求軸",
+        "anchor_words": [
+          "返信したくなるやつ"
+        ],
+        "options": [
+          {
+            "label": "待遇・条件訴求"
+          },
+          {
+            "label": "技術挑戦訴求"
+          },
+          {
+            "label": "プロダクト共感訴求"
+          }
+        ],
+        "default_if_unresolved": "技術挑戦を軸に訴求"
+      },
+      {
+        "id": "b4",
+        "question_point": "個別カスタマイズの度合い",
+        "anchor_words": [
+          "エンジニアに送るスカウトメール"
+        ],
+        "options": [
+          {
+            "label": "汎用テンプレ型"
+          },
+          {
+            "label": "個人経歴言及型"
+          }
+        ],
+        "default_if_unresolved": "汎用テンプレとして作成"
+      }
+    ],
+    "residual_ambiguity_assessment": "対象・トーン・訴求軸など未指定で、曖昧さの残存度は高い。",
+    "missing_materials": [
+      "自社の名称・事業内容",
+      "募集ポジションの詳細",
+      "候補者のプロフィール情報",
+      "待遇・条件の具体情報"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+  },
+  "meta": {
+    "attempts": 2,
+    "input_form": "wrapped_in_brief_tag",
+    "api_ms": 17432,
+    "wall_ms": 29600,
+    "failed_attempts": [
+      "attempt1: JSONを読めない(本文に '{' が存在しない)"
+    ],
+    "from_cache": false
+  },
+  "brief": "エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。",
+  "cached_at": "2026-07-29T15:55:24.505899+00:00"
+}

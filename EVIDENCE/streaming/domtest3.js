@@ -72,6 +72,10 @@ const document = {
   createTextNode: t => { const e = new El('#text'); e._text = String(t); return e; },
   getElementById: id => registry[id] || (registry[id] = new El('div')),
   addEventListener(t, fn){ (docHandlers[t] = docHandlers[t] || []).push(fn); },
+  // 例文チップの配線 document.querySelectorAll('.ex-chip') で script 評価が落ちないようにする。
+  // シムは静的マークアップを持たないので空配列でよい(EVIDENCE/compare/domtest_compare.js と同じ流儀)。
+  querySelectorAll: () => [],
+  querySelector: () => null,
   body: new El('body'), documentElement: new El('html')
 };
 const window = {addEventListener(){}, matchMedia: () => ({matches: false})};
