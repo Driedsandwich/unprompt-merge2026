@@ -109,8 +109,9 @@
     align-items:center; justify-content:center; padding:24px;
   }
   #promptBox{
-    width:100%; max-width:640px; background:transparent;
-    border:0; border-radius:0; box-shadow:none; padding:0;
+    width:100%; max-width:752px; border:0; border-radius:0; box-shadow:none;
+    padding:56px; /* 方眼が入力文字の下を走らないよう、縁のない紙面で覆う(視認性のユーザー報告への対応) */
+    background:radial-gradient(ellipse 160% 170% at 50% 50%, #FCFCFA 42%, rgba(252,252,250,0) 78%);
     transition:opacity .45s ease, transform .45s ease;
   }
   #promptBox.leaving{opacity:0; transform:translateY(-8px)}
@@ -1817,9 +1818,11 @@ function paintCounter(){
     elCounter.classList.remove('zero');
     return;
   }
+  // 総数と未決を分けて表示する(「3→0」が総数に見える誤読のユーザー報告への対応)
   elCounter.appendChild(document.createTextNode('この文から抽出した判断点 '));
+  elCounter.appendChild(el('b', null, String(S.branches.length)));
+  elCounter.appendChild(document.createTextNode(' ・ 未決 '));
   elCounter.appendChild(el('b', null, String(n)));
-  elCounter.appendChild(document.createTextNode('→0'));
   elCounter.classList.toggle('zero', n === 0);
 }
 // コンパイルの可否も同じ単一のソースから毎回計算する。
