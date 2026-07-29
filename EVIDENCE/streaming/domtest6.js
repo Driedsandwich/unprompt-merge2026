@@ -278,12 +278,21 @@ const click = (el) => { (el.handlers.click || []).forEach(f => f()); };
   const ctxA = await runToDone();
   click(registry['btnDelegateAll']);
   flushRAF(4);
-  const bulk = JSON.stringify(ctxA.__S.decisions);
+  // src は「どの行為が置いたか」の記録なので、一括と個別で異なるのが正しい
+  // (一括で決める2つが個別の行為を上書きしないための判断材料。domtest8 が見る)。
+  // 遷移そのものが同じであることは status / oi / prev の一致で押さえる。
+  const shape = (ds) => JSON.stringify(ds.map(d => ({status: d.status, oi: d.oi, prev: d.prev})));
+  const bulk = shape(ctxA.__S.decisions);
   const ctxB = await runToDone();
   ctxB.__S.decisions.forEach((_, bi) => ctxB.__delegate(bi));
   flushRAF(4);
-  const one = JSON.stringify(ctxB.__S.decisions);
+  const one = shape(ctxB.__S.decisions);
   chk('★decisions が完全一致(専用の遷移を作っていない)', bulk === one, bulk + ' vs ' + one);
+  chk('★違うのは src(経路の記録)だけ',
+      ctxA.__S.decisions.every(d => d.src === 'bulk-delegate') &&
+      ctxB.__S.decisions.every(d => d.src === 'human-delegate'),
+      JSON.stringify(ctxA.__S.decisions.map(d => d.src)) + ' vs ' +
+      JSON.stringify(ctxB.__S.decisions.map(d => d.src)));
 
   /* ================= B) 処理の内訳 ================= */
   console.log('\n=== B-1) 送信前は出さない / 送信後に出る ===');

@@ -148,7 +148,10 @@ def main():
     chk("★claude は1回しか呼ばれない", runner.calls == 1, "calls=%d" % runner.calls)
     chk("分岐は4件", len(out.get("branches", [])) == 4)
     chk("zero_retry は付かない", "zero_retry" not in out)
-    chk("timing は1回分のまま", out["timing"] == {"wall_ms": 1000, "api_ms": 800}, out["timing"])
+    # timing は 2026-07-30 に model_id を得た(ScriptedRunner は正準IDを持たないので None)。
+    # ここで見たいのは「引き直していない = 1回分の実測のまま」であって、キーの数ではない。
+    chk("timing は1回分のまま",
+        out["timing"]["wall_ms"] == 1000 and out["timing"]["api_ms"] == 800, out["timing"])
 
     # ================= C) 一括: 両方0 → zero_confirmed =================
     print("\n=== C) /api/explode 2回とも0 → 0件を返す(対照ブリーフの誠実性) ===")
@@ -180,7 +183,8 @@ def main():
     chk("done に zero_retry の印", done and done[0].get("zero_retry") is True)
     chk("done に note は付かない", done and "note" not in done[0])
     chk("★done の timing は2回分の合計",
-        done and done[0]["timing"] == {"wall_ms": 2000, "api_ms": 1600}, done and done[0]["timing"])
+        done and done[0]["timing"]["wall_ms"] == 2000 and done[0]["timing"]["api_ms"] == 1600,
+        done and done[0]["timing"])
     chk("戻り値 ok=True / client_gone=False", ret[0] is True and ret[5] is False, ret)
     chk("戻り値の wall/api も合計", ret[2] == 2000 and ret[3] == 1600, ret)
 
@@ -195,7 +199,9 @@ def main():
     chk("done は2件", done and len(done[0]["branches"]) == 2)
     chk("zero_retry も zero_confirmed も付かない",
         done and "zero_retry" not in done[0] and "zero_confirmed" not in done[0])
-    chk("timing は1回分のまま", done and done[0]["timing"] == {"wall_ms": 1000, "api_ms": 800})
+    chk("timing は1回分のまま",
+        done and done[0]["timing"]["wall_ms"] == 1000 and done[0]["timing"]["api_ms"] == 800,
+        done and done[0]["timing"])
 
     # ================= F) ストリーム: 両方0 =================
     print("\n=== F) /api/explode_stream 2回とも0 → 0件を返す ===")

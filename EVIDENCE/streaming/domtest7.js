@@ -6,6 +6,7 @@
 //      A-3 [続ける] で確認帯だけが畳まれる(帰らない・選択は1つも壊れない)
 //      A-4 [やり直す] で帰還。走行中レンダは AbortController で中断してから帰る
 //      A-5 確認帯は他の場所を触れば黙って消える(=他操作で自動的に消える)
+//      A-7 帯が出ているのにロックアップを再クリックしたら帰る(畳まない)
 //      A-6 指示書ができた後は確認帯を出さずに即帰還
 //
 //   B) 「処理の内訳」パネルの閉じ方
@@ -302,7 +303,8 @@ async function runToDone(){
   clickEl(registry['lockupHome']);
   chk('前提: 3度目', registry['homeConfirm'].hidden === false);
   clickEl(registry['lockupHome']);
-  chk('ロックアップをもう一度押しても畳める(閉じ込めない)', registry['homeConfirm'].hidden === true);
+  chk('★帯が出ているのに再クリック = 帯の「やり直す」と同じ経路で帰る',
+      reloads === 1 && registry['homeConfirm'].hidden === true, 'reloads=' + reloads);
 
   console.log('\n=== A-4) [やり直す]: レンダを中断してから帰る ===');
   RENDER_DELAY_MS = 4000;                          // 帰還の瞬間にレンダが飛んだままになる

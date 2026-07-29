@@ -11,6 +11,13 @@ stream-json の出力形)だけを真似て、時間と副作用を制御でき�
   FAKE_CHILD      1 なら孫プロセス(sleep 120)を作る(プロセスグループ回収の検証用)
   FAKE_STREAM_GAP stream-json のイベント間隔(既定 0.05)
   FAKE_BRIEF_ANCHOR  分岐の anchor_words に使う文字列(原文の部分文字列であること)
+
+推奨(/api/recommend)用(2026-07-30 追加。プロンプトに "branches" が含まれる呼び出しを
+推奨と見なす。抽出はブリーフ原文そのものを、レンダ/コンパイルは別キーのJSONを渡すので
+取り違えない):
+  FAKE_RECOMMEND_PICKS   picks の値(JSON配列。既定は判断点数ぶんの 0)
+  FAKE_RECOMMEND_REASON  reason(既定「一貫性のため案Aで揃えた。」)
+  FAKE_RECOMMEND_RAW     1 なら JSON にならない地の文だけを返す(JSON不成立の検証用)
 """
 import json
 import os
@@ -32,6 +39,33 @@ def log(kind, extra=""):
         f.flush()
 
 
+def recommend_text(prompt):
+    """推奨(/api/recommend)の応答本文を作る。
+
+    既定は「各判断点の先頭(添字0)を選ぶ」。判断点数はプロンプトのJSONから読む
+    (サーバが送る形 {"brief":..., "branches":[{question_point, options:[{index,label}]}]})。
+    FAKE_RECOMMEND_PICKS で picks をそのまま差し替えられる(長さ不一致・範囲外・
+    型違いの検証はこれで作る)。FAKE_RECOMMEND_RAW=1 なら JSON を出さない。
+    """
+    if os.environ.get("FAKE_RECOMMEND_RAW") == "1":
+        return "承知した。まず全体の一貫性を検討したい。結論は追って伝える。"
+
+    n = 0
+    try:
+        req = json.loads(prompt)
+        n = len(req.get("branches") or [])
+    except (json.JSONDecodeError, TypeError, AttributeError):
+        n = 0
+
+    raw = os.environ.get("FAKE_RECOMMEND_PICKS")
+    if raw:
+        picks = json.loads(raw)          # 配列でない値・型違いもそのまま出す(検証用)
+    else:
+        picks = [0] * n
+    reason = os.environ.get("FAKE_RECOMMEND_REASON", "一貫性のため案Aで揃えた。")
+    return json.dumps({"picks": picks, "reason": reason}, ensure_ascii=False)
+
+
 def main():
     argv = sys.argv[1:]
     prompt = argv[-1] if argv else ""
@@ -39,6 +73,8 @@ def main():
     if "--output-format" in argv:
         fmt = argv[argv.index("--output-format") + 1]
     kind = "render" if "sibling_labels" in prompt else "other"
+    if '"branches"' in prompt:
+        kind = "recommend"
     log("START", kind)
 
     child = None
@@ -61,6 +97,9 @@ def main():
         body = {"palette": ["#112233", "#445566", "#778899"], "heading_font": "sans",
                 "density": "normal", "corner": "soft", "tone_sample": "見出し。一文。"}
     text = json.dumps(body, ensure_ascii=False)
+
+    if kind == "recommend":
+        text = recommend_text(prompt)
 
     # 本物の CLI(claude 2.1.x)は result に modelUsage を載せ、そのキーが正準モデルIDである。
     # サーバはここから timing.model_id を取る。エイリアス("sonnet")では分からない値なので、

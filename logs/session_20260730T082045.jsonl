@@ -1,0 +1,2 @@
+{"ts": "2026-07-29T23:21:03.544895+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 26, "api_ms": null, "first_branch_ms": null, "ok": false, "client_gone": false}
+{"ts": "2026-07-29T23:21:03.595968+00:00", "endpoint": "/api/explode", "model": "sonnet", "wall_ms": 6, "api_ms": null, "first_branch_ms": null, "ok": false, "client_gone": null}

@@ -39,7 +39,15 @@ GYAKUMON — Intent Compiler ローカルサーバ(python3 標準ライブラリ
        → --model <model>       + prompts/compile_v0.txt
        → {ok, rationales:{question_point→1文}, timing}
          ブリーフ本文(MD/JSON)の組み立てはクライアント側の決定論処理。LLMは根拠文のみ。
-  GET  /api/health   → {ok:true, ...}
+  POST /api/recommend {brief, branches:[{question_point, options:[label...]}, ...]}
+       → --model <compile_model> + prompts/recommend_v1.txt
+       → {ok, picks:[各判断点の options の0始まり添字], reason, timing}
+         AIの「一案」を見るための経路。AIは成果物を書かず、選ぶだけである。
+         サーバは picks を機械検証する(配列 / 長さが判断点数と一致 / 各値がその判断点の
+         options の範囲内の整数)。JSON不成立・検証不合格は再試行せず ok:false(hint に内容)。
+         要求の不備(brief 空 / branches 空・不正)だけは HTTP 400。
+  GET  /api/health   → {ok:true, ..., model_ids:{エイリアス→観測した正準ID|null}}
+       model_ids は「実行のたびに観測した正準ID」の台帳。未観測は null。
 
   timing の共通形(2026-07-30 に model_id を追加):
        {wall_ms, api_ms, model_id}
@@ -97,6 +105,7 @@ LOGS_DIR = BASE_DIR / "logs"
 EXTRACTION_PROMPT_PATH = PROMPTS_DIR / "extraction_product_v1.txt"
 RENDER_PROMPT_PATH = PROMPTS_DIR / "render_v0.txt"
 COMPILE_PROMPT_PATH = PROMPTS_DIR / "compile_v0.txt"
+RECOMMEND_PROMPT_PATH = PROMPTS_DIR / "recommend_v1.txt"
 
 DEFAULT_PORT = 8321
 DEFAULT_HOST = "127.0.0.1"          # localhost のみバインド(拘束)
@@ -214,7 +223,23 @@ COMPILE_SCHEMA = {
     "required": ["rationales"]
 }
 
+RECOMMEND_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "picks": {
+            "type": "array",
+            "items": {"type": "integer",
+                      "description": "その判断点の options の0始まり添字"},
+            "description": "判断点と同じ順・同じ件数。各値はその判断点の options の添字"
+        },
+        "reason": {"type": "string", "description": "60字以内。この組を選んだ一貫性の根拠"}
+    },
+    "required": ["picks", "reason"]
+}
+
 EXTRACTION_REQUIRED_TOP = ["residual_ambiguity_assessment", "missing_materials", "branches"]
+
+RECOMMEND_REASON_MAX = 60           # プロンプトが要求する上限。超過はサーバ側で切り詰める
 
 
 # ========= プロンプト合成 =========
@@ -340,6 +365,34 @@ def build_compile_system(compile_prompt: str) -> str:
         "brief(ブリーフ原文)と decisions(各判断点の確定/委任の記録)を読み、rationales だけを返せ。\n"
     )
     return compile_prompt + rules
+
+
+def build_recommend_system(recommend_prompt: str) -> str:
+    """推奨エンジン(/api/recommend)。選ぶだけで、生成はしない。
+
+    「AIは成果物を書かない」という製品憲法の下で AI が触れてよいのは
+    「どの選択肢を選ぶか」だけである。ここで返させるのは添字と根拠1文であり、
+    それ以上のフィールドはスキーマから外してある(書ける場所を与えない)。
+    """
+    schema_text = json.dumps(RECOMMEND_SCHEMA, ensure_ascii=False, indent=2)
+    rules = (
+        "\n\n## 出力規則(この実行環境での上書き)\n\n"
+        "- コードフェンス(```)・説明・前置き・後書きを一切付けず、単一のJSONオブジェクトのみを出力せよ。\n"
+        "- 思考・分析・検討過程を書かない。即座に結論のJSONだけを書く。\n"
+        "- そのJSONオブジェクトは次のJSONスキーマに厳密に従うこと(フィールド順もスキーマの順とする):\n\n"
+        + schema_text +
+        "\n\n- picks の長さは入力 branches の件数と同一にし、並び順も branches の順とすること。\n"
+        "- picks の各値は、その判断点の options の添字(0始まり)の範囲内の整数のみ。"
+        "文字列・小数・null・ラベル文字列は失格である。\n"
+        "- reason は %d字以内の1文。判断点ごとの説明を並べない。\n"
+        "- 成果物本文(コピー、構成案、デザイン案)・新しい選択肢・新しい判断点を書いてはならない。\n"
+        "- スキーマにないフィールドを追加しないこと。\n"
+        "\n## 入力\n\n"
+        "ユーザーメッセージとして単一のJSONオブジェクトが与えられる。"
+        "brief(ブリーフ原文)と branches(判断点と選択肢)を読み、picks と reason だけを返せ。\n"
+        % RECOMMEND_REASON_MAX
+    )
+    return recommend_prompt + rules
 
 
 # ========= 応答本文からのJSON抽出(波括弧対応・頑健。run.py と同方式) =========
@@ -689,6 +742,17 @@ class ClaudeRunner:
         # 外している以上、Ctrl+C はもう子へ届かない。停止時にここを見て自分で始末する。
         self._live = set()
         self._live_lock = threading.Lock()
+        # 「渡したエイリアス → 実際に応答したモデルの正準ID」の観測台帳(2026-07-30 追加)。
+        # サーバが CLI へ渡すのはエイリアス("sonnet")なので、正準IDは実行してみるまで
+        # 分からない。実行のたびにここへ書き、/api/health が現在の観測値を返す。
+        # 上書き規則: 観測できた(= modelUsage が取れた)ときだけ最後の値で上書きする。
+        # 取れなかった実行では、キーだけを None で立てて既存の観測値は消さない。
+        #   - null を返すのは「まだ観測できていない」ことの表明であり、
+        #     エイリアスで埋めて正準IDのふりをすることはしない(嘘のIDを作らない)。
+        #   - 一度観測できた事実(このエイリアスはこのIDで応答した)を、
+        #     modelUsage を落とした1回の実行で消さない。
+        self.model_ids = {}
+        self.model_ids_lock = threading.Lock()
         self.env = os.environ.copy()
         self.stripped_env_keys = []
         if not allow_api_key:
@@ -696,6 +760,36 @@ class ClaudeRunner:
                 if k in self.env:
                     del self.env[k]
                     self.stripped_env_keys.append(k)
+
+    # ---- 正準モデルIDの観測台帳(スレッドセーフ) ----
+    def note_model_id(self, alias, model_id):
+        """1回の実行で観測した「エイリアス → 正準ID」を記録する。
+
+        model_id が None / 空(= CLI が modelUsage を出さなかった)ときは、
+        キーだけを None で立てる(既存の観測値は上書きしない)。
+        """
+        if not isinstance(alias, str) or not alias.strip():
+            return
+        a = alias.strip()
+        mid = model_id.strip() if isinstance(model_id, str) and model_id.strip() else None
+        with self.model_ids_lock:
+            if mid is not None:
+                self.model_ids[a] = mid
+            else:
+                self.model_ids.setdefault(a, None)
+
+    def observed_model_ids(self, aliases=()):
+        """観測台帳の写しを返す。aliases に挙げたエイリアスは未観測でも null で出す。
+
+        /api/health が「このサーバが使うエイリアス」を必ず列挙できるようにするため、
+        まだ1回も実行していないエイリアスも None として立てる。
+        """
+        with self.model_ids_lock:
+            out = dict(self.model_ids)
+        for a in aliases:
+            if isinstance(a, str) and a.strip():
+                out.setdefault(a.strip(), None)
+        return out
 
     def cleanup(self):
         self.terminate_all()
@@ -866,6 +960,7 @@ class ClaudeRunner:
             rec["duration_ms"] = cli_json.get("duration_ms")
             rec["api_ms"] = cli_json.get("duration_api_ms")
             rec["model_id"] = model_id_from_cli(cli_json)
+            self.note_model_id(model, rec["model_id"])
 
         if proc.returncode != 0 or (isinstance(cli_json, dict) and cli_json.get("is_error")):
             rec["error"] = "claude CLI がエラーを返した(exit=%s, is_error=%s)" % (
@@ -1023,6 +1118,7 @@ class ClaudeRunner:
             rec["duration_ms"] = cli_json.get("duration_ms")
             rec["api_ms"] = cli_json.get("duration_api_ms")
             rec["model_id"] = model_id_from_cli(cli_json)
+            self.note_model_id(model, rec["model_id"])
             if proc.returncode != 0 or cli_json.get("is_error"):
                 rec["error"] = "claude CLI がエラーを返した(exit=%s, is_error=%s)" % (
                     proc.returncode, cli_json.get("is_error"))
@@ -1276,6 +1372,88 @@ def validate_rationales(obj, question_points):
     return out, warnings
 
 
+# ========= 検証: 推奨(/api/recommend) =========
+def normalize_recommend_branches(branches):
+    """要求の branches を検証・正規化する。(clean, None) か (None, (error, hint)) を返す。
+
+    clean の1件 = {"question_point": str, "options": [label文字列, ...]}。
+
+    1件でも不正なら全体を拒否する(部分的に落とさない)。picks はクライアントが
+    送った branches の並びに対する添字であり、サーバ側で黙って間引くと
+    「返した添字がどの判断点のものか」が食い違う。落とすなら気づかせる。
+    """
+    if not isinstance(branches, list) or not branches:
+        return None, ("branches が空である",
+                      "判断点を1件以上、{question_point, options:[...]} の形で送る。")
+    clean = []
+    for i, br in enumerate(branches):
+        if not isinstance(br, dict):
+            return None, ("branches[%d] がオブジェクトでない" % i,
+                          "各判断点は {question_point, options:[...]} のオブジェクトで送る。")
+        qp = br.get("question_point")
+        if not _nonempty_str(qp):
+            return None, ("branches[%d].question_point が空である" % i,
+                          "抽出結果の question_point をそのまま渡す。")
+        opts_raw = br.get("options")
+        if not isinstance(opts_raw, list):
+            return None, ("branches[%d].options が配列でない" % i,
+                          "選択肢のラベルを配列で渡す(文字列 または {label} の要素)。")
+        labels = []
+        for op in opts_raw:
+            if isinstance(op, str):
+                if _nonempty_str(op):
+                    labels.append(op.strip())
+                continue
+            if isinstance(op, dict) and _nonempty_str(op.get("label")):
+                labels.append(op["label"].strip())
+        if not labels:
+            return None, ("branches[%d].options に有効なラベルが1件もない" % i,
+                          "各選択肢に label を入れて渡す。")
+        clean.append({"question_point": qp.strip(), "options": labels})
+    return clean, None
+
+
+def validate_picks(obj, clean_branches):
+    """推奨応答を検証・正規化する。(picks, reason, warnings) か (None, 理由, None) を返す。
+
+    検証パス(すべて通ったものだけを ok:true にする):
+      1. picks が配列である
+      2. picks の長さが判断点数と一致する
+      3. 各値が真の整数である(bool・文字列・小数は不可)
+      4. 各値がその判断点の options の添字の範囲内である
+    不合格は再試行しない。モデルは「選ぶだけ」なので、通らない出力は
+    黙って直すより、そのまま不合格として理由を見せるほうが誠実である。
+    """
+    if not isinstance(obj, dict):
+        return None, "応答がオブジェクトでない", None
+    picks_raw = obj.get("picks")
+    if not isinstance(picks_raw, list):
+        return None, "picks が配列でない(%s)" % type(picks_raw).__name__, None
+    if len(picks_raw) != len(clean_branches):
+        return None, ("picks の長さが判断点数と一致しない(picks %d 件 / 判断点 %d 件)"
+                      % (len(picks_raw), len(clean_branches))), None
+    picks = []
+    for i, v in enumerate(picks_raw):
+        if not isinstance(v, int) or isinstance(v, bool):
+            return None, ("picks[%d] が整数でない(%r)" % (i, v)), None
+        n = len(clean_branches[i]["options"])
+        if not (0 <= v < n):
+            return None, ("picks[%d]=%d が選択肢の範囲(0..%d)外である" % (i, v, n - 1)), None
+        picks.append(v)
+
+    warnings = []
+    reason = obj.get("reason")
+    if not _nonempty_str(reason):
+        reason = ""
+        warnings.append("reason が空だった(picks のみ採用した)")
+    else:
+        reason = " ".join(str(reason).split())
+        if len(reason) > RECOMMEND_REASON_MAX:
+            warnings.append("reason が%d字を超えたため句読点境界で切り詰めた" % RECOMMEND_REASON_MAX)
+            reason = truncate_tone(reason, RECOMMEND_REASON_MAX)
+    return picks, reason, warnings
+
+
 # ========= セッションログ(証拠化) =========
 class SessionLog:
     def __init__(self, path):
@@ -1327,7 +1505,8 @@ class ServerState:
         ts = datetime.now().strftime("%Y%m%dT%H%M%S")
         self.log = SessionLog(LOGS_DIR / ("session_%s.jsonl" % ts))
         self.started_at = datetime.now(timezone.utc).isoformat()
-        self.counters = {"explode": 0, "explode_stream": 0, "render": 0, "compile": 0, "errors": 0}
+        self.counters = {"explode": 0, "explode_stream": 0, "render": 0, "compile": 0,
+                         "recommend": 0, "errors": 0}
         self.counter_lock = threading.Lock()
         # プロンプトは起動時に1回読む(存在しないものは None のまま。該当APIで説明的エラーを返す)
         self.prompts = {}
@@ -1336,6 +1515,7 @@ class ServerState:
         self._load_prompt("explode_stream", EXTRACTION_PROMPT_PATH, build_extraction_stream_system)
         self._load_prompt("render", RENDER_PROMPT_PATH, build_render_system)
         self._load_prompt("compile", COMPILE_PROMPT_PATH, build_compile_system)
+        self._load_prompt("recommend", RECOMMEND_PROMPT_PATH, build_recommend_system)
 
     def _load_prompt(self, key, path, builder):
         try:
@@ -1883,10 +2063,84 @@ def handle_compile(body):
     return out, rec, model
 
 
+def handle_recommend(body):
+    """{brief, branches:[{question_point, options:[label...]}, ...]} を受け、各判断点から1つ選ぶ。
+
+    「AIに委ねる」ではなく「AIの一案を見る」ための経路である。AIは成果物を書かず、
+    選択肢の添字と、その組を選んだ一貫性の根拠1文だけを返す。決めるのは人間であり、
+    サーバはこの応答をどこにも適用しない(適用はクライアントの操作)。
+
+    要求の不備(brief 空 / branches 空・不正)は HTTP 400 で返す。
+    ここはクライアントが組み立てて送る内部APIであり、400 は「実装の誤り」を意味する。
+    モデル起因の失敗(JSON不成立・検証不合格)は他のエンドポイントと同じく
+    HTTP 200 + ok:false で返す(画面に理由を出すため)。再試行はしない。
+
+    モデルは compile と同じエイリアス(STATE.compile_model)。実行枠は kind="other"
+    (レンダ副上限の対象にしない。1リクエスト1本しか飛ばないため)。
+    """
+    brief = body.get("brief")
+    model = STATE.compile_model
+
+    if not _nonempty_str(brief):
+        out = err("brief が空である", "ブリーフ原文を添えて送る。")
+        out["timing"] = None
+        out["_http_status"] = 400
+        return out, None, model
+
+    clean, bad = normalize_recommend_branches(body.get("branches"))
+    if clean is None:
+        out = err(bad[0], bad[1])
+        out["timing"] = None
+        out["_http_status"] = 400
+        return out, None, model
+
+    system_prompt = STATE.prompts.get("recommend")
+    if system_prompt is None:
+        out = err(STATE.prompt_errors.get("recommend", "推奨プロンプトが読めない"),
+                  "prompts/recommend_v1.txt を確認してサーバを再起動する。")
+        out["timing"] = None
+        return out, None, model
+
+    # options には添字を明示して渡す。picks は添字で返させる契約なので、
+    # モデルが数え直さなくて済む形にしておく(範囲外はサーバ側で棄却する)。
+    user_payload = json.dumps({
+        "brief": brief,
+        "branches": [{"question_point": b["question_point"],
+                      "options": [{"index": i, "label": l} for i, l in enumerate(b["options"])]}
+                     for b in clean],
+    }, ensure_ascii=False, indent=2)
+
+    rec, timing = call_claude("/api/recommend", system_prompt, user_payload, model)
+    if not rec["ok"]:
+        out = err(rec["error"], rec["hint"] or "")
+        out["timing"] = timing
+        return out, rec, model
+
+    obj, why = extract_json_object(rec["result_text"], lambda o: "picks" in o)
+    if obj is None:
+        out = err("推奨のJSONを読み取れなかった(%s)" % why,
+                  "応答本文: " + " ".join((rec["result_text"] or "").split())[:200])
+        out["timing"] = timing
+        return out, rec, model
+
+    picks, reason, warnings = validate_picks(obj, clean)
+    if picks is None:
+        out = err("推奨の検証に失敗した(%s)" % reason,
+                  "モデルの picks: " + json.dumps(obj.get("picks"), ensure_ascii=False)[:200])
+        out["timing"] = timing
+        return out, rec, model
+
+    out = {"ok": True, "picks": picks, "reason": reason, "timing": timing}
+    if warnings:
+        out["warnings"] = warnings
+    return out, rec, model
+
+
 ROUTES = {
     "/api/explode": ("explode", handle_explode),
     "/api/render": ("render", handle_render),
     "/api/compile": ("compile", handle_compile),
+    "/api/recommend": ("recommend", handle_recommend),
 }
 
 
@@ -2023,6 +2277,13 @@ class Handler(BaseHTTPRequestHandler):
                 "model": STATE.model,
                 "render_model": STATE.render_model,
                 "compile_model": STATE.compile_model,
+                # ---- 観測された正準モデルID(エイリアス → 実際に応答したモデル) ----
+                # 上の model / render_model / compile_model はサーバが CLI へ渡している
+                # エイリアスにすぎない。実際にどのモデルが応答したかは実行してみるまで
+                # 分からないので、実行のたびに観測した値をここに出す。
+                # まだ観測できていないエイリアスは null(エイリアスで埋めない)。
+                "model_ids": STATE.runner.observed_model_ids(
+                    (STATE.model, STATE.render_model, STATE.compile_model)),
                 "effort": STATE.args.effort,
                 "max_concurrency": STATE.args.max_concurrency,
                 "render_concurrency": STATE.runner.render_cap,
@@ -2046,7 +2307,8 @@ class Handler(BaseHTTPRequestHandler):
             return
         if path.startswith("/api/"):
             self._send_json(err("GET は未対応のエンドポイントである(%s)" % path,
-                                "POST /api/explode | /api/explode_stream | /api/render | /api/compile を使う。"))
+                                "POST /api/explode | /api/explode_stream | /api/render | "
+                                "/api/compile | /api/recommend を使う。"))
             self._access("GET", path, 200, "unknown-api")
             return
         self._serve_static(path)
@@ -2112,7 +2374,8 @@ class Handler(BaseHTTPRequestHandler):
         route = ROUTES.get(path)
         if route is None:
             self._send_json(err("未対応のエンドポイントである(%s)" % path,
-                                "POST /api/explode | /api/render | /api/compile を使う。"))
+                                "POST /api/explode | /api/explode_stream | /api/render | "
+                                "/api/compile | /api/recommend を使う。"))
             self._access("POST", path, 200, "unknown-api")
             return
         name, fn = route
@@ -2144,10 +2407,15 @@ class Handler(BaseHTTPRequestHandler):
 
         wall_ms = rec["wall_ms"] if rec else round((time.monotonic() - t0) * 1000)
         api_ms = rec["api_ms"] if rec else None
+        # ハンドラは要求そのものの不備を "_http_status" で申告できる(既定は 200)。
+        # モデル起因の失敗は 200 + ok:false のまま(画面に理由を出す経路を壊さない)。
+        status = out.pop("_http_status", 200) if isinstance(out, dict) else 200
+        if not isinstance(status, int) or not (200 <= status < 600):
+            status = 200
         STATE.log.append(path, model, wall_ms, api_ms, bool(out.get("ok")))
         STATE.bump(name, bool(out.get("ok")))
-        self._send_json(out)
-        self._access("POST", path, 200,
+        self._send_json(out, status=status)
+        self._access("POST", path, status,
                      "%s wall=%sms api=%sms" % ("ok" if out.get("ok") else "NG", wall_ms, api_ms))
 
 
