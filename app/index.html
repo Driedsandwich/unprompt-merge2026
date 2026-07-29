@@ -138,6 +138,17 @@
   }
   #btnSend:hover:not(:disabled){background:var(--ink); color:var(--paper)}
   #btnSend:disabled{opacity:.28; cursor:default; border-color:var(--muted)}
+  /* 例文チップ: 初見の「何を書けばいいのか」への回答。クリックで依頼文が入るだけで、送信はしない */
+  .example-row{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:8px 10px; padding-top:26px;
+  }
+  .example-row .ex-label{font-size:10.5px; color:var(--muted); letter-spacing:var(--ui-ls)}
+  .ex-chip{
+    border:1px solid var(--line); background:transparent; color:var(--muted);
+    font-size:11px; letter-spacing:.06em; padding:6px 12px; line-height:1; border-radius:0;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .ex-chip:hover{border-color:var(--ai); color:var(--ai)}
   #healthNote{
     margin-top:18px; font-size:11px; color:var(--shu); text-align:center; max-width:640px;
     letter-spacing:var(--ui-ls); line-height:1.9;
@@ -507,6 +518,14 @@
       <p id="promptNote">GYAKUMONは生成しません。あなたの意図を問い返します。</p>
       <button id="btnSend" type="button" disabled>問い返させる</button>
     </div>
+    <div class="example-row" aria-label="依頼文の例">
+      <span class="ex-label">例:</span>
+      <button type="button" class="ex-chip" data-example="モダンだけど温かみのあるLPを作って。うちの会社のやつ。">会社のLP</button>
+      <button type="button" class="ex-chip" data-example="来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。">イベント告知</button>
+      <button type="button" class="ex-chip" data-example="エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。">スカウトメール</button>
+      <button type="button" class="ex-chip" data-example="ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。">商品の説明文</button>
+      <button type="button" class="ex-chip" data-example="転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。">ポートフォリオ</button>
+    </div>
   </div>
   <div id="healthNote" hidden></div>
 </section>
@@ -805,6 +824,14 @@ elInput.addEventListener('keydown', (e) => {
   }
 });
 elSend.addEventListener('click', () => { if (!elSend.disabled) submitBrief(); });
+// 例文チップ: 依頼文を挿入するだけで送信はしない(送信の主導権はユーザーに残す)
+document.querySelectorAll('.ex-chip').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    elInput.value = btn.getAttribute('data-example') || '';
+    elInput.dispatchEvent(new Event('input', { bubbles: true }));
+    elInput.focus();
+  });
+});
 
 // 「最初の一文以降タイプしない」を実測する。送信後の入力文字を数える(通常は 0)。
 document.addEventListener('beforeinput', (e) => {
