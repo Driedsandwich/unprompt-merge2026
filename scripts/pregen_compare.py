@@ -14,6 +14,8 @@ GYAKUMON — 並置証明(SplitCompare)の事前生成パイプライン(python3
 
 対照条件(拘束・公平性):
   RAW 側と COMPILED 側は、モデル・effort・タイムアウト・制作者 system の骨格を同一にする。
+  制作者 system には両側同一のデザイン憲章(prompts/downstream_maker_v1.txt)を含む
+  (両側の品位の底上げが目的。左右差を演出するための注入ではない)。
   違うのは「ユーザープロンプトとして何を渡すか」だけ:
     RAW      : ブリーフ一文(そのまま)
     COMPILED : 同じ一文を GYAKUMON に通して得た「コンパイル済みブリーフ MD」
@@ -71,6 +73,11 @@ sys.path.insert(0, str(BASE_DIR))
 import server  # noqa: E402
 
 OUT_DIR = BASE_DIR / "app" / "compare"
+
+# 下流(成果物)制作者の共通デザイン憲章。RAW / COMPILED の両側に同一の全文を注入する。
+# 目的は両側の品位の底上げであって左右差の演出ではない(非対称は従来どおり
+# COMPILED_EXTRA_* の2項目のみ)。全文は manifest の prompts に残る。
+MAKER_CHARTER_PATH = BASE_DIR / "prompts" / "downstream_maker_v1.txt"
 
 # ---------------------------------------------------------------------------
 # 制作者 system の骨格
@@ -277,16 +284,22 @@ def load_system(path, builder):
 
 
 def build_maker_system(spec):
-    """成果物の種類に応じた制作者 system(RAW / COMPILED 共通の骨格)。"""
+    """成果物の種類に応じた制作者 system(RAW / COMPILED 共通の骨格)。
+
+    デザイン憲章(MAKER_CHARTER_PATH)は両側に同一の全文を足す。左右で違うのは
+    従来どおり COMPILED_EXTRA_* の2項目だけであり、公平性の対照条件は変わらない。"""
+    charter = MAKER_CHARTER_PATH.read_text(encoding="utf-8").strip() + "\n"
     if spec["kind"] == "page":
         base = PAGE_SYSTEM_TMPL.format(
             maker=spec["maker"], deliverable=spec["deliverable"],
             structure=spec["structure"], placeholder=spec["placeholder"])
+        base = base + "\n" + charter
         return base, base + COMPILED_EXTRA_PAGE
     base = TEXT_SYSTEM_TMPL.format(
         maker=spec["maker"], deliverable=spec["deliverable"],
         structure=spec["structure"], volume=spec["volume"],
         placeholder=spec["placeholder"])
+    base = base + "\n" + charter
     return base, base + COMPILED_EXTRA_TEXT
 
 
@@ -465,14 +478,25 @@ def build_compiled_brief_md(brief, payload, picks, renders, rationales):
     return "\n".join(L)
 
 
-def gen_deliverable(runner, system_prompt, user_prompt, model):
-    rec = runner.run(system_prompt, user_prompt, model)
-    if not rec["ok"]:
-        raise RuntimeError("成果物生成に失敗: %s / %s" % (rec["error"], rec["hint"]))
-    html = strip_fences(rec["result_text"])
-    if "<" not in html:
-        raise RuntimeError("生成結果が HTML に見えない(先頭: %r)" % html[:120])
-    return html, rec
+def gen_deliverable(runner, system_prompt, user_prompt, model, max_attempts=2):
+    """成果物1枚の生成。まれにモデルが HTML ではなく「材料をください」等の
+    返信を書くことがある(デザイン憲章導入時の lp-warm RAW 側で実測1回)ため、
+    HTML に見えない出力に限り同一プロンプトで最大 max_attempts 回まで引き直す。
+    何回目で通ったか・失敗した回の先頭文字列は manifest に残す(隠さない)。"""
+    errors = []
+    for attempt in range(1, max_attempts + 1):
+        rec = runner.run(system_prompt, user_prompt, model)
+        if not rec["ok"]:
+            errors.append("attempt%d: 呼び出し失敗 %s / %s" % (attempt, rec["error"], rec["hint"]))
+            continue
+        html = strip_fences(rec["result_text"])
+        if "<" not in html:
+            errors.append("attempt%d: HTMLに見えない(先頭: %r)" % (attempt, html[:120]))
+            continue
+        rec["gen_attempts"] = attempt
+        rec["gen_failed_attempts"] = errors
+        return html, rec
+    raise RuntimeError("成果物生成に%d回失敗: %s" % (max_attempts, " / ".join(errors)))
 
 
 # HTMLコメント <!-- --> と、<style> 内で使われる CSSコメント /* */ の両方を拾う。
@@ -541,6 +565,7 @@ MANIFEST_DISCLOSURE = (
     "並置比較の各ペア(左右2枚)は事前生成物である。デモ実行時にその場で生成していない。"
     "RAW/COMPILED は同一モデル・同一 effort・同一の制作者 system 骨格で、"
     "違いはユーザープロンプト(一文 vs コンパイル済みブリーフ)のみ。"
+    "制作者 system には両側同一のデザイン憲章(prompts/downstream_maker_v1.txt)を含む。"
     "COMPILED 側の system にのみ2項目の追加がある(視覚トークンの厳守 / 選択ラベルのコメント埋め込み)。"
 )
 
@@ -667,12 +692,16 @@ def run_one(runner, spec, args, out_root):
 
     print("[4/5] RAW 側生成 …", flush=True)
     raw_html, rec_raw = gen_deliverable(runner, raw_system, brief, args.model)
-    timings["raw"] = {"api_ms": rec_raw["api_ms"], "wall_ms": rec_raw["wall_ms"]}
+    timings["raw"] = {"api_ms": rec_raw["api_ms"], "wall_ms": rec_raw["wall_ms"],
+                      "attempts": rec_raw.get("gen_attempts"),
+                      "failed_attempts": rec_raw.get("gen_failed_attempts")}
     (pair_dir / "raw.html").write_text(raw_html, encoding="utf-8")
 
     print("[5/5] COMPILED 側生成 …", flush=True)
     compiled_html, rec_cmp = gen_deliverable(runner, compiled_system, compiled_md, args.model)
-    timings["compiled"] = {"api_ms": rec_cmp["api_ms"], "wall_ms": rec_cmp["wall_ms"]}
+    timings["compiled"] = {"api_ms": rec_cmp["api_ms"], "wall_ms": rec_cmp["wall_ms"],
+                          "attempts": rec_cmp.get("gen_attempts"),
+                          "failed_attempts": rec_cmp.get("gen_failed_attempts")}
     (pair_dir / "compiled.html").write_text(compiled_html, encoding="utf-8")
 
     decisions = []
@@ -727,6 +756,7 @@ def run_one(runner, spec, args, out_root):
             "maker_system_compiled": compiled_system,
             "user_raw": brief,
             "user_compiled": compiled_md,
+            "maker_charter_file": str(MAKER_CHARTER_PATH.relative_to(BASE_DIR)),
             "extraction_prompt_file": str(server.EXTRACTION_PROMPT_PATH.relative_to(BASE_DIR)),
             "render_prompt_file": str(server.RENDER_PROMPT_PATH.relative_to(BASE_DIR)),
             "compile_prompt_file": str(server.COMPILE_PROMPT_PATH.relative_to(BASE_DIR)),

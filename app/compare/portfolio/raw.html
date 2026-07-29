@@ -2,133 +2,155 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>〈氏名〉 | Portfolio</title>
+<title>〈氏名〉 Portfolio</title>
 <style>
+  /*
+    Type scale (base 16px, ratio 1.333)
+    --fs-body: 16px / --fs-lead: 21px / --fs-h3: 28px
+    --fs-h2: 37px / --fs-h1: 66px
+    見出し: Georgia / Hiragino Mincho ProN(明朝・太字・詰め気味)
+    本文  : Hiragino Sans / Yu Gothic(ゴシック)
+  */
   :root{
-    --bg:#0f1115; --bg2:#161923; --fg:#eef0f4; --sub:#9aa3b2;
-    --accent:#7c9cff; --accent2:#8fe3c7; --line:rgba(255,255,255,.08);
+    --ink:#1b2430;
+    --ink-soft:#4b5768;
+    --paper:#eef1ee;
+    --line:#c9cdc6;
+    --accent:#b5542a;
+    --fs-body:16px;
+    --fs-lead:21px;
+    --fs-h3:28px;
+    --fs-h2:37px;
+    --fs-h1:64px;
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
+  *{box-sizing:border-box;}
   body{
-    background:var(--bg); color:var(--fg);
+    margin:0;background:var(--paper);color:var(--ink);
     font-family:"Hiragino Sans","Yu Gothic",sans-serif;
-    line-height:1.7;
+    font-size:var(--fs-body);line-height:1.85;
   }
-  section{ padding:80px 24px; max-width:840px; margin:0 auto; }
-  h2{ font-size:14px; letter-spacing:.2em; color:var(--accent2); margin-bottom:24px; }
-  .hero{
-    min-height:70vh; display:flex; flex-direction:column; justify-content:center;
-    background:radial-gradient(circle at 20% 20%, rgba(124,156,255,.15), transparent 60%),
-               radial-gradient(circle at 80% 80%, rgba(143,227,199,.12), transparent 60%);
-    text-align:center;
+  h1,h2,h3{
+    font-family:Georgia,"Hiragino Mincho ProN",serif;
+    color:var(--ink);margin:0;
   }
-  .hero .badge{ font-size:13px; color:var(--sub); letter-spacing:.15em; margin-bottom:16px; }
-  .hero h1{ font-size:clamp(32px,6vw,56px); font-weight:700; }
-  .hero p.role{ margin-top:14px; font-size:18px; color:var(--accent); }
-  .bio p{ color:var(--sub); font-size:16px; }
-  .works{ display:grid; gap:20px; }
-  .card{
-    background:var(--bg2); border:1px solid var(--line); border-radius:16px;
-    padding:28px; position:relative; overflow:hidden;
+  section{padding:96px 32px;max-width:720px;margin:0 auto;}
+  .hero{padding:120px 32px 96px;border-bottom:1px solid var(--line);}
+  .hero-wrap{max-width:720px;margin:0 auto;}
+  .hero .eyebrow{
+    font-size:13px;letter-spacing:.24em;color:var(--accent);
+    font-weight:700;margin-bottom:24px;
   }
-  .card::before{
-    content:""; position:absolute; top:0; left:0; width:6px; height:100%;
-    background:linear-gradient(180deg,var(--accent),var(--accent2));
+  .hero h1{
+    font-size:var(--fs-h1);font-weight:700;letter-spacing:-.02em;
+    line-height:1.2;
   }
-  .card h3{ font-size:20px; margin-bottom:8px; }
-  .card .role{ font-size:13px; color:var(--accent2); margin-bottom:10px; }
-  .card p.desc{ color:var(--sub); font-size:15px; }
-  .skills{ display:flex; flex-wrap:wrap; gap:10px; }
-  .skills span{
-    border:1px solid var(--line); padding:8px 16px; border-radius:999px;
-    font-size:14px; color:var(--fg); background:var(--bg2);
+  .hero .role{margin-top:24px;font-size:var(--fs-lead);color:var(--ink-soft);}
+  h2{font-size:var(--fs-h2);font-weight:700;letter-spacing:-.01em;margin-bottom:40px;}
+  h2 span{color:var(--accent);}
+  p.lead{font-size:var(--fs-lead);color:var(--ink-soft);}
+  .works{display:flex;flex-direction:column;gap:32px;}
+  .work{border-left:3px solid var(--accent);padding:8px 0 8px 24px;}
+  .work h3{font-size:var(--fs-h3);font-weight:700;}
+  .work .role-tag{
+    display:inline-block;margin:8px 0;font-size:13px;
+    letter-spacing:.08em;color:var(--accent);font-weight:700;
   }
-  .timeline{ border-left:2px solid var(--line); padding-left:24px; display:flex; flex-direction:column; gap:24px; }
-  .timeline .item .period{ font-size:13px; color:var(--accent2); }
-  .timeline .item h4{ font-size:16px; margin-top:4px; }
-  .timeline .item p{ color:var(--sub); font-size:14px; }
-  .cta{
-    text-align:center; background:linear-gradient(135deg, rgba(124,156,255,.12), rgba(143,227,199,.1));
-    border-radius:20px; border:1px solid var(--line);
+  .work p{color:var(--ink-soft);margin:0;}
+  .skills{display:flex;flex-wrap:wrap;gap:16px;padding:0;list-style:none;margin:0;}
+  .skills li{
+    border:1px solid var(--line);padding:16px 24px;
+    font-size:15px;color:var(--ink);flex:1 1 200px;
   }
-  .cta h2{ color:var(--accent2); }
-  .cta a.btn{
-    display:inline-block; margin-top:20px; padding:14px 36px; border-radius:999px;
-    background:var(--accent); color:#0f1115; font-weight:700; text-decoration:none;
-    font-size:15px;
+  .skills li b{display:block;font-family:Georgia,serif;font-size:18px;margin-bottom:4px;}
+  .history{border-top:1px solid var(--line);padding-top:8px;}
+  .history dl{display:flex;flex-direction:column;gap:24px;margin:0;}
+  .history .row{display:flex;gap:24px;}
+  .history dt{
+    flex:0 0 120px;color:var(--accent);font-weight:700;
+    font-family:Georgia,serif;
   }
-  .cta .email{ margin-top:14px; color:var(--sub); font-size:14px; }
-  footer{ text-align:center; padding:32px 24px; color:var(--sub); font-size:12px; }
+  .history dd{margin:0;color:var(--ink-soft);}
+  .cta{text-align:center;background:var(--ink);color:var(--paper);padding:96px 32px;}
+  .cta h2{color:var(--paper);}
+  .cta p{color:#c7ccc6;font-size:var(--fs-lead);margin-bottom:40px;}
+  .cta a{
+    display:inline-block;background:var(--accent);color:#fff;
+    text-decoration:none;padding:16px 40px;font-weight:700;letter-spacing:.04em;
+  }
+  footer{text-align:center;padding:40px 32px;font-size:13px;color:var(--ink-soft);letter-spacing:.05em;}
 </style>
 </head>
 <body>
 
-  <section class="hero">
-    <div class="badge">PORTFOLIO</div>
+<div class="hero">
+  <div class="hero-wrap">
+    <div class="eyebrow">PORTFOLIO / 転職活動用</div>
     <h1>〈氏名〉</h1>
-    <p class="role">〈肩書き・例: フロントエンドエンジニア〉</p>
-  </section>
+    <p class="role">〈肩書き〉として、作ることそのものより「使われ続ける形」にこだわってきました。</p>
+  </div>
+</div>
 
-  <section class="bio">
-    <h2>ABOUT</h2>
-    <p>〈自己紹介文をここに記載。経験や強み、大切にしている価値観などを簡潔にまとめてください。〉</p>
-  </section>
+<section>
+  <h2>自己紹介</h2>
+  <p class="lead">〈自己紹介文をここに記載。経験してきた領域、価値観、次に挑戦したいことなど、発注内容に基づいて記述してください。〉</p>
+</section>
 
-  <section class="works">
-    <h2>WORKS</h2>
-    <div class="card">
+<section>
+  <h2>作品<span>3選</span></h2>
+  <div class="works">
+    <div class="work">
       <h3>〈作品タイトル1〉</h3>
-      <div class="role">役割: 〈担当役割〉</div>
-      <p class="desc">〈一言コメント〉</p>
+      <div class="role-tag">〈担当役割〉</div>
+      <p>〈この作品について一言。何を課題とし、何を実現したか。〉</p>
     </div>
-    <div class="card">
+    <div class="work">
       <h3>〈作品タイトル2〉</h3>
-      <div class="role">役割: 〈担当役割〉</div>
-      <p class="desc">〈一言コメント〉</p>
+      <div class="role-tag">〈担当役割〉</div>
+      <p>〈この作品について一言。〉</p>
     </div>
-    <div class="card">
+    <div class="work">
       <h3>〈作品タイトル3〉</h3>
-      <div class="role">役割: 〈担当役割〉</div>
-      <p class="desc">〈一言コメント〉</p>
+      <div class="role-tag">〈担当役割〉</div>
+      <p>〈この作品について一言。〉</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="skillsec">
-    <h2>SKILLS</h2>
-    <div class="skills">
-      <span>〈スキル1〉</span>
-      <span>〈スキル2〉</span>
-      <span>〈スキル3〉</span>
-      <span>〈スキル4〉</span>
-      <span>〈スキル5〉</span>
+<section>
+  <h2>できること</h2>
+  <ul class="skills">
+    <li><b>〈スキル領域1〉</b>〈具体的にできること〉</li>
+    <li><b>〈スキル領域2〉</b>〈具体的にできること〉</li>
+    <li><b>〈スキル領域3〉</b>〈具体的にできること〉</li>
+    <li><b>〈スキル領域4〉</b>〈具体的にできること〉</li>
+  </ul>
+</section>
+
+<section class="history">
+  <h2>経歴サマリ</h2>
+  <dl>
+    <div class="row">
+      <dt>〈年〉</dt>
+      <dd>〈所属・役割の概要〉</dd>
     </div>
-  </section>
-
-  <section class="history">
-    <h2>CAREER</h2>
-    <div class="timeline">
-      <div class="item">
-        <div class="period">〈期間〉</div>
-        <h4>〈所属・役職〉</h4>
-        <p>〈概要〉</p>
-      </div>
-      <div class="item">
-        <div class="period">〈期間〉</div>
-        <h4>〈所属・役職〉</h4>
-        <p>〈概要〉</p>
-      </div>
+    <div class="row">
+      <dt>〈年〉</dt>
+      <dd>〈所属・役割の概要〉</dd>
     </div>
-  </section>
+    <div class="row">
+      <dt>〈年〉</dt>
+      <dd>〈所属・役割の概要〉</dd>
+    </div>
+  </dl>
+</section>
 
-  <section class="cta">
-    <h2>CONTACT</h2>
-    <p>ご興味をお持ちいただけましたら、お気軽にご連絡ください。</p>
-    <a class="btn" href="mailto:ksmt0516@gmail.com">お問い合わせする</a>
-    <div class="email">ksmt0516@gmail.com</div>
-  </section>
+<div class="cta">
+  <h2>お話ししましょう</h2>
+  <p>ご興味を持っていただけましたら、お気軽にご連絡ください。</p>
+  <a href="mailto:ksmt0516@gmail.com">ksmt0516@gmail.com へ連絡する</a>
+</div>
 
-  <footer>&copy; 2026 〈氏名〉</footer>
+<footer>© 〈氏名〉 — Portfolio for job hunting</footer>
 
 </body>
 </html>

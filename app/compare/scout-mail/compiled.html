@@ -4,102 +4,165 @@
 <meta charset="UTF-8">
 <title>スカウトメール</title>
 <style>
-  /* GYAKUMON-CHOICE: 文面のトーン = カジュアル親近感 */
-  body {
-    background: #fff4db;
-    margin: 0;
-    padding: 48px 16px;
-    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
-    color: #2e2a22;
-    line-height: 1.9;
-  }
-  .sheet {
-    max-width: 720px;
-    margin: 0 auto;
-    background: #fff4db;
-    border-radius: 18px;
-    padding: 48px 44px;
-  }
-  /* GYAKUMON-CHOICE: 「うちっぽさ」の中身 = 文化・人柄アピール */
-  h1 {
-    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: #ff7a3d;
-    margin: 0 0 8px;
-    border-radius: 8px;
-  }
-  .meta {
-    font-size: 13px;
-    color: #8e6a4f;
-    margin-bottom: 32px;
-  }
-  .addressee {
-    font-size: 15px;
-    margin-bottom: 28px;
-  }
-  p {
-    margin: 0 0 24px;
-    font-size: 15px;
-  }
-  .closing {
-    margin-top: 8px;
-  }
-  .cta {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 10px 20px;
-    background: #ff7a3d;
-    color: #fff4db;
-    border-radius: 24px;
-    font-size: 14px;
-    font-weight: 700;
-  }
-  .sign {
-    margin-top: 40px;
-    padding-top: 24px;
-    border-top: 1px solid #ffe0b0;
-    font-size: 13px;
-    color: #8e6a4f;
-  }
+/*
+  GYAKUMON-CHOICE: 読み手であるエンジニアの想定層 = 転職潜在層
+  GYAKUMON-CHOICE: 「うちっぽさ」の中身 = 文化・人柄アピール
+  GYAKUMON-CHOICE: 文面のトーン = カジュアル親近感
+  GYAKUMON-CHOICE: スカウトの訴求軸 = プロダクト共感訴求
+  GYAKUMON-CHOICE: 個別カスタマイズの度合い = 個人経歴言及型
+  五つの決定が示す軸のうち多数(rounded見出し・airy密度・soft角)を採用し、
+  パレットは「文化・人柄アピール」の琥珀色系（#3a2e26 / #c98a4b / #f2c879）を基調に、
+  他の色相は足さない。
+*/
+:root{
+  --bg:#3a2e26;
+  --main:#c98a4b;
+  --accent:#f2c879;
+  --font-base:16px;
+  --scale:1.333;
+  --h1: calc(var(--font-base) * var(--scale) * var(--scale));
+  --h2: calc(var(--font-base) * var(--scale));
+  --lh: 1.9;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--accent);
+  font-family: "Hiragino Maru Gothic ProN","Yu Gothic","Hiragino Sans","Helvetica Neue",sans-serif;
+  padding:96px 24px;
+}
+/* GYAKUMON-CHOICE: 「うちっぽさ」の中身 = 文化・人柄アピール（丸ゴシック見出しで人柄の柔らかさを表現） */
+.doc{
+  max-width:720px;
+  margin:0 auto;
+  background:#4a3b30;
+  border-radius:24px;
+  padding:80px 64px;
+}
+.subject-label,.to-label{
+  font-size:12px;
+  letter-spacing:0.12em;
+  color:var(--main);
+  margin-bottom:8px;
+  font-weight:600;
+}
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル親近感 */
+h1.subject{
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  font-size:var(--h1);
+  font-weight:700;
+  letter-spacing:0.02em;
+  color:var(--accent);
+  margin:0 0 96px 0;
+  line-height:1.5;
+}
+.to{
+  font-size:var(--h2);
+  margin:0 0 64px 0;
+  font-weight:500;
+}
+.body p{
+  font-size:var(--font-base);
+  line-height:var(--lh);
+  margin:0 0 32px 0;
+  color:#f3e6d3;
+}
+/* GYAKUMON-CHOICE: 個別カスタマイズの度合い = 個人経歴言及型 */
+.mention{
+  border-left:3px solid var(--main);
+  padding:16px 24px;
+  margin:0 0 32px 0;
+  border-radius:0 16px 16px 0;
+  background:rgba(201,138,75,0.12);
+}
+/* GYAKUMON-CHOICE: スカウトの訴求軸 = プロダクト共感訴求 */
+.pitch{
+  font-size:var(--font-base);
+  line-height:var(--lh);
+  margin:0 0 32px 0;
+  color:#f3e6d3;
+}
+.closing{
+  margin-top:96px;
+  padding-top:32px;
+  border-top:1px solid rgba(242,200,121,0.25);
+}
+.closing p{
+  font-size:var(--font-base);
+  line-height:var(--lh);
+  margin:0 0 24px 0;
+}
+.cta{
+  display:inline-block;
+  padding:16px 32px;
+  border-radius:9999px;
+  background:var(--main);
+  color:#3a2e26;
+  font-weight:700;
+  text-decoration:none;
+  margin-bottom:64px;
+}
+/* GYAKUMON-CHOICE: 読み手であるエンジニアの想定層 = 転職潜在層（急かす表現を置かず、軽い温度で結ぶ） */
+.signature{
+  font-size:14px;
+  color:var(--main);
+  line-height:1.8;
+}
+.signature .name{
+  font-size:var(--h2);
+  color:var(--accent);
+  font-weight:700;
+  margin-bottom:8px;
+  display:block;
+}
 </style>
 </head>
 <body>
-<div class="sheet">
+<div class="doc">
 
-  <!-- GYAKUMON-CHOICE: 読み手であるエンジニアの想定層 = 転職潜在層 -->
-  <h1>件名：そのコード、うちで話そ。〈候補者名〉さんに聞いてほしい話があります</h1>
-  <div class="meta">〈会社名〉採用担当より</div>
+  <div class="subject-label">件名</div>
+  <h1 class="subject">〈候補者名〉さんのあの記事、うちのメンバー全員で読みました</h1>
 
-  <div class="addressee">〈候補者名〉さま</div>
+  <div class="to-label">宛先</div>
+  <p class="to">〈候補者名〉様</p>
 
-  <!-- GYAKUMON-CHOICE: 個別カスタマイズの度合い = 個人経歴言及型 -->
-  <p>
-    突然のご連絡失礼します、〈会社名〉の〈担当者名〉です。〈候補者名〉さんの〈登壇・OSS・記事などの経歴〉を拝見して、
-    どうしても一度お話ししてみたくなってメールしました。エンジニアという仕事、まだ好きですか。
-    今すぐ転職を考えていなくても、ちょっと話を聞くくらいの気持ちで読んでもらえたら嬉しいです。
-  </p>
+  <div class="body">
+    <p>
+      突然のご連絡失礼します、〈会社名〉の〈担当者名〉です。まだ転職を考えていない方にこそ読んでほしくて書いています。
+      今すぐ動く気がなくても大丈夫です、まずは雑談のつもりで読んでもらえたら嬉しいです。
+    </p>
 
-  <!-- GYAKUMON-CHOICE: スカウトの訴求軸 = プロダクト共感訴求 -->
-  <p>
-    うちで作っているのは〈プロダクト概要〉です。正直、待遇とか制度の話をする前に、
-    このプロダクトと、それを一緒に作っているメンバーのことを知ってほしいんです。
-    雑談から始まる面談、というくらいの温度感でいいので、〈候補者名〉さんが何を面白いと思ってコードを書いているのか、
-    まずは聞かせてもらえませんか。合わなければそれでいいし、話してみたら意外と気が合うかもしれない、その可能性にかけています。
-  </p>
+    <p class="mention">
+      〈候補者名〉さんが以前発表されていた〈登壇資料・記事タイトル〉、実は社内で回し読みしていました。
+      特に〈言及箇所・技術的な工夫〉のくだりが自分たちの課題感と重なっていて、勝手に親近感を持ってしまったんです。
+    </p>
+
+    <p class="pitch">
+      〈会社名〉では〈プロダクト名〉というプロダクトを作っています。まだ粗削りな部分も多いのですが、
+      だからこそ一緒に育ててくれる人を探しています。条件面の話は正直まだ詳しく書けないのですが、
+      それより先に「このプロダクトどう思いますか」を〈候補者名〉さんと話してみたいというのが、この連絡の一番の理由です。
+    </p>
+
+    <p>
+      うちのチームは、良くも悪くも真面目な話とくだらない話の境目がありません。
+      技術の話をしていたはずが気づくと雑談になっている、そんな空気が好きな方とは絶対に気が合うと思っています。
+      笑い合える相手を探している、と言った方が正確かもしれません。
+    </p>
+  </div>
 
   <div class="closing">
     <p>
-      よければ30分だけ、オンラインでも対面でも、堅苦しくない場で雑談しましょう。
-      返信、待ってます。
+      転職の意思の有無はまったく気にしていません。まずは30分だけ、
+      〈候補者名〉さんの近況と〈プロダクト名〉の話を交換する場をもらえませんか。
     </p>
-    <span class="cta">気軽に返信する</span>
+    <a class="cta" href="#">まずは雑談してみる</a>
   </div>
 
-  <div class="sign">
+  <div class="signature">
+    <span class="name">〈担当者名〉</span>
     〈会社名〉<br>
-    〈担当者名〉<br>
-    〈連絡先〉
+    〈連絡先・メールアドレス〉
   </div>
 
 </div>

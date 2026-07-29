@@ -4,106 +4,140 @@
 <meta charset="UTF-8">
 <title>〈商品名〉</title>
 <style>
+  /*
+    タイプスケール(本文16pxを基準に1.333倍階調)
+    --fs-body: 16px
+    --fs-catch: 21px
+    --fs-h1: 28px
+    見出し: Georgia系(明朝的な重み)/ 本文: システムゴシック
+    配色: 基調=深いインク紺 #1c2b3a、アクセント=くすみ銅 #a3703f の2色構成
+  */
+  :root {
+    --ink: #1c2b3a;
+    --ink-soft: #445264;
+    --paper: #f4f1ea;
+    --accent: #a3703f;
+    --line: #d9d2c2;
+    --fs-body: 16px;
+    --fs-catch: 21px;
+    --fs-h1: 28px;
+  }
+  * { box-sizing: border-box; }
   body {
     margin: 0;
-    padding: 40px 16px;
-    background: #f4f1ec;
-    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-    color: #333;
+    padding: 96px 24px;
+    background: var(--paper);
+    display: flex;
+    justify-content: center;
   }
-  .container {
+  .sheet {
     width: 720px;
     max-width: 100%;
-    margin: 0 auto;
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 48px 56px;
-    box-sizing: border-box;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.9;
   }
   h1 {
-    text-align: center;
-    font-size: 28px;
-    margin: 0 0 12px;
-    letter-spacing: 0.05em;
-    color: #2c2a26;
+    font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-h1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0 0 16px;
+    color: var(--ink);
   }
   .catch {
-    text-align: center;
-    font-size: 17px;
-    color: #a37b3d;
-    font-weight: bold;
-    margin: 0 0 32px;
+    font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-catch);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    margin: 0 0 64px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
   }
-  .body-text p {
-    font-size: 15px;
-    line-height: 1.9;
-    margin: 0 0 18px;
+  .body p {
+    margin: 0 0 24px;
+    color: var(--ink-soft);
   }
-  .spec {
-    margin: 32px 0;
-    padding: 24px 28px;
-    background: #f9f7f3;
-    border-radius: 8px;
+  section.specs {
+    margin-top: 96px;
   }
-  .spec h2 {
-    font-size: 15px;
-    margin: 0 0 12px;
-    color: #6b5b3e;
+  section.specs h2 {
+    font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin: 0 0 24px;
   }
-  .spec ul {
+  section.specs ul {
+    list-style: none;
     margin: 0;
-    padding-left: 1.2em;
-    font-size: 14px;
-    line-height: 1.9;
+    padding: 0;
   }
-  .buy-area {
+  section.specs li {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  section.specs li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  section.specs li span.k {
+    flex: 0 0 96px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .cta {
+    margin-top: 96px;
     text-align: center;
-    margin-top: 36px;
   }
-  .buy-button {
+  .cta .btn {
     display: inline-block;
-    padding: 16px 64px;
-    background: #a37b3d;
-    color: #fff;
+    padding: 16px 56px;
+    background: var(--ink);
+    color: var(--paper);
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 999px;
-    letter-spacing: 0.1em;
-    user-select: none;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: default;
+  }
+  .cta .price {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
   }
 </style>
 </head>
 <body>
-  <div class="container">
+  <div class="sheet">
     <h1>〈商品名〉</h1>
-    <p class="catch">一杯の温度を、最後の一口までそのままに。</p>
+    <p class="catch">注いだ瞬間、温度が変わらないことに気づく。</p>
 
-    <div class="body-text">
-      <p>
-        朝の一杯が、気づけばぬるくなっている。そんな小さな残念さを、このタンブラーは静かに解決します。二重構造の保冷保温設計で、注いだ瞬間の温度をできるだけ長く保ち、外側が結露で濡れる心配もありません。デスクに置いても、鞄に入れて持ち歩いても扱いやすいサイズ感で、毎日の一杯をもっと快適にしてくれます。
-      </p>
-      <p>
-        手に取った瞬間にわかる、しっかりとした作りの良さ。ふたはしっかり閉まる設計で、持ち運び中の液漏れも安心。飽きのこないシンプルなデザインは、オフィスでもアウトドアでも、どんなシーンにも自然になじみます。自分用にはもちろん、大切な人への贈り物としても選ばれています。
-      </p>
-      <p>
-        毎日使うものだからこそ、ちょっと良いものを。手にするたびに気分が上がる、そんな一本をぜひ暮らしに迎えてください。
-      </p>
+    <div class="body">
+      <p>朝いれたコーヒーを、昼まで熱いまま飲めるか。〈商品名〉が答えたのはその一点です。二重構造の壁が外気を遮り、中の温度をただ守り続けます。氷を入れた麦茶なら、溶けきる前に飲み終わるくらい冷たさが長持ちします。</p>
+      <p>容量は〈容量〉。片手で持てる太さに絞りながら、一日分の水分を賄える大きさを確保しました。デスクの上でも鞄の中でも、収まりの良いサイズです。フタは片手で開け閉めでき、通勤の電車内でも迷わず扱えます。</p>
+      <p>外側は指紋が目立ちにくい質感に仕上げ、飲み口は口当たりを考えて丸みを持たせました。洗いやすい広口設計なので、茶渋や匂い残りを気にせず毎日使えます。オフィスにも自宅にも馴染む、飾らない佇まいです。</p>
     </div>
 
-    <div class="spec">
-      <h2>SPEC</h2>
+    <section class="specs">
+      <h2>仕様</h2>
       <ul>
-        <li>容量:〈容量〉</li>
-        <li>素材:〈素材〉</li>
-        <li>カラー:〈カラー展開〉</li>
-        <li>保冷・保温:対応</li>
-        <li>お手入れ:〈お手入れ方法〉</li>
+        <li><span class="k">容量</span><span>〈容量〉</span></li>
+        <li><span class="k">サイズ</span><span>〈サイズ〉</span></li>
+        <li><span class="k">重さ</span><span>〈重量〉</span></li>
+        <li><span class="k">素材</span><span>〈素材〉</span></li>
+        <li><span class="k">保温・保冷</span><span>〈保温/保冷時間の目安〉</span></li>
+        <li><span class="k">カラー</span><span>〈カラー展開〉</span></li>
       </ul>
-    </div>
+    </section>
 
-    <div class="buy-area">
-      <span class="buy-button">〈価格〉円 カートに入れる</span>
+    <div class="cta">
+      <span class="btn">カートに入れる</span>
+      <p class="price">〈価格〉(税込)</p>
     </div>
   </div>
 </body>

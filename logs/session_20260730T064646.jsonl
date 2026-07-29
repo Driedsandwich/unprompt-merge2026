@@ -1,0 +1,13 @@
+{"ts": "2026-07-29T21:51:43.782380+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 26343, "api_ms": 16294, "first_branch_ms": 21121, "ok": true, "client_gone": false}
+{"ts": "2026-07-29T21:52:06.184540+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 26012, "api_ms": 9132, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:52:06.204782+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 26013, "api_ms": 9729, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:52:07.121311+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 26914, "api_ms": 10978, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:52:37.301675+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 30930, "api_ms": 6720, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:52:38.491439+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 31357, "api_ms": 6548, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:52:39.968431+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 33772, "api_ms": 8169, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:53:11.704453+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 31667, "api_ms": 8383, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:53:11.695270+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 33140, "api_ms": 6957, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:53:13.688576+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 36494, "api_ms": 7057, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:53:31.591561+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 19872, "api_ms": 7379, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:53:34.285763+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 22560, "api_ms": 12187, "first_branch_ms": null, "ok": true, "client_gone": null}
+{"ts": "2026-07-29T21:55:53.774923+00:00", "endpoint": "/api/compile", "model": "sonnet", "wall_ms": 12413, "api_ms": 7971, "first_branch_ms": null, "ok": true, "client_gone": null}

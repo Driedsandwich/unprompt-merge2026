@@ -1,0 +1,109 @@
+{
+  "payload": {
+    "branches": [
+      {
+        "id": "b0",
+        "question_point": "読み手(想定顧客)の立場",
+        "anchor_words": [
+          "うちの会社のやつ"
+        ],
+        "options": [
+          {
+            "label": "toB意思決定者"
+          },
+          {
+            "label": "toC一般消費者"
+          },
+          {
+            "label": "採用候補者"
+          }
+        ],
+        "default_if_unresolved": "toB意思決定者向けとして進める"
+      },
+      {
+        "id": "b2",
+        "question_point": "「温かみ」の表現軸",
+        "anchor_words": [
+          "温かみのある"
+        ],
+        "options": [
+          {
+            "label": "人物・写真訴求"
+          },
+          {
+            "label": "手書き・柔らかい書体"
+          },
+          {
+            "label": "色彩の柔らかさ"
+          }
+        ],
+        "default_if_unresolved": "色彩と書体の柔らかさで表現"
+      },
+      {
+        "id": "b3",
+        "question_point": "「モダン」の表現軸",
+        "anchor_words": [
+          "モダンだけど"
+        ],
+        "options": [
+          {
+            "label": "ミニマル余白系"
+          },
+          {
+            "label": "大胆グラフィック系"
+          },
+          {
+            "label": "テック的先進感"
+          }
+        ],
+        "default_if_unresolved": "ミニマル余白系で表現"
+      },
+      {
+        "id": "b4",
+        "question_point": "構成の重心(何で説得するか)",
+        "anchor_words": [
+          "LPを作って"
+        ],
+        "options": [
+          {
+            "label": "実績・数字訴求"
+          },
+          {
+            "label": "世界観・共感訴求"
+          },
+          {
+            "label": "機能・仕様訴求"
+          }
+        ],
+        "default_if_unresolved": "世界観・共感訴求を軸にする"
+      }
+    ],
+    "residual_ambiguity_assessment": "読者・目的・トーン表現・構成軸が未指定で、日常語のみの依頼のため曖昧度は高い。",
+    "missing_materials": [
+      "会社名・事業内容",
+      "商品・サービスの具体的な特徴",
+      "実績データ・数値",
+      "写真・ロゴ素材"
+    ],
+    "rejected_branches": [
+      {
+        "index": 1,
+        "question_point": "LPの目的・コンバージョン行動",
+        "reasons": [
+          "options が2〜3件でない(有効 4 件)"
+        ]
+      }
+    ],
+    "branches_returned_by_model": 5
+  },
+  "meta": {
+    "attempts": 1,
+    "input_form": "raw_brief_text",
+    "api_ms": 16031,
+    "wall_ms": 25506,
+    "failed_attempts": [],
+    "from_cache": false
+  },
+  "brief": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。",
+  "cached_at": "2026-07-29T15:53:40.507816+00:00"
+}

@@ -4,103 +4,104 @@
 <meta charset="UTF-8">
 <title>スカウトメール</title>
 <style>
-  body {
-    background: #f4f4f2;
-    margin: 0;
-    padding: 40px 16px;
-    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-    color: #2b2b28;
+  /*
+    タイプスケール(基準16px、比率1.25)
+    --fs-body: 16px / --fs-lead: 18px / --fs-h2: 20px / --fs-h1: 26px
+    見出し: 極太システムゴシック(締めた字間) / 本文: システム明朝(柔らかい可読性)
+  */
+  :root {
+    --fs-body: 16px;
+    --fs-lead: 18px;
+    --fs-h2: 20px;
+    --fs-h1: 26px;
+    --ink: #1c1b1a;
+    --paper: #f3efe6;
+    --accent: #2f5d50;
+    --line: rgba(28,27,26,0.14);
   }
-  .doc {
-    max-width: 720px;
-    margin: 0 auto;
-    background: #ffffff;
-    border: 1px solid #e0ded8;
-    border-radius: 6px;
-    padding: 48px 56px;
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #d8d2c4; }
+  body {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--fs-body);
     line-height: 1.9;
-    font-size: 15.5px;
+    color: var(--ink);
+    padding: 64px 16px;
+  }
+  .doc { max-width: 720px; margin: 0 auto; background: var(--paper); padding: 80px 64px; }
+  .subject-label {
+    font-family: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
+    color: var(--accent); display: block; margin-bottom: 16px;
   }
   .subject {
-    font-size: 17px;
-    font-weight: 700;
-    border-bottom: 2px solid #2b2b28;
-    padding-bottom: 16px;
-    margin-bottom: 28px;
+    font-family: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", sans-serif;
+    font-weight: 800; font-size: var(--fs-h1); letter-spacing: -0.01em;
+    line-height: 1.5; margin: 0 0 8px 0;
   }
-  .subject span {
-    display: block;
-    font-size: 12px;
-    font-weight: 400;
-    color: #8a8880;
-    margin-bottom: 6px;
-    letter-spacing: 0.05em;
+  section.hero { margin-bottom: 96px; }
+  .addressee {
+    font-family: "Hiragino Sans", "Yu Gothic UI", sans-serif;
+    font-size: var(--fs-h2); font-weight: 700; letter-spacing: 0.02em;
+    margin: 0 0 64px 0;
   }
-  .to { margin-bottom: 24px; }
-  p { margin: 0 0 20px; }
-  .closing {
-    margin-top: 8px;
-    padding-top: 20px;
-    border-top: 1px solid #e0ded8;
+  .body-block p { margin: 0 0 32px 0; font-size: var(--fs-lead); }
+  .body-block p:last-child { margin-bottom: 0; }
+  .divider { border: none; border-top: 1px solid var(--line); margin: 96px 0 64px 0; }
+  .closing { font-family: "Hiragino Sans", "Yu Gothic UI", sans-serif; }
+  .closing .lead {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-lead); margin: 0 0 40px 0;
+  }
+  .cta {
+    display: inline-block; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--accent); border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px; margin-bottom: 64px;
   }
   .sign {
-    margin-top: 32px;
-    font-size: 14px;
-    color: #4a4844;
+    font-family: "Hiragino Sans", "Yu Gothic UI", sans-serif;
+    font-size: 14px; line-height: 1.8; color: rgba(28,27,26,0.72);
   }
-  .sign .company {
-    font-weight: 700;
-    color: #2b2b28;
-    font-size: 15px;
-    margin-bottom: 4px;
-  }
+  .sign .name { font-size: 15px; font-weight: 700; color: var(--ink); display: block; margin-bottom: 4px; }
 </style>
 </head>
 <body>
-<div class="doc">
+  <div class="doc">
 
-  <div class="subject">
-    <span>件名</span>
-    〈候補者名〉さんのお仕事を見て、どうしてもご連絡したくなりました
+    <section class="hero">
+      <span class="subject-label">SCOUT / 件名</span>
+      <p class="subject">「動くものを最短で見る」進め方に、たぶん退屈しないと思います</p>
+    </section>
+
+    <p class="addressee">〈候補者名〉様</p>
+
+    <div class="body-block">
+      <p>
+        突然のご連絡失礼いたします。〈会社名〉で採用を担当している〈担当者名〉と申します。〈候補者名〉様のご経歴を拝見し、ぜひ一度お話しできればと思いご連絡しました。
+      </p>
+      <p>
+        私たちは、仕様を固めてから作るのではなく、まず小さく動くものを作って確かめながら進めるやり方を大事にしているチームです。議論に時間をかけるより、手を動かして確認する方が速いことが多いという実感を、メンバー全員がどこかで持っています。だからこそ、設計判断の理由を言葉で説明できる人と一緒に働きたいと考えています。
+      </p>
+      <p>
+        〈候補者名〉様のこれまでのお取り組みには、そうした「まず試して、確かめて、直す」姿勢が表れているように感じました。もし今のお仕事の進め方や興味の方向と、私たちが大事にしていることに重なりがありそうでしたら、まずは軽くお話しするところから始められればうれしいです。
+      </p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="closing">
+      <p class="lead">
+        いきなり選考というより、まずはカジュアルにお互いを知る場として、30分ほどお時間をいただけないでしょうか。
+      </p>
+      <p class="cta">このメールに返信いただければ、日程調整のご連絡をいたします</p>
+    </div>
+
+    <div class="sign">
+      <span class="name">〈担当者名〉</span>
+      〈会社名〉<br>
+      〈連絡先メールアドレス〉
+    </div>
+
   </div>
-
-  <div class="to">〈候補者名〉様</div>
-
-  <p>
-    はじめまして。〈会社名〉で採用を担当している〈担当者名〉と申します。
-    〈候補者名〉さんのこれまでの発信や取り組みを拝見し、技術に対する向き合い方や、
-    問題の本質から逃げずに考えるスタイルに強く共感して、思い切ってご連絡しました。
-  </p>
-
-  <p>
-    私たちは、まだ正解が定まっていない領域に対して、少人数で仮説を立てては壊し、
-    また作り直すというやり方を大事にしているチームです。役割で分業するより、
-    関心のある人が手を挙げて進める場面が多く、意思決定のスピードと納得感を
-    両立させることを何より重視しています。だからこそ、技術の判断を任せられる人と
-    一緒にやりたいと思っています。
-  </p>
-
-  <p>
-    〈候補者名〉さんがこれまで大事にしてきたものと、私たちが今つくろうとしているものが
-    重なる部分があるのではないかと感じています。まずは選考というより、
-    率直な意見交換の場として、30分ほどオンラインでお話しできませんか。
-    合わなければそれもひとつの結論として、正直にお伝えするつもりです。
-  </p>
-
-  <div class="closing">
-    <p>
-      もしご興味を持っていただけたら、このメールにご都合のよい日時を
-      2〜3件添えてご返信ください。カジュアルな雑談からでも歓迎です。
-      〈候補者名〉さんからのご連絡をお待ちしています。
-    </p>
-  </div>
-
-  <div class="sign">
-    <div class="company">〈会社名〉</div>
-    〈担当者名〉<br>
-    〈連絡先メールアドレス〉
-  </div>
-
-</div>
 </body>
 </html>

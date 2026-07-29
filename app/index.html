@@ -99,13 +99,41 @@
   /* フォーカスリング(必須) */
   :focus-visible{outline:2px solid var(--ai); outline-offset:2px; border-radius:0}
 
-  /* ロックアップ(左上に小さく・全画面共通) */
+  /* ロックアップ(左上に小さく・全画面共通)
+     クリックでトップへ帰る唯一の常設口。地の部分は pointer-events:none のまま置き、
+     押せるのは文字そのものだけにする(見えない当たり判定を画面に広げない)。
+     ホバーは墨をわずかに濃くするだけ。朱も藍も使わない
+     ——ここは判断の状態を語らないので、意味を担う3色に触らせない。 */
   #lockup{
-    position:fixed; top:18px; left:22px; z-index:5;
+    position:fixed; top:18px; left:22px; z-index:7;
     font-size:10.5px; letter-spacing:.14em; color:var(--muted);
     text-transform:none; pointer-events:none;
   }
   #lockup b{font-weight:600; color:var(--ink-soft); letter-spacing:.16em}
+  #lockupHome{
+    pointer-events:auto; display:block; text-align:left;
+    background:transparent; border:0; border-radius:0; padding:0;
+    font-family:inherit; font-size:inherit; letter-spacing:inherit; color:inherit;
+    transition:color .2s ease;
+  }
+  #lockupHome:hover{color:var(--ink-soft)}
+  /* 帰還の確認帯。モーダルは使わない(画面を覆って返事を強いる作法を採らない)。
+     ロックアップの直下に1行だけ静かに置き、他の場所を触れば黙って消える。 */
+  #homeConfirm{
+    pointer-events:auto; margin-top:9px;
+    display:flex; align-items:center; gap:12px; white-space:nowrap;
+    padding:6px 10px; background:var(--card);
+    border:1px solid var(--line-soft); border-left:1px solid var(--ink-soft);
+    border-radius:0;
+    font-size:10px; letter-spacing:.1em; color:var(--muted);
+  }
+  #homeConfirm button{
+    background:transparent; border:0; border-bottom:1px solid var(--line);
+    border-radius:0; padding:1px 0;
+    font-size:10px; letter-spacing:.1em; color:var(--muted);
+    transition:color .2s ease, border-color .2s ease;
+  }
+  #homeConfirm button:hover{color:var(--ink); border-color:var(--ink-soft)}
 
   /* ============ 処理の内訳(透明性パネル・左下に固定) ============
      既定は閉じている。開くと「固定情報」と「このセッションの実測」を製図の表で出す。
@@ -114,14 +142,17 @@
   #procPanel{
     position:fixed; left:22px; bottom:18px; z-index:6;
     width:max-content; max-width:min(430px, calc(100vw - 44px));
+    min-width:196px;                 /* 畳んでいる間も summary 行の当たり判定を広く保つ */
     border:1px solid var(--line-soft); border-radius:0;
     background:rgba(252,252,250,.94);
   }
   #procPanel[open]{border-color:var(--line); background:var(--card)}
+  /* summary 行は「＋/− の記号」ではなく行全体が押せる。畳む口はもう1つ、
+     パネルの外側を1回クリックすることでも開く(JS 側の document capture)。 */
   #procPanel > summary{
     list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px;
     font-size:11px; letter-spacing:.16em; color:var(--muted);
-    padding:6px 11px; user-select:none; -webkit-user-select:none;
+    padding:9px 13px; user-select:none; -webkit-user-select:none;
     transition:color .2s ease;
   }
   #procPanel > summary::-webkit-details-marker{display:none}
@@ -150,6 +181,8 @@
   .proc-empty{font-size:10.5px; line-height:1.9; color:var(--muted); padding-top:3px}
   @media (max-width:760px){
     #procPanel{left:12px; bottom:10px; max-width:calc(100vw - 24px)}
+    #lockup{left:12px}
+    #homeConfirm{flex-wrap:wrap; white-space:normal; max-width:calc(100vw - 24px)}
   }
 
   /* ============ (a) 初期画面: 下線だけの入力欄。丸箱も送信アイコンも置かない ============ */
@@ -596,8 +629,17 @@
 </head>
 <body>
 
-<!-- ロックアップ(左上に小さく・全画面共通) -->
-<div id="lockup"><b>GYAKUMON</b> — Intent Compiler</div>
+<!-- ロックアップ(左上に小さく・全画面共通)
+     押せばトップへ帰る。初期画面と指示書完成後は即座に。
+     爆散後〜未コンパイルの最中だけ、直下に確認帯を1行出す(モーダルは使わない)。 -->
+<div id="lockup">
+  <button id="lockupHome" type="button" title="最初の画面へ戻る"><b>GYAKUMON</b> — Intent Compiler</button>
+  <div id="homeConfirm" hidden>
+    <span>最初からやり直しますか?</span>
+    <button id="homeConfirmYes" type="button">やり直す</button>
+    <button id="homeConfirmNo" type="button">続ける</button>
+  </div>
+</div>
 
 <!-- ============ (a) 初期画面 ============
      チャット風の丸箱も送信アイコンも置かない。下線だけの入力欄と、
@@ -847,8 +889,8 @@ const S = {
   // 固定情報は /api/health の実値、実測は各処理が返した timing。
   // ここも「画面に出るものは state から毎回導出する」規律に従う(行を書き足さない)。
   health: null,                  // /api/health の応答そのもの(取れなければ null)
-  extractStat: null,             // {model, apiMs, wallMs, branches, rejected, returned, zeroRetry}
-  renderStat: {},                // 'bi:oi' → {ok, ms}(取り直しは同じキーを上書きする)
+  extractStat: null,             // {modelId, modelAlias, apiMs, wallMs, branches, rejected, returned, zeroRetry}
+  renderStat: {},                // 'bi:oi' → {ok, ms, modelId}(取り直しは同じキーを上書きする)
   // 途中切断・途中エラーからの復旧(M1)。done 未到達を「成功」にしないための記録。
   //   state: 'none' | 'running' | 'ok' | 'failed'
   //   kept  : 復旧前から画面に出ていた分岐数(この分の決定は絶対に失わない)
@@ -867,6 +909,7 @@ const elNotice = $('streamNotice');
 const elDelegateAll = $('btnDelegateAll');
 const elProc = $('procPanel'), elProcFixed = $('procFixed');
 const elProcRows = $('procRows'), elProcEmpty = $('procEmpty');
+const elLockup = $('lockup'), elLockupHome = $('lockupHome'), elHomeConfirm = $('homeConfirm');
 
 /* =========================================================================
    小さなユーティリティ
@@ -1009,6 +1052,19 @@ function procRow(tbody, label, value){
 function secText(ms){
   return (ms == null) ? '—' : (ms / 1000).toFixed(1) + '秒';
 }
+// 実測の行に出すモデル名。
+// 第一は timing.model_id = claude CLI の応答JSON(modelUsage のキー)にあった正準ID。
+// サーバへ渡しているのはエイリアス("sonnet")なので、実際にどのモデルが応答したかは
+// この値でしか分からない。取れなかったときだけ、起動時に指定したエイリアスへ倒す
+// (/api/health の実値)。どちらも無ければ「—」。推測でIDを作らない。
+function modelName(id, alias){
+  if (typeof id === 'string' && id.trim()) return id.trim();
+  if (typeof alias === 'string' && alias.trim()) return alias.trim();
+  return '—';
+}
+function healthModel(key){
+  return (S.health && typeof S.health[key] === 'string') ? S.health[key] : null;
+}
 function paintProcFixed(){
   if (!elProcFixed) return;
   const h = S.health;
@@ -1035,7 +1091,7 @@ function paintProcRows(){
 
   const ex = S.extractStat;
   if (ex){
-    const bits = ['model ' + (ex.model ? String(ex.model) : '—'),
+    const bits = [modelName(ex.modelId, ex.modelAlias),
                   'api ' + secText(ex.apiMs),
                   '判断点 ' + String(ex.branches),
                   '棄却 ' + (ex.rejected == null ? '—' : String(ex.rejected)),
@@ -1048,7 +1104,13 @@ function paintProcRows(){
   if (recs.length){
     const done = recs.filter(r => r.ok);
     const ms = done.filter(r => typeof r.ms === 'number').map(r => r.ms);
-    const bits = [String(done.length) + '件'];
+    // レンダは並列に何本も走るが、全て同じ render_model である。
+    // 届いたうち最初に取れた正準IDを代表として出す(取れなければエイリアス)。
+    let rid = null;
+    for (let i = 0; i < recs.length && rid === null; i++){
+      if (typeof recs[i].modelId === 'string' && recs[i].modelId) rid = recs[i].modelId;
+    }
+    const bits = [modelName(rid, healthModel('render_model')), String(done.length) + '件'];
     if (ms.length){
       const sum = ms.reduce((a, v) => a + v, 0);
       bits.push('平均 ' + secText(sum / ms.length));
@@ -1062,7 +1124,8 @@ function paintProcRows(){
 
   if (S.compileDone){
     const t = S.compileTiming || {};
-    const bits = ['api ' + secText(t.api_ms == null ? null : t.api_ms),
+    const bits = [modelName(t.model_id, healthModel('compile_model') || healthModel('model')),
+                  'api ' + secText(t.api_ms == null ? null : t.api_ms),
                   '実測 ' + secText(S.compileMs)];
     if (S.compileError) bits.push('失敗');
     procRow(elProcRows, '指示書の根拠文', bits.join(' ・ '));
@@ -1083,7 +1146,10 @@ function noteExtraction(src){
   const o = src || {};
   const t = (o.timing && typeof o.timing === 'object') ? o.timing : {};
   S.extractStat = {
-    model: (S.health && S.health.model) ? String(S.health.model) : null,
+    // modelId = サーバが CLI から拾った正準ID(取れなければ null)。
+    // modelAlias = 起動時に指定したエイリアス。表示はこの順で倒す。
+    modelId: (typeof t.model_id === 'string' && t.model_id) ? t.model_id : null,
+    modelAlias: healthModel('model'),
     apiMs: (t.api_ms != null) ? t.api_ms : ((o.api_ms != null) ? o.api_ms : null),
     wallMs: (t.wall_ms != null) ? t.wall_ms : null,
     branches: S.branches.length,
@@ -1093,6 +1159,63 @@ function noteExtraction(src){
   };
   paintProc();
 }
+
+/* =========================================================================
+   ロックアップからの帰還 と 「外側を1回クリックで閉じる」
+   -------------------------------------------------------------------------
+   左上のロックアップは、どの画面からもトップへ帰る唯一の常設口である。
+     ・初期画面 … まだ捨てるものが無い          → 即座に帰る
+     ・指示書ができた後 … 成果は既に手元にある  → 即座に帰る
+     ・爆散後〜未コンパイル … 選択の途中である  → 確認帯を1行だけ出す
+   確認帯はロックアップの直下に置く。モーダルにはしない
+   (画面を覆って返事を強いるのは、この製品が採らない作法である)。
+   「続ける」を押さなくても、他の場所を触れば黙って消える。
+
+   閉じ方の口はもう1つある。「処理の内訳」もパネルの外を1回クリックすれば閉じる
+   (−ボタンは残す)。どちらも document の capture 段にある1つの関数が見ており、
+   個々の要素に「自分を閉じるための listener」を配らない。
+   ========================================================================= */
+function inside(root, node){
+  if (!root || !node) return false;
+  if (typeof root.contains === 'function') return root.contains(node);
+  for (let n = node; n; n = n.parentNode){ if (n === root) return true; }
+  return false;
+}
+// 確認帯が要るのは「爆散した(=選択が始まった)が、まだ指示書にしていない」あいだだけ。
+function homeNeedsConfirm(){
+  return S.exploded === true && S.compileDone !== true;
+}
+function showHomeConfirm(){ if (elHomeConfirm) elHomeConfirm.hidden = false; }
+function hideHomeConfirm(){ if (elHomeConfirm) elHomeConfirm.hidden = true; }
+function closeProcPanel(){
+  if (!elProc) return;
+  elProc.open = false;
+  elProc.removeAttribute('open');   // 属性も落として CSS の [open] を確実に外す
+}
+// トップへ帰る。走っているレンダを先に落としてから、状態を丸ごと捨てる。
+// 状態は S の1箇所に集めてあるが、DOM・タイマー・SSE・引出線まで含めた「全リセット」は
+// 再読込が最も確実であり、かつ既にある「最初から」ボタンと同じ経路になる(経路を増やさない)。
+function goHome(){
+  hideHomeConfirm();
+  abortAllRenders();
+  location.reload();
+}
+function onLockupClick(){
+  if (!homeNeedsConfirm()){ goHome(); return; }
+  if (elHomeConfirm && elHomeConfirm.hidden) showHomeConfirm();
+  else hideHomeConfirm();            // もう一度押したら畳む(押し続けても閉じ込めない)
+}
+if (elLockupHome) elLockupHome.addEventListener('click', onLockupClick);
+if ($('homeConfirmYes')) $('homeConfirmYes').addEventListener('click', goHome);
+if ($('homeConfirmNo')) $('homeConfirmNo').addEventListener('click', hideHomeConfirm);
+
+document.addEventListener('click', (e) => {
+  const t = e && e.target;
+  // 確認帯: ロックアップの外を触ったら黙って畳む(= 他の操作をすれば自動的に消える)
+  if (elHomeConfirm && !elHomeConfirm.hidden && !inside(elLockup, t)) hideHomeConfirm();
+  // 処理の内訳: パネルの外を触ったら閉じる。パネルの中(summary 行を含む)では閉じない。
+  if (elProc && elProc.open && !inside(elProc, t)) closeProcPanel();
+}, true);
 
 /* =========================================================================
    (b) 静寂 — 生成は始まらない。実測時間をそのまま見せる。
@@ -2134,7 +2257,8 @@ function startRendersFor(bi, onlyPending){
     const rt = (r.j && r.j.timing && typeof r.j.timing === 'object') ? r.j.timing : null;
     S.renderStat[bi + ':' + oi] = {
       ok: good,
-      ms: (rt && rt.api_ms != null) ? rt.api_ms : Math.round(r.wall)
+      ms: (rt && rt.api_ms != null) ? rt.api_ms : Math.round(r.wall),
+      modelId: (rt && typeof rt.model_id === 'string' && rt.model_id) ? rt.model_id : null
     };
     paintProc();
     placeMini(bi, oi);
@@ -2786,7 +2910,8 @@ $('btnCopy').addEventListener('click', async () => {
   }
   setTimeout(() => { btn.textContent = 'コピー'; }, 1600);
 });
-$('btnRestart').addEventListener('click', () => location.reload());
+// 「最初から」とロックアップのクリックは同じ帰還路を通る(経路を2本持たない)。
+$('btnRestart').addEventListener('click', goHome);
 
 /* =========================================================================
    (g) 並置証明 SplitCompare

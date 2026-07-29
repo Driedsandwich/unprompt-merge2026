@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈イベント名〉 - 交流イベント告知</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #0f0c29;
+    color: #fff;
+    line-height: 1.7;
+  }
+  .hero {
+    padding: 64px 24px 56px;
+    text-align: center;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5 60%, #4ade80);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 60%);
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(28px, 6vw, 44px);
+    font-weight: 900;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    position: relative;
+  }
+  .hero p.copy {
+    margin-top: 14px;
+    font-size: 16px;
+    opacity: 0.95;
+    position: relative;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  section {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 28px;
+    margin-top: -28px;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(6px);
+  }
+  section + section { margin-top: 24px; }
+  h2 {
+    font-size: 15px;
+    color: #4ade80;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    row-gap: 10px;
+    font-size: 15px;
+  }
+  .info-grid .label { color: #a5a5d9; }
+  .desc { font-size: 15px; color: #e6e6f5; }
+  .points {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+  .points li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .points .num {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+  .points .txt b { display: block; margin-bottom: 2px; }
+  .fee-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    text-align: center;
+  }
+  .fee-grid div {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .fee-grid .num-big { font-size: 22px; font-weight: 800; color: #4ade80; }
+  .cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, #7873f5, #ff6ec4);
+    border: none;
+  }
+  .cta-section p { margin-bottom: 18px; font-size: 14px; opacity: 0.95; }
+  .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: #7873f5;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 16px 48px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    transition: transform 0.15s;
+  }
+  .cta-btn:hover { transform: scale(1.05); }
+  .cta-sub { margin-top: 12px; font-size: 12px; opacity: 0.85; }
+  footer {
+    text-align: center;
+    padding: 40px 20px 60px;
+    font-size: 12px;
+    color: #8888b0;
+  }
+  footer .sns { margin-top: 10px; display: flex; justify-content: center; gap: 12px; }
+  footer .sns span {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="badge">✨ 参加無料枠あり・出会いと交流の場</span>
+  <h1>〈イベント名〉</h1>
+  <p class="copy">初めてでも大丈夫。ゆるく、でも濃く繋がれる一夜。</p>
+</div>
+
+<main>
+  <section>
+    <h2>📅 日時・場所</h2>
+    <div class="info-grid">
+      <span class="label">日時</span><span>〈開催日〉 〈開始時刻〉〜〈終了時刻〉</span>
+      <span class="label">会場</span><span>〈会場名〉</span>
+      <span class="label">アクセス</span><span>〈最寄駅・アクセス情報〉</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>💬 どんな会？</h2>
+    <p class="desc">〈イベントの概要・目的をここに記載〉。初対面同士でも話しやすい雰囲気づくりを大切にしています。気軽に参加してください。</p>
+  </section>
+
+  <section>
+    <h2>🌟 見どころ 3</h2>
+    <ul class="points">
+      <li><span class="num">1</span><span class="txt"><b>〈見どころ1のタイトル〉</b>〈見どころ1の説明〉</span></li>
+      <li><span class="num">2</span><span class="txt"><b>〈見どころ2のタイトル〉</b>〈見どころ2の説明〉</span></li>
+      <li><span class="num">3</span><span class="txt"><b>〈見どころ3のタイトル〉</b>〈見どころ3の説明〉</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🎟 参加費・定員</h2>
+    <div class="fee-grid">
+      <div><div class="num-big">〈参加費〉</div>参加費</div>
+      <div><div class="num-big">〈定員人数〉</div>定員</div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 style="color:#fff;justify-content:center;">🚀 参加はこちらから</h2>
+    <p>枠には限りがあります。気になったら今のうちに申込みを。</p>
+    <a href="#" class="cta-btn">今すぐ申し込む</a>
+    <p class="cta-sub">申込締切：〈申込締切日〉</p>
+  </section>
+</main>
+
+<footer>
+  <p>主催：〈主催者名〉 ／ お問い合わせ：〈連絡先〉</p>
+  <div class="sns"><span>𝕏</span><span>IG</span><span>@</span></div>
+  <p style="margin-top:10px;">&copy; 〈イベント名〉</p>
+</footer>
+
+</body>
+</html>

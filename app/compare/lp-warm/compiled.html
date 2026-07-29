@@ -2,223 +2,170 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>採用情報 | 〈会社名〉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈会社名〉採用サイト</title>
 <style>
-/* GYAKUMON-CHOICE: 「モダン」の表現軸 = 大胆グラフィック系 */
-:root{
-  --bg:#1c1c1e;
-  --sub:#3a3f58;
-  --gold:#c9a24b;
-  --warm-red:#e8432c;
-  --warm-yellow:#f2c230;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
 /* GYAKUMON-CHOICE: 読み手(想定顧客)の立場 = 採用候補者 */
+/* GYAKUMON-CHOICE: 「温かみ」の表現軸 = 手書き・柔らかい書体 */
+/* GYAKUMON-CHOICE: 「モダン」の表現軸 = 大胆グラフィック系 */
+/* GYAKUMON-CHOICE: 構成の重心(何で説得するか) = 世界観・共感訴求 */
+
+:root{
+  --step-0: 16px;
+  --step-1: 24px;
+  --step-2: 36px;
+  --step-3: 54px;
+  --base: #2b2622;
+  --main: #8a6a52;
+  --accent: #d99b6c;
+  --hero-base: #1b2a2e;
+  --hero-main: #3f6e5e;
+  --hero-accent: #c9a15d;
+  --cta-base: #1a1a1a;
+  --cta-accent1: #ff3d1a;
+  --cta-accent2: #ffd23f;
+}
+*{box-sizing:border-box;}
 body{
-  background:var(--bg);
-  color:#f5ede1;
-  font-family:"Hiragino Maru Gothic ProN","Rounded Mplus 1c",sans-serif;
+  margin:0;
+  background:#f5ede3;
+  color:var(--base);
+  font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
   line-height:1.9;
 }
-h1,h2,h3{font-family:"Hiragino Maru Gothic ProN","Rounded Mplus 1c",sans-serif;font-weight:700;}
+h1,h2,h3{
+  font-family: "Hiragino Maru Gothic ProN", "UD Digi Kyokasho N-R", "Rounded Mplus 1c", system-ui, sans-serif;
+  font-weight:700;
+  letter-spacing:0.02em;
+  margin:0;
+}
 section{padding:96px 24px;}
 .wrap{max-width:880px;margin:0 auto;}
 
-/* GYAKUMON-CHOICE: 密度 = normal */
+/* GYAKUMON-CHOICE: 読み手(想定顧客)の立場 = 採用候補者 */
 .hero{
-  min-height:88vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  background:
-    radial-gradient(circle at 20% 30%, var(--warm-red) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, var(--warm-yellow) 0%, transparent 35%),
-    var(--bg);
-  position:relative;
-  overflow:hidden;
+  background: linear-gradient(160deg, var(--hero-base), var(--hero-main));
+  color:#f5ede3;
+  padding:120px 24px;
+  border-radius:0 0 32px 32px;
 }
-.hero h1{
-  font-size:clamp(2.2rem,6vw,4rem);
-  color:#fff;
-  letter-spacing:.02em;
-  text-shadow:0 4px 24px rgba(0,0,0,.4);
-}
-.hero p{
-  margin-top:24px;
-  font-size:1.2rem;
-  color:var(--warm-yellow);
-}
-.shape{
-  position:absolute;
-  border-radius:50%;
-}
-.shape.a{width:220px;height:220px;background:var(--warm-red);opacity:.35;top:-60px;left:-60px;}
-.shape.b{width:160px;height:160px;background:var(--warm-yellow);opacity:.3;bottom:-40px;right:10%;}
-
-/* GYAKUMON-CHOICE: 「温かみ」の表現軸 = 手書き・柔らかい書体 */
-.value{
-  background:#f5ede1;
-  color:#2a241d;
-  border-radius:32px;
-  margin:0 24px;
-}
-.value .wrap{text-align:center;}
-.value h2{
-  font-size:2rem;
-  color:#8b4b2a;
-  border-bottom:3px dashed #c99a6c;
-  display:inline-block;
-  padding-bottom:8px;
-  margin-bottom:24px;
-}
-.value p{font-size:1.15rem;color:#4a3f33;}
+.hero .eyebrow{ font-size:var(--step-0); color:var(--hero-accent); letter-spacing:0.15em; }
+.hero h1{ font-size:var(--step-3); margin-top:16px; line-height:1.4; }
+.hero p{ margin-top:24px; font-size:var(--step-1); max-width:640px; color:#e6ded2; }
 
 /* GYAKUMON-CHOICE: 構成の重心(何で説得するか) = 世界観・共感訴求 */
-.story{
-  background:#2a241d;
-}
-.story h2{
-  font-family:serif;
-  font-size:2.2rem;
-  color:var(--gold);
-  margin-bottom:32px;
-}
-.story p{
-  font-family:serif;
-  font-size:1.15rem;
-  color:#e8dcc8;
-  max-width:640px;
-  margin-bottom:20px;
+.story{ background:#f5ede3; }
+.story h2{ font-size:var(--step-2); color:var(--main); }
+.story p{ margin-top:32px; font-size:var(--step-0); color:var(--base); max-width:640px; }
+.story .quote{
+  margin-top:48px; padding:32px 40px; border-left:4px solid var(--accent);
+  border-radius:16px; background:#fffaf2; font-size:var(--step-1); color:var(--main);
 }
 
-.features{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.feature{
-  background:var(--sub);
-  border-radius:24px;
-  padding:36px 24px;
-  text-align:center;
-}
-.feature .icon{font-size:2.4rem;margin-bottom:16px;}
-.feature h3{color:var(--gold);margin-bottom:12px;font-size:1.1rem;}
-.feature p{font-size:.95rem;color:#e8dcc8;}
+/* GYAKUMON-CHOICE: 「温かみ」の表現軸 = 手書き・柔らかい書体 */
+.features{ background:#f0e5d6; border-radius:32px; margin:0 24px; }
+.features h2{ font-size:var(--step-2); color:var(--main); text-align:center; }
+.feature-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:64px; }
+.feature-card{ background:#fffaf2; border-radius:24px; padding:40px 24px; text-align:center; }
+.feature-card .icon{ font-size:40px; }
+.feature-card h3{ margin-top:16px; font-size:var(--step-1); color:var(--main); }
+.feature-card p{ margin-top:12px; font-size:15px; color:var(--base); }
 
-.about{
-  background:linear-gradient(135deg,#1c1c1e 60%,var(--sub));
-  border-radius:32px;
-  margin:0 24px;
-}
-.about h2{color:var(--gold);font-size:1.8rem;margin-bottom:20px;}
-.about p{color:#e8dcc8;max-width:640px;}
-.placeholder{
-  display:inline-block;
-  border:1px dashed var(--gold);
-  border-radius:12px;
-  padding:2px 10px;
-  color:var(--gold);
-  font-size:.9rem;
-}
+.about{ background:#f5ede3; }
+.about h2{ font-size:var(--step-2); color:var(--main); }
+.about p{ margin-top:24px; font-size:var(--step-0); max-width:640px; }
+.about dl{ margin-top:40px; display:grid; grid-template-columns:120px 1fr; row-gap:16px; font-size:15px; }
+.about dt{ color:var(--main); font-weight:700; }
 
-.cta{
-  text-align:center;
-  background:
-    radial-gradient(circle at 50% 0%, var(--warm-red), var(--bg) 70%);
-  border-radius:32px;
-  margin:0 24px 24px;
+/* GYAKUMON-CHOICE: 「モダン」の表現軸 = 大胆グラフィック系 */
+.cta{ background:var(--cta-base); color:#fff; border-radius:0; text-align:center; padding:112px 24px; }
+.cta h2{
+  font-family: system-ui, sans-serif; font-weight:900; letter-spacing:-0.02em;
+  font-size:var(--step-3); color:var(--cta-accent2); text-transform:uppercase;
 }
-.cta h2{font-size:2rem;color:#fff;margin-bottom:20px;}
+.cta p{ margin-top:16px; font-size:var(--step-1); color:#ddd; }
 .cta a{
-  display:inline-block;
-  background:var(--warm-yellow);
-  color:#1a1512;
-  font-weight:700;
-  padding:18px 48px;
-  border-radius:999px;
-  text-decoration:none;
-  font-size:1.1rem;
-  box-shadow:0 8px 24px rgba(232,67,44,.4);
+  display:inline-block; margin-top:40px; background:var(--cta-accent1); color:#fff;
+  font-weight:900; font-size:20px; padding:20px 48px; border-radius:0;
+  text-decoration:none; letter-spacing:0.05em;
 }
 
-footer{
-  padding:40px 24px;
-  text-align:center;
-  color:#8a8578;
-  font-size:.85rem;
-}
+footer{ background:#2b2622; color:#c9bfb2; text-align:center; padding:48px 24px; font-size:13px; }
+footer p{ margin:4px 0; }
 
-@media(max-width:680px){
-  .features{grid-template-columns:1fr;}
+@media(max-width:720px){
+  .feature-grid{grid-template-columns:1fr;}
+  .about dl{grid-template-columns:1fr;}
+  .hero h1{font-size:var(--step-2);}
+  .cta h2{font-size:var(--step-2);}
 }
 </style>
 </head>
 <body>
 
 <section class="hero">
-  <div class="shape a"></div>
-  <div class="shape b"></div>
-  <h1>あなたの成長を、<br>この会社で。</h1>
-  <p>私たちと働く一日を想像してください。</p>
-</section>
-
-<section class="value">
   <div class="wrap">
-    <h2>会社案内、手書きの温もりで。</h2>
-    <p>〈会社名〉は、〈事業内容〉を通じて社会に価値を届けています。<br>
-    ここには、一人ひとりの想いが積み重なった時間があります。</p>
+    <div class="eyebrow">RECRUIT — 〈会社名〉で働くということ</div>
+    <h1>この会社で、<br>次のキャリアを。</h1>
+    <p>〈会社名〉は〈事業内容:未提供〉を手がけています。ここに書かれているのは、私たちがあなたに伝えたい、まだ数字にならない想いです。</p>
   </div>
 </section>
 
 <section class="story">
   <div class="wrap">
-    <h2>会社の歩みが、あなたの毎日に寄り添う。</h2>
-    <p>〈創業の背景〉から始まった歩みは、今も続いています。私たちが大切にしてきたのは、目の前の一人と丁寧に向き合うこと。</p>
-    <p>その積み重ねが、働く仲間の日々にもそのまま息づいています。あなたがここに加わることで、その物語はまた少し先へ進みます。</p>
+    <h2>私たちが大切にしてきた、変わらない想い。</h2>
+    <p>〈会社名〉がどんな道を歩んできたか、どんな人たちと働いてきたか——その具体的なエピソードは、まだこちらに届いていません。ですが、私たちは「一緒に働く人」を何より大切に考える会社でありたいと思っています。</p>
+    <div class="quote">「〈会社の理念・大切にしている言葉が入ります〉」</div>
   </div>
 </section>
 
-<section class="wrap">
-  <div class="features">
-    <div class="feature">
-      <div class="icon">🌱</div>
-      <h3>特徴1</h3>
-      <p>〈具体的な特徴・制度などをご提供ください〉</p>
-    </div>
-    <div class="feature">
-      <div class="icon">🤝</div>
-      <h3>特徴2</h3>
-      <p>〈具体的な特徴・制度などをご提供ください〉</p>
-    </div>
-    <div class="feature">
-      <div class="icon">🔥</div>
-      <h3>特徴3</h3>
-      <p>〈具体的な特徴・制度などをご提供ください〉</p>
+<section class="features">
+  <div class="wrap">
+    <h2>私たちの特徴</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">🌱</div>
+        <h3>〈特徴1〉</h3>
+        <p>具体的な強みや制度の内容は、発注者からの情報をお待ちしています。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🤝</div>
+        <h3>〈特徴2〉</h3>
+        <p>チームの雰囲気や働き方に関する情報がここに入ります。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">✨</div>
+        <h3>〈特徴3〉</h3>
+        <p>成長環境やキャリアパスに関する情報がここに入ります。</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="about">
   <div class="wrap">
-    <h2>会社の想い、色と形にぶつけます。</h2>
-    <p>会社名：<span class="placeholder">会社名未提供</span><br>
-    事業内容：<span class="placeholder">事業内容未提供</span><br>
-    実績：<span class="placeholder">実績データ未提供</span></p>
+    <h2>会社について</h2>
+    <p>〈会社名〉についての詳しいご紹介です。事業内容・実績・沿革などの具体的な情報は、発注者からの提供をお待ちしています。</p>
+    <dl>
+      <dt>会社名</dt><dd>〈会社名〉</dd>
+      <dt>事業内容</dt><dd>〈事業内容〉</dd>
+      <dt>所在地</dt><dd>〈所在地〉</dd>
+    </dl>
   </div>
 </section>
 
 <section class="cta">
   <div class="wrap">
-    <h2>あなたの物語を、ここから。</h2>
-    <a href="#">採用情報を見る</a>
+    <h2>会社の本気、<br>あなたと。</h2>
+    <p>まずは私たちのことを、もっと知ってください。</p>
+    <a href="#">エントリーはこちら</a>
   </div>
 </section>
 
 <footer>
-  &copy; 〈会社名〉All Rights Reserved.
+  <p>〈会社名〉</p>
+  <p>〈所在地〉 ／ 〈連絡先〉</p>
+  <p>&copy; 2026 〈会社名〉</p>
 </footer>
 
 </body>

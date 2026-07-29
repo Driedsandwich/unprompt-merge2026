@@ -310,7 +310,11 @@ const click = (el) => { (el.handlers.click || []).forEach(f => f()); };
   console.log('\n=== B-3) explode 応答後に「問いの抽出」の行が入る ===');
   const rows = () => registry['procRows'].textContent;
   chk('★抽出の行が入る', rows().indexOf('問いの抽出') >= 0, JSON.stringify(rows()));
-  chk('★model が入る', rows().indexOf('model sonnet') >= 0);
+  // 2026-07-30: 行の先頭はモデル名そのもの(「model 」の接頭辞は置かない)。
+  // このスタブの timing には model_id が無いので、/api/health のエイリアスへ倒れる。
+  // 正準IDが載る場合と、載らない場合のフォールバックは domtest7.js が見る。
+  chk('★model が先頭に入る(エイリアスへのフォールバック)',
+      rows().indexOf('問いの抽出sonnet ・ api') >= 0, JSON.stringify(rows()));
   chk('★api 秒が実測から入る', rows().indexOf('api 81.3秒') >= 0, JSON.stringify(rows()));
   chk('★判断点の数が入る', rows().indexOf('判断点 3') >= 0);
   chk('★棄却の数が入る', rows().indexOf('棄却 2') >= 0);
@@ -336,7 +340,8 @@ const click = (el) => { (el.handlers.click || []).forEach(f => f()); };
   const rows2 = registry['procRows'].textContent;
   const nOpts = S.branches.reduce((a, b) => a + b.options.length, 0);
   chk('★見本の生成の行が入る', rows2.indexOf('見本の生成') >= 0, JSON.stringify(rows2));
-  chk('★件数は届いた見本の数', rows2.indexOf('見本の生成' + nOpts + '件') >= 0, 'nOpts=' + nOpts);
+  chk('★件数は届いた見本の数(先頭はレンダ側のモデル名)',
+      rows2.indexOf('見本の生成haiku ・ ' + nOpts + '件') >= 0, 'nOpts=' + nOpts);
   chk('★平均秒が入る', /平均 \d+\.\d秒/.test(rows2));
   chk('★最長秒が入る', /最長 \d+\.\d秒/.test(rows2));
   chk('最長 >= 平均', (() => {

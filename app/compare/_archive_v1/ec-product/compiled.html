@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>タンブラー商品説明</title>
+<style>
+  /* GYAKUMON-CHOICE: 購買を後押しする決め手の種類 = 限定感・お得感訴求 */
+  :root{
+    --bg:#1a0f08;
+    --main:#8c1d2b;
+    --accent:#e8b84b;
+  }
+  body{
+    margin:0;
+    padding:48px 16px;
+    background:var(--bg);
+    font-family:"Hiragino Sans","Yu Gothic","Helvetica Neue",sans-serif;
+    display:flex;
+    justify-content:center;
+  }
+  .card{
+    width:720px;
+    max-width:100%;
+    background:#241209;
+    /* GYAKUMON-CHOICE: 角(sharp/soft) = sharp */
+    border-radius:0;
+    border:1px solid var(--accent);
+    /* GYAKUMON-CHOICE: 密度(airy/normal/dense) = dense */
+    padding:28px 32px;
+    box-sizing:border-box;
+  }
+  h1{
+    /* GYAKUMON-CHOICE: 見出し書体(serif/sans/rounded) = serif */
+    font-family:"Times New Roman","Hiragino Mincho ProN",serif;
+    color:var(--accent);
+    font-size:30px;
+    margin:0 0 6px;
+    letter-spacing:0.04em;
+  }
+  .catch{
+    color:#ffffff;
+    font-size:17px;
+    font-weight:bold;
+    margin:0 0 18px;
+    border-left:4px solid var(--main);
+    padding-left:10px;
+  }
+  .body-text{
+    color:#e9d9c9;
+    font-size:15px;
+    line-height:1.7;
+    margin:0 0 16px;
+  }
+  .body-text p{
+    margin:0 0 10px;
+  }
+  ul.spec{
+    list-style:none;
+    margin:0 0 22px;
+    padding:0;
+    border-top:1px solid var(--main);
+    border-bottom:1px solid var(--main);
+  }
+  ul.spec li{
+    color:#f2e6d6;
+    font-size:13.5px;
+    padding:7px 4px;
+    border-bottom:1px dashed rgba(232,184,75,0.3);
+  }
+  ul.spec li:last-child{
+    border-bottom:none;
+  }
+  ul.spec span{
+    color:var(--accent);
+    font-weight:bold;
+    display:inline-block;
+    width:110px;
+  }
+  .buy-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    background:var(--main);
+    color:#fff2e0;
+    font-size:18px;
+    font-weight:bold;
+    padding:14px 0;
+    border-radius:0;
+    border:1px solid var(--accent);
+    box-sizing:border-box;
+    letter-spacing:0.05em;
+  }
+  .note{
+    text-align:center;
+    color:var(--accent);
+    font-size:12px;
+    margin-top:8px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- GYAKUMON-CHOICE: 想定読者の年代・属性 = 若年層・ギフト志向 -->
+  <h1>〈商品名〉タンブラー</h1>
+
+  <!-- GYAKUMON-CHOICE: 文章のトーン = 熱量高いセールス調 -->
+  <p class="catch">数量限定、今だけ特別価格。逃したら後悔するタンブラー、あります。</p>
+
+  <div class="body-text">
+    <!-- GYAKUMON-CHOICE: 訴求の中心軸 = デザイン性訴求 -->
+    <p>手に取った瞬間、わかる。〈商品名〉は「ただ飲み物を入れる筒」じゃない。削ぎ落としたフォルムと、光の当たり方まで計算された佇まいで、机の上に置くだけで空気が変わるタンブラーです。</p>
+    <p>friendに贈れば、開けた瞬間に笑顔がこぼれる。自分用にひとつ持てば、毎朝のコーヒーが少し特別になる。見た目で選んで、後悔しない。そういうデザインです。</p>
+    <p>ただし在庫には限りがあります。〈数量限定〉、〈価格〉での特別価格ご案内も今だけ。迷っている間に売り切れる前に、今すぐ手元に確保してください。</p>
+  </div>
+
+  <ul class="spec">
+    <li><span>容量</span>〈容量〉</li>
+    <li><span>素材</span>〈素材〉</li>
+    <li><span>保温・保冷</span>〈保温性能〉</li>
+    <li><span>価格</span>〈価格〉(数量限定・特別価格)</li>
+  </ul>
+
+  <div class="buy-btn">今すぐ確保する ▸ 売り切れ前に</div>
+  <p class="note">※数量限定商品のため、在庫がなくなり次第終了となります</p>
+
+</div>
+</body>
+</html>

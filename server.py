@@ -41,6 +41,13 @@ GYAKUMON — Intent Compiler ローカルサーバ(python3 標準ライブラリ
          ブリーフ本文(MD/JSON)の組み立てはクライアント側の決定論処理。LLMは根拠文のみ。
   GET  /api/health   → {ok:true, ...}
 
+  timing の共通形(2026-07-30 に model_id を追加):
+       {wall_ms, api_ms, model_id}
+       model_id は claude CLI の応答 JSON の modelUsage のキー(= 正準モデルID。
+       例 "claude-sonnet-5")。サーバが CLI へ渡しているのはエイリアス("sonnet")なので、
+       「実際にどのモデルが応答したか」はこの値でしか分からない。取れなければ null を返し、
+       クライアントはエイリアス(/api/health の model / render_model / compile_model)へ倒す。
+
 規律(killer_test/run.py の流儀を踏襲):
   - 子プロセスの cwd は必ずリポジトリ外の一時ディレクトリ。CLAUDE.md / .claude 設定の
     祖先探索を遮断し、無関係な指示が抽出・生成へ注入されるのを防ぐ(設定汚染防止)。
@@ -606,6 +613,47 @@ class StreamingExtractionParser:
 
 
 # ========= claude CLI 実行器(実行枠プール付き) =========
+def model_id_from_cli(cli_json):
+    """claude CLI の応答JSONから「実際に走ったモデルの正準ID」を取り出す。
+
+    CLI(claude 2.1.x)は --output-format json / stream-json の result イベントに
+    modelUsage を載せる。形は次のとおりで、キーそのものが正準IDである。
+        "modelUsage": {"claude-sonnet-5": {..., "canonicalModel": "claude-sonnet-5", ...}}
+    サーバが起動時に渡しているのはエイリアス("sonnet" / "haiku")なので、
+    実際にどのモデルが応答したかはこの値でしか分からない。
+    「処理の内訳」は主張ではなく実測を出すパネルなので、ここを転記する。
+
+    複数モデルが載る場合(将来の内部委譲など)は出力トークンが最も多いものを主とする。
+    取れなければ None を返す(呼び出し側がエイリアスへフォールバックする)。
+    """
+    if not isinstance(cli_json, dict):
+        return None
+    mu = cli_json.get("modelUsage")
+    if not isinstance(mu, dict) or not mu:
+        return None
+
+    def out_tokens(k):
+        v = mu.get(k)
+        n = v.get("outputTokens") if isinstance(v, dict) else None
+        return n if isinstance(n, (int, float)) and not isinstance(n, bool) else 0
+
+    key = max(mu.keys(), key=out_tokens)          # 同点なら先に載っていたものが勝つ(決定論)
+    v = mu.get(key)
+    if isinstance(v, dict):
+        canon = v.get("canonicalModel")
+        if isinstance(canon, str) and canon.strip():
+            return canon.strip()
+    return key.strip() if isinstance(key, str) and key.strip() else None
+
+
+def pick_model_id(vals):
+    """複数回の実行(ゼロ二重確認など)から、最初に取れた正準IDを選ぶ。"""
+    for v in vals:
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return None
+
+
 class ClaudeRunner:
     """claude -p をスレッドセーフに呼ぶ実行器。
 
@@ -741,10 +789,12 @@ class ClaudeRunner:
     def run(self, system_prompt, user_prompt, model, kind="other"):
         """1回の claude -p 実行。結果 dict を返す(例外を投げない)。
 
-        戻り値: {ok, wall_ms, api_ms, duration_ms, result_text, error, hint, exit_code}
+        戻り値: {ok, wall_ms, api_ms, duration_ms, model_id, result_text, error, hint, exit_code}
+        model_id は CLI が実際に使ったモデルの正準ID(取れなければ None)。
         kind="render" は副上限(render_cap)の対象。
         """
         rec = {"ok": False, "wall_ms": None, "api_ms": None, "duration_ms": None,
+               "model_id": None,
                "result_text": None, "error": None, "hint": None, "exit_code": None}
         wait_deadline = self.timeout_s + SLOT_WAIT_MARGIN_S
         t_wait = time.monotonic()
@@ -815,6 +865,7 @@ class ClaudeRunner:
         if isinstance(cli_json, dict):
             rec["duration_ms"] = cli_json.get("duration_ms")
             rec["api_ms"] = cli_json.get("duration_api_ms")
+            rec["model_id"] = model_id_from_cli(cli_json)
 
         if proc.returncode != 0 or (isinstance(cli_json, dict) and cli_json.get("is_error")):
             rec["error"] = "claude CLI がエラーを返した(exit=%s, is_error=%s)" % (
@@ -849,6 +900,7 @@ class ClaudeRunner:
         (--verbose は -p + stream-json の組で CLI が要求する。)
         """
         rec = {"ok": False, "wall_ms": None, "api_ms": None, "duration_ms": None,
+               "model_id": None,
                "result_text": None, "error": None, "hint": None, "exit_code": None}
         wait_deadline = self.timeout_s + SLOT_WAIT_MARGIN_S
         t_wait = time.monotonic()
@@ -970,6 +1022,7 @@ class ClaudeRunner:
 
             rec["duration_ms"] = cli_json.get("duration_ms")
             rec["api_ms"] = cli_json.get("duration_api_ms")
+            rec["model_id"] = model_id_from_cli(cli_json)
             if proc.returncode != 0 or cli_json.get("is_error"):
                 rec["error"] = "claude CLI がエラーを返した(exit=%s, is_error=%s)" % (
                     proc.returncode, cli_json.get("is_error"))
@@ -1328,10 +1381,16 @@ def call_claude(endpoint, system_prompt, user_prompt, model):
 
     kind はエンドポイントから決める。/api/render だけレンダ副上限の対象にして、
     爆散(取り直しを含む)とコンパイル用の実行枠を必ず空けておく。
+
+    timing.model_id は CLI が実際に使ったモデルの正準ID(例 "claude-sonnet-5")。
+    サーバへ渡しているのはエイリアス("sonnet")なので、画面に実IDを出すには
+    この経路しかない。取れなかったときは None のままにして、クライアント側で
+    エイリアスへフォールバックさせる(嘘のIDを作らない)。
     """
     kind = "render" if endpoint == "/api/render" else "other"
     rec = STATE.runner.run(system_prompt, user_prompt, model, kind=kind)
-    timing = {"wall_ms": rec["wall_ms"], "api_ms": rec["api_ms"]}
+    timing = {"wall_ms": rec["wall_ms"], "api_ms": rec["api_ms"],
+              "model_id": rec.get("model_id")}
     return rec, timing
 
 
@@ -1388,7 +1447,8 @@ def handle_explode(body):
     attempts = [{"branches": len(payload["branches"]),
                  "branches_returned_by_model": payload["branches_returned_by_model"],
                  "rejected": len(payload["rejected_branches"]),
-                 "wall_ms": timing["wall_ms"], "api_ms": timing["api_ms"]}]
+                 "wall_ms": timing["wall_ms"], "api_ms": timing["api_ms"],
+                 "model_id": timing.get("model_id")}]
     zero_confirmed = False
 
     if not payload["branches"]:
@@ -1399,16 +1459,19 @@ def handle_explode(body):
             attempts.append({"branches": len(payload2["branches"]),
                              "branches_returned_by_model": payload2["branches_returned_by_model"],
                              "rejected": len(payload2["rejected_branches"]),
-                             "wall_ms": timing2["wall_ms"], "api_ms": timing2["api_ms"]})
+                             "wall_ms": timing2["wall_ms"], "api_ms": timing2["api_ms"],
+                             "model_id": timing2.get("model_id")})
             if payload2["branches"]:
                 payload, rec = payload2, rec2          # 2回目を採用(偽陰性を救った)
             else:
                 zero_confirmed = True                  # 2回とも0 = 本当に0件
         else:
             attempts.append({"branches": None, "error": True,
-                             "wall_ms": timing2["wall_ms"], "api_ms": timing2["api_ms"]})
+                             "wall_ms": timing2["wall_ms"], "api_ms": timing2["api_ms"],
+                             "model_id": timing2.get("model_id")})
         timing = {"wall_ms": _sum_ms(a.get("wall_ms") for a in attempts),
-                  "api_ms": _sum_ms(a.get("api_ms") for a in attempts)}
+                  "api_ms": _sum_ms(a.get("api_ms") for a in attempts),
+                  "model_id": pick_model_id(a.get("model_id") for a in attempts)}
 
     if not payload["branches"]:
         # 分岐0件は「完全指定に近いブリーフ」では正当な結果。棄却が原因の0件と区別できるよう
@@ -1610,7 +1673,7 @@ def handle_explode_stream(body, emit):
         rec = st["final_rec"] or {}
         return {"branches": len(st["accepted"]), "branches_returned_by_model": st["raw_seen"],
                 "rejected": len(st["rejected"]), "wall_ms": rec.get("wall_ms"),
-                "api_ms": rec.get("api_ms"),
+                "api_ms": rec.get("api_ms"), "model_id": rec.get("model_id"),
                 "failed": (fail["kind"] if fail else None)}
 
     st, fail = run_attempt()
@@ -1657,7 +1720,8 @@ def handle_explode_stream(body, emit):
         "rejected_branches": rejected,
         "branches_returned_by_model": raw_seen,
         "timing": {"wall_ms": _sum_ms(a.get("wall_ms") for a in attempts),
-                   "api_ms": _sum_ms(a.get("api_ms") for a in attempts)},
+                   "api_ms": _sum_ms(a.get("api_ms") for a in attempts),
+                   "model_id": pick_model_id(a.get("model_id") for a in attempts)},
         "api_ms": _sum_ms(a.get("api_ms") for a in attempts),
         "first_branch_ms": first_branch_ms,
         "elapsed_ms": ms(),

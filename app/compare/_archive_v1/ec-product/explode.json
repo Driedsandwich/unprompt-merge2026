@@ -1,0 +1,101 @@
+{
+  "payload": {
+    "branches": [
+      {
+        "id": "b0",
+        "question_point": "想定読者の年代・属性",
+        "anchor_words": [
+          "ネットショップに載せるタンブラーの商品説明文"
+        ],
+        "options": [
+          {
+            "label": "若年層・ギフト志向"
+          },
+          {
+            "label": "実用重視の一般層"
+          },
+          {
+            "label": "高価格帯こだわり層"
+          }
+        ],
+        "default_if_unresolved": "実用重視の一般層向けとして書く"
+      },
+      {
+        "id": "b1",
+        "question_point": "訴求の中心軸",
+        "anchor_words": [
+          "ちゃんと良さが伝わって"
+        ],
+        "options": [
+          {
+            "label": "機能性訴求"
+          },
+          {
+            "label": "デザイン性訴求"
+          },
+          {
+            "label": "ライフスタイル訴求"
+          }
+        ],
+        "default_if_unresolved": "機能性を中心に訴求する"
+      },
+      {
+        "id": "b2",
+        "question_point": "文章のトーン",
+        "anchor_words": [
+          "ポチりたくなるように"
+        ],
+        "options": [
+          {
+            "label": "熱量高いセールス調"
+          },
+          {
+            "label": "落ち着いた上質調"
+          },
+          {
+            "label": "親しみやすい会話調"
+          }
+        ],
+        "default_if_unresolved": "落ち着いた上質調で書く"
+      },
+      {
+        "id": "b3",
+        "question_point": "購買を後押しする決め手の種類",
+        "anchor_words": [
+          "ポチりたくなるように"
+        ],
+        "options": [
+          {
+            "label": "機能スペック訴求"
+          },
+          {
+            "label": "使用シーン訴求"
+          },
+          {
+            "label": "限定感・お得感訴求"
+          }
+        ],
+        "default_if_unresolved": "使用シーン訴求を中心にする"
+      }
+    ],
+    "residual_ambiguity_assessment": "目的は述べられているが、対象読者・トーン・訴求軸・使用シーンが未指定で分岐が複数残る",
+    "missing_materials": [
+      "タンブラーの型番・仕様(容量・素材・保温性能など)",
+      "価格",
+      "商品写真・素材画像",
+      "ブランド名・既存の世界観資料"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+  },
+  "meta": {
+    "attempts": 1,
+    "input_form": "raw_brief_text",
+    "api_ms": 12371,
+    "wall_ms": 15990,
+    "failed_attempts": [],
+    "from_cache": false
+  },
+  "brief": "ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。",
+  "cached_at": "2026-07-29T15:55:40.502473+00:00"
+}

@@ -1,0 +1,114 @@
+{
+  "payload": {
+    "branches": [
+      {
+        "id": "b0",
+        "question_point": "閲覧者(採用側)の職種・専門性",
+        "anchor_words": [
+          "転職活動用に個人ポートフォリオサイトが欲しい"
+        ],
+        "options": [
+          {
+            "label": "人事採用担当"
+          },
+          {
+            "label": "現場エンジニア/デザイナー"
+          },
+          {
+            "label": "経営層/クライアント"
+          }
+        ],
+        "default_if_unresolved": "現場の実務担当者向けに構成"
+      },
+      {
+        "id": "b1",
+        "question_point": "志望職種・アピール軸",
+        "anchor_words": [
+          "作品はいくつかあるんだけど"
+        ],
+        "options": [
+          {
+            "label": "技術力重視"
+          },
+          {
+            "label": "デザイン/表現力重視"
+          },
+          {
+            "label": "実績/成果数値重視"
+          }
+        ],
+        "default_if_unresolved": "作品の完成度を軸に構成"
+      },
+      {
+        "id": "b2",
+        "question_point": "作品の見せ方の粒度",
+        "anchor_words": [
+          "センスよくまとめて"
+        ],
+        "options": [
+          {
+            "label": "一覧ギャラリー型"
+          },
+          {
+            "label": "個別ケーススタディ型"
+          }
+        ],
+        "default_if_unresolved": "サムネイル一覧+詳細ページ"
+      },
+      {
+        "id": "b3",
+        "question_point": "「センスよく」のトーン解釈",
+        "anchor_words": [
+          "センスよくまとめて"
+        ],
+        "options": [
+          {
+            "label": "ミニマル/洗練"
+          },
+          {
+            "label": "個性的/クリエイティブ"
+          },
+          {
+            "label": "堅実/信頼感"
+          }
+        ],
+        "default_if_unresolved": "ミニマルで洗練された印象"
+      },
+      {
+        "id": "b4",
+        "question_point": "サイト全体の情報構成",
+        "anchor_words": [
+          "個人ポートフォリオサイトが欲しい"
+        ],
+        "options": [
+          {
+            "label": "作品中心のシンプル構成"
+          },
+          {
+            "label": "経歴・スキルも含む総合構成"
+          }
+        ],
+        "default_if_unresolved": "作品+簡潔なプロフィールのみ"
+      }
+    ],
+    "residual_ambiguity_assessment": "依頼は目的以外ほぼ未指定で、読者・アピール軸・トーン・構成いずれも解釈が大きく分かれる。",
+    "missing_materials": [
+      "作品の具体的な内容・画像・URL",
+      "経歴・スキル・自己紹介文",
+      "応募先業界・職種の情報",
+      "連絡先・SNSリンク"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+  },
+  "meta": {
+    "attempts": 1,
+    "input_form": "raw_brief_text",
+    "api_ms": 12252,
+    "wall_ms": 22238,
+    "failed_attempts": [],
+    "from_cache": false
+  },
+  "brief": "転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。",
+  "cached_at": "2026-07-29T15:54:26.427426+00:00"
+}

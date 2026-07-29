@@ -2,127 +2,230 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>タンブラー商品説明</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈商品名〉タンブラー</title>
 <style>
-  /* GYAKUMON-CHOICE: 購買を後押しする決め手の種類 = 限定感・お得感訴求 */
+  /*
+    GYAKUMON統合パレット:
+    地色 #1a1207 / 主要色 #8a5a1e / 強調色 #e7b33a を基調に採用。
+    トーン=熱量高いセールス調、決め手=限定感・お得感の両決定が
+    dense × sharp × 暖色を指定しており、この2軸が本文の情報量と
+    緊張感を最も強く規定するため、枠全体の骨格として優先した。
+    読者=若年層・ギフト志向のピンク、訴求軸=デザイン性のモノトーンは
+    アクセントの差し色と本文内の語り口として個別に反映する。
+  */
   :root{
-    --bg:#1a0f08;
-    --main:#8c1d2b;
-    --accent:#e8b84b;
+    --bg: #1a1207;
+    --main: #8a5a1e;
+    --accent: #e7b33a;
+    --gift-accent: #ff7aa2;
+    --ink: #f3e6c8;
+    --sub: #cbb488;
+
+    /* タイプスケール(本文16pxを基準に×1.25で階層化・dense密度) */
+    --fs-body: 16px;
+    --fs-small: 13px;
+    --fs-catch: 22px;
+    --fs-h1: 34px;
   }
+
+  *{ box-sizing: border-box; }
+
   body{
     margin:0;
-    padding:48px 16px;
-    background:var(--bg);
-    font-family:"Hiragino Sans","Yu Gothic","Helvetica Neue",sans-serif;
+    background: var(--bg);
     display:flex;
     justify-content:center;
+    padding: 48px 16px;
   }
-  .card{
-    width:720px;
-    max-width:100%;
-    background:#241209;
-    /* GYAKUMON-CHOICE: 角(sharp/soft) = sharp */
-    border-radius:0;
-    border:1px solid var(--accent);
-    /* GYAKUMON-CHOICE: 密度(airy/normal/dense) = dense */
-    padding:28px 32px;
-    box-sizing:border-box;
+
+  /* GYAKUMON-CHOICE: 文章のトーン = 熱量高いセールス調 */
+  /* 密度=dense、角=sharp を反映し、余白を詰めて情報を畳みかける構成にする */
+  .sheet{
+    width: 720px;
+    max-width: 100%;
+    background: linear-gradient(180deg, #201608 0%, #1a1207 100%);
+    border: 1px solid var(--main);
+    padding: 40px 40px 48px;
   }
+
+  .label{
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: var(--fs-small);
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+
+  /* 見出し=sans(セールス調決定の視覚トークンを優先) */
   h1{
-    /* GYAKUMON-CHOICE: 見出し書体(serif/sans/rounded) = serif */
-    font-family:"Times New Roman","Hiragino Mincho ProN",serif;
-    color:var(--accent);
-    font-size:30px;
-    margin:0 0 6px;
-    letter-spacing:0.04em;
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: var(--fs-h1);
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin: 0 0 16px;
+    line-height: 1.25;
   }
-  .catch{
-    color:#ffffff;
-    font-size:17px;
-    font-weight:bold;
-    margin:0 0 18px;
-    border-left:4px solid var(--main);
-    padding-left:10px;
-  }
-  .body-text{
-    color:#e9d9c9;
-    font-size:15px;
-    line-height:1.7;
-    margin:0 0 16px;
-  }
-  .body-text p{
-    margin:0 0 10px;
-  }
-  ul.spec{
-    list-style:none;
-    margin:0 0 22px;
-    padding:0;
-    border-top:1px solid var(--main);
-    border-bottom:1px solid var(--main);
-  }
-  ul.spec li{
-    color:#f2e6d6;
-    font-size:13.5px;
-    padding:7px 4px;
-    border-bottom:1px dashed rgba(232,184,75,0.3);
-  }
-  ul.spec li:last-child{
-    border-bottom:none;
-  }
-  ul.spec span{
-    color:var(--accent);
-    font-weight:bold;
+
+  /* GYAKUMON-CHOICE: 購買を後押しする決め手の種類 = 限定感・お得感訴求 */
+  .badge{
     display:inline-block;
-    width:110px;
+    background: var(--accent);
+    color: #1a1207;
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-weight: 800;
+    font-size: var(--fs-small);
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    margin-bottom: 16px;
   }
-  .buy-btn{
+
+  .catch{
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-catch);
+    font-weight: 600;
+    color: var(--gift-accent);
+    margin: 0 0 32px;
+    line-height: 1.5;
+    border-left: 3px solid var(--gift-accent);
+    padding-left: 16px;
+  }
+
+  /* GYAKUMON-CHOICE: 訴求の中心軸 = デザイン性訴求 */
+  /* 本文は機能ではなく見た目・佇まいの描写を軸に組む */
+  .copy{
+    font-family: "Hiragino Sans", "Yu Gothic", "Helvetica Neue", sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.9;
+    color: var(--sub);
+  }
+
+  .copy p{ margin: 0 0 16px; }
+  .copy strong{ color: var(--ink); font-weight: 700; }
+
+  /* GYAKUMON-CHOICE: 想定読者の年代・属性 = 若年層・ギフト志向 */
+  .gift-line{
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--gift-accent);
+    font-weight: 700;
+  }
+
+  .specs{
+    margin: 32px 0 32px;
+    padding: 20px 24px;
+    background: rgba(231,179,58,0.06);
+    border: 1px solid rgba(231,179,58,0.35);
+  }
+
+  .specs-title{
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+    font-size: var(--fs-small);
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 12px;
+  }
+
+  .specs ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .specs li{
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: var(--fs-small);
+    color: var(--sub);
+    padding: 6px 0;
+    border-bottom: 1px dashed rgba(231,179,58,0.2);
+  }
+  .specs li:last-child{ border-bottom: none; }
+  .specs li span{ color: var(--ink); font-weight: 700; margin-right: 8px; }
+
+  .urgency{
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+    font-size: var(--fs-small);
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0 0 16px;
+    text-align: center;
+  }
+
+  .cta{
     display:block;
-    width:100%;
-    text-align:center;
-    background:var(--main);
-    color:#fff2e0;
-    font-size:18px;
-    font-weight:bold;
-    padding:14px 0;
-    border-radius:0;
-    border:1px solid var(--accent);
-    box-sizing:border-box;
-    letter-spacing:0.05em;
+    width: 100%;
+    background: var(--accent);
+    color: #1a1207;
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding: 18px 0;
+    border: none;
+    cursor: default;
   }
-  .note{
-    text-align:center;
-    color:var(--accent);
-    font-size:12px;
-    margin-top:8px;
+
+  .cta small{
+    display:block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+    color: #4a3410;
   }
 </style>
 </head>
 <body>
-<div class="card">
+<div class="sheet">
+
+  <p class="label">TUMBLER COLLECTION</p>
+  <h1>〈商品名〉タンブラー</h1>
+  <span class="badge">数量僅少 ・ 本日限定価格</span>
 
   <!-- GYAKUMON-CHOICE: 想定読者の年代・属性 = 若年層・ギフト志向 -->
-  <h1>〈商品名〉タンブラー</h1>
+  <p class="catch"><span class="gift-line">誰かに贈りたくなる、あなただけのタンブラー。</span></p>
 
-  <!-- GYAKUMON-CHOICE: 文章のトーン = 熱量高いセールス調 -->
-  <p class="catch">数量限定、今だけ特別価格。逃したら後悔するタンブラー、あります。</p>
-
-  <div class="body-text">
-    <!-- GYAKUMON-CHOICE: 訴求の中心軸 = デザイン性訴求 -->
-    <p>手に取った瞬間、わかる。〈商品名〉は「ただ飲み物を入れる筒」じゃない。削ぎ落としたフォルムと、光の当たり方まで計算された佇まいで、机の上に置くだけで空気が変わるタンブラーです。</p>
-    <p>friendに贈れば、開けた瞬間に笑顔がこぼれる。自分用にひとつ持てば、毎朝のコーヒーが少し特別になる。見た目で選んで、後悔しない。そういうデザインです。</p>
-    <p>ただし在庫には限りがあります。〈数量限定〉、〈価格〉での特別価格ご案内も今だけ。迷っている間に売り切れる前に、今すぐ手元に確保してください。</p>
+  <div class="copy">
+    <p>
+      持った瞬間、手のひらが気づく。無駄な線が一本もない、削ぎ落とされたフォルム。
+      光の当たり方ひとつで表情を変える表面、指先に吸いつくような質感——
+      <strong>これは「飲み物を入れる容器」じゃなくて、毎日のテーブルに置きたくなる一脚</strong>です。
+      棚に並べているだけで様になる。それくらい、見た目にこだわり抜きました。
+    </p>
+    <p>
+      正直に言います。今すぐ欲しくなるはずです。
+      自分用にはもちろん、<span class="gift-line">誕生日・記念日・ちょっとしたお礼</span>にも
+      迷わず選べる一本。派手すぎず、でも確実に「センスいいね」と言われるデザイン。
+      渡した瞬間の表情まで想像できてしまう、そんなタンブラーです。
+    </p>
+    <p>
+      ただし今回はご用意できる数に限りがあります。
+      <strong>この価格・この数量は今だけ。</strong>
+      迷っている間に、在庫は静かに減っていきます。
+      気になった今この瞬間が、いちばんお得なタイミングです。
+    </p>
   </div>
 
-  <ul class="spec">
-    <li><span>容量</span>〈容量〉</li>
-    <li><span>素材</span>〈素材〉</li>
-    <li><span>保温・保冷</span>〈保温性能〉</li>
-    <li><span>価格</span>〈価格〉(数量限定・特別価格)</li>
-  </ul>
+  <div class="specs">
+    <p class="specs-title">SPEC</p>
+    <ul>
+      <li><span>容量</span>〈容量〉</li>
+      <li><span>素材</span>〈素材〉</li>
+      <li><span>保温・保冷</span>〈保温性能〉</li>
+      <li><span>カラー展開</span>〈カラー展開〉</li>
+      <li><span>価格</span>〈価格〉</li>
+    </ul>
+  </div>
 
-  <div class="buy-btn">今すぐ確保する ▸ 売り切れ前に</div>
-  <p class="note">※数量限定商品のため、在庫がなくなり次第終了となります</p>
+  <p class="urgency">数量限定につき、なくなり次第終了となります</p>
+
+  <div class="cta">
+    今すぐこの価格で手に入れる
+    <small>※このボタンは装飾です</small>
+  </div>
 
 </div>
 </body>

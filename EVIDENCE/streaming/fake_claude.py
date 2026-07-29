@@ -62,6 +62,16 @@ def main():
                 "density": "normal", "corner": "soft", "tone_sample": "見出し。一文。"}
     text = json.dumps(body, ensure_ascii=False)
 
+    # 本物の CLI(claude 2.1.x)は result に modelUsage を載せ、そのキーが正準モデルIDである。
+    # サーバはここから timing.model_id を取る。エイリアス("sonnet")では分からない値なので、
+    # 偽 CLI 側でも同じ形を出しておく(FAKE_NO_MODEL_USAGE=1 で「取れない」場合も作れる)。
+    result_ev = {"type": "result", "result": text, "is_error": False,
+                 "duration_ms": 1000, "duration_api_ms": 800}
+    if os.environ.get("FAKE_NO_MODEL_USAGE") != "1":
+        mid = os.environ.get("FAKE_MODEL_ID", "claude-sonnet-5")
+        result_ev["modelUsage"] = {mid: {"inputTokens": 2, "outputTokens": 4,
+                                         "canonicalModel": mid, "provider": "firstParty"}}
+
     if fmt == "stream-json":
         # branches 先スキーマの到着順を真似て、少しずつ吐く
         step = max(1, len(text) // 8)
@@ -73,15 +83,11 @@ def main():
             sys.stdout.flush()
             time.sleep(GAP)
         time.sleep(SLEEP)
-        sys.stdout.write(json.dumps({"type": "result", "result": text, "is_error": False,
-                                     "duration_ms": 1000, "duration_api_ms": 800},
-                                    ensure_ascii=False) + "\n")
+        sys.stdout.write(json.dumps(result_ev, ensure_ascii=False) + "\n")
         sys.stdout.flush()
     else:
         time.sleep(SLEEP)
-        sys.stdout.write(json.dumps({"type": "result", "result": text, "is_error": False,
-                                     "duration_ms": 1000, "duration_api_ms": 800},
-                                    ensure_ascii=False))
+        sys.stdout.write(json.dumps(result_ev, ensure_ascii=False))
         sys.stdout.flush()
 
     log("END", kind)

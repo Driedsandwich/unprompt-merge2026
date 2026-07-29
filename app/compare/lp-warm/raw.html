@@ -2,238 +2,165 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>〈会社名〉 | 公式サイト</title>
+<title>〈会社名〉| モダンと温かみのあいだ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+  /*
+    タイプスケール(本文16pxを基準に×1.25):
+    --fs-body: 16px / --fs-lead: 20px / --fs-h3: 22px
+    --fs-h2: 32px / --fs-h1: 50px
+    見出し = 太字ゴシック(トラッキング狭め・重心強め)
+    本文   = 明朝系セリフ(トラッキング広め・柔らかさ)
+  */
   :root{
-    --bg:#fdf8f3;
-    --ink:#3a2f28;
-    --accent:#e0704a;
-    --accent-soft:#f4d9c6;
-    --sub:#7a6a5d;
+    --ink:#2b2420;
+    --base:#f3ede4;
+    --base-deep:#e7ddcc;
+    --panel:#3a3128;
+    --accent:#c76b3f;
+    --accent-soft:#e9c9a9;
+    --fs-body:16px;
+    --fs-lead:20px;
+    --fs-h3:22px;
+    --fs-h2:32px;
+    --fs-h1:50px;
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
   body{
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-    background:var(--bg);
+    background:var(--base);
     color:var(--ink);
-    line-height:1.8;
-  }
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
-
-  header.hero{
-    padding:100px 0 120px;
-    text-align:center;
-    background:
-      radial-gradient(circle at 20% 20%, #f9e4d3 0%, transparent 45%),
-      radial-gradient(circle at 80% 80%, #fbe9da 0%, transparent 50%),
-      linear-gradient(160deg,#fff7ef,#fdf1e4);
-    position:relative;
-    overflow:hidden;
-  }
-  header.hero::after{
-    content:"";
-    position:absolute;
-    bottom:-60px;left:50%;
-    width:600px;height:200px;
-    transform:translateX(-50%);
-    background:radial-gradient(ellipse,var(--accent-soft) 0%,transparent 70%);
-    opacity:.6;
-  }
-  .eyebrow{
-    display:inline-block;
-    background:var(--accent-soft);
-    color:var(--accent);
-    padding:6px 18px;
-    border-radius:999px;
-    font-size:.85rem;
-    font-weight:bold;
-    margin-bottom:24px;
-  }
-  h1{
-    font-size:2.4rem;
-    font-weight:800;
+    font-family:Georgia,"Yu Mincho","Hiragino Mincho ProN",serif;
+    font-size:var(--fs-body);
+    line-height:1.9;
     letter-spacing:.02em;
-    margin-bottom:20px;
   }
-  header.hero p{
-    font-size:1.1rem;
-    color:var(--sub);
-    max-width:560px;
-    margin:0 auto 36px;
-  }
-  .btn{
-    display:inline-block;
-    background:var(--accent);
-    color:#fff;
-    padding:16px 44px;
-    border-radius:50px;
-    font-weight:bold;
-    box-shadow:0 10px 24px -8px rgba(224,112,74,.6);
-    transition:transform .2s;
-  }
-  .btn:hover{transform:translateY(-3px);}
-
-  section{padding:90px 0;}
-  .section-title{
-    text-align:center;
-    font-size:1.7rem;
+  h1,h2,h3,.brand{
+    font-family:"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
     font-weight:800;
-    margin-bottom:16px;
+    letter-spacing:-.01em;
+    color:var(--panel);
+    margin:0;
   }
-  .section-sub{
-    text-align:center;
-    color:var(--sub);
-    max-width:600px;
-    margin:0 auto 56px;
+  .wrap{max-width:880px;margin:0 auto;padding:0 32px;}
+  header.top{padding:32px 0;}
+  .brand{font-size:18px;letter-spacing:.08em;}
+  section{padding:96px 0;}
+  .hero{background:linear-gradient(180deg,var(--base) 0%,var(--base-deep) 100%);padding:120px 0 104px;}
+  .hero h1{font-size:var(--fs-h1);line-height:1.35;}
+  .hero .lead{font-size:var(--fs-lead);margin-top:24px;max-width:560px;color:#4a4038;}
+  .hero .accent-word{color:var(--accent);}
+  .badge{
+    display:inline-block;font-family:"Helvetica Neue",sans-serif;font-size:13px;
+    letter-spacing:.12em;color:var(--accent);border:1px solid var(--accent-soft);
+    padding:6px 14px;border-radius:999px;margin-bottom:24px;
   }
-
-  .value{
-    background:#fff;
-    border-radius:24px;
-    padding:56px 40px;
-    text-align:center;
-    box-shadow:0 20px 40px -20px rgba(58,47,40,.15);
+  .value h2{font-size:var(--fs-h2);}
+  .value p{margin-top:16px;max-width:640px;}
+  .features{background:var(--base-deep);}
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;}
+  .feature{background:var(--base);padding:32px 24px;border-radius:4px;}
+  .feature .num{font-family:"Helvetica Neue",sans-serif;font-weight:800;color:var(--accent);font-size:14px;letter-spacing:.1em;}
+  .feature h3{font-size:var(--fs-h3);margin-top:12px;}
+  .feature p{margin-top:12px;font-size:15px;color:#4a4038;}
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  .about h2{font-size:var(--fs-h2);}
+  .about .figure{
+    aspect-ratio:4/3;border-radius:4px;
+    background:
+      radial-gradient(circle at 30% 30%, var(--accent-soft) 0%, transparent 55%),
+      linear-gradient(135deg,var(--panel) 0%,#4d4234 100%);
   }
-  .value p{color:var(--sub);max-width:620px;margin:16px auto 0;}
-
-  .features{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:28px;
+  .cta{background:var(--panel);color:var(--base);text-align:center;}
+  .cta h2{color:var(--base);font-size:var(--fs-h2);}
+  .cta p{color:var(--accent-soft);margin-top:16px;}
+  .cta-btn{
+    display:inline-block;margin-top:32px;padding:16px 40px;
+    background:var(--accent);color:var(--base);text-decoration:none;
+    font-family:"Helvetica Neue",sans-serif;font-weight:800;letter-spacing:.04em;
+    border-radius:2px;
   }
-  .feature{
-    background:#fff;
-    border-radius:20px;
-    padding:36px 28px;
-    text-align:center;
-    box-shadow:0 14px 30px -18px rgba(58,47,40,.18);
-  }
-  .icon{
-    width:64px;height:64px;
-    margin:0 auto 20px;
-    border-radius:50%;
-    background:var(--accent-soft);
-    display:flex;align-items:center;justify-content:center;
-    font-size:28px;
-  }
-  .feature h3{font-size:1.1rem;margin-bottom:10px;}
-  .feature p{color:var(--sub);font-size:.95rem;}
-
-  .about{
-    background:linear-gradient(160deg,#fff7ef,#fdf1e4);
-    border-radius:28px;
-    padding:56px 44px;
-    display:flex;
-    gap:40px;
-    align-items:center;
-    flex-wrap:wrap;
-  }
-  .about .mark{
-    width:96px;height:96px;flex:none;border-radius:24px;
-    background:var(--accent);
-    display:flex;align-items:center;justify-content:center;
-    color:#fff;font-size:2rem;font-weight:800;
-  }
-  .about-text{flex:1;min-width:260px;}
-  .about-text h2{font-size:1.4rem;margin-bottom:12px;}
-  .about-text p{color:var(--sub);}
-
-  .cta{
-    text-align:center;
-    background:linear-gradient(135deg,var(--accent),#c9552f);
-    border-radius:28px;
-    padding:70px 40px;
-    color:#fff;
-  }
-  .cta h2{font-size:1.8rem;margin-bottom:16px;}
-  .cta p{opacity:.9;margin-bottom:32px;}
-  .cta .btn{background:#fff;color:var(--accent);box-shadow:0 10px 24px -8px rgba(0,0,0,.25);}
-
-  footer{
-    padding:40px 0;
-    text-align:center;
-    color:var(--sub);
-    font-size:.85rem;
-  }
-
-  @media (max-width:720px){
-    .features{grid-template-columns:1fr;}
-    h1{font-size:1.8rem;}
-    .about{flex-direction:column;text-align:center;}
+  footer{padding:48px 0;color:#7a6f61;font-size:13px;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  @media (max-width:680px){
+    .feature-grid{grid-template-columns:1fr;}
+    .about{grid-template-columns:1fr;}
+    .hero h1{font-size:36px;}
   }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <span class="eyebrow">〈会社名〉 公式</span>
-    <h1>まいにちに、<br>あたたかい価値を。</h1>
-    <p>〈会社名〉は、誠実なものづくりと丁寧なサポートで、お客様の毎日にそっと寄り添うサービスを提供しています。</p>
-    <a href="#contact" class="btn">まずはお問い合わせ</a>
-  </div>
+<header class="top">
+  <div class="wrap"><span class="brand">〈会社名〉</span></div>
 </header>
 
-<section id="value">
+<section class="hero">
   <div class="wrap">
-    <div class="value">
-      <div class="section-title">私たちが大切にしていること</div>
-      <p>効率だけを追い求めるのではなく、ひとつひとつのやり取りに丁寧さを込める。〈会社名〉は、お客様との信頼関係を何より大切にし、長く安心してお付き合いいただけるサービスづくりを目指しています。</p>
+    <span class="badge">MODERN, YET WARM</span>
+    <h1>効率だけを追う会社には、<br>なりたくなかった。<br><span class="accent-word">だから、両方選んだ。</span></h1>
+    <p class="lead">〈会社名〉は、最新のやり方を取り入れながらも、
+    人の手触りを削らないものづくりを続けています。
+    〈事業内容を記載〉を通じて、モダンさと温かみを両立させることが私たちの姿勢です。</p>
+  </div>
+</section>
+
+<section class="value">
+  <div class="wrap">
+    <h2>速さと丁寧さは、両立できる。</h2>
+    <p>私たちが大切にしているのは、〈提供価値・強みを記載〉です。
+    効率化のための仕組みを整えながらも、最後の仕上げは必ず人の目と手を通す。
+    その積み重ねが、〈会社名〉らしさになっています。</p>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <h2>私たちの3つの特徴</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="num">01</div>
+        <h3>〈特徴1のタイトル〉</h3>
+        <p>〈特徴1の説明文をここに記載します。〉</p>
+      </div>
+      <div class="feature">
+        <div class="num">02</div>
+        <h3>〈特徴2のタイトル〉</h3>
+        <p>〈特徴2の説明文をここに記載します。〉</p>
+      </div>
+      <div class="feature">
+        <div class="num">03</div>
+        <h3>〈特徴3のタイトル〉</h3>
+        <p>〈特徴3の説明文をここに記載します。〉</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="features">
-  <div class="wrap">
-    <div class="section-title">選ばれる3つの理由</div>
-    <div class="section-sub">〈会社名〉が大切にしている、サービスの特徴をご紹介します。</div>
-    <div class="features">
-      <div class="feature">
-        <div class="icon">🤝</div>
-        <h3>丁寧な伴走サポート</h3>
-        <p>ご相談から導入後まで、専任担当が寄り添いながらサポートいたします。</p>
-      </div>
-      <div class="feature">
-        <div class="icon">🌱</div>
-        <h3>誠実なものづくり</h3>
-        <p>目先の数字だけでなく、お客様にとって本当に良いものを追求しています。</p>
-      </div>
-      <div class="feature">
-        <div class="icon">💡</div>
-        <h3>柔軟な対応力</h3>
-        <p>ひとつひとつのご要望に合わせ、最適な形をご提案いたします。</p>
-      </div>
+<section class="about">
+  <div class="wrap about">
+    <div>
+      <h2>会社について</h2>
+      <p style="margin-top:24px;">〈会社名〉は〈設立年・所在地など〉を拠点に、
+      〈事業内容〉に取り組んでいます。
+      規模の大小にかかわらず、ひとつひとつの仕事に向き合う姿勢を大切にしてきました。</p>
     </div>
+    <div class="figure"></div>
   </div>
 </section>
 
-<section id="about">
+<section class="cta">
   <div class="wrap">
-    <div class="about">
-      <div class="mark">〈社〉</div>
-      <div class="about-text">
-        <h2>〈会社名〉について</h2>
-        <p>〈会社名〉は、お客様の課題に真摯に向き合うことを理念に活動しています。詳細な会社情報やサービス内容については、お気軽にお問い合わせください。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="cta">
-      <h2>まずはお気軽にご相談ください</h2>
-      <p>〈会社名〉のサービスについて、詳しくご案内いたします。</p>
-      <a href="mailto:info@example.com" class="btn">お問い合わせはこちら</a>
-    </div>
+    <h2>まずは、お話しませんか。</h2>
+    <p>〈問い合わせに関する一言〉</p>
+    <a class="cta-btn" href="#">お問い合わせはこちら</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    &copy; 〈会社名〉. All Rights Reserved.
+    <span>© 〈会社名〉</span>
+    <span>〈所在地〉 ／ 〈連絡先〉</span>
   </div>
 </footer>
 
