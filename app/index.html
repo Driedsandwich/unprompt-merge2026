@@ -11,6 +11,8 @@
   製品憲法(このファイルが守る規律):
     1. AIはユーザーの成果物を書かない。人間は最初の一文以降タイプしない。
        操作は〈決める〉(オプションのミニレンダをクリック)と〈委ねる〉(カードのボタン)の2動詞のみ。
+       カウンタ行の「すべて委ねる」は3つ目の動詞ではない。未決の各分岐に対して
+       〈委ねる〉と全く同じ状態遷移をまとめて起こすだけで、後から1件ずつ選び直せる。
     2. 画面遷移 (a)下線だけの入力欄 → (b)静寂(実測経過秒 + 「生成の代わりに、問いを組み立てています」)
        → (c)爆散(文字が散って静定 → anchor 語に朱の圏点 → 語とカードを結ぶ製図の引出線)
        → (d)カード操作 → (e)未決0で「指示書にまとめる」 → (f)意図の指示書。
@@ -19,6 +21,8 @@
        見本の未着はラベル+スケルトン(白紙カード禁止)。render は並列 fetch、到着順に着地。
     4. ポインタがカード近傍に入ったらレイアウト凍結(既存カードを動かさない)。
     5. サイドパネル・%メーター・BGM・パーティクル禁止。状態は「原文の語の色」と「カウンタ」のみ。
+       左下の「処理の内訳」は既定で閉じており、判断の状態を一切語らない(実行環境と実測だけ)。
+       開いたときも色は使わず墨と鼠のみ。したがって条項5の禁止対象には当たらない。
     6. 確定/委任済みの語をクリックすると当該カードを再提示して再選択(状態上書き)。多段アンドゥなし。
        再提示は「決定の解除」= status を null へ戻す操作であり、判断点カウンタもコンパイル可否も
        同じ単一のソースから毎回導出されるので必ず巻き戻る(増分カウンタは持たない)。
@@ -102,6 +106,51 @@
     text-transform:none; pointer-events:none;
   }
   #lockup b{font-weight:600; color:var(--ink-soft); letter-spacing:.16em}
+
+  /* ============ 処理の内訳(透明性パネル・左下に固定) ============
+     既定は閉じている。開くと「固定情報」と「このセッションの実測」を製図の表で出す。
+     朱も藍も使わない(このパネルは判断の状態を語らないので、墨と鼠だけで組む)。
+     数字は等幅(tabular-nums)。角丸ゼロ・影なし・輪郭線1px。 */
+  #procPanel{
+    position:fixed; left:22px; bottom:18px; z-index:6;
+    width:max-content; max-width:min(430px, calc(100vw - 44px));
+    border:1px solid var(--line-soft); border-radius:0;
+    background:rgba(252,252,250,.94);
+  }
+  #procPanel[open]{border-color:var(--line); background:var(--card)}
+  #procPanel > summary{
+    list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px;
+    font-size:11px; letter-spacing:.16em; color:var(--muted);
+    padding:6px 11px; user-select:none; -webkit-user-select:none;
+    transition:color .2s ease;
+  }
+  #procPanel > summary::-webkit-details-marker{display:none}
+  #procPanel > summary::after{content:"＋"; margin-left:auto; font-size:9.5px; letter-spacing:0}
+  #procPanel[open] > summary::after{content:"−"}
+  #procPanel > summary:hover{color:var(--ink-soft)}
+  #procBody{border-top:1px solid var(--line); padding:12px 11px 10px; max-height:56vh; overflow-y:auto}
+  .proc-sec + .proc-sec{margin-top:15px}
+  .proc-h{
+    font-size:10px; letter-spacing:.14em; color:var(--muted);
+    margin:0 0 5px; padding-bottom:4px; border-bottom:1px solid var(--ink-soft);
+  }
+  .proc-t{width:100%; border-collapse:collapse; table-layout:fixed}
+  .proc-t th{
+    width:92px; text-align:left; vertical-align:top; font-weight:400;
+    font-size:10.5px; line-height:1.75; color:var(--muted); letter-spacing:.06em;
+    padding:5px 10px 5px 0; border-bottom:1px solid var(--line-soft);
+  }
+  .proc-t td{
+    text-align:left; vertical-align:top;
+    font-size:10.5px; line-height:1.75; color:var(--ink-soft); letter-spacing:.04em;
+    padding:5px 0; border-bottom:1px solid var(--line-soft);
+    word-break:break-word; font-variant-numeric:tabular-nums;
+  }
+  .proc-t tr:last-child th, .proc-t tr:last-child td{border-bottom:0}
+  .proc-empty{font-size:10.5px; line-height:1.9; color:var(--muted); padding-top:3px}
+  @media (max-width:760px){
+    #procPanel{left:12px; bottom:10px; max-width:calc(100vw - 24px)}
+  }
 
   /* ============ (a) 初期画面: 下線だけの入力欄。丸箱も送信アイコンも置かない ============ */
   #screenInitial{
@@ -243,6 +292,16 @@
   /* 未決の数は朱。0 になった瞬間に藍へ変わる */
   #branchCounter b{font-weight:600; font-size:15px; color:var(--shu); margin:0 1px}
   #branchCounter.zero b{color:var(--ai)}
+  /* カウンタと一括委任を同じ行の右端にまとめる(#meta は 左=静寂 / 右=この組) */
+  #counterRow{display:flex; align-items:baseline; gap:16px; flex:0 0 auto}
+  /* 「すべて委ねる」= ゴースト様式(枠線のみ・鼠・ホバー藍)。
+     1件ずつの「委ねる」と同じ状態遷移をまとめて起こすだけで、専用の状態は持たない。 */
+  #btnDelegateAll{
+    flex:0 0 auto; background:transparent; border:1px solid var(--line); border-radius:0;
+    padding:5px 13px; font-size:10.5px; line-height:1; color:var(--muted); letter-spacing:.1em;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  #btnDelegateAll:hover{color:var(--ai); border-color:var(--ai)}
   #assessNote{
     max-width:820px; margin:26px auto 0; font-size:11.5px; line-height:2;
     color:var(--muted); position:relative; z-index:1; letter-spacing:var(--ui-ls);
@@ -334,7 +393,12 @@
     font-size:11px; line-height:1.6; color:var(--ink-soft); margin-top:6px;
     width:120px; word-break:break-word; letter-spacing:var(--ui-ls);
   }
-  .card-foot{margin-top:auto; padding-top:14px; display:flex; justify-content:flex-end}
+  .card-foot{margin-top:auto; padding-top:14px; display:flex; justify-content:flex-end; align-items:flex-end}
+  /* 初回だけ最初の1枚に出る注記。既存の「一番下の小さな字」(.rhint)と同じ寸法・色 */
+  .card-foot .card-hint{
+    font-size:10px; color:var(--muted); line-height:1.75; letter-spacing:var(--ui-ls);
+    margin-right:auto; padding-right:12px; max-width:62%;
+  }
   .delegate{
     background:transparent; border:1px solid var(--line); border-radius:0;
     padding:6px 14px; font-size:11px; color:var(--muted); letter-spacing:.1em;
@@ -426,6 +490,11 @@
   #btnCopy{
     margin-left:auto; background:transparent; border:1px solid var(--line);
     border-radius:0; padding:8px 16px; font-size:11px; color:var(--ink-soft);
+  }
+  /* 「AIに渡す用」タブのときだけ出す断り(鼠・11px・ゴシック。墨と鼠のみで色は足さない) */
+  #jsonNote{
+    margin:0 0 10px; font-family:var(--gothic); font-size:11px; line-height:1.9;
+    color:var(--muted); letter-spacing:var(--ui-ls);
   }
   #out{
     background:#fff; border:1px solid var(--line); border-radius:0;
@@ -561,9 +630,13 @@
     <div id="meta">
       <div id="silence">
         <div id="silenceNum">0.0<span class="u">s</span></div>
-        <div id="silenceNote"><span class="s-main">生成の代わりに、問いを組み立てています</span><span class="s-sub">x1.0 実時間</span></div>
+        <div id="silenceNote"><span class="s-main">生成の代わりに、問いを組み立てています。届くまで、動くのはこの数字だけです。</span><span class="s-sub">早送りなしの実時間</span></div>
       </div>
-      <div id="branchCounter" hidden></div>
+      <!-- カウンタと一括委任は同じ行。ボタンは「未決があり、かつ総数が確定した」ときだけ出る。 -->
+      <div id="counterRow">
+        <div id="branchCounter" hidden></div>
+        <button id="btnDelegateAll" type="button" hidden title="未決をまとめて任せる。あとで1件ずつ選び直せます。">すべて委ねる</button>
+      </div>
     </div>
 
     <div id="assessNote" hidden></div>
@@ -593,6 +666,9 @@
     </div>
     <button id="btnCopy" type="button">コピー</button>
   </div>
+  <!-- 「AIに渡す用」タブを開いた人にだけ出す断り。既定の「読む用」では出さないので、
+       最初に開いた画面の静けさは変わらない。 -->
+  <p id="jsonNote" hidden>この欄はコピーして、制作を任せるAIに渡すためのもの。人が読む必要はありません。</p>
   <div id="out"></div>
   <div id="compileNote"></div>
   <button id="btnCompare" type="button">この指示書でAIに作らせると?</button>
@@ -610,7 +686,7 @@
        その場生成ではないので、どの依頼文で作った実例かを必ず先に名乗る。
        本文は表示するペアが決まった時点で JS が入れ替える(既定は lp-warm ペア)。 -->
   <p id="compareFixture">事前生成の実例 — 依頼文「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」による</p>
-  <p id="compareMismatch" hidden>いまの依頼文とは別の実例です(その場生成は行いません)</p>
+  <p id="compareMismatch" hidden>あなたの意図の指示書は前の画面で完成しています。この比較は、別の依頼文で事前生成した実例です(その場生成は行いません)。</p>
   <p id="compareLead">
     違うのは渡したものだけ。左は最初の一文をそのまま。右は意図の指示書。
     モデル・思考量・制作者プロンプトの骨格は同一。
@@ -628,6 +704,27 @@
   <div id="compareNote"></div>
   <button id="btnCompareBack" type="button">指示書に戻る</button>
 </section>
+
+<!-- ============ 処理の内訳(透明性パネル) ============
+     この製品が何を使って何をしたかを、主張ではなく実値と実測で開示する。
+     ・固定情報は /api/health が返した実際の設定(文言をクライアント側に持たせない)
+     ・セッション実測はクライアントが保持している timing から導出する
+     送信後(ステージ以降)に現れ、指示書・並置画面でも出したままにする。
+     根拠文の実測はコンパイル後に確定するので、ステージだけに置くと誰も見られない。 -->
+<details id="procPanel" hidden>
+  <summary>処理の内訳</summary>
+  <div id="procBody">
+    <div class="proc-sec">
+      <div class="proc-h">固定情報</div>
+      <table class="proc-t"><tbody id="procFixed"></tbody></table>
+    </div>
+    <div class="proc-sec">
+      <div class="proc-h">このセッションの実測</div>
+      <table class="proc-t"><tbody id="procRows"></tbody></table>
+      <div id="procEmpty" class="proc-empty">まだ実行された処理はありません。</div>
+    </div>
+  </div>
+</details>
 
 <script>
 'use strict';
@@ -743,8 +840,15 @@ const S = {
   leaderReady: false,            // 引出線を引いてよい(静定後)
   leaderSeen: {},                // 既に描画アニメを済ませた引出線のキー
   compiling: false,              // /api/compile 実行中(ボタンの導出を止める)
+  compileDone: false,            // /api/compile が1度返った(処理の内訳に行を出す条件)
   rationales: {},
   compileError: '',
+  // ---- 処理の内訳(透明性パネル)の材料 ----
+  // 固定情報は /api/health の実値、実測は各処理が返した timing。
+  // ここも「画面に出るものは state から毎回導出する」規律に従う(行を書き足さない)。
+  health: null,                  // /api/health の応答そのもの(取れなければ null)
+  extractStat: null,             // {model, apiMs, wallMs, branches, rejected, returned, zeroRetry}
+  renderStat: {},                // 'bi:oi' → {ok, ms}(取り直しは同じキーを上書きする)
   // 途中切断・途中エラーからの復旧(M1)。done 未到達を「成功」にしないための記録。
   //   state: 'none' | 'running' | 'ok' | 'failed'
   //   kept  : 復旧前から画面に出ていた分岐数(この分の決定は絶対に失わない)
@@ -760,6 +864,9 @@ const elSilence = $('silence'), elSilenceNum = $('silenceNum');
 const elCounter = $('branchCounter'), elCards = $('cards'), elCompileRow = $('compileRow');
 const elCompile = $('btnCompile'), elAssess = $('assessNote'), elStageErr = $('stageError');
 const elNotice = $('streamNotice');
+const elDelegateAll = $('btnDelegateAll');
+const elProc = $('procPanel'), elProcFixed = $('procFixed');
+const elProcRows = $('procRows'), elProcEmpty = $('procEmpty');
 
 /* =========================================================================
    小さなユーティリティ
@@ -865,18 +972,127 @@ document.addEventListener('beforeinput', (e) => {
   S.typedAfter += n;
 }, true);
 
-// 起動時に静かにヘルスチェック(失敗時のみ表示)
+// 起動時に静かにヘルスチェック(失敗時のみ表示)。
+// 応答は捨てずに S.health へ置く。「処理の内訳」の固定情報は全てこの実値から出す。
 (async function health(){
   try{
     const res = await fetch(API.health);
     const j = await res.json();
     if (!j || j.ok !== true) throw new Error('unhealthy');
+    S.health = j;
   }catch(e){
+    S.health = null;
     const n = $('healthNote');
-    n.textContent = 'サーバに接続できません。gyakumon/ で python3 server.py を起動してください。';
+    n.textContent = 'サーバが起動していません。ターミナルで gyakumon/ に入り python3 server.py を実行し、このページを再読み込みしてください。';
     n.hidden = false;
   }
+  paintProcFixed();
 })();
+
+/* =========================================================================
+   処理の内訳(透明性パネル)
+   -------------------------------------------------------------------------
+   出すのは2種類だけである。
+     (a) 固定情報 — /api/health が返した実値。「ローカル実行」「APIキー不使用」
+         「127.0.0.1 のみ」は主張ではなく、実際に効いている設定の転記である。
+         health が取れないあいだは「未取得」と書く(取れていない事実を書く)。
+     (b) セッション実測 — 各処理が返した timing。処理が起きるたび行が増える。
+   語は生活語で通す: 抽出 = 問いの抽出 / レンダ = 見本の生成 / コンパイル = 指示書の根拠文。
+   色は使わない(墨と鼠のみ)。数字は等幅。
+   ========================================================================= */
+function procRow(tbody, label, value){
+  const tr = el('tr');
+  tr.appendChild(el('th', null, label));
+  tr.appendChild(el('td', null, value));
+  tbody.appendChild(tr);
+}
+function secText(ms){
+  return (ms == null) ? '—' : (ms / 1000).toFixed(1) + '秒';
+}
+function paintProcFixed(){
+  if (!elProcFixed) return;
+  const h = S.health;
+  elProcFixed.textContent = '';
+  procRow(elProcFixed, '実行エンジン', h
+    ? ('Claude Code CLI(ローカル実行・' +
+       (h.api_key_stripped === false ? 'APIキーを子プロセスへ渡す設定' : 'APIキー不使用') + ')')
+    : '未取得');
+  procRow(elProcFixed, 'モデル', h
+    ? ('問いの抽出 ' + String(h.model || '—') +
+       ' / 見本の生成 ' + String(h.render_model || '—') +
+       ' / 指示書 ' + String(h.compile_model || h.model || '—'))
+    : '未取得');
+  procRow(elProcFixed, '接続先', (h && h.bind_host)
+    ? (String(h.bind_host) + (h.bind_port ? ':' + String(h.bind_port) : '') + ' のみ')
+    : (h ? '127.0.0.1 のみ' : '未取得'));
+  procRow(elProcFixed, 'プロンプト',
+          'リポジトリ ' + ((h && h.prompts_dir) ? String(h.prompts_dir) : 'prompts/') + ' で公開');
+}
+function paintProcRows(){
+  if (!elProcRows) return;
+  elProcRows.textContent = '';
+  let n = 0;
+
+  const ex = S.extractStat;
+  if (ex){
+    const bits = ['model ' + (ex.model ? String(ex.model) : '—'),
+                  'api ' + secText(ex.apiMs),
+                  '判断点 ' + String(ex.branches),
+                  '棄却 ' + (ex.rejected == null ? '—' : String(ex.rejected)),
+                  '二重確認 ' + (ex.zeroRetry ? 'あり' : 'なし')];
+    procRow(elProcRows, '問いの抽出', bits.join(' ・ '));
+    n++;
+  }
+
+  const recs = Object.keys(S.renderStat).map(k => S.renderStat[k]);
+  if (recs.length){
+    const done = recs.filter(r => r.ok);
+    const ms = done.filter(r => typeof r.ms === 'number').map(r => r.ms);
+    const bits = [String(done.length) + '件'];
+    if (ms.length){
+      const sum = ms.reduce((a, v) => a + v, 0);
+      bits.push('平均 ' + secText(sum / ms.length));
+      bits.push('最長 ' + secText(ms.reduce((a, v) => Math.max(a, v), 0)));
+    }
+    const ng = recs.length - done.length;
+    if (ng) bits.push('未着 ' + String(ng) + '件');
+    procRow(elProcRows, '見本の生成', bits.join(' ・ '));
+    n++;
+  }
+
+  if (S.compileDone){
+    const t = S.compileTiming || {};
+    const bits = ['api ' + secText(t.api_ms == null ? null : t.api_ms),
+                  '実測 ' + secText(S.compileMs)];
+    if (S.compileError) bits.push('失敗');
+    procRow(elProcRows, '指示書の根拠文', bits.join(' ・ '));
+    n++;
+  }
+
+  if (elProcEmpty) elProcEmpty.hidden = (n > 0);
+}
+function paintProc(){ paintProcFixed(); paintProcRows(); }
+// 送信後に現れる(初期画面には出さない)。以後、指示書・並置画面でも出したままにする。
+function showProcPanel(){
+  if (!elProc || !elProc.hidden) return;
+  elProc.hidden = false;
+  paintProc();
+}
+// 抽出1回ぶんの実測を控える。done / 一括 / 復旧の3経路とも同じ形にする。
+function noteExtraction(src){
+  const o = src || {};
+  const t = (o.timing && typeof o.timing === 'object') ? o.timing : {};
+  S.extractStat = {
+    model: (S.health && S.health.model) ? String(S.health.model) : null,
+    apiMs: (t.api_ms != null) ? t.api_ms : ((o.api_ms != null) ? o.api_ms : null),
+    wallMs: (t.wall_ms != null) ? t.wall_ms : null,
+    branches: S.branches.length,
+    rejected: Array.isArray(o.rejected_branches) ? o.rejected_branches.length : null,
+    returned: (typeof o.branches_returned_by_model === 'number') ? o.branches_returned_by_model : null,
+    zeroRetry: !!o.zero_retry
+  };
+  paintProc();
+}
 
 /* =========================================================================
    (b) 静寂 — 生成は始まらない。実測時間をそのまま見せる。
@@ -927,6 +1143,7 @@ async function submitBrief(){
     // 既に組み上がった語スパンを丸ごと消してしまう(原文がただの文字列に戻り、
     // クリックも引出線も失われる)。爆散済みなら原文には触れない。
     if (!S.exploded) elBriefText.textContent = S.brief;   // 静寂の間、原文はそのまま置かれている
+    showProcPanel();
     startSilence();
   }, 380);
 
@@ -961,6 +1178,7 @@ async function submitBrief(){
     S.assessment = String(r.j.residual_ambiguity_assessment || '');
     S.missing = Array.isArray(r.j.missing_materials) ? r.j.missing_materials.map(String) : [];
     explode();
+    noteExtraction(r.j);           // 一括経路でも「問いの抽出」の実測は同じ形で残す
   };
   proceed();
 }
@@ -1144,6 +1362,10 @@ async function recoverViaBulk(reason){
   finishStream({
     residual_ambiguity_assessment: String(r.j.residual_ambiguity_assessment || S.assessment || ''),
     missing_materials: Array.isArray(r.j.missing_materials) ? r.j.missing_materials.map(String) : S.missing,
+    // 処理の内訳に出す実測は、総数を確定させた側(この一括再取得)の値で名乗る
+    rejected_branches: Array.isArray(r.j.rejected_branches) ? r.j.rejected_branches : null,
+    branches_returned_by_model: r.j.branches_returned_by_model,
+    zero_retry: !!r.j.zero_retry,
     timing: timing
   }, {recovered: true});
 
@@ -1182,6 +1404,7 @@ function beginExplode(){
     elStage.hidden = false;
     elBriefText.textContent = S.brief;
   }
+  showProcPanel();
   elBriefText.classList.remove('scanning');              // 走査を止め、見つけた場所に圏点が打たれる
   stopSilence();                                         // 静寂の実測値 = 最初のカードが出るまで
   reserveBriefHeight();
@@ -1269,6 +1492,7 @@ function finishStream(obj, meta){
       if (meta && meta.recovered) S.explodeTiming.recovered_via_bulk = true;
     }
   }
+  noteExtraction(obj);                                   // 処理の内訳に「問いの抽出」の行が入る
 
   if (S.branches.length === 0){
     // 分岐0件は正当な出力(完全指定の依頼文)。捏造せず、そのまま伝える。
@@ -1276,6 +1500,7 @@ function finishStream(obj, meta){
     elAssess.textContent = S.assessment || 'この依頼文は十分に特定されている。抽出すべき判断点はない。';
     elCounter.hidden = false;
     paintCounter();
+    paintDelegateAll();             // 未決0 なので出ない(押す先が無い)
     paintCompile();                 // 未決0 かつ 総数確定 → ここで初めて可になる
     return;
   }
@@ -1634,6 +1859,7 @@ function explode(){
     elAssess.textContent = S.assessment || 'この依頼文は十分に特定されている。抽出すべき判断点はない。';
     elCounter.hidden = false;
     paintCounter();
+    paintDelegateAll();
     paintCompile();
     return;
   }
@@ -1685,8 +1911,16 @@ function buildCard(bi){
   card.appendChild(opts);
 
   const foot = el('div', 'card-foot');
+  // 最初の1枚にだけ、2動詞の使い分けを「一番下の小さな字」で置く。
+  // 出るのは「まだ1件も決定・委任がない」あいだだけで、最初の操作で消えて二度と出ない
+  // (チュートリアルではなく初回だけの注記。paintFirstCardHint が唯一の出し入れ経路)。
+  if (bi === 0){
+    foot.appendChild(el('div', 'card-hint',
+      '見本をクリックすると決まる。決めないなら「委ねる」。どちらも、あとで選び直せます。'));
+  }
   const dele = el('button', 'delegate', '委ねる');          // 動詞2: 委ねる
   dele.type = 'button';
+  dele.title = '選ばずに任せる。あとで選び直せます。';
   dele.addEventListener('click', () => delegate(bi));
   foot.appendChild(dele);
   card.appendChild(foot);
@@ -1775,12 +2009,12 @@ function skeletonMini(){
 }
 function failedMini(){
   const box = el('div', 'mini failed');
-  box.appendChild(el('span', null, '見本が未着'));
+  box.appendChild(el('span', null, '見本が未着(このまま選べます)'));
   return box;
 }
 function delegatedMini(){
   const box = el('div', 'mini delegated');
-  box.appendChild(el('span', null, '制作者の裁量'));
+  box.appendChild(el('span', null, '制作者(AI)の裁量'));
   return box;
 }
 function tokensMini(tokens){
@@ -1890,11 +2124,19 @@ function startRendersFor(bi, onlyPending){
       S.renders[bi][oi] = {state: 'pending'};             // 未着へ戻す(骸骨のまま・再開できる)
       return;
     }
-    if (r.err || !r.j || r.j.ok !== true){
+    const good = !(r.err || !r.j || r.j.ok !== true);
+    if (!good){
       S.renders[bi][oi] = {state: 'error', error: r.err || (r.j && r.j.error) || 'render failed'};
     }else{
       S.renders[bi][oi] = {state: 'ok', tokens: r.j.tokens || {}};
     }
+    // 処理の内訳の「見本の生成」。同じスロットを取り直したら上書きする(二重計上しない)。
+    const rt = (r.j && r.j.timing && typeof r.j.timing === 'object') ? r.j.timing : null;
+    S.renderStat[bi + ':' + oi] = {
+      ok: good,
+      ms: (rt && rt.api_ms != null) ? rt.api_ms : Math.round(r.wall)
+    };
+    paintProc();
     placeMini(bi, oi);
   });
 }
@@ -1945,6 +2187,30 @@ function delegate(bi){
   renderAll();
   unfreezeLayout();
 }
+// 「すべて委ねる」— 未決の全分岐を、1件ずつの「委ねる」と全く同じ経路でまとめて委任する。
+// 専用の状態も専用の遷移も作らない(delegate をそのまま呼ぶ)。したがって実行後も
+// 語をクリックすれば1件ずつ選び直せるし、選び直せばカウンタもコンパイル可否も巻き戻る。
+// 対象は「実行した瞬間に未決だったもの」で固定する(delegate 内の closeReopenedExcept が
+// 選び直し中のカードを一旦もとの決定へ戻すため、走査しながら判定すると取りこぼす)。
+function delegateAll(){
+  if (!delegateAllReady()) return;
+  const targets = [];
+  S.decisions.forEach((d, bi) => { if (d && !d.status) targets.push(bi); });
+  targets.forEach(bi => delegate(bi));
+}
+// 出す条件も単一のソースから導出する。総数が未確定(ストリーミング中・復旧中)のあいだは
+// 「すべて」が何を指すか決まっていないので出さない。未決0でも出さない(押す先が無い)。
+function delegateAllReady(){
+  if (!S.exploded) return false;
+  if (S.streaming || !S.streamDone) return false;
+  return remaining() > 0;
+}
+function paintDelegateAll(){
+  if (!elDelegateAll) return;
+  elDelegateAll.hidden = !delegateAllReady();
+}
+if (elDelegateAll) elDelegateAll.addEventListener('click', delegateAll);
+
 // 決定を解除する = status を null へ戻す(単一のソースを書き換える唯一の道)。
 // 直前の決定は prev に1段だけ退避し、「選び直しをやめた」ときに復元する。
 function reopen(bi){
@@ -1965,10 +2231,24 @@ function restoreDecision(bi){
    導出 — 画面は毎回 S.decisions[].status から作り直す
    ここを通らずに画面を書き換える経路は作らない(増分カウンタ禁止の実装)。
    ========================================================================= */
+// 最初のカードの注記は「まだ1件も決定・委任がない」あいだだけ出す。
+// 一度でも操作が起きたら二度と戻さない(選び直しで未決へ戻っても再表示しない)。
+// カード高さは爆散直後に最大値で固定済みなので、消えてもカードは動かない。
+let firstHintSpent = false;
+function paintFirstCardHint(){
+  const card = S.cardEls[0];
+  if (!card) return;
+  const hint = card.querySelector('.card-hint');
+  if (!hint) return;
+  if (!firstHintSpent && S.decisions.some(d => d && d.status)) firstHintSpent = true;
+  hint.hidden = firstHintSpent;
+}
 function renderAll(){
   S.branches.forEach((_, bi) => paintCard(bi));
+  paintFirstCardHint();
   paintSpans();
   paintCounter();
+  paintDelegateAll();
   paintCompile();
   drawTethers();
 }
@@ -2043,7 +2323,7 @@ function paintCard(bi, force){
     res.appendChild(delegatedMini());
     const tx = el('div', 'rtext');
     tx.appendChild(el('span', 'rkind', '委ねた'));
-    tx.appendChild(el('strong', null, String(b.default_if_unresolved || '制作者の裁量に委ねる')));
+    tx.appendChild(el('strong', null, String(b.default_if_unresolved || '制作者(AI)の裁量に委ねる')));
     tx.appendChild(el('span', 'rhint', hint));
     res.appendChild(tx);
   }
@@ -2093,7 +2373,7 @@ function paintCounter(){
   // 総数が確定する前(ストリーミング中)は「N→0」を出さない。
   // まだ増えるかもしれない数を確定値のように見せないための規律。
   if (S.streaming && !S.streamDone){
-    elCounter.appendChild(document.createTextNode('判断点を抽出中… '));
+    elCounter.appendChild(document.createTextNode('この文がまだ決めていないこと(判断点)を抽出中… '));
     elCounter.appendChild(el('b', null, String(S.branches.length)));
     elCounter.classList.remove('zero');
     return;
@@ -2300,15 +2580,18 @@ async function compile(){
   const r = await postJSON(API.compile, {brief: S.brief, decisions: decisions});
   ticking = false;
   S.compileMs = performance.now() - t0;
+  S.compileDone = true;
 
   if (r.err || !r.j || r.j.ok !== true){
     S.rationales = {};
+    S.compileTiming = (r.j && r.j.timing) || null;
     S.compileError = r.err || (r.j && r.j.error) || '根拠文の生成に失敗しました';
   }else{
     S.rationales = (r.j.rationales && typeof r.j.rationales === 'object') ? r.j.rationales : {};
     S.compileTiming = r.j.timing || null;
     S.compileError = '';
   }
+  paintProc();                       // 処理の内訳に「指示書の根拠文」の行が入る
   showCompiled();
 }
 
@@ -2316,10 +2599,10 @@ function tokensLine(t){
   if (!t) return '';
   const pal = normPalette(t.palette);
   const parts = [
-    'パレット ' + pal.join(' / '),
-    '見出し=' + String(t.heading_font || '-'),
-    '密度=' + String(t.density || '-'),
-    '角=' + String(t.corner || '-')
+    '色 ' + pal.join(' / '),
+    '見出しの書体=' + String(t.heading_font || '-'),
+    '余白の密度=' + String(t.density || '-'),
+    '角の形=' + String(t.corner || '-')
   ];
   return parts.join('、');
 }
@@ -2342,10 +2625,10 @@ function buildMarkdown(){
   // 逐次配信では「沈黙」= 送信から最初のカードが出るまで。全判断点の確定はその後も続く。
   // 2つの実測値を別物として並べる(片方だけを見せて速く見せない)。
   if (S.allBranchesMs != null){
-    L.push('- 沈黙(送信→最初の判断点, 実測・x1.0): ' + (S.silenceMs / 1000).toFixed(1) + '秒');
-    L.push('- 全判断点の確定まで(実測・x1.0): ' + (S.allBranchesMs / 1000).toFixed(1) + '秒');
+    L.push('- 沈黙(送信→最初の判断点, 実測・早送りなし): ' + (S.silenceMs / 1000).toFixed(1) + '秒');
+    L.push('- 全判断点の確定まで(実測・早送りなし): ' + (S.allBranchesMs / 1000).toFixed(1) + '秒');
   }else{
-    L.push('- 抽出の沈黙(実測・x1.0): ' + (S.silenceMs / 1000).toFixed(1) + '秒');
+    L.push('- 抽出の沈黙(実測・早送りなし): ' + (S.silenceMs / 1000).toFixed(1) + '秒');
   }
   L.push('');
 
@@ -2370,7 +2653,7 @@ function buildMarkdown(){
       if (opt.thumbnail_description) L.push('- 見え方: ' + String(opt.thumbnail_description));
       L.push('- 原文の根拠語: ' + (Array.isArray(b.anchor_words) ? b.anchor_words.map(a => '「' + a + '」').join(' ') : ''));
       if (st && st.state === 'ok'){
-        L.push('- 視覚トークン: ' + tokensLine(st.tokens));
+        L.push('- 見た目の指定: ' + tokensLine(st.tokens));
         if (st.tokens && st.tokens.tone_sample) L.push('- トーン例: ' + String(st.tokens.tone_sample).replace(/\n/g, ' '));
       }
       if (b.downstream_impact) L.push('- 未解決なら壊れるもの: ' + String(b.downstream_impact));
@@ -2381,13 +2664,13 @@ function buildMarkdown(){
   }
 
   if (delegated.length){
-    L.push('## 委ねた判断点(制作者の裁量)');
+    L.push('## 委ねた判断点(制作者=AIの裁量)');
     L.push('');
     delegated.forEach(bi => {
       const b = S.branches[bi];
       L.push('### ' + String(b.question_point || ''));
       L.push('');
-      L.push('- 委任: 制作者の裁量に委ねる');
+      L.push('- 委任: 制作者(AI)の裁量に委ねる');
       L.push('- 原文の根拠語: ' + (Array.isArray(b.anchor_words) ? b.anchor_words.map(a => '「' + a + '」').join(' ') : ''));
       if (b.default_if_unresolved) L.push('- 既定解: ' + String(b.default_if_unresolved));
       if (b.downstream_impact) L.push('- 未解決なら壊れるもの: ' + String(b.downstream_impact));
@@ -2476,7 +2759,7 @@ function showCompiled(){
   $('numChoice').textContent = String(S.branches.length);
   const note = [];
   note.push('本文の組み立てはブラウザ側の決定論処理。AIが書いたのは各判断点の「意図」1文のみ。');
-  note.push('問いを組み立てた時間 ' + (S.silenceMs / 1000).toFixed(1) + '秒(x1.0 実測) / 指示書にまとめた時間 ' + (S.compileMs / 1000).toFixed(1) + '秒。');
+  note.push('問いを組み立てた時間 ' + (S.silenceMs / 1000).toFixed(1) + '秒(早送りなしの実測) / 指示書にまとめた時間 ' + (S.compileMs / 1000).toFixed(1) + '秒。');
   if (S.compileError) note.push('意図の生成は失敗した: ' + S.compileError);
   $('compileNote').textContent = note.join(' ');
   paintOut();
@@ -2485,6 +2768,8 @@ function paintOut(){
   $('out').textContent = (outMode === 'md') ? buildMarkdown() : buildJSON();
   $('tabMd').setAttribute('aria-selected', String(outMode === 'md'));
   $('tabJson').setAttribute('aria-selected', String(outMode === 'json'));
+  // 断りは「AIに渡す用」を開いているあいだだけ。既定の「読む用」では出さない。
+  $('jsonNote').hidden = (outMode !== 'json');
 }
 $('tabMd').addEventListener('click', () => { outMode = 'md'; paintOut(); });
 $('tabJson').addEventListener('click', () => { outMode = 'json'; paintOut(); });

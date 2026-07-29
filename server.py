@@ -1966,6 +1966,16 @@ class Handler(BaseHTTPRequestHandler):
                 "session_log": str(STATE.log.path),
                 "prompts_ready": {k: (v is not None) for k, v in STATE.prompts.items()},
                 "counters": dict(STATE.counters),
+                # ---- 「処理の内訳」パネル(app/index.html)の固定情報 ----
+                # 画面に「ローカル実行」「APIキー不使用」「127.0.0.1 のみ」と書くだけなら
+                # それは主張であって証拠ではない。実際に効いている設定をそのまま返し、
+                # クライアントは受け取った値を表示するだけにする(文言を持たせない)。
+                "engine": "claude-code-cli",
+                "claude_bin": STATE.args.claude_bin,
+                "api_key_stripped": (not STATE.args.allow_api_key),
+                "bind_host": STATE.args.host,
+                "bind_port": STATE.args.port,
+                "prompts_dir": PROMPTS_DIR.name + "/",
             }
             self._send_json(payload)
             self._access("GET", path, 200)

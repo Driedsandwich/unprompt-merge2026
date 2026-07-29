@@ -136,3 +136,4 @@
 {"ts": "2026-07-29T15:47:12.312774+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 12025, "api_ms": 4912, "first_branch_ms": null, "ok": true}
 {"ts": "2026-07-29T15:47:14.959729+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 8103, "api_ms": 5044, "first_branch_ms": null, "ok": true}
 {"ts": "2026-07-29T15:49:28.598510+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 15338, "api_ms": 10726, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T16:58:56.877803+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 18258, "api_ms": 14049, "first_branch_ms": null, "ok": true}
