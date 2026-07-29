@@ -24,3 +24,17 @@
 {"ts": "2026-07-29T14:16:42.992442+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 5659, "api_ms": 5871, "first_branch_ms": null, "ok": true}
 {"ts": "2026-07-29T14:16:45.640280+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 5539, "api_ms": 4632, "first_branch_ms": null, "ok": true}
 {"ts": "2026-07-29T14:16:46.767417+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 6296, "api_ms": 6051, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:12.942925+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 11841, "api_ms": 9480, "first_branch_ms": 6636, "ok": true}
+{"ts": "2026-07-29T15:14:22.828171+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 14937, "api_ms": 5392, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:22.828448+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 14203, "api_ms": 5217, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:22.981045+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 15122, "api_ms": 5936, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:23.014235+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 15032, "api_ms": 5637, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:25.570456+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 12606, "api_ms": 5278, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:25.969737+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 17343, "api_ms": 8974, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:29.913104+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 7079, "api_ms": 5486, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:30.597466+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 7579, "api_ms": 4750, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:30.612090+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 7628, "api_ms": 7114, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:31.711019+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 8838, "api_ms": 6708, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:34.031156+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 8053, "api_ms": 6553, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:14:34.382558+00:00", "endpoint": "/api/render", "model": "sonnet", "wall_ms": 8803, "api_ms": 4238, "first_branch_ms": null, "ok": true}
+{"ts": "2026-07-29T15:15:33.341800+00:00", "endpoint": "/api/compile", "model": "sonnet", "wall_ms": 9674, "api_ms": 6887, "first_branch_ms": null, "ok": true}

@@ -11,12 +11,12 @@
   製品憲法(このファイルが守る規律):
     1. AIはユーザーの成果物を書かない。人間は最初の一文以降タイプしない。
        操作は〈決める〉(オプションのミニレンダをクリック)と〈委ねる〉(カードのボタン)の2動詞のみ。
-    2. 画面遷移 (a)下線だけの入力欄 → (b)静寂(実測経過秒 + 「x1.0 — 生成は、始まらない」)
+    2. 画面遷移 (a)下線だけの入力欄 → (b)静寂(実測経過秒 + 「生成の代わりに、問いを組み立てています」)
        → (c)爆散(文字が散って静定 → anchor 語に朱の圏点 → 語とカードを結ぶ製図の引出線)
-       → (d)カード操作 → (e)N=0でコンパイル → (f)コンパイル画面。
+       → (d)カード操作 → (e)未決0で「指示書にまとめる」 → (f)意図の指示書。
        爆散は初回1度きり・約700ms。以後この画面は静的である。
     3. カード最大5枚。ミニレンダは /api/render の tokens から決定論描画。
-       レンダ未着はラベル+スケルトン(白紙カード禁止)。render は並列 fetch、到着順に着地。
+       見本の未着はラベル+スケルトン(白紙カード禁止)。render は並列 fetch、到着順に着地。
     4. ポインタがカード近傍に入ったらレイアウト凍結(既存カードを動かさない)。
     5. サイドパネル・%メーター・BGM・パーティクル禁止。状態は「原文の語の色」と「カウンタ」のみ。
     6. 確定/委任済みの語をクリックすると当該カードを再提示して再選択(状態上書き)。多段アンドゥなし。
@@ -218,6 +218,9 @@
   }
   #silence #silenceNum .u{font-size:15px; color:var(--muted); margin-left:2px}
   #silence #silenceNote{font-size:10.5px; color:var(--muted); letter-spacing:.1em; margin-top:8px}
+  /* 静寂コピー: 主文(生活語)+ 小さな実測の但し書き */
+  #silenceNote .s-main{font-size:11.5px; color:var(--ink-soft); letter-spacing:.08em}
+  #silenceNote .s-sub{font-size:10px; color:var(--muted); letter-spacing:.12em; margin-left:8px}
   #silence.done{flex:0 0 auto; text-align:left}
   #silence.done #silenceNum{display:inline; font-size:11px; color:var(--muted); font-weight:400}
   #silence.done #silenceNum .u{font-size:11px}
@@ -386,7 +389,10 @@
   #titleblock .tb-label{
     padding:7px 14px; border-bottom:1px solid var(--ink);
     font-size:10px; letter-spacing:.18em; color:var(--ink-soft);
+    display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
   }
+  #titleblock .tb-label b{font-size:12.5px; font-weight:600; letter-spacing:.14em; color:var(--ink)}
+  #titleblock .tb-label .tb-en{font-size:9.5px; letter-spacing:.16em; color:var(--muted)}
   #asym{display:flex; flex-wrap:wrap}
   #asym .item{
     flex:1 1 200px; padding:14px 16px 13px; font-size:10.5px; color:var(--muted);
@@ -437,9 +443,20 @@
     font-size:13px; font-weight:600; letter-spacing:.14em; color:var(--ink);
     text-align:center; margin-bottom:8px;
   }
+  /* 事前生成の常設ラベル(常に出る)と、いまの依頼文と違うときだけ出る注記 */
+  #compareFixture{
+    font-size:10.5px; color:var(--ink-soft); text-align:center; line-height:1.9;
+    max-width:720px; margin:0 auto 6px; letter-spacing:var(--ui-ls);
+    border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);
+    padding:7px 10px; background:#FBFAF7;
+  }
+  #compareMismatch{
+    font-size:10.5px; color:var(--shu); text-align:center; line-height:1.9;
+    max-width:720px; margin:0 auto 6px; letter-spacing:var(--ui-ls);
+  }
   #compareLead{
     font-size:11px; color:var(--muted); text-align:center; line-height:2;
-    max-width:640px; margin:0 auto 30px; letter-spacing:var(--ui-ls);
+    max-width:640px; margin:14px auto 30px; letter-spacing:var(--ui-ls);
   }
   #compareGrid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
   @media (max-width:880px){ #compareGrid{grid-template-columns:1fr} }
@@ -503,7 +520,7 @@
     <div id="meta">
       <div id="silence">
         <div id="silenceNum">0.0<span class="u">s</span></div>
-        <div id="silenceNote">x1.0 — 生成は、始まらない</div>
+        <div id="silenceNote"><span class="s-main">生成の代わりに、問いを組み立てています</span><span class="s-sub">x1.0 実時間</span></div>
       </div>
       <div id="branchCounter" hidden></div>
     </div>
@@ -513,7 +530,7 @@
     <div id="cards"></div>
     <div id="streamNotice" hidden></div>
     <div id="compileRow" hidden>
-      <button id="btnCompile" type="button">コンパイル</button>
+      <button id="btnCompile" type="button">指示書にまとめる</button>
     </div>
   </div>
 </main>
@@ -522,7 +539,7 @@
 <section id="screenCompiled" hidden>
   <!-- 製図の表題欄(タイトルブロック)。非対称カウンタはこの中の2セル。 -->
   <div id="titleblock">
-    <div class="tb-label">COMPILED BRIEF — GYAKUMON</div>
+    <div class="tb-label"><b>意図の指示書</b><span class="tb-en">compiled brief</span></div>
     <div id="asym">
       <div class="item">あなたがタイプした文字<b id="numTyped">0</b></div>
       <div class="item choice">あなたの選択<b id="numChoice">0</b></div>
@@ -530,14 +547,14 @@
   </div>
   <div class="outbar">
     <div class="seg" role="tablist">
-      <button id="tabMd" type="button" role="tab" aria-selected="true">人間可読 MD</button>
-      <button id="tabJson" type="button" role="tab" aria-selected="false">機械可読 JSON</button>
+      <button id="tabMd" type="button" role="tab" aria-selected="true">読む用</button>
+      <button id="tabJson" type="button" role="tab" aria-selected="false">AIに渡す用</button>
     </div>
     <button id="btnCopy" type="button">コピー</button>
   </div>
   <div id="out"></div>
   <div id="compileNote"></div>
-  <button id="btnCompare" type="button">このブリーフで作らせた結果を見る</button>
+  <button id="btnCompare" type="button">この指示書でAIに作らせると?</button>
   <button id="btnRestart" type="button">最初から</button>
 </section>
 
@@ -546,8 +563,12 @@
      manifest.json に生成時刻・api_ms・使用プロンプト全文・選択の機械照合結果が残る。 -->
 <section id="screenCompare" hidden>
   <h2>同じモデルに、同じ仕事をさせた</h2>
+  <!-- 事前生成であることの常設ラベル(開示: DISCLOSURE #7)。
+       その場生成ではないので、どの依頼文で作った実例かを必ず先に名乗る。 -->
+  <p id="compareFixture">事前生成の実例 — 依頼文「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」による</p>
+  <p id="compareMismatch" hidden>いまの依頼文とは別の実例です(その場生成は行いません)</p>
   <p id="compareLead">
-    違うのは渡したものだけ。左は最初の一文をそのまま。右はコンパイル済みブリーフ。
+    違うのは渡したものだけ。左は最初の一文をそのまま。右は意図の指示書。
     モデル・思考量・制作者プロンプトの骨格は同一。
   </p>
   <div id="compareGrid">
@@ -556,12 +577,12 @@
       <div class="cmp-frame"><iframe id="frameRaw" title="一文だけを渡した結果" sandbox="" loading="lazy"></iframe></div>
     </div>
     <div class="cmp-col decided">
-      <div class="cmp-head"><b>コンパイル済みブリーフを渡した</b><span>入力: 同じ1文 + あなたの選択</span></div>
-      <div class="cmp-frame"><iframe id="frameCompiled" title="コンパイル済みブリーフを渡した結果" sandbox="" loading="lazy"></iframe></div>
+      <div class="cmp-head"><b>意図の指示書を渡した</b><span>入力: 同じ1文 + あなたの選択</span></div>
+      <div class="cmp-frame"><iframe id="frameCompiled" title="意図の指示書を渡した結果" sandbox="" loading="lazy"></iframe></div>
     </div>
   </div>
   <div id="compareNote"></div>
-  <button id="btnCompareBack" type="button">ブリーフに戻る</button>
+  <button id="btnCompareBack" type="button">指示書に戻る</button>
 </section>
 
 <script>
@@ -746,7 +767,7 @@ function el(tag, cls, text){
   return n;
 }
 // signal を渡すと中断できる。中断は失敗ではないので {aborted:true} で区別して返す
-// (中断を error にすると「レンダ未着」が画面に残り、後で再開できなくなる)。
+// (中断を error にすると「見本が未着」が画面に残り、後で再開できなくなる)。
 async function postJSON(url, body, signal){
   const t0 = performance.now();
   let j = null, err = null, aborted = false;
@@ -874,11 +895,11 @@ async function submitBrief(){
     if (S.exploded) return;                      // 後着応答による S.branches の後勝ち上書きを禁じる
     if (elStage.hidden){ setTimeout(proceed, 60); return; }
     stopSilence();
-    if (r.err){ showStageError('抽出に失敗しました(' + r.err + ')', 'server.py が起動しているか確認してください。'); return; }
+    if (r.err){ showStageError('問いの抽出に失敗しました(' + r.err + ')', 'server.py が起動しているか確認してください。'); return; }
     if (!r.j || r.j.ok !== true){
       const msg = (r.j && r.j.error) ? String(r.j.error) : '不明なエラー';
       const hint = (r.j && r.j.hint) ? String(r.j.hint) : '';
-      showStageError('抽出に失敗しました: ' + msg, hint);
+      showStageError('問いの抽出に失敗しました: ' + msg, hint);
       return;
     }
     S.explodeTiming = r.j.timing || {wall_ms: Math.round(wall)};
@@ -1036,7 +1057,7 @@ async function recoverViaBulk(reason){
     const msg = r.err || (r.j && r.j.error) || '不明なエラー';
     showNotice('error',
                '判断点を最後まで取得できませんでした(' + reason + ' / 再取得も失敗: ' + msg + ')。',
-               '出ている判断点と決定は保持しています。総数が確定していないためコンパイルはできません。',
+               '出ている判断点と決定は保持しています。総数が確定していないため、まだ指示書にまとめられません。',
                [{label: '再取得', fn: () => recoverViaBulk(reason)},
                 {label: '書き直す', fn: () => location.reload()}]);
     if (aborted) restartPendingRenders();
@@ -1195,9 +1216,9 @@ function finishStream(obj, meta){
   }
 
   if (S.branches.length === 0){
-    // 分岐0件は正当な出力(完全指定ブリーフ)。捏造せず、そのまま伝える。
+    // 分岐0件は正当な出力(完全指定の依頼文)。捏造せず、そのまま伝える。
     elAssess.hidden = false;
-    elAssess.textContent = S.assessment || 'このブリーフは十分に特定されている。抽出すべき判断点はない。';
+    elAssess.textContent = S.assessment || 'この依頼文は十分に特定されている。抽出すべき判断点はない。';
     elCounter.hidden = false;
     paintCounter();
     paintCompile();                 // 未決0 かつ 総数確定 → ここで初めて可になる
@@ -1553,9 +1574,9 @@ function explode(){
   elSilence.classList.add('done');
 
   if (S.branches.length === 0){
-    // 分岐0件は正当な出力(完全指定ブリーフ)。捏造せず、そのまま伝える。
+    // 分岐0件は正当な出力(完全指定の依頼文)。捏造せず、そのまま伝える。
     elAssess.hidden = false;
-    elAssess.textContent = S.assessment || 'このブリーフは十分に特定されている。抽出すべき判断点はない。';
+    elAssess.textContent = S.assessment || 'この依頼文は十分に特定されている。抽出すべき判断点はない。';
     elCounter.hidden = false;
     paintCounter();
     paintCompile();
@@ -1699,7 +1720,7 @@ function skeletonMini(){
 }
 function failedMini(){
   const box = el('div', 'mini failed');
-  box.appendChild(el('span', null, 'レンダ未着'));
+  box.appendChild(el('span', null, '見本が未着'));
   return box;
 }
 function delegatedMini(){
@@ -2200,7 +2221,7 @@ async function compile(){
   let ticking = true;
   const tick = () => {
     if (!ticking) return;
-    elCompile.textContent = 'コンパイル中… ' + ((performance.now() - t0) / 1000).toFixed(1) + 's';
+    elCompile.textContent = 'まとめています… ' + ((performance.now() - t0) / 1000).toFixed(1) + 's';
     requestAnimationFrame(tick);
   };
   tick();
@@ -2255,7 +2276,7 @@ function buildMarkdown(){
     ((S.decisions[bi] && S.decisions[bi].status === 'decided') ? decided : delegated).push(bi);
   });
 
-  L.push('# コンパイル済みブリーフ');
+  L.push('# 意図の指示書 (compiled brief)');
   L.push('');
   L.push('## 発注者が書いた唯一の文');
   L.push('');
@@ -2276,7 +2297,7 @@ function buildMarkdown(){
   if (S.branches.length === 0){
     L.push('## 判断点');
     L.push('');
-    L.push('抽出された判断点は 0 件。このブリーフは十分に特定されている。');
+    L.push('抽出された判断点は 0 件。この依頼文は十分に特定されている。');
     L.push('');
   }
 
@@ -2332,7 +2353,7 @@ function buildMarkdown(){
   L.push('');
   L.push('---');
   L.push('');
-  L.push('このブリーフは、上の1文と ' + S.branches.length + ' 回の選択だけから GYAKUMON が機械的に組み立てた。');
+  L.push('この指示書は、上の1文と ' + S.branches.length + ' 回の選択だけから GYAKUMON が機械的に組み立てた。');
   L.push('本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。');
   if (S.compileError) L.push('注: 意図の生成に失敗した(' + S.compileError + ')。本文は選択だけから組み立てられている。');
   return L.join('\n');
@@ -2400,7 +2421,7 @@ function showCompiled(){
   $('numChoice').textContent = String(S.branches.length);
   const note = [];
   note.push('本文の組み立てはブラウザ側の決定論処理。AIが書いたのは各判断点の「意図」1文のみ。');
-  note.push('抽出の沈黙 ' + (S.silenceMs / 1000).toFixed(1) + '秒(x1.0 実測) / コンパイル ' + (S.compileMs / 1000).toFixed(1) + '秒。');
+  note.push('問いを組み立てた時間 ' + (S.silenceMs / 1000).toFixed(1) + '秒(x1.0 実測) / 指示書にまとめた時間 ' + (S.compileMs / 1000).toFixed(1) + '秒。');
   if (S.compileError) note.push('意図の生成は失敗した: ' + S.compileError);
   $('compileNote').textContent = note.join(' ');
   paintOut();
@@ -2434,7 +2455,17 @@ $('btnRestart').addEventListener('click', () => location.reload());
    ========================================================================= */
 const COMPARE = { raw: 'compare/raw.html', compiled: 'compare/compiled.html',
                   manifest: 'compare/manifest.json' };
+// 事前生成に使った依頼文(manifest.brief と同値)。画面の常設ラベルと同じ文字列を持ち、
+// いまのセッションの依頼文と違うときだけ「別の実例です」の注記を出す。
+const COMPARE_BRIEF = 'モダンだけど温かみのあるLPを作って。うちの会社のやつ。';
 let compareLoaded = false;
+
+// 常設ラベルは静的マークアップ(常に出る)。注記だけを依頼文の一致で出し分ける。
+function paintCompareFixture(){
+  const n = $('compareMismatch');
+  if (!n) return;
+  n.hidden = (String(S.brief || '').trim() === COMPARE_BRIEF);
+}
 
 async function paintCompareNote(){
   const el = $('compareNote');
@@ -2460,6 +2491,7 @@ async function paintCompareNote(){
 }
 
 $('btnCompare').addEventListener('click', () => {
+  paintCompareFixture();
   if (!compareLoaded){
     $('frameRaw').src = COMPARE.raw;
     $('frameCompiled').src = COMPARE.compiled;

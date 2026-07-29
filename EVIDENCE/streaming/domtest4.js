@@ -147,6 +147,9 @@ async function runToDone(){
   return ctx;
 }
 const counter  = () => registry['branchCounter'].textContent;
+// カウンタは「総数」と「未決」を分けて出す(2026-07-30 の文言改訂)。
+// 旧書式「この文から抽出した判断点 N→0」は総数に見える誤読を招いたので廃した。
+const CT = (undecided, total) => 'この文から抽出した判断点 ' + (total == null ? 3 : total) + ' ・ 未決 ' + undecided;
 const rowHidden = () => registry['compileRow'].hidden;
 const btnDisabled = () => registry['btnCompile'].disabled === true;
 const optsOpen = (bi) => {
@@ -161,15 +164,15 @@ const optsOpen = (bi) => {
   let ctx = await runToDone();
   let S = ctx.__S;
   chk('前提: 分岐3件・未決3', S.branches.length === 3 && S.decisions.filter(d => !d.status).length === 3);
-  chk('前提: 初期カウンタは 3→0', counter() === 'この文から抽出した判断点 3→0', JSON.stringify(counter()));
+  chk('前提: 初期カウンタは 総数3・未決3', counter() === CT(3), JSON.stringify(counter()));
 
   vm.runInContext('decide(0,0);', ctx);
-  chk('1件決めるとカウンタが 2→0 になる', counter() === 'この文から抽出した判断点 2→0', JSON.stringify(counter()));
+  chk('1件決めると未決が 2 になる(総数は3のまま)', counter() === CT(2), JSON.stringify(counter()));
   chk('決めた分岐の status が decided', S.decisions[0].status === 'decided');
   chk('決めたカードは決定表示に畳まれる', optsOpen(0) === false);
 
   vm.runInContext('onTokenClick(0);', ctx);
-  chk('★解除でカウンタが 3→0 に戻る', counter() === 'この文から抽出した判断点 3→0', JSON.stringify(counter()));
+  chk('★解除で未決が 3 に戻る', counter() === CT(3), JSON.stringify(counter()));
   chk('★解除で status が null に戻る(単一のソースが巻き戻る)', S.decisions[0].status === null);
   chk('★解除でカードが再提示される(選択肢が開く)', optsOpen(0) === true);
   chk('解除しても直前の選択は prev に残る', !!S.decisions[0].prev && S.decisions[0].prev.oi === 0,
@@ -179,20 +182,20 @@ const optsOpen = (bi) => {
       JSON.stringify(S.spans.map(sp => sp.bis + ':' + sp.el.dataset.state)));
 
   vm.runInContext('decide(0,1);', ctx);
-  chk('選び直すとカウンタは再び 2→0', counter() === 'この文から抽出した判断点 2→0', JSON.stringify(counter()));
+  chk('選び直すと未決は再び 2', counter() === CT(2), JSON.stringify(counter()));
   chk('選び直した内容で status が上書きされる', S.decisions[0].status === 'decided' && S.decisions[0].oi === 1);
 
   // 委任も同じ経路で戻ること
   vm.runInContext('delegate(1);', ctx);
-  chk('委ねるとカウンタが 1→0', counter() === 'この文から抽出した判断点 1→0', JSON.stringify(counter()));
+  chk('委ねると未決が 1', counter() === CT(1), JSON.stringify(counter()));
   vm.runInContext('onTokenClick(1);', ctx);
-  chk('★委任も解除でカウンタが 2→0 に戻る', counter() === 'この文から抽出した判断点 2→0', JSON.stringify(counter()));
+  chk('★委任も解除で未決が 2 に戻る', counter() === CT(2), JSON.stringify(counter()));
   chk('委任の解除で status が null', S.decisions[1].status === null);
 
   // 選び直しをやめる(同じ語をもう一度押す)と元の決定へ戻る
   vm.runInContext('onTokenClick(1);', ctx);
   chk('もう一度押すと選び直しをやめて元の決定に戻る', S.decisions[1].status === 'delegated');
-  chk('やめたあとカウンタは 1→0', counter() === 'この文から抽出した判断点 1→0', JSON.stringify(counter()));
+  chk('やめたあと未決は 1', counter() === CT(1), JSON.stringify(counter()));
 
   // 解除は常に1枚だけ(2枚目を解除すると1枚目の解除は畳まれる)
   vm.runInContext('onTokenClick(0); onTokenClick(1);', ctx);
@@ -211,13 +214,13 @@ const optsOpen = (bi) => {
   vm.runInContext('decide(0,0); decide(1,1); delegate(2);', ctx);
   chk('全件決めるとコンパイル行が出る', rowHidden() === false);
   chk('全件決めるとボタンが有効', btnDisabled() === false);
-  chk('カウンタが 0→0 / zero クラス', counter() === 'この文から抽出した判断点 0→0' &&
+  chk('未決0 / zero クラス(総数は3のまま出る)', counter() === CT(0) &&
       registry['branchCounter'].classList.contains('zero'), JSON.stringify(counter()));
 
   vm.runInContext('onTokenClick(1);', ctx);
   chk('★1件解除でコンパイル行が消える', rowHidden() === true);
   chk('★1件解除でボタンが無効に戻る', btnDisabled() === true);
-  chk('★解除でカウンタが 1→0 に戻る', counter() === 'この文から抽出した判断点 1→0', JSON.stringify(counter()));
+  chk('★解除で未決が 1 に戻る', counter() === CT(1), JSON.stringify(counter()));
   chk('解除中は zero クラスが外れる', registry['branchCounter'].classList.contains('zero') === false);
 
   // 押せない状態で compile() を直接叩いても走らない(表示と実行が同じ導出を見ている)
@@ -310,13 +313,48 @@ const optsOpen = (bi) => {
       JSON.stringify(svgR.children.filter(c => c.tagName === 'PATH').map(p => p.style.strokeDashoffset)));
   chk('簡略版でもカード操作は同じに効く', (function(){
     vm.runInContext('decide(0,0);', ctx);
-    const a = counter() === 'この文から抽出した判断点 2→0';
+    const a = counter() === CT(2);
     vm.runInContext('onTokenClick(0);', ctx);
-    return a && counter() === 'この文から抽出した判断点 3→0';
+    return a && counter() === CT(3);
   })());
   REDUCE_MATCH = false;
 
+  /* ================= F) 並置比較の事前生成ラベル(2026-07-30 文言改訂) ================= */
+  // 並置比較はその場生成ではない。どの依頼文で作った実例かを常に名乗り、
+  // いまのセッションの依頼文と違うときだけ、違うと明言する。
+  console.log('\n=== F) 並置比較は「事前生成の実例」であることを常設で名乗る ===');
+  chk('常設ラベルが静的マークアップとして存在する(hidden でない)',
+      html.indexOf('<p id="compareFixture">事前生成の実例 — 依頼文「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」による</p>') > 0);
+  chk('不一致の注記の文面が承認どおり',
+      html.indexOf('いまの依頼文とは別の実例です(その場生成は行いません)') > 0);
+  ctx = await runToDone();
+  vm.runInContext('paintCompareFixture();', ctx);
+  chk('依頼文が事前生成と同じなら注記は出ない', registry['compareMismatch'].hidden === true);
+  vm.runInContext('S.brief = "社内向けの資料をいい感じにして。"; paintCompareFixture();', ctx);
+  chk('★依頼文が違うときだけ注記が出る', registry['compareMismatch'].hidden === false);
+  vm.runInContext('S.brief = "モダンだけど温かみのあるLPを作って。うちの会社のやつ。"; paintCompareFixture();', ctx);
+  chk('一致に戻せば注記も引っ込む(毎回導出している)', registry['compareMismatch'].hidden === true);
+
+  /* ================= G) 生活語への置換が画面文言に残っている ================= */
+  console.log('\n=== G) 置換後の生活語が画面にあり、旧語が残っていない ===');
+  [['指示書にまとめる', 'コンパイル(ボタン)'],
+   ['意図の指示書', 'コンパイル済みブリーフ(見出し)'],
+   ['compiled brief', '英字併記'],
+   ['読む用', '人間可読 MD'],
+   ['AIに渡す用', '機械可読 JSON'],
+   ['この指示書でAIに作らせると?', 'このブリーフで作らせた結果を見る'],
+   ['指示書に戻る', 'ブリーフに戻る'],
+   ['生成の代わりに、問いを組み立てています', '静寂コピー主文'],
+   ['x1.0 実時間', '静寂コピー小文'],
+   ['見本が未着', 'レンダ未着']].forEach(pair => {
+    chk('新文言「' + pair[0] + '」が存在する(旧: ' + pair[1] + ')', html.indexOf(pair[0]) > 0);
+  });
+  ['>コンパイル<', '人間可読 MD', '機械可読 JSON', 'このブリーフで作らせた結果を見る',
+   'ブリーフに戻る', 'x1.0 — 生成は、始まらない', 'レンダ未着', 'COMPILED BRIEF'].forEach(bad => {
+    chk('旧文言「' + bad + '」が残っていない', html.indexOf(bad) < 0);
+  });
+
   console.log(FAILS.length ? '\n--- FAILED: ' + FAILS.join(' / ')
-                           : '\n--- 解除でのカウント復元 / コンパイル可否の導出 / 爆散演出 / reduced-motion: すべて期待どおり');
+                           : '\n--- 解除でのカウント復元 / コンパイル可否の導出 / 爆散演出 / reduced-motion / 事前生成ラベル / 生活語文言: すべて期待どおり');
   process.exit(FAILS.length ? 1 : 0);
 })().catch(e => { console.error('THREW:', e && e.stack || e); process.exit(2); });
