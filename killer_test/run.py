@@ -333,6 +333,15 @@ def run_claude_once(claude_bin: str, system_prompt: str, user_prompt: str,
                             "message": "CLI出力(--output-format json)がJSONとしてパースできない"
                                        + ("(exit=%s)" % proc.returncode)}
         return attempt
+    # JSONとして読めても dict とは限らない(CLI が配列や文字列だけを吐く異常時)。
+    # 型を見ずに .get() へ進むと AttributeError でハーネス全体が落ち、
+    # 途中までの実測が失われる。ここで cli_json_parse として記録し、次のブリーフへ続行する。
+    if not isinstance(cli_json, dict):
+        attempt["error"] = {"kind": "cli_json_parse",
+                            "message": "CLI出力(--output-format json)がJSONオブジェクトでない"
+                                       + "(type=%s, exit=%s)" % (type(cli_json).__name__,
+                                                                 proc.returncode)}
+        return attempt
     attempt["cli_json"] = cli_json
     attempt["duration_ms"] = cli_json.get("duration_ms")
     attempt["duration_api_ms"] = cli_json.get("duration_api_ms")

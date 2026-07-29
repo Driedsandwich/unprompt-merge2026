@@ -67,7 +67,9 @@ import os
 import posixpath
 import queue
 import re
+import select
 import shutil
+import signal
 import socket
 import subprocess
 import sys
@@ -97,6 +99,14 @@ DEFAULT_EFFORT = "low"              # --effort。実測でスリムスキーマ�
 DEFAULT_TIMEOUT_S = 120             # claude 呼び出し1本あたり(拘束)
 DEFAULT_MAX_CONCURRENCY = 6         # 同時に走らせる claude 子プロセス数の上限
 SLOT_WAIT_MARGIN_S = 60             # 実行枠の待ち行列で待てる追加秒数
+# レンダ(ミニLP)は分岐5件×選択肢3で最大15本が同時に飛ぶ。全枠を占めると
+# 爆散の取り直し(/api/explode)やコンパイルが待たされるので、レンダ専用の副上限を置き、
+# レンダ以外のために常に RESERVED_NON_RENDER_SLOTS 枠を空けておく。
+RENDER_CONCURRENCY_CAP = 3          # レンダが同時に使える上限(全枠の内数)
+RESERVED_NON_RENDER_SLOTS = 2       # explode / compile のために常時空けておく枠数
+TERM_GRACE_S = 3                    # 子プロセスに TERM を送ってから KILL するまで
+KILL_GRACE_S = 2                    # KILL 後に回収(wait)を待つ上限
+PUMP_JOIN_S = 2                     # 出力吸い出しスレッドの join 上限
 MAX_BODY_BYTES = 512 * 1024         # リクエストボディ上限
 MAX_BRANCHES = 5                    # カードは最大5枚(UI仕様)
 
@@ -600,6 +610,9 @@ class ClaudeRunner:
     """claude -p をスレッドセーフに呼ぶ実行器。
 
     - 同時実行数を max_concurrency に制限する(超過分はキューで待つ)。
+    - さらに kind="render" には副上限(render_cap)を課す。レンダは1画面で最大15本
+      飛ぶので、これが無いと全枠を占め、爆散の取り直しやコンパイルが枠待ちで
+      止まる(実測で「リロード後の再送が待たされる」経路がここ)。
     - 各実行枠は専用の一時ディレクトリ(リポジトリ外)を cwd として持つ。
       枠ごとに分けるのは、並列実行時に同一 cwd のセッション状態が競合しないようにするため。
     - 子プロセス env から Anthropic APIキーを除去する(サブスクリプション認証を主経路に固定)。
@@ -619,6 +632,15 @@ class ClaudeRunner:
             d = os.path.join(self.base_dir, "slot_%d" % i)
             os.makedirs(d, exist_ok=True)
             self.slots.put(d)
+        # レンダ専用の副上限。全枠が RESERVED_NON_RENDER_SLOTS 以下しかない構成でも
+        # 1本は通す(それ以上絞ると画面が何も出せない)。
+        self.render_cap = max(1, min(RENDER_CONCURRENCY_CAP,
+                                     max_concurrency - RESERVED_NON_RENDER_SLOTS))
+        self.render_sema = threading.BoundedSemaphore(self.render_cap)
+        # 走っているストリーミング子プロセス。start_new_session で親のプロセスグループから
+        # 外している以上、Ctrl+C はもう子へ届かない。停止時にここを見て自分で始末する。
+        self._live = set()
+        self._live_lock = threading.Lock()
         self.env = os.environ.copy()
         self.stripped_env_keys = []
         if not allow_api_key:
@@ -628,25 +650,112 @@ class ClaudeRunner:
                     self.stripped_env_keys.append(k)
 
     def cleanup(self):
+        self.terminate_all()
         shutil.rmtree(self.base_dir, ignore_errors=True)
 
-    def run(self, system_prompt, user_prompt, model):
+    def terminate_all(self):
+        """停止時に、走っている claude 子プロセスをグループごと始末する。"""
+        with self._live_lock:
+            procs = list(self._live)
+        for p in procs:
+            self._reap(p, None)
+
+    # ---- 実行枠の取得/返却(レンダの副上限つき) ----
+    def _acquire_render_token(self, kind, deadline):
+        """kind="render" のときだけ副上限を取る。取れたら True。"""
+        if kind != "render":
+            return True
+        return self.render_sema.acquire(timeout=max(0.0, deadline - time.monotonic()))
+
+    def _release_render_token(self, kind):
+        if kind != "render":
+            return
+        try:
+            self.render_sema.release()
+        except ValueError:
+            pass
+
+    def _busy_rec(self, rec, t_wait, kind):
+        rec["wall_ms"] = round((time.monotonic() - t_wait) * 1000)
+        if kind == "render":
+            rec["error"] = ("サーバが混雑している(レンダ枠 %d がすべて埋まったまま待ち切れなかった)"
+                            % self.render_cap)
+        else:
+            rec["error"] = "サーバが混雑している(同時実行 %d 枠がすべて埋まったまま経過)" % self.max_concurrency
+        rec["hint"] = "少し待って再試行するか、--max-concurrency を上げて再起動する。"
+        return rec
+
+    def _reap(self, proc, threads):
+        """子プロセスを確実に終わらせ、回収し、出力吸い出しスレッドも畳む。
+
+        - 起動時に start_new_session=True でプロセスグループを分けているので、
+          claude が孫プロセスを持っていてもグループごと止められる。
+        - TERM → 期限付き wait → KILL → wait の順。kill しっぱなしでゾンビを残さない。
+        - パイプを閉じてから pump スレッドを join する(閉じると読み側が例外で抜ける)。
+        """
+        if proc is None:
+            return
+        if proc.poll() is None:
+            try:
+                os.killpg(os.getpgid(proc.pid), signal.SIGTERM)
+            except (OSError, ProcessLookupError):
+                try:
+                    proc.terminate()
+                except OSError:
+                    pass
+            try:
+                proc.wait(timeout=TERM_GRACE_S)
+            except subprocess.TimeoutExpired:
+                try:
+                    os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+                except (OSError, ProcessLookupError):
+                    try:
+                        proc.kill()
+                    except OSError:
+                        pass
+                try:
+                    proc.wait(timeout=KILL_GRACE_S)
+                except subprocess.TimeoutExpired:
+                    print("警告: claude 子プロセス(pid=%s)を回収できなかった" % proc.pid,
+                          file=sys.stderr, flush=True)
+        else:
+            try:
+                proc.wait(timeout=KILL_GRACE_S)   # 既に終了 → ゾンビを回収するだけ
+            except subprocess.TimeoutExpired:
+                pass
+        for s in (proc.stdout, proc.stderr):
+            try:
+                if s:
+                    s.close()
+            except OSError:
+                pass
+        for t in (threads or []):
+            if t is not None:
+                t.join(timeout=PUMP_JOIN_S)
+                if t.is_alive():
+                    print("警告: 出力吸い出しスレッドが %.0f 秒で終わらなかった" % PUMP_JOIN_S,
+                          file=sys.stderr, flush=True)
+        with self._live_lock:
+            self._live.discard(proc)
+
+    def run(self, system_prompt, user_prompt, model, kind="other"):
         """1回の claude -p 実行。結果 dict を返す(例外を投げない)。
 
         戻り値: {ok, wall_ms, api_ms, duration_ms, result_text, error, hint, exit_code}
+        kind="render" は副上限(render_cap)の対象。
         """
         rec = {"ok": False, "wall_ms": None, "api_ms": None, "duration_ms": None,
                "result_text": None, "error": None, "hint": None, "exit_code": None}
         wait_deadline = self.timeout_s + SLOT_WAIT_MARGIN_S
         t_wait = time.monotonic()
+        deadline = t_wait + wait_deadline
+        if not self._acquire_render_token(kind, deadline):
+            return self._busy_rec(rec, t_wait, kind)
         try:
-            workdir = self.slots.get(timeout=wait_deadline)
+            workdir = self.slots.get(timeout=max(0.05, deadline - time.monotonic()))
         except queue.Empty:
-            rec["wall_ms"] = round((time.monotonic() - t_wait) * 1000)
-            rec["error"] = "サーバが混雑している(同時実行 %d 枠がすべて埋まったまま %d 秒経過)" % (
-                self.max_concurrency, wait_deadline)
-            rec["hint"] = "少し待って再試行するか、--max-concurrency を上げて再起動する。"
-            return rec
+            self._release_render_token(kind)
+            return self._busy_rec(rec, t_wait, kind)
 
         # フラグ注入対策(拘束): user_prompt はユーザー入力(ブリーフ原文)そのものであり得るため、
         # "-" で始まる本文が claude CLI(commander)のオプションとして解釈されないよう、
@@ -689,6 +798,7 @@ class ClaudeRunner:
             return rec
         finally:
             self.slots.put(workdir)
+            self._release_render_token(kind)
 
         rec["wall_ms"] = round((time.monotonic() - t0) * 1000)
         rec["exit_code"] = proc.returncode
@@ -745,11 +855,7 @@ class ClaudeRunner:
         try:
             workdir = self.slots.get(timeout=wait_deadline)
         except queue.Empty:
-            rec["wall_ms"] = round((time.monotonic() - t_wait) * 1000)
-            rec["error"] = "サーバが混雑している(同時実行 %d 枠がすべて埋まったまま %d 秒経過)" % (
-                self.max_concurrency, wait_deadline)
-            rec["hint"] = "少し待って再試行するか、--max-concurrency を上げて再起動する。"
-            yield ("error", rec)
+            yield ("error", self._busy_rec(rec, t_wait, "explode_stream"))
             return
 
         cmd = [self.claude_bin,
@@ -763,11 +869,16 @@ class ClaudeRunner:
 
         t0 = time.monotonic()
         proc = None
+        t_out = t_err = None
         try:
             try:
+                # start_new_session=True: 子を独立したプロセスグループにする。
+                # クライアント切断や打ち切りのとき、claude が持つ孫プロセスごと
+                # killpg で確実に止めるための前提(kill しっぱなしにしない。M3)。
                 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                         text=True, bufsize=1, cwd=workdir,
-                                        stdin=subprocess.DEVNULL, env=self.env)
+                                        stdin=subprocess.DEVNULL, env=self.env,
+                                        start_new_session=True)
             except FileNotFoundError:
                 rec["wall_ms"] = round((time.monotonic() - t0) * 1000)
                 rec["error"] = "claude コマンドが見つからない(%r)" % self.claude_bin
@@ -780,6 +891,8 @@ class ClaudeRunner:
                 rec["hint"] = "実行権限とディスク空きを確認する。"
                 yield ("error", rec)
                 return
+            with self._live_lock:
+                self._live.add(proc)
 
             # stdout は行単位でキューへ。stderr は別スレッドで吸い出す(パイプ満杯によるデッドロック防止)。
             q = queue.Queue()
@@ -801,8 +914,8 @@ class ClaudeRunner:
                 except (ValueError, OSError):
                     pass
 
-            t_out = threading.Thread(target=pump_out, daemon=True)
-            t_err = threading.Thread(target=pump_err, daemon=True)
+            t_out = threading.Thread(target=pump_out, daemon=True, name="gyakumon-pump-out")
+            t_err = threading.Thread(target=pump_err, daemon=True, name="gyakumon-pump-err")
             t_out.start()
             t_err.start()
 
@@ -875,18 +988,10 @@ class ClaudeRunner:
             yield ("error", rec)
         finally:
             # 生成器が途中で閉じられた(クライアント切断)場合もここを通る。
-            if proc is not None and proc.poll() is None:
-                try:
-                    proc.kill()
-                except OSError:
-                    pass
-            if proc is not None:
-                for s in (proc.stdout, proc.stderr):
-                    try:
-                        if s:
-                            s.close()
-                    except OSError:
-                        pass
+            # 実行枠は「子プロセスを回収し、吸い出しスレッドを畳んでから」返す。
+            # 先に返すと、まだ CPU とネットワークを使っている claude が枠外で走り続け、
+            # 次のリクエストと二重に走る(M3)。
+            self._reap(proc, (t_out, t_err))
             self.slots.put(workdir)
 
 
@@ -1124,12 +1229,17 @@ class SessionLog:
         self.path = path
         self.lock = threading.Lock()
 
-    def append(self, endpoint, model, wall_ms, api_ms, ok, first_branch_ms=None):
+    def append(self, endpoint, model, wall_ms, api_ms, ok, first_branch_ms=None,
+               client_gone=None):
         """1リクエスト1行。first_branch_ms はストリーミング爆散のみ持つ
 
         (送信から最初の分岐カードをクライアントへ送り出すまでのサーバ実測ms)。
         収録動画のレイテンシ表示と突き合わせるための証拠列なので、
         持たない経路では欠測を明示するために null を書く(キーは常に出す)。
+
+        client_gone: クライアントへ届け切れなかった(切断)ことを ok と別に記録する。
+        ok=false の理由が「モデルの失敗」なのか「届かなかった」なのかを
+        後から区別できるようにするための列である(N3)。
         """
         line = json.dumps({
             "ts": datetime.now(timezone.utc).isoformat(),
@@ -1139,6 +1249,7 @@ class SessionLog:
             "api_ms": api_ms,
             "first_branch_ms": first_branch_ms,
             "ok": bool(ok),
+            "client_gone": bool(client_gone) if client_gone is not None else None,
         }, ensure_ascii=False)
         try:
             with self.lock:
@@ -1203,8 +1314,13 @@ def err(message, hint=""):
 
 
 def call_claude(endpoint, system_prompt, user_prompt, model):
-    """claude 実行 + セッションログ追記。(rec, timing) を返す。"""
-    rec = STATE.runner.run(system_prompt, user_prompt, model)
+    """claude 実行 + セッションログ追記。(rec, timing) を返す。
+
+    kind はエンドポイントから決める。/api/render だけレンダ副上限の対象にして、
+    爆散(取り直しを含む)とコンパイル用の実行枠を必ず空けておく。
+    """
+    kind = "render" if endpoint == "/api/render" else "other"
+    rec = STATE.runner.run(system_prompt, user_prompt, model, kind=kind)
     timing = {"wall_ms": rec["wall_ms"], "api_ms": rec["api_ms"]}
     return rec, timing
 
@@ -1268,8 +1384,11 @@ def handle_explode_stream(body, emit):
                         timing:{wall_ms, api_ms}, api_ms, first_branch_ms}
       {"type":"error",  error, hint, timing}
 
-    戻り値: (ok, model, wall_ms, api_ms, first_branch_ms) — アクセスログ/セッションログ用。
+    戻り値: (ok, model, wall_ms, api_ms, first_branch_ms, client_gone) — アクセス/セッションログ用。
     first_branch_ms は最初の分岐カードを送り出すまでのサーバ実測ms(1枚も出せなければ None)。
+    ok は「done イベントをクライアントへ届け切れた」ことを指す(N3)。
+    done を作れても書き出しに失敗した場合は ok=False, client_gone=True になる。
+    サーバ側で全分岐を確定できたのに届かなかった、という状態を成功として数えない。
     """
     model = STATE.model
     t0 = time.monotonic()
@@ -1280,13 +1399,13 @@ def handle_explode_stream(body, emit):
     brief = body.get("brief")
     if not _nonempty_str(brief):
         emit({"type": "error", "error": "brief が空である", "hint": "ブリーフ本文を1文以上入力する。"})
-        return False, model, ms(), None, first_branch_ms
+        return False, model, ms(), None, first_branch_ms, False
     system_prompt = STATE.prompts.get("explode_stream")
     if system_prompt is None:
         emit({"type": "error",
               "error": STATE.prompt_errors.get("explode_stream", "抽出プロンプトが読めない"),
               "hint": "prompts/extraction_product_v1.txt を確認してサーバを再起動する。"})
-        return False, model, ms(), None, first_branch_ms
+        return False, model, ms(), None, first_branch_ms, False
 
     parser = StreamingExtractionParser()
     accepted, rejected = [], []
@@ -1347,7 +1466,7 @@ def handle_explode_stream(body, emit):
             if kind == "error":
                 emit({"type": "error", "error": val["error"], "hint": val["hint"] or "",
                       "timing": {"wall_ms": val["wall_ms"], "api_ms": val["api_ms"]}})
-                return False, model, val["wall_ms"] or ms(), val["api_ms"], first_branch_ms
+                return False, model, val["wall_ms"] or ms(), val["api_ms"], first_branch_ms, False
             if kind == "result":
                 final_rec = val
     finally:
@@ -1355,12 +1474,12 @@ def handle_explode_stream(body, emit):
 
     if not alive:
         # クライアント切断。子プロセスは run_stream の finally で始末済み。
-        return False, model, ms(), (final_rec or {}).get("api_ms"), first_branch_ms
+        return False, model, ms(), (final_rec or {}).get("api_ms"), first_branch_ms, True
 
     if final_rec is None:
         emit({"type": "error", "error": "ストリームが result を返さずに終了した",
               "hint": "同じブリーフでもう一度送信する。"})
-        return False, model, ms(), None, first_branch_ms
+        return False, model, ms(), None, first_branch_ms, False
 
     # 完了時に全文をもう一度厳密に解釈し、これを権威とする。
     # 増分パーサが取りこぼした分岐(まず起きないが)を done の前に追送し、
@@ -1385,7 +1504,7 @@ def handle_explode_stream(body, emit):
                 first_branch_ms = ms()
             if emit({"type": "branch", "index": len(accepted) - 1, "branch": br,
                      "elapsed_ms": ms(), "late": True}) is False:
-                return False, model, ms(), final_rec.get("api_ms"), first_branch_ms
+                return False, model, ms(), final_rec.get("api_ms"), first_branch_ms, True
         # 棄却理由は全文側のほうが完全(増分側は打ち切りで欠けうる)
         if len(payload["rejected_branches"]) >= len(rejected):
             rejected = payload["rejected_branches"]
@@ -1406,8 +1525,12 @@ def handle_explode_stream(body, emit):
     if not accepted:
         out["note"] = ("判断点は抽出されなかった(モデル出力 %d 件 / 検証で棄却 %d 件)"
                        % (raw_seen, len(rejected)))
-    emit(out)
-    return True, model, final_rec["wall_ms"], final_rec["api_ms"], first_branch_ms
+    # done を「送ったつもり」で成功にしない。書き出しに失敗したら ok=False + client_gone(N3)。
+    # クライアント側も done 未着を成功にしない(一括で取り直して照合する。M1)ので、
+    # ここで嘘の成功を記録すると、ログと画面の食い違いだけが残る。
+    delivered = emit(out) is not False
+    return (delivered, model, final_rec["wall_ms"], final_rec["api_ms"],
+            first_branch_ms, not delivered)
 
 
 def handle_render(body):
@@ -1621,6 +1744,25 @@ class Handler(BaseHTTPRequestHandler):
             return False
         return True
 
+    def _client_gone(self):
+        """接続が既に切れているかを、確認できる範囲で確かめる(M2c)。
+
+        ブラウザがタブを閉じる/リロードすると fetch は中断され、TCP は FIN を送る。
+        その場合ソケットは「読める」状態になり、覗くと 0 バイト(EOF)が返る。
+        レンダのように「開始すると 5〜15 秒サーバの実行枠を占める」処理は、
+        始める前にここを見て、誰も読まない応答のために枠を潰さないようにする。
+        断定できるのは EOF が見えたときだけである(見えない=生存の保証ではない)。
+        """
+        try:
+            sock = self.connection
+            r, _w, _x = select.select([sock], [], [], 0)
+            if not r:
+                return False
+            data = sock.recv(1, socket.MSG_PEEK)
+            return not data
+        except (OSError, ValueError):
+            return True
+
     def _content_type_ok(self):
         """POST は application/json のみ受ける。text/plain 等の CORS セーフリスト型を
         拒むことで、プリフライトを伴わないクロスサイト POST 経路を消す
@@ -1673,6 +1815,7 @@ class Handler(BaseHTTPRequestHandler):
                 "compile_model": STATE.compile_model,
                 "effort": STATE.args.effort,
                 "max_concurrency": STATE.args.max_concurrency,
+                "render_concurrency": STATE.runner.render_cap,
                 "timeout_s": STATE.args.timeout,
                 "session_log": str(STATE.log.path),
                 "prompts_ready": {k: (v is not None) for k, v in STATE.prompts.items()},
@@ -1759,6 +1902,16 @@ class Handler(BaseHTTPRequestHandler):
             self._access("POST", path, 200, "bad-request")
             return
 
+        # レンダは1画面で最大15本飛び、1本あたり数秒〜十数秒サーバの実行枠を占める。
+        # 既に切れている接続のために claude を起動しない(M2c)。
+        # 送信側は pagehide / beforeunload で AbortController により切る(M2b と対)。
+        if name == "render" and self._client_gone():
+            self.close_connection = True
+            STATE.log.append(path, STATE.render_model, 0, None, False, client_gone=True)
+            STATE.bump(name, False)
+            self._access("POST", path, 499, "client-gone (render skipped)")
+            return
+
         t0 = time.monotonic()
         try:
             out, rec, model = fn(body)
@@ -1821,9 +1974,10 @@ class Handler(BaseHTTPRequestHandler):
                 broken["v"] = True
                 return False
 
-        ok, model, wall_ms, api_ms, first_branch_ms = False, "-", None, None, None
+        ok, model, wall_ms, api_ms, first_branch_ms, gone = False, "-", None, None, None, False
         try:
-            ok, model, wall_ms, api_ms, first_branch_ms = handle_explode_stream(body, emit)
+            (ok, model, wall_ms, api_ms,
+             first_branch_ms, gone) = handle_explode_stream(body, emit)
         except Exception as e:
             import traceback
             traceback.print_exc()
@@ -1833,12 +1987,14 @@ class Handler(BaseHTTPRequestHandler):
 
         if wall_ms is None:
             wall_ms = round((time.monotonic() - t_start) * 1000)
-        STATE.log.append(path, model, wall_ms, api_ms, bool(ok), first_branch_ms=first_branch_ms)
+        client_gone = bool(gone or broken["v"])
+        STATE.log.append(path, model, wall_ms, api_ms, bool(ok),
+                         first_branch_ms=first_branch_ms, client_gone=client_gone)
         STATE.bump("explode_stream", bool(ok))
         self._access("POST", path, 200,
                      "%s wall=%sms api=%sms first_branch=%sms%s" % (
                          "ok" if ok else "NG", wall_ms, api_ms, first_branch_ms,
-                         " client-gone" if broken["v"] else ""))
+                         " client-gone" if client_gone else ""))
 
 
 class Server(ThreadingHTTPServer):
@@ -1888,8 +2044,9 @@ def main():
     print("")
     print("  モデル: explode/compile=%s, render=%s" % (STATE.model, STATE.render_model)
           + ("" if STATE.compile_model == STATE.model else " (compile=%s)" % STATE.compile_model))
-    print("  claude: %s / effort=%s / タイムアウト %d秒 / 同時実行上限 %d"
-          % (args.claude_bin, args.effort, args.timeout, args.max_concurrency))
+    print("  claude: %s / effort=%s / タイムアウト %d秒 / 同時実行上限 %d(うちレンダは同時 %d まで)"
+          % (args.claude_bin, args.effort, args.timeout, args.max_concurrency,
+             STATE.runner.render_cap))
     print("  system は --system-prompt で完全置換 / --strict-mcp-config で MCP 遮断")
     print("  子プロセス作業Dir: %s(リポジトリ外・CLAUDE.md 注入遮断)" % STATE.runner.base_dir)
     print("  セッションログ: %s" % STATE.log.path)
