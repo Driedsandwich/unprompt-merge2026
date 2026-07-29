@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈会社名〉</title>
+<style>
+  :root{
+    --bg:#0b0b0e;
+    --sub:#1a1d24;
+    --accent:#00e5b8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:#f5f5f7;
+    font-family:"Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.9;
+  }
+  section{
+    padding:120px 24px;
+    max-width:960px;
+    margin:0 auto;
+  }
+  h1,h2{font-family:"Hiragino Sans","Yu Gothic",sans-serif;font-weight:700;}
+  .btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#0b0b0e;
+    padding:18px 44px;
+    border-radius:0;
+    text-decoration:none;
+    font-weight:700;
+    letter-spacing:.05em;
+  }
+  /* GYAKUMON-CHOICE: モダンさと温かみの配分 = モダン優先 */
+  .hero{
+    background:linear-gradient(160deg,var(--bg) 60%,var(--sub) 100%);
+    text-align:center;
+    padding-top:160px;
+    padding-bottom:160px;
+    border-bottom:1px solid var(--sub);
+  }
+  .hero p.eyebrow{
+    color:var(--accent);
+    letter-spacing:.2em;
+    font-size:13px;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:52px;
+    line-height:1.4;
+    margin-bottom:32px;
+  }
+  .hero p.lead{
+    font-size:18px;
+    color:#c7c9cf;
+    margin-bottom:48px;
+  }
+  .value{
+    text-align:center;
+  }
+  .value h2{
+    font-size:34px;
+    margin-bottom:32px;
+  }
+  .value p{
+    color:#c7c9cf;
+    font-size:17px;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+  }
+  .feature{
+    background:var(--sub);
+    padding:40px 28px;
+    border-radius:0;
+  }
+  .feature .icon{
+    font-size:32px;
+    margin-bottom:20px;
+    color:var(--accent);
+  }
+  .feature h3{
+    font-size:19px;
+    margin-bottom:16px;
+  }
+  .feature p{
+    color:#b8bac1;
+    font-size:15px;
+  }
+  .about{
+    border-top:1px solid var(--sub);
+    border-bottom:1px solid var(--sub);
+  }
+  .about h2{
+    font-size:28px;
+    margin-bottom:28px;
+  }
+  .about p{
+    color:#c7c9cf;
+    font-size:16px;
+  }
+  .about ul{
+    margin-top:28px;
+    list-style:none;
+    color:#9a9ca3;
+    font-size:14px;
+  }
+  .about li{margin-bottom:8px;}
+  .cta{
+    text-align:center;
+  }
+  .cta h2{
+    font-size:32px;
+    margin-bottom:24px;
+  }
+  .cta p{
+    color:#c7c9cf;
+    margin-bottom:40px;
+  }
+  footer{
+    padding:48px 24px;
+    text-align:center;
+    color:#6c6e75;
+    font-size:13px;
+    border-top:1px solid var(--sub);
+  }
+  @media(max-width:720px){
+    .features{grid-template-columns:1fr;}
+    .hero h1{font-size:34px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: LPの目的(何を達成させたいか) = 商品・サービス訴求 -->
+<section class="hero">
+  <p class="eyebrow">〈会社名〉 / 〈業種〉</p>
+  <h1>この一台が、<br>あなたの毎日を変える。</h1>
+  <p class="lead">無駄を削ぎ落とした機能美で、〈商品・サービス〉を再構築しました。</p>
+  <a class="btn" href="#cta">詳しく見る</a>
+</section>
+
+<section class="value">
+  <h2>会社案内、再構築。</h2>
+  <p>〈商品・サービスの詳細〉について、私たちは本質だけを残しました。装飾ではなく機能で語る、それが〈会社名〉の考え方です。</p>
+</section>
+
+<section>
+  <div class="features">
+    <div class="feature">
+      <div class="icon">◆</div>
+      <h3>特徴 1</h3>
+      <p>〈特徴の詳細をご提供ください〉</p>
+    </div>
+    <div class="feature">
+      <div class="icon">◆</div>
+      <h3>特徴 2</h3>
+      <p>〈特徴の詳細をご提供ください〉</p>
+    </div>
+    <div class="feature">
+      <div class="icon">◆</div>
+      <h3>特徴 3</h3>
+      <p>〈特徴の詳細をご提供ください〉</p>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <h2>〈会社名〉について</h2>
+  <p>私たちは〈業種〉の領域で、無駄を削ぎ落とした機能美を追求しています。詳しい沿革や実績は、資料のご提供をお待ちしております。</p>
+  <ul>
+    <li>会社名:〈会社名〉</li>
+    <li>業種:〈業種〉</li>
+    <li>ターゲット顧客像:〈ターゲット顧客像〉</li>
+  </ul>
+</section>
+
+<section class="cta" id="cta">
+  <h2>次の一歩を、今日から。</h2>
+  <p>〈会社名〉が、あなたの毎日を変えます。</p>
+  <a class="btn" href="#">お問い合わせはこちら</a>
+</section>
+
+<footer>
+  &copy; 2026 〈会社名〉 All Rights Reserved.
+</footer>
+
+</body>
+</html>

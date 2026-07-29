@@ -1,0 +1,200 @@
+=== 2026-07-29T08:08:01Z 修正後(prompts/extraction_product_v1.txt を branches先へ)port=8481 ===
+=================== [lp-warm] モダンだけど温かみのあるLPを作って。うちの会社のやつ。
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=3 rejected=0 api_ms=11362 first_branch_ms=12218 wall_ms=18461
+   - 会社の業種・提供価値が未提示 | anchors=['うちの会社のやつ'] | opts=['BtoB専門サービス', 'BtoC消費者向け', '店舗・ローカル']
+   - モダンと温かみの配分バランス | anchors=['モダンだけど温かみのある'] | opts=['モダン基調に温かみ添え', '温かみ基調にモダン添え', '半々の融合']
+   - LPの目的・コンバージョン行動 | anchors=['LPを作って'] | opts=['問い合わせ獲得', '採用応募獲得', '商品購入・予約']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1170 ms
+  keepalive                            2191 ms
+  keepalive                            3220 ms
+  keepalive                            4375 ms
+  keepalive                            5336 ms
+  keepalive                            6330 ms
+  keepalive                            7334 ms
+  keepalive                            8401 ms
+  keepalive                            9800 ms
+  meta(partial=True)                  10590 ms
+  branch1[会社の業種・提供価値が未提示]             12371 ms
+  branch2[モダンと温かみの配分バランス]             14001 ms
+  branch3[LPの目的・コンバージョン行]             15544 ms
+  done                                18621 ms
+初回カード表示可能まで: 12371 ms  (目標 8000ms 未達)
+=================== [cafe-insta] うちのカフェのInstagramプロフィールと固定投稿を、いい感じにしてほしい。開店1周年なので。
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=3 rejected=0 api_ms=11682 first_branch_ms=11834 wall_ms=17214
+   - 「いい感じ」の方向性 | anchors=['いい感じにしてほしい'] | opts=['上品・落ち着き', 'ポップ・親しみ', 'おしゃれ・洗練']
+   - 1周年をどう扱うか | anchors=['開店1周年なので'] | opts=['感謝メイン訴求', '周年特典告知', '世界観刷新の契機']
+   - プロフィールと固定投稿の関係 | anchors=['Instagramプロフィールと固定投稿'] | opts=['同一メッセージ統一', '役割分担(概要+詳細)']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1079 ms
+  keepalive                            2083 ms
+  keepalive                            3086 ms
+  keepalive                            4142 ms
+  keepalive                            5115 ms
+  keepalive                            6122 ms
+  keepalive                            7401 ms
+  keepalive                            8711 ms
+  keepalive                            9711 ms
+  meta(partial=True)                  10317 ms
+  branch1[「いい感じ」の方向性]                 11886 ms
+  branch2[1周年をどう扱うか]                  13080 ms
+  branch3[プロフィールと固定投稿の関係]             14130 ms
+  keepalive                           16403 ms
+  done                                17270 ms
+初回カード表示可能まで: 11886 ms  (目標 8000ms 未達)
+=================== [portfolio] 転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=2 rejected=0 api_ms=8514 first_branch_ms=6713 wall_ms=10698
+   - 作品掲載の目的軸(何を採用担当に伝えるか) | anchors=['作品はいくつかあるんだけど、センスよくまとめて'] | opts=['技術力訴求', 'デザイン/世界観訴求', '実績数値訴求']
+   - 転職ターゲット業界・職種の想定 | anchors=['転職活動用に個人ポートフォリオサイトが欲しい'] | opts=['事業会社向け', '制作会社/代理店向け', 'フリーランス案件獲得']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1068 ms
+  keepalive                            2078 ms
+  keepalive                            3079 ms
+  keepalive                            4232 ms
+  meta(partial=True)                   4567 ms
+  branch1[作品掲載の目的軸(何を採用担]              6752 ms
+  branch2[転職ターゲット業界・職種の想]              8615 ms
+  done                                10741 ms
+初回カード表示可能まで: 6752 ms  (目標 8000ms 達成)
+=== 2026-07-29T08:14:55Z 修正後 追加2巡(n=3/ブリーフにするため)port=8481 ===
+=================== round2 [lp-warm]
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=1 rejected=0 api_ms=10072 first_branch_ms=11001 wall_ms=13202
+   - 「モダンだけど温かみ」の具体的な表現方向 | anchors=['モダンだけど温かみのあるLP'] | opts=['ミニマル×人肌感', '洗練×手作り感', '先進的×親しみ写真']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1072 ms
+  keepalive                            2103 ms
+  keepalive                            3115 ms
+  keepalive                            4121 ms
+  keepalive                            5126 ms
+  keepalive                            6158 ms
+  keepalive                            7162 ms
+  meta(partial=True)                   8325 ms
+  branch1[「モダンだけど温かみ」の具体]             11072 ms
+  done                                13264 ms
+初回カード表示可能まで: 11072 ms  (目標 8000ms 未達)
+=================== round2 [cafe-insta]
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=3 rejected=0 api_ms=14217 first_branch_ms=11737 wall_ms=16319
+   - 「いい感じ」の方向性(トーン) | anchors=['いい感じにしてほしい'] | opts=['上質・洗練', '温かみ・親しみ', 'ポップ・映え']
+   - 固定投稿の目的 | anchors=['固定投稿'] | opts=['感謝メッセージ', '1周年特典告知', '店の世界観紹介']
+   - 1周年をどう位置づけるか | anchors=['開店1周年なので'] | opts=['顧客への感謝軸', '新規集客の契機', 'ブランド刷新の節目']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1031 ms
+  keepalive                            2039 ms
+  keepalive                            3683 ms
+  keepalive                            6214 ms
+  keepalive                            7294 ms
+  keepalive                            8820 ms
+  meta(partial=True)                  10310 ms
+  branch1[「いい感じ」の方向性(トーン]             11776 ms
+  branch2[固定投稿の目的]                    12659 ms
+  branch3[1周年をどう位置づけるか]               13762 ms
+  done                                16349 ms
+初回カード表示可能まで: 11776 ms  (目標 8000ms 未達)
+=================== round2 [portfolio]
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=3 rejected=0 api_ms=12836 first_branch_ms=9311 wall_ms=14633
+   - 想定される転職先の職種・業界 | anchors=['転職活動用に個人ポートフォリオサイトが欲しい'] | opts=['クリエイティブ職向け', 'エンジニア職向け', '総合ビジネス職向け']
+   - 作品の掲載範囲・選定方針 | anchors=['作品はいくつかあるんだけど'] | opts=['全作品を網羅', '厳選した代表作のみ']
+   - 「センスよさ」の方向性 | anchors=['センスよくまとめて'] | opts=['ミニマル洗練', '個性的で実験的', '信頼感重視の堅実']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1048 ms
+  keepalive                            2053 ms
+  keepalive                            6042 ms
+  keepalive                            7245 ms
+  meta(partial=True)                   8273 ms
+  branch1[想定される転職先の職種・業界]              9354 ms
+  branch2[作品の掲載範囲・選定方針]               10512 ms
+  branch3[「センスよさ」の方向性]                11868 ms
+  done                                14678 ms
+初回カード表示可能まで: 9354 ms  (目標 8000ms 未達)
+=================== round3 [lp-warm]
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=4 rejected=0 api_ms=12416 first_branch_ms=6696 wall_ms=12456
+   - 会社・業種の実体 | anchors=['うちの会社のやつ'] | opts=['企業コーポレート', '店舗/サービス業', '製品/プロダクト']
+   - LPの目的(コンバージョン対象) | anchors=['LPを作って'] | opts=['問い合わせ獲得', '採用応募', '商品購入']
+   - 「モダン」と「温かみ」の重心配分 | anchors=['モダンだけど温かみのある'] | opts=['モダン寄り', '温かみ寄り', '均等バランス']
+   - 想定ターゲット層 | anchors=['作って'] | opts=['法人担当者向け', '個人消費者向け']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1042 ms
+  keepalive                            2046 ms
+  keepalive                            3882 ms
+  keepalive                            4900 ms
+  meta(partial=True)                   5260 ms
+  branch1[会社・業種の実体]                    6725 ms
+  branch2[LPの目的(コンバージョン対]              8005 ms
+  branch3[「モダン」と「温かみ」の重心]              9172 ms
+  branch4[想定ターゲット層]                    9993 ms
+  done                                12488 ms
+初回カード表示可能まで: 6725 ms  (目標 8000ms 達成)
+=================== round3 [cafe-insta]
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=4 rejected=0 api_ms=19932 first_branch_ms=14433 wall_ms=19110
+   - 「いい感じ」が指す方向性 | anchors=['いい感じにしてほしい'] | opts=['上品・落ち着き', 'かわいい・親しみ', 'おしゃれ・トレンド']
+   - 1周年をどう位置づけるか | anchors=['開店1周年なので'] | opts=['感謝メッセージ軸', 'キャンペーン告知軸', 'ブランド再紹介軸']
+   - 固定投稿の狙い | anchors=['固定投稿'] | opts=['周年ストーリー訴求', '店舗世界観の紹介', '人気メニュー訴求']
+   - プロフィールの想定読み手 | anchors=['Instagramプロフィール'] | opts=['新規客向け訴求', '常連客向け訴求']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1042 ms
+  keepalive                            2045 ms
+  keepalive                            3065 ms
+  keepalive                            4071 ms
+  keepalive                            5091 ms
+  keepalive                            6274 ms
+  keepalive                            7458 ms
+  keepalive                            9015 ms
+  keepalive                           10546 ms
+  keepalive                           12030 ms
+  meta(partial=True)                  13042 ms
+  branch1[「いい感じ」が指す方向性]               14467 ms
+  branch2[1周年をどう位置づけるか]               15243 ms
+  branch3[固定投稿の狙い]                    15993 ms
+  branch4[プロフィールの想定読み手]               16704 ms
+  done                                19149 ms
+初回カード表示可能まで: 14467 ms  (目標 8000ms 未達)
+=================== round3 [portfolio]
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=3 rejected=0 api_ms=17788 first_branch_ms=15270 wall_ms=19395
+   - 転職先の職種・業界の想定 | anchors=['転職活動用に個人ポートフォリオサイトが欲しい'] | opts=['デザイナー職向け', 'エンジニア職向け', '職種不問汎用']
+   - 作品の見せ方の粒度 | anchors=['作品はいくつかあるんだけど'] | opts=['全作品網羅掲載', '厳選代表作のみ']
+   - 「センスよく」の方向性 | anchors=['センスよくまとめて'] | opts=['ミニマル洗練', '個性的で目立つ表現']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1098 ms
+  keepalive                            2107 ms
+  keepalive                            3948 ms
+  keepalive                            6369 ms
+  keepalive                            7803 ms
+  keepalive                            9465 ms
+  keepalive                           10616 ms
+  keepalive                           13195 ms
+  meta(partial=True)                  13780 ms
+  branch1[転職先の職種・業界の想定]               15326 ms
+  branch2[作品の見せ方の粒度]                  16105 ms
+  branch3[「センスよく」の方向性]                16784 ms
+  done                                19454 ms
+初回カード表示可能まで: 15326 ms  (目標 8000ms 未達)
+
+=== 集計(2026-07-29) ===
+[1] サーバ実測 port=8481 /api/explode_stream(修正後のみ・3ブリーフ×3巡)
+    first_branch_ms = [12218, 11834, 6713, 11001, 11737, 9311, 6696, 14433, 15270]
+    median=11737ms min=6696ms max=15270ms   (全9回とも rejected=0)
+    参考: 修正前の中央値 6.8s(別条件・別時刻の実測)。今回の中央値 11.7s は
+    それより悪いが、同一時刻・同一条件で比べていないので直接比較はできない。
+    到着タイムライン上、first_branch の内訳は
+      「最初の text delta まで(claude CLI 初期化 + モデルの書き出し開始)」= 4.2〜10.6s
+      「そこから最初の分岐が閉じるまで」                                 = 1.5〜2.2s
+    であり、ばらつきの主因は後者(スキーマ順が効く区間)ではなく前者。
+
+[2] 対照実験 schema_order_ab.py(同一プロセス・A/B を交互・3ブリーフ×3反復)
+    A_before = 修正前プロンプト(スキーマ例が meta 先)
+    B_after  = 修正後プロンプト(スキーマ例も branches 先)
+    A_before first_branch median=10690ms (min 4893 / max 16491)  first_delta median=9277ms
+    B_after  first_branch median=7823ms (min 4622 / max 13077)  first_delta median=5213ms
+    同一 rep・同一ブリーフの対比較(A-B, 正なら B が速い): ['+3414', '+4771', '-1548', '+4326', '-1575', '+1664', '+4855', '+1534', '+6914']
+    B が速い 7/9  median +3414ms  mean +2706ms
+    → 中央値で約 2.9s 速い側に出たが、9対比較のうち2つは逆符号で、
+      符号検定 7/9 は p≈0.09。統計的に確定とは言えない。

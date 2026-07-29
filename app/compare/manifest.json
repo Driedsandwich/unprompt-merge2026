@@ -1,0 +1,206 @@
+{
+  "format": "gyakumon.split_compare.v0",
+  "generated_at": "2026-07-29T07:18:31.690155+00:00",
+  "finished_at": "2026-07-29T07:20:44.149193+00:00",
+  "total_wall_ms": 132458,
+  "pregenerated": true,
+  "disclosure": "並置比較の2枚は事前生成物である。デモ実行時にその場で生成していない。RAW/COMPILED は同一モデル・同一 effort・同一 LP制作者 system 骨格で、違いはユーザープロンプト(一文 vs コンパイル済みブリーフ)のみ。",
+  "engine": {
+    "cli": "claude",
+    "model": "sonnet",
+    "effort": "low",
+    "timeout_s": 240,
+    "flags": [
+      "--system-prompt",
+      "--strict-mcp-config",
+      "--setting-sources project",
+      "--effort",
+      "--model",
+      "--output-format json",
+      "-p --"
+    ],
+    "cwd": "リポジトリ外の一時ディレクトリ(CLAUDE.md 注入遮断)",
+    "auth": "Claude Code サブスクリプション(ANTHROPIC_API_KEY は子プロセス env から除去)"
+  },
+  "brief": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。",
+  "option_index": 0,
+  "decisions": [
+    {
+      "question_point": "LPの目的(何を達成させたいか)",
+      "anchor_words": [
+        "うちの会社のやつ"
+      ],
+      "options": [
+        "商品・サービス訴求",
+        "採用募集",
+        "会社紹介・信頼構築"
+      ],
+      "picked_index": 0,
+      "chosen_label": "商品・サービス訴求",
+      "tokens": {
+        "palette": [
+          "#1b1210",
+          "#c0521f",
+          "#f2a65a"
+        ],
+        "heading_font": "sans",
+        "density": "normal",
+        "corner": "soft",
+        "tone_sample": "この一台が、あなたの毎日を変える。"
+      },
+      "render_error": null,
+      "rationale": "「うちの会社のやつ」という曖昧な依頼を商品・サービス訴求と確定し、以降の構成要素は訴求軸に沿って一意に組み立てられる。"
+    },
+    {
+      "question_point": "モダンさと温かみの配分",
+      "anchor_words": [
+        "モダンだけど温かみのある"
+      ],
+      "options": [
+        "モダン優先",
+        "温かみ優先",
+        "均等ミックス"
+      ],
+      "picked_index": 0,
+      "chosen_label": "モダン優先",
+      "tokens": {
+        "palette": [
+          "#0b0b0e",
+          "#1a1d24",
+          "#00e5b8"
+        ],
+        "heading_font": "sans",
+        "density": "airy",
+        "corner": "sharp",
+        "tone_sample": "会社案内、再構築。無駄を削ぎ落とした機能美。"
+      },
+      "render_error": null,
+      "rationale": "「モダンだけど温かみのある」の対立軸をモダン優先と確定し、配色・レイアウト等の下流判断はモダン基調を主とする方向で定まる。"
+    }
+  ],
+  "residual_ambiguity_assessment": "目的・対象・トーン配分が未指定で、曖昧度は非常に高い",
+  "missing_materials": [
+    "会社名",
+    "業種",
+    "商品・サービスの詳細",
+    "ターゲット顧客像",
+    "既存のブランドカラーやロゴ"
+  ],
+  "rejected_branches": [],
+  "compiled_brief_md": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> モダンだけど温かみのあるLPを作って。うちの会社のやつ。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 2\n\n## 決めた判断点\n\n### LPの目的(何を達成させたいか)\n\n- 選択: 商品・サービス訴求\n- 原文の根拠語: 「うちの会社のやつ」\n- 視覚トークン: パレット #1b1210 / #c0521f / #f2a65a、見出し=sans、密度=normal、角=soft\n- トーン例: この一台が、あなたの毎日を変える。\n- 意図: 「うちの会社のやつ」という曖昧な依頼を商品・サービス訴求と確定し、以降の構成要素は訴求軸に沿って一意に組み立てられる。\n\n### モダンさと温かみの配分\n\n- 選択: モダン優先\n- 原文の根拠語: 「モダンだけど温かみのある」\n- 視覚トークン: パレット #0b0b0e / #1a1d24 / #00e5b8、見出し=sans、密度=airy、角=sharp\n- トーン例: 会社案内、再構築。無駄を削ぎ落とした機能美。\n- 意図: 「モダンだけど温かみのある」の対立軸をモダン優先と確定し、配色・レイアウト等の下流判断はモダン基調を主とする方向で定まる。\n\n## 残存曖昧度\n\n目的・対象・トーン配分が未指定で、曖昧度は非常に高い\n\n## 発注者からの提供が必要な材料\n\n- 会社名\n- 業種\n- 商品・サービスの詳細\n- ターゲット顧客像\n- 既存のブランドカラーやロゴ\n\n---\n\nこのブリーフは、上の1文と 2 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+  "timings": {
+    "explode": {
+      "api_ms": 17519,
+      "wall_ms": 20475
+    },
+    "render": [
+      {
+        "api_ms": 5547,
+        "ok": true
+      },
+      {
+        "api_ms": 6385,
+        "ok": true
+      }
+    ],
+    "compile": {
+      "api_ms": 6124,
+      "wall_ms": 8949,
+      "error": null
+    },
+    "raw_lp": {
+      "api_ms": 27273,
+      "wall_ms": 30148
+    },
+    "compiled_lp": {
+      "api_ms": 45621,
+      "wall_ms": 47744
+    }
+  },
+  "verification": {
+    "compiled": {
+      "gyakumon_choice_comments_total": 2,
+      "traced": 2,
+      "of": 2,
+      "traces": [
+        {
+          "question_point": "LPの目的(何を達成させたいか)",
+          "chosen_label": "商品・サービス訴求",
+          "found_in_comment": true,
+          "comment": "GYAKUMON-CHOICE: LPの目的(何を達成させたいか) = 商品・サービス訴求"
+        },
+        {
+          "question_point": "モダンさと温かみの配分",
+          "chosen_label": "モダン優先",
+          "found_in_comment": true,
+          "comment": "GYAKUMON-CHOICE: モダンさと温かみの配分 = モダン優先"
+        }
+      ]
+    },
+    "raw_signature": {
+      "hex_colors_unique": [
+        "#3a2e28",
+        "#7a6a60",
+        "#e8672f",
+        "#fdf1e6",
+        "#fdf8f2",
+        "#ff8a5c",
+        "#ffb88c",
+        "#ffe8d6",
+        "#fff5ec",
+        "#fff8f2",
+        "#ffffff"
+      ],
+      "hex_colors_count": 15,
+      "bytes": 5901
+    },
+    "compiled_signature": {
+      "hex_colors_unique": [
+        "#00e5b8",
+        "#0b0b0e",
+        "#1a1d24",
+        "#6c6e75",
+        "#9a9ca3",
+        "#b8bac1",
+        "#c7c9cf",
+        "#f5f5f7"
+      ],
+      "hex_colors_count": 12,
+      "bytes": 4601
+    },
+    "raw_control": {
+      "gyakumon_choice_comments_total": 0,
+      "traced": 0,
+      "of": 2,
+      "traces": [
+        {
+          "question_point": "LPの目的(何を達成させたいか)",
+          "chosen_label": "商品・サービス訴求",
+          "found_in_comment": false,
+          "comment": null
+        },
+        {
+          "question_point": "モダンさと温かみの配分",
+          "chosen_label": "モダン優先",
+          "found_in_comment": false,
+          "comment": null
+        }
+      ]
+    },
+    "note": "照合は HTMLコメントと <style> 内 CSSコメントの双方を対象にする。raw_control は RAW 側に選択の痕跡が無いこと(0件)の対照確認。"
+  },
+  "prompts": {
+    "lp_system_raw": "あなたはLP制作者である。与えられた発注内容だけを根拠に、企業のランディングページを1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のLP。ヒーロー / 価値提案 / 特徴3点 / 会社について / CTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 会社名や実績などブリーフに書かれていない事実を断定的に作らない。必要なら〈会社名〉のような\n  プレースホルダを使う。\n",
+    "lp_system_compiled": "あなたはLP制作者である。与えられた発注内容だけを根拠に、企業のランディングページを1枚作る。\n\n## 出力規則\n\n- 出力は単一の自己完結 HTML ドキュメントのみ。<!DOCTYPE html> で始め </html> で終える。\n- CSS はすべて <style> タグ内にインラインで書く。外部CSS・外部フォント・外部画像・外部JSを一切参照しない。\n  画像が必要な箇所は CSS のグラデーション・図形・絵文字・インライン SVG で表現する。\n- コードフェンス(```)・前置き・後書き・説明文を一切書かない。1文字目が < であること。\n- 日本語のLP。ヒーロー / 価値提案 / 特徴3点 / 会社について / CTA / フッター を含む縦1カラム構成。\n- 全体で概ね 160 行以内に収める。冗長な繰り返しを書かない。\n- 会社名や実績などブリーフに書かれていない事実を断定的に作らない。必要なら〈会社名〉のような\n  プレースホルダを使う。\n\n## コンパイル済みブリーフの扱い(この実行に固有)\n\n- 入力は GYAKUMON が出力した「コンパイル済みブリーフ」である。発注者が確定した判断点が\n  明示されている。書かれている決定はすべて実装に反映せよ。解釈で薄めない。\n- 「視覚トークン」に書かれたパレット(16進3色)・見出し書体(serif/sans/rounded)・\n  密度(airy/normal/dense)・角(sharp/soft)は厳密に実装する。パレットの3色は\n  [地色, 主要色, 強調色] の役割で使い、他の色相を勝手に足さない。\n  密度 airy は余白を大きく行間を広く、dense は詰めて情報量を多く、\n  角 sharp は border-radius:0、soft は大きめの border-radius とする。\n- 「トーン例」の文体をコピーの基調にする。\n- 各決定を反映した要素の直前に、次の形の HTML コメントを1つ置く(機械照合に使う):\n  <!-- GYAKUMON-CHOICE: 判断点 = 選択ラベル -->\n  判断点と選択ラベルはブリーフに書かれている文字列をそのまま使う。すべての決定について1回以上置く。\n  <style> 内の CSS 規則に印を付ける場合は同じ本文を CSS コメント\n  /* GYAKUMON-CHOICE: 判断点 = 選択ラベル */ の形で書く。\n",
+    "lp_user_raw": "モダンだけど温かみのあるLPを作って。うちの会社のやつ。",
+    "lp_user_compiled": "# コンパイル済みブリーフ\n\n## 発注者が書いた唯一の文\n\n> モダンだけど温かみのあるLPを作って。うちの会社のやつ。\n\n- あなたがタイプした文字(最初の一文以降): 0\n- あなたの選択: 2\n\n## 決めた判断点\n\n### LPの目的(何を達成させたいか)\n\n- 選択: 商品・サービス訴求\n- 原文の根拠語: 「うちの会社のやつ」\n- 視覚トークン: パレット #1b1210 / #c0521f / #f2a65a、見出し=sans、密度=normal、角=soft\n- トーン例: この一台が、あなたの毎日を変える。\n- 意図: 「うちの会社のやつ」という曖昧な依頼を商品・サービス訴求と確定し、以降の構成要素は訴求軸に沿って一意に組み立てられる。\n\n### モダンさと温かみの配分\n\n- 選択: モダン優先\n- 原文の根拠語: 「モダンだけど温かみのある」\n- 視覚トークン: パレット #0b0b0e / #1a1d24 / #00e5b8、見出し=sans、密度=airy、角=sharp\n- トーン例: 会社案内、再構築。無駄を削ぎ落とした機能美。\n- 意図: 「モダンだけど温かみのある」の対立軸をモダン優先と確定し、配色・レイアウト等の下流判断はモダン基調を主とする方向で定まる。\n\n## 残存曖昧度\n\n目的・対象・トーン配分が未指定で、曖昧度は非常に高い\n\n## 発注者からの提供が必要な材料\n\n- 会社名\n- 業種\n- 商品・サービスの詳細\n- ターゲット顧客像\n- 既存のブランドカラーやロゴ\n\n---\n\nこのブリーフは、上の1文と 2 回の選択だけから GYAKUMON が機械的に組み立てた。\n本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。",
+    "extraction_prompt_file": "prompts/extraction_product_v1.txt",
+    "render_prompt_file": "prompts/render_v0.txt",
+    "compile_prompt_file": "prompts/compile_v0.txt"
+  },
+  "outputs": {
+    "raw": "raw.html",
+    "compiled": "compiled.html",
+    "compiled_brief": "compiled_brief.md"
+  }
+}

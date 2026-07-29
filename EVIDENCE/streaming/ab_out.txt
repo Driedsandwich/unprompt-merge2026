@@ -1,0 +1,6 @@
+--- brief='モダンだけど温かみのあるLPを作って。うちの会社のや'
+A_meta_first     init=2599 first_delta=6478 meta=7902 branch1=9405 branch2=10498 branch3=11333 branch4=12360 result=13375 api_ms=11953 ttft=10521 len=789
+B_branch_first   init=3961 first_delta=5193 meta=5567 branch1=8113 branch2=9052 branch3=10585 result=13618 api_ms=11012 ttft=9419 len=714
+--- brief='うちのカフェのInstagramプロフィールと固定投'
+A_meta_first     init=2584 first_delta=12687 meta=14148 branch1=15660 branch2=16699 branch3=17796 result=18093 api_ms=17531 ttft=10124 len=802
+B_branch_first   init=2860 first_delta=13946 meta=13946 branch1=14942 branch2=15749 branch3=16662 branch4=17171 result=18461 api_ms=17208 ttft=11111 len=829

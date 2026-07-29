@@ -1,0 +1,5 @@
+{"ts": "2026-07-29T07:31:07.139661+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 13028, "api_ms": 11586, "ok": true}
+{"ts": "2026-07-29T07:37:48.090353+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 13232, "api_ms": 11265, "ok": true}
+{"ts": "2026-07-29T07:38:08.905195+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 20573, "api_ms": 16052, "ok": true}
+{"ts": "2026-07-29T07:38:20.876046+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 11697, "api_ms": 9840, "ok": true}
+{"ts": "2026-07-29T07:38:32.698223+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 11544, "api_ms": 9362, "ok": true}

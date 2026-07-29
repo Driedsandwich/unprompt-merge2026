@@ -1,0 +1,16 @@
+done: branches=3 rejected=0 api_ms=9269 first_branch_ms=6687 wall_ms=11440
+初回カード表示可能まで: 6763 ms  (目標 8000ms 達成)
+   ^ モダンだけど温かみのあるLPを作って。うちの会社のやつ。
+done: branches=3 rejected=0 api_ms=14118 first_branch_ms=10405 wall_ms=14438
+初回カード表示可能まで: 10429 ms  (目標 8000ms 未達)
+   ^ うちのカフェのInstagramプロフィールと固定投稿を、いい感じにしてほしい。開店1周年なので。
+done: branches=3 rejected=0 api_ms=13787 first_branch_ms=11638 wall_ms=15069
+初回カード表示可能まで: 11662 ms  (目標 8000ms 未達)
+   ^ 転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。
+done: branches=3 rejected=0 api_ms=10961 first_branch_ms=11136 wall_ms=14166
+初回カード表示可能まで: 11186 ms  (目標 8000ms 未達)
+   ^ 来週の全社会議で新しい取り組みを発表するスライドを作って。偉い人も見るけど、堅苦しくしたくない。
+done: branches=0 rejected=0 api_ms=17796 first_branch_ms=None wall_ms=18258
+   ^ YouTubeチャンネルの概要欄を書き直したい。登録につながる感じで、長すぎないやつがいい。
+done: branches=0 rejected=0 api_ms=13445 first_branch_ms=None wall_ms=14391
+   ^ エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。

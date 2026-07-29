@@ -1,0 +1,63 @@
+=================== 新機能のリリース告知メールを、堅すぎない感じで書いて。既存ユーザー向け。
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=0 rejected=0 api_ms=11265 first_branch_ms=None wall_ms=13232
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1145 ms
+  keepalive                            2151 ms
+  keepalive                            3583 ms
+  done                                13357 ms
+=================== うちのカフェのInstagramプロフィールと固定投稿を、いい感じにしてほしい。開店1周年なので。
+   - 「いい感じ」の方向性 | anchors=['いい感じにしてほしい'] | opts=['上品・落ち着き系', 'ポップ・親しみ系', 'おしゃれ・映え系']
+   - 固定投稿の目的 | anchors=['固定投稿'] | opts=['感謝メッセージ型', '周年施策告知型', 'ブランドストーリー型']
+   - 1周年をどう扱うか | anchors=['開店1周年なので'] | opts=['控えめに一言添える', '前面に押し出し訴求']
+   - プロフィール記載範囲 | anchors=['Instagramプロフィール'] | opts=['最小限(業態のみ)', '詳細情報網羅型']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1041 ms
+  keepalive                            2047 ms
+  keepalive                            3100 ms
+  keepalive                            4182 ms
+  keepalive                            5213 ms
+  keepalive                            6767 ms
+  keepalive                            9611 ms
+  keepalive                           10996 ms
+  keepalive                           12546 ms
+  meta(partial=True)                  13803 ms
+  branch1[「いい感じ」の方向性]                 14964 ms
+  branch2[固定投稿の目的]                    15534 ms
+  branch3[1周年をどう扱うか]                  16706 ms
+  branch4[プロフィール記載範囲]                 17441 ms
+  keepalive                           19873 ms
+  done                                20611 ms
+初回カード表示可能まで: 14964 ms  (目標 8000ms 未達)
+=================== 転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=3 rejected=0 api_ms=9840 first_branch_ms=5686 wall_ms=11697
+   - 作品の職種文脈が不明 | anchors=['作品はいくつかあるんだけど'] | opts=['単一職種の深掘り', '複数職種の幅広さ']
+   - 訴求すべき評価軸が不明 | anchors=['センスよくまとめて'] | opts=['ビジュアル美意識', '実務成果・数値', '技術力・実装力']
+   - 転職先業界の想定読者像 | anchors=['転職活動用に個人ポートフォリオサイトが欲しい'] | opts=['事業会社人事向け', '制作会社・同業向け']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1073 ms
+  keepalive                            2074 ms
+  keepalive                            3473 ms
+  meta(partial=True)                   4269 ms
+  branch1[作品の職種文脈が不明]                  5744 ms
+  branch2[訴求すべき評価軸が不明]                 7198 ms
+  branch3[転職先業界の想定読者像]                 9022 ms
+  done                                11756 ms
+初回カード表示可能まで: 5744 ms  (目標 8000ms 達成)
+=================== モダンだけど温かみのあるLPを作って。うちの会社のやつ。
+HTTP 200  Content-Type=text/event-stream; charset=utf-8
+done: branches=3 rejected=0 api_ms=9362 first_branch_ms=5727 wall_ms=11544
+   - 「うちの会社」の業種・事業内容 | anchors=['うちの会社のやつ'] | opts=['BtoB企業サイト', '店舗・サービス業', '個人・小規模事業']
+   - LPの目的(コンバージョン先) | anchors=['LPを作って'] | opts=['問い合わせ獲得', '採用応募', '商品購入・予約']
+   - 「モダン」と「温かみ」の力点配分 | anchors=['モダンだけど温かみのある'] | opts=['モダン寄り', '温かみ寄り', '均等ミックス']
+--- 受信タイムライン(クライアント視点・送信からの経過ms) ---
+  keepalive                            1039 ms
+  keepalive                            2044 ms
+  keepalive                            3706 ms
+  meta(partial=True)                   4233 ms
+  branch1[「うちの会社」の業種・事業内]              5758 ms
+  branch2[LPの目的(コンバージョン先]              6952 ms
+  branch3[「モダン」と「温かみ」の力点]              8352 ms
+  done                                11580 ms
+初回カード表示可能まで: 5758 ms  (目標 8000ms 達成)

@@ -12,12 +12,10 @@
 - 単一のJSONオブジェクトのみを出力する。コードフェンス・前置き・後書き・説明は一切禁止。
 - 思考・分析の記述は不要。即座に結論のJSONだけを書く。
 - 各フィールドは簡潔に: residual_ambiguity_assessment は60字以内。question_point は40字以内。default_if_unresolved は30字以内。
-- フィールド順序は次のスキーマの通りに固定する。
+- フィールド順序は次のスキーマの通りに固定する(branches から書き始め、メタ2項は最後に書く)。
 
 # スキーマ
 {
- "residual_ambiguity_assessment": "60字以内の曖昧度総評",
- "missing_materials": ["名詞句", ...],
  "branches": [
   {
    "question_point": "判断点の名前(40字以内)",
@@ -25,6 +23,8 @@
    "options": [ {"label": "解釈名(12字以内)"}, {"label": "..."} ],
    "default_if_unresolved": "聞かずに進む場合の既定(30字以内)"
   }
- ]
+ ],
+ "missing_materials": ["名詞句", ...],
+ "residual_ambiguity_assessment": "60字以内の曖昧度総評"
 }
 - branches は最大5件。options は各分岐2〜3件。

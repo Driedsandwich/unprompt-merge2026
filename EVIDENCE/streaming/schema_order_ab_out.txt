@@ -1,0 +1,27 @@
+A/B: A_before(旧プロンプト・スキーマ例 meta先) vs B_after(新プロンプト・スキーマ例 branches先)
+model=sonnet effort=low 逐次実行(同時実行1)
+
+rep0 lp-warm      A_before  first_branch=10134   first_delta=9056    branches=1 api_ms=10886
+rep0 lp-warm      B_after   first_branch=5363    first_delta=3049    branches=4 api_ms=11790
+rep0 cafe-insta   B_after   first_branch=13077   first_delta=12042   branches=3 api_ms=15346
+rep0 cafe-insta   A_before  first_branch=16491   first_delta=15202   branches=3 api_ms=18850
+rep0 portfolio    A_before  first_branch=6275    first_delta=4366    branches=3 api_ms=9989
+rep0 portfolio    B_after   first_branch=7823    first_delta=5213    branches=2 api_ms=10309
+rep1 lp-warm      B_after   first_branch=6468    first_delta=4294    branches=3 api_ms=11328
+rep1 lp-warm      A_before  first_branch=4893    first_delta=2962    branches=3 api_ms=11053
+rep1 cafe-insta   A_before  first_branch=13800   first_delta=12246   branches=4 api_ms=17854
+rep1 cafe-insta   B_after   first_branch=9474    first_delta=8048    branches=3 api_ms=13943
+rep1 portfolio    B_after   first_branch=9026    first_delta=6936    branches=3 api_ms=13960
+rep1 portfolio    A_before  first_branch=10690   first_delta=9277    branches=3 api_ms=14394
+rep2 lp-warm      A_before  first_branch=6156    first_delta=3893    branches=3 api_ms=9229
+rep2 lp-warm      B_after   first_branch=4622    first_delta=2966    branches=2 api_ms=6764
+rep2 cafe-insta   B_after   first_branch=10936   first_delta=9895    branches=3 api_ms=13072
+rep2 cafe-insta   A_before  first_branch=15791   first_delta=14569   branches=4 api_ms=19218
+rep2 portfolio    A_before  first_branch=12559   first_delta=11446   branches=2 api_ms=16526
+rep2 portfolio    B_after   first_branch=5645    first_delta=3422    branches=3 api_ms=9484
+
+--- 集計(first_branch_ms) ---
+A_before  n=9  median=10690ms  min=4893 max=16491   | first_delta median=9277ms  | モデル時間(first_branch - first_delta) median=1413ms
+B_after   n=9  median=7823ms  min=4622 max=13077   | first_delta median=5213ms  | モデル時間(first_branch - first_delta) median=2090ms
+
+生ログ追記: /Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/EVIDENCE/streaming/schema_order_ab.jsonl

@@ -168,9 +168,18 @@
     margin-top:46px; position:relative; z-index:1;
   }
   #cards .card:nth-child(odd):last-child{grid-column:1 / -1; justify-self:center; width:calc(50% - 10px)}
+  /* ストリーミング中は「最後の1枚を中央に寄せる」規則を止める。
+     到着のたびに last-child が移り変わり、既に置いたカードが動いてしまうため
+     (条項4: 既存カードを動かさない)。done で class を外すと、その時点の
+     最終カード(= 直前に追加したばかりで、まだフェードイン前の1枚)だけに規則が効く。 */
+  #cards.streaming .card:nth-child(odd):last-child{grid-column:auto; justify-self:auto; width:auto}
+  /* 到着した1枚だけをフェードインさせる。#cards.in が既に付いた後に追加された
+     カードは、pending を1フレーム挟まないと遷移せず突然現れる。 */
+  #cards.in .card.pending{opacity:0; transform:translateY(8px)}
   @media (max-width:760px){
     #cards{grid-template-columns:1fr}
     #cards .card:nth-child(odd):last-child{width:100%}
+    #cards.streaming .card:nth-child(odd):last-child{width:100%}
     #briefText{font-size:19px}
   }
   .card{
@@ -295,6 +304,42 @@
     font-size:11.5px; color:var(--muted); letter-spacing:.08em; text-decoration:underline;
     text-underline-offset:3px;
   }
+
+  /* ============ (g) 並置証明 SplitCompare ============
+     app/compare/*.html(事前生成物)を iframe で並べる。生成物は外部依存ゼロの
+     自己完結HTMLなので sandbox="" で全能力を落として読み込む(スクリプト・フォーム不許可)。 */
+  #btnCompare{
+    display:block; margin:26px auto 0; background:transparent;
+    border:1px solid var(--line); border-radius:9px; padding:9px 22px;
+    font-size:12.5px; color:var(--ink-soft); letter-spacing:.05em;
+  }
+  #screenCompare{max-width:1180px; margin:0 auto; padding:56px 24px 96px}
+  #screenCompare h2{
+    font-size:15px; font-weight:500; letter-spacing:.08em; color:var(--ink);
+    text-align:center; margin-bottom:8px;
+  }
+  #compareLead{
+    font-size:12px; color:var(--muted); text-align:center; line-height:1.9;
+    max-width:640px; margin:0 auto 30px;
+  }
+  #compareGrid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+  @media (max-width:880px){ #compareGrid{grid-template-columns:1fr} }
+  .cmp-col{display:flex; flex-direction:column; min-width:0}
+  .cmp-head{display:flex; align-items:baseline; gap:10px; margin-bottom:9px}
+  .cmp-head b{font-size:12.5px; font-weight:600; letter-spacing:.06em; color:var(--ink)}
+  .cmp-head span{font-size:11px; color:var(--muted); line-height:1.7}
+  .cmp-col.decided .cmp-head b{color:var(--decided)}
+  .cmp-frame{
+    border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    background:#fff; height:62vh; min-height:380px;
+  }
+  .cmp-frame iframe{display:block; width:100%; height:100%; border:0}
+  #compareNote{font-size:11.5px; color:var(--muted); margin-top:20px; line-height:1.9; text-align:center}
+  #btnCompareBack{
+    display:block; margin:30px auto 0; background:transparent; border:0;
+    font-size:11.5px; color:var(--muted); letter-spacing:.08em; text-decoration:underline;
+    text-underline-offset:3px;
+  }
 </style>
 </head>
 <body>
@@ -348,7 +393,31 @@
   </div>
   <div id="out"></div>
   <div id="compileNote"></div>
+  <button id="btnCompare" type="button">このブリーフで作らせた結果を見る</button>
   <button id="btnRestart" type="button">最初から</button>
+</section>
+
+<!-- ============ (g) 並置証明 SplitCompare ============
+     左右とも app/compare/ の事前生成物(scripts/pregen_compare.py が実生成)。
+     manifest.json に生成時刻・api_ms・使用プロンプト全文・選択の機械照合結果が残る。 -->
+<section id="screenCompare" hidden>
+  <h2>同じモデルに、同じ仕事をさせた</h2>
+  <p id="compareLead">
+    違うのは渡したものだけ。左は最初の一文をそのまま。右はコンパイル済みブリーフ。
+    モデル・思考量・制作者プロンプトの骨格は同一。
+  </p>
+  <div id="compareGrid">
+    <div class="cmp-col">
+      <div class="cmp-head"><b>一文だけを渡した</b><span>入力: 発注者が書いた1文</span></div>
+      <div class="cmp-frame"><iframe id="frameRaw" title="一文だけを渡した結果" sandbox="" loading="lazy"></iframe></div>
+    </div>
+    <div class="cmp-col decided">
+      <div class="cmp-head"><b>コンパイル済みブリーフを渡した</b><span>入力: 同じ1文 + あなたの選択</span></div>
+      <div class="cmp-frame"><iframe id="frameCompiled" title="コンパイル済みブリーフを渡した結果" sandbox="" loading="lazy"></iframe></div>
+    </div>
+  </div>
+  <div id="compareNote"></div>
+  <button id="btnCompareBack" type="button">ブリーフに戻る</button>
 </section>
 
 <script>
@@ -360,10 +429,15 @@
 const API = {
   health : '/api/health',
   explode: '/api/explode',
+  explodeStream: '/api/explode_stream',
   render : '/api/render',
   compile: '/api/compile'
 };
 const MAX_CARDS = 5;
+// 語スパンが後から増えても #cards が下へずれないよう、原文の高さを先に確保する量。
+// 1スパンあたり margin .3em×2 + padding .1em×2 = 0.8em 広がる。
+// 分岐5件 × anchor 数本を見込んで 20 スパン分を上限として押さえる。
+const SPAN_RESERVE_EM = 20 * 0.8;
 
 const FONTS = {
   serif  : '"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif',
@@ -404,7 +478,14 @@ const S = {
   explodeTiming: null,
   compileTiming: null,
   frozen: false,                 // ポインタがカード近傍 → レイアウト凍結
+  equalizePending: false,        // 凍結中に来た高さそろえ要求(解除後に適用する)
   exploded: false,               // 爆散アニメは1回のみ
+  shattered: false,              // 語が割れる演出(#stage.exploded)を1回だけ started
+  streaming: false,              // /api/explode_stream 受信中(done 未達)
+  streamDone: false,             // done 到達 = 判断点の総数が確定した
+  spanTaken: [],                 // 原文の各文字が既にスパンへ確保済みか(増分割当用)
+  firstBranchMs: null,           // 送信→最初のカード表示(クライアント実測)
+  allBranchesMs: null,           // 送信→全判断点の確定(done。クライアント実測)
   editingBi: null,
   rationales: {},
   compileError: ''
@@ -562,7 +643,17 @@ async function submitBrief(){
     startSilence();
   }, 380);
 
-  // 遷移アニメの完了を待たずに実測を開始したいので、fetch は遷移と同時に投げる
+  // まず SSE(/api/explode_stream)。確定した分岐から順にカードを出す。
+  // ストリームが「1枚も出せないまま」失敗したときだけ、旧 /api/explode へ自動で戻す。
+  let streamed = false;
+  try{
+    streamed = await explodeViaStream(brief);
+  }catch(e){
+    streamed = false;
+  }
+  if (streamed || S.exploded) return;
+
+  // ---- フォールバック: 従来どおり一括で受け取ってから爆散する ----
   const r = await postJSON(API.explode, {brief: brief});
   const wall = performance.now() - silenceT0;
 
@@ -585,6 +676,220 @@ async function submitBrief(){
     explode();
   };
   proceed();
+}
+
+/* =========================================================================
+   (b') ストリーミング爆散 — 確定した分岐から順に届く
+   -------------------------------------------------------------------------
+   サーバは分岐1件ぶんのJSONが閉じるたびに anchor 検証を通してから送ってくる。
+   到着ごとにカードを1枚足す。既に置いたカードは動かさない(条項4):
+     - 原文の高さは最初に上限まで確保する(reserveBriefHeight)ので、
+       語スパンが増えて原文が広がっても #cards は下へずれない。
+     - #cards.streaming の間は「最後の1枚を中央寄せ」規則を止める。
+     - カード高さは到着のたびに最大値へ揃え直す(まだ操作前なので force してよい)。
+   戻り値: true = ストリームで画面を作った(フォールバック不要)
+           false = 1枚も出せずに失敗した(呼び出し側が /api/explode へ戻す)
+   ========================================================================= */
+async function explodeViaStream(brief){
+  // フォールバックへ戻るときは S.streaming を必ず畳んでおく。
+  // 残したままだとカウンタが「抽出中…」で固まる。
+  const bail = () => { S.streaming = false; return false; };
+  let res;
+  try{
+    res = await fetch(API.explodeStream, {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify({brief: brief})
+    });
+  }catch(e){ return bail(); }
+  if (!res.ok || !res.body || !res.body.getReader) return bail();
+  // 総数未確定の印はストリームが開いた時点で立てる。
+  // 以前は meta イベントで立てていたが、スキーマが branches 先になった以上
+  // 「meta より先に branch が届く」順序があり得るので、meta には依存させない。
+  // (これがないと最初のカードで updateCounter が確定値「N→0」を出してしまう)
+  S.streaming = true;
+
+  const reader = res.body.getReader();
+  const dec = new TextDecoder('utf-8');
+  let buf = '';
+  let sawDone = false;
+  let hardError = null;
+
+  const handle = (obj) => {
+    if (!obj || typeof obj !== 'object') return;
+    if (obj.type === 'meta'){
+      // 画面は変えず、届いた分だけ内部に保持する。
+      // branches 先スキーマでは meta は空(partial=true)の先触れとして先に来て、
+      // 本文は done で確定する。後着でも空でも取りこぼさないよう、
+      // 「中身があるときだけ上書きする」規則にしてある。
+      if (typeof obj.residual_ambiguity_assessment === 'string' && obj.residual_ambiguity_assessment){
+        S.assessment = obj.residual_ambiguity_assessment;
+      }
+      if (Array.isArray(obj.missing_materials) && obj.missing_materials.length){
+        S.missing = obj.missing_materials.map(String);
+      }
+      return;
+    }
+    if (obj.type === 'branch' && obj.branch){
+      appendBranch(obj.branch);
+      return;
+    }
+    if (obj.type === 'done'){
+      sawDone = true;
+      finishStream(obj);
+      return;
+    }
+    if (obj.type === 'error'){
+      hardError = obj;
+      return;
+    }
+  };
+
+  try{
+    while (true){
+      const {value, done} = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, {stream: true});
+      let sep;
+      while ((sep = buf.indexOf('\n\n')) >= 0){
+        const rec = buf.slice(0, sep);
+        buf = buf.slice(sep + 2);
+        const line = rec.trim();
+        if (!line || line.charAt(0) === ':') continue;   // ハートビート(SSEコメント)
+        if (line.indexOf('data: ') !== 0) continue;
+        let obj = null;
+        try{ obj = JSON.parse(line.slice(6)); }catch(e){ continue; }
+        handle(obj);
+      }
+    }
+  }catch(e){
+    // 途中切断。既にカードが出ているなら、届いた分で締める。
+    if (S.exploded && !sawDone){ finishStream(null); return true; }
+    return bail();
+  }
+
+  if (hardError && !S.exploded){
+    // 1枚も出せていない → 呼び出し側が /api/explode へ戻す。ここでは画面を触らない。
+    return bail();
+  }
+  if (!sawDone){
+    if (S.exploded){ finishStream(null); return true; }   // 届いた分で締める
+    return bail();                                        // 何も起きずに閉じた → フォールバック
+  }
+  return true;
+}
+
+// 爆散の開始。最初の分岐 or done(分岐0件)のどちらか早い方で1回だけ走る。
+function beginExplode(){
+  if (S.exploded) return;
+  S.exploded = true;
+  if (elStage.hidden){                                   // 遷移アニメ(380ms)より先に届いた場合
+    elInitial.hidden = true;
+    elStage.hidden = false;
+    elBriefText.textContent = S.brief;
+  }
+  stopSilence();                                         // 静寂の実測値 = 最初のカードが出るまで
+  reserveBriefHeight();
+  renderBriefWithSpans();                                // この時点ではスパン0本(原文そのまま)
+  elSilence.classList.add('done');
+}
+
+// 語スパンが後から増えても原文の行数が増えないよう、先に高さを確保する。
+// 上限ぶんの幅を持つ不可視スペーサを一度だけ流し込んで測る。
+function reserveBriefHeight(){
+  const sp = el('span');
+  sp.style.display = 'inline-block';
+  sp.style.width = SPAN_RESERVE_EM + 'em';
+  sp.style.height = '0';
+  elBriefText.appendChild(sp);
+  const h = elBriefText.offsetHeight;
+  elBriefText.removeChild(sp);
+  if (h > 0) elBriefText.style.minHeight = h + 'px';
+}
+
+// 分岐1件を画面へ足す(状態 → スパン → カード → テザー → レンダ発注)
+function appendBranch(b){
+  if (!b || S.branches.length >= MAX_CARDS) return;
+  beginExplode();
+
+  const bi = S.branches.length;
+  S.branches.push(b);
+  S.decisions.push({status: null, oi: null});
+  S.renders.push((Array.isArray(b.options) ? b.options : []).map(() => ({state: 'pending'})));
+
+  claimSpansFor(bi);
+  renderBriefWithSpans();
+
+  const card = buildCard(bi);
+  card.style.transitionDelay = '0ms';                    // 到着そのものが間隔になる
+  card.classList.add('pending');
+  elCards.appendChild(card);
+  S.cardEls.push(card);
+
+  equalizeCardHeights();                                 // 未凍結なら毎回そろえ直す(凍結中は保留)
+  updateCounter();
+  elCounter.hidden = false;
+  startRendersFor(bi);                                   // ミニレンダは到着直後から並列で発注する
+
+  if (!S.shattered){
+    S.shattered = true;
+    S.firstBranchMs = performance.now() - silenceT0;
+    elCards.classList.add('streaming');
+    requestAnimationFrame(() => {
+      elStageRoot.classList.add('exploded');             // 語が割れる(1回のみ)
+      animateTethers(900);
+      setTimeout(() => {                                 // 割れてからカードが現れる
+        elCards.classList.add('in');
+        card.classList.remove('pending');
+        drawTethers();
+      }, 140);
+    });
+    return;
+  }
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { card.classList.remove('pending'); drawTethers(); });
+  });
+  drawTethers();
+}
+
+// done(または途中終了)で締める。ここで初めて判断点の総数が確定する。
+function finishStream(obj){
+  if (S.streamDone) return;
+  S.streamDone = true;
+  S.streaming = false;
+  S.allBranchesMs = performance.now() - silenceT0;
+  beginExplode();                                        // 分岐0件のときはここが初回
+
+  if (obj){
+    if (typeof obj.residual_ambiguity_assessment === 'string'){
+      S.assessment = obj.residual_ambiguity_assessment;
+    }
+    if (Array.isArray(obj.missing_materials)) S.missing = obj.missing_materials.map(String);
+    S.explodeTiming = obj.timing || null;
+    if (S.explodeTiming){
+      S.explodeTiming.first_branch_ms = (obj.first_branch_ms != null)
+        ? obj.first_branch_ms : (S.firstBranchMs != null ? Math.round(S.firstBranchMs) : null);
+      S.explodeTiming.streamed = true;
+    }
+  }
+
+  if (S.branches.length === 0){
+    // 分岐0件は正当な出力(完全指定ブリーフ)。捏造せず、そのまま伝える。
+    elAssess.hidden = false;
+    elAssess.textContent = S.assessment || 'このブリーフは十分に特定されている。抽出すべき判断点はない。';
+    updateCounter();
+    elCounter.hidden = false;
+    elCompileRow.hidden = false;
+    elCompileRow.classList.add('in');
+    return;
+  }
+
+  // ストリーミング用の抑制を解除する。最後の1枚(まだフェードイン直後)だけが
+  // 中央寄せ規則の対象になるので、既に置いたカードは動かない。
+  elCards.classList.remove('streaming');
+  equalizeCardHeights();
+  updateCounter();
+  drawTethers();
 }
 
 function showStageError(msg, hint){
@@ -682,6 +987,65 @@ function buildSpans(text, branches){
   return spans;
 }
 
+// ストリーミング用: 分岐が1件届くたびに、その分岐ぶんのスパンだけを確保する。
+// buildSpans と同じ3つの原則を「到着順」に適用する:
+//   A/B. その分岐の anchor を長い順に、まだ誰も取っていない出現へ割り当てる
+//   C.   1本も取れなかったら、重なる既存スパンへ相乗りさせる(スパン0本の分岐を作らない)
+// パスAの「分岐間の公平割当」だけは到着順のため成立しないが、
+// 0本の分岐が生じないことはパスCが保証する(条項2c/5/6 の前提はここで守られる)。
+function claimSpansFor(bi){
+  const text = S.brief;
+  const b = S.branches[bi];
+  if (S.spanTaken.length !== text.length){
+    S.spanTaken = new Array(text.length).fill(false);
+    S.spans.forEach(sp => { for (let k = sp.start; k < sp.end; k++) S.spanTaken[k] = true; });
+  }
+  const anchors = (Array.isArray(b.anchor_words) ? b.anchor_words : [])
+    .filter(a => typeof a === 'string' && a.length > 0)
+    .slice()
+    .sort((x, y) => y.length - x.length);
+
+  let got = false;
+  anchors.forEach(a => {
+    let from = 0;
+    while (true){
+      const i = text.indexOf(a, from);
+      if (i < 0) return;
+      const j = i + a.length;
+      let free = true;
+      for (let k = i; k < j; k++){ if (S.spanTaken[k]){ free = false; break; } }
+      if (free){
+        for (let k = i; k < j; k++) S.spanTaken[k] = true;
+        S.spans.push({start: i, end: j, bis: [bi], text: a, el: null, hoverBi: null});
+        got = true;
+        return;
+      }
+      from = i + 1;
+    }
+  });
+
+  if (!got){
+    // 保険: 入れ子・同一 anchor で1本も取れなかった分岐を既存スパンへ相乗りさせる
+    for (const a of anchors){
+      let from = 0, hit = null;
+      while (true){
+        const i = text.indexOf(a, from);
+        if (i < 0) break;
+        const j = i + a.length;
+        let best = null, bestOv = 0;
+        S.spans.forEach(sp => {
+          const ov = Math.min(sp.end, j) - Math.max(sp.start, i);
+          if (ov > bestOv && sp.bis.indexOf(bi) < 0){ bestOv = ov; best = sp; }
+        });
+        if (best){ hit = best; break; }
+        from = i + 1;
+      }
+      if (hit){ hit.bis.push(bi); break; }
+    }
+  }
+  S.spans.sort((x, y) => x.start - y.start);
+}
+
 // スパンが持つ分岐のうち「クリックで開く分岐」= 未解決を優先、なければ先頭
 function activeBi(sp){
   for (const bi of sp.bis){
@@ -704,6 +1068,10 @@ function hasSpan(bi){
   return S.spans.some(sp => sp.bis.indexOf(bi) >= 0);
 }
 
+// ストリーミングではスパンが増えるたびに呼ばれる(原文を組み直す)。
+// #stage.exploded が既に付いている状態で作られた .tok は開始値を持たないので
+// 遷移せず最終位置に現れる = 既存の語が割れ直すようには見えない。
+// 語の色は spanState から引くので、決定済みの語は組み直しても色を保つ。
 function renderBriefWithSpans(){
   const text = S.brief;
   elBriefText.textContent = '';
@@ -712,7 +1080,7 @@ function renderBriefWithSpans(){
     if (sp.start > cur) elBriefText.appendChild(document.createTextNode(text.slice(cur, sp.start)));
     const t = el('span', 'tok', sp.text);
     t.dataset.bi = sp.bis.join(',');
-    t.dataset.state = 'open';
+    t.dataset.state = S.decisions.length ? spanState(sp) : 'open';
     t.style.transitionDelay = (n * 26) + 'ms';
     t.addEventListener('click', () => onTokenClick(activeBi(sp)));
     t.addEventListener('pointerenter', () => { sp.hoverBi = activeBi(sp); highlight(sp.hoverBi, true); });
@@ -731,6 +1099,9 @@ function renderBriefWithSpans(){
 function explode(){
   if (S.exploded) return;
   S.exploded = true;
+  S.shattered = true;
+  S.streaming = false;          // 一括経路では最初から総数が確定している
+  S.streamDone = true;
 
   S.decisions = S.branches.map(() => ({status: null, oi: null}));
   S.renders   = S.branches.map(b => (Array.isArray(b.options) ? b.options : []).map(() => ({state: 'pending'})));
@@ -754,7 +1125,7 @@ function explode(){
     elStageRoot.classList.add('exploded');      // 語が割れる(1回のみ)
     setTimeout(() => {
       buildCards();
-      equalizeCardHeights(true);                // rAF を待たず同期で高さを固定(凍結レース回避)
+      equalizeCardHeights();                    // rAF を待たず同期で高さを固定(凍結レース回避)
       updateCounter();
       elCounter.hidden = false;
       requestAnimationFrame(() => {
@@ -767,60 +1138,77 @@ function explode(){
 }
 
 /* ---- カード ---- */
+// 1枚ぶんを組み立てて返す(DOMへの挿入は呼び出し側)。
+// 一括版 buildCards とストリーミング版 appendBranch が同じ実装を使う。
+function buildCard(bi){
+  const b = S.branches[bi];
+  const card = el('article', 'card');
+  card.dataset.bi = String(bi);
+  card.setAttribute('aria-label', '判断点 ' + (bi + 1));
+  card.style.transitionDelay = (bi * 70) + 'ms';
+
+  card.appendChild(el('div', 'q', String(b.question_point || '(判断点)')));
+  if (b.downstream_impact) card.appendChild(el('div', 'impact', String(b.downstream_impact)));
+
+  const opts = el('div', 'opts');
+  const options = Array.isArray(b.options) ? b.options : [];
+  options.forEach((o, oi) => {
+    const btn = el('button', 'opt');
+    btn.type = 'button';
+    btn.dataset.oi = String(oi);
+    btn.setAttribute('aria-pressed', 'false');
+    if (o && o.thumbnail_description) btn.title = String(o.thumbnail_description);
+    const slot = el('div', 'slot');
+    slot.appendChild(skeletonMini());
+    btn.appendChild(slot);
+    btn.appendChild(el('div', 'olabel', String((o && o.label) || 'オプション ' + (oi + 1))));
+    btn.addEventListener('click', () => decide(bi, oi));   // 動詞1: 決める
+    opts.appendChild(btn);
+  });
+  card.appendChild(opts);
+
+  const foot = el('div', 'card-foot');
+  const dele = el('button', 'delegate', '委ねる');          // 動詞2: 委ねる
+  dele.type = 'button';
+  dele.addEventListener('click', () => delegate(bi));
+  foot.appendChild(dele);
+  card.appendChild(foot);
+
+  const resolved = el('div', 'resolved');
+  resolved.hidden = true;
+  card.appendChild(resolved);
+
+  card.addEventListener('pointerenter', () => { card.classList.add('near'); highlight(bi, true); });
+  card.addEventListener('pointerleave', () => { card.classList.remove('near'); highlight(bi, false); });
+  return card;
+}
+
 function buildCards(){
   elCards.textContent = '';
   S.cardEls = [];
   S.branches.forEach((b, bi) => {
-    const card = el('article', 'card');
-    card.dataset.bi = String(bi);
-    card.setAttribute('aria-label', '判断点 ' + (bi + 1));
-    card.style.transitionDelay = (bi * 70) + 'ms';
-
-    card.appendChild(el('div', 'q', String(b.question_point || '(判断点)')));
-    if (b.downstream_impact) card.appendChild(el('div', 'impact', String(b.downstream_impact)));
-
-    const opts = el('div', 'opts');
-    const options = Array.isArray(b.options) ? b.options : [];
-    options.forEach((o, oi) => {
-      const btn = el('button', 'opt');
-      btn.type = 'button';
-      btn.dataset.oi = String(oi);
-      btn.setAttribute('aria-pressed', 'false');
-      if (o && o.thumbnail_description) btn.title = String(o.thumbnail_description);
-      const slot = el('div', 'slot');
-      slot.appendChild(skeletonMini());
-      btn.appendChild(slot);
-      btn.appendChild(el('div', 'olabel', String((o && o.label) || 'オプション ' + (oi + 1))));
-      btn.addEventListener('click', () => decide(bi, oi));   // 動詞1: 決める
-      opts.appendChild(btn);
-    });
-    card.appendChild(opts);
-
-    const foot = el('div', 'card-foot');
-    const dele = el('button', 'delegate', '委ねる');          // 動詞2: 委ねる
-    dele.type = 'button';
-    dele.addEventListener('click', () => delegate(bi));
-    foot.appendChild(dele);
-    card.appendChild(foot);
-
-    const resolved = el('div', 'resolved');
-    resolved.hidden = true;
-    card.appendChild(resolved);
-
-    card.addEventListener('pointerenter', () => { card.classList.add('near'); highlight(bi, true); });
-    card.addEventListener('pointerleave', () => { card.classList.remove('near'); highlight(bi, false); });
-
+    const card = buildCard(bi);
     elCards.appendChild(card);
     S.cardEls.push(card);
   });
 }
 
 // 高さを最大値に揃えて固定する。以後どの状態遷移でもカードは動かない(リフローなし)。
-// force=true は初回の固定用。凍結(S.frozen)より前に必ず1回ロックしないと、
-// カード生成直後の数msでポインタが近傍に入った場合に min-height が永久に未設定のまま残り、
-// 決める/委ねるで高さが変わって「凍結中に既存カードが動く」条項4違反になる。
-function equalizeCardHeights(force){
-  if ((S.frozen && !force) || S.cardEls.length === 0) return;
+//
+// 凍結(S.frozen)中は例外なく触らない。
+// 以前は引数 force=true が凍結を貫通できた。しかしこの関数は「全カードの min-height を
+// いったん外して測り直す」ため、貫通すると凍結中に既存カードの高さが変わりうる
+// (= 条項4「凍結中に既存カードを動かさない」の穴)。ストリーミング中は新しいカードが
+// 届くたび force で呼ばれていたので、これは机上の穴ではなく実際に起きる経路だった。
+// 凍結中の要求は S.equalizePending に積み、凍結が解けた後の呼び出しで適用する。
+// force 引数は貫通しない以上ただの飾りなので削除した。
+//
+// force が担っていた「凍結より前に必ず1回ロックする」役目は、凍結する側(pointermove)が
+// S.frozen を立てる直前に自分で1回そろえることで引き継いだ。
+function equalizeCardHeights(){
+  if (S.cardEls.length === 0) return;
+  if (S.frozen){ S.equalizePending = true; return; }   // 解除後の呼び出しで適用する
+  S.equalizePending = false;
   S.cardEls.forEach(c => { c.style.minHeight = ''; });
   let max = 0;
   S.cardEls.forEach(c => { max = Math.max(max, c.offsetHeight); });
@@ -834,6 +1222,7 @@ document.addEventListener('pointermove', (e) => {
   const pad = 80;
   if (e.clientX >= r.left - pad && e.clientX <= r.right + pad &&
       e.clientY >= r.top - pad && e.clientY <= r.bottom + pad){
+    equalizeCardHeights();       // まだ凍結前。ここで高さを確定させてから凍らせる
     S.frozen = true;
   }
 }, {passive: true});
@@ -921,25 +1310,28 @@ function tokensMini(tokens){
 // /api/render は並列 fetch。到着順にスロットへ着地(スロットは固定寸法なのでリフローなし)。
 // 対照性は sibling_labels(同じ判断点に並ぶ他オプションのラベル)を渡して担保する。
 // レンダラーが「離れるべき方向」を直接知るので、3枚が中庸な値へ収束しない。
-function startRenders(){
-  S.branches.forEach((b, bi) => {
-    const options = Array.isArray(b.options) ? b.options : [];
-    const labels = options.map(o => String((o && o.label) || ''));
-    options.forEach(async (o, oi) => {
-      const r = await postJSON(API.render, {
-        brief: S.brief,
-        question_point: String(b.question_point || ''),
-        option: { label: labels[oi] },
-        sibling_labels: labels.filter((_, k) => k !== oi && labels[k] !== '')
-      });
-      if (r.err || !r.j || r.j.ok !== true){
-        S.renders[bi][oi] = {state: 'error', error: r.err || (r.j && r.j.error) || 'render failed'};
-      }else{
-        S.renders[bi][oi] = {state: 'ok', tokens: r.j.tokens || {}};
-      }
-      placeMini(bi, oi);
+function startRendersFor(bi){
+  const b = S.branches[bi];
+  if (!b) return;
+  const options = Array.isArray(b.options) ? b.options : [];
+  const labels = options.map(o => String((o && o.label) || ''));
+  options.forEach(async (o, oi) => {
+    const r = await postJSON(API.render, {
+      brief: S.brief,
+      question_point: String(b.question_point || ''),
+      option: { label: labels[oi] },
+      sibling_labels: labels.filter((_, k) => k !== oi && labels[k] !== '')
     });
+    if (r.err || !r.j || r.j.ok !== true){
+      S.renders[bi][oi] = {state: 'error', error: r.err || (r.j && r.j.error) || 'render failed'};
+    }else{
+      S.renders[bi][oi] = {state: 'ok', tokens: r.j.tokens || {}};
+    }
+    placeMini(bi, oi);
   });
+}
+function startRenders(){
+  S.branches.forEach((b, bi) => startRendersFor(bi));
 }
 function placeMini(bi, oi){
   const card = S.cardEls[bi];
@@ -1080,11 +1472,20 @@ function remaining(){
 function updateCounter(){
   const n = remaining();
   elCounter.textContent = '';
+  // 総数が確定する前(ストリーミング中)は「N→0」を出さない。
+  // まだ増えるかもしれない数を確定値のように見せないための規律。
+  if (S.streaming && !S.streamDone){
+    elCounter.appendChild(document.createTextNode('判断点を抽出中… '));
+    elCounter.appendChild(el('b', null, String(S.branches.length)));
+    elCounter.classList.remove('zero');
+    return;
+  }
   elCounter.appendChild(document.createTextNode('この文から抽出した判断点 '));
   elCounter.appendChild(el('b', null, String(n)));
   elCounter.appendChild(document.createTextNode('→0'));
   elCounter.classList.toggle('zero', n === 0);
-  if (n === 0 && S.branches.length > 0 && elCompileRow.hidden){
+  // 総数未確定のうちは、たまたま残り0でもコンパイルへ進ませない
+  if (n === 0 && S.branches.length > 0 && elCompileRow.hidden && !S.streaming){
     elCompileRow.hidden = false;
     elCompileRow.classList.add('in');
   }
@@ -1246,7 +1647,14 @@ function buildMarkdown(){
   L.push('');
   L.push('- あなたがタイプした文字(最初の一文以降): ' + S.typedAfter);
   L.push('- あなたの選択: ' + S.branches.length);
-  L.push('- 抽出の沈黙(実測・x1.0): ' + (S.silenceMs / 1000).toFixed(1) + '秒');
+  // 逐次配信では「沈黙」= 送信から最初のカードが出るまで。全判断点の確定はその後も続く。
+  // 2つの実測値を別物として並べる(片方だけを見せて速く見せない)。
+  if (S.allBranchesMs != null){
+    L.push('- 沈黙(送信→最初の判断点, 実測・x1.0): ' + (S.silenceMs / 1000).toFixed(1) + '秒');
+    L.push('- 全判断点の確定まで(実測・x1.0): ' + (S.allBranchesMs / 1000).toFixed(1) + '秒');
+  }else{
+    L.push('- 抽出の沈黙(実測・x1.0): ' + (S.silenceMs / 1000).toFixed(1) + '秒');
+  }
   L.push('');
 
   if (S.branches.length === 0){
@@ -1322,7 +1730,11 @@ function buildJSON(){
     evidence: {
       typed_characters_after_brief: S.typedAfter,
       choice_count: S.branches.length,
+      // 逐次配信では silence = 送信→最初の判断点、all_branches = 送信→全判断点の確定。
+      // 一括経路では all_branches は null(区別が存在しない)。
       extraction_silence_ms: Math.round(S.silenceMs),
+      extraction_all_branches_ms: (S.allBranchesMs != null) ? Math.round(S.allBranchesMs) : null,
+      extraction_streamed: !!(S.explodeTiming && S.explodeTiming.streamed),
       extraction_timing: S.explodeTiming,
       compile_wall_ms: Math.round(S.compileMs),
       compile_timing: S.compileTiming,
@@ -1391,6 +1803,55 @@ $('btnCopy').addEventListener('click', async () => {
   setTimeout(() => { btn.textContent = 'コピー'; }, 1600);
 });
 $('btnRestart').addEventListener('click', () => location.reload());
+
+/* =========================================================================
+   (g) 並置証明 SplitCompare
+   左右とも app/compare/ の事前生成物。ここでは生成しない(開示: DISCLOSURE #7)。
+   iframe の src はボタンを押した時に初めて入れる(コンパイル画面までは1バイトも読まない)。
+   ========================================================================= */
+const COMPARE = { raw: 'compare/raw.html', compiled: 'compare/compiled.html',
+                  manifest: 'compare/manifest.json' };
+let compareLoaded = false;
+
+async function paintCompareNote(){
+  const el = $('compareNote');
+  el.textContent = '事前生成物(実生成・manifest付き)。左右は同一モデル・同一 effort。';
+  try{
+    const r = await fetch(COMPARE.manifest, {cache:'no-store'});
+    if (!r.ok) return;
+    const m = await r.json();
+    const v = (m.verification && m.verification.compiled) || {};
+    const t = m.timings || {};
+    const bits = ['事前生成物(実生成・manifest付き)。左右は同一モデル(' + (m.engine && m.engine.model) +
+                  ')・同一 effort(' + (m.engine && m.engine.effort) + ')。'];
+    if (typeof v.traced === 'number'){
+      bits.push('右のHTMLに埋まった選択の痕跡: ' + v.traced + '/' + v.of + '(左は 0/' + v.of + ')。');
+    }
+    if (t.raw_lp && t.compiled_lp){
+      bits.push('生成 API 実時間 左 ' + (t.raw_lp.api_ms/1000).toFixed(1) + '秒 / 右 ' +
+                (t.compiled_lp.api_ms/1000).toFixed(1) + '秒。');
+    }
+    if (m.generated_at) bits.push('生成 ' + m.generated_at + '。');
+    el.textContent = bits.join(' ');
+  }catch(e){ /* manifest が読めなくても並置自体は成立する */ }
+}
+
+$('btnCompare').addEventListener('click', () => {
+  if (!compareLoaded){
+    $('frameRaw').src = COMPARE.raw;
+    $('frameCompiled').src = COMPARE.compiled;
+    compareLoaded = true;
+    paintCompareNote();
+  }
+  elCompiled.hidden = true;
+  $('screenCompare').hidden = false;
+  window.scrollTo(0, 0);
+});
+$('btnCompareBack').addEventListener('click', () => {
+  $('screenCompare').hidden = true;
+  elCompiled.hidden = false;
+  window.scrollTo(0, 0);
+});
 
 autoGrow();
 elInput.focus();

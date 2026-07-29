@@ -19,6 +19,16 @@ GYAKUMON — Intent Compiler ローカルサーバ(python3 標準ライブラリ
          downstream_impact / thumbnail_description / px200_rationale は存在しない(スリム化で削除)。
          anchor_words は「ブリーフ原文の連続部分文字列」であることをサーバ側で機械検証し、
          不合格の分岐は棄却してから返す(棄却理由は rejected_branches に残す)。
+  POST /api/explode_stream  {brief}   → text/event-stream(SSE)
+       /api/explode と同じ抽出を stream-json で走らせ、確定したものから逐次配信する。
+       送信→初回カード表示までの体感時間を縮めるための経路(/api/explode は残す)。
+         data: {"type":"meta",   residual_ambiguity_assessment, missing_materials, partial, elapsed_ms}
+         data: {"type":"branch", index, branch:{...}, elapsed_ms}   ← anchor 検証を通った分岐のみ
+         data: {"type":"done",   ok, branches, ..., timing, api_ms, first_branch_ms}
+         data: {"type":"error",  error, hint}
+       anchor のサーバ側検証は分岐単位で「配信前」に適用する(不合格の分岐は画面に出ない)。
+       ブラウザは meta で内部準備、最初の branch で爆散を開始し、以後は到着順にカードを足す。
+       ストリームが失敗したら旧 /api/explode へ自動フォールバックする(クライアント側)。
   POST /api/render   {brief, question_point, option:{label}, sibling_labels:[同じ判断点の他オプションのlabel...]}
        → --model <render_model> + prompts/render_v0.txt
        → {ok, tokens:{palette[3], heading_font, density, corner, tone_sample}, timing}
@@ -218,6 +228,60 @@ def build_extraction_system(extraction_prompt: str) -> str:
     return adapted + rules
 
 
+def build_extraction_stream_system(extraction_prompt: str) -> str:
+    """/api/explode_stream 専用。build_extraction_system と同内容だが branches を先に書かせる。
+
+    理由(実測): スキーマ順どおりに書くモデルに対し、meta 2項(約200字)を先に書かせると
+    その分だけ最初の分岐の確定が遅れる。同一ブリーフ・同一モデルで
+      meta先   : first_delta 6.5s → branch1 9.4s(init 2.6s)
+      branches先: first_delta 5.2s → branch1 8.1s(init 4.0s)
+    となり、init を差し引いた「モデル時間」では 6.8s → 4.2s に短縮した。
+    抽出内容そのものへの影響はない(meta 2項は分岐の要約ではなく独立した評価であり、
+    先に書くか後に書くかで分岐の選び方は変わらない)。
+
+    2026-07-29 追補: prompts/extraction_product_v1.txt 側のスキーマ例も
+    branches → missing_materials → residual_ambiguity_assessment に揃えた。
+    それ以前は「プロンプト本体の例は meta 先・この上書き規則は branches 先」という
+    矛盾した2つの順序指示を1つのシステムプロンプトに同居させていた。
+    ここで組み立てるスキーマの順もその追補に合わせてある。
+    一括版 /api/explode(build_extraction_system)は EXTRACTION_SCHEMA をそのまま出すので
+    上書き規則側の順序は meta 先のままだが、一括経路は全文を最後に一度だけ解釈するため
+    順序に依存しない(フォールバックの挙動は変わらない)。
+    """
+    props = EXTRACTION_SCHEMA["properties"]
+    schema = {
+        "type": "object",
+        "properties": {
+            "branches": props["branches"],
+            "missing_materials": props["missing_materials"],
+            "residual_ambiguity_assessment": props["residual_ambiguity_assessment"],
+        },
+        "required": ["branches", "missing_materials", "residual_ambiguity_assessment"],
+    }
+    adapted = extraction_prompt.replace(
+        "出力は必ず report_branches ツール呼び出しのみで行う。地の文・前置き・後書きを書かない。",
+        "出力は単一のJSONオブジェクトのみで行う。地の文・前置き・後書きを書かない。"
+    )
+    rules = (
+        "\n\n## 出力規則(この実行環境での上書き)\n\n"
+        "- コードフェンス(```)・説明・前置き・後書きを一切付けず、単一のJSONオブジェクトのみを出力せよ。\n"
+        "- 思考・分析・検討過程を書かない。即座に結論のJSONだけを書く。\n"
+        "- そのJSONオブジェクトは次のJSONスキーマに厳密に従うこと。"
+        "フィールド順もスキーマの順とし、branches を最初に書く。"
+        "missing_materials と residual_ambiguity_assessment は branches を書き終えた後に書く:\n\n"
+        + json.dumps(schema, ensure_ascii=False, indent=2) +
+        "\n\n- スキーマの required をすべて満たし、スキーマにないフィールドを追加しないこと。\n"
+        "- branches の各要素は1つ書き終えるごとに完結させ、後から書き直さないこと"
+        "(サーバは1件書き終わるたびに検証して画面へ送る)。\n"
+        "- anchor_words はサーバ側で「ブリーフ原文の連続部分文字列か」を機械検証する。"
+        "一字でも異なる引用(言い換え・要約・表記正規化・空白の付け外し)を含む分岐は棄却され、"
+        "ユーザーには表示されない。原文からコピーした文字列だけを入れよ。\n"
+        "\n## 対象ブリーフ(原文)\n\n"
+        "ユーザーメッセージとして与えられる本文全体がブリーフ原文である。これに対して抽出のみを行え。\n"
+    )
+    return adapted + rules
+
+
 def build_render_system(render_prompt: str) -> str:
     schema_text = json.dumps(RENDER_SCHEMA, ensure_ascii=False, indent=2)
     rules = (
@@ -304,6 +368,231 @@ def extract_json_object(text, accept):
             i += 1
         start = text.find("{", start + 1)
     return None, "期待した形のJSONオブジェクトを抽出できない"
+
+
+# ========= 増分パーサ(生成中テキストから meta / 各分岐を確定次第取り出す) =========
+def _find_branches_array(s):
+    """トップレベルオブジェクト直下の "branches" 配列を探す。
+
+    戻り値: (オブジェクト開始 '{' の位置, キー文字列の開始位置, 配列の '[' の位置)。
+    未確定なら (-1, -1, -1)。オブジェクト開始位置も返すのは、meta 部分
+    (= その '{' から "branches" キーの手前まで)を切り出すのに必要だからである。
+    文字列内のエスケープと波括弧・角括弧の対応を追い、
+      - od: '{' の深さ / ad: '[' の深さ
+      - トップレベル(od==1 かつ ad==0)でだけキーとして解釈する
+      - キーと値の間に ':' があることを要求する
+    ので、missing_materials の要素に "branches" という文字列が来ても誤検出しない。
+
+    候補の開始位置は「最初の '{'」だけに賭けない。前置きの地の文に '{' が
+    混ざっていた場合、そこから読むと構造がずれて永久に見つからなくなるので、
+    そのオブジェクトが branches を持たずに閉じたら次の '{' から読み直す
+    (extract_json_object と同じ方針)。
+    """
+    start = s.find("{")
+    while start >= 0:
+        key_pos, arr = _scan_for_branches(s, start)
+        if arr >= 0:
+            return start, key_pos, arr
+        if key_pos == -2:
+            # 入力がまだ途中で切れている。次のチャンクを待つ(候補を進めない)。
+            return -1, -1, -1
+        start = s.find("{", start + 1)
+    return -1, -1, -1
+
+
+def _scan_for_branches(s, start):
+    """s[start] から1オブジェクトぶん走査する。
+
+    戻り値: (キー位置, '[' 位置)  … 見つかった
+            (-1, -1)             … このオブジェクトは branches を持たずに閉じた
+            (-2, -1)             … 入力が途中で終わった(判断保留)
+    """
+    n = len(s)
+    od = ad = 0
+    in_str = esc = False
+    expect_key = False
+    want_value = False
+    key_from = -1
+    key_name = None
+    key_pos = -1
+    i = start
+    while i < n:
+        c = s[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif c == "\\":
+                esc = True
+            elif c == '"':
+                in_str = False
+                if expect_key and od == 1 and ad == 0:
+                    key_name = s[key_from + 1:i]
+                    key_pos = key_from
+                    expect_key = False
+        else:
+            if c == '"':
+                in_str = True
+                key_from = i
+            elif c == "{":
+                od += 1
+                if od == 1 and ad == 0:
+                    expect_key = True
+                want_value = False
+            elif c == "}":
+                od -= 1
+                if od <= 0:
+                    return -1, -1        # branches を持たずに閉じた → 次の候補へ
+            elif c == "[":
+                if want_value and od == 1 and ad == 0 and key_name == "branches":
+                    return key_pos, i
+                ad += 1
+                want_value = False
+            elif c == "]":
+                ad -= 1
+            elif c == ":":
+                if od == 1 and ad == 0:
+                    want_value = True
+            elif c == ",":
+                if od == 1 and ad == 0:
+                    expect_key = True
+                    want_value = False
+                    key_name = None
+        i += 1
+    return -2, -1                        # 入力が途中で終わった → 判断保留
+
+
+def _next_complete_object(s, pos):
+    """s[pos:] から配列要素の走査を進める。
+
+    戻り値: ("object", start, end) / ("end", idx, idx) / (None, pos, pos)
+      - "object": s[start:end+1] が対応の取れた1オブジェクト
+      - "end"   : 配列の閉じ ']' に到達した
+      - None    : まだ確定していない(次のチャンクを待つ)
+    """
+    n = len(s)
+    i = pos
+    while i < n and s[i] not in "{]":
+        i += 1
+    if i >= n:
+        return None, i, i          # 空白・カンマだけ。走査位置は進めてよい
+    if s[i] == "]":
+        return "end", i, i
+    # ここから1オブジェクトの対応取り
+    od = 0
+    in_str = esc = False
+    j = i
+    while j < n:
+        c = s[j]
+        if in_str:
+            if esc:
+                esc = False
+            elif c == "\\":
+                esc = True
+            elif c == '"':
+                in_str = False
+        else:
+            if c == '"':
+                in_str = True
+            elif c == "{":
+                od += 1
+            elif c == "}":
+                od -= 1
+                if od == 0:
+                    return "object", i, j
+        j += 1
+    return None, i, i              # 未完。次のチャンクで同じ位置から読み直す
+
+
+class StreamingExtractionParser:
+    """生成中の抽出JSONを増分で解釈する。
+
+    feed(chunk) は、そのチャンクで新たに確定した事象のリストを返す:
+      ("meta", {"residual_ambiguity_assessment": str, "missing_materials": [str], "partial": bool})
+      ("branch", {分岐オブジェクト(モデル出力のまま。検証は呼び出し側)}, raw_index)
+      ("branches_end", None, None)
+
+    確定の定義:
+      meta   … トップレベル "branches" キーに到達した時点。スキーマ順(assessment →
+               missing_materials → branches)ではこの時点で前2項が閉じている。
+               前置き部分を "}" で閉じて JSON として解釈できたら partial=False。
+               branches が先に来るスキーマでは partial=True の空 meta を出す
+               (本文は done イベントの全体JSONが権威)。
+      branch … branches 配列内の1オブジェクトの波括弧が閉じた時点。
+    """
+
+    def __init__(self):
+        self.buf = ""
+        self.obj_start = -1
+        self.arr_start = -1
+        self.scan = 0
+        self.meta_emitted = False
+        self.array_ended = False
+        self.raw_index = 0
+
+    def feed(self, chunk):
+        events = []
+        if not chunk:
+            return events
+        self.buf += chunk
+
+        if self.arr_start < 0:
+            obj_start, key_pos, arr = _find_branches_array(self.buf)
+            if arr < 0:
+                return events
+            self.obj_start = obj_start
+            self.arr_start = arr
+            self.scan = arr + 1
+            if not self.meta_emitted:
+                self.meta_emitted = True
+                events.append(("meta", self._parse_head(key_pos), None))
+
+        if self.array_ended:
+            return events
+
+        while True:
+            kind, a, b = _next_complete_object(self.buf, self.scan)
+            if kind is None:
+                self.scan = a
+                break
+            if kind == "end":
+                self.scan = a + 1
+                self.array_ended = True
+                events.append(("branches_end", None, None))
+                break
+            self.scan = b + 1
+            try:
+                obj = json.loads(self.buf[a:b + 1])
+            except json.JSONDecodeError:
+                # 対応は取れたが JSON として不正(まず起きない)。この要素だけ捨てて先へ進む。
+                self.raw_index += 1
+                continue
+            idx = self.raw_index
+            self.raw_index += 1
+            events.append(("branch", obj, idx))
+        return events
+
+    def _parse_head(self, key_pos):
+        """"branches" キーより手前(= meta 部分)を単体のJSONとして解釈する。"""
+        blank = {"residual_ambiguity_assessment": "", "missing_materials": [], "partial": True}
+        if self.obj_start < 0 or key_pos <= self.obj_start:
+            return blank
+        head = self.buf[self.obj_start:key_pos].rstrip()
+        if head.endswith(","):
+            head = head[:-1]
+        try:
+            obj = json.loads(head + "}")
+        except json.JSONDecodeError:
+            return blank
+        if not isinstance(obj, dict) or "residual_ambiguity_assessment" not in obj:
+            return blank
+        mats = obj.get("missing_materials")
+        return {
+            "residual_ambiguity_assessment": (obj.get("residual_ambiguity_assessment")
+                                              if isinstance(obj.get("residual_ambiguity_assessment"), str) else ""),
+            "missing_materials": ([str(m) for m in mats if _nonempty_str(m)]
+                                  if isinstance(mats, list) else []),
+            "partial": False,
+        }
 
 
 # ========= claude CLI 実行器(実行枠プール付き) =========
@@ -434,10 +723,237 @@ class ClaudeRunner:
         rec["ok"] = True
         return rec
 
+    def run_stream(self, system_prompt, user_prompt, model, idle_s=1.0):
+        """claude -p を --output-format stream-json で起動し、逐次イベントを yield する生成器。
+
+        yield されるもの(いずれも2要素タプル):
+          ("text",   str)   モデル本文の増分(content_block_delta の text_delta)
+          ("idle",   None)  idle_s 秒何も来なかった(呼び出し側のハートビート用)
+          ("result", dict)  CLI の最終 result イベント(duration_api_ms 等)
+          ("error",  dict)  失敗。run() と同じ {error, hint, wall_ms, ...} 形式
+        最後は必ず ("result", …) か ("error", …) のどちらか1回で終わる。
+
+        run() と同じ拘束(cwd はリポジトリ外の実行枠 / --system-prompt で完全置換 /
+        --strict-mcp-config / --effort / stdin は使わない / user_prompt は "--" の後ろ)を保つ。
+        追加フラグは --output-format stream-json --include-partial-messages --verbose のみ。
+        (--verbose は -p + stream-json の組で CLI が要求する。)
+        """
+        rec = {"ok": False, "wall_ms": None, "api_ms": None, "duration_ms": None,
+               "result_text": None, "error": None, "hint": None, "exit_code": None}
+        wait_deadline = self.timeout_s + SLOT_WAIT_MARGIN_S
+        t_wait = time.monotonic()
+        try:
+            workdir = self.slots.get(timeout=wait_deadline)
+        except queue.Empty:
+            rec["wall_ms"] = round((time.monotonic() - t_wait) * 1000)
+            rec["error"] = "サーバが混雑している(同時実行 %d 枠がすべて埋まったまま %d 秒経過)" % (
+                self.max_concurrency, wait_deadline)
+            rec["hint"] = "少し待って再試行するか、--max-concurrency を上げて再起動する。"
+            yield ("error", rec)
+            return
+
+        cmd = [self.claude_bin,
+               "--system-prompt", system_prompt,
+               "--strict-mcp-config",
+               "--setting-sources", "project",
+               "--effort", self.effort,
+               "--model", model,
+               "--output-format", "stream-json", "--include-partial-messages", "--verbose",
+               "-p", "--", user_prompt]
+
+        t0 = time.monotonic()
+        proc = None
+        try:
+            try:
+                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                        text=True, bufsize=1, cwd=workdir,
+                                        stdin=subprocess.DEVNULL, env=self.env)
+            except FileNotFoundError:
+                rec["wall_ms"] = round((time.monotonic() - t0) * 1000)
+                rec["error"] = "claude コマンドが見つからない(%r)" % self.claude_bin
+                rec["hint"] = "Claude Code のインストールと PATH、または --claude-bin を確認する。"
+                yield ("error", rec)
+                return
+            except OSError as e:
+                rec["wall_ms"] = round((time.monotonic() - t0) * 1000)
+                rec["error"] = "claude の起動に失敗した: %s" % e
+                rec["hint"] = "実行権限とディスク空きを確認する。"
+                yield ("error", rec)
+                return
+
+            # stdout は行単位でキューへ。stderr は別スレッドで吸い出す(パイプ満杯によるデッドロック防止)。
+            q = queue.Queue()
+            errbuf = []
+
+            def pump_out():
+                try:
+                    for line in proc.stdout:
+                        q.put(("line", line))
+                except (ValueError, OSError):
+                    pass
+                q.put(("eof", None))
+
+            def pump_err():
+                try:
+                    for line in proc.stderr:
+                        if len(errbuf) < 40:
+                            errbuf.append(line)
+                except (ValueError, OSError):
+                    pass
+
+            t_out = threading.Thread(target=pump_out, daemon=True)
+            t_err = threading.Thread(target=pump_err, daemon=True)
+            t_out.start()
+            t_err.start()
+
+            cli_json = None
+            saw_eof = False
+            while not saw_eof:
+                if time.monotonic() - t0 > self.timeout_s:
+                    rec["wall_ms"] = round((time.monotonic() - t0) * 1000)
+                    rec["error"] = "claude 呼び出しがタイムアウトした(%d秒)" % self.timeout_s
+                    rec["hint"] = "ネットワークとモデル指定を確認し、再送する。--timeout で延長できる。"
+                    yield ("error", rec)
+                    return
+                try:
+                    kind, line = q.get(timeout=idle_s)
+                except queue.Empty:
+                    yield ("idle", None)
+                    continue
+                if kind == "eof":
+                    saw_eof = True
+                    break
+                line = (line or "").strip()
+                if not line:
+                    continue
+                try:
+                    ev = json.loads(line)
+                except json.JSONDecodeError:
+                    continue                      # CLI が出す非JSON行(まず無い)は捨てる
+                if not isinstance(ev, dict):
+                    continue
+                etype = ev.get("type")
+                if etype == "stream_event":
+                    inner = ev.get("event") or {}
+                    if inner.get("type") == "content_block_delta":
+                        delta = inner.get("delta") or {}
+                        if delta.get("type") == "text_delta":
+                            txt = delta.get("text")
+                            if isinstance(txt, str) and txt:
+                                yield ("text", txt)
+                elif etype == "result":
+                    cli_json = ev
+
+            proc.wait(timeout=5)
+            rec["wall_ms"] = round((time.monotonic() - t0) * 1000)
+            rec["exit_code"] = proc.returncode
+
+            if cli_json is None:
+                rec["error"] = "claude CLI が result イベントを返さなかった(exit=%s)" % proc.returncode
+                rec["hint"] = ("`claude -p \"ping\" --output-format json` を手で実行して CLI が正常か"
+                               "ログイン済みかを確認する。stderr: " + ("".join(errbuf))[:300])
+                yield ("error", rec)
+                return
+
+            rec["duration_ms"] = cli_json.get("duration_ms")
+            rec["api_ms"] = cli_json.get("duration_api_ms")
+            if proc.returncode != 0 or cli_json.get("is_error"):
+                rec["error"] = "claude CLI がエラーを返した(exit=%s, is_error=%s)" % (
+                    proc.returncode, cli_json.get("is_error"))
+                rec["hint"] = (str(cli_json.get("result"))[:300] if cli_json.get("result")
+                               else "Claude Code のログイン状態と利用上限を確認する。")
+                yield ("error", rec)
+                return
+
+            rec["result_text"] = cli_json.get("result")
+            rec["ok"] = True
+            yield ("result", rec)
+        except subprocess.TimeoutExpired:
+            rec["wall_ms"] = round((time.monotonic() - t0) * 1000)
+            rec["error"] = "claude の終了待ちがタイムアウトした"
+            rec["hint"] = "再送する。"
+            yield ("error", rec)
+        finally:
+            # 生成器が途中で閉じられた(クライアント切断)場合もここを通る。
+            if proc is not None and proc.poll() is None:
+                try:
+                    proc.kill()
+                except OSError:
+                    pass
+            if proc is not None:
+                for s in (proc.stdout, proc.stderr):
+                    try:
+                        if s:
+                            s.close()
+                    except OSError:
+                        pass
+            self.slots.put(workdir)
+
 
 # ========= 検証: 抽出結果(anchor 機械検証を含む) =========
 def _nonempty_str(v):
     return isinstance(v, str) and v.strip() != ""
+
+
+def validate_branch(brief_text, br, idx):
+    """分岐1件を検証・正規化する。(branch, None) か (None, 理由リスト) を返す。
+
+    /api/explode(一括)と /api/explode_stream(逐次)の両方がこの1実装だけを使う。
+    分岐単位で完結する検証しかここに置かない(上限5件の切り捨ては呼び出し側の責務)。
+    """
+    if not isinstance(br, dict):
+        return None, ["分岐がオブジェクトでない"]
+
+    reasons = []
+    qp = br.get("question_point")
+    if not _nonempty_str(qp):
+        reasons.append("question_point が空")
+
+    anchors_raw = br.get("anchor_words") if isinstance(br.get("anchor_words"), list) else []
+    anchors, bad_anchors = [], []
+    for a in anchors_raw:
+        s = a if isinstance(a, str) else str(a)
+        # 空文字・空白のみは常に部分一致してしまうため違反扱い(run.py と同基準)
+        if s.strip() == "" or (s not in brief_text):
+            bad_anchors.append(s)
+        else:
+            anchors.append(s)
+    if not anchors_raw:
+        reasons.append("anchor_words が空(原文根拠なし)")
+    if bad_anchors:
+        reasons.append("anchor_words が原文の連続部分文字列でない: " +
+                       " / ".join(repr(x)[:60] for x in bad_anchors[:3]))
+
+    # スリムスキーマ: option は label のみが必須。thumbnail_description /
+    # px200_rationale はスキーマから外したので、来ても要求しない(来たら捨てる)。
+    opts_raw = br.get("options") if isinstance(br.get("options"), list) else []
+    options = []
+    for op in opts_raw:
+        if isinstance(op, str):
+            # label だけを裸の文字列で返した場合の救済
+            if _nonempty_str(op):
+                options.append({"label": op.strip()})
+            continue
+        if not isinstance(op, dict):
+            continue
+        label = op.get("label")
+        if not _nonempty_str(label):
+            continue
+        options.append({"label": label.strip()})
+    if not (2 <= len(options) <= 3):
+        reasons.append("options が2〜3件でない(有効 %d 件)" % len(options))
+
+    if reasons:
+        return None, reasons
+
+    return {
+        "id": "b%d" % idx,
+        "question_point": qp.strip(),
+        "anchor_words": anchors,
+        "options": options,
+        "default_if_unresolved": (br.get("default_if_unresolved").strip()
+                                  if _nonempty_str(br.get("default_if_unresolved")) else "")
+    }, None
 
 
 def validate_extraction(brief_text, ex):
@@ -455,63 +971,14 @@ def validate_extraction(brief_text, ex):
     accepted, rejected = [], []
 
     for idx, br in enumerate(raw_branches):
-        reasons = []
-        if not isinstance(br, dict):
-            rejected.append({"index": idx, "question_point": "", "reasons": ["分岐がオブジェクトでない"]})
-            continue
-
-        qp = br.get("question_point")
-        if not _nonempty_str(qp):
-            reasons.append("question_point が空")
-
-        anchors_raw = br.get("anchor_words") if isinstance(br.get("anchor_words"), list) else []
-        anchors, bad_anchors = [], []
-        for a in anchors_raw:
-            s = a if isinstance(a, str) else str(a)
-            # 空文字・空白のみは常に部分一致してしまうため違反扱い(run.py と同基準)
-            if s.strip() == "" or (s not in brief_text):
-                bad_anchors.append(s)
-            else:
-                anchors.append(s)
-        if not anchors_raw:
-            reasons.append("anchor_words が空(原文根拠なし)")
-        if bad_anchors:
-            reasons.append("anchor_words が原文の連続部分文字列でない: " +
-                           " / ".join(repr(x)[:60] for x in bad_anchors[:3]))
-
-        # スリムスキーマ: option は label のみが必須。thumbnail_description /
-        # px200_rationale はスキーマから外したので、来ても要求しない(来たら捨てる)。
-        opts_raw = br.get("options") if isinstance(br.get("options"), list) else []
-        options = []
-        for op in opts_raw:
-            if isinstance(op, str):
-                # label だけを裸の文字列で返した場合の救済
-                if _nonempty_str(op):
-                    options.append({"label": op.strip()})
-                continue
-            if not isinstance(op, dict):
-                continue
-            label = op.get("label")
-            if not _nonempty_str(label):
-                continue
-            options.append({"label": label.strip()})
-        if not (2 <= len(options) <= 3):
-            reasons.append("options が2〜3件でない(有効 %d 件)" % len(options))
-
-        if reasons:
+        ok_branch, reasons = validate_branch(brief_text, br, idx)
+        if ok_branch is None:
+            qp = br.get("question_point") if isinstance(br, dict) else ""
             rejected.append({"index": idx,
                              "question_point": qp if isinstance(qp, str) else "",
                              "reasons": reasons})
             continue
-
-        accepted.append({
-            "id": "b%d" % idx,
-            "question_point": qp.strip(),
-            "anchor_words": anchors,
-            "options": options,
-            "default_if_unresolved": (br.get("default_if_unresolved").strip()
-                                      if _nonempty_str(br.get("default_if_unresolved")) else "")
-        })
+        accepted.append(ok_branch)
 
     # 影響の大きい順に並んでいる前提で先頭から最大5件(UI仕様: カードは最大5枚)
     if len(accepted) > MAX_BRANCHES:
@@ -657,13 +1124,20 @@ class SessionLog:
         self.path = path
         self.lock = threading.Lock()
 
-    def append(self, endpoint, model, wall_ms, api_ms, ok):
+    def append(self, endpoint, model, wall_ms, api_ms, ok, first_branch_ms=None):
+        """1リクエスト1行。first_branch_ms はストリーミング爆散のみ持つ
+
+        (送信から最初の分岐カードをクライアントへ送り出すまでのサーバ実測ms)。
+        収録動画のレイテンシ表示と突き合わせるための証拠列なので、
+        持たない経路では欠測を明示するために null を書く(キーは常に出す)。
+        """
         line = json.dumps({
             "ts": datetime.now(timezone.utc).isoformat(),
             "endpoint": endpoint,
             "model": model,
             "wall_ms": wall_ms,
             "api_ms": api_ms,
+            "first_branch_ms": first_branch_ms,
             "ok": bool(ok),
         }, ensure_ascii=False)
         try:
@@ -689,12 +1163,13 @@ class ServerState:
         ts = datetime.now().strftime("%Y%m%dT%H%M%S")
         self.log = SessionLog(LOGS_DIR / ("session_%s.jsonl" % ts))
         self.started_at = datetime.now(timezone.utc).isoformat()
-        self.counters = {"explode": 0, "render": 0, "compile": 0, "errors": 0}
+        self.counters = {"explode": 0, "explode_stream": 0, "render": 0, "compile": 0, "errors": 0}
         self.counter_lock = threading.Lock()
         # プロンプトは起動時に1回読む(存在しないものは None のまま。該当APIで説明的エラーを返す)
         self.prompts = {}
         self.prompt_errors = {}
         self._load_prompt("explode", EXTRACTION_PROMPT_PATH, build_extraction_system)
+        self._load_prompt("explode_stream", EXTRACTION_PROMPT_PATH, build_extraction_stream_system)
         self._load_prompt("render", RENDER_PROMPT_PATH, build_render_system)
         self._load_prompt("compile", COMPILE_PROMPT_PATH, build_compile_system)
 
@@ -776,6 +1251,163 @@ def handle_explode(body):
     out.update(payload)
     out["timing"] = timing
     return out, rec, model
+
+
+def handle_explode_stream(body, emit):
+    """/api/explode_stream の本体。確定したものから emit(dict) で逐次送り出す。
+
+    emit は1イベント分の dict を受け取り、SSE 1レコードとして書き出して flush する
+    (HTTP の詳細はハンドラ側。ここは「何をいつ送るか」だけを決める)。
+    emit が False を返したらクライアントが切断したとみなして打ち切る。
+
+    送るイベント:
+      {"type":"meta",   residual_ambiguity_assessment, missing_materials, partial, elapsed_ms}
+      {"type":"branch", index, branch:{...}, elapsed_ms}   ← 検証を通った分岐のみ
+      {"type":"done",   ok:true, branches, residual_ambiguity_assessment, missing_materials,
+                        rejected_branches, branches_returned_by_model, note?,
+                        timing:{wall_ms, api_ms}, api_ms, first_branch_ms}
+      {"type":"error",  error, hint, timing}
+
+    戻り値: (ok, model, wall_ms, api_ms, first_branch_ms) — アクセスログ/セッションログ用。
+    first_branch_ms は最初の分岐カードを送り出すまでのサーバ実測ms(1枚も出せなければ None)。
+    """
+    model = STATE.model
+    t0 = time.monotonic()
+    ms = lambda: round((time.monotonic() - t0) * 1000)
+    # 早期 return でもセッションログに欠測として書けるよう、最初に定義しておく。
+    first_branch_ms = None
+
+    brief = body.get("brief")
+    if not _nonempty_str(brief):
+        emit({"type": "error", "error": "brief が空である", "hint": "ブリーフ本文を1文以上入力する。"})
+        return False, model, ms(), None, first_branch_ms
+    system_prompt = STATE.prompts.get("explode_stream")
+    if system_prompt is None:
+        emit({"type": "error",
+              "error": STATE.prompt_errors.get("explode_stream", "抽出プロンプトが読めない"),
+              "hint": "prompts/extraction_product_v1.txt を確認してサーバを再起動する。"})
+        return False, model, ms(), None, first_branch_ms
+
+    parser = StreamingExtractionParser()
+    accepted, rejected = [], []
+    raw_seen = 0
+    meta_sent ={"residual_ambiguity_assessment": "", "missing_materials": []}
+    final_rec = None
+
+    def push_branch(obj, raw_idx):
+        """1分岐を検証し、通ったものだけを送る。戻り値: 送ったら True。"""
+        nonlocal first_branch_ms
+        br, reasons = validate_branch(brief, obj, raw_idx)
+        if br is None:
+            qp = obj.get("question_point") if isinstance(obj, dict) else ""
+            rejected.append({"index": raw_idx, "question_point": qp if isinstance(qp, str) else "",
+                             "reasons": reasons})
+            return True
+        if len(accepted) >= MAX_BRANCHES:
+            rejected.append({"index": raw_idx, "question_point": br["question_point"],
+                             "reasons": ["上限%d件を超過したため切り捨て" % MAX_BRANCHES]})
+            return True
+        accepted.append(br)
+        if first_branch_ms is None:
+            first_branch_ms = ms()
+        return emit({"type": "branch", "index": len(accepted) - 1, "branch": br,
+                     "elapsed_ms": ms()}) is not False
+
+    alive = True
+    # 生成器は必ず close する(finally)。途中で break したときに claude 子プロセスの
+    # 後始末(run_stream の finally)が走る時点を参照カウントに委ねない。
+    stream = STATE.runner.run_stream(system_prompt, brief, model)
+    try:
+        for kind, val in stream:
+            if kind == "idle":
+                # 生成中であることをコネクション上で示す(SSE コメント行。クライアントは無視する)
+                if emit(None) is False:
+                    alive = False
+                    break
+                continue
+            if kind == "text":
+                for ev_kind, obj, raw_idx in parser.feed(val):
+                    if ev_kind == "meta":
+                        meta_sent = {"residual_ambiguity_assessment": obj["residual_ambiguity_assessment"],
+                                     "missing_materials": obj["missing_materials"]}
+                        if emit({"type": "meta", "partial": obj["partial"],
+                                 "residual_ambiguity_assessment": obj["residual_ambiguity_assessment"],
+                                 "missing_materials": obj["missing_materials"],
+                                 "elapsed_ms": ms()}) is False:
+                            alive = False
+                            break
+                    elif ev_kind == "branch":
+                        raw_seen = max(raw_seen, raw_idx + 1)
+                        if not push_branch(obj, raw_idx):
+                            alive = False
+                            break
+                if not alive:
+                    break
+                continue
+            if kind == "error":
+                emit({"type": "error", "error": val["error"], "hint": val["hint"] or "",
+                      "timing": {"wall_ms": val["wall_ms"], "api_ms": val["api_ms"]}})
+                return False, model, val["wall_ms"] or ms(), val["api_ms"], first_branch_ms
+            if kind == "result":
+                final_rec = val
+    finally:
+        stream.close()
+
+    if not alive:
+        # クライアント切断。子プロセスは run_stream の finally で始末済み。
+        return False, model, ms(), (final_rec or {}).get("api_ms"), first_branch_ms
+
+    if final_rec is None:
+        emit({"type": "error", "error": "ストリームが result を返さずに終了した",
+              "hint": "同じブリーフでもう一度送信する。"})
+        return False, model, ms(), None, first_branch_ms
+
+    # 完了時に全文をもう一度厳密に解釈し、これを権威とする。
+    # 増分パーサが取りこぼした分岐(まず起きないが)を done の前に追送し、
+    # 「画面に出たカード」と「最終JSON」が必ず一致する状態にする。
+    payload = None
+    if isinstance(final_rec.get("result_text"), str):
+        ex, _why = extract_json_object(final_rec["result_text"],
+                                       lambda o: all(k in o for k in EXTRACTION_REQUIRED_TOP))
+        if ex is not None:
+            payload, _why2 = validate_extraction(brief, ex)
+
+    if payload is not None:
+        meta_sent = {"residual_ambiguity_assessment": payload["residual_ambiguity_assessment"],
+                     "missing_materials": payload["missing_materials"]}
+        raw_seen = max(raw_seen, payload["branches_returned_by_model"])
+        known = {b["id"] for b in accepted}
+        for br in payload["branches"]:
+            if br["id"] in known or len(accepted) >= MAX_BRANCHES:
+                continue
+            accepted.append(br)
+            if first_branch_ms is None:
+                first_branch_ms = ms()
+            if emit({"type": "branch", "index": len(accepted) - 1, "branch": br,
+                     "elapsed_ms": ms(), "late": True}) is False:
+                return False, model, ms(), final_rec.get("api_ms"), first_branch_ms
+        # 棄却理由は全文側のほうが完全(増分側は打ち切りで欠けうる)
+        if len(payload["rejected_branches"]) >= len(rejected):
+            rejected = payload["rejected_branches"]
+
+    out = {
+        "type": "done",
+        "ok": True,
+        "branches": accepted,
+        "residual_ambiguity_assessment": meta_sent["residual_ambiguity_assessment"],
+        "missing_materials": meta_sent["missing_materials"],
+        "rejected_branches": rejected,
+        "branches_returned_by_model": raw_seen,
+        "timing": {"wall_ms": final_rec["wall_ms"], "api_ms": final_rec["api_ms"]},
+        "api_ms": final_rec["api_ms"],
+        "first_branch_ms": first_branch_ms,
+        "elapsed_ms": ms(),
+    }
+    if not accepted:
+        out["note"] = ("判断点は抽出されなかった(モデル出力 %d 件 / 検証で棄却 %d 件)"
+                       % (raw_seen, len(rejected)))
+    emit(out)
+    return True, model, final_rec["wall_ms"], final_rec["api_ms"], first_branch_ms
 
 
 def handle_render(body):
@@ -1051,7 +1683,7 @@ class Handler(BaseHTTPRequestHandler):
             return
         if path.startswith("/api/"):
             self._send_json(err("GET は未対応のエンドポイントである(%s)" % path,
-                                "POST /api/explode | /api/render | /api/compile を使う。"))
+                                "POST /api/explode | /api/explode_stream | /api/render | /api/compile を使う。"))
             self._access("GET", path, 200, "unknown-api")
             return
         self._serve_static(path)
@@ -1105,6 +1737,15 @@ class Handler(BaseHTTPRequestHandler):
                              "403 forbidden (Content-Type)\n".encode("utf-8"))
             self._access("POST", path, 403, "bad-content-type")
             return
+        if path == "/api/explode_stream":
+            if berr:
+                self._send_json(err(berr, "Content-Type: application/json でJSONオブジェクトを送る。"))
+                STATE.bump("explode_stream", False)
+                self._access("POST", path, 200, "bad-request")
+                return
+            self._serve_explode_stream(path, body)
+            return
+
         route = ROUTES.get(path)
         if route is None:
             self._send_json(err("未対応のエンドポイントである(%s)" % path,
@@ -1135,6 +1776,69 @@ class Handler(BaseHTTPRequestHandler):
         self._send_json(out)
         self._access("POST", path, 200,
                      "%s wall=%sms api=%sms" % ("ok" if out.get("ok") else "NG", wall_ms, api_ms))
+
+
+    # --- SSE(POST /api/explode_stream) ---
+    def _serve_explode_stream(self, path, body):
+        """text/event-stream で逐次配信する。
+
+        Content-Length を付けられないので Connection: close で終端を示す
+        (BaseHTTPRequestHandler は chunked を自前で組む必要があり、close のほうが簡単で確実)。
+        X-Accel-Buffering: no はリバースプロキシ越しでも即時 flush させるための保険。
+        """
+        t_start = time.monotonic()
+        try:
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("X-Content-Type-Options", "nosniff")
+            self.send_header("X-Accel-Buffering", "no")
+            self.send_header("Connection", "close")
+            self.end_headers()
+            self.wfile.flush()
+        except (BrokenPipeError, ConnectionResetError, OSError):
+            self.close_connection = True
+            self._access("POST", path, 200, "sse client gone")
+            return
+        self.close_connection = True
+
+        broken = {"v": False}
+
+        def emit(obj):
+            """1イベントを書き出して即 flush。obj が None ならハートビート(SSEコメント)。
+            クライアント切断時は False を返す(以後の送信は行わない)。"""
+            if broken["v"]:
+                return False
+            if obj is None:
+                data = b": keepalive\n\n"
+            else:
+                data = ("data: " + json.dumps(obj, ensure_ascii=False) + "\n\n").encode("utf-8")
+            try:
+                self.wfile.write(data)
+                self.wfile.flush()
+                return True
+            except (BrokenPipeError, ConnectionResetError, OSError):
+                broken["v"] = True
+                return False
+
+        ok, model, wall_ms, api_ms, first_branch_ms = False, "-", None, None, None
+        try:
+            ok, model, wall_ms, api_ms, first_branch_ms = handle_explode_stream(body, emit)
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            emit({"type": "error", "error": "サーバ内部エラー: %s: %s" % (type(e).__name__, e),
+                  "hint": "サーバの標準出力を確認する。"})
+            wall_ms = round((time.monotonic() - t_start) * 1000)
+
+        if wall_ms is None:
+            wall_ms = round((time.monotonic() - t_start) * 1000)
+        STATE.log.append(path, model, wall_ms, api_ms, bool(ok), first_branch_ms=first_branch_ms)
+        STATE.bump("explode_stream", bool(ok))
+        self._access("POST", path, 200,
+                     "%s wall=%sms api=%sms first_branch=%sms%s" % (
+                         "ok" if ok else "NG", wall_ms, api_ms, first_branch_ms,
+                         " client-gone" if broken["v"] else ""))
 
 
 class Server(ThreadingHTTPServer):

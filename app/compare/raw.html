@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈会社名〉| 公式サイト</title>
+<style>
+  :root{
+    --bg:#fdf8f2; --warm:#ff8a5c; --warm-dark:#e8672f; --ink:#3a2e28; --sub:#7a6a60; --card:#ffffff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; color:var(--ink); background:var(--bg); line-height:1.8;}
+  a{text-decoration:none; color:inherit;}
+  .wrap{max-width:960px; margin:0 auto; padding:0 24px;}
+
+  header.hero{
+    background:linear-gradient(135deg,#ffb88c 0%,#ff8a5c 45%,#e8672f 100%);
+    color:#fff; padding:110px 0 100px; text-align:center; position:relative; overflow:hidden;
+  }
+  header.hero::before{
+    content:""; position:absolute; width:500px; height:500px; border-radius:50%;
+    background:rgba(255,255,255,0.12); top:-220px; right:-150px;
+  }
+  header.hero::after{
+    content:""; position:absolute; width:300px; height:300px; border-radius:50%;
+    background:rgba(255,255,255,0.1); bottom:-150px; left:-100px;
+  }
+  .hero h1{font-size:2.6rem; font-weight:800; margin-bottom:18px; position:relative;}
+  .hero p{font-size:1.1rem; opacity:.95; margin-bottom:36px; position:relative;}
+  .btn{
+    display:inline-block; background:#fff; color:var(--warm-dark); font-weight:700;
+    padding:16px 42px; border-radius:50px; box-shadow:0 8px 20px rgba(0,0,0,.15);
+    transition:transform .2s; position:relative;
+  }
+  .btn:hover{transform:translateY(-3px);}
+
+  section{padding:80px 0;}
+  .section-title{font-size:1.8rem; font-weight:800; text-align:center; margin-bottom:16px;}
+  .section-sub{text-align:center; color:var(--sub); margin-bottom:50px;}
+
+  .value{background:#fff;}
+  .value .box{
+    background:linear-gradient(145deg,#fff5ec,#ffe8d6); border-radius:24px; padding:50px;
+    text-align:center; font-size:1.15rem; color:var(--ink); font-weight:600;
+  }
+
+  .features{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .feature-card{
+    background:var(--card); border-radius:20px; padding:36px 24px; text-align:center;
+    box-shadow:0 6px 20px rgba(120,90,60,.08); transition:transform .2s;
+  }
+  .feature-card:hover{transform:translateY(-6px);}
+  .feature-icon{
+    width:64px; height:64px; margin:0 auto 20px; border-radius:50%;
+    background:linear-gradient(135deg,var(--warm),var(--warm-dark));
+    display:flex; align-items:center; justify-content:center; font-size:28px; color:#fff;
+  }
+  .feature-card h3{font-size:1.1rem; margin-bottom:10px;}
+  .feature-card p{color:var(--sub); font-size:.95rem;}
+
+  .about{background:linear-gradient(180deg,#fff8f2,#fdf1e6);}
+  .about-inner{
+    background:#fff; border-radius:24px; padding:50px; box-shadow:0 6px 24px rgba(120,90,60,.06);
+  }
+  .about h2{font-size:1.6rem; margin-bottom:20px;}
+  .about p{color:var(--sub);}
+  .about dl{margin-top:30px; display:grid; grid-template-columns:120px 1fr; row-gap:14px;}
+  .about dt{font-weight:700; color:var(--warm-dark);}
+  .about dd{color:var(--sub);}
+
+  .cta{
+    text-align:center; background:linear-gradient(135deg,#ff8a5c,#e8672f); color:#fff; border-radius:28px;
+    padding:64px 32px; margin:0 24px;
+  }
+  .cta h2{font-size:1.8rem; margin-bottom:14px;}
+  .cta p{opacity:.95; margin-bottom:32px;}
+
+  footer{padding:40px 0; text-align:center; color:var(--sub); font-size:.85rem;}
+
+  @media (max-width:720px){
+    .features{grid-template-columns:1fr;}
+    .about dl{grid-template-columns:1fr;}
+    .hero h1{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>〈会社名〉</h1>
+    <p>あたたかさとテクノロジーで、あなたの毎日をちょっと豊かに。</p>
+    <a href="#contact" class="btn">お問い合わせはこちら</a>
+  </div>
+</header>
+
+<section class="value">
+  <div class="wrap">
+    <h2 class="section-title">私たちが大切にしていること</h2>
+    <p class="section-sub">〈提供する価値・コンセプトをここに記載してください〉</p>
+    <div class="box">
+      〈キャッチコピーや提供価値の説明文をここに入れてください〉
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title">3つの特徴</h2>
+    <p class="section-sub">選ばれる理由</p>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🌱</div>
+        <h3>〈特徴1のタイトル〉</h3>
+        <p>〈特徴1の説明文をここに入れてください〉</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>〈特徴2のタイトル〉</h3>
+        <p>〈特徴2の説明文をここに入れてください〉</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>〈特徴3のタイトル〉</h3>
+        <p>〈特徴3の説明文をここに入れてください〉</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <div class="about-inner">
+      <h2>会社について</h2>
+      <p>〈会社の紹介文・ミッションなどをここに入れてください〉</p>
+      <dl>
+        <dt>会社名</dt><dd>〈会社名〉</dd>
+        <dt>所在地</dt><dd>〈所在地〉</dd>
+        <dt>設立</dt><dd>〈設立年〉</dd>
+        <dt>事業内容</dt><dd>〈事業内容〉</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta">
+      <h2>まずはお気軽にご相談ください</h2>
+      <p>〈CTA訴求文をここに入れてください〉</p>
+      <a href="#" class="btn">お問い合わせ・資料請求</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; 2026 〈会社名〉All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+{"ts": "2026-07-29T07:51:44.576412+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 11210, "api_ms": 9909, "ok": true}
+{"ts": "2026-07-29T07:51:54.727563+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 10035, "api_ms": 10747, "ok": true}
+{"ts": "2026-07-29T07:52:00.152546+00:00", "endpoint": "/api/explode_stream", "model": "sonnet", "wall_ms": 15463, "api_ms": 14105, "ok": true}
