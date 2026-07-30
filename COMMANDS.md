@@ -30,7 +30,7 @@ git commit -m "resolved: レイテンシ計測 → クライアント側JSON収�
 ## 3. GitHub リポジトリ作成(private)
 
 ```sh
-gh repo create gyakumon-merge2026 --private --source=. --push
+gh repo create gyakumon-merge2026(当時。現名 unprompt-merge2026) --private --source=. --push
 ```
 
 ## 4. キラーテスト実行(主経路: ヘッドレスCLI)

@@ -10,7 +10,7 @@ flowchart LR
 ## 60秒で試す
 
 ```sh
-git clone https://github.com/Driedsandwich/gyakumon-merge2026.git
+git clone https://github.com/Driedsandwich/unprompt-merge2026.git
 cd gyakumon-merge2026
 python3 server.py        # → http://127.0.0.1:8321/
 ```
