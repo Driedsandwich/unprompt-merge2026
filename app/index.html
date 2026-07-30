@@ -1,6 +1,7 @@
 <!doctype html>
 <!--
-  GYAKUMON — Intent Compiler / 製品UI (app/index.html)
+  Unprompt — Intent Compiler / 製品UI (app/index.html)
+  (対外名は Unprompt。内部コードネーム/リポジトリ名は GYAKUMON のまま——docs/DISCLOSURE.md #19)
 
   配信: server.py が本ディレクトリを / で配信する。
       python3 server.py  →  http://127.0.0.1:8765/
@@ -42,7 +43,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GYAKUMON — Intent Compiler</title>
+<title>Unprompt — Intent Compiler</title>
 <!-- favicon への外部リクエスト(404)を止める。外部依存ゼロを保つための空データURI。 -->
 <link rel="icon" href="data:,">
 <!-- 表示テーマの確定(FOUC防止)。CSS より前に <html data-theme> を決め切る。
@@ -181,14 +182,21 @@
   /* ロックアップ(左上に小さく・全画面共通)
      クリックでトップへ帰る唯一の常設口。地の部分は pointer-events:none のまま置き、
      押せるのは文字そのものだけにする(見えない当たり判定を画面に広げない)。
-     ホバーは墨をわずかに濃くするだけ。朱も藍も使わない
-     ——ここは判断の状態を語らないので、意味を担う3色に触らせない。 */
+     ホバーは墨をわずかに濃くするだけ。
+     ワードマーク「Unprompt」だけは例外的に朱と藍で塗り分ける(2026-07-30 改名)。
+     Un = 朱(未決)/ prompt = 藍(確定)。名そのものが本製品の色彩語法を演じる。
+     「— Intent Compiler」は従来どおり鼠のまま——ここは判断の状態を語らない。
+     --shu / --ai はテーマ変数なので暗所でも自動で明度が上がる(:root[data-theme="dark"])。 */
   #lockup{
     position:fixed; top:18px; left:22px; z-index:7;
     font-size:10.5px; letter-spacing:.14em; color:var(--muted);
     text-transform:none; pointer-events:none;
   }
   #lockup b{font-weight:600; color:var(--ink-soft); letter-spacing:.16em}
+  /* 二色のワードマーク。字間・太さは b のまま継承し、色だけを差し替える
+     (改名前と同じ寸法を保つため、font-size も letter-spacing も触らない)。 */
+  #lockup b .wm-un{color:var(--shu)}
+  #lockup b .wm-prompt{color:var(--ai)}
   #lockupHome{
     pointer-events:auto; display:block; text-align:left;
     background:transparent; border:0; border-radius:0; padding:0;
@@ -922,7 +930,7 @@
      押せばトップへ帰る。初期画面と指示書完成後は即座に。
      爆散後〜未コンパイルの最中だけ、直下に確認帯を1行出す(モーダルは使わない)。 -->
 <div id="lockup">
-  <button id="lockupHome" type="button" title="最初の画面へ戻る"><b>GYAKUMON</b> — Intent Compiler</button>
+  <button id="lockupHome" type="button" title="最初の画面へ戻る"><b><span class="wm-un">Un</span><span class="wm-prompt">prompt</span></b> — Intent Compiler</button>
   <div id="homeConfirm" hidden>
     <span>最初からやり直しますか?</span>
     <button id="homeConfirmYes" type="button">やり直す</button>
@@ -982,7 +990,7 @@
   <div id="promptBox">
     <textarea id="briefInput" rows="1" placeholder="つくってほしいものを、曖昧なまま一文で。" autocomplete="off" spellcheck="false"></textarea>
     <div class="prompt-foot">
-      <p id="promptNote">GYAKUMONは生成しません。あなたの意図を問い返します。</p>
+      <p id="promptNote">Unpromptは生成しません。あなたの意図を問い返します。</p>
       <button id="btnSend" type="button" disabled>問い返させる</button>
     </div>
     <!-- 射程の一行。文章系専用と読まれないための断り。主文(promptNote)より一段静かに置く。 -->
@@ -3604,7 +3612,7 @@ function buildMarkdown(){
   L.push('');
   L.push('---');
   L.push('');
-  L.push('この指示書は、上の1文と ' + S.branches.length + ' 回の選択だけから GYAKUMON が機械的に組み立てた。');
+  L.push('この指示書は、上の1文と ' + S.branches.length + ' 回の選択だけから Unprompt が機械的に組み立てた。');
   L.push('本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。');
   if (S.compileError) L.push('注: 意図の生成に失敗した(' + S.compileError + ')。本文は選択だけから組み立てられている。');
   return L.join('\n');
@@ -3612,7 +3620,7 @@ function buildMarkdown(){
 
 function buildJSON(){
   const obj = {
-    format: 'gyakumon.compiled_brief.v0',
+    format: 'unprompt.compiled_brief.v0',
     source_brief: S.brief,
     compiled_at: S.compiledAtIso || new Date().toISOString(),
     evidence: {

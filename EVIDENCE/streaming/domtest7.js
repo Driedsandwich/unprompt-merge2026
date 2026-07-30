@@ -1,6 +1,6 @@
 // 2026-07-30 追加の2機能を機械で押さえる(domtest2/5/6 と同型の最小 DOM シム)。
 //
-//   A) ロックアップ(左上「GYAKUMON — Intent Compiler」)のクリックでトップへ帰る
+//   A) ロックアップ(左上「Unprompt — Intent Compiler」)のクリックでトップへ帰る
 //      A-1 初期画面(未送信)  → 確認帯を出さずに即帰還(状態は再読込で全て捨てる)
 //      A-2 進行中(爆散後〜未コンパイル)→ 即帰らない。直下に確認帯が出る(モーダルではない)
 //      A-3 [続ける] で確認帯だけが畳まれる(帰らない・選択は1つも壊れない)
@@ -237,7 +237,17 @@ async function runToDone(){
   const lockupBlock = html.slice(html.indexOf('<div id="lockup">'),
                                  html.indexOf('<!-- ============ (a) 初期画面'));
   chk('ロックアップはボタンである(キーボードでも押せる)',
-      /<button id="lockupHome" type="button"[^>]*><b>GYAKUMON<\/b> — Intent Compiler<\/button>/.test(lockupBlock));
+      /<button id="lockupHome" type="button"[^>]*><b><span class="wm-un">Un<\/span><span class="wm-prompt">prompt<\/span><\/b> — Intent Compiler<\/button>/.test(lockupBlock));
+  // 改名(2026-07-30)。ワードマークは Un=朱(未決)/ prompt=藍(確定)の塗り分けで、
+  // 名そのものが製品の色彩語法を演じる。両色はテーマ変数なので暗所でも自動追随する。
+  chk('ワードマークは Un=朱・prompt=藍で塗り分けられている',
+      /#lockup b \.wm-un\{color:var\(--shu\)\}/.test(html) &&
+      /#lockup b \.wm-prompt\{color:var\(--ai\)\}/.test(html));
+  chk('タブと本文の製品名が Unprompt に揃っている(旧称 GYAKUMON は利用者向け面に残らない)',
+      html.indexOf('<title>Unprompt — Intent Compiler</title>') >= 0 &&
+      html.indexOf('<p id="promptNote">Unpromptは生成しません。あなたの意図を問い返します。</p>') >= 0 &&
+      html.indexOf('回の選択だけから Unprompt が機械的に組み立てた。') >= 0 &&
+      html.indexOf("format: 'unprompt.compiled_brief.v0'") >= 0);
   chk('確認帯はロックアップの直下(同じ #lockup の中)',
       lockupBlock.indexOf('id="lockupHome"') < lockupBlock.indexOf('id="homeConfirm"') &&
       /<div id="homeConfirm"[^>]*>[\s\S]*?id="homeConfirmYes"[\s\S]*?id="homeConfirmNo"[\s\S]*?<\/div>/.test(lockupBlock));
@@ -248,14 +258,24 @@ async function runToDone(){
       /<button id="homeConfirmNo" type="button">続ける<\/button>/.test(lockupBlock));
   chk('モーダルではない(覆いも固定配置も持たない)',
       !/#homeConfirm\{[^}]*position:fixed/.test(html) && html.indexOf('homeConfirmBackdrop') < 0);
-  // ロックアップ一式の CSS を切り出し、朱と藍が1度も出ないことを見る
+  // ロックアップ一式の CSS を切り出す。
+  // 改名(2026-07-30)でワードマークだけが朱・藍を持つようになったので、
+  // 「朱藍が1度も出ない」から「朱藍が出るのはワードマークの2規則だけ」へ条件を締め直す。
+  // ホバー・確認帯・当たり判定は従来どおり無彩色のままであることを見る(緩めではなく限定)。
   const lockCss = (() => {
     const i0 = html.indexOf('#lockup{');
     const i1 = html.indexOf('#homeConfirm button:hover{');
     return (i0 < 0 || i1 < i0) ? '' : html.slice(i0, html.indexOf('}', i1) + 1);
   })();
-  chk('ホバーは控えめ(朱・藍を使わない)', lockCss.length > 500 && !/--shu|--ai\b/.test(lockCss),
-      'css=' + lockCss.length + '字');
+  const lockCssNoWordmark = lockCss
+    .replace('#lockup b .wm-un{color:var(--shu)}', '')
+    .replace('#lockup b .wm-prompt{color:var(--ai)}', '');
+  chk('朱・藍を使うのはワードマークの2規則だけ(ホバーと確認帯は無彩色のまま)',
+      lockCss.length > 500 &&
+      /#lockup b \.wm-un\{color:var\(--shu\)\}/.test(lockCss) &&
+      /#lockup b \.wm-prompt\{color:var\(--ai\)\}/.test(lockCss) &&
+      !/--shu|--ai\b/.test(lockCssNoWordmark),
+      'css=' + lockCss.length + '字 / ワードマーク除去後=' + lockCssNoWordmark.length + '字');
   chk('当たり判定は文字だけ(地は pointer-events:none のまま)',
       /#lockup\{[^}]*pointer-events:none/.test(html) &&
       /#lockupHome\{[^}]*pointer-events:auto/.test(html));

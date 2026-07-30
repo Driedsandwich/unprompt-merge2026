@@ -61,7 +61,7 @@ python3 -m http.server 8000
 codex "outputs/dev/gyakumon/killer_test/index.html を読み、APIキーがsessionStorage以外に保存・送信されていないこと、fetch先が api.anthropic.com と相対パス2件のみであることを監査せよ"
 ```
 
-## 7. GYAKUMON 本体(Intent Compiler)の起動
+## 7. Unprompt 本体(Intent Compiler。旧称 GYAKUMON)の起動
 
 Claude Code サブスクリプションのヘッドレスCLI(`claude -p`)を使う。Anthropic APIキーは不要(claude CLI にログイン済みであること)。
 

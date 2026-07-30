@@ -1,4 +1,6 @@
-# GYAKUMON — Intent Compiler
+# Unprompt — Intent Compiler
+
+旧称/コードネーム: GYAKUMON(逆問)。対外名は Unprompt、リポジトリ/ディレクトリ名 `gyakumon/` と審議記録・機械マーカーは旧称のまま(二層命名。docs/DISCLOSURE.md #19)。
 
 曖昧な制作ブリーフを「後戻りコストの高い判断点(分岐)」に逆コンパイルし、選択肢つきで発注者に問い返すインテント・コンパイラ。
 
@@ -69,7 +71,7 @@ python3 -m http.server 8000
 
 ---
 
-## GYAKUMON 本体(Intent Compiler)
+## Unprompt 本体(Intent Compiler)
 
 曖昧ブリーフを送信すると、生成の代わりに文が判断点カードへ爆散し、帰結を選ぶだけで意図が明示ブリーフへコンパイルされる。killer_test/ が抽出品質の検証装置だったのに対し、こちらが製品本体。
 

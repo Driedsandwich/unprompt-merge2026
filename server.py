@@ -2331,7 +2331,7 @@ class Handler(BaseHTTPRequestHandler):
             target = target / "index.html"
         if not target.is_file():
             if rel in ("index.html", ""):
-                msg = ("GYAKUMON server は起動しているが app/index.html が存在しない。\n"
+                msg = ("Unprompt server は起動しているが app/index.html が存在しない。\n"
                        "期待するパス: %s\n" % (APP_DIR / "index.html"))
                 self._send_bytes(503, "text/plain; charset=utf-8", msg.encode("utf-8"))
                 self._access("GET", path, 503, "app-missing")
@@ -2493,7 +2493,7 @@ class Server(ThreadingHTTPServer):
 # ========= main =========
 def main():
     global STATE
-    ap = argparse.ArgumentParser(description="GYAKUMON ローカルサーバ(claude CLI ヘッドレス)")
+    ap = argparse.ArgumentParser(description="Unprompt ローカルサーバ(claude CLI ヘッドレス。旧称/コードネーム: GYAKUMON)")
     ap.add_argument("--port", type=int, default=DEFAULT_PORT, help="待受ポート(既定: %d)" % DEFAULT_PORT)
     ap.add_argument("--host", default=DEFAULT_HOST, help="待受アドレス(既定: 127.0.0.1。localhost以外は非推奨)")
     ap.add_argument("--model", default=DEFAULT_MODEL, help="/api/explode と /api/compile のモデル(既定: sonnet)")
@@ -2527,7 +2527,7 @@ def main():
 
     url = "http://%s:%d/" % ("127.0.0.1" if args.host in ("0.0.0.0", "") else args.host, args.port)
     print("")
-    print("  GYAKUMON — Intent Compiler")
+    print("  Unprompt — Intent Compiler")
     print("  ブラウザで開く: %s" % url)
     print("")
     print("  モデル: explode/compile=%s, render=%s" % (STATE.model, STATE.render_model)

@@ -1,5 +1,7 @@
 # GYAKUMON ARCHITECTURE(Day1 キラーテスト・ハーネス)
 
+旧称/コードネーム: GYAKUMON(逆問)= 現 Unprompt。本書は Day1 の歴史的装置の記録として旧称のまま残す(2026-07-30 改名、docs/DISCLOSURE.md #19)。
+
 ## 方針(拘束)
 
 - **ビルドレス・サーバレス**: npm / Node / バンドラ禁止。バニラJS。`killer_test/index.html` 単一ファイルにインライン script。

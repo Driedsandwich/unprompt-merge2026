@@ -15,8 +15,8 @@
 
 | 位置 | 文言 | 出現条件 |
 |---|---|---|
-| ブラウザのタブ | `GYAKUMON — Intent Compiler` | 常時 |
-| 左上 | `GYAKUMON — Intent Compiler` | 常時 |
+| ブラウザのタブ | `Unprompt — Intent Compiler` | 常時 |
+| 左上 | `Unprompt — Intent Compiler`(`Un` は朱・`prompt` は藍で塗り分け) | 常時 |
 
 ---
 
@@ -25,7 +25,7 @@
 | 位置 | 文言 | 出現条件 |
 |---|---|---|
 | 入力欄の薄い文字 | `つくってほしいものを、曖昧なまま一文で。` | 入力欄が空のあいだ |
-| 入力欄の下・左 | `GYAKUMONは生成しません。あなたの意図を問い返します。` | 常時 |
+| 入力欄の下・左 | `Unpromptは生成しません。あなたの意図を問い返します。` | 常時 |
 | 同上の下(射程の一行) | `LPも、メールも、画像も、動画も。どのAIに頼むときも、最初の一文から。` | 常時 |
 | 入力欄の下・右(ボタン) | `問い返させる` | 常時(入力が空のあいだは押せない) |
 | 例の行・先頭 | `例:` | 常時 |
@@ -271,7 +271,7 @@
 
 ---
 
-この指示書は、上の1文と 〈N〉 回の選択だけから GYAKUMON が機械的に組み立てた。
+この指示書は、上の1文と 〈N〉 回の選択だけから Unprompt が機械的に組み立てた。
 本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。
 ```
 
@@ -291,7 +291,7 @@ JSON の上に、このタブを開いているあいだだけ1行の断りが�
 
 JSON がそのまま出る。画面に見える見出し語(キー名)は次のとおり。
 
-`format`(値は `gyakumon.compiled_brief.v0`) / `source_brief` / `compiled_at` /
+`format`(値は `unprompt.compiled_brief.v0`) / `source_brief` / `compiled_at` /
 `evidence`(`typed_characters_after_brief` `choice_count` `extraction_silence_ms`
 `extraction_all_branches_ms` `extraction_streamed` `extraction_recovery` `extraction_timing`
 `compile_wall_ms` `compile_timing` `rationale_error`) /
