@@ -1,0 +1,98 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "新商品のキービジュアルを画像生成AIで作りたい。高級感があって、思わず目を引く感じで。",
+ "compiled_at": "2026-07-30T07:01:17.255740+00:00",
+ "decisions": [
+  {
+   "question_point": "想定読者・購入検討層",
+   "anchor_words": [
+    "新商品のキービジュアル"
+   ],
+   "status": "decided",
+   "chosen_label": "ギフト検討者向け",
+   "visual_tokens": {
+    "palette": [
+     "#1c1712",
+     "#8a6d3b",
+     "#d4b26a"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "大切な人へ贈る、新商品という特別な一品。"
+   },
+   "tone_example": null,
+   "intent": "新商品のキービジュアルという文言だけでは訴求対象が不定だったが、ギフト検討者向けと定めたことで表現の優先順位が贈答文脈に一意に定まる。"
+  },
+  {
+   "question_point": "高級感の方向性",
+   "anchor_words": [
+    "高級感があって"
+   ],
+   "status": "decided",
+   "chosen_label": "重厚・クラシック",
+   "visual_tokens": {
+    "palette": [
+     "#1c140d",
+     "#5c3a21",
+     "#b8925a"
+    ],
+    "heading_font": "serif",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "新商品、荘厳なる継承。重厚な質感が語る本物の格式。"
+   },
+   "tone_example": null,
+   "intent": "高級感があってという表現は複数解釈を許すが、重厚・クラシックと確定させたことで色調や質感表現の方向が一意に定まる。"
+  },
+  {
+   "question_point": "目を引く手法",
+   "anchor_words": [
+    "思わず目を引く感じで"
+   ],
+   "status": "decided",
+   "chosen_label": "世界観・情景演出",
+   "visual_tokens": {
+    "palette": [
+     "#14100c",
+     "#4a3826",
+     "#a9812f"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "夜霧の向こう、新商品が静かに佇む刹那。"
+   },
+   "tone_example": null,
+   "intent": "思わず目を引く感じでという曖昧な要望に対し、世界観・情景演出を選んだことで背景や演出要素の作り込み方針が一意に定まる。"
+  },
+  {
+   "question_point": "商品構図・主役の見せ方",
+   "anchor_words": [
+    "キービジュアル"
+   ],
+   "status": "decided",
+   "chosen_label": "人物と共に提示",
+   "visual_tokens": {
+    "palette": [
+     "#161311",
+     "#8a6a4f",
+     "#d8b877"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "新商品と佇む者、選ばれし高級の証。"
+   },
+   "tone_example": null,
+   "intent": "キービジュアルの構図は複数通り考えられたが、人物と共に提示すると確定したことで撮影・生成時の主役配置が一意に定まる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "目的語(高級感・訴求方法)は日常語のみで、読者・方向性・構図が未指定なため分岐が複数残る。",
+ "missing_materials": [
+  "新商品の名称・カテゴリ",
+  "商品の実写真または3Dデータ",
+  "ブランドカラー・ロゴ素材",
+  "使用予定媒体・サイズ仕様"
+ ]
+}

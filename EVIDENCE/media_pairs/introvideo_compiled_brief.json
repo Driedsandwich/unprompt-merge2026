@@ -1,0 +1,115 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "会社紹介の30秒動画をAIでつくりたい。テンポよく、若い人にも刺さるように。",
+ "compiled_at": "2026-07-30T07:11:34.555974+00:00",
+ "decisions": [
+  {
+   "question_point": "視聴ターゲット層の解像度",
+   "anchor_words": [
+    "若い人にも刺さるように"
+   ],
+   "status": "decided",
+   "chosen_label": "就活/求職中の若者",
+   "visual_tokens": {
+    "palette": [
+     "#0b1f3a",
+     "#1e3a8a",
+     "#f5c242"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "sharp",
+    "tone_sample": "新卒採用中、30秒でわかる私たちの仕事"
+   },
+   "intent": "「若い人にも刺さるように」は多義的だが対象を就活/求職中の若者に絞ることで訴求文脈と情報設計が一意に定まる"
+  },
+  {
+   "question_point": "動画の使用目的・掲載先",
+   "anchor_words": [
+    "会社紹介の30秒動画"
+   ],
+   "status": "decided",
+   "chosen_label": "採用ブランディング",
+   "visual_tokens": {
+    "palette": [
+     "#1c2b39",
+     "#3a5b73",
+     "#c9a24b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "会社紹介、ここで働く理由。若手が描く30秒のキャリア。"
+   },
+   "intent": "「会社紹介の30秒動画」の用途は複数想定できるが採用ブランディングと定めたことで構成・訴求先が下流で一意に決まる"
+  },
+  {
+   "question_point": "「テンポよく」の意味",
+   "anchor_words": [
+    "テンポよく"
+   ],
+   "status": "decided",
+   "chosen_label": "情報量を絞り余白重視",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#8c8577",
+     "#2e2a24"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "会社紹介、静かに伝える。言葉を減らし、間で魅せる。"
+   },
+   "intent": "「テンポよく」は解釈が割れる語だが情報量を絞り余白を重視する方針としたことで編集リズムと尺配分が確定する"
+  },
+  {
+   "question_point": "訴求の中心軸",
+   "anchor_words": [
+    "会社紹介"
+   ],
+   "status": "decided",
+   "chosen_label": "社員/カルチャー訴求",
+   "visual_tokens": {
+    "palette": [
+     "#1c1917",
+     "#f2545b",
+     "#ffd23f"
+    ],
+    "heading_font": "rounded",
+    "density": "dense",
+    "corner": "soft",
+    "tone_sample": "会社紹介動画、社員のリアルな一日でテンポよく見せます"
+   },
+   "intent": "「会社紹介」の切り口は複数あり得るが社員/カルチャー訴求を軸にしたことで題材選定と画作りの方向が一意に定まる"
+  },
+  {
+   "question_point": "「刺さる」トーン・世界観",
+   "anchor_words": [
+    "若い人にも刺さるように"
+   ],
+   "status": "decided",
+   "chosen_label": "エモーショナル/共感型",
+   "visual_tokens": {
+    "palette": [
+     "#2a1a1e",
+     "#c6483f",
+     "#f2b6a0"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "会社紹介、あの日の想いから。届け、私たちの物語。"
+   },
+   "intent": "「刺さる」の解釈は幅広いがエモーショナル/共感型と定めたことで演出トーンや音楽選定の方向性が確定する"
+  }
+ ],
+ "residual_ambiguity_assessment": "目的・対象・トーン・構成が未指定で、方向性を左右する判断点が複数残っている。",
+ "missing_materials": [
+  "会社のロゴ・ブランドカラー",
+  "事業内容・実績の具体情報",
+  "使用可能な素材映像・写真",
+  "ナレーションの有無",
+  "BGM/音源の希望"
+ ]
+}
