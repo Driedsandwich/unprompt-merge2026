@@ -1,0 +1,101 @@
+{
+  "payload": {
+    "branches": [
+      {
+        "id": "b0",
+        "question_point": "想定読者・購入検討層",
+        "anchor_words": [
+          "新商品のキービジュアル"
+        ],
+        "options": [
+          {
+            "label": "新規層への訴求"
+          },
+          {
+            "label": "既存ファン向け"
+          },
+          {
+            "label": "ギフト検討者向け"
+          }
+        ],
+        "default_if_unresolved": "新規層向けの一般的な高級感で進める"
+      },
+      {
+        "id": "b1",
+        "question_point": "高級感の方向性",
+        "anchor_words": [
+          "高級感があって"
+        ],
+        "options": [
+          {
+            "label": "ミニマル・静謐"
+          },
+          {
+            "label": "重厚・クラシック"
+          },
+          {
+            "label": "モダン・先進的"
+          }
+        ],
+        "default_if_unresolved": "ミニマル・静謐な高級感で進める"
+      },
+      {
+        "id": "b2",
+        "question_point": "目を引く手法",
+        "anchor_words": [
+          "思わず目を引く感じで"
+        ],
+        "options": [
+          {
+            "label": "大胆な色彩対比"
+          },
+          {
+            "label": "商品クローズアップ"
+          },
+          {
+            "label": "世界観・情景演出"
+          }
+        ],
+        "default_if_unresolved": "商品クローズアップで目を引かせる"
+      },
+      {
+        "id": "b3",
+        "question_point": "商品構図・主役の見せ方",
+        "anchor_words": [
+          "キービジュアル"
+        ],
+        "options": [
+          {
+            "label": "商品単体中心"
+          },
+          {
+            "label": "シーン・文脈内配置"
+          },
+          {
+            "label": "人物と共に提示"
+          }
+        ],
+        "default_if_unresolved": "商品単体を中心に据えた構図とする"
+      }
+    ],
+    "residual_ambiguity_assessment": "目的語(高級感・訴求方法)は日常語のみで、読者・方向性・構図が未指定なため分岐が複数残る。",
+    "missing_materials": [
+      "新商品の名称・カテゴリ",
+      "商品の実写真または3Dデータ",
+      "ブランドカラー・ロゴ素材",
+      "使用予定媒体・サイズ仕様"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+  },
+  "meta": {
+    "attempts": 1,
+    "input_form": "raw_brief_text",
+    "api_ms": 13036,
+    "wall_ms": 12996,
+    "failed_attempts": [],
+    "from_cache": false
+  },
+  "brief": "新商品のキービジュアルを画像生成AIで作りたい。高級感があって、思わず目を引く感じで。",
+  "cached_at": "2026-07-30T06:59:53.517919+00:00"
+}

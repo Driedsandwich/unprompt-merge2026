@@ -316,6 +316,12 @@
     margin:0; font-size:11px; line-height:1.9; color:var(--muted);
     letter-spacing:var(--ui-ls); max-width:380px;
   }
+  /* 射程の一行。主文と同じ大きさだと二重の主張になるので、一段小さく置くだけにする
+     (色は主文と同じ鼠。--placeholder まで落とすと本文として読めない)。 */
+  #promptScope{
+    margin:12px 0 0; font-size:10.5px; line-height:1.9; color:var(--muted);
+    letter-spacing:var(--ui-ls); max-width:560px;
+  }
   #btnSend{
     flex:0 0 auto; border:1px solid var(--ink); background:var(--paper); color:var(--ink);
     padding:9px 20px; font-size:12px; letter-spacing:.12em; line-height:1;
@@ -325,9 +331,13 @@
   #btnSend:disabled{opacity:.28; cursor:default; border-color:var(--muted)}
   /* 例文チップ: 初見の「何を書けばいいのか」への回答。クリックで依頼文が入るだけで、送信はしない */
   .example-row{
-    display:flex; align-items:baseline; flex-wrap:wrap; gap:8px 10px; padding-top:26px;
+    /* 上余白は 26px → 18px(2026-07-30)。射程の一行が主文とチップの間に入った分を差し引く。
+       チップは7件になり、752px 幅でも2行に折り返す。折り返した2行目が「例:」の位置まで
+       せり出さないよう、チップだけを別の入れ物(.ex-chips)に入れて左端を揃える。 */
+    display:flex; align-items:baseline; gap:10px; padding-top:18px;
   }
-  .example-row .ex-label{font-size:10.5px; color:var(--muted); letter-spacing:var(--ui-ls)}
+  .ex-chips{display:flex; flex-wrap:wrap; gap:8px 10px; flex:1 1 auto; min-width:0}
+  .example-row .ex-label{flex:0 0 auto; font-size:10.5px; color:var(--muted); letter-spacing:var(--ui-ls)}
   .ex-chip{
     /* 地は紙。入力欄の紙は中央から外へ薄れていくので、その外縁に置いたチップは
        地を持たないと方眼の罫が文字の下を走る(2026-07-30 ユーザー実機報告)。 */
@@ -975,13 +985,19 @@
       <p id="promptNote">GYAKUMONは生成しません。あなたの意図を問い返します。</p>
       <button id="btnSend" type="button" disabled>問い返させる</button>
     </div>
+    <!-- 射程の一行。文章系専用と読まれないための断り。主文(promptNote)より一段静かに置く。 -->
+    <p id="promptScope">LPも、メールも、画像も、動画も。どのAIに頼むときも、最初の一文から。</p>
     <div class="example-row" aria-label="依頼文の例">
       <span class="ex-label">例:</span>
+      <div class="ex-chips">
       <button type="button" class="ex-chip" data-example="モダンだけど温かみのあるLPを作って。うちの会社のやつ。">会社のLP</button>
       <button type="button" class="ex-chip" data-example="来月やる交流イベントの告知ページを作ってほしい。若い人にも刺さる感じで、申込みが増えるように。">イベント告知</button>
       <button type="button" class="ex-chip" data-example="エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。">スカウトメール</button>
       <button type="button" class="ex-chip" data-example="ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。">商品の説明文</button>
       <button type="button" class="ex-chip" data-example="転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。">ポートフォリオ</button>
+      <button type="button" class="ex-chip" data-example="新商品のキービジュアルを画像生成AIで作りたい。高級感があって、思わず目を引く感じで。">キービジュアル</button>
+      <button type="button" class="ex-chip" data-example="会社紹介の30秒動画をAIでつくりたい。テンポよく、若い人にも刺さるように。">紹介動画</button>
+      </div>
     </div>
   </div>
   <div id="healthNote" hidden></div>
@@ -1066,7 +1082,7 @@
 
 <!-- ============ (g) 並置証明 SplitCompare ============
      左右とも app/compare/<brief_id>/ の事前生成物(scripts/pregen_compare.py が実生成)。
-     ホームの例文チップ5種それぞれにペアがあり、セッションの依頼文に一致するものを出す。
+     ホームの例文チップ7種それぞれにペアがあり、セッションの依頼文に一致するものを出す。
      manifest.json に依頼文全文・決定一覧・生成時刻・api_ms・使用プロンプト全文・
      選択の機械照合結果が残る。 -->
 <section id="screenCompare" hidden>
@@ -1455,7 +1471,7 @@ function healthModel(key){
    そこで、このセッションで実際に返ってきた timing.model_id を同じ台帳に重ねる
    (サーバが model_ids に記録するのと同じ値であり、観測できた事実しか載せない)。
    実測が入るたびに paintProc → paintProcFixed が回るので、固定情報の欄はその場で
-   「sonnet(= claude-sonnet-5)」へ書き換わる。推測でIDを作る経路は持たない。 */
+   「claude-sonnet-5」へ書き換わる。推測でIDを作る経路は持たない。 */
 const observedIds = {};
 function noteObservedId(alias, id){
   if (typeof alias !== 'string' || !alias.trim()) return;
@@ -1471,13 +1487,13 @@ function canonicalId(alias){
   const v = ids ? ids[a] : null;
   return (typeof v === 'string' && v.trim()) ? v.trim() : null;
 }
-// 固定情報のモデル欄。エイリアスは起動時の指定なので必ず出す。正準IDが観測済みなら
-// 括弧で添える(未観測のあいだは従来どおりエイリアスだけ = 「まだ分からない」と書く)。
+// 固定情報のモデル欄。正準IDが観測済みならIDだけを出す(「sonnet(= claude-sonnet-5)」の
+// 併記はくどい)。未観測のあいだはエイリアスだけ = 「まだ分からない」と書く。捏造はしない。
 function fixedModelName(alias){
   const a = (typeof alias === 'string' && alias.trim()) ? alias.trim() : '';
   if (!a) return '—';
   const id = canonicalId(a);
-  return (id && id !== a) ? (a + '(= ' + id + ')') : a;
+  return id || a;
 }
 function paintProcFixed(){
   if (!elProcFixed) return;
@@ -3258,6 +3274,51 @@ function paintCompile(){
    ========================================================================= */
 const SVGNS = 'http://www.w3.org/2000/svg';
 let tetherLockUntil = 0, tetherRetry = 0;
+/* 引出線の経路計画(純関数)。重なって1本に見える線を出さない
+   ——線が重なると「意味が重複している」と誤読されるため(製図の慣習でもない)。
+   規則は2つだけ:
+     (1) 同じカードへ入る垂線は、入口の x を8px以上離す(左の語ほど左の口。順序は座標で決まる)
+     (2) 水平の棚は、x範囲が重なる同士なら高さを4px以上離す(先に引かれた線が先に取る)
+   直落とし(|dx|<8)は棚を持たない(shelfY=null)。入力の座標と順序だけから決まる決定論で、
+   乱数・時刻は使わない。同じ語から複数カードへ出る線の「共通の幹」はあえて残す
+   ——1つの語が複数の判断点に効いている事実の表現であり、重複ではなく分岐である。 */
+function planTethers(items){
+  const plans = items.map(it => Object.assign({}, it));
+
+  // (1) カードごとの入口レーン
+  const byCard = {};
+  plans.forEach(p => { (byCard[p.bi] = byCard[p.bi] || []).push(p); });
+  Object.keys(byCard).forEach(k => {
+    const list = byCard[k];
+    if (list.length < 2) return;
+    list.sort((a, b) => (a.x1 - b.x1) || (a.ord - b.ord));
+    for (let i = 1; i < list.length; i++){
+      if (list[i].x2 - list[i-1].x2 < 8){
+        list[i].x2 = Math.min(list[i-1].x2 + 8, list[i].xMax);
+      }
+    }
+  });
+
+  // (2) 棚の高さレーン(入口レーン確定後の x2 で判定する)
+  const shelves = [];
+  plans.sort((a, b) => a.ord - b.ord).forEach(p => {
+    const dx = p.x2 - p.x1;
+    if (Math.abs(dx) < 8){ p.shelfY = null; return; }
+    const knee = Math.min(24, Math.abs(dx), Math.max(8, (p.y2 - p.y1) * 0.35));
+    let y = p.y1 + knee;
+    const xmin = Math.min(p.x1, p.x2), xmax = Math.max(p.x1, p.x2);
+    let guard = 0;
+    while (guard++ < 40 &&
+           shelves.some(s => Math.abs(s.y - y) < 4 && s.xmin < xmax && xmin < s.xmax)){
+      y += 7;
+    }
+    y = Math.min(y, p.y2 - 6);
+    shelves.push({ y: y, xmin: xmin, xmax: xmax });
+    p.shelfY = y;
+  });
+  return plans;
+}
+
 function drawTethers(hlBi, hlOn){
   if (!S.exploded || S.branches.length === 0) return;
   if (!S.leaderReady) return;                       // 静定するまで線は引かない
@@ -3277,13 +3338,16 @@ function drawTethers(hlBi, hlOn){
 
   // 1つのスパンが複数分岐を持つ(入れ子 anchor の相乗り)場合は、その全分岐へ結線する。
   // これがないと相乗り側のカードが原文と結ばれず、条項2c が破れる。
-  const drawn = [];
+  // 描画は「収集 → 経路計画(planTethers) → 描画」の3段。重なって1本に見える線は
+  // 意味の重複と誤読されるため、計画段で入口と棚をずらす。
+  const items = [];
+  let ord = 0;
   S.spans.forEach(sp => {
     if (!sp.el) return;
     const tb = sp.el.getBoundingClientRect();
     const x1 = tb.left + tb.width / 2 - sb.left;
     const y1 = tb.bottom - sb.top + 3;
-    let drewDot = false;
+    let first = true;
 
     sp.bis.forEach(bi => {
       const card = S.cardEls[bi];
@@ -3291,64 +3355,69 @@ function drawTethers(hlBi, hlOn){
       const cb = card.getBoundingClientRect();
       const y2 = cb.top - sb.top;
       if (y2 <= y1 + 6) return;
-      const x2 = Math.min(Math.max(x1, cb.left - sb.left + 22), cb.right - sb.left - 22);
-
-      const st = S.decisions[bi] ? S.decisions[bi].status : null;
-      const hot = (hlOn && hlBi === bi);
-      let stroke = COLOR.shu, dash = '', op = '.55';
-      if (st === 'decided'){ stroke = COLOR.ai; op = '.6'; }
-      else if (st === 'delegated'){ stroke = COLOR.nezumi; dash = '4 4'; op = '.6'; }
-
-      // 45°の脇線 → 水平の棚 → カード上辺への垂線(直線だけで組む = 製図の線)。
-      // 語がカードの真上に来たときは脇線を出さず、まっすぐ落とす
-      // (脇線を出すと右へ出て左へ戻る不格好な折れになる)。
-      const dx = x2 - x1;
-      let pts;
-      if (Math.abs(dx) < 8){
-        pts = [[x1, y1], [x1, y2]];
-      }else{
-        const knee = Math.min(24, Math.abs(dx), Math.max(8, (y2 - y1) * 0.35));
-        pts = [[x1, y1], [x1 + (dx >= 0 ? knee : -knee), y1 + knee], [x2, y1 + knee], [x2, y2]];
-      }
-      let len = 0;
-      for (let k = 1; k < pts.length; k++){
-        len += Math.sqrt(Math.pow(pts[k][0] - pts[k-1][0], 2) + Math.pow(pts[k][1] - pts[k-1][1], 2));
-      }
-
-      const path = document.createElementNS(SVGNS, 'path');
-      path.setAttribute('d', 'M ' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L '));
-      path.setAttribute('fill', 'none');
-      path.setAttribute('stroke', hot ? COLOR.ai : stroke);
-      path.setAttribute('stroke-opacity', hot ? '.95' : op);
-      path.setAttribute('stroke-width', hot ? '1.4' : '1');
-      path.setAttribute('stroke-linecap', 'butt');
-      path.setAttribute('stroke-linejoin', 'miter');
-      if (dash) path.setAttribute('stroke-dasharray', dash);
-
-      // この線が初めて引かれるときだけ、描き進む
-      const key = sp.start + '>' + bi;
-      if (!S.leaderSeen[key]){
-        S.leaderSeen[key] = true;
-        if (!REDUCED){
-          path.setAttribute('stroke-dasharray', len.toFixed(1));
-          path.style.strokeDashoffset = len.toFixed(1);
-          drawn.push({p: path, dash: dash});
-        }
-      }
-      elSvg.appendChild(path);
-
-      if (!drewDot){
-        // 先端の小円(引出線が指している語の側)
-        const dot = document.createElementNS(SVGNS, 'circle');
-        dot.setAttribute('cx', x1.toFixed(1));
-        dot.setAttribute('cy', y1.toFixed(1));
-        dot.setAttribute('r', hot ? '2.6' : '2.1');
-        dot.setAttribute('fill', hot ? COLOR.ai : stroke);
-        dot.setAttribute('fill-opacity', hot ? '.95' : op);
-        elSvg.appendChild(dot);
-        drewDot = true;
-      }
+      const xMin = cb.left - sb.left + 22, xMax = cb.right - sb.left - 22;
+      const x2 = Math.min(Math.max(x1, xMin), xMax);
+      items.push({ x1, y1, x2, y2, xMin, xMax, bi, ord: ord++,
+                   spStart: sp.start, firstOfSp: first });
+      first = false;
     });
+  });
+
+  const drawn = [];
+  planTethers(items).forEach(p => {
+    const st = S.decisions[p.bi] ? S.decisions[p.bi].status : null;
+    const hot = (hlOn && hlBi === p.bi);
+    let stroke = COLOR.shu, dash = '', op = '.55';
+    if (st === 'decided'){ stroke = COLOR.ai; op = '.6'; }
+    else if (st === 'delegated'){ stroke = COLOR.nezumi; dash = '4 4'; op = '.6'; }
+
+    // 45°の脇線 → 水平の棚 → カード上辺への垂線(直線だけで組む = 製図の線)。
+    // 語がカードの真上に来たときは脇線を出さず、まっすぐ落とす。
+    const dx = p.x2 - p.x1;
+    let pts;
+    if (p.shelfY === null){
+      pts = [[p.x1, p.y1], [p.x1, p.y2]];
+    }else{
+      const kneeH = Math.min(p.shelfY - p.y1, Math.abs(dx));
+      pts = [[p.x1, p.y1], [p.x1 + (dx >= 0 ? kneeH : -kneeH), p.shelfY], [p.x2, p.shelfY], [p.x2, p.y2]];
+    }
+    let len = 0;
+    for (let k = 1; k < pts.length; k++){
+      len += Math.sqrt(Math.pow(pts[k][0] - pts[k-1][0], 2) + Math.pow(pts[k][1] - pts[k-1][1], 2));
+    }
+
+    const path = document.createElementNS(SVGNS, 'path');
+    path.setAttribute('d', 'M ' + pts.map(q => q[0].toFixed(1) + ' ' + q[1].toFixed(1)).join(' L '));
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', hot ? COLOR.ai : stroke);
+    path.setAttribute('stroke-opacity', hot ? '.95' : op);
+    path.setAttribute('stroke-width', hot ? '1.4' : '1');
+    path.setAttribute('stroke-linecap', 'butt');
+    path.setAttribute('stroke-linejoin', 'miter');
+    if (dash) path.setAttribute('stroke-dasharray', dash);
+
+    // この線が初めて引かれるときだけ、描き進む
+    const key = p.spStart + '>' + p.bi;
+    if (!S.leaderSeen[key]){
+      S.leaderSeen[key] = true;
+      if (!REDUCED){
+        path.setAttribute('stroke-dasharray', len.toFixed(1));
+        path.style.strokeDashoffset = len.toFixed(1);
+        drawn.push({p: path, dash: dash});
+      }
+    }
+    elSvg.appendChild(path);
+
+    if (p.firstOfSp){
+      // 先端の小円(引出線が指している語の側)
+      const dot = document.createElementNS(SVGNS, 'circle');
+      dot.setAttribute('cx', p.x1.toFixed(1));
+      dot.setAttribute('cy', p.y1.toFixed(1));
+      dot.setAttribute('r', hot ? '2.6' : '2.1');
+      dot.setAttribute('fill', hot ? COLOR.ai : stroke);
+      dot.setAttribute('fill-opacity', hot ? '.95' : op);
+      elSvg.appendChild(dot);
+    }
   });
 
   if (drawn.length){
@@ -3419,6 +3488,10 @@ async function compile(){
   ticking = false;
   S.compileMs = performance.now() - t0;
   S.compileDone = true;
+  // compiled_at は「コンパイルした時刻」であって「コピーした時刻」ではない。
+  // ここで1回だけ確定させ、以後 buildJSON() は何度呼んでも同じ文字列を返す
+  // (タブの表示・「コピー」・「指示書をコピーしてAIに渡す」の3者がバイト同一になる)。
+  S.compiledAtIso = new Date().toISOString();
 
   if (r.err || !r.j || r.j.ok !== true){
     S.rationales = {};
@@ -3541,7 +3614,7 @@ function buildJSON(){
   const obj = {
     format: 'gyakumon.compiled_brief.v0',
     source_brief: S.brief,
-    compiled_at: new Date().toISOString(),
+    compiled_at: S.compiledAtIso || new Date().toISOString(),
     evidence: {
       typed_characters_after_brief: S.typedAfter,
       choice_count: S.branches.length,
@@ -3698,9 +3771,9 @@ $('btnCopy').addEventListener('click', async () => {
 });
 
 /* 次の一歩の主ボタン「指示書をコピーしてAIに渡す」。
-   渡すのは常に MD 原文で、「読む用」で「コピー」を押したときと1文字も違わない
-   (渡す物は1本しかない)。タブが「AIに渡す用」でも MD を渡す: 貼り付け先は
-   ChatGPT や Claude のような対話のAIであり、そこで読ませるのは人も読める指示書のほうである。
+   渡すのは常に「AIに渡す用」と同一の JSON 原文で、どのタブを開いていても変わらない
+   (渡す物は1本しかない)。ボタンの動詞「AIに渡す」とタブ「AIに渡す用」を一致させる:
+   人が読むのは「読む用」、AIへ渡すのはこの JSON、という対応を画面の語彙で崩さない。
    成功の注記は数秒で消さず、次の操作(タブの切り替え・最初から)まで残す
    ——「いつものAIに貼り付けてください」は、これから手を動かすための指示だからである。
    注記の場所は主ボタンの直下で、静止した1行以外のものは動かさない。 */
@@ -3709,7 +3782,7 @@ const HANDOFF_NG = 'コピーできませんでした。上の「コピー」か
 $('btnHandoff').addEventListener('click', async () => {
   const note = $('handoffNote');
   let ok = true;
-  try{ await navigator.clipboard.writeText(buildMarkdown()); }
+  try{ await navigator.clipboard.writeText(buildJSON()); }
   catch(e){ ok = false; }
   note.textContent = ok ? HANDOFF_OK : HANDOFF_NG;
   note.classList.toggle('quiet', !ok);
@@ -3721,7 +3794,7 @@ $('btnRestart').addEventListener('click', goHome);
 /* =========================================================================
    (g) 並置証明 SplitCompare
    左右とも app/compare/<brief_id>/ の事前生成物。ここでは生成しない(開示: DISCLOSURE #7)。
-   ホームの例文チップ5種それぞれにペアがあり、manifest.json から
+   ホームの例文チップ7種それぞれにペアがあり、manifest.json から
    「いまのセッションの依頼文と一字一句同じ brief を持つペア」を選んで表示する。
    一致するペアが無ければ既定ペア(lp-warm)を出し、不一致の注記を添える。
    iframe の src はボタンを押した時に初めて入れる(コンパイル画面までは1バイトも読まない)。

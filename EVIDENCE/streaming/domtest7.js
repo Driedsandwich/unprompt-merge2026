@@ -394,8 +394,8 @@ async function runToDone(){
   chk('レンダ1本ごとにも控えている',
       Object.keys(ctx.__S.renderStat).every(k => ctx.__S.renderStat[k].modelId === 'claude-haiku-4-5'),
       JSON.stringify(ctx.__S.renderStat));
-  chk('固定情報のほうは従来どおりエイリアス(起動時の指定を転記する欄なので)',
-      registry['procFixed'].textContent.indexOf('問いの抽出 sonnet') >= 0);
+  chk('固定情報も観測後は正準IDになる(2026-07-30 第8FB: 併記はくどい→IDだけ)',
+      registry['procFixed'].textContent.indexOf('問いの抽出 claude-sonnet-5') >= 0);
 
   console.log('\n=== C-3) model_id が取れなければエイリアスへ倒す ===');
   MODEL_ID = {explode: null, render: null, compile: null};

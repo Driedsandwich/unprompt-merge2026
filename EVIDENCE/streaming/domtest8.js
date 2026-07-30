@@ -506,24 +506,25 @@ const ois = (ctx) => ctx.__S.decisions.map(d => d.oi);
   }
   ctx = await runToDone();
   {
+    // 2026-07-30 第8FB: 「sonnet(= claude-sonnet-5)」の併記はくどい → 観測後はIDだけ
     const f1 = registry['procFixed'].textContent;
-    chk('★実測が入った時点で正準IDが添えられる(抽出)',
-        f1.indexOf('問いの抽出 sonnet(= claude-sonnet-5)') >= 0, JSON.stringify(f1));
-    chk('★見本の生成も別モデルのIDで添えられる',
-        f1.indexOf('見本の生成 haiku(= claude-haiku-4-5)') >= 0, JSON.stringify(f1));
+    chk('★実測が入った時点で正準IDだけになる(抽出)',
+        f1.indexOf('問いの抽出 claude-sonnet-5') >= 0, JSON.stringify(f1));
+    chk('★見本の生成も別モデルのIDになる',
+        f1.indexOf('見本の生成 claude-haiku-4-5') >= 0, JSON.stringify(f1));
     chk('★おすすめの決定の欄も追随する',
-        f1.indexOf('おすすめの決定 sonnet(= claude-sonnet-5)') >= 0, JSON.stringify(f1));
-    chk('エイリアスを消してIDだけにはしない(起動時の指定は残す)',
-        f1.indexOf('sonnet(= ') >= 0);
+        f1.indexOf('おすすめの決定 claude-sonnet-5') >= 0, JSON.stringify(f1));
+    chk('★くどい併記「(= 」は残っていない', f1.indexOf('(= ') < 0, JSON.stringify(f1));
+    chk('★観測後はエイリアス単独表記が残らない', !/問いの抽出 sonnet\b/.test(f1));
   }
   {
-    // /api/health が最初から model_ids を持っていれば、実行前でも添えられる
+    // /api/health が最初から model_ids を持っていれば、実行前でもIDになる
     HEALTH.model_ids = {sonnet: 'claude-sonnet-5', haiku: 'claude-haiku-4-5'};
     fresh();
     await sleep(20);
     const f2 = registry['procFixed'].textContent;
-    chk('★health の model_ids だけでも添えられる',
-        f2.indexOf('問いの抽出 sonnet(= claude-sonnet-5)') >= 0, JSON.stringify(f2));
+    chk('★health の model_ids だけでもIDになる',
+        f2.indexOf('問いの抽出 claude-sonnet-5') >= 0, JSON.stringify(f2));
     freshHealth();
   }
   {

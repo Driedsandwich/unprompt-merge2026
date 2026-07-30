@@ -323,10 +323,11 @@ const shape = (el) => el.children.map(c =>
   ctx.__renderReading(probe2, md);            // 2度組んでも積み重ならない
   chk('★組み直しても積み重ならない(毎回まっさらから組む)', shape(probe2) === shot);
 
-  /* ================= 5) 次の一歩(2026-07-30 第7FB 3) =============================
+  /* ================= 5) 次の一歩(2026-07-30 第7FB 3、第8FB 2でJSONへ) ============
      「これで完成?」で手が止まる人への答え。本文の直下・フッタ注記の上に
      一文 + 主ボタン(コピーして渡す) + 副ボタン(実例を見る)を置く。
-     主ボタンが渡すのは「コピー」を読む用で押したのと同じ MD 原文である(渡す物は1本)。 */
+     主ボタンが渡すのは「AIに渡す用」タブと同一の JSON 原文である(渡す物は1本。
+     ボタンの動詞「AIに渡す」とタブ「AIに渡す用」を画面の語彙で一致させる)。 */
   console.log('\n=== 5) 次の一歩(指示書は完成品ではない) ===');
   chk('★静的マークアップの順序は 本文 → 次の一歩 → フッタ注記',
       html.indexOf('<div id="out"></div>') < html.indexOf('<div id="nextStep">') &&
@@ -357,8 +358,9 @@ const shape = (el) => el.children.map(c =>
   COPIED = null;
   click(registry['btnHandoff']);
   await sleep(10);
-  chk('★渡すのは MD 原文そのまま(「コピー」と1文字も違わない)', COPIED === md,
+  chk('★渡すのは「AIに渡す用」と同一の JSON 原文(バイト同一)', COPIED === ctx.__json(),
       COPIED === null ? 'null' : ('先頭: ' + JSON.stringify(String(COPIED).slice(0, 24))));
+  chk('★MD 原文とは別物(タブのコピーとの役割分担が機能している)', COPIED !== md);
   chk('★成功の注記が承認どおり',
       registry['handoffNote'].hidden === false &&
       registry['handoffNote'].textContent ===
@@ -374,7 +376,7 @@ const shape = (el) => el.children.map(c =>
   COPIED = null;
   click(registry['btnHandoff']);
   await sleep(10);
-  chk('★AIに渡す用タブでも主ボタンが渡すのは MD 原文', COPIED === md);
+  chk('★AIに渡す用タブでも主ボタンが渡すのは同じ JSON 原文(タブに依らず1本)', COPIED === ctx.__json());
   COPIED = null;
   click(registry['btnCopy']);
   await sleep(10);

@@ -1,0 +1,121 @@
+{
+  "payload": {
+    "branches": [
+      {
+        "id": "b0",
+        "question_point": "視聴ターゲット層の解像度",
+        "anchor_words": [
+          "若い人にも刺さるように"
+        ],
+        "options": [
+          {
+            "label": "就活/求職中の若者"
+          },
+          {
+            "label": "若手顧客/消費者"
+          },
+          {
+            "label": "SNS一般の若年層"
+          }
+        ],
+        "default_if_unresolved": "20代の一般消費者向けと仮定"
+      },
+      {
+        "id": "b1",
+        "question_point": "動画の使用目的・掲載先",
+        "anchor_words": [
+          "会社紹介の30秒動画"
+        ],
+        "options": [
+          {
+            "label": "採用ブランディング"
+          },
+          {
+            "label": "営業/商談用資料"
+          },
+          {
+            "label": "SNS広告/拡散"
+          }
+        ],
+        "default_if_unresolved": "SNS投稿用の汎用紹介動画とする"
+      },
+      {
+        "id": "b2",
+        "question_point": "「テンポよく」の意味",
+        "anchor_words": [
+          "テンポよく"
+        ],
+        "options": [
+          {
+            "label": "高速カット多用"
+          },
+          {
+            "label": "リズム重視の音楽主導"
+          },
+          {
+            "label": "情報量を絞り余白重視"
+          }
+        ],
+        "default_if_unresolved": "カット割りの速い編集で構成"
+      },
+      {
+        "id": "b3",
+        "question_point": "訴求の中心軸",
+        "anchor_words": [
+          "会社紹介"
+        ],
+        "options": [
+          {
+            "label": "企業理念/ビジョン訴求"
+          },
+          {
+            "label": "事業内容/実績訴求"
+          },
+          {
+            "label": "社員/カルチャー訴求"
+          }
+        ],
+        "default_if_unresolved": "事業内容を中心に紹介"
+      },
+      {
+        "id": "b4",
+        "question_point": "「刺さる」トーン・世界観",
+        "anchor_words": [
+          "若い人にも刺さるように"
+        ],
+        "options": [
+          {
+            "label": "エモーショナル/共感型"
+          },
+          {
+            "label": "クール/スタイリッシュ"
+          },
+          {
+            "label": "ポップ/コミカル"
+          }
+        ],
+        "default_if_unresolved": "ポップで明るいトーンとする"
+      }
+    ],
+    "residual_ambiguity_assessment": "目的・対象・トーン・構成が未指定で、方向性を左右する判断点が複数残っている。",
+    "missing_materials": [
+      "会社のロゴ・ブランドカラー",
+      "事業内容・実績の具体情報",
+      "使用可能な素材映像・写真",
+      "ナレーションの有無",
+      "BGM/音源の希望"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+  },
+  "meta": {
+    "attempts": 1,
+    "input_form": "raw_brief_text",
+    "api_ms": 30917,
+    "wall_ms": 25901,
+    "failed_attempts": [],
+    "from_cache": false
+  },
+  "brief": "会社紹介の30秒動画をAIでつくりたい。テンポよく、若い人にも刺さるように。",
+  "cached_at": "2026-07-30T07:00:19.421267+00:00"
+}

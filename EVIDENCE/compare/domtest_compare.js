@@ -1,10 +1,11 @@
-// 並置比較の5パターン化(app/index.html の比較部)を機械で押さえる。
+// 並置比較の7パターン化(app/index.html の比較部)を機械で押さえる。
+// 2026-07-30: 画像(keyvisual)・動画(intro-video)の2組を足し、例文チップも7件になった。
 // DOM シムは EVIDENCE/streaming/domtest5.js と同型(document.querySelectorAll を追加した。
 // 直前コミット a176481 で index.html が document.querySelectorAll('.ex-chip') を
 // 呼ぶようになり、旧シムでは script の評価自体が落ちるため)。
 //
 //   A) セッションの依頼文と一致するペアが manifest にあれば、そのペアを表示する
-//      (5本すべて / iframe src・常設ラベル・不一致注記を確認)
+//      (7本すべて / iframe src・常設ラベル・不一致注記を確認)
 //   B) 一致しない依頼文なら既定ペア(lp-warm)へ落ち、不一致注記が出る
 //   C) 常設ラベルには「いま表示しているペアの依頼文」が常に入る(不一致時も)
 //   D) manifest が読めないときは既定ペアのパスへフォールバックする
@@ -88,6 +89,8 @@ const PAIRS = [
   ['portfolio',  '転職活動用に個人ポートフォリオサイトが欲しい。作品はいくつかあるんだけど、センスよくまとめて。'],
   ['scout-mail', 'エンジニアに送るスカウトメールの文面をお願い。うちっぽさが伝わって、返信したくなるやつ。'],
   ['ec-product', 'ネットショップに載せるタンブラーの商品説明文を書いて。ちゃんと良さが伝わって、ポチりたくなるように。'],
+  ['keyvisual',  '新商品のキービジュアルを画像生成AIで作りたい。高級感があって、思わず目を引く感じで。'],
+  ['intro-video','会社紹介の30秒動画をAIでつくりたい。テンポよく、若い人にも刺さるように。'],
 ];
 const MANIFEST = {
   format: 'gyakumon.split_compare.v1',
@@ -155,7 +158,7 @@ async function openCompare(ctx, brief){
 }
 
 (async () => {
-  /* A) 5本それぞれで、依頼文に一致するペアが出る */
+  /* A) 7本それぞれで、依頼文に一致するペアが出る */
   for (const [id, brief] of PAIRS){
     const ctx = fresh();
     chk('[' + id + '] 開く前は iframe が空', registry['frameRaw'].src === undefined ||
@@ -201,20 +204,49 @@ async function openCompare(ctx, brief){
     chk('[注記] そのペアの生成時刻', r.note.indexOf('2026-07-30T00:02') >= 0, r.note);
   }
 
-  /* 実ファイルとの突き合わせ: manifest.json の5ペアが実在し、依頼文がチップと一致するか */
+  /* 実ファイルとの突き合わせ: manifest.json の全ペアが実在し、依頼文がチップと一致するか。
+     ペアは 2026-07-30 に画像(keyvisual)・動画(intro-video)の2組を足して7組になり、
+     同日、例文チップも同じ2件を足して7件になった(チップ文面は data/briefs.json が正)。 */
   {
+    const EXPECTED_PAIR_IDS = ['lp-warm', 'event-page', 'portfolio', 'scout-mail',
+                               'ec-product', 'keyvisual', 'intro-video'];
     const root = PATH.replace(/\/app\/index\.html$/, '');
     const mp = root + '/app/compare/manifest.json';
     if (fs.existsSync(mp)){
       const m = JSON.parse(fs.readFileSync(mp, 'utf8'));
-      chk('[実体] manifest に5ペア', Array.isArray(m.pairs) && m.pairs.length === 5,
+      chk('[実体] manifest に7ペア', Array.isArray(m.pairs) && m.pairs.length === 7,
           m.pairs ? String(m.pairs.length) : 'none');
+      chk('[実体] ペアIDが想定どおり',
+          JSON.stringify((m.pairs || []).map(p => p.brief_id)) === JSON.stringify(EXPECTED_PAIR_IDS),
+          JSON.stringify((m.pairs || []).map(p => p.brief_id)));
       const chips = [...html.matchAll(/class="ex-chip" data-example="([^"]+)"/g)].map(x => x[1]);
-      chk('[実体] 例文チップが5件', chips.length === 5, String(chips.length));
+      chk('[実体] 例文チップが7件', chips.length === 7, String(chips.length));
       chips.forEach((c) => {
         chk('[実体] チップの依頼文にペアが対応: ' + c.slice(0, 12) + '…',
             (m.pairs || []).some(p => p.brief === c));
       });
+      // 画像・動画のチップが実在すること(射程が文章系だけでないことの機械的な担保)
+      ['keyvisual', 'intro-video'].forEach((id) => {
+        const pair = (m.pairs || []).find(p => p.brief_id === id);
+        chk('[実体] ' + id + ' のチップが存在', !!pair && chips.indexOf(pair.brief) >= 0);
+      });
+      // チップ文面は data/briefs.json と一字一句同じ(DISCLOSURE #11 の規律)
+      const bp = root + '/data/briefs.json';
+      if (fs.existsSync(bp)){
+        const briefs = JSON.parse(fs.readFileSync(bp, 'utf8'));
+        chips.forEach((c) => {
+          chk('[実体] チップ文面が briefs.json と一致: ' + c.slice(0, 12) + '…',
+              briefs.some(b => b.text === c));
+        });
+      } else {
+        chk('[実体] data/briefs.json が実在', false);
+      }
+      // 射程の一行(文章系専用ではないことの断り)がホームに出ている
+      const scope = html.match(/<p id="promptScope">([^<]*)<\/p>/);
+      chk('[実体] 射程の一行がある', !!scope, scope ? scope[1] : 'none');
+      chk('[実体] 射程の一行が画像と動画に触れる',
+          !!scope && scope[1].indexOf('画像') >= 0 && scope[1].indexOf('動画') >= 0,
+          scope ? scope[1] : 'none');
       (m.pairs || []).forEach(p => {
         chk('[実体] ' + p.brief_id + ' の raw.html が実在',
             fs.existsSync(root + '/app/compare/' + p.outputs.raw));
