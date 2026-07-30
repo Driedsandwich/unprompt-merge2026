@@ -4,8 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>新商品キービジュアル(一文をそのまま)</title>
-<!-- このページは実生成画像の提示枠である。画像は 2026-07-30 に ChatGPT(Pro)経由で画像生成モデル GPT-Image-2 へ下のプロンプトを渡して得た実生成物。COMPILED 側と同一モデル・同一
-     アスペクト比(4:5)・同一のプレースホルダ充填。違いは入力プロンプトだけである。
+<!-- このページは実生成画像の提示枠である。画像は 2026-07-31 に ChatGPT(標準モデル選択)経由で
+     画像生成モデル GPT-Image-2 へ、発注者の一文をそのまま渡して得た実生成物(生成操作はユーザー)。
+     COMPILED 側と同一モデル・同一設定(4:5)・同一の最小ラッパー。違いは入力だけである。
+     初回版(プロンプト一式を経由・Pro選択)は EVIDENCE/media_pairs/assets/*_v1.png に保存し、
+     製品の実使用フロー(そのまま貼る)と一般的な既定設定に一致するこの版へ差し替えた。
      経緯と開示: docs/DISCLOSURE.md #20 / EVIDENCE/media_pairs/GENERATION_SPEC.md -->
 <style>
   *{margin:0; padding:0; box-sizing:border-box}
@@ -16,6 +19,9 @@
   .cap{max-width:640px; margin:0 auto; padding:22px 26px 40px}
   .cap .k{font-size:10.5px; letter-spacing:.14em; color:#8f8a80; margin-bottom:8px}
   .cap .prompt{font-size:12px; line-height:1.9; color:#b9b4a9}
+  .cap pre.prompt{white-space:pre-wrap; max-height:260px; overflow-y:auto; font-size:10.5px;
+                  line-height:1.7; font-family:ui-monospace,Menlo,monospace;
+                  border:1px solid #26231f; padding:12px}
   .cap .foot{margin-top:14px; font-size:10.5px; line-height:1.8; color:#6e6a62;
              border-top:1px solid #26231f; padding-top:10px}
 </style>
@@ -23,9 +29,9 @@
 <body>
   <div class="stage"><img src="raw_image.png" alt="一文をそのまま渡して生成されたキービジュアル"></div>
   <div class="cap">
-    <div class="k">画像生成AIへ渡した入力(発注者の一文から、そのまま)</div>
-    <p class="prompt">無銘の新商品(艶のある香水瓶)を中央やや下に単体で配置した静物撮影。斜め45度からのローアングルで、商品の輪郭と質感を強調する構図。画角は望遠寄りで背景を大きくぼかす。光は左上からの一灯照明、柔らかいがエッジの立つハイライトを商品の縁に落とし、影は深く長く伸ばす。質感は表面の微細な反射と滑らかさを克明に描写し、指紋や埃のない完璧な仕上げ。色は漆黒に近い背景と深い金のみを商品自体の反射に宿す抑制された配色。背景は無地の暗いグラデーションのみで装飾を排除。雰囲気は静謐で緊張感があり、豪華さより「本物感」を漂わせる。</p>
-    <div class="foot">実生成(2026-07-30)・ChatGPT(Pro)経由・画像生成モデル GPT-Image-2・4:5・COMPILED 側と同一モデル/同一設定。プロンプト一式の全文: raw_pack.html</div>
+    <div class="k">画像生成AIへ渡した入力(発注者の一文、そのまま)</div>
+    <p class="prompt">新商品のキービジュアルを画像生成AIで作りたい。高級感があって、思わず目を引く感じで。</p>
+    <div class="foot">実生成(2026-07-31)・ChatGPT(標準モデル選択)経由・画像生成モデル GPT-Image-2・4:5・COMPILED 側と同一モデル/同一設定/同一ラッパー(「次の依頼で画像を1枚生成」)。参考: 指示書から人手でプロンプト一式化した版は raw_pack.html</div>
   </div>
 </body>
 </html>

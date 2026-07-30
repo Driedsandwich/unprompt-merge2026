@@ -4,9 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>新商品キービジュアル(意図の指示書から)</title>
-<!-- このページは実生成画像の提示枠である。画像は 2026-07-30 に ChatGPT(Pro)経由で画像生成モデル GPT-Image-2 へ下のプロンプトを渡して得た実生成物。RAW 側と同一モデル・同一
-     アスペクト比(4:5)・同一のプレースホルダ充填。違いは入力プロンプトだけである。
-     経緯と開示: docs/DISCLOSURE.md #20 / EVIDENCE/media_pairs/GENERATION_SPEC.md -->
+<!-- このページは実生成画像の提示枠である。画像は 2026-07-31 に ChatGPT(標準モデル選択)経由で
+     画像生成モデル GPT-Image-2 へ、Unprompt の手渡しJSON(下に全文)をそのまま渡して得た
+     実生成物(生成操作はユーザー)。RAW 側と同一モデル・同一設定(4:5)・同一の最小ラッパー。
+     違いは入力だけである。初回版(プロンプト一式を経由・Pro選択)は EVIDENCE/media_pairs/assets/
+     の *_v1.png に保存。経緯と開示: docs/DISCLOSURE.md #20 -->
 <!-- GYAKUMON-CHOICE: 想定読者・購入検討層 = ギフト検討者向け -->
 <!-- GYAKUMON-CHOICE: 高級感の方向性 = 重厚・クラシック -->
 <!-- GYAKUMON-CHOICE: 目を引く手法 = 世界観・情景演出 -->
@@ -20,16 +22,116 @@
   .cap{max-width:640px; margin:0 auto; padding:22px 26px 40px}
   .cap .k{font-size:10.5px; letter-spacing:.14em; color:#8f8a80; margin-bottom:8px}
   .cap .prompt{font-size:12px; line-height:1.9; color:#b9b4a9}
+  .cap pre.prompt{white-space:pre-wrap; max-height:260px; overflow-y:auto; font-size:10.5px;
+                  line-height:1.7; font-family:ui-monospace,Menlo,monospace;
+                  border:1px solid #26231f; padding:12px}
   .cap .foot{margin-top:14px; font-size:10.5px; line-height:1.8; color:#6e6a62;
              border-top:1px solid #26231f; padding-top:10px}
 </style>
 </head>
 <body>
-  <div class="stage"><img src="compiled_image.png" alt="意図の指示書から組んだプロンプトで生成されたキービジュアル"></div>
+  <div class="stage"><img src="compiled_image.png" alt="Unpromptの指示書JSONをそのまま渡して生成されたキービジュアル"></div>
   <div class="cap">
-    <div class="k">画像生成AIへ渡した入力(意図の指示書から組んだプロンプト)</div>
-    <p class="prompt">無銘の新商品(艶のある香水瓶)を手にした一人の人物、フォーマルな装いで静かに佇む。構図はミドルショット、被写体をやや下からの俯角気味に捉え、商品を画面下三分の一の交点に配置。画角は50mm相当、被写界深度は浅く背景を溶かす。光は単一の暖色スポットライトが斜め上から差し込み、商品の輪郭と人物の頬骨に強いハイライトを落とし、周囲は深い陰影に沈める。質感は磨かれた真鍮・鞣し革・艶消し漆を思わせる重厚な照り。色調は漆黒の地に焦茶と金のみを配し、彩度を抑える。背景は夜霧が立ちこめる石造りの回廊、遠景は闇に溶ける。全体の雰囲気は荘厳・寡黙・一瞬で通り過ぎる特別な刹那。</p>
-    <div class="foot">実生成(2026-07-30)・ChatGPT(Pro)経由・画像生成モデル GPT-Image-2・4:5・RAW 側と同一モデル/同一設定。決めた4つの判断点はこのHTMLのコメントに痕跡として埋めてある。プロンプト一式の全文: compiled_pack.html</div>
+    <div class="k">画像生成AIへ渡した入力(Unprompt の指示書JSON、そのまま)</div>
+    <pre class="prompt">{
+ &quot;format&quot;: &quot;unprompt.compiled_brief.v0&quot;,
+ &quot;source_brief&quot;: &quot;新商品のキービジュアルを画像生成AIで作りたい。高級感があって、思わず目を引く感じで。&quot;,
+ &quot;compiled_at&quot;: &quot;2026-07-30T07:01:17.255740+00:00&quot;,
+ &quot;decisions&quot;: [
+  {
+   &quot;question_point&quot;: &quot;想定読者・購入検討層&quot;,
+   &quot;anchor_words&quot;: [
+    &quot;新商品のキービジュアル&quot;
+   ],
+   &quot;status&quot;: &quot;decided&quot;,
+   &quot;chosen_label&quot;: &quot;ギフト検討者向け&quot;,
+   &quot;visual_tokens&quot;: {
+    &quot;palette&quot;: [
+     &quot;#1c1712&quot;,
+     &quot;#8a6d3b&quot;,
+     &quot;#d4b26a&quot;
+    ],
+    &quot;heading_font&quot;: &quot;serif&quot;,
+    &quot;density&quot;: &quot;airy&quot;,
+    &quot;corner&quot;: &quot;sharp&quot;,
+    &quot;tone_sample&quot;: &quot;大切な人へ贈る、新商品という特別な一品。&quot;
+   },
+   &quot;tone_example&quot;: null,
+   &quot;intent&quot;: &quot;新商品のキービジュアルという文言だけでは訴求対象が不定だったが、ギフト検討者向けと定めたことで表現の優先順位が贈答文脈に一意に定まる。&quot;
+  },
+  {
+   &quot;question_point&quot;: &quot;高級感の方向性&quot;,
+   &quot;anchor_words&quot;: [
+    &quot;高級感があって&quot;
+   ],
+   &quot;status&quot;: &quot;decided&quot;,
+   &quot;chosen_label&quot;: &quot;重厚・クラシック&quot;,
+   &quot;visual_tokens&quot;: {
+    &quot;palette&quot;: [
+     &quot;#1c140d&quot;,
+     &quot;#5c3a21&quot;,
+     &quot;#b8925a&quot;
+    ],
+    &quot;heading_font&quot;: &quot;serif&quot;,
+    &quot;density&quot;: &quot;dense&quot;,
+    &quot;corner&quot;: &quot;sharp&quot;,
+    &quot;tone_sample&quot;: &quot;新商品、荘厳なる継承。重厚な質感が語る本物の格式。&quot;
+   },
+   &quot;tone_example&quot;: null,
+   &quot;intent&quot;: &quot;高級感があってという表現は複数解釈を許すが、重厚・クラシックと確定させたことで色調や質感表現の方向が一意に定まる。&quot;
+  },
+  {
+   &quot;question_point&quot;: &quot;目を引く手法&quot;,
+   &quot;anchor_words&quot;: [
+    &quot;思わず目を引く感じで&quot;
+   ],
+   &quot;status&quot;: &quot;decided&quot;,
+   &quot;chosen_label&quot;: &quot;世界観・情景演出&quot;,
+   &quot;visual_tokens&quot;: {
+    &quot;palette&quot;: [
+     &quot;#14100c&quot;,
+     &quot;#4a3826&quot;,
+     &quot;#a9812f&quot;
+    ],
+    &quot;heading_font&quot;: &quot;serif&quot;,
+    &quot;density&quot;: &quot;airy&quot;,
+    &quot;corner&quot;: &quot;sharp&quot;,
+    &quot;tone_sample&quot;: &quot;夜霧の向こう、新商品が静かに佇む刹那。&quot;
+   },
+   &quot;tone_example&quot;: null,
+   &quot;intent&quot;: &quot;思わず目を引く感じでという曖昧な要望に対し、世界観・情景演出を選んだことで背景や演出要素の作り込み方針が一意に定まる。&quot;
+  },
+  {
+   &quot;question_point&quot;: &quot;商品構図・主役の見せ方&quot;,
+   &quot;anchor_words&quot;: [
+    &quot;キービジュアル&quot;
+   ],
+   &quot;status&quot;: &quot;decided&quot;,
+   &quot;chosen_label&quot;: &quot;人物と共に提示&quot;,
+   &quot;visual_tokens&quot;: {
+    &quot;palette&quot;: [
+     &quot;#161311&quot;,
+     &quot;#8a6a4f&quot;,
+     &quot;#d8b877&quot;
+    ],
+    &quot;heading_font&quot;: &quot;serif&quot;,
+    &quot;density&quot;: &quot;airy&quot;,
+    &quot;corner&quot;: &quot;sharp&quot;,
+    &quot;tone_sample&quot;: &quot;新商品と佇む者、選ばれし高級の証。&quot;
+   },
+   &quot;tone_example&quot;: null,
+   &quot;intent&quot;: &quot;キービジュアルの構図は複数通り考えられたが、人物と共に提示すると確定したことで撮影・生成時の主役配置が一意に定まる。&quot;
+  }
+ ],
+ &quot;residual_ambiguity_assessment&quot;: &quot;目的語(高級感・訴求方法)は日常語のみで、読者・方向性・構図が未指定なため分岐が複数残る。&quot;,
+ &quot;missing_materials&quot;: [
+  &quot;新商品の名称・カテゴリ&quot;,
+  &quot;商品の実写真または3Dデータ&quot;,
+  &quot;ブランドカラー・ロゴ素材&quot;,
+  &quot;使用予定媒体・サイズ仕様&quot;
+ ]
+}</pre>
+    <div class="foot">実生成(2026-07-31)・ChatGPT(標準モデル選択)経由・画像生成モデル GPT-Image-2・4:5・RAW 側と同一モデル/同一設定/同一ラッパー。決めた4つの判断点はJSON本文とこのHTMLのコメントに痕跡として残る。参考: 指示書から人手でプロンプト一式化した版は compiled_pack.html</div>
   </div>
 </body>
 </html>
