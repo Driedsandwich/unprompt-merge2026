@@ -156,10 +156,15 @@ const counter  = () => registry['branchCounter'].textContent;
 const CT = (undecided, total) => 'この文から抽出した判断点 ' + (total == null ? 3 : total) + ' ・ 未決 ' + undecided;
 const rowHidden = () => registry['compileRow'].hidden;
 const btnDisabled = () => registry['btnCompile'].disabled === true;
-const optsOpen = (bi) => {
-  const card = registry['cards'].children[bi];
-  const o = card.querySelector('.opts'), r = card.querySelector('.resolved');
-  return o.hidden === false && r.hidden === true;
+const click = (el) => { (el.handlers.click || []).forEach(f => f()); };
+// 2026-07-30(第7FB 5b): 決めても見本は全部出たままになった(決定表示 .resolved は廃止)。
+// カードの姿は data-state と「選ばれた見本の data-chosen」で見る。
+const cardOf   = (bi) => registry['cards'].children[bi];
+const cardState = (bi) => cardOf(bi).dataset.state;
+const optsOf   = (bi) => cardOf(bi).querySelectorAll('.opt');
+const chosenOi = (bi) => {
+  const hit = optsOf(bi).filter(b => b.dataset.chosen === '1');
+  return hit.length ? Number(hit[0].dataset.oi) : null;
 };
 
 (async () => {
@@ -173,12 +178,14 @@ const optsOpen = (bi) => {
   vm.runInContext('decide(0,0);', ctx);
   chk('1件決めると未決が 2 になる(総数は3のまま)', counter() === CT(2), JSON.stringify(counter()));
   chk('決めた分岐の status が decided', S.decisions[0].status === 'decided');
-  chk('決めたカードは決定表示に畳まれる', optsOpen(0) === false);
+  chk('決めても見本は全部出たまま(選ばれた1枚に「決めた」が付く)',
+      optsOf(0).length === 2 && chosenOi(0) === 0 && cardState(0) === 'decided');
 
   vm.runInContext('onTokenClick(0);', ctx);
   chk('★解除で未決が 3 に戻る', counter() === CT(3), JSON.stringify(counter()));
   chk('★解除で status が null に戻る(単一のソースが巻き戻る)', S.decisions[0].status === null);
-  chk('★解除でカードが再提示される(選択肢が開く)', optsOpen(0) === true);
+  chk('★解除でカードが未決の姿に戻る(「決めた」の印が外れる)',
+      cardState(0) === 'open' && chosenOi(0) === null);
   chk('解除しても直前の選択は prev に残る', !!S.decisions[0].prev && S.decisions[0].prev.oi === 0,
       JSON.stringify(S.decisions[0].prev));
   chk('解除中の語の色は open に戻る',
@@ -355,6 +362,68 @@ const optsOpen = (bi) => {
   vm.runInContext('S.brief = "モダンだけど温かみのあるLPを作って。うちの会社のやつ。"; ' + paint, ctx);
   chk('一致に戻せば注記も引っ込む(毎回導出している)', registry['compareMismatch'].hidden === true);
 
+  /* ================= H) 決定後も全候補を表示 / 直接選び直せる(2026-07-30 第7FB 5b) =========
+     旧実装は「決めると選んだ見本以外が消え、選び直しには原文の語クリックが要る」形だった。
+     新実装ではカードは常に全ての見本を出し、選ばれた1枚に藍の枠と「決めた」が付き、
+     他は減光する。別の見本を押せば reopen を経ずにその場で選び直せる(human-pick 上書き)。
+     カードの高さが状態で変わらないことも同時に押さえる(「決めた」の場所は常に確保)。 */
+  console.log('\n=== H) 決定後も全候補を出したまま、直接選び直せる ===');
+  ctx = await runToDone();
+  S = ctx.__S;
+  chk('前提: 見本2枚・未決', optsOf(0).length === 2 && cardState(0) === 'open');
+  chk('未決では「決めた」の印が誰にも付いていない', chosenOi(0) === null);
+  chk('★どの見本も「決めた」の札を最初から持っている(高さを変えないため場所を確保)',
+      optsOf(0).every(b => b.querySelectorAll('.obadge').length === 1 &&
+                           b.querySelector('.obadge').textContent === '決めた'));
+  chk('★決定表示ブロック(.resolved)は存在しない', cardOf(0).querySelectorAll('.resolved').length === 0);
+
+  click(optsOf(0)[0]);
+  chk('★決めても見本は消えない(2枚のまま)', optsOf(0).length === 2);
+  chk('★選ばれた見本に「決めた」が付く', chosenOi(0) === 0 && cardState(0) === 'decided');
+  click(optsOf(0)[1]);
+  chk('★別の見本を押すとその場で選び直せる(reopen を経由しない)',
+      S.decisions[0].status === 'decided' && S.decisions[0].oi === 1);
+  chk('★出自は human-pick(自分の手で決めた扱い)', S.decisions[0].src === 'human-pick');
+  chk('★prev は残さない(往復の1段だけの退避を壊さない)', S.decisions[0].prev === null);
+  chk('★「決めた」の印も移る', chosenOi(0) === 1);
+  chk('選び直しても未決は増えない', counter() === CT(2), JSON.stringify(counter()));
+
+  vm.runInContext('delegate(1);', ctx);
+  chk('★委ねても見本は全部出たまま', optsOf(1).length === 3);
+  chk('★委任の表記は足元に1行だけ',
+      cardOf(1).querySelector('.fstatus').hidden === false &&
+      cardOf(1).querySelector('.fstatus').textContent === '委ねた 制作者(AI)の裁量',
+      JSON.stringify(cardOf(1).querySelector('.fstatus').textContent));
+  chk('委任では「決めた」の印は誰にも付かない', chosenOi(1) === null);
+  click(optsOf(1)[2]);
+  chk('★委ねたカードの見本を押せば決定に変わる',
+      S.decisions[1].status === 'decided' && S.decisions[1].oi === 2 &&
+      S.decisions[1].src === 'human-pick');
+  chk('★足元の委任表記は畳まれる', cardOf(1).querySelector('.fstatus').hidden === true);
+  chk('★決定済みでも「委ねる」は押せる(2動詞はいつでも効く)', (function(){
+    click(cardOf(1).querySelector('.delegate'));
+    return S.decisions[1].status === 'delegated' && S.decisions[1].src === 'human-delegate';
+  })());
+
+  vm.runInContext('decide(2,0); onTokenClick(2);', ctx);
+  chk('★選び直し中は藍の枠だけ残り「決めた」は外れる(決定ではないから)',
+      optsOf(2)[0].getAttribute('aria-pressed') === 'true' && chosenOi(2) === null &&
+      cardState(2) === 'open' && cardOf(2).classList.contains('editing'));
+
+  chk('見本の行は上端揃え・ラベルは2行ぶんを確保(サムネイルの上端が揃う)',
+      /\.card \.opts\{[^}]*align-items:flex-start/.test(html) &&
+      /\.olabel\{[^}]*min-height:3\.2em/.test(html));
+  chk('選ばれていない見本は減光する',
+      html.indexOf('.card[data-state="decided"] .opt:not([data-chosen="1"]),') > 0 &&
+      /\.card\[data-state="delegated"\] \.opt\{opacity:\.5\}/.test(html));
+  chk('減光は hover / focus で戻る',
+      html.indexOf('.card[data-state="delegated"] .opt:focus-visible{opacity:1}') > 0);
+  chk('「決めた」の札は場所を確保したまま見えるかどうかだけを切り替える',
+      /\.obadge\{[^}]*visibility:hidden/.test(html) &&
+      /\.opt\[data-chosen="1"\] \.obadge\{visibility:visible\}/.test(html));
+  chk('委任の表記は「委ねる」と同じ行(カードの高さを増やさない)',
+      /\.card-foot \.fstatus\{[^}]*margin-right:auto/.test(html));
+
   /* ================= G) 生活語への置換が画面文言に残っている ================= */
   console.log('\n=== G) 置換後の生活語が画面にあり、旧語が残っていない ===');
   [['指示書にまとめる', 'コンパイル(ボタン)'],
@@ -362,7 +431,10 @@ const optsOpen = (bi) => {
    ['compiled brief', '英字併記'],
    ['読む用', '人間可読 MD'],
    ['AIに渡す用', '機械可読 JSON'],
-   ['この指示書でAIに作らせると?', 'このブリーフで作らせた結果を見る'],
+   // 2026-07-30(第7FB 3): 並置比較への口は「次の一歩」の副ボタンへ移し、改称した。
+   ['この指示書で作らせた実例を見る', 'この指示書でAIに作らせると?'],
+   ['この指示書は完成品ではありません。ここから先は、あなたのAIの仕事です。', '(なし。新設の一文)'],
+   ['指示書をコピーしてAIに渡す', '(なし。新設の主ボタン)'],
    ['指示書に戻る', 'ブリーフに戻る'],
    ['生成の代わりに、問いを組み立てています', '静寂コピー主文'],
    // 2026-07-30 トリアージ改訂: 「x1.0」は『誇張のない実測』の記号化だったが記号が
@@ -380,7 +452,11 @@ const optsOpen = (bi) => {
    'x1.0',
    // 第6FB で削った静寂コピーの2要素。画面にも(コメントにも)残っていないこと
    '届くまで、動くのはこの数字だけです', '早送りなしの実時間',
-   'いまの依頼文とは別の実例です(その場生成は行いません)'].forEach(bad => {
+   'いまの依頼文とは別の実例です(その場生成は行いません)',
+   // 第7FB で置き換えた旧文言(並置ボタン / 決定表示の案内 / 委任の見本)
+   'この指示書でAIに作らせると?', '原文の語をクリックすると選び直せます',
+   'この決定をクリックすると選び直せます', 'mini delegated',
+   '見本をクリックすると決まる。決めないなら「委ねる」。どちらも、あとで選び直せます。'].forEach(bad => {
     chk('旧文言「' + bad + '」が残っていない', html.indexOf(bad) < 0);
   });
   chk('★静寂コピーは主文1つだけ(但し書きの帯 .s-sub を持たない)',

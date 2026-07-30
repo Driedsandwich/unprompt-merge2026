@@ -193,13 +193,16 @@ const click = (el) => { (el.handlers.click || []).forEach(f => f()); };
   chk('★「すべて委ねる」の文言が画面に残っていない', html.indexOf('すべて委ねる') < 0);
   chk('★一括委任の内部経路も残っていない(delegateAll / bulk-delegate)',
       html.indexOf('delegateAll') < 0 && html.indexOf('bulk-delegate') < 0);
-  chk('カウンタ行は「カウンタ + 一括2つ」だけ',
-      /<div id="counterRow">[\s\S]{0,700}?id="branchCounter"[\s\S]{0,400}?id="btnRandomAll"[\s\S]{0,400}?id="btnRecoAll"[\s\S]{0,120}?<\/div>/
+  // 2026-07-30(第7FB 1): 同じ行の左端に「すべて選び直す」が加わった。
+  // 決める口は依然2つだけ(ランダム / AIのおすすめ)で、これは決定をほどく口である。
+  chk('カウンタ行は「カウンタ + すべて選び直す + 一括2つ」',
+      /<div id="counterRow">[\s\S]{0,900}?id="branchCounter"[\s\S]{0,500}?id="btnResetAll"[\s\S]{0,500}?id="btnRandomAll"[\s\S]{0,500}?id="btnRecoAll"[\s\S]{0,160}?<\/div>/
         .test(html) &&
       (html.slice(html.indexOf('<div id="counterRow">'), html.indexOf('<div id="recoNote"'))
-           .match(/<button /g) || []).length === 2);
+           .match(/<button /g) || []).length === 3);
   chk('カウンタが先・ボタンが後(= 行の右端)',
-      html.indexOf('id="branchCounter"') < html.indexOf('id="btnRandomAll"'));
+      html.indexOf('id="branchCounter"') < html.indexOf('id="btnResetAll"') &&
+      html.indexOf('id="btnResetAll"') < html.indexOf('id="btnRandomAll"'));
   chk('カード個別の「委ねる」は残っている',
       /el\('button', 'delegate', '委ねる'\)/.test(html) && /\.delegate\{/.test(html));
   chk('処理の内訳は details 要素', /<details id="procPanel"[^>]*>/.test(html));
@@ -220,9 +223,9 @@ const click = (el) => { (el.handlers.click || []).forEach(f => f()); };
   chk('パネルに朱・藍を使っていない', procCss.length > 400 && !/--shu|--ai\b/.test(procCss),
       'css=' + procCss.length + '字');
   chk('ゴースト様式(枠線のみ・鼠・ホバー藍)',
-      /#btnRandomAll, #btnRecoAll\{[^}]*background:transparent[^}]*border:1px solid var\(--line\)[^}]*color:var\(--muted\)/.test(html) &&
-      /#btnRandomAll:hover, #btnRecoAll:hover\{[^}]*color:var\(--ai\)[^}]*border-color:var\(--ai\)/.test(html));
-  chk('角丸ゼロ', /#btnRandomAll, #btnRecoAll\{[^}]*border-radius:0/.test(html) && /#procPanel\{[^}]*border-radius:0/.test(html));
+      /#btnResetAll, #btnRandomAll, #btnRecoAll\{[^}]*background:transparent[^}]*border:1px solid var\(--line\)[^}]*color:var\(--muted\)/.test(html) &&
+      /#btnResetAll:hover, #btnRandomAll:hover, #btnRecoAll:hover\{[^}]*color:var\(--ai\)[^}]*border-color:var\(--ai\)/.test(html));
+  chk('角丸ゼロ', /#btnResetAll, #btnRandomAll, #btnRecoAll\{[^}]*border-radius:0/.test(html) && /#procPanel\{[^}]*border-radius:0/.test(html));
 
   /* ================= A) 委ねるは1件ずつ / 一括は「決める」だけ ================= */
   console.log('\n=== A-1) ストリーミング中は一括を出さない ===');

@@ -68,6 +68,8 @@ def collect_stream(body):
     events = []
 
     def emit(obj):
+        if obj is None:          # keepalive(切断検知用)はイベントではないので読み飛ばす
+            return True
         events.append(obj)
         return True
 

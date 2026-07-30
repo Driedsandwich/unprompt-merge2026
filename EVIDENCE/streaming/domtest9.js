@@ -188,9 +188,11 @@ const shape = (el) => el.children.map(c =>
 (async () => {
   /* ================= 0) 整形描画の様式 ================= */
   console.log('=== 0) 「読む用」の様式(CSS) ===');
+  // 切り出す範囲は「読む用」の規則だけ。2026-07-30(第7FB 3)で本文の直下に
+  // 「次の一歩」(#nextStep。主ボタンだけが藍を地に使う)が入ったので、終端はそこにする。
   const readCss = (() => {
     const i0 = html.indexOf('#out.reading{');
-    const i1 = html.indexOf('#compileNote{');
+    const i1 = html.indexOf('#nextStep{');
     return (i0 < 0 || i1 < i0) ? '' : html.slice(i0, i1);
   })();
   chk('#out.reading の規則がある', readCss.length > 400, 'css=' + readCss.length + '字');
@@ -321,7 +323,65 @@ const shape = (el) => el.children.map(c =>
   ctx.__renderReading(probe2, md);            // 2度組んでも積み重ならない
   chk('★組み直しても積み重ならない(毎回まっさらから組む)', shape(probe2) === shot);
 
+  /* ================= 5) 次の一歩(2026-07-30 第7FB 3) =============================
+     「これで完成?」で手が止まる人への答え。本文の直下・フッタ注記の上に
+     一文 + 主ボタン(コピーして渡す) + 副ボタン(実例を見る)を置く。
+     主ボタンが渡すのは「コピー」を読む用で押したのと同じ MD 原文である(渡す物は1本)。 */
+  console.log('\n=== 5) 次の一歩(指示書は完成品ではない) ===');
+  chk('★静的マークアップの順序は 本文 → 次の一歩 → フッタ注記',
+      html.indexOf('<div id="out"></div>') < html.indexOf('<div id="nextStep">') &&
+      html.indexOf('<div id="nextStep">') < html.indexOf('<div id="compileNote"></div>'));
+  chk('★一文が承認どおり',
+      html.indexOf('<p id="nextStepLead">この指示書は完成品ではありません。ここから先は、あなたのAIの仕事です。</p>') > 0);
+  chk('★主ボタンの文言', /<button id="btnHandoff" type="button">指示書をコピーしてAIに渡す<\/button>/.test(html));
+  chk('★主ボタンだけが藍を地に使う(指示書にまとめるボタンと同じ格)',
+      /#btnHandoff\{[^}]*background:var\(--ai-strong\)[^}]*color:var\(--ai-strong-ink\)/.test(html));
+  chk('★副ボタンは並置比較への同じ経路(改称・移設。重複させない)',
+      /<button id="btnCompare" type="button">この指示書で作らせた実例を見る<\/button>/.test(html) &&
+      (html.match(/id="btnCompare"/g) || []).length === 1 &&
+      html.indexOf('<div id="nextStep">') < html.indexOf('id="btnCompare"') &&
+      html.indexOf('id="btnCompare"') < html.indexOf('<div id="compileNote"></div>'));
+  chk('★方眼の上に浮くボタン・タブは地を紙で塞ぐ',
+      /\.seg\{[^}]*background:var\(--paper\)/.test(html) &&
+      /#btnCopy\{[^}]*background:var\(--paper\)/.test(html) &&
+      /#btnCompare\{[^}]*background:var\(--paper\)/.test(html) &&
+      /#btnRestart\{[^}]*background:var\(--paper\)/.test(html) &&
+      /#btnCompareBack\{[^}]*background:var\(--paper\)/.test(html));
+  chk('★藍地のボタンもホバーで地を透かさない(罫が文字の下を走らない)',
+      /#btnCompile:hover:not\(:disabled\)\{background:var\(--paper\)/.test(html) &&
+      /#btnHandoff:hover\{background:var\(--paper\)/.test(html));
+  // 押す前は注記が無く、押すとコピーと注記が同時に出る
+  click(registry['tabMd']);
+  flushRAF(2);
+  chk('前提: 読む用に戻っている・注記は出ていない', registry['handoffNote'].hidden === true);
+  COPIED = null;
+  click(registry['btnHandoff']);
+  await sleep(10);
+  chk('★渡すのは MD 原文そのまま(「コピー」と1文字も違わない)', COPIED === md,
+      COPIED === null ? 'null' : ('先頭: ' + JSON.stringify(String(COPIED).slice(0, 24))));
+  chk('★成功の注記が承認どおり',
+      registry['handoffNote'].hidden === false &&
+      registry['handoffNote'].textContent ===
+        'コピーしました。ChatGPT・Claude・Gemini など、いつものAIに貼り付けてください。',
+      JSON.stringify(registry['handoffNote'].textContent));
+  chk('★注記は静かな色ではない(成功はただの事実)',
+      registry['handoffNote'].classList.contains('quiet') === false);
+  // 「AIに渡す用」を開いていても渡すのは MD(貼り付け先は対話のAIである)
+  click(registry['tabJson']);
+  flushRAF(2);
+  chk('★タブを切り替えると注記は畳まれる(次の操作まで残す作法)',
+      registry['handoffNote'].hidden === true && registry['handoffNote'].textContent === '');
+  COPIED = null;
+  click(registry['btnHandoff']);
+  await sleep(10);
+  chk('★AIに渡す用タブでも主ボタンが渡すのは MD 原文', COPIED === md);
+  COPIED = null;
+  click(registry['btnCopy']);
+  await sleep(10);
+  chk('★同じ画面で「コピー」は JSON 原文を渡す(役割が違う2つが共存する)',
+      COPIED !== md && noTime(COPIED) === noTime(ctx.__json()));
+
   console.log(FAILS.length ? '\n--- FAILED: ' + FAILS.join(' / ')
-                           : '\n--- 読む用の整形描画 / コピーは原文 / AIに渡す用は原文 / 決定論: すべて期待どおり');
+                           : '\n--- 読む用の整形描画 / コピーは原文 / AIに渡す用は原文 / 決定論 / 次の一歩: すべて期待どおり');
   process.exit(FAILS.length ? 1 : 0);
 })().catch(e => { console.error('THREW:', e && e.stack || e); process.exit(2); });

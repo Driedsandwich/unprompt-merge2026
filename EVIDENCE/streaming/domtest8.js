@@ -211,6 +211,7 @@ function wireTree(){
   put('procBody', 'procRows');
   put('meta', 'counterRow');
   put('counterRow', 'branchCounter');
+  put('counterRow', 'btnResetAll');
   put('counterRow', 'btnRandomAll');
   put('counterRow', 'btnRecoAll');
 }
@@ -263,21 +264,25 @@ const ois = (ctx) => ctx.__S.decisions.map(d => d.oi);
       /<button id="btnRecoAll" type="button" hidden title="[^"]*">AIのおすすめで決める<\/button>/.test(row));
   chk('どちらも既定で hidden',
       /id="btnRandomAll"[^>]*\shidden[\s>]/.test(row) && /id="btnRecoAll"[^>]*\shidden[\s>]/.test(row));
-  // 2026-07-30(第6FB): カウンタ行は「カウンタ + 一括2つ」だけ。まとめて委ねる口は撤去した。
-  chk('カウンタ行(#counterRow)の中・カウンタの右に2つだけ',
-      row.indexOf('id="branchCounter"') < row.indexOf('id="btnRandomAll"') &&
+  // 2026-07-30(第6FB): まとめて委ねる口は撤去した。
+  // 2026-07-30(第7FB 1): カウンタの右は「すべて選び直す + 決める2つ」の3つ。
+  chk('「すべて選び直す」がある(決める2つの左)',
+      /<button id="btnResetAll" type="button" hidden title="[^"]*">すべて選び直す<\/button>/.test(row));
+  chk('カウンタ行(#counterRow)の中・カウンタの右に3つ',
+      row.indexOf('id="branchCounter"') < row.indexOf('id="btnResetAll"') &&
+      row.indexOf('id="btnResetAll"') < row.indexOf('id="btnRandomAll"') &&
       row.indexOf('id="btnRandomAll"') < row.indexOf('id="btnRecoAll"') &&
-      (row.match(/<button /g) || []).length === 2 &&
+      (row.match(/<button /g) || []).length === 3 &&
       row.indexOf('btnDelegateAll') < 0);
   chk('★ランダムの title が「AIは使いません」と明言する',
       /title="AIは使いません。この場で無作為に決めます。何度でも引き直せます。"/.test(row));
   chk('文言の動詞は「決める」「委ねる」だけ(生成語を持ち込まない)',
       !/>[^<]*(生成|作成|つくる|書き)[^<]*<\/button>/.test(row));
-  chk('同じゴースト様式(枠線のみ・鼠・ホバー藍)',
-      /#btnRandomAll, #btnRecoAll\{[^}]*background:transparent[^}]*border:1px solid var\(--line\)[^}]*color:var\(--muted\)/.test(html) &&
-      /#btnRandomAll:hover, #btnRecoAll:hover\{[^}]*color:var\(--ai\)[^}]*border-color:var\(--ai\)/.test(html));
-  chk('角丸ゼロ', /#btnRandomAll, #btnRecoAll\{[^}]*border-radius:0/.test(html));
-  chk('方眼マスキングも同じ扱い', /#btnRandomAll, #btnRecoAll\{background:var\(--paper\)\}/.test(html));
+  chk('同じゴースト様式(枠線のみ・鼠・ホバー藍。3つとも同じ規則)',
+      /#btnResetAll, #btnRandomAll, #btnRecoAll\{[^}]*background:transparent[^}]*border:1px solid var\(--line\)[^}]*color:var\(--muted\)/.test(html) &&
+      /#btnResetAll:hover, #btnRandomAll:hover, #btnRecoAll:hover\{[^}]*color:var\(--ai\)[^}]*border-color:var\(--ai\)/.test(html));
+  chk('角丸ゼロ', /#btnResetAll, #btnRandomAll, #btnRecoAll\{[^}]*border-radius:0/.test(html));
+  chk('方眼マスキングも同じ扱い', /#btnResetAll, #btnRandomAll, #btnRecoAll\{background:var\(--paper\)\}/.test(html));
   chk('待機中の様式は等幅数字・枠は騒がない',
       /#btnRecoAll\[data-state="loading"\][^{]*\{[^}]*font-variant-numeric:tabular-nums/.test(html));
   chk('理由の行はカウンタ行の直下・既定 hidden',
@@ -640,7 +645,74 @@ const ois = (ctx) => ctx.__S.decisions.map(d => d.oi);
     chk('★長い文には .long が付く', registry['briefText'].classList.contains('long') === true);
   }
 
+  /* ================= H) すべて選び直す(2026-07-30 第7FB 1) =========================
+     一括で「決める」2つは human の決定を避けるが、これは明示の解除操作なので全件が対象。
+     出す条件は「決定または委任が1件以上あるとき」。押した後はカウンタもコンパイル可否も
+     単一のソース(status)から巻き戻り、おすすめの理由の行も畳まれる。 */
+  console.log('\n=== H) すべて選び直す ===');
+  freshReco();
+  RAND_SEQ = [0];
+  ctx = await runToDone();
+  chk('★1件も決まっていないあいだは出さない',
+      registry['btnResetAll'].hidden === true && stats(ctx).every(s => s === null));
+  ctx.__decide(0, 1);                         // human-pick
+  flushRAF(4);
+  chk('★1件でも決まれば出る', registry['btnResetAll'].hidden === false);
+  ctx.__delegate(1);                          // human-delegate
+  clickEl(registry['btnRandomAll']);           // 残りは random
+  flushRAF(4);
+  chk('前提: human 2件 + random 1件・未決0',
+      stats(ctx).every(s => s !== null) && registry['compileRow'].hidden === false,
+      JSON.stringify(srcs(ctx)));
+  clickEl(registry['btnResetAll']);
+  flushRAF(4);
+  chk('★全件が未決へ戻る(human-pick / human-delegate も含む)',
+      stats(ctx).every(s => s === null), JSON.stringify(stats(ctx)));
+  chk('★出自も選択も残さない', srcs(ctx).every(s => s === null) && ois(ctx).every(o => o === null),
+      JSON.stringify(srcs(ctx)) + JSON.stringify(ois(ctx)));
+  chk('★prev を残さない(「やめる」先を作らない)',
+      ctx.__S.decisions.every(d => d.prev === null));
+  chk('★カウンタが未決3へ巻き戻る',
+      registry['branchCounter'].textContent.indexOf('未決 3') > 0 &&
+      registry['branchCounter'].classList.contains('zero') === false,
+      JSON.stringify(registry['branchCounter'].textContent));
+  chk('★指示書ボタンが消える(未決が戻ったので不可)', registry['compileRow'].hidden === true);
+  chk('★語の色も朱(open)へ戻る',
+      ctx.__S.spans.every(sp => sp.el.dataset.state === 'open'),
+      JSON.stringify(ctx.__S.spans.map(sp => sp.el.dataset.state)));
+  chk('★自分自身は消える(戻す先がもう無い)', registry['btnResetAll'].hidden === true);
+  chk('★決める2つは出たまま(押す先が全件に戻った)',
+      registry['btnRandomAll'].hidden === false && registry['btnRecoAll'].hidden === false &&
+      ctx.__bulkTargets().length === 3);
+  {
+    // おすすめの理由の行: 当てた決定が1件も残らなければ畳む。押し直せばモデルを
+    // 呼ばずに再適用され、理由も戻る(picks はセッションの取得結果として残っている)。
+    const n = calls.filter(u => u === '/api/recommend').length;
+    await ctx.__reco();
+    flushRAF(4);
+    chk('前提: おすすめで決まり理由が出ている',
+        registry['recoNote'].hidden === false && srcs(ctx).every(s => s === 'reco'));
+    clickEl(registry['btnResetAll']);
+    flushRAF(4);
+    chk('★すべて選び直すと理由の行は畳まれる', registry['recoNote'].hidden === true);
+    clickEl(registry['btnRecoAll']);
+    flushRAF(4);
+    chk('★押し直すとモデルを呼ばずに再適用され、理由も戻る',
+        calls.filter(u => u === '/api/recommend').length === n + 1 &&
+        registry['recoNote'].hidden === false && srcs(ctx).every(s => s === 'reco'));
+  }
+  {
+    // 未決0で押しても、押した後に選び直せることを壊さない(往復)
+    clickEl(registry['btnResetAll']);
+    flushRAF(4);
+    ctx.__decide(0, 0);
+    flushRAF(4);
+    chk('★選び直したあとも1件ずつ決められる(往復して壊れない)',
+        ctx.__S.decisions[0].status === 'decided' && ctx.__S.decisions[0].src === 'human-pick' &&
+        registry['btnResetAll'].hidden === false);
+  }
+
   console.log(FAILS.length ? '\n--- FAILED: ' + FAILS.join(' / ')
-                           : '\n--- ランダム / おすすめ / 正準ID / ロゴ2度押し / 自動成長 / エコー: すべて期待どおり');
+                           : '\n--- ランダム / おすすめ / 正準ID / ロゴ2度押し / 自動成長 / エコー / すべて選び直す: すべて期待どおり');
   process.exit(FAILS.length ? 1 : 0);
 })().catch(e => { console.error('THREW:', e && e.stack || e); process.exit(2); });

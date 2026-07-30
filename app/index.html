@@ -14,6 +14,8 @@
        カウンタ行の一括2つ(ランダムに決める / AIのおすすめで決める)は3つ目の動詞ではない。
        未決の各分岐に〈決める〉と全く同じ状態遷移を起こすだけで、後から1件ずつ選び直せる。
        〈委ねる〉に一括の口は置かない(委任は1件ごとの判断として残す)。
+       同じ行の「すべて選び直す」も動詞ではない。置いた決定を全部ほどいて未決へ戻す解除で、
+       〈決める〉の逆向きの一手である(1件ごとの解除 = 原文の語のクリックと同じ状態遷移)。
     2. 画面遷移 (a)下線だけの入力欄 → (b)静寂(実測経過秒 + 「生成の代わりに、問いを組み立てています」)
        → (c)爆散(文字が散って静定 → anchor 語に朱の圏点 → 語とカードを結ぶ製図の引出線)
        → (d)カード操作 → (e)未決0で「指示書にまとめる」 → (f)意図の指示書。
@@ -24,9 +26,11 @@
     5. サイドパネル・%メーター・BGM・パーティクル禁止。状態は「原文の語の色」と「カウンタ」のみ。
        左下の「処理の内訳」は既定で閉じており、判断の状態を一切語らない(実行環境と実測だけ)。
        開いたときも色は使わず墨と鼠のみ。したがって条項5の禁止対象には当たらない。
-    6. 確定/委任済みの語をクリックすると当該カードを再提示して再選択(状態上書き)。多段アンドゥなし。
-       再提示は「決定の解除」= status を null へ戻す操作であり、判断点カウンタもコンパイル可否も
-       同じ単一のソースから毎回導出されるので必ず巻き戻る(増分カウンタは持たない)。
+    6. 決めたあともカードは見本を全部出したままで、別の見本をクリックすればその場で選び直せる
+       (選ばれた見本に藍の枠と「決めた」、他は減光。状態上書き。多段アンドゥなし)。
+       確定/委任済みの語をクリックすると当該カードが未決へ戻る。これは「決定の解除」=
+       status を null へ戻す操作であり、判断点カウンタもコンパイル可否も同じ単一のソースから
+       毎回導出されるので必ず巻き戻る(増分カウンタは持たない)。
     7. 視覚アイデンティティ「朱と藍の製図」。製図白の地に24pxの極薄グリッド、墨の文字。
        意味を持つ色は3つだけ: 朱=未決 / 藍=確定 / 鼠=委任。
        原文だけが明朝の大きな主役で、UIは全てゴシック 11-13px。角丸なし・影なし(輪郭線1pxのみ)。
@@ -89,7 +93,9 @@
     --ai-strong-ink:#FCFCFA;        /* その地に載る文字 */
     --nezumi:#8E8C86;               /* 鼠 = 委任 */
     --nezumi-soft:rgba(142,140,134,.12);
-    /* 旧トークン名の互換(既存の記述が指す先だけ差し替える) */
+    /* 旧トークン名の互換。2026-07-30(第7FB 5b)で決定表示 .resolved と委任の見本を
+       撤去したため、いま参照しているCSSは1つも無い。名前だけ残して定義を消さないのは、
+       状態の3色に別名が生えるのを防ぐため(新しい記述は --ai / --nezumi / --shu を直に使う)。 */
     --decided:var(--ai);
     --decided-bg:var(--ai-soft);
     --delegate:var(--nezumi);
@@ -311,7 +317,7 @@
     letter-spacing:var(--ui-ls); max-width:380px;
   }
   #btnSend{
-    flex:0 0 auto; border:1px solid var(--ink); background:transparent; color:var(--ink);
+    flex:0 0 auto; border:1px solid var(--ink); background:var(--paper); color:var(--ink);
     padding:9px 20px; font-size:12px; letter-spacing:.12em; line-height:1;
     transition:background-color .2s ease, color .2s ease, opacity .2s ease, border-color .2s ease;
   }
@@ -323,7 +329,9 @@
   }
   .example-row .ex-label{font-size:10.5px; color:var(--muted); letter-spacing:var(--ui-ls)}
   .ex-chip{
-    border:1px solid var(--line); background:transparent; color:var(--muted);
+    /* 地は紙。入力欄の紙は中央から外へ薄れていくので、その外縁に置いたチップは
+       地を持たないと方眼の罫が文字の下を走る(2026-07-30 ユーザー実機報告)。 */
+    border:1px solid var(--line); background:var(--paper); color:var(--muted);
     font-size:11px; letter-spacing:.06em; padding:6px 12px; line-height:1; border-radius:0;
     transition:border-color .15s ease, color .15s ease;
   }
@@ -334,7 +342,9 @@
   }
 
   /* ============ ステージ(静寂 → 爆散 → カード) ============ */
-  #screenStage{max-width:1000px; margin:0 auto; padding:74px 24px 96px}
+  /* 上余白は 74px → 56px(2026-07-30 第7FB 4c)。原文とカードの縦の隙間を詰める。
+     ロックアップ(top:18px・高さ12px程度)とは触れない。 */
+  #screenStage{max-width:1000px; margin:0 auto; padding:56px 24px 96px}
   #stage{position:relative}
 
   #tethers{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:visible}
@@ -406,19 +416,33 @@
   .tok.hl{background:var(--ai-soft)}
 
   /* ============ 方眼マスキング(可読性) ============
-     32px 明朝の原文に 24px の方眼罫が重なると字画が濁る。文字ごとに紙の下敷きを敷いて
-     罫だけを断つ(方眼は画面に残る。字間・行間・語間の空白では方眼が続いて見える)。
+     32px 明朝の原文に 24px の方眼罫が重なると字画が濁る。行のボックスに沿って紙の下敷きを
+     敷き、罫だけを断つ(行間では方眼が続いて見える。ブロック全体を矩形で塗ると
+     語からカードへ落ちる引出線を根元から絶つので、それはしない)。
      ・z-index:-1 なので下敷きは .tok の状態色(朱の罫/藍・鼠の塗り)より下に入る
        = 語の色と圏点と下線の見え方は一切変わらない。
      ・下端は伸ばさない。引出線の先端の小円が語の下端 +3px に来るため、
        下へ伸ばすと線の起点を隠してしまう。
      ・打ち始めは tenten-on 以降(= 散らばりが静定した後)。爆散の最中に紙片が
-       飛び回るのを避けるため、演出が終わってから敷く。 */
+       飛び回るのを避けるため、演出が終わってから敷く。
+     2026-07-30(第7FB 4a): 文字セルだけに敷くと、字間(.085em)は覆えても
+     語の padding(.06em)・爆散で開いた語間(.18em)・空白文字が素通しで、
+     「下線の有無の境目」と「語間」に罫が細く透けていた。3つで塞ぐ:
+       (1) 文字セル .ch(空白も .ch セルにした。renderBriefWithSpans 参照)
+       (2) 語 .tok 自身の余白と左右の語間(.24em = margin .18 + .06)
+       (3) 語と地の文の継ぎ目は (1)(2) の重なりで連続する */
   #briefText.tenten-on .ch::after{
     content:""; position:absolute; z-index:-1;
     top:-.34em; right:-.06em; bottom:0; left:-.06em;
     background:var(--paper); pointer-events:none;
   }
+  #briefText.tenten-on .tok::before{
+    content:""; position:absolute; z-index:-1;
+    top:-.34em; right:-.24em; bottom:0; left:-.24em;
+    background:var(--paper); pointer-events:none;
+  }
+  /* 空白のセルには圏点を打たない(圏点は字の上に載る点である) */
+  #briefText .ch.sp::before{content:none}
 
   /* 静寂カウンタ / 判断点カウンタ */
   #meta{
@@ -426,8 +450,15 @@
     /* 一括の2つが並ぶと狭い紙幅では 820px に収まらない。畳んで2行にする
        (収まらないぶんを紙の外へ押し出すと横スクロールが出る)。 */
     flex-wrap:wrap; row-gap:12px;
-    gap:20px; margin:38px auto 0; max-width:820px; position:relative; z-index:1;
-    padding-top:12px; border-top:1px solid var(--line-soft);
+    /* 2026-07-30(第7FB 4b/4c): 上の水平罫(border-top)を撤去した。方眼と揃わない
+       1本の構造罫が「生成の代わりに、問いを組み立てています。」の行に被って見えていた。
+       行そのものの紙の下敷き(#silenceNum / .s-main / #branchCounter)は残す。
+       margin も 38px → 22px(原文とカードの隙間を詰める)。
+       幅は原文の 820px ではなくカード群と同じ紙幅いっぱいにする。ボタンが3つになった分
+       820px では収まらず、行が2段に折れてカードが 39px 下がっていた(= 最初の決定で
+       「すべて選び直す」が現れた瞬間にカードが動く)。罫を撤去して原文と揃える理由も
+       無くなったので、この行は下のカード群に揃える。 */
+    gap:20px; margin:22px auto 0; position:relative; z-index:1;
   }
   #silence{flex:1; text-align:center; transition:none}
   #silence #silenceNum{
@@ -453,14 +484,15 @@
   /* 折り返しても右端に揃える(製図の表題欄と同じで、数字と操作は右に寄る)。 */
   #counterRow{display:flex; align-items:baseline; gap:10px 16px; flex:0 0 auto;
               flex-wrap:wrap; justify-content:flex-end; margin-left:auto}
-  /* 一括の2つ(ランダムに決める / AIのおすすめで決める)= ゴースト様式
-     (枠線のみ・鼠・ホバー藍)。どちらも decide() をそのまま呼ぶだけで専用の状態は持たない。 */
-  #btnRandomAll, #btnRecoAll{
+  /* カウンタ行の3つ(すべて選び直す / ランダムに決める / AIのおすすめで決める)= ゴースト様式
+     (枠線のみ・鼠・ホバー藍)。決める2つは decide() を、選び直しは status を null へ戻すだけで、
+     どれも専用の状態を持たない。 */
+  #btnResetAll, #btnRandomAll, #btnRecoAll{
     flex:0 0 auto; background:transparent; border:1px solid var(--line); border-radius:0;
     padding:5px 13px; font-size:10.5px; line-height:1; color:var(--muted); letter-spacing:.1em;
     transition:color .2s ease, border-color .2s ease;
   }
-  #btnRandomAll:hover, #btnRecoAll:hover{color:var(--ai); border-color:var(--ai)}
+  #btnResetAll:hover, #btnRandomAll:hover, #btnRecoAll:hover{color:var(--ai); border-color:var(--ai)}
   /* 待機中は静寂と同じ作法。実測秒数だけが動き、枠も色も騒がない(等幅数字) */
   #btnRecoAll[data-state="loading"], #btnRecoAll[data-state="loading"]:hover{
     color:var(--ink-soft); border-color:var(--line-soft); cursor:default;
@@ -474,7 +506,7 @@
   #silence #silenceNum{display:inline-block; background:var(--paper)}
   #silenceNote .s-main{background:var(--paper)}
   #branchCounter{background:var(--paper)}
-  #btnRandomAll, #btnRecoAll{background:var(--paper)}
+  #btnResetAll, #btnRandomAll, #btnRecoAll{background:var(--paper)}
   /* おすすめの理由 / 取得できなかった注記。カウンタ行の直下に1行だけ置く。
      格は #assessNote と同じ「注記」で、方眼の下敷きは敷かない
      (ここに不透明な地を置くと、語からカードへ落ちる引出線を横切って断つ)。 */
@@ -522,7 +554,9 @@
   /* ============ 分岐カード(原文の下・2列グリッド) ============ */
   #cards{
     display:grid; grid-template-columns:1fr 1fr; gap:20px;
-    margin-top:46px; position:relative; z-index:1;
+    /* 46px → 28px(2026-07-30 第7FB 4c)。判断点4件までなら 913px 高でも
+       スクロールせずに全カードが見える寸法へ寄せる。 */
+    margin-top:28px; position:relative; z-index:1;
   }
   #cards .card:nth-child(odd):last-child{grid-column:1 / -1; justify-self:center; width:calc(50% - 10px)}
   /* ストリーミング中は「最後の1枚を中央に寄せる」規則を止める。
@@ -564,20 +598,45 @@
     font-size:11px; line-height:1.85; color:var(--muted); margin-top:6px;
     letter-spacing:var(--ui-ls);
   }
-  .card .opts{display:flex; flex-wrap:wrap; gap:12px; margin-top:14px}
+  /* 見本の行は上端揃え。ラベルが2行に折り返しても、行をまたいでもサムネイルの上端が
+     揃うよう、ラベル領域は2行ぶんを常に確保する(2026-07-30 第7FB 5a)。 */
+  .card .opts{display:flex; flex-wrap:wrap; align-items:flex-start; gap:12px; margin-top:14px}
   .opt{
     background:transparent; border:1px solid transparent; border-radius:0;
     padding:5px 5px 6px; margin:0; display:block; text-align:left;
-    transition:border-color .2s ease, background-color .2s ease;
+    transition:border-color .2s ease, background-color .2s ease, opacity .2s ease;
   }
   .opt:hover{border-color:var(--line); background:var(--wash)}
+  /* 藍の枠 = 選ばれている見本。data-chosen は「決めた」、aria-pressed だけのときは
+     「選び直し中に直前の選択を示している」= 決定ではない(だから「決めた」は出さない)。 */
   .opt[aria-pressed="true"]{border-color:var(--ai); background:var(--ai-soft)}
+  .opt[data-chosen="1"]{border-color:var(--ai); background:var(--ai-soft)}
   .olabel{
     font-size:11px; line-height:1.6; color:var(--ink-soft); margin-top:6px;
-    width:120px; word-break:break-word; letter-spacing:var(--ui-ls);
+    width:120px; min-height:3.2em; word-break:break-word; letter-spacing:var(--ui-ls);
   }
+  /* 「決めた」の印。場所は常に確保して見えるかどうかだけを切り替える
+     ——決めてもカードの高さが1pxも変わらないことがこの製品の約束である。 */
+  .obadge{
+    font-size:9.5px; line-height:1.5; letter-spacing:.14em; margin-top:4px;
+    color:var(--ai); visibility:hidden;
+  }
+  .opt[data-chosen="1"] .obadge{visibility:visible}
+  /* 決めたあとも見本は全部出したまま。選ばれていない見本は減光し、
+     ポインタを重ねる(またはフォーカスする)と戻る。クリックすればそのまま選び直せる。 */
+  .card[data-state="decided"] .opt:not([data-chosen="1"]),
+  .card[data-state="delegated"] .opt{opacity:.5}
+  .card[data-state="decided"] .opt:not([data-chosen="1"]):hover,
+  .card[data-state="decided"] .opt:not([data-chosen="1"]):focus-visible,
+  .card[data-state="delegated"] .opt:hover,
+  .card[data-state="delegated"] .opt:focus-visible{opacity:1}
   .card-foot{margin-top:auto; padding-top:14px; display:flex; justify-content:flex-end; align-items:flex-end}
-  /* 初回だけ最初の1枚に出る注記。既存の「一番下の小さな字」(.rhint)と同じ寸法・色 */
+  /* 委任の表記。「委ねる」ボタンと同じ行に置くので、委ねてもカードの高さは変わらない。 */
+  .card-foot .fstatus{
+    margin-right:auto; padding-right:12px; white-space:nowrap;
+    font-size:10.5px; line-height:1.75; color:var(--nezumi); letter-spacing:var(--ui-ls);
+  }
+  /* 初回だけ最初の1枚に出る注記(一番下の小さな字) */
   .card-foot .card-hint{
     font-size:10px; color:var(--muted); line-height:1.75; letter-spacing:var(--ui-ls);
     margin-right:auto; padding-right:12px; max-width:62%;
@@ -588,18 +647,10 @@
     transition:color .2s ease, border-color .2s ease;
   }
   .delegate:hover{color:var(--ink-soft); border-color:var(--muted)}
-  /* 決定表示はクリックで再提示できる(条項6の保証。原文の語が無い分岐への保険も兼ねる) */
-  .resolved{display:flex; align-items:flex-start; gap:14px; margin-top:14px; cursor:pointer}
-  .resolved .rtext{font-size:11.5px; line-height:1.85; color:var(--ink-soft); padding-top:2px; letter-spacing:var(--ui-ls)}
-  .resolved .rtext .rkind{display:block; font-size:10px; letter-spacing:.14em; color:var(--muted); margin-bottom:3px}
-  .resolved .rtext .rhint{display:block; font-size:10px; color:var(--muted); margin-top:8px; line-height:1.75}
-  /* 決定表示が選択肢表示より高くならないよう行数を固定する。
-     カード高さは爆散時に最大値で固定済みなので、これで既存カードは決して動かない。 */
-  .resolved .rtext strong{
-    display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden;
-  }
-  .card[data-state="decided"] .resolved .rtext strong{color:var(--decided); font-weight:600}
-  .card[data-state="delegated"] .resolved .rtext strong{color:var(--delegate); font-weight:600}
+  /* 2026-07-30(第7FB 5b): 「決定表示(.resolved)がカードの中身を置き換える」作りを捨てた。
+     決めても委ねても見本は全部出たままで、選ばれた1枚に藍の枠と「決めた」が付き、
+     他は減光する。別の見本をクリックすればその場で選び直せる(reopen を経由しない)。
+     原文の語をクリックして未決へ戻す道(条項6)はそのまま残っている。 */
 
   /* ============ 決定論ミニレンダ(120x84) ============ */
   .mini{
@@ -624,8 +675,6 @@
   @keyframes skelPulse{0%,100%{opacity:1} 50%{opacity:.62}}
   .mini.failed{background:#f8f7f5; border-style:dashed; align-items:center; justify-content:center}
   .mini.failed span{font-size:10px; color:var(--muted); text-align:center; padding:0 8px; line-height:1.6}
-  .mini.delegated{background:#f6f6f6; border-style:dashed; align-items:center; justify-content:center}
-  .mini.delegated span{font-size:10.5px; color:var(--delegate); letter-spacing:.06em}
 
   /* ============ (e) コンパイルボタン ============ */
   #compileRow{margin-top:44px; display:flex; justify-content:center; position:relative; z-index:1}
@@ -638,7 +687,8 @@
     box-shadow:none;
     transition:opacity .25s ease, background-color .2s ease, color .2s ease;
   }
-  #btnCompile:hover:not(:disabled){background:transparent; color:var(--ai)}
+  /* ホバーで地を透かすと方眼の罫が文字の下を走る。抜くのは藍だけで、地は紙に置き換える。 */
+  #btnCompile:hover:not(:disabled){background:var(--paper); color:var(--ai)}
   #btnCompile:disabled{opacity:.4; cursor:default}
   #compileRow.in #btnCompile{animation:riseIn .5s ease both}
   @keyframes riseIn{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
@@ -667,14 +717,17 @@
   }
   #asym .item.choice b{color:var(--ai); font-weight:500}
   .outbar{display:flex; align-items:center; gap:8px; margin:24px 0 14px}
-  .seg{display:inline-flex; border:1px solid var(--line); border-radius:0; overflow:hidden}
+  /* 方眼の上に浮くタブ・ボタンは地を紙で塞ぐ(2026-07-30 第7FB 2)。
+     ゴースト様式(枠線+文字)は保ったまま、透けていた罫だけを消す。
+     地はタブの帯 .seg にまとめて敷く(非選択側は紙・選択側は墨が上書きする)。 */
+  .seg{display:inline-flex; border:1px solid var(--line); border-radius:0; overflow:hidden; background:var(--paper)}
   .seg button{
     background:transparent; border:0; padding:8px 16px; font-size:11px; color:var(--muted);
     transition:background-color .2s ease, color .2s ease;
   }
   .seg button[aria-selected="true"]{background:var(--ink); color:var(--paper)}
   #btnCopy{
-    margin-left:auto; background:transparent; border:1px solid var(--line);
+    margin-left:auto; background:var(--paper); border:1px solid var(--line);
     border-radius:0; padding:8px 16px; font-size:11px; color:var(--ink-soft);
   }
   /* 「AIに渡す用」タブのときだけ出す断り(鼠・11px・ゴシック。墨と鼠のみで色は足さない) */
@@ -734,9 +787,32 @@
   }
   #out.reading blockquote p{margin:0}
   #out.reading hr{margin:28px 0 15px; border:0; border-top:1px solid var(--line)}
-  #compileNote{font-size:10.5px; color:var(--muted); margin-top:14px; line-height:1.95}
+  /* ============ 次の一歩(この指示書は完成品ではない) ============
+     ここで手が止まる人がいる(「これで完成?」)。指示書は材料であって成果物ではない、
+     という事実を1行だけ置き、渡す先へ送り出す口を主ボタンにする。
+     主ボタンだけが藍を地に使う(指示書にまとめるボタンと同じ格)。 */
+  #nextStep{
+    margin:26px auto 0; display:flex; flex-direction:column; align-items:center; gap:12px;
+  }
+  #nextStepLead{
+    margin:0; font-size:11px; line-height:1.9; color:var(--ink-soft);
+    letter-spacing:var(--ui-ls); text-align:center; background:var(--paper);
+  }
+  #btnHandoff{
+    background:var(--ai-strong); color:var(--ai-strong-ink);
+    border:1px solid var(--ai-strong); border-radius:0;
+    padding:12px 30px; font-size:12px; letter-spacing:.14em;
+    transition:background-color .2s ease, color .2s ease;
+  }
+  #btnHandoff:hover{background:var(--paper); color:var(--ai)}
+  #handoffNote{
+    margin:0; font-size:10.5px; line-height:1.9; color:var(--ink-soft);
+    letter-spacing:var(--ui-ls); text-align:center; background:var(--paper);
+  }
+  #handoffNote.quiet{color:var(--muted)}
+  #compileNote{font-size:10.5px; color:var(--muted); margin-top:26px; line-height:1.95}
   #btnRestart{
-    display:block; margin:38px auto 0; background:transparent; border:0;
+    display:block; margin:38px auto 0; background:var(--paper); border:0;
     font-size:10.5px; color:var(--muted); letter-spacing:.12em; text-decoration:underline;
     text-underline-offset:3px;
   }
@@ -744,11 +820,14 @@
   /* ============ (g) 並置証明 SplitCompare ============
      app/compare/<brief_id>/*.html(事前生成物)を iframe で並べる。生成物は外部依存ゼロの
      自己完結HTMLなので sandbox="" で全能力を落として読み込む(スクリプト・フォーム不許可)。 */
+  /* 副ボタン。#nextStep の中(主ボタンの下)に置く。地は紙で罫を塞ぐ。 */
   #btnCompare{
-    display:block; margin:26px auto 0; background:transparent;
+    background:var(--paper);
     border:1px solid var(--line); border-radius:0; padding:9px 22px;
     font-size:11px; color:var(--ink-soft); letter-spacing:.1em;
+    transition:color .2s ease, border-color .2s ease;
   }
+  #btnCompare:hover{color:var(--ai); border-color:var(--ai)}
   #screenCompare{max-width:1180px; margin:0 auto; padding:74px 24px 96px}
   #screenCompare h2{
     font-size:13px; font-weight:600; letter-spacing:.14em; color:var(--ink);
@@ -785,7 +864,7 @@
   .cmp-frame iframe{display:block; width:100%; height:100%; border:0}
   #compareNote{font-size:10.5px; color:var(--muted); margin-top:20px; line-height:2; text-align:center}
   #btnCompareBack{
-    display:block; margin:30px auto 0; background:transparent; border:0;
+    display:block; margin:30px auto 0; background:var(--paper); border:0;
     font-size:10.5px; color:var(--muted); letter-spacing:.12em; text-decoration:underline;
     text-underline-offset:3px;
   }
@@ -923,11 +1002,14 @@
              ——画面を見ていない読み手にはそちらが証拠になる。 -->
         <div id="silenceNote"><span class="s-main">生成の代わりに、問いを組み立てています。</span></div>
       </div>
-      <!-- カウンタと一括の2つは同じ行。ボタンは総数が確定してから出る。
-           一括は「決める」の2つだけ(ランダム / AIのおすすめ)。まとめて委ねる口は置かない
-           ——「委ねる」はカード1枚ずつの行為として残す(2026-07-30)。 -->
+      <!-- カウンタと一括の3つは同じ行。決める2つは総数が確定してから出る。
+           一括で「決める」のは2つだけ(ランダム / AIのおすすめ)。まとめて委ねる口は置かない
+           ——「委ねる」はカード1枚ずつの行為として残す(2026-07-30)。
+           左端の「すべて選び直す」は決める口ではなく、置いた決定を全部ほどく口である
+           (2026-07-30 第7FB 1)。1件も決まっていないあいだは出さない。 -->
       <div id="counterRow">
         <div id="branchCounter" hidden></div>
+        <button id="btnResetAll" type="button" hidden title="決めた内容と委ねた内容を、すべて未決に戻します。">すべて選び直す</button>
         <button id="btnRandomAll" type="button" hidden title="AIは使いません。この場で無作為に決めます。何度でも引き直せます。">ランダムに決める</button>
         <button id="btnRecoAll" type="button" hidden title="AIに一案だけ出させます。決めるのはあなたで、いつでも選び直せます。">AIのおすすめで決める</button>
       </div>
@@ -968,8 +1050,17 @@
        最初に開いた画面の静けさは変わらない。 -->
   <p id="jsonNote" hidden>この欄はコピーして、制作を任せるAIに渡すためのもの。人が読む必要はありません。</p>
   <div id="out"></div>
+  <!-- ============ 次の一歩 ============
+       「これで完成?」で手が止まる人への答えを、本文の直下・フッタ注記の上に置く。
+       主ボタンは既存の「コピー」と同じ MD 原文をクリップボードへ渡す(渡す物は1本)。
+       副ボタンは並置比較へ。実例が事前生成物であることの開示は並置画面の常設ラベルが持つ。 -->
+  <div id="nextStep">
+    <p id="nextStepLead">この指示書は完成品ではありません。ここから先は、あなたのAIの仕事です。</p>
+    <button id="btnHandoff" type="button">指示書をコピーしてAIに渡す</button>
+    <p id="handoffNote" hidden></p>
+    <button id="btnCompare" type="button">この指示書で作らせた実例を見る</button>
+  </div>
   <div id="compileNote"></div>
-  <button id="btnCompare" type="button">この指示書でAIに作らせると?</button>
   <button id="btnRestart" type="button">最初から</button>
 </section>
 
@@ -1178,6 +1269,7 @@ const elSilence = $('silence'), elSilenceNum = $('silenceNum');
 const elCounter = $('branchCounter'), elCards = $('cards'), elCompileRow = $('compileRow');
 const elCompile = $('btnCompile'), elAssess = $('assessNote'), elStageErr = $('stageError');
 const elNotice = $('streamNotice');
+const elResetAll = $('btnResetAll');
 const elRandomAll = $('btnRandomAll'), elRecoAll = $('btnRecoAll'), elRecoNote = $('recoNote');
 const elProc = $('procPanel'), elProcFixed = $('procFixed');
 const elProcRows = $('procRows'), elProcEmpty = $('procEmpty');
@@ -2157,9 +2249,6 @@ function spanState(sp){
   }
   return hasDecided ? 'decided' : 'delegated';
 }
-function hasSpan(bi){
-  return S.spans.some(sp => sp.bis.indexOf(bi) >= 0);
-}
 
 // ストリーミングではスパンが増えるたびに呼ばれる(原文を組み直す)。
 // #stage.exploded が既に付いている状態で作られた .tok は開始値を持たないので
@@ -2275,14 +2364,27 @@ function renderBriefWithSpans(){
   const newDots = [];
   let cur = 0, newSpanN = 0;
 
+  const push = (parent, cls, txt) => {
+    const c = el('span', cls, txt);
+    const idx = S.chEls.length;
+    if (S.scatterActive) applyScatterTo(c, idx);
+    parent.appendChild(c);
+    S.chEls.push(c);
+    return c;
+  };
   const emit = (s, parent) => {
     briefCells(s).forEach(cell => {
-      if (/^\s+$/.test(cell)){ parent.appendChild(document.createTextNode(cell)); return; }
-      const c = el('span', 'ch', cell);
-      const idx = S.chEls.length;
-      if (S.scatterActive) applyScatterTo(c, idx);
-      parent.appendChild(c);
-      S.chEls.push(c);
+      if (/^\s+$/.test(cell)){
+        // 空白もセルにする(方眼マスキングを空白の幅ぶんも連続させるため。第7FB 4a)。
+        // ただし改行は素のテキストノードのまま置く: inline-block の中に改行を入れると
+        // そのセル自身が2行になり、行の組みが壊れる。
+        cell.split('\n').forEach((part, k) => {
+          if (k) parent.appendChild(document.createTextNode('\n'));
+          if (part) push(parent, 'ch sp', part);
+        });
+        return;
+      }
+      push(parent, 'ch', cell);
     });
   };
 
@@ -2444,7 +2546,11 @@ function buildCard(bi){
     slot.appendChild(skeletonMini());
     btn.appendChild(slot);
     btn.appendChild(el('div', 'olabel', String((o && o.label) || 'オプション ' + (oi + 1))));
-    btn.addEventListener('click', () => decide(bi, oi));   // 動詞1: 決める
+    // 「決めた」の印。場所は常に確保しておき、見えるかどうかだけを状態で切り替える
+    // (決めてもカードの高さが変わらないため。CSS: .obadge / .opt[data-chosen="1"])。
+    btn.appendChild(el('div', 'obadge', '決めた'));
+    // 動詞1: 決める。決めたあとに別の見本を押したときも同じ道を通る(即決定・上書き)。
+    btn.addEventListener('click', () => decide(bi, oi));
     opts.appendChild(btn);
   });
   card.appendChild(opts);
@@ -2455,18 +2561,19 @@ function buildCard(bi){
   // (チュートリアルではなく初回だけの注記。paintFirstCardHint が唯一の出し入れ経路)。
   if (bi === 0){
     foot.appendChild(el('div', 'card-hint',
-      '見本をクリックすると決まる。決めないなら「委ねる」。どちらも、あとで選び直せます。'));
+      '見本をクリックすると決まる。決めないなら「委ねる」。' +
+      '決めたあとも、別の見本をクリックすれば選び直せます。'));
   }
+  // 委任の表記(委ねたカードにだけ出る)。「委ねる」と同じ行なのでカードの高さは変わらない。
+  const fst = el('div', 'fstatus');
+  fst.hidden = true;
+  foot.appendChild(fst);
   const dele = el('button', 'delegate', '委ねる');          // 動詞2: 委ねる
   dele.type = 'button';
   dele.title = '選ばずに任せる。あとで選び直せます。';
   dele.addEventListener('click', () => delegate(bi));
   foot.appendChild(dele);
   card.appendChild(foot);
-
-  const resolved = el('div', 'resolved');
-  resolved.hidden = true;
-  card.appendChild(resolved);
 
   card.addEventListener('pointerenter', () => { card.classList.add('near'); highlight(bi, true); });
   card.addEventListener('pointerleave', () => { card.classList.remove('near'); highlight(bi, false); });
@@ -2551,11 +2658,8 @@ function failedMini(){
   box.appendChild(el('span', null, '見本が未着(このまま選べます)'));
   return box;
 }
-function delegatedMini(){
-  const box = el('div', 'mini delegated');
-  box.appendChild(el('span', null, '制作者(AI)の裁量'));
-  return box;
-}
+// 委任の見本は作らない(2026-07-30 第7FB 5b)。委ねても見本は全部出したままで、
+// 「委ねた 制作者(AI)の裁量」はカードの足元に1行で出る。
 function tokensMini(tokens){
   const t = tokens || {};
   const pal = normPalette(t.palette);
@@ -2699,9 +2803,8 @@ function placeMini(bi, oi){
   const st = S.renders[bi][oi];
   slot.textContent = '';
   slot.appendChild(st.state === 'ok' ? tokensMini(st.tokens) : failedMini());
-  // 決定済みカードの表示にも反映(既に決めた選択肢のレンダが後から届いた場合)。
-  // 反映するかどうかは cardSig(レンダ状態を含む)が判断するので、ここでは条件を持たない。
-  paintCard(bi);
+  // カードの姿(枠・減光・委任の表記)はレンダの到着に依存しないので、ここでは
+  // 該当スロットだけを差し替える。決めた見本もこのスロットのまま出続ける。
 }
 
 /* =========================================================================
@@ -2771,6 +2874,27 @@ function bulkReady(){
   if (S.streaming || !S.streamDone) return false;
   return bulkTargets().length > 0;
 }
+
+/* ---- すべて選び直す(全判断点を未決へ戻す) ----
+   一括で「決める」2つが human-pick / human-delegate を避けるのは、置いた判断を
+   知らないうちに奪わないためである。ここは逆で、ユーザー自身が「全部やり直す」と
+   言っている明示の解除操作だから、守るべき相手がいない。よって全件が対象になる。
+   prev は残さない(1件ずつの選び直しと違って「やめる」先が無い)。
+   おすすめの picks はセッションの取得結果として持ち続ける(押し直せばモデルを
+   呼ばずに再適用できる)。理由の行は paintRecoNote が毎回導出して畳む。
+   出す条件は「決定または委任が1件以上あるとき」。総数の確定は待たない
+   ——「すべて」の意味が決めた分だけほどくことに閉じているので、増える途中でも成り立つ。 */
+function resetAllReady(){
+  if (!S.exploded) return false;
+  return S.decisions.some(d => d && d.status);
+}
+function resetAll(){
+  if (!resetAllReady()) return;
+  S.decisions = S.decisions.map(() => ({status: null, oi: null, src: null, prev: null}));
+  renderAll();                    // カウンタ・コンパイル可否・語の色は status から導出し直す
+  unfreezeLayout();               // 操作の切れ目(M7)
+}
+if (elResetAll) elResetAll.addEventListener('click', resetAll);
 
 // ---- ランダムに決める(AIを呼ばない。場内の乱数だけで引く) ----
 // 押すたびに引き直せる。対象は押した瞬間に確定させる(decide 内の closeReopenedExcept が
@@ -2884,6 +3008,10 @@ async function recommendAll(){
 }
 if (elRecoAll) elRecoAll.addEventListener('click', recommendAll);
 
+function paintResetAll(){
+  if (!elResetAll) return;
+  elResetAll.hidden = !resetAllReady();
+}
 function paintRandomAll(){
   if (!elRandomAll) return;
   elRandomAll.hidden = !bulkReady();
@@ -2899,10 +3027,18 @@ function paintRecoAll(){
   elRecoAll.dataset.state = S.reco.state;
   elRecoAll.textContent = 'AIのおすすめで決める';
 }
-// 理由 / 取れなかった注記。どちらも S.reco から毎回導出する(書き足さない)。
+/* 理由の1行は「いま画面に生きている おすすめ由来の決定」を説明する行である。
+   すべて選び直した後のように、その決定が1件も残っていなければ畳む(毎回導出)。
+   ただし当てる先が最初から無かった場合(全件が人の手で決まっていた)は、モデルが
+   返した理由そのものは有効なので出したままにする。 */
+function recoLive(){
+  if (S.decisions.some(d => effectiveSrc(d) === 'reco')) return true;
+  return bulkTargets().length === 0;
+}
+// 理由 / 取れなかった注記。どちらも S.reco と S.decisions から毎回導出する(書き足さない)。
 function paintRecoNote(){
   if (!elRecoNote) return;
-  if (S.reco.state === 'ok' && S.reco.reason){
+  if (S.reco.state === 'ok' && S.reco.reason && recoLive()){
     elRecoNote.hidden = false;
     elRecoNote.classList.remove('quiet');
     elRecoNote.textContent = 'おすすめの理由: ' + S.reco.reason;
@@ -2918,6 +3054,7 @@ function paintRecoNote(){
   elRecoNote.textContent = '';
 }
 function paintBulkRow(){
+  paintResetAll();
   paintRandomAll();
   paintRecoAll();
   paintRecoNote();
@@ -2965,16 +3102,26 @@ function renderAll(){
   paintCompile();
   drawTethers();
 }
-// カードの姿は status(と選び直し中かどうか、決定済みミニレンダの到着状況)で決まる。
-// 同じ姿なら DOM を作り直さない(到着のたびに全カードが再描画されてちらつくのを防ぐ)。
+// カードの姿は status と「選び直し中かどうか」だけで決まる。
+// 同じ姿なら触らない(見本の到着のたびに全カードを塗り直してちらつかせない)。
+// 見本そのものの差し替えは placeMini が該当スロットだけを書き換える。
 function cardSig(bi){
   const d = S.decisions[bi] || {};
   const st = d.status || 'open';
   const oi = (d.oi == null) ? '-' : d.oi;
   const pv = d.prev ? (d.prev.status + '#' + (d.prev.oi == null ? '-' : d.prev.oi)) : '-';
-  const rs = (d.status === 'decided' && S.renders[bi] && S.renders[bi][d.oi]) ? S.renders[bi][d.oi].state : '-';
-  return st + '|' + oi + '|' + pv + '|' + rs;
+  return st + '|' + oi + '|' + pv;
 }
+/* カードの姿(2026-07-30 第7FB 5b で作り替えた)
+   -------------------------------------------------------------------------
+   どの状態でも見本は全部出したままにする。切り替わるのは3つだけ:
+     ・選ばれた見本に藍の枠と「決めた」が付く(data-chosen)
+     ・決めた/委ねたカードでは選ばれていない見本が減光する(CSS。hover で戻る)
+     ・委ねたカードは足元に「委ねた 制作者(AI)の裁量」が出る
+   したがって「決めると他の見本が消える」ことがなく、別の見本をクリックすれば
+   reopen を経ずにその場で選び直せる(decide がそのまま上書きする)。
+   カードの高さは状態で変わらない(「決めた」の場所は常に確保、委任の表記は
+   「委ねる」と同じ行)。原文の語をクリックして未決へ戻す道は従来どおり残る。 */
 function paintCard(bi, force){
   const card = S.cardEls[bi];
   if (!card) return;
@@ -2986,59 +3133,34 @@ function paintCard(bi, force){
   const b = S.branches[bi] || {};
   const opts = card.querySelector('.opts');
   const foot = card.querySelector('.card-foot');
-  const res  = card.querySelector('.resolved');
-  if (!opts || !foot || !res) return;
+  if (!opts || !foot) return;
 
-  // --- 未決(初回、または決定を解除して選び直し中) ---
-  if (!d.status){
-    card.dataset.state = 'open';
-    card.classList.toggle('editing', !!d.prev);
-    opts.hidden = false;
-    foot.hidden = false;
-    res.hidden = true;
-    res.textContent = '';
-    const poi = (d.prev && d.prev.status === 'decided') ? d.prev.oi : null;
-    card.querySelectorAll('.opt').forEach(btn => {
-      btn.setAttribute('aria-pressed', String(poi != null && Number(btn.dataset.oi) === poi));
-    });
-    return;
-  }
+  card.dataset.state = d.status || 'open';
+  card.classList.toggle('editing', !d.status && !!d.prev);
 
-  // --- 決定済み(決めた / 委ねた) ---
-  card.dataset.state = d.status;
-  card.classList.remove('editing');
+  // 藍の枠が付く見本 = 決めた見本、または選び直し中に直前まで選ばれていた見本。
+  // 「決めた」の印(data-chosen)は前者だけに付ける(選び直し中は決定ではない)。
+  const poi = (d.status === 'decided') ? d.oi
+            : ((d.prev && d.prev.status === 'decided') ? d.prev.oi : null);
   card.querySelectorAll('.opt').forEach(btn => {
-    btn.setAttribute('aria-pressed', String(d.status === 'decided' && Number(btn.dataset.oi) === d.oi));
+    const on = (poi != null && Number(btn.dataset.oi) === poi);
+    btn.setAttribute('aria-pressed', String(on));
+    if (on && d.status === 'decided') btn.dataset.chosen = '1';
+    else delete btn.dataset.chosen;
   });
-  opts.hidden = true;
-  foot.hidden = true;
-  res.hidden = false;
-  res.textContent = '';
 
-  // 条項6(再選択)の保証。原文にスパンを持たない分岐が万一生じても再提示経路が残るよう、
-  // 決定表示そのものをクリック可能にし、案内文も実際に効く操作へ出し分ける。
-  const hint = hasSpan(bi) ? '原文の語をクリックすると選び直せます' : 'この決定をクリックすると選び直せます';
-  if (!res.dataset.reopen){
-    res.dataset.reopen = '1';
-    res.addEventListener('click', () => onTokenClick(bi));
-  }
-
-  if (d.status === 'decided'){
-    const st = (S.renders[bi] || [])[d.oi];
-    res.appendChild(st && st.state === 'ok' ? tokensMini(st.tokens) : (st && st.state === 'error' ? failedMini() : skeletonMini()));
-    const o = (Array.isArray(b.options) ? b.options : [])[d.oi] || {};
-    const tx = el('div', 'rtext');
-    tx.appendChild(el('span', 'rkind', '決めた'));
-    tx.appendChild(el('strong', null, String(o.label || '')));
-    tx.appendChild(el('span', 'rhint', hint));
-    res.appendChild(tx);
-  }else{
-    res.appendChild(delegatedMini());
-    const tx = el('div', 'rtext');
-    tx.appendChild(el('span', 'rkind', '委ねた'));
-    tx.appendChild(el('strong', null, String(b.default_if_unresolved || '制作者(AI)の裁量に委ねる')));
-    tx.appendChild(el('span', 'rhint', hint));
-    res.appendChild(tx);
+  const fst = card.querySelector('.fstatus');
+  if (fst){
+    if (d.status === 'delegated'){
+      fst.textContent = '委ねた 制作者(AI)の裁量';
+      // 既定解はモデルの出力なので、字数を問わず読めるようツールチップに残す
+      fst.title = String(b.default_if_unresolved || '制作者(AI)の裁量に委ねる');
+      fst.hidden = false;
+    }else{
+      fst.textContent = '';
+      fst.title = '';
+      fst.hidden = true;
+    }
   }
 }
 // 原文の語の色。未決の朱が、決定のたびに藍(または委任の鼠)へ置き換わる。
@@ -3552,6 +3674,10 @@ function paintOut(){
   $('tabJson').setAttribute('aria-selected', String(outMode === 'json'));
   // 断りは「AIに渡す用」を開いているあいだだけ。既定の「読む用」では出さない。
   $('jsonNote').hidden = (outMode !== 'json');
+  // 「コピーしました」の注記は次の操作まで残す作法にしてある。タブの切り替えは
+  // その「次の操作」なので、ここで畳む(出しっぱなしの札を画面に残さない)。
+  const hn = $('handoffNote');
+  if (hn){ hn.hidden = true; hn.textContent = ''; hn.classList.remove('quiet'); }
 }
 $('tabMd').addEventListener('click', () => { outMode = 'md'; paintOut(); });
 $('tabJson').addEventListener('click', () => { outMode = 'json'; paintOut(); });
@@ -3569,6 +3695,25 @@ $('btnCopy').addEventListener('click', async () => {
     btn.textContent = 'コピー失敗';
   }
   setTimeout(() => { btn.textContent = 'コピー'; }, 1600);
+});
+
+/* 次の一歩の主ボタン「指示書をコピーしてAIに渡す」。
+   渡すのは常に MD 原文で、「読む用」で「コピー」を押したときと1文字も違わない
+   (渡す物は1本しかない)。タブが「AIに渡す用」でも MD を渡す: 貼り付け先は
+   ChatGPT や Claude のような対話のAIであり、そこで読ませるのは人も読める指示書のほうである。
+   成功の注記は数秒で消さず、次の操作(タブの切り替え・最初から)まで残す
+   ——「いつものAIに貼り付けてください」は、これから手を動かすための指示だからである。
+   注記の場所は主ボタンの直下で、静止した1行以外のものは動かさない。 */
+const HANDOFF_OK = 'コピーしました。ChatGPT・Claude・Gemini など、いつものAIに貼り付けてください。';
+const HANDOFF_NG = 'コピーできませんでした。上の「コピー」からもう一度お試しください。';
+$('btnHandoff').addEventListener('click', async () => {
+  const note = $('handoffNote');
+  let ok = true;
+  try{ await navigator.clipboard.writeText(buildMarkdown()); }
+  catch(e){ ok = false; }
+  note.textContent = ok ? HANDOFF_OK : HANDOFF_NG;
+  note.classList.toggle('quiet', !ok);
+  note.hidden = false;
 });
 // 「最初から」とロックアップのクリックは同じ帰還路を通る(経路を2本持たない)。
 $('btnRestart').addEventListener('click', goHome);
