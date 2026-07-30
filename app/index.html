@@ -55,6 +55,10 @@
   var K = 'gyakumon.theme', root = document.documentElement;
   try{
     var pref = localStorage.getItem(K);
+    // ?theme=light|dark|auto はこの読み込み1回だけ上書き(保存しない)。
+    // スクリーンショット・収録用の一時指定であり、利用者の保存設定を汚さない。
+    var qm = /[?&]theme=(light|dark|auto)\b/.exec(location.search);
+    if (qm) pref = qm[1];
     if (pref !== 'light' && pref !== 'dark' && pref !== 'auto') pref = 'auto';
     var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
     root.setAttribute('data-theme', pref === 'auto' ? ((mq && mq.matches) ? 'dark' : 'light') : pref);
@@ -188,13 +192,13 @@
      「— Intent Compiler」は従来どおり鼠のまま——ここは判断の状態を語らない。
      --shu / --ai はテーマ変数なので暗所でも自動で明度が上がる(:root[data-theme="dark"])。 */
   #lockup{
-    position:fixed; top:18px; left:22px; z-index:7;
-    font-size:10.5px; letter-spacing:.14em; color:var(--muted);
+    position:fixed; top:16px; left:22px; z-index:7;
+    font-size:11px; letter-spacing:.14em; color:var(--muted);
     text-transform:none; pointer-events:none;
   }
-  #lockup b{font-weight:600; color:var(--ink-soft); letter-spacing:.16em}
-  /* 二色のワードマーク。字間・太さは b のまま継承し、色だけを差し替える
-     (改名前と同じ寸法を保つため、font-size も letter-spacing も触らない)。 */
+  /* 2026-07-31: 二色のワードマークが 10.5px では小さく色が読めない(ユーザー指摘)。
+     ワードマーク本体だけ 14px へ上げ、添え書き「— Intent Compiler」は控えめのまま。 */
+  #lockup b{font-weight:600; color:var(--ink-soft); letter-spacing:.16em; font-size:14px}
   #lockup b .wm-un{color:var(--shu)}
   #lockup b .wm-prompt{color:var(--ai)}
   #lockupHome{
