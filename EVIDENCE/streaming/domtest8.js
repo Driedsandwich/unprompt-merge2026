@@ -213,7 +213,6 @@ function wireTree(){
   put('counterRow', 'branchCounter');
   put('counterRow', 'btnRandomAll');
   put('counterRow', 'btnRecoAll');
-  put('counterRow', 'btnDelegateAll');
 }
 function fresh(){
   Object.keys(registry).forEach(k => delete registry[k]);
@@ -264,10 +263,12 @@ const ois = (ctx) => ctx.__S.decisions.map(d => d.oi);
       /<button id="btnRecoAll" type="button" hidden title="[^"]*">AIのおすすめで決める<\/button>/.test(row));
   chk('どちらも既定で hidden',
       /id="btnRandomAll"[^>]*\shidden[\s>]/.test(row) && /id="btnRecoAll"[^>]*\shidden[\s>]/.test(row));
-  chk('カウンタ行(#counterRow)の中・「すべて委ねる」の隣',
+  // 2026-07-30(第6FB): カウンタ行は「カウンタ + 一括2つ」だけ。まとめて委ねる口は撤去した。
+  chk('カウンタ行(#counterRow)の中・カウンタの右に2つだけ',
       row.indexOf('id="branchCounter"') < row.indexOf('id="btnRandomAll"') &&
       row.indexOf('id="btnRandomAll"') < row.indexOf('id="btnRecoAll"') &&
-      row.indexOf('id="btnRecoAll"') < row.indexOf('id="btnDelegateAll"'));
+      (row.match(/<button /g) || []).length === 2 &&
+      row.indexOf('btnDelegateAll') < 0);
   chk('★ランダムの title が「AIは使いません」と明言する',
       /title="AIは使いません。この場で無作為に決めます。何度でも引き直せます。"/.test(row));
   chk('文言の動詞は「決める」「委ねる」だけ(生成語を持ち込まない)',
@@ -310,7 +311,6 @@ const ois = (ctx) => ctx.__S.decisions.map(d => d.oi);
         'streaming=' + c.__S.streaming + ' n=' + c.__S.branches.length);
     chk('★受信中は出ていない',
         registry['btnRandomAll'].hidden === true && registry['btnRecoAll'].hidden === true);
-    chk('「すべて委ねる」も同じ土台で出ていない', registry['btnDelegateAll'].hidden === true);
     for (let i = 0; i < 80; i++){ flushRAF(3); await sleep(10); }
     await p; flushRAF(6); await sleep(120); flushRAF(6);
     chk('done 後は2つとも出る',
@@ -369,7 +369,6 @@ const ois = (ctx) => ctx.__S.decisions.map(d => d.oi);
   chk('★全件が人の手で決まったら消える(押す先が無い)',
       registry['btnRandomAll'].hidden === true && registry['btnRecoAll'].hidden === true &&
       ctx.__bulkTargets().length === 0);
-  chk('「すべて委ねる」も消えている(未決0)', registry['btnDelegateAll'].hidden === true);
 
   console.log('\n=== A-8) 選び直し中を狙って奪わない ===');
   RAND_SEQ = [0];
