@@ -1,122 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>キービジュアル生成プロンプト</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新商品キービジュアル(一文をそのまま)</title>
+<!-- このページは実生成画像の提示枠である。画像は 2026-07-30 に ChatGPT(Pro)経由で画像生成モデル GPT-Image-2 へ下のプロンプトを渡して得た実生成物。COMPILED 側と同一モデル・同一
+     アスペクト比(4:5)・同一のプレースホルダ充填。違いは入力プロンプトだけである。
+     経緯と開示: docs/DISCLOSURE.md #20 / EVIDENCE/media_pairs/GENERATION_SPEC.md -->
 <style>
-  :root{
-    --base-bg:#12130f;
-    --base-ink:#e9e4d8;
-    --accent:#b98a2f;
-    --line: rgba(233,228,216,0.18);
-    --fs-body:16px;
-    --fs-lead:1.25rem;
-    --fs-h1:2.1rem;
-    --fs-h2:1.05rem;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--base-bg);
-    color:var(--base-ink);
-    display:flex;
-    justify-content:center;
-    font-family: "Hiragino Mincho ProN","Yu Mincho",serif;
-    font-size:var(--fs-body);
-    line-height:1.9;
-  }
-  main{
-    width:720px;
-    padding:96px 48px 96px;
-  }
-  h1{
-    font-family:"Hiragino Sans","Yu Gothic",sans-serif;
-    font-size:var(--fs-h1);
-    font-weight:700;
-    letter-spacing:0.02em;
-    margin:0 0 8px;
-    color:var(--base-ink);
-  }
-  .lead{
-    font-size:var(--fs-lead);
-    color:var(--accent);
-    margin:0 0 64px;
-    font-family:"Hiragino Sans","Yu Gothic",sans-serif;
-    font-weight:500;
-    letter-spacing:0.01em;
-  }
-  section{
-    margin-bottom:56px;
-  }
-  h2{
-    font-family:"Hiragino Sans","Yu Gothic",sans-serif;
-    font-size:var(--fs-h2);
-    font-weight:700;
-    letter-spacing:0.08em;
-    color:var(--accent);
-    margin:0 0 16px;
-    text-transform:uppercase;
-  }
-  .block{
-    background:rgba(233,228,216,0.04);
-    border:1px solid var(--line);
-    padding:24px 24px;
-    white-space:pre-wrap;
-  }
-  ul{
-    margin:0;
-    padding-left:20px;
-  }
-  li{margin-bottom:8px;}
-  .variations li{margin-bottom:12px;}
-  .meta{color:rgba(233,228,216,0.65); font-size:0.9rem;}
+  *{margin:0; padding:0; box-sizing:border-box}
+  body{background:#0e0d0b; color:#e8e4dc; font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif}
+  .stage{display:flex; justify-content:center; padding:28px 24px 8px}
+  .stage img{max-width:min(92vw,520px); width:100%; height:auto; display:block;
+             box-shadow:0 18px 60px rgba(0,0,0,.55)}
+  .cap{max-width:640px; margin:0 auto; padding:22px 26px 40px}
+  .cap .k{font-size:10.5px; letter-spacing:.14em; color:#8f8a80; margin-bottom:8px}
+  .cap .prompt{font-size:12px; line-height:1.9; color:#b9b4a9}
+  .cap .foot{margin-top:14px; font-size:10.5px; line-height:1.8; color:#6e6a62;
+             border-top:1px solid #26231f; padding-top:10px}
 </style>
 </head>
 <body>
-<main>
-
-<h1>新商品キービジュアル｜生成プロンプト一式</h1>
-<p class="lead">高級感と一瞬の惹きを両立させる、静かな緊張感のある一枚を狙う。</p>
-
-<section>
-<h2>この絵で狙うこと</h2>
-<ul>
-<li>過剰な装飾で「豪華」を演出せず、光と質感の精度で高級感を出す。</li>
-<li>視線が〈商品名〉に一直線に集まる構図にし、余白で格を作る。</li>
-<li>一目で足を止めさせる、強いコントラストと一点の艶を残す。</li>
-</ul>
-</section>
-
-<section>
-<h2>本プロンプト</h2>
-<div class="block">〈商品名〉を中央やや下に単体で配置した静物撮影。斜め45度からのローアングルで、商品の輪郭と質感を強調する構図。画角は望遠寄りで背景を大きくぼかす。光は左上からの一灯照明、柔らかいがエッジの立つハイライトを商品の縁に落とし、影は深く長く伸ばす。質感は表面の微細な反射と滑らかさを克明に描写し、指紋や埃のない完璧な仕上げ。色は漆黒に近い背景と〈アクセント色〉のみを商品自体の反射に宿す抑制された配色。背景は無地の暗いグラデーションのみで装飾を排除。雰囲気は静謐で緊張感があり、豪華さより「本物感」を漂わせる。</div>
-</section>
-
-<section>
-<h2>ネガティブプロンプト</h2>
-<div class="block">派手な虹色反射、過剰なきらめきエフェクト、複数の商品の乱立、雑然とした背景小物、安っぽいプラスチック感、テキストロゴの歪み、指紋・傷・埃、不自然な人物の手、彩度過多、粒子ノイズ、低解像度、ウォーターマーク</div>
-</section>
-
-<section>
-<h2>スタイル指定</h2>
-<ul>
-<li>参照する画作り：高級腕時計・ハイジュエリー広告のプロダクト撮影に近いライティングとトーン</li>
-<li>アスペクト比：4:5(縦長、SNS・店頭ポスター兼用)</li>
-<li>解像度目安：長辺2048px以上、印刷可能な精細さ</li>
-</ul>
-</section>
-
-<section>
-<h2>バリエーション指示3案</h2>
-<ul class="variations">
-<li>①光源を左上一灯から、右背後からのリムライトに差し替え、輪郭の光の線を強調する。</li>
-<li>②背景の暗いグラデーションを、深い〈ブランドカラー〉の単色ベタに差し替え、より平面的で上質な印象にする。</li>
-<li>③構図をローアングル正面から、真上からのフラットレイに差し替え、商品を几帳面に配置する秩序感を出す。</li>
-</ul>
-</section>
-
-<p class="meta">※〈商品名〉〈アクセント色〉〈ブランドカラー〉は発注内容に応じて置き換えてください。</p>
-
-</main>
+  <div class="stage"><img src="raw_image.png" alt="一文をそのまま渡して生成されたキービジュアル"></div>
+  <div class="cap">
+    <div class="k">画像生成AIへ渡した入力(発注者の一文から、そのまま)</div>
+    <p class="prompt">無銘の新商品(艶のある香水瓶)を中央やや下に単体で配置した静物撮影。斜め45度からのローアングルで、商品の輪郭と質感を強調する構図。画角は望遠寄りで背景を大きくぼかす。光は左上からの一灯照明、柔らかいがエッジの立つハイライトを商品の縁に落とし、影は深く長く伸ばす。質感は表面の微細な反射と滑らかさを克明に描写し、指紋や埃のない完璧な仕上げ。色は漆黒に近い背景と深い金のみを商品自体の反射に宿す抑制された配色。背景は無地の暗いグラデーションのみで装飾を排除。雰囲気は静謐で緊張感があり、豪華さより「本物感」を漂わせる。</p>
+    <div class="foot">実生成(2026-07-30)・ChatGPT(Pro)経由・画像生成モデル GPT-Image-2・4:5・COMPILED 側と同一モデル/同一設定。プロンプト一式の全文: raw_pack.html</div>
+  </div>
 </body>
 </html>

@@ -1,139 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>新商品キービジュアル 生成プロンプト設計</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新商品キービジュアル(意図の指示書から)</title>
+<!-- このページは実生成画像の提示枠である。画像は 2026-07-30 に ChatGPT(Pro)経由で画像生成モデル GPT-Image-2 へ下のプロンプトを渡して得た実生成物。RAW 側と同一モデル・同一
+     アスペクト比(4:5)・同一のプレースホルダ充填。違いは入力プロンプトだけである。
+     経緯と開示: docs/DISCLOSURE.md #20 / EVIDENCE/media_pairs/GENERATION_SPEC.md -->
+<!-- GYAKUMON-CHOICE: 想定読者・購入検討層 = ギフト検討者向け -->
+<!-- GYAKUMON-CHOICE: 高級感の方向性 = 重厚・クラシック -->
+<!-- GYAKUMON-CHOICE: 目を引く手法 = 世界観・情景演出 -->
+<!-- GYAKUMON-CHOICE: 商品構図・主役の見せ方 = 人物と共に提示 -->
 <style>
-/*
-  GYAKUMON-CHOICE base palette: 地色=#1c140d 主要色=#5c3a21 強調色=#b8925a
-  見出し=serif / 密度=dense / 角=sharp
-*/
-:root{
-  --bg:#1c140d;
-  --main:#5c3a21;
-  --accent:#b8925a;
-  --fg:#ece3d6;
-  --fs-base:16px;
-  --fs-lead:calc(var(--fs-base) * 1.125);
-  --fs-h2:calc(var(--fs-base) * 1.5);
-  --fs-h1:calc(var(--fs-base) * 2.25);
-}
-*{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
-body{
-  background:var(--bg);
-  color:var(--fg);
-  font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;
-  font-size:var(--fs-base);
-  line-height:1.9;
-}
-.doc{
-  width:720px;
-  margin:0 auto;
-  padding:96px 40px 112px;
-}
-h1,h2{
-  font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
-  color:var(--fg);
-  margin:0 0 16px;
-}
-h1{
-  font-size:var(--fs-h1);
-  font-weight:700;
-  letter-spacing:0.08em;
-  border-left:4px solid var(--accent);
-  padding-left:16px;
-}
-h2{
-  font-size:var(--fs-h2);
-  font-weight:600;
-  letter-spacing:0.04em;
-  color:var(--accent);
-  margin-top:64px;
-}
-p{margin:0 0 8px;}
-.lead{
-  font-size:var(--fs-lead);
-  color:#cbb99a;
-  margin-bottom:32px;
-}
-.block{
-  background:#241a10;
-  border:1px solid var(--main);
-  padding:24px 24px;
-  white-space:pre-wrap;
-  font-size:0.95em;
-  line-height:1.9;
-}
-.tag{
-  display:inline-block;
-  font-size:0.8em;
-  color:var(--accent);
-  letter-spacing:0.1em;
-  margin-bottom:8px;
-}
-.varlist{
-  margin:0;
-  padding-left:0;
-  list-style:none;
-}
-.varlist li{
-  padding:8px 0 8px 24px;
-  border-left:2px solid var(--main);
-  margin-bottom:8px;
-}
-hr{
-  border:none;
-  border-top:1px solid var(--main);
-  margin:64px 0 0;
-}
+  *{margin:0; padding:0; box-sizing:border-box}
+  body{background:#0e0d0b; color:#e8e4dc; font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif}
+  .stage{display:flex; justify-content:center; padding:28px 24px 8px}
+  .stage img{max-width:min(92vw,520px); width:100%; height:auto; display:block;
+             box-shadow:0 18px 60px rgba(0,0,0,.55)}
+  .cap{max-width:640px; margin:0 auto; padding:22px 26px 40px}
+  .cap .k{font-size:10.5px; letter-spacing:.14em; color:#8f8a80; margin-bottom:8px}
+  .cap .prompt{font-size:12px; line-height:1.9; color:#b9b4a9}
+  .cap .foot{margin-top:14px; font-size:10.5px; line-height:1.8; color:#6e6a62;
+             border-top:1px solid #26231f; padding-top:10px}
 </style>
 </head>
 <body>
-<div class="doc">
-
-<h1>新商品キービジュアル<br>生成プロンプト一式</h1>
-
-<!-- GYAKUMON-CHOICE: 想定読者・購入検討層 = ギフト検討者向け -->
-<!-- GYAKUMON-CHOICE: 高級感の方向性 = 重厚・クラシック -->
-<p class="lead">
-大切な人へ贈る、新商品という特別な一品。荘厳なる継承を思わせる重厚な質感で、
-ギフトを検討する人の目に「本物の格式」として焼き付く一枚を狙う。
-</p>
-
-<h2>この絵で狙うこと</h2>
-<!-- GYAKUMON-CHOICE: 目を引く手法 = 世界観・情景演出 -->
-<p>
-夜霧の向こうに新商品が静かに佇む刹那を切り取り、説明的な物撮りではなく「物語の一場面」として見せる。
-</p>
-<!-- GYAKUMON-CHOICE: 商品構図・主役の見せ方 = 人物と共に提示 -->
-<p>
-新商品と佇む者を並べ、選ばれし高級の証としての緊張感を画面に持たせる。
-</p>
-<p>
-色は地・重厚な焦茶・金の三色に絞り、密度濃く、輪郭は角を立てて鋭く仕上げる。
-</p>
-
-<h2>本プロンプト</h2>
-<span class="tag">COPY THIS BLOCK</span>
-<div class="block">〈新商品〉を手にした一人の人物、フォーマルな装いで静かに佇む。構図はミドルショット、被写体をやや下からの俯角気味に捉え、〈新商品〉を画面下三分の一の交点に配置。画角は50mm相当、被写界深度は浅く背景を溶かす。光は単一の暖色スポットライトが斜め上から差し込み、〈新商品〉の輪郭と人物の頬骨に強いハイライトを落とし、周囲は深い陰影に沈める。質感は磨かれた真鍮・鞣し革・艶消し漆を思わせる重厚な照り。色調は漆黒の地に焦茶と金のみを配し、彩度を抑える。背景は夜霧が立ちこめる石造りの回廊、遠景は闇に溶ける。全体の雰囲気は荘厳・寡黙・一瞬で通り過ぎる特別な刹那。</div>
-
-<h2>ネガティブプロンプト</h2>
-<div class="block">安っぽいプラスチック感、蛍光色、過剰な笑顔、雑然とした背景、ロゴの歪み、テキスト崩れ、低解像度、コミック調、パステルカラー、明るい昼光、量産品的な陳列演出</div>
-
-<h2>スタイル指定</h2>
-<div class="block">参照する画作り: ハイブランドの広告写真・クラシック肖像画のライティング
-アスペクト比: 4:5(縦長・雑誌広告想定)
-解像度目安: 2048×2560px 以上</div>
-
-<h2>バリエーション指示</h2>
-<ul class="varlist">
-<li>光の差し替え: スポットライトを暖色から月光の冷色に変え、氷の質感を強調した静謐版にする。</li>
-<li>構図の差し替え: 人物を外し〈新商品〉単体のクローズアップにして、質感訴求を最大化する。</li>
-<li>背景の差し替え: 石造りの回廊を、燭台が並ぶ書斎の情景に変え、より私的な贈り物の文脈を強める。</li>
-</ul>
-
-<hr>
-</div>
+  <div class="stage"><img src="compiled_image.png" alt="意図の指示書から組んだプロンプトで生成されたキービジュアル"></div>
+  <div class="cap">
+    <div class="k">画像生成AIへ渡した入力(意図の指示書から組んだプロンプト)</div>
+    <p class="prompt">無銘の新商品(艶のある香水瓶)を手にした一人の人物、フォーマルな装いで静かに佇む。構図はミドルショット、被写体をやや下からの俯角気味に捉え、商品を画面下三分の一の交点に配置。画角は50mm相当、被写界深度は浅く背景を溶かす。光は単一の暖色スポットライトが斜め上から差し込み、商品の輪郭と人物の頬骨に強いハイライトを落とし、周囲は深い陰影に沈める。質感は磨かれた真鍮・鞣し革・艶消し漆を思わせる重厚な照り。色調は漆黒の地に焦茶と金のみを配し、彩度を抑える。背景は夜霧が立ちこめる石造りの回廊、遠景は闇に溶ける。全体の雰囲気は荘厳・寡黙・一瞬で通り過ぎる特別な刹那。</p>
+    <div class="foot">実生成(2026-07-30)・ChatGPT(Pro)経由・画像生成モデル GPT-Image-2・4:5・RAW 側と同一モデル/同一設定。決めた4つの判断点はこのHTMLのコメントに痕跡として埋めてある。プロンプト一式の全文: compiled_pack.html</div>
+  </div>
 </body>
 </html>

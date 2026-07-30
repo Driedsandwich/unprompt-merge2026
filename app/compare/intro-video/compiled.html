@@ -1,159 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>30秒 会社紹介動画 絵コンテ&プロンプト</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>会社紹介30秒動画(意図の指示書から)— 代表ショット</title>
+<!-- このページは実生成動画の提示枠である。動画は 2026-07-31 に Gemini(3.6 Flash)経由で動画生成モデル Omni へ
+     下のプロンプトを渡して得た実生成物。RAW 側と同一モデル・同一設定(横16:9)・同一の
+     プレースホルダ充填。違いは入力プロンプトだけである。各側とも絵コンテ全体ではなく、
+     設計思想が最も濃い代表ショット1つ(この側はショット①=出勤前の一瞬)を映像化した。
+     経緯と開示: docs/DISCLOSURE.md #20 / EVIDENCE/media_pairs/GENERATION_SPEC.md -->
+<!-- GYAKUMON-CHOICE: 動画の使用目的・掲載先 = 採用ブランディング -->
+<!-- GYAKUMON-CHOICE: 視聴ターゲット層の解像度 = 就活/求職中の若者 -->
+<!-- GYAKUMON-CHOICE: 「テンポよく」の意味 = 情報量を絞り余白重視 -->
+<!-- GYAKUMON-CHOICE: 訴求の中心軸 = 社員/カルチャー訴求 -->
+<!-- GYAKUMON-CHOICE: 「刺さる」トーン・世界観 = エモーショナル/共感型 -->
 <style>
-/*
-  GYAKUMON-CHOICE: 「刺さる」トーン・世界観 = エモーショナル/共感型
-  を枠の基調パレットとして採用(#2a1a1e / #c6483f / #f2b6a0、rounded見出し、airy密度、soft角)
-*/
-:root{
-  --bg:#2a1a1e;
-  --main:#c6483f;
-  --accent:#f2b6a0;
-  --fs-body:16px;
-  --fs-h1:34px;
-  --fs-h2:20px;
-}
-*{box-sizing:border-box;}
-body{
-  background:var(--bg);
-  color:var(--accent);
-  font-family:"Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-  font-size:var(--fs-body);
-  line-height:1.9;
-  margin:0;
-  padding:96px 24px;
-}
-main{
-  max-width:720px;
-  margin:0 auto;
-}
-h1{
-  font-family:"Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
-  font-weight:800;
-  font-size:var(--fs-h1);
-  letter-spacing:0.02em;
-  color:#fff;
-  margin:0 0 8px;
-}
-p.lead{
-  color:var(--main);
-  margin:0 0 64px;
-  font-size:17px;
-}
-section{margin-bottom:64px;}
-h2{
-  font-family:"Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
-  font-weight:700;
-  font-size:var(--fs-h2);
-  letter-spacing:0.03em;
-  color:#fff;
-  border-left:6px solid var(--main);
-  padding-left:16px;
-  margin:0 0 24px;
-  border-radius:6px;
-}
-.shot{
-  margin-bottom:32px;
-  padding:24px;
-  background:rgba(242,182,160,0.06);
-  border-radius:16px;
-}
-.shot-head{
-  font-weight:700;
-  color:#fff;
-  margin-bottom:8px;
-}
-.shot-head span{color:var(--main);}
-pre{
-  white-space:pre-wrap;
-  font-family:"SF Mono",Menlo,Consolas,monospace;
-  font-size:13px;
-  color:var(--accent);
-  background:rgba(0,0,0,0.25);
-  padding:16px;
-  border-radius:12px;
-  margin:0;
-}
-ul{margin:0;padding-left:20px;}
-li{margin-bottom:8px;}
-footer{
-  color:var(--main);
-  font-size:14px;
-}
+  *{margin:0; padding:0; box-sizing:border-box}
+  body{background:#0e0d0b; color:#e8e4dc; font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif}
+  .stage{display:flex; justify-content:center; padding:28px 24px 8px}
+  .stage video{max-width:min(94vw,640px); width:100%; height:auto; display:block;
+               background:#000; box-shadow:0 18px 60px rgba(0,0,0,.55)}
+  .cap{max-width:640px; margin:0 auto; padding:22px 26px 40px}
+  .cap .k{font-size:10.5px; letter-spacing:.14em; color:#8f8a80; margin-bottom:8px}
+  .cap .prompt{font-size:12px; line-height:1.9; color:#b9b4a9}
+  .cap .foot{margin-top:14px; font-size:10.5px; line-height:1.8; color:#6e6a62;
+             border-top:1px solid #26231f; padding-top:10px}
 </style>
 </head>
 <body>
-<main>
-
-<h1>30秒 会社紹介動画 絵コンテ&生成プロンプト</h1>
-<p class="lead">届け、私たちの物語。 — 新卒採用のための30秒</p>
-
-<!-- GYAKUMON-CHOICE: 動画の使用目的・掲載先 = 採用ブランディング -->
-<!-- GYAKUMON-CHOICE: 視聴ターゲット層の解像度 = 就活/求職中の若者 -->
-<section>
-<h2>全体設計</h2>
-<p>就活/求職中の若者に向けた採用ブランディング動画。冒頭3秒で「働く一人の顔」を出し共感を作り、中盤で社員の一日と挑戦の瞬間を積み重ね、終盤でメッセージと社名に着地させる。台詞・テロップは最小限にし、間で見せる。</p>
-</section>
-
-<!-- GYAKUMON-CHOICE: 「テンポよく」の意味 = 情報量を絞り余白重視 -->
-<!-- GYAKUMON-CHOICE: 訴求の中心軸 = 社員/カルチャー訴求 -->
-<section>
-<h2>ショット割り(6ショット)</h2>
-
-<div class="shot">
-<div class="shot-head">① 0:00-0:03 <span>顔のクローズアップ、出勤前の一瞬</span></div>
-<pre>朝の光が差し込む室内、20代の社員がひとり静かに窓の外を見つめる。表情は穏やかで少し緊張も滲む。手持ち風の微かな揺れ、被写界深度は浅く背景はぼかす。色調は温かい琥珀色、映画的な逆光。カット尻で瞬きして視線をカメラ側へ。</pre>
-</div>
-
-<div class="shot">
-<div class="shot-head">② 0:03-0:08 <span>会社に入る後ろ姿、扉を開ける</span></div>
-<pre>〈オフィス外観〉の入口を若手社員が後ろ姿で歩いて入っていく。カメラはゆっくり追従するトラッキングショット。足音と扉の開く音を意識した間を作る。彩度低めの落ち着いた色調、余白を広く取った構図。</pre>
-</div>
-
-<div class="shot">
-<div class="shot-head">③ 0:08-0:14 <span>デスクでの作業、同僚との短い会話</span></div>
-<pre>〈事業内容〉に関わる作業をする社員の手元と表情を交互に映す。隣の同僚がひと言かけ、二人が小さく笑う。カットは短めで情報を詰めすぎない。自然光、柔らかいコントラスト、余白のある構図を保つ。</pre>
-</div>
-
-<div class="shot">
-<div class="shot-head">④ 0:14-0:20 <span>挑戦の瞬間、真剣な表情のアップ</span></div>
-<pre>会議室か現場を想定した空間で、社員が資料や画面に向かい集中する表情のクローズアップ。微かな緊張と手応えの兆し。カメラは固定気味でゆっくりズームイン。静かなBGMのビートに合わせて呼吸するようなテンポ。</pre>
-</div>
-
-<div class="shot">
-<div class="shot-head">⑤ 0:20-0:26 <span>社員が正面を向き、短い一言</span></div>
-<pre>社員が正面カメラ目線でわずかに微笑み、短い一言を発する寸前の静止に近い間。背景は〈オフィス〉のやわらかいボケ。照明は温かく、逆光気味のハイライトを顔にひとつ置く。テロップの余白を画面下三分の一に確保する構図。</pre>
-</div>
-
-<div class="shot">
-<div class="shot-head">⑥ 0:26-0:30 <span>ロゴと結びの静止画</span></div>
-<pre>暗めの背景に〈会社名〉ロゴがゆっくりフェードインする。装飾は最小限、動きはロゴの微細なフェードのみ。文字はセンター配置、余白を広く取り、静けさで締める。</pre>
-</div>
-</section>
-
-<section>
-<h2>テロップと音の指定</h2>
-<ul>
-<li>テロップは各ショットにつき最大1行、短い言葉のみ(例:「ここで、働く理由。」)。詰め込まない。</li>
-<li>ナレーションの有無は未定のため〈ナレーション有無〉として保留。入れる場合も一言二言に絞る。</li>
-<li>BGMは〈BGM/音源〉未指定。静かなピアノ or アンビエント系を仮に想定し、サビを作らず一定の呼吸感を保つ。</li>
-</ul>
-</section>
-
-<section>
-<h2>つなぎとテンポの注意</h2>
-<ul>
-<li>カット間は速い切り替えを避け、各ショットに「間」を残す(情報量を絞る方針のため)。</li>
-<li>色調・光の質感をショット間で揃え、素材が混在しても統一感を保つ。</li>
-<li>ロゴ・ブランドカラー・実写素材は未提供のため、最終工程で〈会社ロゴ/ブランドカラー〉を反映する。</li>
-</ul>
-</section>
-
-<footer>本コンテは唯一のヒアリング内容と5つの決定事項から組み立てた。プレースホルダ箇所は素材確定後に置き換える。</footer>
-
-</main>
+  <div class="stage">
+    <video src="compiled_video.mp4" controls muted loop playsinline autoplay></video>
+  </div>
+  <div class="cap">
+    <div class="k">動画生成AIへ渡した入力(意図の指示書から組んだ絵コンテの、代表ショット①)</div>
+    <p class="prompt">朝の光が差し込む室内、20代の会社員がひとり静かに窓の外を見つめる。表情は穏やかで少し緊張も滲む。手持ちカメラ風の微かな揺れ、被写界深度は浅く背景はぼかす。色調は温かい琥珀色、映画的な逆光。カットの終わりで瞬きをして視線がカメラ側へ動く。静かで、間で見せる映像。文字やロゴは入れない。</p>
+    <div class="foot">実生成(2026-07-31)・Gemini(3.6 Flash)経由・動画生成モデル Omni・横16:9・RAW 側と同一モデル/同一設定。決めた5つの判断点はこのHTMLのコメントに痕跡として埋めてある。代表ショットの選定は担当による。絵コンテ全文: compiled_pack.html</div>
+  </div>
 </body>
 </html>
