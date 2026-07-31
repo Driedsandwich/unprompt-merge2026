@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="150" viewBox="0 0 1200 150" role="img" aria-label="曖昧な一文 → 爆散(3〜5の判断点) → 決める/委ねる(クリックのみ) → 意図の指示書(JSON) → いつものAIへ">
+  <style>
+    .box{fill:#ffffff;stroke:rgba(43,58,103,.35);stroke-width:1}
+    .t1{font:600 17px "Hiragino Kaku Gothic ProN",sans-serif;fill:#2A2C30}
+    .t2{font:400 12.5px "Hiragino Kaku Gothic ProN",sans-serif;fill:#8A8F98}
+    .arr{stroke:#8A8F98;stroke-width:1.5;marker-end:url(#ah)}
+  </style>
+  <defs>
+    <marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8" fill="none" stroke="#8A8F98" stroke-width="1.4"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1200" height="150" fill="#FAF9F5"/>
+  <g>
+    <rect class="box" x="16"  y="38" width="196" height="74"/>
+    <rect x="16" y="38" width="4" height="74" fill="#C73E2E"/>
+    <text class="t1" x="40" y="70">曖昧な一文</text>
+    <text class="t2" x="40" y="94">そのままタイプ</text>
+
+    <rect class="box" x="262" y="38" width="196" height="74"/>
+    <rect x="262" y="38" width="4" height="74" fill="#C73E2E"/>
+    <text class="t1" x="286" y="70">爆散</text>
+    <text class="t2" x="286" y="94">3〜5の判断点+見本</text>
+
+    <rect class="box" x="508" y="38" width="196" height="74"/>
+    <rect x="508" y="38" width="4" height="74" fill="#8A8F98"/>
+    <text class="t1" x="532" y="70">決める / 委ねる</text>
+    <text class="t2" x="532" y="94">クリックのみ・追加タイプ0字</text>
+
+    <rect class="box" x="754" y="38" width="196" height="74"/>
+    <rect x="754" y="38" width="4" height="74" fill="#2B3A67"/>
+    <text class="t1" x="778" y="70">意図の指示書</text>
+    <text class="t2" x="778" y="94">整形表示+JSON</text>
+
+    <rect class="box" x="1000" y="38" width="184" height="74"/>
+    <rect x="1000" y="38" width="4" height="74" fill="#2B3A67"/>
+    <text class="t1" x="1024" y="70">いつものAIへ</text>
+    <text class="t2" x="1024" y="94">ChatGPT / Claude / 画像 / 動画</text>
+
+    <line class="arr" x1="212" y1="75" x2="258" y2="75"/>
+    <line class="arr" x1="458" y1="75" x2="504" y2="75"/>
+    <line class="arr" x1="704" y1="75" x2="750" y2="75"/>
+    <line class="arr" x1="950" y1="75" x2="996" y2="75"/>
+  </g>
+</svg>
