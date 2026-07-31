@@ -50,3 +50,7 @@ LP・メール・動画も含む全7ペアをアプリ内「この指示書で�
 ---
 
 <sub>MERGE 2026 AI Designathon 提出作品。旧称/コードネーム: GYAKUMON (逆問) — リポジトリ名・審議記録・機械マーカーは旧称のまま (二層命名、[DISCLOSURE #19](docs/DISCLOSURE.md))。Day1 キラーテスト・ハーネスの手順書は [`docs/README_killer_test_day1.md`](docs/README_killer_test_day1.md) に保存。</sub>
+
+## ライセンス
+
+権利は留保しつつ、**審査・評価・検証を目的とした閲覧・clone・ローカル実行・フォークを許諾**しています。詳細は [LICENSE](LICENSE)。
