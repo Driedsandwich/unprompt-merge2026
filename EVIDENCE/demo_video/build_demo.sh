@@ -2,7 +2,7 @@
 # Unprompt デモ動画 v1 ビルド (take1_full.mp4 → unprompt_demo_v1.mp4)
 # クロップ: ブラウザ枠・デバッグバナー除外 / 静寂セグメントは等速 / 倍速はテロップ開示
 set -e
-S="/private/tmp/claude-501/-Users-kishimotosatoshi-Documents-MERGE2026-MERGE2026-FABLE5-AUTONOMOUS-DELIBERATION-v4-0-20260728/89c56fd4-883d-45e5-9bdc-87446ac8a2c9/scratchpad"
+S="${DEMO_WORK:?作業ディレクトリを DEMO_WORK に指定(take1_full.mp4 と telops/ を置く)}"
 IN="$S/take1_full.mp4"
 F="/System/Library/Fonts/ヒラギノ角ゴシック W4.ttc"
 BASE="crop=2836:1595:104:291,scale=1920:1080"

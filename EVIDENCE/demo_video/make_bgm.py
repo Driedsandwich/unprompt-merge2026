@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Unprompt デモ用BGM合成(完全自作・権利フリー)。
 静かなアンビエントパッド+疎なペンタトニックの鈴音。48kHz stereo WAV。"""
-import wave, math, struct, random
+import wave, math, struct, random, os, sys
 
 SR = 48000
 DUR = 120.0
@@ -71,7 +71,8 @@ for (st, f) in plucks:
         R[s] += v * (1 + pan) / 2 * 2
 
 # 全体フェード(イン3秒・アウト6秒)+ソフトクリップ
-out = wave.open('/private/tmp/claude-501/-Users-kishimotosatoshi-Documents-MERGE2026-MERGE2026-FABLE5-AUTONOMOUS-DELIBERATION-v4-0-20260728/89c56fd4-883d-45e5-9bdc-87446ac8a2c9/scratchpad/bgm.wav', 'w')
+out_path = sys.argv[1] if len(sys.argv)>1 else os.path.join(os.environ.get('DEMO_WORK','.'),'bgm.wav')
+out = wave.open(out_path, 'w')
 out.setnchannels(2); out.setsampwidth(2); out.setframerate(SR)
 frames = bytearray()
 for s in range(N):
@@ -82,4 +83,4 @@ for s in range(N):
     l = math.tanh(L[s] * g * 1.2); r = math.tanh(R[s] * g * 1.2)
     frames += struct.pack('<hh', int(l * 32000), int(r * 32000))
 out.writeframes(bytes(frames)); out.close()
-print('bgm.wav written')
+print(out_path+' written')

@@ -11,7 +11,7 @@ flowchart LR
 
 ```sh
 git clone https://github.com/Driedsandwich/unprompt-merge2026.git
-cd gyakumon-merge2026
+cd unprompt-merge2026
 python3 server.py        # → http://127.0.0.1:8321/
 ```
 
@@ -41,7 +41,7 @@ LP・メール・動画も含む全7ペアをアプリ内「この指示書で�
 
 ## 誠実性 (このリポジトリの検証装置)
 
-- [`docs/DISCLOSURE.md`](docs/DISCLOSURE.md) — 開示リスト20項 (事前生成・対照条件・既知不具合まで全列挙)
+- [`docs/DISCLOSURE.md`](docs/DISCLOSURE.md) — 開示リスト21項 (事前生成・対照条件・既知不具合まで全列挙)
 - [`PROCESS_LOG.md`](PROCESS_LOG.md) — AIの提案 / 人の判断 / 採否と理由の3列ログ
 - [`EVIDENCE/`](EVIDENCE/) — キラーテスト実測・DOMテスト群 (900項目超)・レイテンシログ
 - git log — `resolved: <判断点>→<決定> / 理由` タグつきコミット (この製品は、この製品の思考様式で作られています)
