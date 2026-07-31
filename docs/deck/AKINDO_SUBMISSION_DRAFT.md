@@ -27,6 +27,7 @@ Unprompt は、曖昧な依頼文(例:「モダンだけど温かみのあるLP�
 🎬 デモ動画(114秒): [YouTube URL]
 📦 GitHub: https://github.com/Driedsandwich/unprompt-merge2026
 📄 デック(PDF): リポジトリ docs/deck/unprompt_deck.pdf
+🌐 実生成ギャラリー(静的・実物のみ): https://driedsandwich.github.io/unprompt-merge2026/
 ```
 
 ## 提出前チェック(ユーザー実施)

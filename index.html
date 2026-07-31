@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unprompt — 実生成ギャラリー</title>
+<style>
+:root{--paper:#FAF9F5;--grid:rgba(199,62,46,.05);--shu:#C73E2E;--ai:#2B3A67;--nezu:#8A8F98;--ink:#2A2C30;--thin:rgba(43,58,103,.25)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Hiragino Kaku Gothic ProN",sans-serif;color:var(--ink);
+ background:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),var(--paper);
+ background-size:24px 24px;padding:56px 24px}
+.wrap{max-width:900px;margin:0 auto}
+.wm{font-weight:600;font-size:40px;letter-spacing:.06em}
+.wm .un{color:var(--shu)}.wm .pr{color:var(--ai)}
+.role{font-size:13px;letter-spacing:.4em;color:var(--nezu);margin:4px 0 26px}
+.tag{font-family:"Hiragino Mincho ProN",serif;font-size:19px;line-height:1.9;margin-bottom:26px}
+.tag b{color:var(--ai)}
+.notice{background:#fff;border:1px solid var(--thin);border-left:4px solid var(--shu);padding:16px 20px;font-size:13.5px;line-height:1.9;margin-bottom:36px}
+.notice code{font-family:Menlo,monospace;font-size:.92em;background:var(--paper);padding:1px 6px}
+h2{font-family:"Hiragino Mincho ProN",serif;font-size:22px;margin:0 0 6px;border-bottom:2px solid var(--ai);display:inline-block;padding-bottom:3px}
+.sub{font-size:12.5px;color:var(--nezu);margin-bottom:18px;line-height:1.7}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:40px}
+@media(max-width:700px){.pairs{grid-template-columns:1fr}}
+.pair{background:#fff;border:1px solid var(--thin);padding:14px 16px}
+.pair .nm{font-weight:600;font-size:14.5px;margin-bottom:2px}
+.pair .ds{font-size:12px;color:var(--nezu);margin-bottom:10px}
+.pair a{display:inline-block;font-size:12.5px;text-decoration:none;border:1px solid var(--thin);padding:5px 12px;margin-right:6px}
+.pair a.raw{color:var(--shu)}
+.pair a.cmp{color:#fff;background:var(--ai);border-color:var(--ai)}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.links a{font-size:13.5px;text-decoration:none;color:var(--ai);border:1px solid var(--thin);background:#fff;padding:9px 16px}
+.foot{font-size:11.5px;color:var(--nezu);line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="wm"><span class="un">Un</span><span class="pr">prompt</span></div>
+  <div class="role">INTENT COMPILER — 実生成ギャラリー</div>
+  <div class="tag">AIは、<b>あなたの成果物</b>を一文字も書かない。あなたの意図だけを、書かせる。<br>ここにあるのは、Unprompt の指示書で実際に作らせた成果物の並置比較です。</div>
+
+  <div class="notice">
+    このページは<b>静的なギャラリー</b>です。対話体験(爆散→決める/委ねる→指示書)はローカルで動きます:
+    <code>git clone https://github.com/Driedsandwich/unprompt-merge2026.git && cd unprompt-merge2026 && python3 server.py</code><br>
+    必要なのは Claude Code にログイン済みの環境だけ(APIキー不要・ビルド不要)。疑似再生のデモは置いていません — 動くところは動画とローカルで。
+  </div>
+
+  <h2>並置比較 — 同じ一文、渡し方だけが違う</h2>
+  <div class="sub">左(朱)=発注者の一文をそのまま渡した結果 / 右(藍)=Unprompt の指示書を渡した結果。モデル・思考量・制作者プロンプトの骨格は左右同一。生成痕跡マーカーとmanifestによる機械照合つき。</div>
+  <div class="pairs">
+    <div class="pair"><div class="nm">会社のLP</div><div class="ds">「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」</div><a class="raw" href="app/compare/lp-warm/raw.html">一文だけ</a><a class="cmp" href="app/compare/lp-warm/compiled.html">指示書で</a></div>
+    <div class="pair"><div class="nm">イベント告知</div><div class="ds">技術イベントの告知ページ</div><a class="raw" href="app/compare/event-page/raw.html">一文だけ</a><a class="cmp" href="app/compare/event-page/compiled.html">指示書で</a></div>
+    <div class="pair"><div class="nm">スカウトメール</div><div class="ds">エンジニア採用のスカウト文面</div><a class="raw" href="app/compare/scout-mail/raw.html">一文だけ</a><a class="cmp" href="app/compare/scout-mail/compiled.html">指示書で</a></div>
+    <div class="pair"><div class="nm">商品の説明文</div><div class="ds">EC商品の紹介テキスト</div><a class="raw" href="app/compare/ec-product/raw.html">一文だけ</a><a class="cmp" href="app/compare/ec-product/compiled.html">指示書で</a></div>
+    <div class="pair"><div class="nm">ポートフォリオ</div><div class="ds">個人サイトの構成</div><a class="raw" href="app/compare/portfolio/raw.html">一文だけ</a><a class="cmp" href="app/compare/portfolio/compiled.html">指示書で</a></div>
+    <div class="pair"><div class="nm">キービジュアル(画像)</div><div class="ds">GPT-Image-2 による実生成画像ペア</div><a class="raw" href="app/compare/keyvisual/raw.html">一文だけ</a><a class="cmp" href="app/compare/keyvisual/compiled.html">指示書で</a></div>
+    <div class="pair"><div class="nm">紹介動画(動画)</div><div class="ds">Omni による実生成動画ペア</div><a class="raw" href="app/compare/intro-video/raw.html">一文だけ</a><a class="cmp" href="app/compare/intro-video/compiled.html">指示書で</a></div>
+  </div>
+
+  <h2>資料</h2>
+  <div class="sub">検証可能性のための一次資料。</div>
+  <div class="links">
+    <a href="https://github.com/Driedsandwich/unprompt-merge2026">GitHub リポジトリ</a>
+    <a href="docs/deck/unprompt_deck.pdf">デック(PDF・10枚)</a>
+    <a href="docs/PROCESS_METRICS.md">プロセスログ要約・時間短縮指標</a>
+    <a href="docs/DISCLOSURE.md">開示リスト(22項)</a>
+  </div>
+
+  <div class="foot">MERGE 2026 AI Designathon 提出作品 / 旧称・コードネーム: GYAKUMON(docs/DISCLOSURE.md #19)。<br>このギャラリーの成果物はすべて事前生成の実物(生成条件・プロンプト・機械照合は各ページとリポジトリの EVIDENCE/ に記録)。</div>
+</div>
+</body>
+</html>

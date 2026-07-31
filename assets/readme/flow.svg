@@ -35,7 +35,7 @@
     <rect class="box" x="1000" y="38" width="184" height="74"/>
     <rect x="1000" y="38" width="4" height="74" fill="#2B3A67"/>
     <text class="t1" x="1024" y="70">いつものAIへ</text>
-    <text class="t2" x="1024" y="94">ChatGPT / Claude / 画像 / 動画</text>
+    <text class="t2" x="1018" y="94" style="font-size:11px">ChatGPT / Claude / 画像・動画</text>
 
     <line class="arr" x1="212" y1="75" x2="258" y2="75"/>
     <line class="arr" x1="458" y1="75" x2="504" y2="75"/>
