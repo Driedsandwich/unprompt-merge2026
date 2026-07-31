@@ -105,6 +105,7 @@ img.shot-img{border:1px solid var(--thin);display:block}
 #s5 .quad{width:600px;height:430px;position:relative;background:#fff;border:1px solid var(--thin);flex:none}
 #s5 .ax{position:absolute;background:var(--thin)}
 #s5 .axl{font-size:12.5px;letter-spacing:.12em;color:var(--nezu);position:absolute}
+#s5 .axl.v{writing-mode:vertical-rl;top:50%;transform:translateY(-50%)}
 #s5 .item{position:absolute;font-size:14px;line-height:1.45;width:180px}
 #s5 .item .nm{font-weight:600}
 #s5 .item.star{border:1.5px solid var(--shu);background:rgba(199,62,46,.04);padding:10px 12px;width:200px}
@@ -271,13 +272,13 @@ img.shot-img{border:1px solid var(--thin);display:block}
       <div class="ax" style="top:50%;left:14px;right:14px;height:1px"></div>
       <div class="axl" style="top:6px;left:50%;transform:translateX(-50%)">AIが成果物を書く</div>
       <div class="axl" style="bottom:6px;left:50%;transform:translateX(-50%)">AIは成果物を書かない</div>
-      <div class="axl" style="left:8px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:left center">逐次テキスト</div>
-      <div class="axl" style="right:-24px;top:50%;transform:translateY(-50%) rotate(90deg);transform-origin:right center">並列帰結レンダ</div>
-      <div class="item" style="left:52px;top:64px"><span class="nm">ChatGPT 確認質問</span><br>言葉で聞き返した後、AI自身が成果物を書く</div>
-      <div class="item" style="left:52px;top:150px"><span class="nm">Deep Research 型プラン確認</span><br>計画は確認させるが、最終成果物はAIが全文執筆</div>
-      <div class="item" style="left:360px;top:100px"><span class="nm">Midjourney 変種選択</span><br>並列選択UXの実証。ただし選ぶ対象がAI執筆の成果物そのもの</div>
-      <div class="item" style="left:52px;top:310px"><span class="nm">grill-me(2026-03)</span><br>生成前に徹底的に問う。ただし1問ずつ逐次テキスト</div>
-      <div class="item star" style="left:352px;top:290px"><span class="nm wm"><span class="un">Un</span><span class="pr">prompt</span></span><br>語アンカー × 帰結レンダ × 成果物不執筆の交点。終点は意図の指示書(MD+JSON)</div>
+      <div class="axl v" style="left:10px">逐次テキスト</div>
+      <div class="axl v" style="right:10px">並列帰結レンダ</div>
+      <div class="item" style="left:52px;top:52px;width:200px"><span class="nm">ChatGPT 確認質問</span><br>言葉で聞き返した後、AI自身が成果物を書く</div>
+      <div class="item" style="left:52px;top:146px;width:200px"><span class="nm">Deep Research<br>型プラン確認</span><br>最終レポートはAIが全文執筆</div>
+      <div class="item" style="left:352px;top:52px;width:200px"><span class="nm">Midjourney 変種選択</span><br>並列選択UXの実証。ただし選ぶ対象がAI執筆の成果物そのもの</div>
+      <div class="item" style="left:52px;top:296px;width:200px"><span class="nm">grill-me(2026-03)</span><br>生成前に徹底的に問う。ただし1問ずつ逐次テキスト</div>
+      <div class="item star" style="left:340px;top:272px"><span class="nm wm"><span class="un">Un</span><span class="pr">prompt</span></span><br>語アンカー×帰結レンダ×成果物不執筆の交点。終点は意図の指示書</div>
     </div>
     <div class="talk">
       <p>grill-me 自身が「複数質問の同時提示は混乱(bewildering)」と明記している — 需要の実証であり、限界の自認。</p>
@@ -299,7 +300,7 @@ img.shot-img{border:1px solid var(--thin);display:block}
       <div class="h">1 スリム抽出スキーマ</div>
       <div class="d">検証用フルスキーマと製品用スリムスキーマを分離(<span class="mono">prompts/extraction_product_v1.txt</span>)。出力530〜540トークンに制御。</div>
     </div>
-    <div class="card shu">
+    <div class="card">
       <div class="h">2 anchor 機械検証 — 実測 22実行で違反0</div>
       <div class="d">各判断点の anchor_words は「原文の連続部分文字列」であることを機械検証。実在しない語への係留は棄却(分岐捏造0・エラー0を実測)。</div>
     </div>
@@ -357,7 +358,7 @@ img.shot-img{border:1px solid var(--thin);display:block}
   <div class="cols">
     <div>
       <div class="big">主経路は Claude Code サブスクリプションの headless CLI(<b class="mono">claude -p</b>)。ログイン済み環境なら <b>clone+1コマンド</b>で再現する。</div>
-      <div class="repo">github.com/Driedsandwich/unprompt-merge2026</div>
+      <div class="repo"><a href="https://github.com/Driedsandwich/unprompt-merge2026" style="color:var(--ai);text-decoration:none">github.com/Driedsandwich/unprompt-merge2026</a></div>
       <ul>
         <li><b>ビルドレス</b> — npm/Node/バンドラ不使用。バニラJS+Python標準ライブラリ。起動は <span class="mono">python3 server.py</span> のみ。</li>
         <li>APIキー保有者向けの代替経路(ブラウザ直叩き)も存置(DISCLOSURE #1)。</li>
