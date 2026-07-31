@@ -44,3 +44,4 @@
 | Pages GO(ユーザー承認)+READMEフローSVGの右端はみ出し指摘 | 管制塔実施: SVG末尾ボックスの文字を縮小・短縮して修正 → ランディング index.html(実生成ギャラリー・7ペア導線・「疑似再生は置かない」明示・アプリ本体へは非リンク)を新設 → gh api で Pages 有効化(main
  /)→ DISCLOSURE #23 追記・提出ドラフトへURL追加 | 実測検証: 公開URL 200 応答(ランディング/lp-warm/keyvisual/intro-video動画2.2MB/デックPDF 6.9MB/flow.svg)。ライブ画面のスクリーンショット目視で朱と藍レンダリング確認。https://driedsandwich.github.io/unprompt-merge2026/ |
 | リポジトリ体裁の整備(ユーザー指摘: Description空・権利記述なし・README構成の妥当性) | 管制塔対応: Description/homepage(Pages URL)/topics 6件を設定。ライセンスはユーザーと協議し「将来のサービス展開の選択肢を残す」ため MIT を採らず、権利留保+審査・評価・検証目的の許諾(日英併記のカスタムLICENSE)を採用。README末尾にライセンス節を追加。README構成(誠実性・展開性の節)は審査文脈の差別化装置として存置 | LICENSE 新設・README追記・push。MIT化は8/8以降でも可能(緩める方向は自由)と整理 |
+| ユーザーPages改善指示: タイトル押下で横並び比較・ボタンはページ遷移でなくポップアップ・✗/外周クリックで即復帰 | 管制塔実装: ランディングをモーダル方式へ全面改修(タイトル=左右並置iframe・個別ボタン=単体表示・✗/scrim/Escで閉じる・#pair-<id>等の深リンク・モバイルは縦積み) | ローカルHTTPで lp-warm(テキスト並置)と keyvisual(画像並置)のモーダルをスクリーンショット検証後、push・本番URL確認 |

@@ -23,14 +23,36 @@ h2{font-family:"Hiragino Mincho ProN",serif;font-size:22px;margin:0 0 6px;border
 .pairs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:40px}
 @media(max-width:700px){.pairs{grid-template-columns:1fr}}
 .pair{background:#fff;border:1px solid var(--thin);padding:14px 16px}
-.pair .nm{font-weight:600;font-size:14.5px;margin-bottom:2px}
-.pair .ds{font-size:12px;color:var(--nezu);margin-bottom:10px}
-.pair a{display:inline-block;font-size:12.5px;text-decoration:none;border:1px solid var(--thin);padding:5px 12px;margin-right:6px}
-.pair a.raw{color:var(--shu)}
-.pair a.cmp{color:#fff;background:var(--ai);border-color:var(--ai)}
+.pair .nm{font-weight:600;font-size:14.5px;margin-bottom:2px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pair .nm:hover{color:var(--shu)}
+.pair .nm::after{content:"並べて見る";font-size:10.5px;font-weight:400;color:#fff;background:var(--shu);padding:2px 8px}
+.pair .ds{font-size:12px;color:var(--nezu);margin:2px 0 10px}
+.pair button{font-family:inherit;font-size:12.5px;border:1px solid var(--thin);background:#fff;padding:5px 12px;margin-right:6px;cursor:pointer}
+.pair button.raw{color:var(--shu)}
+.pair button.cmp{color:#fff;background:var(--ai);border-color:var(--ai)}
+.pair button:hover{opacity:.82}
 .links{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
 .links a{font-size:13.5px;text-decoration:none;color:var(--ai);border:1px solid var(--thin);background:#fff;padding:9px 16px}
 .foot{font-size:11.5px;color:var(--nezu);line-height:1.8}
+
+/* ---- モーダル ---- */
+#scrim{position:fixed;inset:0;background:rgba(21,23,28,.62);display:none;z-index:50}
+#modal{position:fixed;inset:3vh 3vw;background:var(--paper);border:1px solid var(--thin);display:none;z-index:51;flex-direction:column}
+body.open #scrim{display:block}
+body.open #modal{display:flex}
+#mhead{display:flex;align-items:center;gap:14px;padding:12px 18px;background:#fff;border-bottom:1px solid var(--thin)}
+#mtitle{font-weight:600;font-size:15px}
+#mnote{font-size:11.5px;color:var(--nezu)}
+#mclose{margin-left:auto;font-family:inherit;font-size:14px;line-height:1;border:1px solid var(--thin);background:#fff;padding:8px 14px;cursor:pointer;color:var(--ink)}
+#mclose:hover{color:#fff;background:var(--shu);border-color:var(--shu)}
+#mbody{flex:1;display:flex;gap:0;min-height:0}
+.col{flex:1;display:flex;flex-direction:column;min-width:0}
+.col+.col{border-left:1px solid var(--thin)}
+.col .ch{font-size:12px;letter-spacing:.08em;padding:7px 14px;color:#fff}
+.col .ch.raw{background:var(--shu)}
+.col .ch.cmp{background:var(--ai)}
+.col iframe{flex:1;width:100%;border:0;background:#fff}
+@media(max-width:820px){#mbody{flex-direction:column}.col+.col{border-left:0;border-top:1px solid var(--thin)}}
 </style>
 </head>
 <body>
@@ -46,16 +68,8 @@ h2{font-family:"Hiragino Mincho ProN",serif;font-size:22px;margin:0 0 6px;border
   </div>
 
   <h2>並置比較 — 同じ一文、渡し方だけが違う</h2>
-  <div class="sub">左(朱)=発注者の一文をそのまま渡した結果 / 右(藍)=Unprompt の指示書を渡した結果。モデル・思考量・制作者プロンプトの骨格は左右同一。生成痕跡マーカーとmanifestによる機械照合つき。</div>
-  <div class="pairs">
-    <div class="pair"><div class="nm">会社のLP</div><div class="ds">「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」</div><a class="raw" href="app/compare/lp-warm/raw.html">一文だけ</a><a class="cmp" href="app/compare/lp-warm/compiled.html">指示書で</a></div>
-    <div class="pair"><div class="nm">イベント告知</div><div class="ds">技術イベントの告知ページ</div><a class="raw" href="app/compare/event-page/raw.html">一文だけ</a><a class="cmp" href="app/compare/event-page/compiled.html">指示書で</a></div>
-    <div class="pair"><div class="nm">スカウトメール</div><div class="ds">エンジニア採用のスカウト文面</div><a class="raw" href="app/compare/scout-mail/raw.html">一文だけ</a><a class="cmp" href="app/compare/scout-mail/compiled.html">指示書で</a></div>
-    <div class="pair"><div class="nm">商品の説明文</div><div class="ds">EC商品の紹介テキスト</div><a class="raw" href="app/compare/ec-product/raw.html">一文だけ</a><a class="cmp" href="app/compare/ec-product/compiled.html">指示書で</a></div>
-    <div class="pair"><div class="nm">ポートフォリオ</div><div class="ds">個人サイトの構成</div><a class="raw" href="app/compare/portfolio/raw.html">一文だけ</a><a class="cmp" href="app/compare/portfolio/compiled.html">指示書で</a></div>
-    <div class="pair"><div class="nm">キービジュアル(画像)</div><div class="ds">GPT-Image-2 による実生成画像ペア</div><a class="raw" href="app/compare/keyvisual/raw.html">一文だけ</a><a class="cmp" href="app/compare/keyvisual/compiled.html">指示書で</a></div>
-    <div class="pair"><div class="nm">紹介動画(動画)</div><div class="ds">Omni による実生成動画ペア</div><a class="raw" href="app/compare/intro-video/raw.html">一文だけ</a><a class="cmp" href="app/compare/intro-video/compiled.html">指示書で</a></div>
-  </div>
+  <div class="sub">タイトルをクリックで左右並置。左(朱)=発注者の一文をそのまま渡した結果 / 右(藍)=Unprompt の指示書を渡した結果。モデル・思考量・制作者プロンプトの骨格は左右同一。生成痕跡マーカーとmanifestによる機械照合つき。</div>
+  <div class="pairs" id="pairs"></div>
 
   <h2>資料</h2>
   <div class="sub">検証可能性のための一次資料。</div>
@@ -63,10 +77,77 @@ h2{font-family:"Hiragino Mincho ProN",serif;font-size:22px;margin:0 0 6px;border
     <a href="https://github.com/Driedsandwich/unprompt-merge2026">GitHub リポジトリ</a>
     <a href="docs/deck/unprompt_deck.pdf">デック(PDF・10枚)</a>
     <a href="docs/PROCESS_METRICS.md">プロセスログ要約・時間短縮指標</a>
-    <a href="docs/DISCLOSURE.md">開示リスト(22項)</a>
+    <a href="docs/DISCLOSURE.md">開示リスト(23項)</a>
   </div>
 
   <div class="foot">MERGE 2026 AI Designathon 提出作品 / 旧称・コードネーム: GYAKUMON(docs/DISCLOSURE.md #19)。<br>このギャラリーの成果物はすべて事前生成の実物(生成条件・プロンプト・機械照合は各ページとリポジトリの EVIDENCE/ に記録)。</div>
 </div>
+
+<div id="scrim"></div>
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div id="mhead">
+    <span id="mtitle"></span><span id="mnote"></span>
+    <button id="mclose" aria-label="閉じる">✕ 閉じる</button>
+  </div>
+  <div id="mbody"></div>
+</div>
+
+<script>
+var PAIRS=[
+ {id:"lp-warm",nm:"会社のLP",ds:"「モダンだけど温かみのあるLPを作って。うちの会社のやつ。」"},
+ {id:"event-page",nm:"イベント告知",ds:"技術イベントの告知ページ"},
+ {id:"scout-mail",nm:"スカウトメール",ds:"エンジニア採用のスカウト文面"},
+ {id:"ec-product",nm:"商品の説明文",ds:"EC商品の紹介テキスト"},
+ {id:"portfolio",nm:"ポートフォリオ",ds:"個人サイトの構成"},
+ {id:"keyvisual",nm:"キービジュアル(画像)",ds:"GPT-Image-2 による実生成画像ペア"},
+ {id:"intro-video",nm:"紹介動画(動画)",ds:"Omni による実生成動画ペア"}
+];
+var byId={}; PAIRS.forEach(function(p){byId[p.id]=p});
+var box=document.getElementById("pairs");
+PAIRS.forEach(function(p){
+  var d=document.createElement("div"); d.className="pair";
+  d.innerHTML='<div class="nm" data-act="both" data-id="'+p.id+'" role="button" tabindex="0">'+p.nm+'</div>'+
+    '<div class="ds">'+p.ds+'</div>'+
+    '<button class="raw" data-act="raw" data-id="'+p.id+'">一文だけ</button>'+
+    '<button class="cmp" data-act="cmp" data-id="'+p.id+'">指示書で</button>';
+  box.appendChild(d);
+});
+function col(kind,id){
+  var lab=kind==="raw"?"一文だけを渡した":"意図の指示書を渡した";
+  var f=kind==="raw"?"raw":"compiled";
+  return '<div class="col"><div class="ch '+kind+'">'+lab+'</div>'+
+    '<iframe loading="lazy" src="app/compare/'+id+'/'+f+'.html" title="'+lab+'"></iframe></div>';
+}
+function openModal(act,id){
+  var p=byId[id]; if(!p) return;
+  var body=document.getElementById("mbody");
+  if(act==="both"){ body.innerHTML=col("raw",id)+col("cmp",id); }
+  else if(act==="raw"){ body.innerHTML=col("raw",id); }
+  else { body.innerHTML=col("cmp",id); }
+  document.getElementById("mtitle").textContent=p.nm;
+  document.getElementById("mnote").textContent=act==="both"?"左=一文だけ / 右=指示書。✕か外側クリックで戻る":"✕か外側クリックで戻る";
+  document.body.classList.add("open");
+  history.replaceState(null,"","#"+(act==="both"?"pair-":act+"-")+id);
+}
+function closeModal(){
+  document.body.classList.remove("open");
+  document.getElementById("mbody").innerHTML="";
+  history.replaceState(null,"",location.pathname);
+}
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-act]");
+  if(t){ openModal(t.getAttribute("data-act"),t.getAttribute("data-id")); return; }
+  if(e.target.id==="scrim"){ closeModal(); }
+});
+document.getElementById("mclose").addEventListener("click",closeModal);
+document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeModal(); });
+document.addEventListener("keydown",function(e){
+  var t=e.target.closest&&e.target.closest('[role="button"][data-act]');
+  if(t&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); openModal(t.getAttribute("data-act"),t.getAttribute("data-id")); }
+});
+// 深リンク: #pair-lp-warm / #raw-lp-warm / #cmp-lp-warm
+var m=/^#(pair|raw|cmp)-(.+)$/.exec(location.hash);
+if(m){ openModal(m[1]==="pair"?"both":m[1],m[2]); }
+</script>
 </body>
 </html>
