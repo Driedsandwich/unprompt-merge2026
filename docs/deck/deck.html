@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Unprompt — Intent Compiler / MERGE 2026 デック</title>
+<style>
+/* ============ 朱と藍の製図 — デック用トークン ============ */
+:root{
+  --paper:#FAF9F5;          /* 製図白 */
+  --grid:rgba(199,62,46,.055);
+  --shu:#C73E2E;            /* 朱 = 未決 */
+  --ai:#2B3A67;             /* 藍 = 確定 */
+  --nezu:#8A8F98;           /* 鼠 = 委任 */
+  --ink:#2A2C30;
+  --thin:rgba(43,58,103,.25);
+  --serif:"Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:1280px 720px;margin:0}
+body{font-family:var(--sans);color:var(--ink);background:#ddd}
+.slide{
+  position:relative;width:1280px;height:720px;overflow:hidden;
+  background:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    var(--paper);
+  background-size:24px 24px,24px 24px,auto;
+  page-break-after:always;break-after:page;
+  padding:64px 72px 56px;
+}
+/* 画面確認用: ハッシュ指定時は当該スライドのみ表示 */
+body.shot .slide{display:none}
+body.shot .slide:target{display:block}
+
+/* 共通部品 */
+.foot{position:absolute;left:72px;right:72px;bottom:26px;display:flex;justify-content:space-between;
+  font-size:11px;letter-spacing:.14em;color:var(--nezu)}
+.foot .no{font-family:var(--serif)}
+.eyebrow{font-size:13px;letter-spacing:.3em;color:var(--shu);margin-bottom:14px}
+h2{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:.04em;margin-bottom:26px}
+h2 .u{border-bottom:2px solid var(--shu);padding-bottom:2px}
+.wm{font-family:var(--sans);font-weight:600;letter-spacing:.08em}
+.wm .un{color:var(--shu)}.wm .pr{color:var(--ai)}
+.note{font-size:11.5px;color:var(--nezu);line-height:1.7}
+.tag-shu{color:var(--shu)}.tag-ai{color:var(--ai)}.tag-nezu{color:var(--nezu)}
+.card{background:#fff;border:1px solid var(--thin);border-left:3px solid var(--ai);padding:16px 18px}
+.card.shu{border-left-color:var(--shu)}
+.card.nezu{border-left-color:var(--nezu)}
+table{border-collapse:collapse;width:100%}
+th,td{border-bottom:1px solid var(--thin);padding:7px 10px;text-align:left;font-size:13px;line-height:1.5}
+th{font-weight:600;color:var(--ai);font-size:12px;letter-spacing:.08em}
+.mono{font-family:Menlo,monospace;font-size:.92em}
+img.shot-img{border:1px solid var(--thin);display:block}
+
+/* ---------- ① タイトル ---------- */
+#s1{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+#s1 .lockup{font-size:96px;font-weight:600;letter-spacing:.06em}
+#s1 .role{font-size:18px;letter-spacing:.42em;color:var(--nezu);margin:10px 0 58px}
+#s1 .tagline{font-family:var(--serif);font-size:30px;line-height:1.9;letter-spacing:.05em}
+#s1 .tagline b{font-weight:600;color:var(--ai);border-bottom:2px solid var(--ai);padding-bottom:1px}
+#s1 .tagline .x{color:var(--shu)}
+#s1 .sub{margin-top:30px;font-size:15px;letter-spacing:.2em;color:var(--nezu)}
+#s1 .meta{margin-top:64px;font-size:12.5px;letter-spacing:.18em;color:var(--nezu)}
+
+/* ---------- ② 問題 ---------- */
+#s2 .cols{display:flex;gap:36px}
+#s2 .l{flex:1.15}
+#s2 .r{flex:1}
+#s2 p.lead{font-family:var(--serif);font-size:19px;line-height:2.05;margin-bottom:18px}
+#s2 p.lead b{color:var(--shu);font-weight:600}
+#s2 .pointlist{font-size:14px;line-height:1.9;margin:0 0 16px 0;list-style:none}
+#s2 .pointlist li{padding-left:16px;position:relative;margin-bottom:8px}
+#s2 .pointlist li::before{content:"―";position:absolute;left:0;color:var(--shu)}
+.diagram{background:#fff;border:1px solid var(--thin);padding:22px 24px}
+.diagram .dl{font-size:12px;letter-spacing:.1em;color:var(--nezu);margin-bottom:10px}
+.bar{height:14px;margin:6px 0 14px;position:relative}
+.bar .fill{height:100%;position:absolute;left:0;top:0}
+.bar .lab{position:absolute;right:0;top:-3px;font-size:11px;color:var(--nezu)}
+
+/* ---------- ③ 解 ---------- */
+#s3 .loop{display:flex;align-items:stretch;gap:0;margin:8px 0 22px}
+#s3 .step{flex:1;background:#fff;border:1px solid var(--thin);padding:14px 14px;position:relative}
+#s3 .step+.step{margin-left:26px}
+#s3 .step+.step::before{content:"→";position:absolute;left:-22px;top:50%;transform:translateY(-50%);color:var(--shu);font-size:16px}
+#s3 .step .t{font-size:12px;letter-spacing:.12em;color:var(--shu);margin-bottom:6px}
+#s3 .step .b{font-size:13px;line-height:1.65}
+#s3 .const{display:flex;gap:24px;margin-top:6px}
+#s3 .const .card{flex:1}
+#s3 .const .h{font-family:var(--serif);font-size:16px;margin-bottom:8px}
+#s3 .const .d{font-size:13px;line-height:1.8}
+
+/* ---------- ④ デモ ---------- */
+#s4 .film{display:flex;gap:14px;margin-bottom:16px}
+#s4 .cell{flex:1}
+#s4 .cell img{width:100%}
+#s4 .cap{font-size:11.5px;color:var(--ink);margin-top:6px;line-height:1.55}
+#s4 .cap b{color:var(--shu)}
+#s4 .honest{display:flex;gap:24px}
+#s4 .honest .card{flex:1.4}
+#s4 .honest .n{font-family:var(--serif);font-size:15px;line-height:1.9}
+
+/* ---------- ⑤ マップ ---------- */
+#s5 .wrap{display:flex;gap:34px}
+#s5 .quad{width:600px;height:430px;position:relative;background:#fff;border:1px solid var(--thin);flex:none}
+#s5 .ax{position:absolute;background:var(--thin)}
+#s5 .axl{font-size:11px;letter-spacing:.12em;color:var(--nezu);position:absolute}
+#s5 .item{position:absolute;font-size:12.5px;line-height:1.45;width:180px}
+#s5 .item .nm{font-weight:600}
+#s5 .item.star{border:1.5px solid var(--shu);background:rgba(199,62,46,.04);padding:10px 12px;width:200px}
+#s5 .item.star .nm{color:var(--shu);font-size:14px}
+#s5 .talk{flex:1;font-size:13.5px;line-height:1.95}
+#s5 .talk p{margin-bottom:14px}
+#s5 .talk b{color:var(--ai)}
+
+/* ---------- ⑥ AI統合 ---------- */
+#s6 .counter{font-family:var(--serif);font-size:21px;margin-bottom:20px;line-height:1.8}
+#s6 .counter b{color:var(--shu);border-bottom:2px solid var(--shu)}
+#s6 .grid4{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#s6 .grid4 .card .h{font-size:14px;font-weight:600;color:var(--ai);margin-bottom:6px}
+#s6 .grid4 .card .d{font-size:12.8px;line-height:1.75}
+
+/* ---------- ⑦ 共創 ---------- */
+#s7 .brief0{font-family:var(--serif);font-size:22px;text-align:center;margin:2px 0 8px;letter-spacing:.02em}
+#s7 .brief0 .w{border-bottom:2px solid var(--ai);color:var(--ai);padding-bottom:1px}
+#s7 .tethers{height:22px;position:relative;margin-bottom:2px}
+#s7 .tethers div{position:absolute;top:0;width:1px;height:22px;background:var(--ai);opacity:.5}
+#s7 .grid4{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#s7 .card .q{font-family:Menlo,monospace;font-size:10.6px;line-height:1.6;color:var(--ai);margin-bottom:6px;word-break:break-all}
+#s7 .card .why{font-size:12px;line-height:1.65}
+#s7 .lat{margin-top:6px;font-size:11.5px}
+#s7 .lat td,#s7 .lat th{padding:3px 8px;font-size:11.5px}
+
+/* ---------- ⑧ 実装 ---------- */
+#s8 .cols{display:flex;gap:30px}
+#s8 .cols>div{flex:1}
+#s8 .big{font-family:var(--serif);font-size:19px;line-height:1.9;margin-bottom:16px}
+#s8 .big b{color:var(--ai)}
+#s8 ul{list-style:none;font-size:13.5px;line-height:1.85}
+#s8 ul li{padding-left:16px;position:relative;margin-bottom:9px}
+#s8 ul li::before{content:"―";position:absolute;left:0;color:var(--ai)}
+#s8 .repo{font-family:Menlo,monospace;font-size:14px;background:#fff;border:1px solid var(--thin);padding:12px 16px;margin:14px 0}
+
+/* ---------- ⑨ 射程 ---------- */
+#s9 .layer{font-family:var(--serif);font-size:20px;line-height:1.95;margin-bottom:22px}
+#s9 .layer b{color:var(--ai)}
+#s9 .cols{display:flex;gap:26px}
+#s9 .cols .card{flex:1}
+#s9 .cols .h{font-size:13px;letter-spacing:.18em;color:var(--shu);margin-bottom:8px}
+#s9 .cols ul{list-style:none;font-size:13px;line-height:1.8}
+#s9 .cols li{padding-left:14px;position:relative;margin-bottom:7px}
+#s9 .cols li::before{content:"―";position:absolute;left:0;color:var(--nezu)}
+#s9 .zero{margin-top:24px;text-align:center;font-family:var(--serif);font-size:22px}
+#s9 .zero b{font-size:34px;color:var(--shu)}
+#s9 .zero i{font-style:normal;font-size:34px;color:var(--ai)}
+
+/* ---------- ⑩ チーム ---------- */
+#s10 .cols{display:flex;gap:30px;margin-bottom:8px}
+#s10 .cols>div{flex:1}
+#s10 h3{font-size:13px;letter-spacing:.22em;color:var(--shu);margin-bottom:10px;font-weight:600}
+#s10 ul{list-style:none;font-size:13px;line-height:1.8}
+#s10 li{padding-left:14px;position:relative;margin-bottom:6px}
+#s10 li::before{content:"―";position:absolute;left:0;color:var(--ai)}
+#s10 .close{position:absolute;left:72px;right:72px;bottom:70px;text-align:center;
+  font-family:var(--serif);font-size:22px;line-height:1.9}
+#s10 .close b{color:var(--ai);border-bottom:2px solid var(--ai)}
+#s10 .close .x{color:var(--shu)}
+</style>
+</head>
+<body>
+
+<!-- ① タイトル -->
+<section class="slide" id="s1">
+  <div class="lockup wm"><span class="un">Un</span><span class="pr">prompt</span></div>
+  <div class="role">INTENT COMPILER</div>
+  <div class="tagline">AIは、<b>あなたの成果物</b>を一文字も書かない。<br>あなたの<span class="x">意図</span>だけを、書かせる。</div>
+  <div class="sub">曖昧な一文を、実行可能な意図にコンパイルする</div>
+  <div class="meta">MERGE 2026 AI DESIGNATHON — AI NATIVE INTERFACE</div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">01 / 10</span></div>
+</section>
+
+<!-- ② 問題 -->
+<section class="slide" id="s2">
+  <div class="eyebrow">PROBLEM</div>
+  <h2>意図の空白が、<span class="u">リビジョン地獄</span>を生む</h2>
+  <div class="cols">
+    <div class="l">
+      <p class="lead">生成AIもフォームも「意図は言語化済み」と仮定する。曖昧な依頼の空白は、読み手(人間/AI)が勝手な事前分布で埋め、<b>誰の意図でもない成果物</b>と修正往復が生まれる。</p>
+      <ul class="pointlist">
+        <li>人間は「自分が何を<b class="tag-shu">まだ決めていないか</b>」を、自分では見えない。</li>
+        <li>使いどころは毎回ではない — <b>委任コストが高いハンドオフの直前</b>(PM・発注者・個人開発者が、AIや他人へ仕事を手渡す瞬間)。</li>
+      </ul>
+    </div>
+    <div class="r">
+      <div class="diagram">
+        <div class="dl">生成が速くなるほど、ボトルネックは人間側へ移る</div>
+        <div style="font-size:12px;color:var(--ai)">AIの生成時間(短縮され続ける)</div>
+        <div class="bar"><div class="fill" style="width:18%;background:var(--ai)"></div><div class="lab">数十秒 →</div></div>
+        <div style="font-size:12px;color:var(--shu)">人間の「まだ決めていないこと」の言語化コスト(変わらない)</div>
+        <div class="bar"><div class="fill" style="width:86%;background:var(--shu)"></div><div class="lab">往復数日</div></div>
+        <div class="note" style="margin-top:10px">修正往復の実体は生成の失敗ではなく、<br>入力時点の「未決」の発見が遅れたこと。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">02 / 10</span></div>
+</section>
+
+<!-- ③ 解 -->
+<section class="slide" id="s3">
+  <div class="eyebrow">SOLUTION</div>
+  <h2>文がUIになる、<span class="u">1ループ</span></h2>
+  <div class="loop">
+    <div class="step"><div class="t">1 曖昧語</div><div class="b">一文の中の語(「温かみ」「モダン」…)がそのまま判断点になる</div></div>
+    <div class="step"><div class="t">2 帰結レンダ</div><div class="b">語に係留された<b>対照レンダリング対</b>が並ぶ — 言葉で聞かず、帰結で問い返す</div></div>
+    <div class="step"><div class="t">3 二動詞</div><div class="b">〈<b class="tag-ai">決める</b>〉か〈<b class="tag-nezu">委ねる</b>〉。委任は破棄ではなく「AIに委ねた」という明示情報</div></div>
+    <div class="step"><div class="t">4 収束</div><div class="b">原文の語が<b class="tag-ai">確定色</b>/<b class="tag-nezu">委任グレー</b>に変わり、「この文から抽出した判断点 N」が0へ</div></div>
+  </div>
+  <div class="const">
+    <div class="card">
+      <div class="h">二重憲法 その一</div>
+      <div class="d">AIはユーザーの<b>成果物</b>を書かない。<br><span class="note">(分岐ラベル・対照レンダ・根拠文は書く — この区別がスコープ限定の理由)</span></div>
+    </div>
+    <div class="card shu">
+      <div class="h">二重憲法 その二</div>
+      <div class="d">人間は最初の一文以降、<b class="tag-shu">一度もタイプしない</b>。残るのは選択だけ。</div>
+    </div>
+    <div class="card nezu">
+      <div class="h">終了状態</div>
+      <div class="d">全語が色分けされた原文+<b>意図の指示書</b>(人間可読の整形表示+機械可読JSON)。そのままAIへ手渡す。</div>
+    </div>
+  </div>
+  <div class="note" style="margin-top:16px">脚注: 提示解釈がどれも不適合な場合の〈弾く〉は「不適合という情報」としてブリーフに記録する設計(v1設計済み・P0では単純さのため封印)。</div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">03 / 10</span></div>
+</section>
+
+<!-- ④ デモ -->
+<section class="slide" id="s4">
+  <div class="eyebrow">DEMO — 全フレームが実収録</div>
+  <h2>静寂は演出ではなく、<span class="u">実時間</span>である</h2>
+  <div class="film">
+    <div class="cell"><img class="shot-img" src="assets/f_typing.png"><div class="cap"><b>0:00</b> 曖昧な一文をそのままタイプ</div></div>
+    <div class="cell"><img class="shot-img" src="assets/f_silence.png"><div class="cap"><b>0:15</b> 静寂 — 経過秒カウンタが実時間で進む(生成は始まらない)</div></div>
+    <div class="cell"><img class="shot-img" src="assets/f_cards.png"><div class="cap"><b>0:40</b> 5つの判断点と見本が実生成で並ぶ</div></div>
+    <div class="cell"><img class="shot-img" src="assets/f_brief.png"><div class="cap"><b>1:30</b> 意図の指示書 — 統計欄に「選択 5・追加タイプ 0」</div></div>
+  </div>
+  <div class="honest">
+    <div class="card">
+      <table>
+        <tr><th>計測点(本収録テイク)</th><th>実測</th></tr>
+        <tr><td>静寂(送信→最初の判断点)</td><td class="mono">17.8 秒(等速主張はアプリ内カウンタ)</td></tr>
+        <tr><td>全判断点の確定まで</td><td class="mono">28.8 秒</td></tr>
+        <tr><td>指示書にまとめた時間</td><td class="mono">29.0 秒</td></tr>
+        <tr><td>抽出エンジン(キラーテスト11本)</td><td class="mono">api 8〜33 秒(中央値 約12 秒)</td></tr>
+        <tr><td>対照レンダ 1枚</td><td class="mono">api 4.1 秒 / 壁時計 5.0 秒</td></tr>
+      </table>
+    </div>
+    <div class="card shu" style="flex:1">
+      <div class="n">動画のカットは<b class="tag-shu">全て実収録</b>。等速でない区間は「×14」「×4」「×2」「×1.75」を<b>テロップに焼き込みで開示</b>した。<br><span class="note" style="display:block;margin-top:8px">出典: EVIDENCE/killer_test/(JSON・コミット済)、EVIDENCE/demo_video/EDIT_SPEC.md(タイムライン全開示)、docs/DISCLOSURE.md</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">04 / 10</span></div>
+</section>
+
+<!-- ⑤ 先行事例マップ -->
+<section class="slide" id="s5">
+  <div class="eyebrow">PRECEDENTS</div>
+  <h2>空白象限 — <span class="u">帰結で問い、成果物を書かない</span></h2>
+  <div class="wrap">
+    <div class="quad">
+      <div class="ax" style="left:50%;top:14px;bottom:14px;width:1px"></div>
+      <div class="ax" style="top:50%;left:14px;right:14px;height:1px"></div>
+      <div class="axl" style="top:6px;left:50%;transform:translateX(-50%)">AIが成果物を書く</div>
+      <div class="axl" style="bottom:6px;left:50%;transform:translateX(-50%)">AIは成果物を書かない</div>
+      <div class="axl" style="left:8px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:left center">逐次テキスト</div>
+      <div class="axl" style="right:-24px;top:50%;transform:translateY(-50%) rotate(90deg);transform-origin:right center">並列帰結レンダ</div>
+      <div class="item" style="left:52px;top:64px"><span class="nm">ChatGPT 確認質問</span><br>言葉で聞き返した後、AI自身が成果物を書く</div>
+      <div class="item" style="left:52px;top:150px"><span class="nm">Deep Research 型プラン確認</span><br>計画は確認させるが、最終成果物はAIが全文執筆</div>
+      <div class="item" style="left:360px;top:100px"><span class="nm">Midjourney 変種選択</span><br>並列選択UXの実証。ただし選ぶ対象がAI執筆の成果物そのもの</div>
+      <div class="item" style="left:52px;top:310px"><span class="nm">grill-me(2026-03)</span><br>生成前に徹底的に問う。ただし1問ずつ逐次テキスト</div>
+      <div class="item star" style="left:352px;top:290px"><span class="nm wm"><span class="un">Un</span><span class="pr">prompt</span></span><br>語アンカー × 帰結レンダ × 成果物不執筆の交点。終点は意図の指示書(MD+JSON)</div>
+    </div>
+    <div class="talk">
+      <p>grill-me 自身が「複数質問の同時提示は混乱(bewildering)」と明記している — 需要の実証であり、限界の自認。</p>
+      <p><b>テキストでは混乱する並列が、帰結レンダリングなら3秒で選べる。</b>「温かみ」= 配色か、口調か、余白か — 言葉で聞かれても選べないが、3枚の見本なら選べる。</p>
+      <p>Midjourney は並列選択UXの実証。本作はそれを「成果物を書かない側」の象限へ移した。</p>
+      <p class="note">脚注: 「空白象限」は本マップ2軸上の主張であり、全製品空間の網羅は主張しない。grill-me は一次確認済(2026-07-29)。他は公知挙動としての記載。</p>
+    </div>
+  </div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">05 / 10</span></div>
+</section>
+
+<!-- ⑥ AI統合の実体 -->
+<section class="slide" id="s6">
+  <div class="eyebrow">AI INTEGRATION</div>
+  <h2>AIを抜くと、<span class="u">固定質問ウィザードに退化する</span></h2>
+  <div class="counter">動的性にのみAIが宿る — 入力ごとに「下流で最も効く曖昧さ」を抽出し、<b>その入力固有の帰結</b>を即レンダリングする。</div>
+  <div class="grid4">
+    <div class="card">
+      <div class="h">1 スリム抽出スキーマ</div>
+      <div class="d">検証用フルスキーマと製品用スリムスキーマを分離(<span class="mono">prompts/extraction_product_v1.txt</span>)。出力530〜540トークンに制御。</div>
+    </div>
+    <div class="card shu">
+      <div class="h">2 anchor 機械検証 — 実測 22実行で違反0</div>
+      <div class="d">各判断点の anchor_words は「原文の連続部分文字列」であることを機械検証。実在しない語への係留は棄却(分岐捏造0・エラー0を実測)。</div>
+    </div>
+    <div class="card">
+      <div class="h">3 可視タクソノミー</div>
+      <div class="d">抽出プロンプトはリポジトリ内の可視ファイル。審査員が直接読め、1行の改変で挙動が変わる。</div>
+    </div>
+    <div class="card">
+      <div class="h">4 エンジン実測 97〜123秒 → 8.8〜15秒</div>
+      <div class="d">初期構成 api 97〜123秒を、実測に基づく4段階の工学決定で api 8.8〜15秒+起動1秒へ(詳細は次頁)。モデルは <span class="mono">claude-sonnet-5</span>(観測後の正準ID表示)。</div>
+    </div>
+  </div>
+  <div class="note" style="margin-top:14px">品質例: 低曖昧ブリーフ(precise-pricing)でスリム版が発見した4分岐は、全て原文に実在するギャップに基づく — 捏造の対極。</div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">06 / 10</span></div>
+</section>
+
+<!-- ⑦ 共創 -->
+<section class="slide" id="s7">
+  <div class="eyebrow">CO-CREATION — ブリーフ・ゼロ文書</div>
+  <h2>開発自体が、製品と同じ文法 — <span class="u">文 → 分岐 → 決定</span></h2>
+  <div class="brief0">「<span class="w">3日で</span>、<span class="w">誰でも動く</span>、AIが<span class="w">成果物を書かない</span><span class="w">意図コンパイラ</span>を作る」</div>
+  <div class="tethers"><div style="left:22%"></div><div style="left:42%"></div><div style="left:62%"></div><div style="left:80%"></div></div>
+  <div class="grid4">
+    <div class="card">
+      <div class="q">resolved: 実行アーキテクチャ→ビルドレス(npm依存ゼロ) / 理由: 3日実装の確実性(68b3d01)</div>
+      <div class="why">〈3日で〉→ バニラJS+Python標準ライブラリのみ。ビルド工程ゼロ。</div>
+    </div>
+    <div class="card">
+      <div class="q">resolved: 実行エンジン→Claude Code headless CLI(claude -p) / 理由: APIキー不要・審査員再現性(68b3d01)</div>
+      <div class="why">〈誰でも動く〉→ ログイン済み Claude Code があればAPIキーなしで動く。</div>
+    </div>
+    <div class="card shu">
+      <div class="q">resolved: 抽出レイテンシ問題→スキーマ分離+--system-prompt置換+--effort low / 理由: 出力トークン量がボトルネックと実測で確定(741f21a)</div>
+      <table class="lat">
+        <tr><th>段階</th><th>決定</th><th>実測</th></tr>
+        <tr><td>0</td><td>初期構成</td><td class="mono">api 97〜123s / 8〜10K tok</td></tr>
+        <tr><td>1</td><td>system置換+effort low</td><td class="mono">44.5s / 2.7K tok</td></tr>
+        <tr><td>2</td><td>スリムスキーマ分離</td><td class="mono">8.8〜15s / 530〜540 tok</td></tr>
+        <tr><td>3</td><td>--setting-sources project</td><td class="mono">壁時計 ≈ api+約1s</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="q">resolved: レンダモデル→sonnet固定 / 理由: haikuはeffort lowでも多弁(40秒/3.5Ktok)、sonnetは4.1秒で簡潔・対照的(006ce1d)</div>
+      <div class="why">〈成果物を書かない〉が要求する対照レンダ→ 修正後実測 api 4.1秒/壁5.0秒。</div>
+    </div>
+  </div>
+  <div class="note" style="margin-top:12px">引用は全て原文転記(PROCESS_LOG.md 3列表/git log — リポジトリで検証可能)。「ブリーフ・ゼロの一文」は開発ミッションの要約表現。意味判定は常に人間=管制塔。</div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">07 / 10</span></div>
+</section>
+
+<!-- ⑧ 実装と再現性 -->
+<section class="slide" id="s8">
+  <div class="eyebrow">REPRODUCIBILITY</div>
+  <h2><span class="u">APIキー不要</span>で、誰の手元でも動く</h2>
+  <div class="cols">
+    <div>
+      <div class="big">主経路は Claude Code サブスクリプションの headless CLI(<b class="mono">claude -p</b>)。ログイン済み環境なら <b>clone+1コマンド</b>で再現する。</div>
+      <div class="repo">github.com/Driedsandwich/unprompt-merge2026</div>
+      <ul>
+        <li><b>ビルドレス</b> — npm/Node/バンドラ不使用。バニラJS+Python標準ライブラリ。起動は <span class="mono">python3 server.py</span> のみ。</li>
+        <li>APIキー保有者向けの代替経路(ブラウザ直叩き)も存置(DISCLOSURE #1)。</li>
+        <li>展開の3形態 — ローカル配布/ホスティング/BYOK — は事実と構想を分離して <span class="mono">DEPLOYMENT_FAQ.md</span> に整備。</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <div style="font-size:13px;font-weight:600;color:var(--ai);margin-bottom:8px">証拠4層(全てリポジトリ内)</div>
+        <ul>
+          <li>ノーカット画面収録の生素材+編集タイムライン全開示(EDIT_SPEC.md)</li>
+          <li>キラーテスト生データ+可視タクソノミー(EVIDENCE/killer_test/)</li>
+          <li>共創ログ — PROCESS_LOG 3列表+resolved: タグ付きコミット</li>
+          <li>開示リスト — docs/DISCLOSURE.md(20項・追記のみ)</li>
+        </ul>
+      </div>
+      <div class="card nezu">
+        <div style="font-size:13px;font-weight:600;color:var(--ai);margin-bottom:8px">テスト体制</div>
+        <ul>
+          <li>DOMテスト10本+スパンテスト4000項+並置回帰+Python 4本 — 全PASSで凍結</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">08 / 10</span></div>
+</section>
+
+<!-- ⑨ 射程 -->
+<section class="slide" id="s9">
+  <div class="eyebrow">SCOPE</div>
+  <h2>エージェント委任時代の <span class="u">compiled intent レイヤー</span></h2>
+  <div class="layer">「機能であって製品ではない」への回答 — Unprompt は、人がAIへ仕事を手渡す<b>全ハンドオフに挟まる中間層</b>の最初の実装。手渡し形式は <span class="mono">unprompt.compiled_brief.v0</span>(機械可読JSON)。</div>
+  <div class="cols">
+    <div class="card">
+      <div class="h">30日</div>
+      <ul>
+        <li>実ブリーフ10本で分岐の的中率・修正往復の削減を実測</li>
+        <li>逐次質問との時間等価比較</li>
+        <li>コンパイル済みブリーフのエージェント注入効果測定</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="h">3〜12か月</div>
+      <ul>
+        <li>compiled intent の標準フォーマット化(エージェント間ハンドオフの中間表現)</li>
+        <li>ドメイン拡張: デザイン発注 → 仕様書 → PRD</li>
+        <li>タクソノミーのユーザー編集/チーム意図決定の非同期化(誰がどの判断を委任したかの監査可能性)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="zero">あなたがタイプした文字 <b>0</b> ― あなたの選択 <i>5</i><span class="note" style="display:block;font-size:11.5px;margin-top:6px">(本収録テイクの実測値。最初の一文以降)</span></div>
+  <div class="foot"><span>Unprompt — MERGE 2026</span><span class="no">09 / 10</span></div>
+</section>
+
+<!-- ⑩ チーム/提出物 -->
+<section class="slide" id="s10">
+  <div class="eyebrow">TEAM & SUBMISSION</div>
+  <h2>体制と提出物</h2>
+  <div class="cols">
+    <div>
+      <h3>体制</h3>
+      <ul>
+        <li>個人開発(1名)× Claude Code — 人間=管制塔(意味判定・裁定)/AI=実装・検証</li>
+        <li>判断の分担は PROCESS_LOG 3列表(AIの提案/人の判断/採否と理由)に全記録</li>
+      </ul>
+      <h3 style="margin-top:18px">使用AIツール</h3>
+      <ul>
+        <li>Claude Code — Fable 5(管制塔・審議)/ Opus 5・Sonnet 5(実装・検証)</li>
+        <li>製品エンジン: <span class="mono">claude -p</span>(claude-sonnet-5・APIキー不要)</li>
+        <li>GPT-Image-2(ChatGPT経由)— キービジュアル実例ペア</li>
+        <li>Omni(Gemini 3.6 Flash 経由)— 紹介動画実例ペア</li>
+        <li>Codex — 独立監査</li>
+      </ul>
+    </div>
+    <div>
+      <h3>提出物一覧</h3>
+      <ul>
+        <li>デモ動画(114秒・全カット実収録・倍速は開示)</li>
+        <li>本デック(10枚)</li>
+        <li>プロトタイプ — リポジトリ+再現手順(clone+1コマンド)</li>
+        <li>Process Log(3列・全判断記録)</li>
+        <li>開示リスト docs/DISCLOSURE.md(20項)</li>
+        <li>キラーテスト生データ(EVIDENCE/)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="close">AIは、<b>あなたの成果物</b>を一文字も書かない。<br>あなたの<span class="x">意図</span>だけを、書かせる。</div>
+  <div class="foot"><span class="wm"><span class="un">Un</span><span class="pr">prompt</span> — Intent Compiler</span><span class="no">10 / 10</span></div>
+</section>
+
+<script>
+if(location.hash){
+  document.querySelectorAll('.slide').forEach(function(s){s.style.display='none'});
+  var t=document.querySelector(location.hash);
+  if(t){t.style.display='block';document.documentElement.style.background='#fff';}
+}
+</script>
+</body>
+</html>
