@@ -24,7 +24,7 @@ Unprompt は、曖昧な依頼文(例:「モダンだけど温かみのあるLP�
 - 誠実性: 開示リスト22項・PROCESS_LOG(AIの提案/人の判断/採否の3列)・編集タイムライン全開示
 - プロセスログ要約と時間短縮指標(実測): docs/PROCESS_METRICS.md(2時間でエンジン実測・レイテンシ約1/10・実質3日)
 
-🎬 デモ動画(114秒): [YouTube URL]
+🎬 デモ動画(114秒): https://youtu.be/YukHyZ-7INU
 📦 GitHub: https://github.com/Driedsandwich/unprompt-merge2026
 📄 デック(PDF): リポジトリ docs/deck/unprompt_deck.pdf
 🌐 実生成ギャラリー(静的・実物のみ): https://driedsandwich.github.io/unprompt-merge2026/
@@ -32,7 +32,7 @@ Unprompt は、曖昧な依頼文(例:「モダンだけど温かみのあるLP�
 
 ## 提出前チェック(ユーザー実施)
 
-- [ ] GitHub へ push(号令待ち)
-- [ ] デモ動画を YouTube へアップ(限定公開でも可の作法)→ URL を本文へ
+- [x] GitHub へ push 済み・Pages 公開済み
+- [x] デモ動画 YouTube: https://youtu.be/YukHyZ-7INU
 - [ ] フォームで isPublic を公開に
 - [ ] Milestone 欄の実仕様を確認して記入
