@@ -24,4 +24,4 @@ rep2 portfolio    B_after   first_branch=5645    first_delta=3422    branches=3 
 A_before  n=9  median=10690ms  min=4893 max=16491   | first_delta median=9277ms  | モデル時間(first_branch - first_delta) median=1413ms
 B_after   n=9  median=7823ms  min=4622 max=13077   | first_delta median=5213ms  | モデル時間(first_branch - first_delta) median=2090ms
 
-生ログ追記: /Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/EVIDENCE/streaming/schema_order_ab.jsonl
+生ログ追記: /Users/USER/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/EVIDENCE/streaming/schema_order_ab.jsonl

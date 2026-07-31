@@ -3,7 +3,7 @@
 """A/B: 現行スキーマ順(meta先) vs branches先。init/first_delta/branch1/result を実測。"""
 import json, os, subprocess, sys, tempfile, time
 
-REPO = "/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon"
+REPO = __import__("pathlib").Path(__file__).resolve().parents[2].as_posix()
 sys.path.insert(0, REPO)
 import server as S  # noqa
 

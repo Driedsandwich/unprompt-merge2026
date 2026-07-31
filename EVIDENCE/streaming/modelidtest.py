@@ -22,7 +22,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-REPO = Path("/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon")
+REPO = Path(__import__("pathlib").Path(__file__).resolve().parents[2].as_posix())
 sys.path.insert(0, str(REPO))
 FAKE = str(REPO / "EVIDENCE" / "streaming" / "fake_claude.py")
 BRIEF = "モダンだけど温かみのあるLPを作って。うちの会社のやつ。"

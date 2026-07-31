@@ -5,7 +5,7 @@
 //      (旧実装は「一度出したら出しっぱなし」で、未決が戻っても押せたまま)
 // どちらも「画面は毎回 S.decisions[].status から導出する」構造でしか通らない。
 const fs = require('fs');
-const PATH = '/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/app/index.html';
+const PATH = require('path').resolve(__dirname,'../..') + '/app/index.html';
 const html = fs.readFileSync(PATH, 'utf8');
 const script = html.match(/<script>\n([\s\S]*?)\n<\/script>/)[1];
 const ids = [...new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]))];

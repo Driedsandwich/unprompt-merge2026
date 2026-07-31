@@ -4,7 +4,7 @@
 // カードの高さは #cards の子インデックスごとに CARD_H で与える(シムなので min-height は
 // offsetHeight に影響しない。ここで見たいのは「min-height に何が書かれるか」だけ)。
 const fs = require('fs');
-const PATH = '/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/app/index.html';
+const PATH = require('path').resolve(__dirname,'../..') + '/app/index.html';
 const html = fs.readFileSync(PATH, 'utf8');
 const script = html.match(/<script>\n([\s\S]*?)\n<\/script>/)[1];
 const ids = [...new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]))];

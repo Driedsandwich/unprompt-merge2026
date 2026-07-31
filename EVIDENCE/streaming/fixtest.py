@@ -1,5 +1,5 @@
 import json,os,subprocess,sys,tempfile,concurrent.futures as cf
-REPO="/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon"
+REPO=__import__("pathlib").Path(__file__).resolve().parents[2].as_posix()
 sys.path.insert(0,REPO); import server as S
 RAW=open(os.path.join(REPO,"prompts/extraction_product_v1.txt"),encoding="utf-8").read()
 B=S.build_extraction_stream_system(RAW)

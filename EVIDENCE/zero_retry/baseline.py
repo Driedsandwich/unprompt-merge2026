@@ -6,10 +6,10 @@ server.py の合成関数と ClaudeRunner をそのまま使い、system プロ�
 使い方: python3 baseline.py <prompt_file> <brief_id> <n> <tag>
 """
 import json, sys, time
-sys.path.insert(0, "/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon")
+sys.path.insert(0, __import__("pathlib").Path(__file__).resolve().parents[2].as_posix())
 import server as S
 
-REPO = "/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon"
+REPO = __import__("pathlib").Path(__file__).resolve().parents[2].as_posix()
 briefs = {b["id"]: b["text"] for b in json.load(open(REPO + "/data/briefs.json", encoding="utf-8"))}
 
 pfile, bid, n, tag = sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4]

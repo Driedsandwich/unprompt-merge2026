@@ -9,7 +9,7 @@
 //   D) 380ms 未満で最初の分岐が着いたとき、遷移タイマーが cancel される(N4)
 //   E) 復旧時に走行中レンダを AbortController で中断し、復旧後に再開する(M2b)
 const fs = require('fs');
-const PATH = '/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/app/index.html';
+const PATH = require('path').resolve(__dirname,'../..') + '/app/index.html';
 const html = fs.readFileSync(PATH, 'utf8');
 const script = html.match(/<script>\n([\s\S]*?)\n<\/script>/)[1];
 const ids = [...new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]))];

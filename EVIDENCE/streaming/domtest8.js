@@ -24,7 +24,7 @@
 //   E) 入力欄の自動成長(上限9行・上限までスクロールバーを出さない)
 //   F) 同じ語の2度目以降の出現(エコー)が色とクリックだけ同期する
 const fs = require('fs');
-const PATH = '/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/app/index.html';
+const PATH = require('path').resolve(__dirname,'../..') + '/app/index.html';
 const html = fs.readFileSync(PATH, 'utf8');
 const script = html.match(/<script>\n([\s\S]*?)\n<\/script>/)[1];
 const ids = [...new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]))];

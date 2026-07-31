@@ -12,7 +12,7 @@
 """
 import json, sys, time, urllib.request, pathlib
 
-REPO = "/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon"
+REPO = __import__("pathlib").Path(__file__).resolve().parents[2].as_posix()
 briefs = {b["id"]: b["text"] for b in json.load(open(REPO + "/data/briefs.json", encoding="utf-8"))}
 
 port, bid, n = sys.argv[1], sys.argv[2], int(sys.argv[3])

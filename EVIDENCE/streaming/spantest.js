@@ -1,6 +1,6 @@
 // index.html から buildSpans / claimSpansFor を抜き出して性質検査する。
 const fs = require('fs');
-const html = fs.readFileSync('/Users/kishimotosatoshi/Documents/MERGE2026/MERGE2026_FABLE5_AUTONOMOUS_DELIBERATION_v4.0_20260728/outputs/dev/gyakumon/app/index.html','utf8');
+const html = fs.readFileSync(require('path').resolve(__dirname,'../..') + '/app/index.html','utf8');
 const src = html.match(/<script>\n([\s\S]*?)\n<\/script>/)[1];
 
 // 対象の2関数だけを切り出す(DOM に触らない純ロジック)
