@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈商品名〉| ご案内</title>
+<style>
+  /*
+    タイプスケール(本文 16px 基準 / 比率 1.333)
+    --fs-0: 16px 本文
+    --fs-1: 21px 小見出し
+    --fs-2: 28px リード
+    --fs-3: 38px キャッチ
+  */
+  :root{
+    /* GYAKUMON-CHOICE: 想定読者 = 新規見込み客 */
+    /* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験重視 */
+    --bg: #fffdf9;
+    --accent: #ff7a45;
+    --ink: #1a1a2e;
+    --fs-0: 16px;
+    --fs-1: 21px;
+    --fs-2: 28px;
+    --fs-3: 38px;
+    --unit: 8px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background: #f1efe9;
+    font-family: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", sans-serif;
+    color: var(--ink);
+  }
+
+  /* GYAKUMON-CHOICE: 掲載媒体・構成 = ECの商品ページ */
+  main{
+    max-width: 720px;
+    margin: 64px auto;
+    background: var(--bg);
+    padding: 96px 64px;
+    border-radius: 24px; /* corner: soft */
+    display: flex;
+    flex-direction: column;
+    gap: 96px; /* density: airy */
+  }
+
+  section{ display:flex; flex-direction:column; gap: 16px; }
+
+  /* GYAKUMON-CHOICE: トーン・文体 = 親しみやすい */
+  h1.catch{
+    font-family: "UD Shin Maru Go Pr6N", "Rounded Mplus 1c", "Hiragino Maru Gothic ProN", sans-serif;
+    font-size: var(--fs-3);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  h1.catch em{
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  p.lead{
+    font-size: var(--fs-2);
+    line-height: 1.9;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  h2{
+    font-family: "UD Shin Maru Go Pr6N", "Rounded Mplus 1c", "Hiragino Maru Gothic ProN", sans-serif;
+    font-size: var(--fs-1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0 0 8px 0;
+    color: var(--ink);
+  }
+
+  h2::before{
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 3px;
+    background: var(--accent);
+    margin-right: 12px;
+    vertical-align: middle;
+    border-radius: 2px;
+  }
+
+  p.body-text{
+    font-size: var(--fs-0);
+    line-height: 1.9;
+    margin: 0;
+  }
+
+  ul.specs{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: var(--fs-0);
+    line-height: 1.8;
+  }
+
+  ul.specs li{
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+
+  p.note{
+    font-size: 14px;
+    color: #6b6b7a;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  p.closing{
+    font-size: var(--fs-1);
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+  }
+
+  @media (max-width: 720px){
+    main{ padding: 64px 32px; margin: 32px 16px; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験重視 -->
+  <section class="hero">
+    <h1 class="catch">はじめまして、<em>〈商品名〉</em>。<br>指先が触れた瞬間から、毎日がすこし変わる。</h1>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 想定読者 = 新規見込み客 -->
+  <section class="lead-block">
+    <p class="lead">むずかしい説明はあとまわし。まずは、〈商品名〉が生まれた理由から、そっとお話しさせてください。</p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: トーン・文体 = 親しみやすい -->
+  <section class="feature">
+    <h2>使うたび、うれしくなる理由</h2>
+    <p class="body-text">〈特徴1〉、〈特徴2〉。派手なスペック自慢より、手に取ったときの「あ、いいかも」を大事にしました。忙しい一日のなかで、ふっと肩の力が抜ける瞬間を、〈商品名〉と一緒に。</p>
+  </section>
+
+  <section class="specs-block">
+    <h2>仕様・ご使用にあたって</h2>
+    <ul class="specs">
+      <li>サイズ・素材:〈仕様詳細〉</li>
+      <li>お手入れ・ご使用方法:〈使用方法〉</li>
+    </ul>
+    <p class="note">※ ご使用前に〈注意事項〉をご確認ください。詳細は商品ページ内の情報をあわせてご覧ください。</p>
+  </section>
+
+  <section class="closing-block">
+    <p class="closing">はじめての方こそ、〈商品名〉をどうぞ。</p>
+  </section>
+
+</main>
+</body>
+</html>

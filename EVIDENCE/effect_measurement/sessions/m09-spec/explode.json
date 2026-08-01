@@ -1,0 +1,114 @@
+{
+ "brief": "m09-spec",
+ "text": "社内の経費精算をラクにする小さなツールの仕様メモを書いて。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "利用者・利用シーンの想定",
+    "anchor_words": [
+     "社内の経費精算をラクにする"
+    ],
+    "options": [
+     {
+      "label": "申請者向け入力補助"
+     },
+     {
+      "label": "経理担当の処理効率化"
+     },
+     {
+      "label": "承認者向け承認フロー"
+     }
+    ],
+    "default_if_unresolved": "申請者の入力負担軽減を主目的とする"
+   },
+   {
+    "id": "b1",
+    "question_point": "「ラクにする」対象工程の範囲",
+    "anchor_words": [
+     "経費精算をラクにする"
+    ],
+    "options": [
+     {
+      "label": "入力・申請の簡略化"
+     },
+     {
+      "label": "承認・確認の効率化"
+     },
+     {
+      "label": "経理処理・集計の自動化"
+     }
+    ],
+    "default_if_unresolved": "申請から承認までの一連工程を対象とする"
+   },
+   {
+    "id": "b2",
+    "question_point": "ツールの提供形態",
+    "anchor_words": [
+     "小さなツール"
+    ],
+    "options": [
+     {
+      "label": "単機能Webフォーム"
+     },
+     {
+      "label": "既存ツール連携アドオン"
+     },
+     {
+      "label": "チャットボット型"
+     }
+    ],
+    "default_if_unresolved": "単機能の軽量Webフォームとする"
+   },
+   {
+    "id": "b3",
+    "question_point": "仕様メモの粒度・読み手",
+    "anchor_words": [
+     "仕様メモを書いて"
+    ],
+    "options": [
+     {
+      "label": "開発者向け技術仕様"
+     },
+     {
+      "label": "上長向け企画概要"
+     },
+     {
+      "label": "利用者向け操作説明"
+     }
+    ],
+    "default_if_unresolved": "開発着手用の簡潔な技術仕様とする"
+   },
+   {
+    "id": "b4",
+    "question_point": "対象とする経費の範囲",
+    "anchor_words": [
+     "経費精算"
+    ],
+    "options": [
+     {
+      "label": "交通費のみ"
+     },
+     {
+      "label": "一般経費全般"
+     },
+     {
+      "label": "出張・交際費含む複雑経費"
+     }
+    ],
+    "default_if_unresolved": "日常的な一般経費全般を対象とする"
+   }
+  ],
+  "residual_ambiguity_assessment": "「ラクにする」対象・利用者・範囲・提供形態が未指定で、方向性を左右する判断点が複数残る。",
+  "missing_materials": [
+   "対象人数・部署規模",
+   "既存の経費精算フロー・承認ルート",
+   "連携すべき既存システム(会計ソフト等)",
+   "予算・開発期限"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:57:23.143159+00:00"
+}

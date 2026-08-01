@@ -1,0 +1,85 @@
+{
+ "brief": "m03-scout",
+ "text": "若手エンジニアに刺さるスカウトメール書いて。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "読み手エンジニアの経験層",
+    "anchor_words": [
+     "若手エンジニアに刺さる"
+    ],
+    "options": [
+     {
+      "label": "新卒〜1年目"
+     },
+     {
+      "label": "実務2〜4年目"
+     }
+    ],
+    "default_if_unresolved": "実務2〜4年目を想定"
+   },
+   {
+    "id": "b1",
+    "question_point": "スカウトメールの目的",
+    "anchor_words": [
+     "スカウトメール書いて"
+    ],
+    "options": [
+     {
+      "label": "カジュアル面談誘導"
+     },
+     {
+      "label": "選考応募促進"
+     }
+    ],
+    "default_if_unresolved": "カジュアル面談誘導とする"
+   },
+   {
+    "id": "b2",
+    "question_point": "訴求する魅力軸",
+    "anchor_words": [
+     "刺さる"
+    ],
+    "options": [
+     {
+      "label": "技術・裁量訴求"
+     },
+     {
+      "label": "待遇・条件訴求"
+     },
+     {
+      "label": "事業成長訴求"
+     }
+    ],
+    "default_if_unresolved": "技術・裁量訴求を優先"
+   },
+   {
+    "id": "b3",
+    "question_point": "文体トーン",
+    "anchor_words": [
+     "書いて"
+    ],
+    "options": [
+     {
+      "label": "フォーマル敬語"
+     },
+     {
+      "label": "フランク口語調"
+     }
+    ],
+    "default_if_unresolved": "フォーマル敬語で作成"
+   }
+  ],
+  "residual_ambiguity_assessment": "対象層・目的・訴求軸・トーンが未指定で、成果物の方向性が大きく分かれる曖昧なブリーフ。",
+  "missing_materials": [
+   "自社の会社名・事業内容",
+   "募集ポジションの職務内容",
+   "候補者の経歴やスカウト理由となる実績情報"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:56:08.785149+00:00"
+}

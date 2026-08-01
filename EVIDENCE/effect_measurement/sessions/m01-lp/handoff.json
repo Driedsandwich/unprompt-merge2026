@@ -1,0 +1,119 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "かっこいいけど信頼感もあるLPを作って。うちのサービス用。",
+ "compiled_at": "2026-08-01T07:01:01.610395+00:00",
+ "decisions": [
+  {
+   "question_point": "想定読み手が誰か",
+   "anchor_words": [
+    "うちのサービス用"
+   ],
+   "status": "decided",
+   "chosen_label": "新規見込み客",
+   "visual_tokens": {
+    "palette": [
+     "#0b0e14",
+     "#2d6bff",
+     "#00e0c6"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "サービス、次はあなたの番。今すぐ無料で試す。"
+   },
+   "tone_example": null,
+   "intent": "読み手を新規見込み客と確定させたことで、既存顧客向けの説明ではなく初回接触前提の訴求文言を組み立てる基準が定まる。"
+  },
+  {
+   "question_point": "かっこよさと信頼感の比重配分",
+   "anchor_words": [
+    "かっこいいけど信頼感もある"
+   ],
+   "status": "decided",
+   "chosen_label": "半々でバランス型",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#1f3a5f",
+     "#b08d57"
+    ],
+    "heading_font": "serif",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "サービスの信頼を、洗練された形で。今すぐ体験を。"
+   },
+   "tone_example": null,
+   "intent": "かっこよさと信頼感を半々のバランス型としたことで、どちらか一方に偏った演出を避ける制作方針が確定する。"
+  },
+  {
+   "question_point": "LPの目的(コンバージョン行動)",
+   "anchor_words": [
+    "LPを作って"
+   ],
+   "status": "decided",
+   "chosen_label": "問い合わせ獲得",
+   "visual_tokens": {
+    "palette": [
+     "#0f1a24",
+     "#1c2e3d",
+     "#3e7cb1"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "サービスの導入相談、まずはお気軽にお問い合わせください。"
+   },
+   "tone_example": null,
+   "intent": "目的を問い合わせ獲得と定めたことで、購入や資料請求ではなく問い合わせ導線を軸に構成を組む方針が定まる。"
+  },
+  {
+   "question_point": "信頼感の訴求根拠",
+   "anchor_words": [
+    "信頼感もある"
+   ],
+   "status": "decided",
+   "chosen_label": "権威/導入企業で訴求",
+   "visual_tokens": {
+    "palette": [
+     "#0f1a2e",
+     "#1c2e4a",
+     "#b08d3e"
+    ],
+    "heading_font": "serif",
+    "density": "normal",
+    "corner": "sharp",
+    "tone_sample": "導入企業が選ぶ理由。信頼はロゴが語る。"
+   },
+   "tone_example": null,
+   "intent": "信頼感の根拠を権威性や導入企業実績に置いたことで、どの種類の裏付け要素を掲載すべきかが一意に定まる。"
+  },
+  {
+   "question_point": "トーン&マナー(文体)",
+   "anchor_words": [
+    "かっこいい"
+   ],
+   "status": "decided",
+   "chosen_label": "クールで簡潔",
+   "visual_tokens": {
+    "palette": [
+     "#0b0d10",
+     "#1c2126",
+     "#4df0ff"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "サービス、削ぎ落とした先へ。"
+   },
+   "tone_example": null,
+   "intent": "文体をクールで簡潔と確定させたことで、装飾的で長い言い回しではなく簡潔な表現を採用する基準が定まる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "読者・目的・訴求根拠・トーンが未指定で、成果物の方向性を左右する分岐が複数残存している。",
+ "missing_materials": [
+  "サービス名",
+  "サービスの具体的な機能・特徴",
+  "実績データ(導入社数・数値)",
+  "ロゴ・ブランドカラー等の素材"
+ ]
+}

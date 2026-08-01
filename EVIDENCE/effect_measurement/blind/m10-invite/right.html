@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>同窓会のお知らせ</title>
+<style>
+/*
+  GYAKUMON visual tokens (統合):
+  palette base: #fff8ec(地) / #e8622a(主要) / #ffc94d(強調), 見出し: rounded, 密度: airy, 角: soft
+  ※「参加対象の範囲」決定のみ dense/別パレット指定だが、他3決定がairy/soft/roundedで一致するため
+    枠全体はairy側に統一し、対象範囲の決定は本文内容(宛先設計)に反映する。
+*/
+:root{
+  --bg:#fff8ec;
+  --main:#e8622a;
+  --accent:#ffc94d;
+  --ink:#3a3a3a;
+  --unit:8px;
+  --fs-base:16px;
+  --fs-lead:20px;
+  --fs-h1:34px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic Rounded","Rounded Mplus 1c","Hiragino Sans",sans-serif;
+  display:flex;
+  justify-content:center;
+  padding:calc(var(--unit)*6) calc(var(--unit)*2);
+  line-height:1.9;
+}
+.card{
+  width:720px;
+  max-width:100%;
+  background:#fffdf8;
+  border-radius:24px;
+  padding:calc(var(--unit)*8) calc(var(--unit)*7);
+}
+/* GYAKUMON-CHOICE: 案内文のトーン = くだけた友人口調 */
+h1{
+  font-size:var(--fs-h1);
+  font-weight:800;
+  letter-spacing:0.02em;
+  color:var(--main);
+  margin:0 0 calc(var(--unit)*2);
+}
+.lead{
+  font-size:var(--fs-lead);
+  font-weight:700;
+  margin:0 0 calc(var(--unit)*8);
+  color:var(--ink);
+}
+section{
+  margin-bottom:calc(var(--unit)*8);
+}
+h2{
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  color:#fff;
+  background:var(--accent);
+  display:inline-block;
+  padding:2px 14px;
+  border-radius:999px;
+  margin:0 0 calc(var(--unit)*2);
+}
+p{
+  margin:0;
+  font-size:var(--fs-base);
+}
+.info dl{
+  margin:0;
+  display:grid;
+  grid-template-columns:88px 1fr;
+  row-gap:calc(var(--unit)*1);
+}
+.info dt{font-weight:700;color:var(--main);}
+.info dd{margin:0;}
+.closing{
+  margin-top:calc(var(--unit)*8);
+  font-weight:700;
+  color:var(--main);
+}
+.sign{
+  margin-top:calc(var(--unit)*4);
+  font-size:14px;
+  color:var(--ink);
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+<!-- GYAKUMON-CHOICE: 来てほしい動機の訴求軸 = 気軽さ・低負担訴求 -->
+<h1>同窓会、ふらっと来てよ</h1>
+<p class="lead">飯食って喋るだけ。手ぶらでOK、それだけの会です。</p>
+
+<section class="info">
+<h2>開催概要</h2>
+<dl>
+<dt>日時</dt><dd>〈開催日〉</dd>
+<dt>場所</dt><dd>〈会場〉</dd>
+</dl>
+</section>
+
+<!-- GYAKUMON-CHOICE: 参加対象の範囲 = 学年全体広く -->
+<section>
+<h2>誰でもおいで</h2>
+<p>クラスとか気にしなくていい。○○学年だったやつなら誰でも歓迎。久しぶりのやつも、ずっと会ってるやつも、みんな来て。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 開催形式・規模の印象付け = ゆるい飲み会風 -->
+<section>
+<p>式典っぽいのは無し。飲みながらだべって、最後にみんなで集合写真だけ撮ろうと思ってる。それくらいのゆるい感じでやります。</p>
+</section>
+
+<section>
+<h2>出欠</h2>
+<p>来れそうなら〈幹事名〉まで一言連絡ちょうだい。迷ってても「たぶん行く」でOK、当日ふらっとでも全然いいから。</p>
+</section>
+
+<p class="closing">とりあえず顔見せに来てよ。待ってる。</p>
+<p class="sign">幹事：〈幹事名〉</p>
+
+</div>
+</body>
+</html>

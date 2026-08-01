@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スカウトメール</title>
+<style>
+  /*
+   GYAKUMON-CHOICE: 読み手エンジニアの経験層 = 実務2〜4年目
+   GYAKUMON-CHOICE: スカウトメールの目的 = カジュアル面談誘導
+   GYAKUMON-CHOICE: 訴求する魅力軸 = 技術・裁量訴求
+   GYAKUMON-CHOICE: 文体トーン = フランク口語調
+   タイプスケール(基準16px, 比率1.25):
+   --fs-body: 16px / --fs-lead: 20px / --fs-h2: 25px / --fs-h1: 31px
+  */
+  :root{
+    --bg: #101a1f;
+    --ink: #eef5f2;
+    --sub: #9fb8b2;
+    --teal: #2f6f5e;
+    --teal-soft: #1c3833;
+    --accent: #c7ff4d;
+    --fs-body: 16px;
+    --fs-lead: 20px;
+    --fs-h2: 25px;
+    --fs-h1: 31px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.9;
+  }
+  .doc{
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 32px 112px;
+  }
+  /* GYAKUMON-CHOICE: 訴求する魅力軸 = 技術・裁量訴求 */
+  .kicker{
+    font-family: "Zen Maru Gothic", "Hiragino Sans", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+  h1{
+    font-family: "Hiragino Sans", "Yu Gothic UI", sans-serif;
+    font-weight: 800;
+    font-size: var(--fs-h1);
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    margin: 0 0 64px;
+    color: var(--ink);
+  }
+  h1 span{ color: var(--accent); }
+  .field{
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: var(--sub);
+    letter-spacing: 0.05em;
+  }
+  .to{
+    font-size: var(--fs-lead);
+    font-weight: 700;
+    margin: 0 0 64px;
+  }
+  p{ margin: 0 0 32px; color: var(--ink); }
+  .lead{
+    font-size: var(--fs-lead);
+    font-weight: 700;
+    color: var(--ink);
+  }
+  /* GYAKUMON-CHOICE: 読み手エンジニアの経験層 = 実務2〜4年目 */
+  .body-block p{ font-size: var(--fs-body); color: #d7e6e1; }
+  .cta{
+    /* GYAKUMON-CHOICE: スカウトメールの目的 = カジュアル面談誘導 */
+    margin-top: 80px;
+    padding: 32px;
+    border-radius: 16px;
+    background: var(--teal-soft);
+    border: 1px solid rgba(199,255,77,0.25);
+  }
+  .cta p{ margin: 0 0 24px; font-size: var(--fs-body); }
+  .cta a{
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #101a1f;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .sign{
+    margin-top: 96px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: var(--sub);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .sign strong{ display:block; color: var(--ink); font-size: 15px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <p class="kicker">Scout Mail</p>
+
+  <!-- GYAKUMON-CHOICE: 訴求する魅力軸 = 技術・裁量訴求 -->
+  <h1>その技術、<span>もう少し暴れさせて</span>みませんか</h1>
+
+  <p class="field">件名</p>
+  <p class="to">その技術、うちで裁量取りにいきませんか</p>
+
+  <p class="field">宛先</p>
+  <p class="to">〈候補者名〉様</p>
+
+  <div class="body-block">
+    <!-- GYAKUMON-CHOICE: 文体トーン = フランク口語調 -->
+    <p class="lead">はじめまして、〈会社名〉の〈担当者名〉です。</p>
+
+    <!-- GYAKUMON-CHOICE: 読み手エンジニアの経験層 = 実務2〜4年目 -->
+    <p>〈候補者名〉さんのプロフィールを拝見して、実務2〜4年目でここまで手を動かしてきた人、なかなかいないなと思ってご連絡しました。ちょうど「一通りできるようになったけど、次に何を任されるかは会社次第」というフェーズにいる人と話したくて、今回メールしています。</p>
+
+    <p>正直に言うと、うちは技術選定や設計の裁量を年次で縛らない現場です。若手だからこの範囲まで、みたいな線引きはあまりせず、任せられると判断したら早い段階でも大きめの意思決定を渡します。〈担当領域・技術スタック〉まわりで、手を動かすだけじゃなく「決める」側に回りたい気持ちがあるなら、噛み合う話ができるはずです。</p>
+
+    <p>いきなり選考、という重い話はまだしません。まずは30分だけ、今どんな技術的な裁量を持って働いているか、逆にどこにモヤモヤしているか、雑談レベルで聞かせてもらえたら嬉しいです。合わなければそれで終わりで大丈夫です。</p>
+  </div>
+
+  <div class="cta">
+    <!-- GYAKUMON-CHOICE: スカウトメールの目的 = カジュアル面談誘導 -->
+    <p>まずはカジュアルに30分、話しませんか。日程はこちらから合わせます。</p>
+    <a href="#">カジュアル面談の日程を選ぶ</a>
+  </div>
+
+  <div class="sign">
+    <strong>〈担当者名〉</strong>
+    〈会社名〉 採用担当<br>
+    〈メールアドレス〉 ／ 〈連絡先〉
+  </div>
+
+</div>
+</body>
+</html>

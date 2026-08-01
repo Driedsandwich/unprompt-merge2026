@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>社内報 巻頭あいさつ</title>
+<style>
+  /*
+    GYAKUMON-CHOICE: 読み手(社員)の対象範囲 = 全社員向け
+    GYAKUMON-CHOICE: あいさつの主眼・目的 = 号内容への導入
+    GYAKUMON-CHOICE: 「堅すぎない」の砕け度 = 少し柔らかい程度
+    GYAKUMON-CHOICE: 執筆者の立場・一人称 = 経営層目線
+    視覚トークンは決定1(全社員向け)のパレット・書体・密度・角を枠全体の基準として採用する。
+  */
+  :root{
+    --bg:#fff7e8;
+    --main:#ff8a3d;
+    --accent:#2b6cb0;
+    --ink:#3a2f22;
+
+    --fs-body: 16px;
+    --fs-lead: 20px;
+    --fs-h1: 30px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic Medium", "Meiryo", sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.9;
+  }
+
+  .sheet{
+    max-width: 720px;
+    margin: 96px auto;
+    padding: 96px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    background: #fffdf9;
+    border-radius: 24px;
+  }
+
+  /* GYAKUMON-CHOICE: 執筆者の立場・一人称 = 経営層目線 */
+  .masthead{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid var(--main);
+    padding-bottom: 16px;
+  }
+  .masthead .label{
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .masthead .issue{
+    font-size: 13px;
+    color: var(--ink);
+    opacity: 0.6;
+  }
+
+  h1{
+    font-family: "Hiragino Maru Gothic ProN", "UD Digi Kyokasho N-B", "Yu Gothic", sans-serif;
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--main);
+    margin: 0;
+  }
+
+  p{
+    margin: 0;
+  }
+
+  /* GYAKUMON-CHOICE: 読み手(社員)の対象範囲 = 全社員向け */
+  .lead{
+    font-size: var(--fs-lead);
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* GYAKUMON-CHOICE: 「堅すぎない」の砕け度 = 少し柔らかい程度 */
+  .body-text{
+    font-size: var(--fs-body);
+  }
+
+  /* GYAKUMON-CHOICE: あいさつの主眼・目的 = 号内容への導入 */
+  .topic{
+    background: color-mix(in srgb, var(--main) 10%, var(--bg));
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px 24px;
+  }
+  .topic .kicker{
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    display:block;
+  }
+
+  .closing{
+    text-align: right;
+    font-size: var(--fs-body);
+  }
+  .closing .sign{
+    display:block;
+    margin-top: 8px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <div class="masthead">
+      <span class="label">社内報 巻頭あいさつ</span>
+      <span class="issue">〈発行号数・時期〉</span>
+    </div>
+
+    <div>
+      <h1>今月も、ひと呼吸。</h1>
+    </div>
+
+    <p class="lead">社員のみなさん、いつもお疲れさまです。〈会社名〉経営陣より、今月も社内報をお届けします。</p>
+
+    <p class="body-text">
+      暑さの続く毎日ですが、各部署で着実に一歩ずつ前進していると聞いています。
+      大きな発表があるわけではない月でも、その積み重ねにまず感謝を伝えさせてください。
+    </p>
+
+    <div class="topic">
+      <span class="kicker">今月号のみどころ</span>
+      <p class="body-text">
+        今号では〈特集タイトル〉を中心に、現場の声や最近の取り組みをまとめました。
+        肩の力を少し抜いて読んでもらえる一冊になっていればうれしいです。ぜひ本編もご覧ください。
+      </p>
+    </div>
+
+    <p class="closing">今月も一つ、よろしくお願いします。
+      <span class="sign">〈執筆者名〉</span>
+    </p>
+
+  </div>
+</body>
+</html>

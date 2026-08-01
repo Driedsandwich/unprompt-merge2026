@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用ページ | 会社紹介</title>
+<style>
+  /* GYAKUMON-CHOICE: 読み手として想定する対象 = 新卒・未経験者 */
+  :root{
+    --hero-bg:#fff7ed; --hero-accent:#ff7a30; --hero-ink:#1f2937;
+    --intro-bg:#2b2521; --intro-accent:#c46a3f; --intro-gold:#e8b65a;
+    --voice-bg:#1c1c1a; --voice-accent:#e0521f; --voice-gold:#f2c14e;
+    --honest-bg:#20201c; --honest-taupe:#8a7a63; --honest-accent:#c65a3c;
+    /* タイプスケール: base 16px, ratio 1.5 */
+    --fs-base:16px; --fs-lead:24px; --fs-h2:30px; --fs-h1:44px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Sans","Yu Gothic","Helvetica Neue",sans-serif;
+    font-size:var(--fs-base); line-height:1.9; color:#1f2937;
+  }
+  section{padding:96px 24px;}
+  .wrap{max-width:720px;margin:0 auto;}
+  h1,h2,h3{line-height:1.4;}
+
+  /* GYAKUMON-CHOICE: 「飾らない」の具体的トーン = 率直な弱み含む自己開示 の見出し書体設計 */
+  h1,h2{
+    font-family:"Rounded Mplus 1c","Hiragino Maru Gothic ProN",sans-serif;
+    font-weight:700; letter-spacing:0.02em;
+  }
+
+  /* ===== 見出し / ヒーロー ===== */
+  .hero{
+    background:var(--hero-bg); color:var(--hero-ink);
+    padding:112px 24px 96px;
+  }
+  .hero .eyebrow{
+    display:inline-block; font-size:14px; letter-spacing:0.12em;
+    color:var(--hero-accent); font-weight:700; margin-bottom:16px;
+  }
+  .hero h1{font-size:var(--fs-h1); color:var(--hero-ink); margin-bottom:24px;}
+  .hero p{font-size:var(--fs-lead); color:var(--hero-ink); max-width:520px;}
+  .hero .badge{
+    margin-top:40px; display:inline-block; padding:8px 24px;
+    background:var(--hero-accent); color:#fff; border-radius:999px;
+    font-size:14px; font-weight:700;
+  }
+
+  /* GYAKUMON-CHOICE: 構成の中心軸 = 働く人・文化中心 */
+  .intro{background:var(--intro-bg); color:#f2ece4;}
+  .intro h2{font-size:var(--fs-h2); color:var(--intro-gold); margin-bottom:32px;}
+  .intro p{margin-bottom:24px; max-width:560px;}
+  .intro .tag{color:var(--intro-accent); font-weight:700;}
+
+  /* GYAKUMON-CHOICE: 熱意の伝え方の軸 = 現場社員の情熱軸 */
+  .voice{background:var(--voice-bg); color:#f2ece4;}
+  .voice h2{font-size:var(--fs-h2); color:var(--voice-gold); margin-bottom:8px;}
+  .voice .sub{color:var(--voice-accent); font-size:14px; margin-bottom:32px; letter-spacing:0.04em;}
+  .voice .card{
+    background:#262422; border-radius:16px; padding:24px 28px; margin-bottom:16px;
+    border-left:4px solid var(--voice-accent);
+  }
+  .voice .card p{margin-bottom:8px;}
+  .voice .who{color:var(--voice-gold); font-size:14px; font-weight:700;}
+
+  .honest{background:var(--honest-bg); color:#eee7dc;}
+  .honest h2{font-size:var(--fs-h2); color:#eee7dc; margin-bottom:32px;}
+  .honest p{margin-bottom:24px; max-width:560px; color:var(--honest-taupe);}
+  .honest .straight{
+    color:var(--honest-accent); font-weight:700; font-style:normal;
+  }
+
+  .cta{
+    background:var(--hero-bg); color:var(--hero-ink); text-align:center;
+    padding:112px 24px;
+  }
+  .cta h2{font-size:var(--fs-h2); margin-bottom:16px;}
+  .cta p{font-size:var(--fs-lead); margin-bottom:40px;}
+  .cta a{
+    display:inline-block; padding:16px 48px; background:var(--hero-accent);
+    color:#fff; text-decoration:none; font-weight:700; font-size:18px;
+    border-radius:999px;
+  }
+  .cta .note{margin-top:24px; font-size:14px; color:#6b7280;}
+
+  footer{padding:40px 24px; text-align:center; font-size:13px; color:#9ca3af; background:var(--hero-bg);}
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 読み手として想定する対象 = 新卒・未経験者 -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">RECRUIT / 〈会社名〉</span>
+    <h1>はじめての一歩を、<br>ここから。</h1>
+    <p>未経験からでも、熱意があれば大丈夫。専門知識よりも先に、あなたの「やってみたい」を聞かせてください。</p>
+    <span class="badge">新卒・未経験 歓迎</span>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 構成の中心軸 = 働く人・文化中心 -->
+<section class="intro">
+  <div class="wrap">
+    <h2>私たちの毎日が、会社をつくる。</h2>
+    <p>〈会社名〉を紹介するとき、まず語りたいのは実績の数字ではなく、そこで働く人たちの顔です。<span class="tag">同僚の顔が見える採用ページ</span>でありたいと思っています。</p>
+    <p>事業内容の詳細や沿革はまだこのページに書ききれていませんが、〈事業内容〉に日々向き合うメンバーが、それぞれのやり方でこの会社を形づくっています。</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 熱意の伝え方の軸 = 現場社員の情熱軸 -->
+<section class="voice">
+  <div class="wrap">
+    <h2>働く人の声</h2>
+    <p class="sub">現場から本音で。</p>
+    <div class="card">
+      <p>毎日この手で採用ページを作ってます。地味な作業も多いけど、誰かの入社のきっかけになると思うと手が抜けません。</p>
+      <p class="who">〈社員名〉・〈職種〉</p>
+    </div>
+    <div class="card">
+      <p>入社したときは右も左も分からなかったけど、聞けば必ず誰かが答えてくれる。それが〈会社名〉の一番の強みだと思っています。</p>
+      <p class="who">〈社員名〉・〈職種〉</p>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「飾らない」の具体的トーン = 率直な弱み含む自己開示 -->
+<section class="honest">
+  <div class="wrap">
+    <h2>大事にしていること</h2>
+    <p><span class="straight">正直に言うと、うちにも足りない部分があります。</span>整っていない仕組みも、これからの課題も、隠さずに伝えたいと思っています。</p>
+    <p>それでも大事にしているのは、分からないことを分からないと言える空気と、失敗を次に活かそうとする姿勢です。飾った言葉より、この率直さを信じてほしいです。</p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>まずは、話を聞きにきませんか。</h2>
+    <p>未経験からのスタートを、私たちも一緒に考えます。</p>
+    <a href="#">エントリーはこちら</a>
+    <p class="note">〈応募フォームURL〉／〈お問い合わせ先〉</p>
+  </div>
+</section>
+
+<footer>&copy; 〈会社名〉 Recruit Site</footer>
+
+</body>
+</html>

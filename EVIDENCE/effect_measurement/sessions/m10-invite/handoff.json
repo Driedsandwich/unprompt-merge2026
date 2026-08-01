@@ -1,0 +1,98 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "昔の仲間を集める同窓会の案内、気軽に来たくなるやつ。",
+ "compiled_at": "2026-08-01T07:04:19.567488+00:00",
+ "decisions": [
+  {
+   "question_point": "参加対象の範囲",
+   "anchor_words": [
+    "昔の仲間を集める同窓会"
+   ],
+   "status": "decided",
+   "chosen_label": "学年全体広く",
+   "visual_tokens": {
+    "palette": [
+     "#fff7e8",
+     "#ffb703",
+     "#fb5607"
+    ],
+    "heading_font": "rounded",
+    "density": "dense",
+    "corner": "soft",
+    "tone_sample": "○○学年、みんな集合!同窓会でわいわい再会しよう"
+   },
+   "tone_example": null,
+   "intent": "学年全体広くという選択により、旧クラス単位を越えて招待対象を学年規模に確定し宛先設計を一意にする。"
+  },
+  {
+   "question_point": "案内文のトーン",
+   "anchor_words": [
+    "気軽に来たくなるやつ"
+   ],
+   "status": "decided",
+   "chosen_label": "くだけた友人口調",
+   "visual_tokens": {
+    "palette": [
+     "#2b2118",
+     "#e8622a",
+     "#ffd23f"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "同窓会、ひさびさに顔見せてよ。飯食って喋るだけ、それだけ。"
+   },
+   "tone_example": null,
+   "intent": "くだけた友人口調を選ぶことで、敬語基調の案内文との対立を解消し文面全体の語調が定まる。"
+  },
+  {
+   "question_point": "開催形式・規模の印象付け",
+   "anchor_words": [
+    "同窓会の案内"
+   ],
+   "status": "decided",
+   "chosen_label": "ゆるい飲み会風",
+   "visual_tokens": {
+    "palette": [
+     "#2b211a",
+     "#c97b3d",
+     "#e8b94f"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "とりあえず集合!同窓会、飲みながらだべろう"
+   },
+   "tone_example": null,
+   "intent": "ゆるい飲み会風という印象付けにより、フォーマルな式典風との対立を排し会場や進行の演出方針が定まる。"
+  },
+  {
+   "question_point": "来てほしい動機の訴求軸",
+   "anchor_words": [
+    "気軽に来たくなるやつ"
+   ],
+   "status": "decided",
+   "chosen_label": "気軽さ・低負担訴求",
+   "visual_tokens": {
+    "palette": [
+     "#fff8ec",
+     "#ffc94d",
+     "#3a3a3a"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "同窓会、ふらっとおいでよ。手ぶらでOK、集合写真だけ撮ろう。"
+   },
+   "tone_example": null,
+   "intent": "気軽さ・低負担訴求を軸に据えることで、久々の再会を懐かしむ訴求などとの対立を解消し文面の核となる訴求点が定まる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象範囲・トーン・形式・訴求軸が未指定で、成果物の方向性が大きく分かれる。",
+ "missing_materials": [
+  "開催日時",
+  "開催場所",
+  "参加費",
+  "幹事・問い合わせ先の連絡先"
+ ]
+}

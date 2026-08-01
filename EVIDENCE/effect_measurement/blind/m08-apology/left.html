@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>発送遅延のお詫び</title>
+<style>
+:root{
+  --bg: #f4f1ec;
+  --main: #8a6d4e;
+  --accent: #b98b4e;
+  --ink: #3a332a;
+  --fs-body: 16px;
+  --fs-lead: 20px;
+  --fs-h1: 25px;
+}
+* { box-sizing: border-box; }
+body{
+  margin: 0;
+  background: #e8e2d8;
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  color: var(--ink);
+  padding: 64px 16px;
+}
+/* GYAKUMON-CHOICE: 謝罪の相手・遅延の状況説明範囲 = 個別注文への謝罪 */
+.sheet{
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--bg);
+  border-radius: 4px;
+  padding: 96px 72px;
+}
+.subject-label{
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+h1{
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: var(--fs-h1);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0 0 96px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--accent);
+}
+.addressee{
+  font-size: var(--fs-lead);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  margin: 0 0 40px;
+}
+section{ margin: 0 0 96px; }
+section:last-of-type{ margin-bottom: 0; }
+p{ font-size: var(--fs-body); line-height: 2; margin: 0 0 24px; }
+p:last-child{ margin-bottom: 0; }
+.section-label{
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--main);
+  font-weight: 600;
+  margin: 0 0 24px;
+}
+.ship-date{
+  background: rgba(185, 139, 78, 0.12);
+  border-left: 3px solid var(--accent);
+  padding: 24px 32px;
+  margin: 0 0 24px;
+}
+.ship-date .label{ font-size: 13px; color: var(--main); margin: 0 0 8px; }
+.ship-date .date{
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: var(--fs-lead);
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+.closing{ font-size: var(--fs-body); line-height: 2; }
+.signoff{ margin-top: 64px; font-size: var(--fs-body); line-height: 1.9; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p class="subject-label">件名</p>
+  <h1>ご注文商品の発送遅延について、心よりお詫び申し上げます</h1>
+  <p class="addressee">〈お客様名〉様</p>
+  <section>
+    <p class="section-label">お詫びと状況説明</p>
+    <!-- GYAKUMON-CHOICE: 遅延理由の言及有無 = 簡潔に理由を説明 -->
+    <p>
+      平素よりご愛顧を賜り、誠にありがとうございます。<br>
+      ご注文いただきました〈商品名〉（注文番号〈注文番号〉）につきまして、
+      本来のお届け予定より発送が遅れておりますこと、心よりお詫び申し上げます。
+      今回の遅延は、資材調達に時間を要していることが原因でございます。
+      お客様には大変ご迷惑をおかけしておりますこと、重ねてお詫び申し上げます。
+    </p>
+  </section>
+  <section>
+    <p class="section-label">今後の対応</p>
+    <!-- GYAKUMON-CHOICE: 新しい発送予定日の明記有無 = 具体的な日付を明記 -->
+    <div class="ship-date">
+      <p class="label">新しい発送予定日</p>
+      <p class="date">8月5日</p>
+    </div>
+    <p class="closing">
+      準備が整い次第、速やかに発送の手配をいたします。
+      発送が完了しましたら、追ってご連絡を差し上げます。
+      今しばらくお待ちいただけますよう、何卒よろしくお願い申し上げます。
+    </p>
+  </section>
+  <section>
+    <!-- GYAKUMON-CHOICE: 補償・代替対応の提示有無 = 補償なし謝罪のみ -->
+    <p class="signoff">
+      このたびはご期待に沿えず、誠に申し訳ございませんでした。<br>
+      今後このようなことがないよう努めてまいります。<br>
+      引き続き何卒よろしくお願い申し上げます。
+    </p>
+  </section>
+</div>
+</body>
+</html>

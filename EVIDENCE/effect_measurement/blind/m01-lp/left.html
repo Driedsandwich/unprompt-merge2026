@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈サービス名〉| 導入相談受付中</title>
+<style>
+  /* GYAKUMON-CHOICE: トーン&マナー(文体) = クールで簡潔 */
+  :root{
+    /* タイプスケール(基準16px, 比率1.5) */
+    --step-0:16px;
+    --step-1:24px;
+    --step-2:36px;
+    --step-3:54px;
+    --step-4:72px;
+    /* GYAKUMON-CHOICE: 想定読み手が誰か = 新規見込み客 */
+    --bg:#0b0e14;
+    --main:#16202e;
+    --accent:#2d6bff;
+    --accent2:#00e0c6;
+    --ink:#e8edf5;
+    --ink-dim:#9aa7bb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Hiragino Sans","Yu Gothic UI",system-ui,-apple-system,sans-serif;
+    font-size:var(--step-0);
+    line-height:1.9;
+  }
+  h1,h2,h3{
+    /* GYAKUMON-CHOICE: かっこよさと信頼感の比重配分 = 半々でバランス型 */
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+  section{
+    max-width:960px;
+    margin:0 auto;
+    padding:112px 32px;
+  }
+  a.btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    font-family:system-ui,sans-serif;
+    font-weight:700;
+    letter-spacing:0.04em;
+    padding:20px 48px;
+    text-decoration:none;
+    border-radius:8px;
+    box-shadow:0 0 0 1px rgba(45,107,255,0.4);
+  }
+  a.btn.ghost{
+    background:transparent;
+    color:var(--accent2);
+    box-shadow:0 0 0 1px var(--accent2);
+  }
+
+  header.hero{
+    padding:160px 32px 128px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(45,107,255,0.25), transparent 55%),
+      radial-gradient(circle at 85% 80%, rgba(0,224,198,0.15), transparent 50%),
+      var(--bg);
+    max-width:1100px;
+    margin:0 auto;
+  }
+  header.hero .eyebrow{
+    font-family:system-ui,sans-serif;
+    color:var(--accent2);
+    letter-spacing:0.2em;
+    font-size:14px;
+    font-weight:700;
+  }
+  header.hero h1{
+    font-size:var(--step-4);
+    margin:24px 0;
+    max-width:14ch;
+    line-height:1.35;
+  }
+  header.hero p.lead{
+    font-size:var(--step-1);
+    color:var(--ink-dim);
+    max-width:44ch;
+    margin-bottom:48px;
+  }
+
+  /* GYAKUMON-CHOICE: LPの目的(コンバージョン行動) = 問い合わせ獲得 */
+  section.value{
+    background:var(--main);
+    border-radius:24px;
+    max-width:1100px;
+  }
+  section.value h2{font-size:var(--step-3);margin-bottom:32px;}
+  section.value p{color:var(--ink-dim);font-size:var(--step-1);max-width:56ch;}
+
+  section.features h2{font-size:var(--step-2);margin-bottom:64px;}
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+  }
+  .feature-card{
+    padding:40px 28px;
+    background:var(--main);
+    border-radius:16px;
+    border-top:2px solid var(--accent2);
+  }
+  .feature-card .mark{
+    width:40px;height:40px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    margin-bottom:24px;
+  }
+  .feature-card h3{font-size:var(--step-1);margin-bottom:16px;}
+  .feature-card p{color:var(--ink-dim);font-size:15px;}
+
+  /* GYAKUMON-CHOICE: 信頼感の訴求根拠 = 権威/導入企業で訴求 */
+  section.trust{text-align:center;}
+  section.trust h2{font-size:var(--step-2);margin-bottom:16px;}
+  section.trust p.note{color:var(--ink-dim);margin-bottom:48px;}
+  .logo-row{
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .logo-chip{
+    padding:20px 36px;
+    border:1px solid rgba(154,167,187,0.3);
+    color:var(--ink-dim);
+    font-family:system-ui,sans-serif;
+    font-size:14px;
+    letter-spacing:0.05em;
+    border-radius:8px;
+  }
+
+  section.flow ol{
+    list-style:none;
+    display:grid;
+    gap:40px;
+  }
+  section.flow li{
+    display:flex;
+    gap:28px;
+    align-items:flex-start;
+  }
+  section.flow .num{
+    font-family:system-ui,sans-serif;
+    font-size:32px;
+    font-weight:700;
+    color:var(--accent2);
+    min-width:56px;
+  }
+  section.flow h3{font-size:var(--step-1);margin-bottom:8px;}
+  section.flow p{color:var(--ink-dim);}
+
+  section.cta{
+    text-align:center;
+    background:linear-gradient(180deg,var(--bg),var(--main));
+    border-radius:24px;
+    max-width:1100px;
+  }
+  section.cta h2{font-size:var(--step-3);margin-bottom:24px;}
+  section.cta p{color:var(--ink-dim);margin-bottom:40px;}
+
+  footer{
+    padding:64px 32px;
+    text-align:center;
+    color:var(--ink-dim);
+    font-size:13px;
+    border-top:1px solid rgba(154,167,187,0.15);
+  }
+
+  @media (max-width:720px){
+    .feature-grid{grid-template-columns:1fr;}
+    header.hero h1{font-size:var(--step-3);}
+  }
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 想定読み手が誰か = 新規見込み客 -->
+<header class="hero">
+  <div class="eyebrow">FOR NEW CLIENTS</div>
+  <!-- GYAKUMON-CHOICE: トーン&マナー(文体) = クールで簡潔 -->
+  <h1>サービス、削ぎ落とした先へ。</h1>
+  <p class="lead">〈サービス名〉は、必要なものだけを残した。まずは無料相談で、その手触りを確かめてください。</p>
+  <a class="btn" href="#cta">無料相談を申し込む</a>
+</header>
+
+<!-- GYAKUMON-CHOICE: かっこよさと信頼感の比重配分 = 半々でバランス型 -->
+<section class="value">
+  <h2>削ぎ落とすほど、信頼は強くなる。</h2>
+  <p>〈サービスの価値提案〉 — 過剰な機能や説明を削り、本当に必要な体験だけを届ける。それが〈サービス名〉の設計思想です。</p>
+</section>
+
+<section class="features">
+  <h2>3つの特徴</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="mark"></div>
+      <h3>〈特徴1〉</h3>
+      <p>〈特徴1の説明文をここに記載〉</p>
+    </div>
+    <div class="feature-card">
+      <div class="mark"></div>
+      <h3>〈特徴2〉</h3>
+      <p>〈特徴2の説明文をここに記載〉</p>
+    </div>
+    <div class="feature-card">
+      <div class="mark"></div>
+      <h3>〈特徴3〉</h3>
+      <p>〈特徴3の説明文をここに記載〉</p>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <h2>導入企業が選ぶ理由。</h2>
+  <p class="note">〈導入企業ロゴ・実績データ〉</p>
+  <div class="logo-row">
+    <div class="logo-chip">〈導入企業A〉</div>
+    <div class="logo-chip">〈導入企業B〉</div>
+    <div class="logo-chip">〈導入企業C〉</div>
+    <div class="logo-chip">〈導入企業D〉</div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: LPの目的(コンバージョン行動) = 問い合わせ獲得 -->
+<section class="flow">
+  <h2 style="font-size:var(--step-2);margin-bottom:64px;">利用の流れ</h2>
+  <ol>
+    <li><span class="num">01</span><div><h3>お問い合わせ</h3><p>フォームより導入相談を送信します。</p></div></li>
+    <li><span class="num">02</span><div><h3>ヒアリング</h3><p>〈課題・要件〉を担当者が確認します。</p></div></li>
+    <li><span class="num">03</span><div><h3>ご提案</h3><p>〈サービス名〉に基づいた具体的な導入案を提示します。</p></div></li>
+    <li><span class="num">04</span><div><h3>導入開始</h3><p>合意の上、〈サービス名〉の利用を開始します。</p></div></li>
+  </ol>
+</section>
+
+<section class="cta" id="cta">
+  <h2>サービス、次はあなたの番。</h2>
+  <p>今すぐ無料で、導入相談を始めましょう。</p>
+  <a class="btn" href="#">無料相談を申し込む</a>
+  <br><br>
+  <a class="btn ghost" href="#">資料について問い合わせる</a>
+</section>
+
+<footer>
+  <p>〈会社名〉 / 〈住所〉 / 〈連絡先〉</p>
+  <p>&copy; 2026 〈サービス名〉</p>
+</footer>
+
+</body>
+</html>

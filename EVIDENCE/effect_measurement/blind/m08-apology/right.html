@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>発送遅延のお詫び</title>
+<style>
+  /*
+    タイプスケール（本文16pxを基準に1.25倍階調）
+    --fs-body: 16px
+    --fs-lead: 20px  (16 * 1.25)
+    --fs-h1:   25px  (16 * 1.25^2)
+    基調色: 墨(#22292f) / 紙白(#f7f6f3)
+    アクセント: 藍(#2c4a6e) 一色のみ、濃淡違いで使用
+  */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 64px 24px;
+    background: #eceae4;
+    font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    color: #22292f;
+  }
+  .doc {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #f7f6f3;
+    padding: 72px 64px 88px;
+  }
+  .subject {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    color: #1b2530;
+    margin: 0 0 64px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #d8d4ca;
+  }
+  section {
+    margin-bottom: 48px;
+  }
+  section.spacious {
+    margin-bottom: 64px;
+  }
+  .greeting {
+    font-size: 16px;
+    line-height: 1.9;
+    margin: 0 0 8px;
+  }
+  .greeting .sub {
+    font-size: 13px;
+    color: #6b6459;
+    display: block;
+    margin-top: 4px;
+  }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: #2c4a6e;
+    margin: 0 0 20px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 2;
+    margin: 0 0 16px;
+    color: #2c2f33;
+  }
+  .facts {
+    margin: 24px 0 0;
+    padding: 24px 28px;
+    background: #eeece5;
+    font-size: 15px;
+    line-height: 2;
+  }
+  .facts dt {
+    color: #6b6459;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+  .facts dd {
+    margin: 0 0 12px;
+    color: #1b2530;
+  }
+  .facts dd:last-child { margin-bottom: 0; }
+  .closing {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid #d8d4ca;
+    font-size: 15px;
+    line-height: 2;
+    color: #4a463f;
+  }
+  .sign {
+    margin-top: 32px;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .sign .name {
+    font-weight: 700;
+    color: #1b2530;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <p class="subject">出荷が遅れております ─ 〈商品名〉のお届けについてお詫び申し上げます</p>
+
+  <section>
+    <p class="greeting">
+      〈お客様名〉様
+      <span class="sub">いつも〈店舗名〉をご利用いただきありがとうございます。</span>
+    </p>
+  </section>
+
+  <section class="spacious">
+    <h2>お詫びと状況説明</h2>
+    <p>
+      ご注文いただきました〈商品名〉につきまして、当初お伝えしていたお届け予定に間に合わず、
+      発送が遅れております。楽しみにお待ちいただいていたところ、
+      ご迷惑をおかけしておりますことを心よりお詫び申し上げます。
+    </p>
+    <div class="facts">
+      <dt>ご注文商品</dt>
+      <dd>〈商品名〉</dd>
+      <dt>新しいお届け予定</dt>
+      <dd>〈新しいお届け予定〉</dd>
+    </div>
+  </section>
+
+  <section class="spacious">
+    <h2>今後の対応</h2>
+    <p>
+      発送準備が整い次第、あらためて発送完了のご連絡を差し上げます。
+      お急ぎのご事情がある場合や、ご不明な点がございましたら、
+      本メールへの返信にて遠慮なくお申し付けください。できる限り速やかに対応いたします。
+    </p>
+  </section>
+
+  <div class="closing">
+    <p>
+      今回はお待たせすることとなり申し訳ございませんが、
+      商品を万全の状態でお届けできるよう努めてまいります。
+      今後ともどうぞよろしくお願いいたします。
+    </p>
+    <div class="sign">
+      <span class="name">〈店舗名〉 カスタマーサポート</span><br>
+      〈問い合わせ先メールアドレス〉
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

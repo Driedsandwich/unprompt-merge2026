@@ -1,0 +1,82 @@
+{
+ "brief": "m08-apology",
+ "text": "発送遅延のお詫びメール、誠実だけど重すぎないトーンで。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "謝罪の相手・遅延の状況説明範囲",
+    "anchor_words": [
+     "発送遅延のお詫び"
+    ],
+    "options": [
+     {
+      "label": "個別注文への謝罪"
+     },
+     {
+      "label": "全顧客向け一斉告知"
+     }
+    ],
+    "default_if_unresolved": "個別注文への謝罪として作成"
+   },
+   {
+    "id": "b1",
+    "question_point": "遅延理由の言及有無",
+    "anchor_words": [
+     "発送遅延"
+    ],
+    "options": [
+     {
+      "label": "理由に触れない"
+     },
+     {
+      "label": "簡潔に理由を説明"
+     }
+    ],
+    "default_if_unresolved": "理由には触れない"
+   },
+   {
+    "id": "b2",
+    "question_point": "補償・代替対応の提示有無",
+    "anchor_words": [
+     "お詫び"
+    ],
+    "options": [
+     {
+      "label": "補償なし謝罪のみ"
+     },
+     {
+      "label": "クーポン等を提示"
+     }
+    ],
+    "default_if_unresolved": "補償提示なしで謝罪のみ"
+   },
+   {
+    "id": "b3",
+    "question_point": "新しい発送予定日の明記有無",
+    "anchor_words": [
+     "発送遅延"
+    ],
+    "options": [
+     {
+      "label": "具体的な日付を明記"
+     },
+     {
+      "label": "目安のみ・後日連絡"
+     }
+    ],
+    "default_if_unresolved": "後日改めて連絡すると記載"
+   }
+  ],
+  "residual_ambiguity_assessment": "トーンは指定済みだが、対象範囲・理由開示・補償・日程明記が未確定。",
+  "missing_materials": [
+   "対象の注文番号・商品名",
+   "新しい発送予定日",
+   "問い合わせ先窓口情報"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:57:09.450560+00:00"
+}

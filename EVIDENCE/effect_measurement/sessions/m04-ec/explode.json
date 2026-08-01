@@ -1,0 +1,95 @@
+{
+ "brief": "m04-ec",
+ "text": "この新商品の説明文、魅力的にお願い。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "想定読者",
+    "anchor_words": [
+     "この新商品の説明文"
+    ],
+    "options": [
+     {
+      "label": "新規見込み客"
+     },
+     {
+      "label": "既存顧客"
+     },
+     {
+      "label": "専門家・業者"
+     }
+    ],
+    "default_if_unresolved": "新規見込み客向けに書く"
+   },
+   {
+    "id": "b1",
+    "question_point": "訴求の軸",
+    "anchor_words": [
+     "魅力的にお願い"
+    ],
+    "options": [
+     {
+      "label": "機能・スペック重視"
+     },
+     {
+      "label": "感情・体験重視"
+     },
+     {
+      "label": "価格・お得感重視"
+     }
+    ],
+    "default_if_unresolved": "機能と体験の両面を軽く触れる"
+   },
+   {
+    "id": "b2",
+    "question_point": "トーン・文体",
+    "anchor_words": [
+     "魅力的にお願い"
+    ],
+    "options": [
+     {
+      "label": "高級感・上質"
+     },
+     {
+      "label": "親しみやすい"
+     },
+     {
+      "label": "熱量高いセールス調"
+     }
+    ],
+    "default_if_unresolved": "親しみやすい丁寧語で書く"
+   },
+   {
+    "id": "b3",
+    "question_point": "掲載媒体・構成",
+    "anchor_words": [
+     "この新商品の説明文"
+    ],
+    "options": [
+     {
+      "label": "ECの商品ページ"
+     },
+     {
+      "label": "SNS投稿文"
+     },
+     {
+      "label": "チラシ・カタログ"
+     }
+    ],
+    "default_if_unresolved": "ECの商品ページ想定で書く"
+   }
+  ],
+  "residual_ambiguity_assessment": "読者・訴求軸・トーン・媒体が未指定で、方向性が大きく分かれる余地がある。",
+  "missing_materials": [
+   "新商品の名称・カテゴリ",
+   "商品の具体的な特徴・スペック",
+   "価格情報",
+   "競合や差別化ポイント"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:56:20.540956+00:00"
+}

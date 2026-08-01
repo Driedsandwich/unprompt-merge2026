@@ -1,0 +1,88 @@
+{
+ "brief": "m05-portfolio",
+ "text": "転職用のポートフォリオサイト、シンプルだけど印象に残る感じで。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "想定読み手(採用側)の職種領域",
+    "anchor_words": [
+     "転職用のポートフォリオサイト"
+    ],
+    "options": [
+     {
+      "label": "デザイナー向け"
+     },
+     {
+      "label": "エンジニア向け"
+     },
+     {
+      "label": "ビジネス職向け"
+     }
+    ],
+    "default_if_unresolved": "職種を限定せず汎用構成にする"
+   },
+   {
+    "id": "b1",
+    "question_point": "「印象に残る」の実現方法",
+    "anchor_words": [
+     "印象に残る感じ"
+    ],
+    "options": [
+     {
+      "label": "ビジュアル訴求型"
+     },
+     {
+      "label": "実績数値訴求型"
+     },
+     {
+      "label": "ストーリー訴求型"
+     }
+    ],
+    "default_if_unresolved": "作品ビジュアルで印象づける"
+   },
+   {
+    "id": "b2",
+    "question_point": "サイトの構成の重心",
+    "anchor_words": [
+     "ポートフォリオサイト"
+    ],
+    "options": [
+     {
+      "label": "作品ギャラリー中心"
+     },
+     {
+      "label": "経歴スキル中心"
+     }
+    ],
+    "default_if_unresolved": "作品ギャラリーを中心に構成"
+   },
+   {
+    "id": "b3",
+    "question_point": "シンプルさの徹底度",
+    "anchor_words": [
+     "シンプルだけど印象に残る感じ"
+    ],
+    "options": [
+     {
+      "label": "ミニマル徹底"
+     },
+     {
+      "label": "要所で強めアクセント"
+     }
+    ],
+    "default_if_unresolved": "基本ミニマルで要所に強調を置く"
+   }
+  ],
+  "residual_ambiguity_assessment": "読者・訴求軸・構成重心・シンプル度が未指定で曖昧度は高い。",
+  "missing_materials": [
+   "職種・業界情報",
+   "実績・作品データ",
+   "経歴・スキル情報"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:56:35.636988+00:00"
+}
