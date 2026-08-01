@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>同窓会のお知らせ</title>
+<style>
+/*
+  :root タイプスケール(基準16px、比率1.25)
+  --fs-body: 16px
+  --fs-lead: 20px
+  --fs-h1: 30px
+*/
+:root{
+  --bg:#fff7ed;      /* GYAKUMON-CHOICE: 来てほしい動機の訴求軸 = 気軽さ・低負担訴求(地色) */
+  --main:#fdba74;
+  --accent:#fb923c;
+  --ink:#4a3a2c;
+  --fs-body:16px;
+  --fs-lead:20px;
+  --fs-h1:32px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9; /* GYAKUMON-CHOICE: 案内文のトーン = 丁寧だが軽め(airy: 行間を広く) */
+}
+.card{
+  max-width:720px;
+  margin:96px auto;
+  padding:64px 56px;
+  background:#fffdf9;
+  border-radius:24px; /* GYAKUMON-CHOICE: 開催形式・規模の印象付け = ゆるい飲み会風(soft corner) */
+}
+h1{
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif; /* GYAKUMON-CHOICE: 参加対象の範囲 = 学年全体広く(rounded見出し) */
+  font-weight:700;
+  font-size:var(--fs-h1);
+  letter-spacing:0.02em;
+  color:var(--accent);
+  margin:0 0 32px;
+}
+.lead{
+  font-size:var(--fs-lead);
+  font-weight:600;
+  margin:0 0 40px;
+}
+section{
+  margin:0 0 40px;
+}
+section:last-of-type{margin-bottom:0;}
+h2{
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
+  font-size:17px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  color:var(--accent);
+  margin:0 0 12px;
+}
+.info{
+  background:var(--bg);
+  border-radius:16px;
+  padding:24px 28px;
+  margin:0;
+}
+.info dt{font-weight:700;color:var(--ink);}
+.info dd{margin:0 0 12px;}
+.info dd:last-child{margin-bottom:0;}
+p{margin:0 0 16px;}
+p:last-child{margin-bottom:0;}
+.closing{
+  margin-top:96px;
+  font-weight:700;
+  color:var(--accent);
+  font-size:var(--fs-lead);
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+<!-- GYAKUMON-CHOICE: 参加対象の範囲 = 学年全体広く -->
+<h1>○○年卒のみんなへ</h1>
+
+<!-- GYAKUMON-CHOICE: 案内文のトーン = 丁寧だが軽め -->
+<p class="lead">ひさしぶり、元気にしてる?学年みんなで集まる同窓会をやります。仲が良かった子もそうでもなかった子も、学年全体まるっと大歓迎です。</p>
+
+<section>
+<h2>開催概要</h2>
+<dl class="info">
+  <dt>日時</dt><dd>〈開催日〉</dd>
+  <dt>場所</dt><dd>〈会場〉</dd>
+</dl>
+</section>
+
+<!-- GYAKUMON-CHOICE: 開催形式・規模の印象付け = ゆるい飲み会風 -->
+<section>
+<h2>どんな会にしたいか</h2>
+<p>畏まった式典じゃなくて、ただの飲み会です。近況報告もいいし、昔話に花を咲かせるのもいい。とりあえず顔だけ出しに来る、でも全然OKです。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 来てほしい動機の訴求軸 = 気軽さ・低負担訴求 -->
+<section>
+<h2>出欠のご連絡</h2>
+<p>手ぶらで気軽においでください。出欠は〈幹事名〉まで、一言LINEかメッセージで教えてもらえたら十分です。来られる日だけでも大丈夫。</p>
+</section>
+
+<p class="closing">まずは顔を見せに。待ってます!</p>
+
+</div>
+</body>
+</html>

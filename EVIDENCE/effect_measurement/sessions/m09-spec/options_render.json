@@ -1,0 +1,226 @@
+{
+ "brief": "m09-spec",
+ "rendered_at": "2026-08-01T07:34:44.598399+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "申請者向け入力補助",
+    "tokens": {
+     "palette": [
+      "#fff9f0",
+      "#ff8a3d",
+      "#2b2b2b"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "レシート撮るだけ、経費入力おわり。"
+    }
+   },
+   {
+    "label": "経理担当の処理効率化",
+    "tokens": {
+     "palette": [
+      "#1b2a22",
+      "#3f6b4f",
+      "#c9a24b"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費精算、月次締めを止めない。仕訳の突合をひとつの画面で。"
+    }
+   },
+   {
+    "label": "承認者向け承認フロー",
+    "tokens": {
+     "palette": [
+      "#1b2430",
+      "#3b5a82",
+      "#e0a526"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "承認待ち一覧、ワンタップで可否判断。"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "入力・申請の簡略化",
+    "tokens": {
+     "palette": [
+      "#f4f1ec",
+      "#e4572e",
+      "#2b2118"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "経費申請、3タップで完了。入力欄はもう迷わない。"
+    }
+   },
+   {
+    "label": "承認・確認の効率化",
+    "tokens": {
+     "palette": [
+      "#1b2430",
+      "#3c5a78",
+      "#e3a62f"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "承認待ちゼロへ。経費申請は一目で滞留が見える。"
+    }
+   },
+   {
+    "label": "経理処理・集計の自動化",
+    "tokens": {
+     "palette": [
+      "#1b2430",
+      "#3e5c76",
+      "#00b8a9"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費データ自動集計。仕訳から月次レポートまで一括処理。"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "単機能Webフォーム",
+    "tokens": {
+     "palette": [
+      "#f4f5f7",
+      "#3a5a78",
+      "#1f2933"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "経費精算フォーム。入力欄はひとつ、迷わず提出。"
+    }
+   },
+   {
+    "label": "既存ツール連携アドオン",
+    "tokens": {
+     "palette": [
+      "#1f2933",
+      "#3e4c59",
+      "#7b8794"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "経費精算、既存ツールに繋ぐだけ。ワークフローはそのまま、手間だけ消える。"
+    }
+   },
+   {
+    "label": "チャットボット型",
+    "tokens": {
+     "palette": [
+      "#12121a",
+      "#2a2e45",
+      "#5ce1c4"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "経費精算Bot「レシート送るだけ」で申請完了。"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "開発者向け技術仕様",
+    "tokens": {
+     "palette": [
+      "#1b1f24",
+      "#2f3b45",
+      "#39d2c0"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費精算API仕様: POST /expenses のリクエストスキーマ定義"
+    }
+   },
+   {
+    "label": "上長向け企画概要",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#8c7a5b",
+      "#b8323a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "経費精算改善のご提案:承認工数を削減し月次処理を効率化します。"
+    }
+   },
+   {
+    "label": "利用者向け操作説明",
+    "tokens": {
+     "palette": [
+      "#fafaf7",
+      "#3e7cb8",
+      "#f2a93b"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "経費精算、3タップで完了です"
+    }
+   }
+  ],
+  "4": [
+   {
+    "label": "交通費のみ",
+    "tokens": {
+     "palette": [
+      "#f4f6f5",
+      "#2f6f5e",
+      "#0f3d30"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "交通費だけ、サクッと精算。電車・バスの領収書1枚から。"
+    }
+   },
+   {
+    "label": "一般経費全般",
+    "tokens": {
+     "palette": [
+      "#f4f6f5",
+      "#2f6b57",
+      "#e8a33d"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "経費精算、まるごと一本化。交通費も交際費も同じ画面で。"
+    }
+   },
+   {
+    "label": "出張・交際費含む複雑経費",
+    "tokens": {
+     "palette": [
+      "#241b2f",
+      "#7a2e3c",
+      "#c99a3d"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "出張・交際費の複雑精算も、この一枚で漏れなく処理。"
+    }
+   }
+  ]
+ }
+}

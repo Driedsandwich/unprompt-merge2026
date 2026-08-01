@@ -1,0 +1,226 @@
+{
+ "brief": "m01-lp",
+ "rendered_at": "2026-08-01T07:32:00.997851+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "新規見込み客",
+    "tokens": {
+     "palette": [
+      "#0a0e1a",
+      "#1e3a8a",
+      "#00d9c0"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "サービスを、まだ知らないあなたへ。今すぐ試す価値がここにある。"
+    }
+   },
+   {
+    "label": "既存ユーザー",
+    "tokens": {
+     "palette": [
+      "#12212e",
+      "#1f3a4d",
+      "#4fb8a8"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "おかえりなさい。今日も安心してサービスをお使いください。"
+    }
+   },
+   {
+    "label": "投資家/取引先",
+    "tokens": {
+     "palette": [
+      "#0d1420",
+      "#1c2b3d",
+      "#b08d3f"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "資本を託すに足る実行力。サービスの成長曲線を、数字で語る。"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "デザイン先鋭・攻め",
+    "tokens": {
+     "palette": [
+      "#0a0a0f",
+      "#1c1c24",
+      "#ff2e63"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "サービスの限界を超えろ。次の一手がここにある。"
+    }
+   },
+   {
+    "label": "堅実重視・保守的",
+    "tokens": {
+     "palette": [
+      "#0e1a2b",
+      "#1f3a5f",
+      "#b08d45"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "確かな実績で、あなたのサービスを支え続けます。"
+    }
+   },
+   {
+    "label": "半々でバランス型",
+    "tokens": {
+     "palette": [
+      "#f2eee6",
+      "#2f4b44",
+      "#b08d57"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "サービスの本質を、誠実にデザインする。"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "問い合わせ獲得",
+    "tokens": {
+     "palette": [
+      "#12181f",
+      "#22303f",
+      "#3fa9ff"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "まずはお気軽にご相談ください。専門スタッフが直接お答えします。"
+    }
+   },
+   {
+    "label": "資料請求",
+    "tokens": {
+     "palette": [
+      "#12161c",
+      "#1e2530",
+      "#c9a24b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "資料請求で、判断材料をすべて手元に。"
+    }
+   },
+   {
+    "label": "即時購入/申込",
+    "tokens": {
+     "palette": [
+      "#0b0b0f",
+      "#1c1c24",
+      "#e63946"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "今すぐ申し込む。迷いを断つ、その一手。"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "実績数値で訴求",
+    "tokens": {
+     "palette": [
+      "#0b0f14",
+      "#12233b",
+      "#e8b84b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "導入実績1,200社、稼働率99.8%。数字が語るサービス品質。"
+    }
+   },
+   {
+    "label": "権威/導入企業で訴求",
+    "tokens": {
+     "palette": [
+      "#0b1d33",
+      "#1c3a5e",
+      "#b8935a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "導入企業が選ぶ理由。信頼はロゴが語る。"
+    }
+   },
+   {
+    "label": "デザイン品質で訴求",
+    "tokens": {
+     "palette": [
+      "#0e0e10",
+      "#1c1c1f",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "静謐な余白が、サービスの質を語る。"
+    }
+   }
+  ],
+  "4": [
+   {
+    "label": "クールで簡潔",
+    "tokens": {
+     "palette": [
+      "#0a0a0c",
+      "#1c1f24",
+      "#3dffc4"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "無駄なし、迷いなし。サービスの本質だけを届ける。"
+    }
+   },
+   {
+    "label": "熱量高く煽る",
+    "tokens": {
+     "palette": [
+      "#0a0000",
+      "#e11d2e",
+      "#ff6b00"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "今すぐ動け。このサービスで、限界を超えろ。"
+    }
+   },
+   {
+    "label": "落ち着いた説明調",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#2e3a32",
+      "#8a6d3b"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "サービスの本質を、丁寧な言葉で伝えます。"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,182 @@
+{
+ "brief": "m04-ec",
+ "rendered_at": "2026-08-01T07:33:12.246396+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "新規見込み客",
+    "tokens": {
+     "palette": [
+      "#0b1220",
+      "#3b82f6",
+      "#f97316"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "はじめまして、この新商品があなたの毎日を変えます。"
+    }
+   },
+   {
+    "label": "既存顧客",
+    "tokens": {
+     "palette": [
+      "#2b3a4a",
+      "#3f6b8a",
+      "#c9a24b"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "いつもの方へ、新しい定番のご案内です。"
+    }
+   },
+   {
+    "label": "専門家・業者",
+    "tokens": {
+     "palette": [
+      "#1b2430",
+      "#3e4c5e",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "新製品仕様のご案内:施工性能を数値と規格で検証済み。"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "機能・スペック重視",
+    "tokens": {
+     "palette": [
+      "#1b2430",
+      "#3e5c76",
+      "#00c2d1"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "新商品、応答速度と精度を数値で証明。"
+    }
+   },
+   {
+    "label": "感情・体験重視",
+    "tokens": {
+     "palette": [
+      "#241c1f",
+      "#7a2e3b",
+      "#d99a5b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "触れた瞬間、時間が緩む。この新商品が届ける小さな余韻。"
+    }
+   },
+   {
+    "label": "価格・お得感重視",
+    "tokens": {
+     "palette": [
+      "#1a1a1a",
+      "#ffd400",
+      "#e4002b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "新商品、今だけ特別価格!お得に手に入れるチャンス。"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "高級感・上質",
+    "tokens": {
+     "palette": [
+      "#0e0d0b",
+      "#3a322a",
+      "#b08d45"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "静謐なる逸品。新商品が纏う、揺るぎない品格。"
+    }
+   },
+   {
+    "label": "親しみやすい",
+    "tokens": {
+     "palette": [
+      "#fff7ed",
+      "#f4a65a",
+      "#e8654a"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "新商品、できました。まずはあなたに使ってみてほしいな。"
+    }
+   },
+   {
+    "label": "熱量高いセールス調",
+    "tokens": {
+     "palette": [
+      "#1a0000",
+      "#e8140a",
+      "#ffc400"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "今すぐ手に入れろ!この新商品、見逃すと絶対後悔する!"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "ECの商品ページ",
+    "tokens": {
+     "palette": [
+      "#ffffff",
+      "#1a1a1a",
+      "#c9a227"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "新商品詳細:仕様と魅力を余すことなくご紹介します。"
+    }
+   },
+   {
+    "label": "SNS投稿文",
+    "tokens": {
+     "palette": [
+      "#0b0d14",
+      "#7c3aed",
+      "#22d9c3"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "新登場📣これ、待ってた。今すぐチェックして✨"
+    }
+   },
+   {
+    "label": "チラシ・カタログ",
+    "tokens": {
+     "palette": [
+      "#f4efe6",
+      "#7a5c3e",
+      "#b08238"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "新商品カタログ掲載:素材と製法へのこだわりを余すことなくご紹介します。"
+    }
+   }
+  ]
+ }
+}

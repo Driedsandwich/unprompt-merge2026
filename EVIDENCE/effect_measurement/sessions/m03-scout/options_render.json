@@ -1,0 +1,140 @@
+{
+ "brief": "m03-scout",
+ "rendered_at": "2026-08-01T07:32:54.122725+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "新卒〜1年目",
+    "tokens": {
+     "palette": [
+      "#fffdf7",
+      "#ffc94d",
+      "#ff6b4a"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "エンジニア1年目、はじめの一歩をここから。"
+    }
+   },
+   {
+    "label": "実務2〜4年目",
+    "tokens": {
+     "palette": [
+      "#12212e",
+      "#1f4e5f",
+      "#3fa79a"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "その実務経験、次のフェーズへ。2〜4年目のエンジニアに向けたスカウト。"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "カジュアル面談誘導",
+    "tokens": {
+     "palette": [
+      "#f5f1ea",
+      "#4a6b5a",
+      "#e8845c"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "エンジニアさん、まずは30分だけ話しませんか"
+    }
+   },
+   {
+    "label": "選考応募促進",
+    "tokens": {
+     "palette": [
+      "#0b1f3a",
+      "#1e3a6e",
+      "#ff5a1f"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "エンジニア職、本選考募集中。今すぐ応募して次の面接へ。"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "技術・裁量訴求",
+    "tokens": {
+     "palette": [
+      "#12181c",
+      "#2f9e83",
+      "#c8ff4d"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "裁量は、渡す。コードで事業を動かすエンジニアへ。"
+    }
+   },
+   {
+    "label": "待遇・条件訴求",
+    "tokens": {
+     "palette": [
+      "#0f1e14",
+      "#1d4d2b",
+      "#c9a227"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "初任給480万円、賞与年2回。若手エンジニアの待遇を数字で保証します。"
+    }
+   },
+   {
+    "label": "事業成長訴求",
+    "tokens": {
+     "palette": [
+      "#0b1f3a",
+      "#123a63",
+      "#e8a33d"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "売上3倍の踊り場へ。次の拡大フェーズを、あなたのエンジニアリングで押し上げる。"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "フォーマル敬語",
+    "tokens": {
+     "palette": [
+      "#1b2430",
+      "#2e3f55",
+      "#b08d3e"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "貴殿の技術力を、次代の開発組織へ。"
+    }
+   },
+   {
+    "label": "フランク口語調",
+    "tokens": {
+     "palette": [
+      "#1a1a2e",
+      "#ff6b4a",
+      "#ffd23f"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "エンジニアさん、そのコード見て惚れました！"
+    }
+   }
+  ]
+ }
+}

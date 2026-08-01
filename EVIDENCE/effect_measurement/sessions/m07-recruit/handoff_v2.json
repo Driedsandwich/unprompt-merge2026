@@ -1,0 +1,97 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "採用ページの会社紹介、飾らないけど熱意が伝わるように。",
+ "compiled_at": "2026-08-01T07:41:51.930031+00:00",
+ "decisions": [
+  {
+   "question_point": "読み手として想定する対象",
+   "anchor_words": [
+    "採用ページの会社紹介"
+   ],
+   "status": "decided",
+   "chosen_label": "新卒・未経験者",
+   "visual_tokens": {
+    "palette": [
+     "#fff8ec",
+     "#ff7a3d",
+     "#1e3a2f"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "未経験から始まる、採用ページの本音。"
+   },
+   "tone_example": null,
+   "intent": "読み手を新卒・未経験者と定めたことで、専門用語を避け基礎から説明する文体と情報量が決まる。"
+  },
+  {
+   "question_point": "熱意の伝え方の軸",
+   "anchor_words": [
+    "熱意が伝わるように"
+   ],
+   "status": "decided",
+   "chosen_label": "現場社員の情熱軸",
+   "visual_tokens": {
+    "palette": [
+     "#1c1c1a",
+     "#e8532b",
+     "#ffb100"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "soft",
+    "tone_sample": "現場から:今日も手を動かしながら、この仕事に本気です。"
+   },
+   "tone_example": null,
+   "intent": "熱意の表現軸を現場社員の情熱としたことで、経営理念ではなく現場の声や具体エピソードを中心に語る構成になる。"
+  },
+  {
+   "question_point": "「飾らない」の具体的トーン",
+   "anchor_words": [
+    "飾らないけど"
+   ],
+   "status": "decided",
+   "chosen_label": "率直な弱み含む自己開示",
+   "visual_tokens": {
+    "palette": [
+     "#2b2621",
+     "#8c7a63",
+     "#b8452e"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "正直に言うと、うちもまだ足りないことだらけです。"
+   },
+   "tone_example": null,
+   "intent": "飾らないの内実を弱みも含む率直な自己開示と定めたことで、美化した表現を避け課題も語るトーンが定まる。"
+  },
+  {
+   "question_point": "構成の中心軸",
+   "anchor_words": [
+    "会社紹介"
+   ],
+   "status": "decided",
+   "chosen_label": "働く人・文化中心",
+   "visual_tokens": {
+    "palette": [
+     "#2b2723",
+     "#d96b3a",
+     "#f2c14e"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "この人たちと、働きたい。素顔のまま向き合う採用ページ。"
+   },
+   "tone_example": null,
+   "intent": "構成の中心を働く人・文化としたことで、事業内容や実績よりも社員や職場の雰囲気を軸に据えた章立てになる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象読者・トーンの質感・訴求軸・構成の重心が未指定で、方向性が大きく分かれる。",
+ "missing_materials": [
+  "会社の沿革・実績データ",
+  "事業内容の詳細",
+  "社員インタビューや写真素材"
+ ]
+}

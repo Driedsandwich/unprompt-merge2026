@@ -1,0 +1,182 @@
+{
+ "brief": "m07-recruit",
+ "rendered_at": "2026-08-01T07:34:11.141628+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "新卒・未経験者",
+    "tokens": {
+     "palette": [
+      "#fff8ec",
+      "#ff7a3d",
+      "#1e3a2f"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "未経験から始まる、採用ページの本音。"
+    }
+   },
+   {
+    "label": "即戦力の中途",
+    "tokens": {
+     "palette": [
+      "#1c1f26",
+      "#2e3440",
+      "#c9752b"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "中途採用募集、即戦力採用ページ:実績を持ち込み、明日から結果を出す。"
+    }
+   },
+   {
+    "label": "専門職・エンジニア等",
+    "tokens": {
+     "palette": [
+      "#12181f",
+      "#1f2933",
+      "#3ddc97"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "コードで会社を強くするエンジニアへ。技術の裁量、ここにある。"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "創業者の想い軸",
+    "tokens": {
+     "palette": [
+      "#1c1a16",
+      "#8a6a3b",
+      "#d8a34e"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "始まりの日に描いた地図、採用ページにもその言葉を刻む。"
+    }
+   },
+   {
+    "label": "事業の社会的意義軸",
+    "tokens": {
+     "palette": [
+      "#101815",
+      "#1f5e4a",
+      "#8fd9bc"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "採用ページで語る、私たちの仕事が社会に残す意味。"
+    }
+   },
+   {
+    "label": "現場社員の情熱軸",
+    "tokens": {
+     "palette": [
+      "#1c1c1a",
+      "#e8532b",
+      "#ffb100"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "現場から:今日も手を動かしながら、この仕事に本気です。"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "カジュアル口語",
+    "tokens": {
+     "palette": [
+      "#fff6e9",
+      "#ff8a3d",
+      "#2d2a26"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "うちで働くって、実際こんな感じです。まずは話しましょう。"
+    }
+   },
+   {
+    "label": "誠実な事実列挙調",
+    "tokens": {
+     "palette": [
+      "#f5f3ed",
+      "#2b2b26",
+      "#8a7b5c"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "採用情報:社員数、平均勤続年数、募集職種を記載。"
+    }
+   },
+   {
+    "label": "率直な弱み含む自己開示",
+    "tokens": {
+     "palette": [
+      "#2b2621",
+      "#8c7a63",
+      "#b8452e"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "正直に言うと、うちもまだ足りないことだらけです。"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "沿革・歴史中心",
+    "tokens": {
+     "palette": [
+      "#3b2e22",
+      "#8a6d4b",
+      "#c9a961"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "創業から続く想い、採用ページで語る私たちの歩み。"
+    }
+   },
+   {
+    "label": "事業内容中心",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#1f3a34",
+      "#c87b3e"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "私たちがつくっているもの、そのすべてがここにある。"
+    }
+   },
+   {
+    "label": "働く人・文化中心",
+    "tokens": {
+     "palette": [
+      "#2b2723",
+      "#d96b3a",
+      "#f2c14e"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "この人たちと、働きたい。素顔のまま向き合う採用ページ。"
+    }
+   }
+  ]
+ }
+}

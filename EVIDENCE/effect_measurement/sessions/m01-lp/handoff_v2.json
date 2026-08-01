@@ -1,0 +1,119 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "かっこいいけど信頼感もあるLPを作って。うちのサービス用。",
+ "compiled_at": "2026-08-01T07:40:52.387149+00:00",
+ "decisions": [
+  {
+   "question_point": "想定読み手が誰か",
+   "anchor_words": [
+    "うちのサービス用"
+   ],
+   "status": "decided",
+   "chosen_label": "新規見込み客",
+   "visual_tokens": {
+    "palette": [
+     "#0a0e1a",
+     "#1e3a8a",
+     "#00d9c0"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "サービスを、まだ知らないあなたへ。今すぐ試す価値がここにある。"
+   },
+   "tone_example": null,
+   "intent": "「うちのサービス用」という発注のみで読み手像が未定義だったため、新規見込み客を対象と確定し以降の訴求内容や語彙選定の基準を一意にした"
+  },
+  {
+   "question_point": "かっこよさと信頼感の比重配分",
+   "anchor_words": [
+    "かっこいいけど信頼感もある"
+   ],
+   "status": "decided",
+   "chosen_label": "半々でバランス型",
+   "visual_tokens": {
+    "palette": [
+     "#f2eee6",
+     "#2f4b44",
+     "#b08d57"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "サービスの本質を、誠実にデザインする。"
+   },
+   "tone_example": null,
+   "intent": "「かっこいいけど信頼感もある」は両立の程度が不明だったため半々でバランス型と確定し、デザインとコピーの配分基準を一意にした"
+  },
+  {
+   "question_point": "LPの目的(コンバージョン行動)",
+   "anchor_words": [
+    "LPを作って"
+   ],
+   "status": "decided",
+   "chosen_label": "問い合わせ獲得",
+   "visual_tokens": {
+    "palette": [
+     "#12181f",
+     "#22303f",
+     "#3fa9ff"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "まずはお気軽にご相談ください。専門スタッフが直接お答えします。"
+   },
+   "tone_example": null,
+   "intent": "「LPを作って」だけでは着地行動が不明だったため問い合わせ獲得を目的と確定し、CTA文言や導線設計の方向を一意にした"
+  },
+  {
+   "question_point": "信頼感の訴求根拠",
+   "anchor_words": [
+    "信頼感もある"
+   ],
+   "status": "decided",
+   "chosen_label": "権威/導入企業で訴求",
+   "visual_tokens": {
+    "palette": [
+     "#0b1d33",
+     "#1c3a5e",
+     "#b8935a"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "導入企業が選ぶ理由。信頼はロゴが語る。"
+   },
+   "tone_example": null,
+   "intent": "「信頼感もある」の具体的根拠が未指定だったため権威/導入企業での訴求と確定し、掲載すべき要素の種類を一意にした"
+  },
+  {
+   "question_point": "トーン&マナー(文体)",
+   "anchor_words": [
+    "かっこいい"
+   ],
+   "status": "decided",
+   "chosen_label": "クールで簡潔",
+   "visual_tokens": {
+    "palette": [
+     "#0a0a0c",
+     "#1c1f24",
+     "#3dffc4"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "無駄なし、迷いなし。サービスの本質だけを届ける。"
+   },
+   "tone_example": null,
+   "intent": "「かっこいい」が指す文体の幅が不明だったためクールで簡潔と確定し、コピーライティングの語調基準を一意にした"
+  }
+ ],
+ "residual_ambiguity_assessment": "読者・目的・訴求根拠・トーンが未指定で、成果物の方向性を左右する分岐が複数残存している。",
+ "missing_materials": [
+  "サービス名",
+  "サービスの具体的な機能・特徴",
+  "実績データ(導入社数・数値)",
+  "ロゴ・ブランドカラー等の素材"
+ ]
+}

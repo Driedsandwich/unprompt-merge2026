@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 | Portfolio</title>
+<style>
+/*
+  タイプスケール (基準16px, 比率 ×1.5 前後で意図的に飛躍)
+  --fs-body: 16px / --fs-lead: 20px / --fs-h2: 28px / --fs-h1: 64px
+*/
+:root{
+  --bg:#0a0a0a;
+  --paper:#e8e4dc;
+  --accent:#ff3b1f;
+  --fs-body:16px;
+  --fs-lead:20px;
+  --fs-h2:28px;
+  --fs-h1:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--bg);color:var(--paper);}
+body{
+  font-family:"Hiragino Sans","Yu Gothic UI","Segoe UI",system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:"Helvetica Neue","Hiragino Kaku Gothic ProN","Segoe UI",system-ui,sans-serif;
+  font-weight:800;
+  letter-spacing:0.02em;
+}
+section{
+  max-width:880px;
+  margin:0 auto;
+  padding:96px 32px;
+}
+/* GYAKUMON-CHOICE: シンプルさの徹底度 = ミニマル徹底 */
+section + section{border-top:1px solid #2a2a2a;}
+
+/* GYAKUMON-CHOICE: 「印象に残る」の実現方法 = ビジュアル訴求型 */
+.hero{
+  min-height:72vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:24px;
+  padding-top:120px;
+  padding-bottom:120px;
+}
+.hero .kicker{
+  font-size:14px;
+  letter-spacing:0.3em;
+  color:var(--accent);
+  text-transform:uppercase;
+}
+.hero h1{
+  font-size:var(--fs-h1);
+  line-height:1.05;
+  color:var(--paper);
+}
+.hero h1 span{color:var(--accent);}
+.hero p.lead{
+  font-size:var(--fs-lead);
+  color:#b8b4ac;
+  max-width:520px;
+}
+
+h2{
+  font-size:var(--fs-h2);
+  margin-bottom:40px;
+  color:var(--paper);
+  position:relative;
+  padding-left:20px;
+}
+/* GYAKUMON-CHOICE: 想定読み手(採用側)の職種領域 = デザイナー向け */
+h2::before{
+  content:"";
+  position:absolute;
+  left:0;top:6px;
+  width:8px;height:8px;
+  background:var(--accent);
+}
+
+.about p{max-width:600px;color:#cfcbc2;}
+
+/* GYAKUMON-CHOICE: サイトの構成の重心 = 作品ギャラリー中心 */
+.works-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:56px;
+}
+.work{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:40px;
+  align-items:start;
+}
+.work .thumb{
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,#1c1c1c,#0a0a0a 60%,var(--accent) 160%);
+  border:1px solid #2a2a2a;
+}
+.work h3{font-size:20px;margin-bottom:8px;}
+.work .role{font-size:13px;letter-spacing:0.1em;color:var(--accent);margin-bottom:12px;text-transform:uppercase;}
+.work p{color:#b8b4ac;max-width:440px;}
+
+.skills{display:flex;flex-wrap:wrap;gap:12px;}
+.skill{
+  border:1px solid #3d3d3d;
+  padding:8px 16px;
+  font-size:14px;
+  color:var(--paper);
+}
+
+.contact p{color:#cfcbc2;margin-bottom:24px;}
+.contact a{
+  display:inline-block;
+  color:var(--bg);
+  background:var(--paper);
+  padding:16px 32px;
+  font-weight:700;
+  text-decoration:none;
+  letter-spacing:0.05em;
+}
+footer{
+  text-align:center;
+  padding:48px 32px;
+  color:#5a5a5a;
+  font-size:13px;
+}
+
+@media (max-width:640px){
+  .hero h1{font-size:40px;}
+  .work{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="kicker">Portfolio — Designer</div>
+  <h1>〈氏名〉<br><span>手を動かした跡</span>を、削ぎ落として見せる。</h1>
+  <p class="lead">〈肩書き・専門領域〉として活動。作品がすべてを語る、という考えでこのページを作りました。</p>
+</section>
+
+<section class="about">
+  <h2>自己紹介</h2>
+  <p>〈経歴・専門分野についての紹介文をここに記載〉。デザインにおいて大切にしていることは〈価値観・スタンス〉。これまで〈携わってきた領域〉に取り組んできました。</p>
+</section>
+
+<section class="works">
+  <h2>作品</h2>
+  <div class="works-grid">
+    <div class="work">
+      <div class="thumb"></div>
+      <div>
+        <div class="role">〈カテゴリ〉</div>
+        <h3>〈作品タイトル 01〉</h3>
+        <p>〈この作品の概要・制作背景・自分の役割を記載〉</p>
+      </div>
+    </div>
+    <div class="work">
+      <div class="thumb"></div>
+      <div>
+        <div class="role">〈カテゴリ〉</div>
+        <h3>〈作品タイトル 02〉</h3>
+        <p>〈この作品の概要・制作背景・自分の役割を記載〉</p>
+      </div>
+    </div>
+    <div class="work">
+      <div class="thumb"></div>
+      <div>
+        <div class="role">〈カテゴリ〉</div>
+        <h3>〈作品タイトル 03〉</h3>
+        <p>〈この作品の概要・制作背景・自分の役割を記載〉</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills-section">
+  <h2>スキル</h2>
+  <div class="skills">
+    <span class="skill">〈スキル 1〉</span>
+    <span class="skill">〈スキル 2〉</span>
+    <span class="skill">〈スキル 3〉</span>
+    <span class="skill">〈スキル 4〉</span>
+    <span class="skill">〈スキル 5〉</span>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>連絡先</h2>
+  <p>お仕事のご相談・面談のご依頼はこちらまで。</p>
+  <a href="mailto:〈メールアドレス〉">〈メールアドレス〉 に連絡する</a>
+</section>
+
+<footer>© 〈氏名〉</footer>
+
+</body>
+</html>

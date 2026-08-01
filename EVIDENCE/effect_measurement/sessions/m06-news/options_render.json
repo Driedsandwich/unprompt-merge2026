@@ -1,0 +1,140 @@
+{
+ "brief": "m06-news",
+ "rendered_at": "2026-08-01T07:33:49.166711+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "全社員向け",
+    "tokens": {
+     "palette": [
+      "#fff7e8",
+      "#ff8a3d",
+      "#2b2b2b"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "みんな、今月もお疲れさま!社員のみんなへ、ひと言。"
+    }
+   },
+   {
+    "label": "特定部署・階層向け",
+    "tokens": {
+     "palette": [
+      "#1f2a24",
+      "#3e5c4c",
+      "#8c7a3f"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "営業部の皆さんへ、先月の現場対応に感謝します。"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "月の振り返り報告",
+    "tokens": {
+     "palette": [
+      "#edede6",
+      "#5c6b57",
+      "#8e6f4e"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "今月の社内報：先月の実績と進捗をまとめて振り返る"
+    }
+   },
+   {
+    "label": "士気を上げる激励",
+    "tokens": {
+     "palette": [
+      "#1a1006",
+      "#e85d0a",
+      "#ffc93c"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "今月も走り抜こう!社内報、全員のがんばりが力になる。"
+    }
+   },
+   {
+    "label": "号内容への導入",
+    "tokens": {
+     "palette": [
+      "#f4f1ec",
+      "#8a7b66",
+      "#c9a66b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "今月号へようこそ ― 特集の見どころを少しだけ先にご案内します。"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "少し柔らかい程度",
+    "tokens": {
+     "palette": [
+      "#fbf3e8",
+      "#d98b3f",
+      "#3e6b57"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "今月の社内報、はじめます。ゆるっと近況をお届けします。"
+    }
+   },
+   {
+    "label": "かなり口語的",
+    "tokens": {
+     "palette": [
+      "#fff6e5",
+      "#ff7a3d",
+      "#2b2b2b"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "みんな元気?今月も社内報いくよ〜!"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "経営層目線",
+    "tokens": {
+     "palette": [
+      "#1c2b3a",
+      "#2f4a63",
+      "#b08a4e"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "社員の皆さんへ、今月も現場を支えてくれてありがとう。"
+    }
+   },
+   {
+    "label": "編集担当目線",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#3a6b5c",
+      "#e8873a"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "編集部より、今月号のあいさつをお届けします"
+    }
+   }
+  ]
+ }
+}

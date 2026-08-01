@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スカウトメール</title>
+<style>
+  /*
+    トークン方針:
+    複数の判断点それぞれに視覚トークンが付与されていたため、
+    「文体トーン(フランク口語調)」の値を枠の基調として採用し、
+    他3点(経験層/目的/魅力軸)は本文の中身と語彙にのみ反映する。
+    パレットは地色/主要色/強調色の3色に絞り、他の色相を足さない。
+  */
+  :root{
+    --bg: #1a1a2e;      /* 地色 */
+    --main: #ff6b4a;    /* 主要色 */
+    --accent: #ffd23f;  /* 強調色 */
+    --ink: #f4f1ea;
+
+    /* タイプスケール(本文16pxを基準に1.25比) */
+    --fs-body: 16px;
+    --fs-sm: 13px;
+    --fs-h2: 20px;
+    --fs-h1: 28px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    padding: 96px 24px;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    font-family: "Hiragino Sans", "Yu Gothic UI", "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    line-height: 1.9; /* GYAKUMON-CHOICE: 文体トーン = フランク口語調 (airy密度) */
+  }
+
+  .sheet{
+    width: 720px;
+    max-width: 100%;
+  }
+
+  .eyebrow{
+    font-size: var(--fs-sm);
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  /* GYAKUMON-CHOICE: 訴求する魅力軸 = 技術・裁量訴求 */
+  h1{
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic UI", "Segoe UI", sans-serif;
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    margin: 0 0 56px;
+    color: var(--ink);
+  }
+  h1 span{ color: var(--main); }
+
+  .block{
+    margin: 0 0 40px;
+  }
+
+  .label{
+    font-size: var(--fs-sm);
+    color: var(--accent);
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+
+  p{
+    font-size: var(--fs-body);
+    margin: 0 0 24px;
+  }
+
+  .to{
+    font-size: var(--fs-h2);
+    font-weight: 700;
+    margin: 0 0 56px;
+  }
+
+  .cta{
+    margin-top: 64px;
+    padding: 24px 28px;
+    background: rgba(255,107,74,0.12);
+    border-radius: 16px; /* GYAKUMON-CHOICE: 読み手エンジニアの経験層 = 実務2〜4年目 (soft corner) */
+  }
+  .cta p{ margin: 0; font-size: var(--fs-body); }
+  .cta strong{ color: var(--accent); }
+
+  .sign{
+    margin-top: 96px;
+    font-size: var(--fs-sm);
+    color: #b9b6c9;
+  }
+  .sign .name{
+    font-size: var(--fs-body);
+    color: var(--ink);
+    margin: 0 0 4px;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="eyebrow">件名</p>
+  <!-- GYAKUMON-CHOICE: 文体トーン = フランク口語調 -->
+  <h1>裁量、渡します。<span>その実装力</span>、次のフェーズで使いませんか</h1>
+
+  <!-- GYAKUMON-CHOICE: 読み手エンジニアの経験層 = 実務2〜4年目 -->
+  <p class="to">〈候補者名〉さん</p>
+
+  <div class="block">
+    <p>はじめまして、〈会社名〉で採用を担当している〈担当者名〉です。〈候補者名〉さんのこれまでのお仕事、拝見していて素直に「いいな」と思ったので連絡しました。</p>
+
+    <p>実務2〜4年目って、基礎は一通り身についてて、あとは「誰の指示でどこまでやるか」が伸びしろを決める時期だと思ってます。うちは、任せると決めたらタスクの切り方から技術選定まで渡します。指示待ちで終わる仕事は用意していません。コードで事業がどう動くか、手元で確かめられる環境です。</p>
+
+    <p>もちろん、いきなり選考とかそういう堅い話じゃなくて、まずは30分だけ話しませんか。今の技術スタックのこと、任せてる裁量の実態、〈候補者名〉さんが今どんな環境を面白いと感じるか、その辺をフラットに話せたらうれしいです。合わなそうならそれもそれで全然OKです。</p>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: スカウトメールの目的 = カジュアル面談誘導 -->
+  <div class="cta">
+    <p>返信いただければ、<strong>オンラインで30分</strong>、都合の良い日時をいくつか出します。気軽にどうぞ。</p>
+  </div>
+
+  <div class="sign">
+    <p class="name">〈担当者名〉</p>
+    <p>〈会社名〉 採用担当<br>〈連絡先メールアドレス〉</p>
+  </div>
+
+</div>
+</body>
+</html>

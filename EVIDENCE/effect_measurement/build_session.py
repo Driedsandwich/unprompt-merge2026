@@ -61,14 +61,24 @@ def do_explode(runner, bid, model):
         print(f"    選択肢: {opts}")
 
 
-def do_build(runner, bid, picks, model):
+def do_build(runner, bid, picks, model, tokens_from=None, suffix=""):
     sdir = SESS / bid
     ex = json.loads((sdir / "explode.json").read_text(encoding="utf-8"))
     brief = ex["text"]
     branches = ex["payload"]["branches"]
     if len(picks) != len(branches):
         raise SystemExit(f"picks数 {len(picks)} != 判断点数 {len(branches)}")
-    renders = pg.step_render_all(runner, brief, branches, picks, model)
+    if tokens_from:
+        # v2: 選択セッションで提示した見本トークンをそのまま使う (再レンダしない — 提示と焼き付けの同一性)
+        opt = json.loads((sdir / tokens_from).read_text(encoding="utf-8"))["options"]
+        renders = []
+        for i in range(len(branches)):
+            t = opt[str(i)][picks[i]]["tokens"]
+            if not t:
+                raise SystemExit(f"branch{i} opt{picks[i]} のトークンが欠損 (options_render.json)")
+            renders.append({"ok": True, "tokens": t})
+    else:
+        renders = pg.step_render_all(runner, brief, branches, picks, model)
     bad = [i for i, r in enumerate(renders) if not r.get("ok")]
     if bad:
         raise SystemExit(f"render失敗: {bad}: {[renders[i].get('error') for i in bad]}")
@@ -95,9 +105,9 @@ def do_build(runner, bid, picks, model):
         "residual_ambiguity_assessment": ex["payload"].get("residual_ambiguity_assessment", ""),
         "missing_materials": ex["payload"].get("missing_materials", []),
     }
-    (sdir / "handoff.json").write_text(json.dumps(handoff, ensure_ascii=False, indent=1),
+    (sdir / ("handoff%s.json" % suffix)).write_text(json.dumps(handoff, ensure_ascii=False, indent=1),
                                        encoding="utf-8")
-    (sdir / "choice_record.json").write_text(json.dumps(
+    (sdir / ("choice_record%s.json" % suffix)).write_text(json.dumps(
         {"picks": picks,
          "labels": [branches[i]["options"][picks[i]]["label"] for i in range(len(picks))],
          "decided_at": pg.now_iso(), "owner": "AIペルソナ (意図メモ owner_memos.md 準拠)"},
@@ -110,6 +120,8 @@ def main():
     ap.add_argument("--id", required=True)
     ap.add_argument("--explode", action="store_true")
     ap.add_argument("--picks", default=None, help="カンマ区切りインデックス")
+    ap.add_argument("--tokens-from", default=None, help="options_render.json を指定すると再レンダせず提示トークンを焼き付ける")
+    ap.add_argument("--suffix", default="", help="出力ファイル名の接尾辞 (例: _v2)")
     ap.add_argument("--model", default="sonnet")
     ap.add_argument("--claude-bin", default="claude")
     ap.add_argument("--timeout", type=int, default=180)
@@ -120,7 +132,8 @@ def main():
     if args.explode:
         do_explode(runner, args.id, args.model)
     elif args.picks is not None:
-        do_build(runner, args.id, [int(x) for x in args.picks.split(",")], args.model)
+        do_build(runner, args.id, [int(x) for x in args.picks.split(",")], args.model,
+                 tokens_from=args.tokens_from, suffix=args.suffix)
     else:
         raise SystemExit("--explode か --picks を指定")
 

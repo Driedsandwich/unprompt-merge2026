@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>今月号の巻頭あいさつ</title>
+<style>
+  /*
+    タイプスケール(基準16px, 比率 1.25)
+    --fs-0: 16px 本文
+    --fs-1: 20px 小見出し
+    --fs-2: 25px 見出し
+    --fs-3: 31px リード
+  */
+  :root{
+    --bg: #fff7e8;
+    --accent: #ff8a3d;
+    --ink: #2b2b2b;
+    --fs-0: 1rem;
+    --fs-1: 1.25rem;
+    --fs-2: 1.5625rem;
+    --fs-3: 1.953rem;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", system-ui, sans-serif;
+    font-size: var(--fs-0);
+    line-height: 1.9;
+    display: flex;
+    justify-content: center;
+    padding: 64px 24px;
+  }
+
+  /* GYAKUMON-CHOICE: 読み手(社員)の対象範囲 = 全社員向け */
+  main{
+    width: 720px;
+    max-width: 100%;
+    background: #fffdf8;
+    border-radius: 24px;
+    padding: 80px 64px;
+  }
+
+  /* GYAKUMON-CHOICE: 執筆者の立場・一人称 = 編集担当目線 */
+  .byline{
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+
+  h1{
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Rounded Mgen+ 1c", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: var(--fs-3);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin: 0 0 56px;
+    color: var(--ink);
+  }
+
+  section{
+    margin-bottom: 40px;
+  }
+
+  section:last-of-type{
+    margin-bottom: 0;
+  }
+
+  h2{
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Rounded Mgen+ 1c", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: var(--fs-1);
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+
+  p{
+    margin: 0;
+  }
+
+  /* GYAKUMON-CHOICE: あいさつの主眼・目的 = 号内容への導入 */
+  .lead-note{
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 16px;
+    background: rgba(255,138,61,0.12);
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    color: var(--accent);
+  }
+
+  .closing{
+    margin-top: 88px;
+    padding-top: 32px;
+    border-top: 2px dotted rgba(255,138,61,0.35);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="byline">編集部より</p>
+  <!-- GYAKUMON-CHOICE: 「堅すぎない」の砕け度 = 少し柔らかい程度 -->
+  <h1>今月号、はじめます。<br>まずはひと呼吸、近況から。</h1>
+
+  <section>
+    <h2>みなさんへ</h2>
+    <p>
+      社内報編集部です。今月も一冊お届けできる運びとなりました。
+      忙しい合間にこのページを開いてくださって、ありがとうございます。
+    </p>
+  </section>
+
+  <section>
+    <h2>編集部の近況</h2>
+    <p>
+      今回も〈会社名〉のあちこちを取材して回りました。
+      季節の変わり目もあってか、部署ごとに動きが活発な一ヶ月だったように感じています。
+      詳しくは本編でどうぞ。
+    </p>
+  </section>
+
+  <section>
+    <h2>今月の話題</h2>
+    <p>
+      今号の特集は〈今月号の特集トピック〉です。
+      現場の声や〈執筆者名〉によるコラムも交えて構成しました。
+      ページをめくりながら、気になったところからのぞいてみてください。
+    </p>
+    <span class="lead-note">続きは次のページから</span>
+  </section>
+
+  <p class="closing">それでは、今月号もどうぞお楽しみください。</p>
+</main>
+</body>
+</html>

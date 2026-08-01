@@ -1,0 +1,98 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "昔の仲間を集める同窓会の案内、気軽に来たくなるやつ。",
+ "compiled_at": "2026-08-01T07:42:16.156810+00:00",
+ "decisions": [
+  {
+   "question_point": "参加対象の範囲",
+   "anchor_words": [
+    "昔の仲間を集める同窓会"
+   ],
+   "status": "decided",
+   "chosen_label": "学年全体広く",
+   "visual_tokens": {
+    "palette": [
+     "#fdf6e9",
+     "#f2a93b",
+     "#2e7d5b"
+    ],
+    "heading_font": "rounded",
+    "density": "dense",
+    "corner": "soft",
+    "tone_sample": "○○年卒、みんな集合!同窓会でわいわい近況報告しよう"
+   },
+   "tone_example": null,
+   "intent": "学年全体広くと定めたことで、案内は特定グループに限らず学年全体へ送る前提が確定する"
+  },
+  {
+   "question_point": "案内文のトーン",
+   "anchor_words": [
+    "気軽に来たくなるやつ"
+   ],
+   "status": "decided",
+   "chosen_label": "丁寧だが軽め",
+   "visual_tokens": {
+    "palette": [
+     "#f2ede4",
+     "#8c6a4e",
+     "#b8895f"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "同窓会、まずは顔を見せに。近況はまたゆっくり。"
+   },
+   "tone_example": null,
+   "intent": "丁寧だが軽めと選んだことで、堅苦しさを避けつつ礼を欠かない文面の言葉遣いが定まる"
+  },
+  {
+   "question_point": "開催形式・規模の印象付け",
+   "anchor_words": [
+    "同窓会の案内"
+   ],
+   "status": "decided",
+   "chosen_label": "ゆるい飲み会風",
+   "visual_tokens": {
+    "palette": [
+     "#3b2a22",
+     "#c9622b",
+     "#f2c879"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "同窓会、居酒屋集合!とりあえず一杯やろうぜ"
+   },
+   "tone_example": null,
+   "intent": "ゆるい飲み会風と定めたことで、格式ばった式典ではなく気楽な集まりとして伝える構成が確定する"
+  },
+  {
+   "question_point": "来てほしい動機の訴求軸",
+   "anchor_words": [
+    "気軽に来たくなるやつ"
+   ],
+   "status": "decided",
+   "chosen_label": "気軽さ・低負担訴求",
+   "visual_tokens": {
+    "palette": [
+     "#fff7ed",
+     "#fdba74",
+     "#fb923c"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "同窓会、ふらっとおいでよ。手ぶらでOK、顔出すだけでいい。"
+   },
+   "tone_example": null,
+   "intent": "気軽さ・低負担訴求を選んだことで、参加のハードルを下げる文言を前面に出す方針が定まる"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象範囲・トーン・形式・訴求軸が未指定で、成果物の方向性が大きく分かれる。",
+ "missing_materials": [
+  "開催日時",
+  "開催場所",
+  "参加費",
+  "幹事・問い合わせ先の連絡先"
+ ]
+}
