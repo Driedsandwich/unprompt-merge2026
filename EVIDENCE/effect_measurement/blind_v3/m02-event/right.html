@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>秋の社内勉強会</title>
+<style>
+  /*
+    GYAKUMON-CHOICE: 想定読者の範囲 = 希望者のみ任意参加
+    GYAKUMON-CHOICE: 勉強会の目的・訴求軸 = 交流・カルチャー重視
+    GYAKUMON-CHOICE: 告知ページのトーン = カジュアル
+    GYAKUMON-CHOICE: ページの構成の重心 = 日時場所中心の告知型
+    採用パレット: [#0f1e1b, #1f4b3f, #7cffb2] / 見出し: rounded / 密度: airy / 角: soft
+  */
+  :root{
+    --bg:#0f1e1b;
+    --main:#1f4b3f;
+    --accent:#7cffb2;
+    --fs-base:17px;
+    --fs-lead:1.35rem;
+    --fs-h1:2.6rem;
+    --fs-h2:1.5rem;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:#e9f5ef;
+    font-family:"Hiragino Sans","Yu Gothic","Segoe UI",sans-serif;
+    font-size:var(--fs-base);
+    line-height:1.9;
+  }
+  h1,h2,h3,.brand{
+    font-family:"Hiragino Maru Gothic ProN","Yu Gothic UI",sans-serif;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  /* GYAKUMON-CHOICE: ページの構成の重心 = 日時場所中心の告知型 */
+  header{
+    padding:96px 24px 64px;
+    background:linear-gradient(180deg,var(--main) 0%,var(--bg) 100%);
+    border-radius:0 0 40px 40px;
+  }
+  .brand{
+    font-size:.9rem;
+    letter-spacing:.2em;
+    color:var(--accent);
+    margin:0 0 24px;
+  }
+  h1{
+    font-size:var(--fs-h1);
+    font-weight:800;
+    letter-spacing:.02em;
+    margin:0 0 32px;
+    line-height:1.4;
+  }
+  .infobar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px 32px;
+    font-size:1.1rem;
+    font-weight:600;
+  }
+  .infobar span{
+    color:var(--accent);
+    font-weight:800;
+    margin-right:8px;
+  }
+  section{
+    padding:96px 0;
+  }
+  section + section{
+    border-top:1px solid rgba(124,255,178,.15);
+  }
+  h2{
+    font-size:var(--fs-h2);
+    font-weight:700;
+    letter-spacing:.04em;
+    color:var(--accent);
+    margin:0 0 32px;
+  }
+  p{
+    margin:0 0 16px;
+  }
+  /* GYAKUMON-CHOICE: 勉強会の目的・訴求軸 = 交流・カルチャー重視 */
+  .highlights{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    gap:24px;
+  }
+  .highlights li{
+    background:rgba(31,75,63,.5);
+    border-radius:20px;
+    padding:24px 28px;
+  }
+  .highlights li b{
+    display:block;
+    color:var(--accent);
+    margin-bottom:8px;
+    font-size:1.05rem;
+  }
+  /* GYAKUMON-CHOICE: 想定読者の範囲 = 希望者のみ任意参加 */
+  .note{
+    font-size:.95rem;
+    opacity:.8;
+  }
+  /* GYAKUMON-CHOICE: 告知ページのトーン = カジュアル */
+  .cta{
+    text-align:center;
+    padding:96px 24px 120px;
+  }
+  .cta p{
+    font-size:var(--fs-lead);
+    font-weight:700;
+  }
+  .cta a{
+    display:inline-block;
+    margin-top:16px;
+    padding:16px 40px;
+    background:var(--accent);
+    color:var(--bg);
+    font-weight:800;
+    text-decoration:none;
+    border-radius:999px;
+  }
+  footer{
+    text-align:center;
+    padding:32px;
+    font-size:.85rem;
+    opacity:.6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="brand">SOCIAL STUDY MEETUP · AUTUMN</p>
+    <h1>秋の勉強会、<br>来たい人だけどうぞ。</h1>
+    <div class="infobar">
+      <div><span>日時</span>〈開催日〉 〈開始時刻〉〜</div>
+      <div><span>場所</span>〈会場〉</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <h2>どんな会?</h2>
+  <p>がっつり学ぶというより、まずは顔を合わせて話す時間です。〈テーマ〉をきっかけに、飲み物片手にゆるっと集まりましょう。</p>
+  <p class="note">参加は完全に任意です。都合が合う人だけ、気軽に一枠のぞいてみてください。来られなくても特に問題はありません。</p>
+</section>
+
+<section>
+  <h2>見どころ</h2>
+  <ul class="highlights">
+    <li><b>まずは雑談から</b>普段あまり話さない人とも、テーマを肴に自然と会話が生まれます。</li>
+    <li><b>聞くだけでもOK</b>発表を聞いているだけでも十分楽しめる構成にする予定です。</li>
+    <li><b>終わったあとも</b>会の後にそのまま軽く話し込む時間も用意しています。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>参加方法</h2>
+  <p>下のボタンから申し込んでください。詳しい持ち物や当日の流れは、追ってお知らせします。</p>
+</section>
+
+</div>
+
+<div class="cta">
+  <p>気になったら、まずはポチッと。</p>
+  <a href="#">参加してみる</a>
+</div>
+
+<footer>社内勉強会 実行チーム</footer>
+
+</body>
+</html>

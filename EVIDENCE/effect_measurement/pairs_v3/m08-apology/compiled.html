@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>発送遅延のお詫び</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 謝罪の相手・遅延の状況説明範囲 = 個別注文への謝罪
+  GYAKUMON-CHOICE: 遅延理由の言及有無 = 簡潔に理由を説明
+  GYAKUMON-CHOICE: 補償・代替対応の提示有無 = 補償なし謝罪のみ
+  GYAKUMON-CHOICE: 新しい発送予定日の明記有無 = 具体的な日付を明記
+*/
+:root{
+  --bg:#f4f1ec;
+  --main:#2e4a3f;
+  --accent:#b8862e;
+  --ink:#3a3530;
+
+  /* タイプスケール（本文16pxを基準に1.25倍刻み） */
+  --fs-body:16px;
+  --fs-lead:20px;
+  --fs-h1:28px;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:#e7e2da;
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  color:var(--ink);
+}
+
+.sheet{
+  max-width:720px;
+  margin:64px auto;
+  background:var(--bg);
+  border:1px solid #d9d2c6;
+  padding:96px 72px;
+}
+
+.subject-label{
+  font-family:-apple-system,"BlinkMacSystemFont","Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:12px;
+  letter-spacing:0.16em;
+  color:var(--accent);
+  margin:0 0 8px;
+}
+
+h1.subject{
+  font-family:-apple-system,"BlinkMacSystemFont","Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:var(--fs-h1);
+  font-weight:700;
+  letter-spacing:0.02em;
+  line-height:1.5;
+  color:var(--main);
+  margin:0 0 96px;
+  border-left:3px solid var(--accent);
+  padding-left:16px;
+}
+
+.addressee{
+  font-size:var(--fs-lead);
+  line-height:1.9;
+  margin:0 0 64px;
+}
+
+section{
+  margin:0 0 96px;
+}
+
+section .label{
+  font-family:-apple-system,"BlinkMacSystemFont","Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:12px;
+  letter-spacing:0.14em;
+  color:var(--main);
+  margin:0 0 24px;
+}
+
+p{
+  font-size:var(--fs-body);
+  line-height:2.1;
+  margin:0 0 24px;
+}
+
+.schedule-box{
+  background:#fff;
+  border-left:3px solid var(--accent);
+  padding:24px 32px;
+  margin:32px 0;
+}
+
+.schedule-box .date{
+  font-family:-apple-system,"BlinkMacSystemFont","Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--main);
+}
+
+.closing{
+  margin-top:96px;
+  font-size:var(--fs-body);
+  line-height:2.1;
+}
+
+.sign{
+  margin-top:64px;
+  font-size:14px;
+  color:#6b6459;
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<p class="subject-label">件名</p>
+<!-- GYAKUMON-CHOICE: 謝罪の相手・遅延の状況説明範囲 = 個別注文への謝罪 -->
+<h1 class="subject">〈ご注文商品名〉発送遅延のお詫び（ご注文番号：〈注文番号〉）</h1>
+
+<p class="addressee">〈お客様名〉様</p>
+
+<section>
+<p class="label">お詫びと状況説明</p>
+<!-- GYAKUMON-CHOICE: 遅延理由の言及有無 = 簡潔に理由を説明 -->
+<p>
+このたびは〈お客様名〉様にご注文いただきました〈商品名〉の発送が遅れておりますこと、心よりお詫び申し上げます。ご注文番号〈注文番号〉につきまして、在庫確認に想定以上の時間を要しており、お約束していたお届け予定日までに商品をお届けできない状況となっております。楽しみにお待ちいただいていたところ、ご不便とご心配をおかけしておりますこと、重ねてお詫び申し上げます。
+</p>
+</section>
+
+<section>
+<p class="label">今後の対応</p>
+<!-- GYAKUMON-CHOICE: 新しい発送予定日の明記有無 = 具体的な日付を明記 -->
+<p>
+現在は在庫の確認が完了し、発送準備を進めております。新しいお届け予定は以下の通りです。
+</p>
+<div class="schedule-box">
+<span class="date">〈新しいお届け予定〉</span>
+</div>
+<!-- GYAKUMON-CHOICE: 補償・代替対応の提示有無 = 補償なし謝罪のみ -->
+<p>
+発送が完了しましたら、追跡番号を含むご案内を改めてお送りいたします。ご不明な点がございましたら、〈問い合わせ先窓口〉までお気軽にご連絡ください。
+</p>
+</section>
+
+<div class="closing">
+<p>
+今回のことを真摯に受け止め、今後このようなことがないよう努めてまいります。〈お客様名〉様には今しばらくお待たせすることとなり恐縮ですが、何卒よろしくお願い申し上げます。
+</p>
+</div>
+
+<p class="sign">〈会社名〉 カスタマーサポート</p>
+
+</div>
+</body>
+</html>

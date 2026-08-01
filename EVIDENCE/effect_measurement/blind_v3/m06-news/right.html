@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>巻頭あいさつ</title>
+<style>
+  /*
+    GYAKUMON決定まとめ:
+    読み手 = 全社員向け / 主眼 = 号内容への導入 / 砕け度 = 少し柔らかい程度 / 一人称 = 編集担当目線
+    パレット採用: 読み手向け決定のトークン [#fff7e8, #ff8a3d, #2b2b2b] を基調とする(他3決定のrounded/airy/softと整合するため)
+  */
+  :root{
+    --bg:#fff7e8;
+    --accent:#ff8a3d;
+    --ink:#2b2b2b;
+    /* タイプスケール(本文16pxを基準に1.25比) */
+    --fs-body:16px;
+    --fs-lead:20px;
+    --fs-h1:28px;
+    --fs-label:13px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: "Hiragino Maru Gothic ProN", "BIZ UDGothic", "Yu Gothic", "Helvetica Neue", sans-serif;
+    font-size:var(--fs-body);
+    line-height:1.9;
+    display:flex;
+    justify-content:center;
+    padding: 64px 24px;
+  }
+
+  .sheet{
+    width:100%;
+    max-width:720px;
+  }
+
+  /* GYAKUMON-CHOICE: 執筆者の立場・一人称 = 編集担当目線 */
+  .label{
+    font-size:var(--fs-label);
+    letter-spacing:0.12em;
+    color:var(--accent);
+    font-weight:700;
+    margin:0 0 8px;
+  }
+
+  /* GYAKUMON-CHOICE: 「堅すぎない」の砕け度 = 少し柔らかい程度 */
+  h1{
+    font-family: "UD Rounded", "Hiragino Maru Gothic ProN", "Rounded Mplus 1c", sans-serif;
+    font-weight:800;
+    font-size:var(--fs-h1);
+    letter-spacing:0.02em;
+    margin:0 0 40px;
+    border-radius:16px;
+    background:rgba(255,138,61,0.12);
+    display:inline-block;
+    padding:12px 20px;
+  }
+
+  section{
+    margin-bottom:96px;
+  }
+  section:last-child{
+    margin-bottom:0;
+  }
+
+  p{
+    margin:0 0 16px;
+  }
+
+  /* GYAKUMON-CHOICE: 読み手(社員)の対象範囲 = 全社員向け */
+  .lead{
+    font-size:var(--fs-lead);
+    font-weight:700;
+  }
+
+  /* GYAKUMON-CHOICE: あいさつの主眼・目的 = 号内容への導入 */
+  .topic{
+    background:#fff;
+    border-radius:16px;
+    padding:24px 28px;
+    box-shadow: 0 1px 0 rgba(43,43,43,0.06);
+  }
+  .topic p{
+    margin:0;
+  }
+
+  .closing{
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <!-- GYAKUMON-CHOICE: 執筆者の立場・一人称 = 編集担当目線 -->
+    <p class="label">編集部より</p>
+
+    <!-- GYAKUMON-CHOICE: 「堅すぎない」の砕け度 = 少し柔らかい程度 -->
+    <h1>今月も、おつかれさまです。</h1>
+
+    <!-- GYAKUMON-CHOICE: 読み手(社員)の対象範囲 = 全社員向け -->
+    <section>
+      <p class="lead">〈会社名〉のみなさん、こんにちは。今月も社内報をお届けします。</p>
+      <p>暑い日が続きますが、いかがお過ごしでしょうか。編集部でも、原稿を集めながらオフィスの冷房と睨めっこする日々です。</p>
+    </section>
+
+    <!-- GYAKUMON-CHOICE: あいさつの主眼・目的 = 号内容への導入 -->
+    <section class="topic">
+      <p>今号は〈今月号の特集内容〉を中心にお届けします。現場の声や小さな出来事まで、なるべく等身大にまとめてみましたので、休憩がてらのぞいてみてください。</p>
+    </section>
+
+    <section>
+      <p class="closing">それでは、今月号もどうぞお楽しみください。</p>
+    </section>
+
+  </div>
+</body>
+</html>

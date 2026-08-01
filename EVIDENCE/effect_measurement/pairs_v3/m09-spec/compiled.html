@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+/*
+  :root scale (base 15px, ratio ~1.25)
+  --step0: 15px 本文
+  --step1: 19px 小見出し
+  --step2: 24px 見出し
+  --step3: 30px 表題
+*/
+:root{
+  --bg:#1b2a22;
+  --mid:#3f6b4f;
+  --gold:#c9a24b;
+  --step0:15px;
+  --step1:19px;
+  --step2:24px;
+  --step3:30px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:#10190f;
+  color:#e9ede8;
+  font-family:"Hiragino Sans","Yu Gothic UI","Noto Sans JP",system-ui,sans-serif;
+  font-size:var(--step0);
+  line-height:1.5;
+  padding:64px 16px;
+}
+/* GYAKUMON-CHOICE: 仕様メモの粒度・読み手 = 開発者向け技術仕様 */
+main{
+  width:720px;
+  max-width:100%;
+  margin:0 auto;
+  background:var(--bg);
+  border:1px solid var(--mid);
+  padding:48px 56px;
+}
+h1{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:var(--step3);
+  font-weight:700;
+  letter-spacing:0.02em;
+  color:var(--gold);
+  margin:0 0 8px;
+}
+p.lead{
+  font-size:var(--step1);
+  color:#cfd8cf;
+  margin:0 0 40px;
+  border-left:3px solid var(--gold);
+  padding-left:16px;
+}
+section{
+  margin-top:40px;
+  padding-top:24px;
+  border-top:1px solid #2c3f30;
+}
+section:first-of-type{border-top:none;padding-top:0;}
+h2{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:var(--step2);
+  font-weight:600;
+  letter-spacing:0.04em;
+  color:var(--gold);
+  margin:0 0 16px;
+}
+p{margin:0 0 8px;color:#dfe6df;}
+ul{margin:0;padding-left:1.2em;}
+li{margin-bottom:8px;color:#dfe6df;}
+code{
+  font-family:"SFMono-Regular",Consolas,Menlo,monospace;
+  background:#0f1a10;
+  color:var(--gold);
+  padding:1px 4px;
+  font-size:0.92em;
+}
+.field{
+  font-size:0.9em;
+  color:#9fb0a2;
+}
+</style>
+</head>
+<body>
+<main>
+<!-- GYAKUMON-CHOICE: 利用者・利用シーンの想定 = 経理担当の処理効率化 -->
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程の範囲 = 経理処理・集計の自動化 -->
+<h1>経費精算ツール 仕様メモ</h1>
+<p class="lead">経費精算、月次締めを止めない。仕訳の突合をひとつの画面で。</p>
+
+<section>
+<h2>目的</h2>
+<p>申請された経費データの仕訳・突合・月次集計にかかる経理担当者の手作業を減らす。申請入力の使い勝手ではなく、経理側が処理・集計する工程の効率化を目的とする。</p>
+</section>
+
+<section>
+<h2>対象ユーザー</h2>
+<p>社内の経理担当者。申請者ではなく、申請データを受け取って処理する側を主利用者とする。</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: ツールの提供形態 = 単機能Webフォーム -->
+<!-- GYAKUMON-CHOICE: 対象とする経費の範囲 = 一般経費全般 -->
+<h2>主要機能</h2>
+<ul>
+<li>申請一覧の表示・費目別フィルタ(交通費・交際費・消耗品費など費目を限定しない)</li>
+<li>各申請の仕訳コード付与・承認ステータス更新</li>
+<li>月次締め時点での自動集計(費目別・部署別小計)</li>
+<li>集計結果の一括出力(<code>POST /expenses/export</code> 相当のエンドポイントを想定)</li>
+<li>申請データの手入力修正(金額・費目の訂正)</li>
+</ul>
+</section>
+
+<section>
+<h2>画面イメージの言葉での説明</h2>
+<p>単一画面のWebフォーム構成。画面上部に未処理申請の一覧をテーブル表示し、行を選ぶと仕訳コード欄と承認ボタンが右側に開く。画面下部に当月の費目別集計を常時表示し、締め処理ボタンを押すと集計を確定して出力する。</p>
+</section>
+
+<section>
+<h2>使わないと決めたもの</h2>
+<ul>
+<li>申請者向けの入力アプリ・スマホアプリ化</li>
+<li>費目ごとの個別画面分割(一般経費全般を単一画面で扱う)</li>
+<li>承認フローの多段階カスタマイズ機能</li>
+</ul>
+<p class="field">未確定事項: 対象人数・既存承認ルート・会計ソフト連携・開発期限は〈発注者確認事項〉として別途詰める。</p>
+</section>
+
+</main>
+</body>
+</html>

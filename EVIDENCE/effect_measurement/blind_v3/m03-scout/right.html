@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スカウトメール</title>
+<style>
+  /*
+    GYAKUMON-CHOICE: 読み手エンジニアの経験層 = 実務2〜4年目
+    GYAKUMON-CHOICE: スカウトメールの目的 = カジュアル面談誘導
+    GYAKUMON-CHOICE: 訴求する魅力軸 = 技術・裁量訴求
+    GYAKUMON-CHOICE: 文体トーン = フランク口語調
+  */
+  :root{
+    --bg: #12181c;
+    --main: #2f9e83;
+    --accent: #c8ff4d;
+    --ink: #e8f1ee;
+    --sub: #9db3ac;
+    /* タイプスケール: 本文16pxを基準に×1.25刻み */
+    --fs-body: 16px;
+    --fs-lead: 20px;
+    --fs-h1: 31px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--bg);
+    padding:64px 24px;
+    font-family: "Hiragino Sans", "Yu Gothic", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+  }
+  .doc{ max-width:720px; margin:0 auto; }
+  .field{
+    margin:0 0 8px;
+    font-size:13px;
+    letter-spacing:.08em;
+    color: var(--sub);
+    text-transform:uppercase;
+  }
+  /* GYAKUMON-CHOICE: 訴求する魅力軸 = 技術・裁量訴求 */
+  h1{
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-weight:800;
+    font-size: var(--fs-h1);
+    letter-spacing:-0.01em;
+    line-height:1.4;
+    margin: 0 0 64px;
+    padding-bottom:24px;
+    border-bottom: 2px solid var(--main);
+    color: var(--ink);
+  }
+  h1 span{ color: var(--accent); }
+  .to{
+    font-size: var(--fs-lead);
+    font-weight:600;
+    margin: 0 0 40px;
+    color: var(--ink);
+  }
+  /* GYAKUMON-CHOICE: 文体トーン = フランク口語調 */
+  p{
+    font-size: var(--fs-body);
+    line-height:1.95;
+    margin: 0 0 32px;
+    color: var(--ink);
+  }
+  .lead{
+    font-size: var(--fs-lead);
+    font-weight:700;
+    color: var(--main);
+    line-height:1.7;
+    margin-bottom:40px;
+  }
+  /* GYAKUMON-CHOICE: 読み手エンジニアの経験層 = 実務2〜4年目 */
+  .tag{
+    display:inline-block;
+    font-size:13px;
+    font-weight:700;
+    color: var(--bg);
+    background: var(--accent);
+    padding:4px 12px;
+    border-radius:100px;
+    margin-bottom:24px;
+    letter-spacing:.02em;
+  }
+  section{ margin-bottom:96px; }
+  /* GYAKUMON-CHOICE: スカウトメールの目的 = カジュアル面談誘導 */
+  .cta{
+    padding:32px;
+    border-radius:16px;
+    background: rgba(47,158,131,0.12);
+    border: 1px solid var(--main);
+  }
+  .cta p{ margin:0 0 24px; }
+  .cta p:last-child{ margin:0; }
+  .btn{
+    display:inline-block;
+    font-weight:700;
+    font-size:15px;
+    color: var(--bg);
+    background: var(--accent);
+    padding:14px 28px;
+    border-radius:100px;
+    text-decoration:none;
+  }
+  .sign{
+    margin-top:96px;
+    padding-top:32px;
+    border-top: 1px solid rgba(157,179,172,0.3);
+    font-size:14px;
+    color: var(--sub);
+    line-height:1.9;
+  }
+  .sign strong{
+    display:block;
+    font-size:16px;
+    color: var(--ink);
+    margin-bottom:4px;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <p class="field">件名</p>
+  <h1>裁量、渡します。<br><span>2〜4年目</span>のあなたのコードに、興味があります。</h1>
+
+  <p class="field">宛名</p>
+  <p class="to">〈候補者名〉さん</p>
+
+  <section>
+    <span class="tag">実務2〜4年目のエンジニアへ</span>
+    <p class="lead">はじめまして、〈会社名〉の〈担当者名〉です。〈候補者名〉さんの実装や技術発信を見て、率直に「一緒に何か作りたい」と思ってご連絡しました。</p>
+
+    <p>いきなりで恐縮ですが、単刀直入に言います。うちは若手だからと機能の端っこだけ任せる、みたいなことはしません。設計から実装、リリース後の改善まで、事業を動かす一連の判断をエンジニア本人に渡しています。2〜4年目という、基礎は固まったけど任される範囲がまだ物足りない、そんなタイミングの人にこそ合う環境だと思っています。</p>
+
+    <p>「裁量」って聞こえはいいけど丸投げでは、と思われるかもしれません。そこは違って、技術的な壁にぶつかったときに一緒に考えるメンバーはちゃんといます。ただ、最終的にどう作るかを決めるのは現場のエンジニア自身、というだけです。</p>
+  </section>
+
+  <section class="cta">
+    <p>詳細は〈募集ポジションの職務内容〉次第で全然変わってくるので、まずは30分だけ、オンラインで気軽に話しませんか。選考ではなく、お互いにとって合うか見極める場だと思ってもらえたら。今のお仕事や技術の話を聞かせてもらえるだけでも嬉しいです。</p>
+    <p><a class="btn" href="#">30分だけ話してみる →</a></p>
+  </section>
+
+  <div class="sign">
+    <strong>〈担当者名〉</strong>
+    〈会社名〉<br>
+    〈連絡先メールアドレス〉
+  </div>
+
+</div>
+</body>
+</html>
