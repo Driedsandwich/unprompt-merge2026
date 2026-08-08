@@ -2,6 +2,8 @@
 
 🎬 [デモ動画 (114秒)](https://youtu.be/YukHyZ-7INU) / 📄 [デック (PDF・10枚)](https://driedsandwich.github.io/unprompt-merge2026/docs/deck/unprompt_deck.pdf) / 🌐 [実生成ギャラリー](https://driedsandwich.github.io/unprompt-merge2026/)
 
+🏆 **MERGE 2026 AI Designathon — 3位** (14提出・決勝進出3組・2026-08-08) — [決勝登壇資料](docs/finals/) / 提出後の効果測定 (負けた回も含む全公開) は [EVIDENCE/effect_measurement/](EVIDENCE/effect_measurement/)
+
 **曖昧な一文を、AIに渡せる「意図の指示書」にコンパイルする。** AIはあなたの成果物を書かない — あなたの一文がまだ決めていないこと (判断点) を実物の見本つきで問い返し、あなたは**決める**か**委ねる**かをクリックするだけ。最初の一文のあと、タイプは0文字。
 
 <img src="assets/readme/flow.svg" alt="曖昧な一文 → 爆散(3〜5の判断点+見本) → 決める/委ねる(クリックのみ) → 意図の指示書(JSON) → いつものAIへ" width="100%">
