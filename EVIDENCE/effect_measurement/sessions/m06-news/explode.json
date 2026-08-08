@@ -1,0 +1,84 @@
+{
+ "brief": "m06-news",
+ "text": "月イチの社内報の巻頭あいさつ、堅すぎない感じで。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "読み手(社員)の対象範囲",
+    "anchor_words": [
+     "社内報の巻頭あいさつ"
+    ],
+    "options": [
+     {
+      "label": "全社員向け"
+     },
+     {
+      "label": "特定部署・階層向け"
+     }
+    ],
+    "default_if_unresolved": "全社員向けとして書く"
+   },
+   {
+    "id": "b1",
+    "question_point": "あいさつの主眼・目的",
+    "anchor_words": [
+     "巻頭あいさつ"
+    ],
+    "options": [
+     {
+      "label": "月の振り返り報告"
+     },
+     {
+      "label": "士気を上げる激励"
+     },
+     {
+      "label": "号内容への導入"
+     }
+    ],
+    "default_if_unresolved": "号内容への軽い導入とする"
+   },
+   {
+    "id": "b2",
+    "question_point": "「堅すぎない」の砕け度",
+    "anchor_words": [
+     "堅すぎない感じで"
+    ],
+    "options": [
+     {
+      "label": "少し柔らかい程度"
+     },
+     {
+      "label": "かなり口語的"
+     }
+    ],
+    "default_if_unresolved": "少し柔らかい程度に留める"
+   },
+   {
+    "id": "b3",
+    "question_point": "執筆者の立場・一人称",
+    "anchor_words": [
+     "巻頭あいさつ"
+    ],
+    "options": [
+     {
+      "label": "経営層目線"
+     },
+     {
+      "label": "編集担当目線"
+     }
+    ],
+    "default_if_unresolved": "編集担当目線で書く"
+   }
+  ],
+  "residual_ambiguity_assessment": "対象読者・目的・トーンの強度・語り手立場が未指定で、方向性が大きく分かれる余地が残る。",
+  "missing_materials": [
+   "今月号の特集内容・トピック",
+   "発行号数・時期の具体情報"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:56:46.714507+00:00"
+}

@@ -1,0 +1,126 @@
+{
+ "brief": "m08-apology",
+ "rendered_at": "2026-08-01T07:34:22.932636+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "個別注文への謝罪",
+    "tokens": {
+     "palette": [
+      "#f5f1ec",
+      "#6b5b4f",
+      "#b0895f"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "ご注文の発送遅延、心よりお詫び申し上げます。"
+    }
+   },
+   {
+    "label": "全顧客向け一斉告知",
+    "tokens": {
+     "palette": [
+      "#1c2430",
+      "#33475b",
+      "#e0a52b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "お客様各位:発送遅延のお詫び 全ご注文への影響と対応をご報告します"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "理由に触れない",
+    "tokens": {
+     "palette": [
+      "#f5f1ea",
+      "#8a7a63",
+      "#5c6b57"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "発送のご連絡が遅れましたこと、心よりお詫び申し上げます。"
+    }
+   },
+   {
+    "label": "簡潔に理由を説明",
+    "tokens": {
+     "palette": [
+      "#f4f1ec",
+      "#5b4636",
+      "#b8895a"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "発送遅延のご連絡：在庫確認に時間を要し、発送が遅れております。"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "補償なし謝罪のみ",
+    "tokens": {
+     "palette": [
+      "#3e3a36",
+      "#8a8378",
+      "#b8ada0"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "発送遅延のお詫び。心よりお詫び申し上げます。"
+    }
+   },
+   {
+    "label": "クーポン等を提示",
+    "tokens": {
+     "palette": [
+      "#fff7ed",
+      "#f97316",
+      "#b45309"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "発送遅延のお詫びに、クーポンをご用意しました"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "具体的な日付を明記",
+    "tokens": {
+     "palette": [
+      "#f4f1ec",
+      "#2e4a3f",
+      "#b8862e"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "商品到着は8月5日を予定しております。"
+    }
+   },
+   {
+    "label": "目安のみ・後日連絡",
+    "tokens": {
+     "palette": [
+      "#f4ede3",
+      "#b08d57",
+      "#7a6248"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "発送準備中です、目安が整い次第あらためてご連絡いたします。"
+    }
+   }
+  ]
+ }
+}

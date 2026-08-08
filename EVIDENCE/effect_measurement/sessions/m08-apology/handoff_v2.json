@@ -1,0 +1,97 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "発送遅延のお詫びメール、誠実だけど重すぎないトーンで。",
+ "compiled_at": "2026-08-01T07:41:59.886527+00:00",
+ "decisions": [
+  {
+   "question_point": "謝罪の相手・遅延の状況説明範囲",
+   "anchor_words": [
+    "発送遅延のお詫び"
+   ],
+   "status": "decided",
+   "chosen_label": "個別注文への謝罪",
+   "visual_tokens": {
+    "palette": [
+     "#f5f1ec",
+     "#6b5b4f",
+     "#b0895f"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "ご注文の発送遅延、心よりお詫び申し上げます。"
+   },
+   "tone_example": null,
+   "intent": "個別注文への謝罪と決めたことで、対象読者と説明範囲が当該注文一件に限定される旨が下流で一意に定まる"
+  },
+  {
+   "question_point": "遅延理由の言及有無",
+   "anchor_words": [
+    "発送遅延"
+   ],
+   "status": "decided",
+   "chosen_label": "簡潔に理由を説明",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#5b4636",
+     "#b8895a"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "発送遅延のご連絡：在庫確認に時間を要し、発送が遅れております。"
+   },
+   "tone_example": null,
+   "intent": "遅延理由を簡潔に説明する方針により、詳細な原因追及ではなく読者の納得を得る程度の記述量が本文で確定する"
+  },
+  {
+   "question_point": "補償・代替対応の提示有無",
+   "anchor_words": [
+    "お詫び"
+   ],
+   "status": "decided",
+   "chosen_label": "補償なし謝罪のみ",
+   "visual_tokens": {
+    "palette": [
+     "#3e3a36",
+     "#8a8378",
+     "#b8ada0"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "発送遅延のお詫び。心よりお詫び申し上げます。"
+   },
+   "tone_example": null,
+   "intent": "補償なし謝罪のみとしたことで、割引やクーポン等の代替対応を本文に盛り込まない方針が確定する"
+  },
+  {
+   "question_point": "新しい発送予定日の明記有無",
+   "anchor_words": [
+    "発送遅延"
+   ],
+   "status": "decided",
+   "chosen_label": "具体的な日付を明記",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#2e4a3f",
+     "#b8862e"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "商品到着は8月5日を予定しております。"
+   },
+   "tone_example": null,
+   "intent": "具体的な日付を明記する方針により、曖昧な見込み表現ではなく確定した発送予定日を本文に記載することが定まる"
+  }
+ ],
+ "residual_ambiguity_assessment": "トーンは指定済みだが、対象範囲・理由開示・補償・日程明記が未確定。",
+ "missing_materials": [
+  "対象の注文番号・商品名",
+  "新しい発送予定日",
+  "問い合わせ先窓口情報"
+ ]
+}

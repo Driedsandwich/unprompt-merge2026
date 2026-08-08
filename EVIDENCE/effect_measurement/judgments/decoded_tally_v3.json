@@ -1,0 +1,159 @@
+{
+ "rows": [
+  {
+   "id": "m01-lp",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 4
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m02-event",
+   "owner": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp1": {
+    "cond": "raw",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 4
+   }
+  },
+  {
+   "id": "m03-scout",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "compiled",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m04-ec",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m05-portfolio",
+   "owner": {
+    "cond": "raw",
+    "conf": 3
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "compiled",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m06-news",
+   "owner": {
+    "cond": "raw",
+    "conf": 3
+   },
+   "tp1": {
+    "cond": "raw",
+    "conf": 2
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m07-recruit",
+   "owner": {
+    "cond": "compiled",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 4
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 4
+   }
+  },
+  {
+   "id": "m08-apology",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 4
+   }
+  },
+  {
+   "id": "m09-spec",
+   "owner": {
+    "cond": "compiled",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "raw",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 2
+   }
+  },
+  {
+   "id": "m10-invite",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "raw",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 3
+   }
+  }
+ ],
+ "tally": {
+  "owner": "3/10",
+  "tp1": "5/10",
+  "tp2": "2/10"
+ }
+}

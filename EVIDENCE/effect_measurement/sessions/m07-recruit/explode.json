@@ -1,0 +1,94 @@
+{
+ "brief": "m07-recruit",
+ "text": "採用ページの会社紹介、飾らないけど熱意が伝わるように。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "読み手として想定する対象",
+    "anchor_words": [
+     "採用ページの会社紹介"
+    ],
+    "options": [
+     {
+      "label": "新卒・未経験者"
+     },
+     {
+      "label": "即戦力の中途"
+     },
+     {
+      "label": "専門職・エンジニア等"
+     }
+    ],
+    "default_if_unresolved": "中途採用者一般向け"
+   },
+   {
+    "id": "b1",
+    "question_point": "熱意の伝え方の軸",
+    "anchor_words": [
+     "熱意が伝わるように"
+    ],
+    "options": [
+     {
+      "label": "創業者の想い軸"
+     },
+     {
+      "label": "事業の社会的意義軸"
+     },
+     {
+      "label": "現場社員の情熱軸"
+     }
+    ],
+    "default_if_unresolved": "事業の社会的意義を軸に"
+   },
+   {
+    "id": "b2",
+    "question_point": "「飾らない」の具体的トーン",
+    "anchor_words": [
+     "飾らないけど"
+    ],
+    "options": [
+     {
+      "label": "カジュアル口語"
+     },
+     {
+      "label": "誠実な事実列挙調"
+     },
+     {
+      "label": "率直な弱み含む自己開示"
+     }
+    ],
+    "default_if_unresolved": "誠実な事実列挙調"
+   },
+   {
+    "id": "b3",
+    "question_point": "構成の中心軸",
+    "anchor_words": [
+     "会社紹介"
+    ],
+    "options": [
+     {
+      "label": "沿革・歴史中心"
+     },
+     {
+      "label": "事業内容中心"
+     },
+     {
+      "label": "働く人・文化中心"
+     }
+    ],
+    "default_if_unresolved": "事業内容中心"
+   }
+  ],
+  "residual_ambiguity_assessment": "対象読者・トーンの質感・訴求軸・構成の重心が未指定で、方向性が大きく分かれる。",
+  "missing_materials": [
+   "会社の沿革・実績データ",
+   "事業内容の詳細",
+   "社員インタビューや写真素材"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:56:58.492367+00:00"
+}

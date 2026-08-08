@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈氏名〉 Portfolio</title>
+<style>
+/*
+  GYAKUMON-CHOICE (site-level palette in effect):
+  読み手 = デザイナー向け / 印象の実現方法 = ビジュアル訴求型 / 構成の重心 = 作品ギャラリー中心 / シンプルさ = ミニマル徹底
+  palette: [#0a0a0a(地), #e8e4dc(主要), #ff3b1f(強調)]
+*/
+:root{
+  --bg:#0a0a0a;
+  --base:#e8e4dc;
+  --accent:#ff3b1f;
+  --step-0: 16px;
+  --step-1: 20px;
+  --step-2: 28px;
+  --step-3: 44px;
+  --step-4: 72px;
+  --step-5: 112px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--base)}
+body{
+  font-family:"Hiragino Sans","Yu Gothic UI","Helvetica Neue",sans-serif;
+  font-size:var(--step-0);
+  line-height:1.9;
+  font-weight:400;
+}
+h1,h2,h3{
+  font-family:"Hiragino Kaku Gothic StdN","Yu Gothic UI","Arial",sans-serif;
+  font-weight:800;
+  letter-spacing:0.02em;
+  color:var(--base);
+}
+section{
+  max-width:720px;
+  margin:0 auto;
+  padding:var(--step-5) 32px;
+}
+/* GYAKUMON-CHOICE: 角の形状(全決定共通) = sharp */
+img,.card,.tag,button,a.btn{border-radius:0}
+
+header.hero{
+  min-height:80vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:var(--step-5) 32px;
+  max-width:820px;
+  margin:0 auto;
+  border-bottom:1px solid rgba(232,228,220,0.15);
+}
+.hero-eyebrow{
+  font-size:var(--step-0);
+  color:var(--accent);
+  font-weight:700;
+  letter-spacing:0.12em;
+  margin-bottom:var(--step-2);
+}
+.hero h1{
+  font-size:clamp(40px,7vw,84px);
+  letter-spacing:-0.02em;
+  line-height:1.05;
+  margin-bottom:var(--step-2);
+}
+.hero h1 span{color:var(--accent)}
+.hero p.lead{
+  font-size:var(--step-2);
+  font-weight:400;
+  color:rgba(232,228,220,0.85);
+  max-width:520px;
+  line-height:1.7;
+}
+.hero .role{
+  margin-top:var(--step-3);
+  font-size:var(--step-1);
+  color:rgba(232,228,220,0.6);
+}
+
+h2.section-title{
+  font-size:var(--step-3);
+  margin-bottom:var(--step-3);
+  border-left:4px solid var(--accent);
+  padding-left:var(--step-1);
+}
+
+section.about p{
+  font-size:var(--step-1);
+  color:rgba(232,228,220,0.85);
+  max-width:600px;
+}
+
+section.works{padding-top:var(--step-5);padding-bottom:var(--step-5)}
+.work{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--step-1);
+  padding:var(--step-3) 0;
+  border-top:1px solid rgba(232,228,220,0.15);
+}
+.work:last-child{border-bottom:1px solid rgba(232,228,220,0.15)}
+.work .thumb{
+  width:100%;
+  aspect-ratio:16/8;
+  background:
+    linear-gradient(135deg, rgba(255,59,31,0.18), transparent 60%),
+    repeating-linear-gradient(90deg, rgba(232,228,220,0.06) 0 2px, transparent 2px 40px);
+  border:1px solid rgba(232,228,220,0.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:var(--step-2);
+  color:rgba(232,228,220,0.4);
+  letter-spacing:0.08em;
+}
+.work h3{font-size:var(--step-2);margin-top:var(--step-1)}
+.work p{color:rgba(232,228,220,0.75);margin-top:8px;max-width:560px}
+.work .meta{margin-top:var(--step-0);font-size:14px;color:var(--accent);letter-spacing:0.05em}
+
+.skills-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-top:var(--step-2);
+}
+.tag{
+  border:1px solid rgba(232,228,220,0.3);
+  padding:12px 20px;
+  font-size:15px;
+  letter-spacing:0.03em;
+}
+
+footer.contact{
+  text-align:left;
+  padding-bottom:var(--step-5);
+}
+footer.contact p{color:rgba(232,228,220,0.7);margin-bottom:var(--step-2)}
+.contact-item{
+  display:block;
+  font-size:var(--step-2);
+  color:var(--base);
+  text-decoration:none;
+  border-bottom:1px solid rgba(232,228,220,0.2);
+  padding:16px 0;
+}
+.contact-item span{color:var(--accent);margin-right:12px}
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 「印象に残る」の実現方法 = ビジュアル訴求型 -->
+<header class="hero">
+  <div class="hero-eyebrow">PORTFOLIO / 〈氏名〉</div>
+  <h1>手を動かした跡を、<br><span>削ぎ落として</span>見せる。</h1>
+  <p class="lead">言葉より先に、作った物を見てほしい。ここには経歴の説明ではなく、実際に形にした3つの仕事だけを置いた。</p>
+  <div class="role">〈肩書き・専門領域〉 / 転職活動用ポートフォリオ</div>
+</header>
+
+<section class="about">
+  <h2 class="section-title">自己紹介</h2>
+  <p>〈氏名〉。〈経歴の概要をここに記載〉。作ることそのものより、作ったあとに何が残るかを考えて手を動かしている。詳しい経歴・スキルの詳細は面談の中でお話しします。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: サイトの構成の重心 = 作品ギャラリー中心 -->
+<section class="works">
+  <h2 class="section-title">作品</h2>
+
+  <div class="work">
+    <div class="thumb">〈作品タイトル1〉</div>
+    <h3>〈作品タイトル1〉</h3>
+    <p>〈この作品の概要・自分が担った役割をここに記載〉</p>
+    <div class="meta">〈使用ツール・領域〉</div>
+  </div>
+
+  <div class="work">
+    <div class="thumb">〈作品タイトル2〉</div>
+    <h3>〈作品タイトル2〉</h3>
+    <p>〈この作品の概要・自分が担った役割をここに記載〉</p>
+    <div class="meta">〈使用ツール・領域〉</div>
+  </div>
+
+  <div class="work">
+    <div class="thumb">〈作品タイトル3〉</div>
+    <h3>〈作品タイトル3〉</h3>
+    <p>〈この作品の概要・自分が担った役割をここに記載〉</p>
+    <div class="meta">〈使用ツール・領域〉</div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: シンプルさの徹底度 = ミニマル徹底 -->
+<section class="skills">
+  <h2 class="section-title">スキル</h2>
+  <div class="skills-list">
+    <div class="tag">〈スキル1〉</div>
+    <div class="tag">〈スキル2〉</div>
+    <div class="tag">〈スキル3〉</div>
+    <div class="tag">〈スキル4〉</div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 想定読み手(採用側)の職種領域 = デザイナー向け -->
+<footer class="contact">
+  <h2 class="section-title">連絡先</h2>
+  <p>ご連絡は下記よりお願いします。</p>
+  <a class="contact-item" href="mailto:contact@example.com"><span>Mail</span>contact@example.com</a>
+  <a class="contact-item" href="#"><span>Web</span>〈ポートフォリオURL〉</a>
+</footer>
+
+</body>
+</html>

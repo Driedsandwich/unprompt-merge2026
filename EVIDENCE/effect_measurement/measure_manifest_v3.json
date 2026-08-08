@@ -1,0 +1,145 @@
+{
+ "format": "unprompt.effect_measure.v3",
+ "pairs": {
+  "m01-lp": {
+   "brief_id": "m01-lp",
+   "brief": "かっこいいけど信頼感もあるLPを作って。うちのサービス用。",
+   "generated_at": "2026-08-01T08:29:30.546754+00:00",
+   "blind_order": "BA",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"かっこいいけど信頼感もあるLPを作って。うちのサービス用。\",\n \"compiled_at\": \"2026-08-01T07:40:52.387149+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"想定読み手が誰か\",\n   \"anchor_words\": [\n    \"うちのサービス用\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"新規見込み客\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0a0e1a\",\n     \"#1e3a8a\",\n     \"#00d9c0\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"サービスを、まだ知らないあなたへ。今すぐ試す価値がここにある。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"「うちのサービス用」という発注のみで読み手像が未定義だったため、新規見込み客を対象と確定し以降の訴求内容や語彙選定の基準を一意にした\"\n  },\n  {\n   \"question_point\": \"かっこよさと信頼感の比重配分\",\n   \"anchor_words\": [\n    \"かっこいいけど信頼感もある\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"半々でバランス型\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f2eee6\",\n     \"#2f4b44\",\n     \"#b08d57\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"サービスの本質を、誠実にデザインする。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"「かっこいいけど信頼感もある」は両立の程度が不明だったため半々でバランス型と確定し、デザインとコピーの配分基準を一意にした\"\n  },\n  {\n   \"question_point\": \"LPの目的(コンバージョン行動)\",\n   \"anchor_words\": [\n    \"LPを作って\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"問い合わせ獲得\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#12181f\",\n     \"#22303f\",\n     \"#3fa9ff\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"まずはお気軽にご相談ください。専門スタッフが直接お答えします。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"「LPを作って」だけでは着地行動が不明だったため問い合わせ獲得を目的と確定し、CTA文言や導線設計の方向を一意にした\"\n  },\n  {\n   \"question_point\": \"信頼感の訴求根拠\",\n   \"anchor_words\": [\n    \"信頼感もある\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"権威/導入企業で訴求\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0b1d33\",\n     \"#1c3a5e\",\n     \"#b8935a\"\n    ],\n    \"heading_font\": \"serif\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"導入企業が選ぶ理由。信頼はロゴが語る。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"「信頼感もある」の具体的根拠が未指定だったため権威/導入企業での訴求と確定し、掲載すべき要素の種類を一意にした\"\n  },\n  {\n   \"question_point\": \"トーン&マナー(文体)\",\n   \"anchor_words\": [\n    \"かっこいい\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"クールで簡潔\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0a0a0c\",\n     \"#1c1f24\",\n     \"#3dffc4\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"無駄なし、迷いなし。サービスの本質だけを届ける。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"「かっこいい」が指す文体の幅が不明だったためクールで簡潔と確定し、コピーライティングの語調基準を一意にした\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"読者・目的・訴求根拠・トーンが未指定で、成果物の方向性を左右する分岐が複数残存している。\",\n \"missing_materials\": [\n  \"サービス名\",\n  \"サービスの具体的な機能・特徴\",\n  \"実績データ(導入社数・数値)\",\n  \"ロゴ・ブランドカラー等の素材\"\n ]\n}"
+  },
+  "m02-event": {
+   "brief_id": "m02-event",
+   "brief": "秋にやる社内勉強会の告知ページ、いい感じにして。",
+   "generated_at": "2026-08-01T08:30:24.867003+00:00",
+   "blind_order": "AB",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"秋にやる社内勉強会の告知ページ、いい感じにして。\",\n \"compiled_at\": \"2026-08-01T07:41:02.575581+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"想定読者の範囲\",\n   \"anchor_words\": [\n    \"社内勉強会\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"希望者のみ任意参加\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0f1e1b\",\n     \"#1f4b3f\",\n     \"#7cffb2\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"秋の勉強会、来たい人だけどうぞ。気軽に一枠のぞいてみて。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"希望者のみ任意参加という選択により、告知文は動員圧を避け不参加者への配慮を要しない構成が定まる。\"\n  },\n  {\n   \"question_point\": \"勉強会の目的・訴求軸\",\n   \"anchor_words\": [\n    \"勉強会\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"交流・カルチャー重視\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#2b1b14\",\n     \"#c97b4a\",\n     \"#e8b84b\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"秋の夜、語り合う勉強会。飲み物片手に、まずは顔を合わせよう。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"交流・カルチャー重視という選択により、内容は学習成果よりも参加体験や雰囲気の伝達を主軸とすることが定まる。\"\n  },\n  {\n   \"question_point\": \"告知ページのトーン\",\n   \"anchor_words\": [\n    \"いい感じにして\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"カジュアル\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#3a3630\",\n     \"#c4b8a5\",\n     \"#8a9a78\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"秋の勉強会、気軽にどうぞ。社内メンバーでゆるっと学ぶ会です。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"「いい感じにして」というトーン指定の曖昧さをカジュアルと確定させ、文体・語尾・堅苦しさの程度が一意に定まる。\"\n  },\n  {\n   \"question_point\": \"ページの構成の重心\",\n   \"anchor_words\": [\n    \"告知ページ\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"日時場所中心の告知型\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0f1f3d\",\n     \"#1e3a6e\",\n     \"#f2a900\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"秋季社内勉強会 10/14(水) 19:00 会議室A、詳細はこちら\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"日時場所中心の告知型という選択により、ページ冒頭に開催情報を配置し詳細説明は補足に回す構成が定まる。\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"読者・目的・トーン・構成が未指定で、依頼文は方向性を示すのみ。判断点が複数残存する。\",\n \"missing_materials\": [\n  \"開催日時\",\n  \"開催場所/形式(対面かオンラインか)\",\n  \"登壇者/講師名\",\n  \"勉強会のテーマ・題材\",\n  \"申込方法\"\n ]\n}"
+  },
+  "m03-scout": {
+   "brief_id": "m03-scout",
+   "brief": "若手エンジニアに刺さるスカウトメール書いて。",
+   "generated_at": "2026-08-01T08:31:41.166606+00:00",
+   "blind_order": "AB",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"若手エンジニアに刺さるスカウトメール書いて。\",\n \"compiled_at\": \"2026-08-01T07:41:11.991358+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"読み手エンジニアの経験層\",\n   \"anchor_words\": [\n    \"若手エンジニアに刺さる\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"実務2〜4年目\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#12212e\",\n     \"#1f4e5f\",\n     \"#3fa79a\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"その実務経験、次のフェーズへ。2〜4年目のエンジニアに向けたスカウト。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"実務2〜4年目という中堅未満の層に絞ることで、訴求内容や難易度の書きぶりが一意に定まる。\"\n  },\n  {\n   \"question_point\": \"スカウトメールの目的\",\n   \"anchor_words\": [\n    \"スカウトメール書いて\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"カジュアル面談誘導\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f5f1ea\",\n     \"#4a6b5a\",\n     \"#e8845c\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"エンジニアさん、まずは30分だけ話しませんか\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"カジュアル面談誘導に定めたことで、選考応募ではなく気軽な接点作りへ文面のCTAが一意に定まる。\"\n  },\n  {\n   \"question_point\": \"訴求する魅力軸\",\n   \"anchor_words\": [\n    \"刺さる\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"技術・裁量訴求\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#12181c\",\n     \"#2f9e83\",\n     \"#c8ff4d\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"裁量は、渡す。コードで事業を動かすエンジニアへ。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"技術・裁量訴求を選んだことで、待遇面ではなく技術環境と裁量の大きさを本文の中心に据えることが定まる。\"\n  },\n  {\n   \"question_point\": \"文体トーン\",\n   \"anchor_words\": [\n    \"書いて\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"フランク口語調\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#1a1a2e\",\n     \"#ff6b4a\",\n     \"#ffd23f\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"エンジニアさん、そのコード見て惚れました！\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"フランク口語調を選んだことで、堅い敬語表現ではなく親しみやすい語り口で文面を書くことが定まる。\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"対象層・目的・訴求軸・トーンが未指定で、成果物の方向性が大きく分かれる曖昧なブリーフ。\",\n \"missing_materials\": [\n  \"自社の会社名・事業内容\",\n  \"募集ポジションの職務内容\",\n  \"候補者の経歴やスカウト理由となる実績情報\"\n ]\n}"
+  },
+  "m04-ec": {
+   "brief_id": "m04-ec",
+   "brief": "この新商品の説明文、魅力的にお願い。",
+   "generated_at": "2026-08-01T08:32:31.168854+00:00",
+   "blind_order": "BA",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"この新商品の説明文、魅力的にお願い。\",\n \"compiled_at\": \"2026-08-01T07:41:24.022786+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"想定読者\",\n   \"anchor_words\": [\n    \"この新商品の説明文\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"新規見込み客\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0b1220\",\n     \"#3b82f6\",\n     \"#f97316\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"はじめまして、この新商品があなたの毎日を変えます。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"読者を新規見込み客と確定させ、既存客向けの専門用語を避け訴求の前提を一意に定めるものだ。\"\n  },\n  {\n   \"question_point\": \"訴求の軸\",\n   \"anchor_words\": [\n    \"魅力的にお願い\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"感情・体験重視\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#241c1f\",\n     \"#7a2e3b\",\n     \"#d99a5b\"\n    ],\n    \"heading_font\": \"serif\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"触れた瞬間、時間が緩む。この新商品が届ける小さな余韻。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"訴求軸を感情・体験重視に定め、スペック列挙ではなく使用時の心理的満足を中心に構成することを規定するものだ。\"\n  },\n  {\n   \"question_point\": \"トーン・文体\",\n   \"anchor_words\": [\n    \"魅力的にお願い\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"親しみやすい\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#fff7ed\",\n     \"#f4a65a\",\n     \"#e8654a\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"新商品、できました。まずはあなたに使ってみてほしいな。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"文体を親しみやすいに定め、硬い敬体や専門的言い回しを避けた語りかけの表現に統一することを規定するものだ。\"\n  },\n  {\n   \"question_point\": \"掲載媒体・構成\",\n   \"anchor_words\": [\n    \"この新商品の説明文\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"ECの商品ページ\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#ffffff\",\n     \"#1a1a1a\",\n     \"#c9a227\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"normal\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"新商品詳細:仕様と魅力を余すことなくご紹介します。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"掲載先をECの商品ページと定め、購入導線を意識した見出しと訴求順の構成にすることを規定するものだ。\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"読者・訴求軸・トーン・媒体が未指定で、方向性が大きく分かれる余地がある。\",\n \"missing_materials\": [\n  \"新商品の名称・カテゴリ\",\n  \"商品の具体的な特徴・スペック\",\n  \"価格情報\",\n  \"競合や差別化ポイント\"\n ]\n}"
+  },
+  "m05-portfolio": {
+   "brief_id": "m05-portfolio",
+   "brief": "転職用のポートフォリオサイト、シンプルだけど印象に残る感じで。",
+   "generated_at": "2026-08-01T08:33:33.168952+00:00",
+   "blind_order": "BA",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"転職用のポートフォリオサイト、シンプルだけど印象に残る感じで。\",\n \"compiled_at\": \"2026-08-01T07:41:32.811885+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"想定読み手(採用側)の職種領域\",\n   \"anchor_words\": [\n    \"転職用のポートフォリオサイト\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"デザイナー向け\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0a0a0a\",\n     \"#e8e4dc\",\n     \"#ff3b1f\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"portfolio — 手を動かした跡を、削ぎ落として見せる。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"採用側をデザイナー向けと確定させ、以降の作例選定や訴求軸をデザイン評価基準に一意に定める。\"\n  },\n  {\n   \"question_point\": \"「印象に残る」の実現方法\",\n   \"anchor_words\": [\n    \"印象に残る感じ\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"ビジュアル訴求型\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0a0a0f\",\n     \"#1c1c24\",\n     \"#ff3366\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"Portfolio — 一目で伝わる、作品が語るキャリア。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"「印象に残る感じ」の曖昧さをビジュアル訴求型と確定させ、写真や配色など視覚要素で差別化する方針が定まる。\"\n  },\n  {\n   \"question_point\": \"サイトの構成の重心\",\n   \"anchor_words\": [\n    \"ポートフォリオサイト\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"作品ギャラリー中心\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0b0b0c\",\n     \"#e8e4dc\",\n     \"#c9542a\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"作品が語る、余白の中で。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"ポートフォリオサイトの構成を作品ギャラリー中心と確定させ、経歴文より作品掲載が優先される情報設計が定まる。\"\n  },\n  {\n   \"question_point\": \"シンプルさの徹底度\",\n   \"anchor_words\": [\n    \"シンプルだけど印象に残る感じ\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"ミニマル徹底\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#0a0a0a\",\n     \"#ffffff\",\n     \"#3d3d3d\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"余白が語る、ポートフォリオ。削ぎ落とした経歴だけを見せる。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"「シンプルだけど印象に残る」の両立をミニマル徹底と確定させ、装飾を極力排した余白重視のレイアウトに定まる。\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"読者・訴求軸・構成重心・シンプル度が未指定で曖昧度は高い。\",\n \"missing_materials\": [\n  \"職種・業界情報\",\n  \"実績・作品データ\",\n  \"経歴・スキル情報\"\n ]\n}"
+  },
+  "m06-news": {
+   "brief_id": "m06-news",
+   "brief": "月イチの社内報の巻頭あいさつ、堅すぎない感じで。",
+   "generated_at": "2026-08-01T08:34:12.410337+00:00",
+   "blind_order": "AB",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"月イチの社内報の巻頭あいさつ、堅すぎない感じで。\",\n \"compiled_at\": \"2026-08-01T07:41:43.323973+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"読み手(社員)の対象範囲\",\n   \"anchor_words\": [\n    \"社内報の巻頭あいさつ\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"全社員向け\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#fff7e8\",\n     \"#ff8a3d\",\n     \"#2b2b2b\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"みんな、今月もお疲れさま!社員のみんなへ、ひと言。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"巻頭あいさつという語だけでは読者層が特定できないため全社員向けと定め表現や話題選定の前提を一意にした\"\n  },\n  {\n   \"question_point\": \"あいさつの主眼・目的\",\n   \"anchor_words\": [\n    \"巻頭あいさつ\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"号内容への導入\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f4f1ec\",\n     \"#8a7b66\",\n     \"#c9a66b\"\n    ],\n    \"heading_font\": \"serif\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"今月号へようこそ ― 特集の見どころを少しだけ先にご案内します。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"あいさつの役割が号内容への導入と定まったことで文章が単独の挨拶ではなく本編への橋渡しとして構成される\"\n  },\n  {\n   \"question_point\": \"「堅すぎない」の砕け度\",\n   \"anchor_words\": [\n    \"堅すぎない感じで\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"少し柔らかい程度\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#fbf3e8\",\n     \"#d98b3f\",\n     \"#3e6b57\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"今月の社内報、はじめます。ゆるっと近況をお届けします。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"堅すぎないという曖昧な指示を少し柔らかい程度と定めたことで文体の砕け具合の振れ幅が確定した\"\n  },\n  {\n   \"question_point\": \"執筆者の立場・一人称\",\n   \"anchor_words\": [\n    \"巻頭あいさつ\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"編集担当目線\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f4f1ea\",\n     \"#3a6b5c\",\n     \"#e8873a\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"編集部より、今月号のあいさつをお届けします\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"巻頭あいさつの語り手が誰かという不確定要素を編集担当目線と定め一人称や語り口の基準が固定された\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"対象読者・目的・トーンの強度・語り手立場が未指定で、方向性が大きく分かれる余地が残る。\",\n \"missing_materials\": [\n  \"今月号の特集内容・トピック\",\n  \"発行号数・時期の具体情報\"\n ]\n}"
+  },
+  "m07-recruit": {
+   "brief_id": "m07-recruit",
+   "brief": "採用ページの会社紹介、飾らないけど熱意が伝わるように。",
+   "generated_at": "2026-08-01T08:35:20.527253+00:00",
+   "blind_order": "BA",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"採用ページの会社紹介、飾らないけど熱意が伝わるように。\",\n \"compiled_at\": \"2026-08-01T07:41:51.930031+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"読み手として想定する対象\",\n   \"anchor_words\": [\n    \"採用ページの会社紹介\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"新卒・未経験者\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#fff8ec\",\n     \"#ff7a3d\",\n     \"#1e3a2f\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"未経験から始まる、採用ページの本音。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"読み手を新卒・未経験者と定めたことで、専門用語を避け基礎から説明する文体と情報量が決まる。\"\n  },\n  {\n   \"question_point\": \"熱意の伝え方の軸\",\n   \"anchor_words\": [\n    \"熱意が伝わるように\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"現場社員の情熱軸\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#1c1c1a\",\n     \"#e8532b\",\n     \"#ffb100\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"dense\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"現場から:今日も手を動かしながら、この仕事に本気です。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"熱意の表現軸を現場社員の情熱としたことで、経営理念ではなく現場の声や具体エピソードを中心に語る構成になる。\"\n  },\n  {\n   \"question_point\": \"「飾らない」の具体的トーン\",\n   \"anchor_words\": [\n    \"飾らないけど\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"率直な弱み含む自己開示\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#2b2621\",\n     \"#8c7a63\",\n     \"#b8452e\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"正直に言うと、うちもまだ足りないことだらけです。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"飾らないの内実を弱みも含む率直な自己開示と定めたことで、美化した表現を避け課題も語るトーンが定まる。\"\n  },\n  {\n   \"question_point\": \"構成の中心軸\",\n   \"anchor_words\": [\n    \"会社紹介\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"働く人・文化中心\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#2b2723\",\n     \"#d96b3a\",\n     \"#f2c14e\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"この人たちと、働きたい。素顔のまま向き合う採用ページ。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"構成の中心を働く人・文化としたことで、事業内容や実績よりも社員や職場の雰囲気を軸に据えた章立てになる。\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"対象読者・トーンの質感・訴求軸・構成の重心が未指定で、方向性が大きく分かれる。\",\n \"missing_materials\": [\n  \"会社の沿革・実績データ\",\n  \"事業内容の詳細\",\n  \"社員インタビューや写真素材\"\n ]\n}"
+  },
+  "m08-apology": {
+   "brief_id": "m08-apology",
+   "brief": "発送遅延のお詫びメール、誠実だけど重すぎないトーンで。",
+   "generated_at": "2026-08-01T08:36:03.918160+00:00",
+   "blind_order": "BA",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"発送遅延のお詫びメール、誠実だけど重すぎないトーンで。\",\n \"compiled_at\": \"2026-08-01T07:41:59.886527+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"謝罪の相手・遅延の状況説明範囲\",\n   \"anchor_words\": [\n    \"発送遅延のお詫び\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"個別注文への謝罪\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f5f1ec\",\n     \"#6b5b4f\",\n     \"#b0895f\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"ご注文の発送遅延、心よりお詫び申し上げます。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"個別注文への謝罪と決めたことで、対象読者と説明範囲が当該注文一件に限定される旨が下流で一意に定まる\"\n  },\n  {\n   \"question_point\": \"遅延理由の言及有無\",\n   \"anchor_words\": [\n    \"発送遅延\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"簡潔に理由を説明\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f4f1ec\",\n     \"#5b4636\",\n     \"#b8895a\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"発送遅延のご連絡：在庫確認に時間を要し、発送が遅れております。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"遅延理由を簡潔に説明する方針により、詳細な原因追及ではなく読者の納得を得る程度の記述量が本文で確定する\"\n  },\n  {\n   \"question_point\": \"補償・代替対応の提示有無\",\n   \"anchor_words\": [\n    \"お詫び\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"補償なし謝罪のみ\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#3e3a36\",\n     \"#8a8378\",\n     \"#b8ada0\"\n    ],\n    \"heading_font\": \"serif\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"発送遅延のお詫び。心よりお詫び申し上げます。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"補償なし謝罪のみとしたことで、割引やクーポン等の代替対応を本文に盛り込まない方針が確定する\"\n  },\n  {\n   \"question_point\": \"新しい発送予定日の明記有無\",\n   \"anchor_words\": [\n    \"発送遅延\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"具体的な日付を明記\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f4f1ec\",\n     \"#2e4a3f\",\n     \"#b8862e\"\n    ],\n    \"heading_font\": \"serif\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"商品到着は8月5日を予定しております。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"具体的な日付を明記する方針により、曖昧な見込み表現ではなく確定した発送予定日を本文に記載することが定まる\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"トーンは指定済みだが、対象範囲・理由開示・補償・日程明記が未確定。\",\n \"missing_materials\": [\n  \"対象の注文番号・商品名\",\n  \"新しい発送予定日\",\n  \"問い合わせ先窓口情報\"\n ]\n}"
+  },
+  "m09-spec": {
+   "brief_id": "m09-spec",
+   "brief": "社内の経費精算をラクにする小さなツールの仕様メモを書いて。",
+   "generated_at": "2026-08-01T08:36:52.479137+00:00",
+   "blind_order": "AB",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"社内の経費精算をラクにする小さなツールの仕様メモを書いて。\",\n \"compiled_at\": \"2026-08-01T07:42:07.756709+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"利用者・利用シーンの想定\",\n   \"anchor_words\": [\n    \"社内の経費精算をラクにする\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"経理担当の処理効率化\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#1b2a22\",\n     \"#3f6b4f\",\n     \"#c9a24b\"\n    ],\n    \"heading_font\": \"serif\",\n    \"density\": \"dense\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"経費精算、月次締めを止めない。仕訳の突合をひとつの画面で。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"経理担当の処理効率化と定めたことで、想定ユーザーが申請者ではなく経理担当者側であることが確定した。\"\n  },\n  {\n   \"question_point\": \"「ラクにする」対象工程の範囲\",\n   \"anchor_words\": [\n    \"経費精算をラクにする\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"経理処理・集計の自動化\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#1b2430\",\n     \"#3e5c76\",\n     \"#00b8a9\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"dense\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"経費データ自動集計。仕訳から月次レポートまで一括処理。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"経理処理・集計の自動化を選んだことで、対象工程が申請入力ではなく経理側の処理・集計作業に定まった。\"\n  },\n  {\n   \"question_point\": \"ツールの提供形態\",\n   \"anchor_words\": [\n    \"小さなツール\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"単機能Webフォーム\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f4f5f7\",\n     \"#3a5a78\",\n     \"#1f2933\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"経費精算フォーム。入力欄はひとつ、迷わず提出。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"単機能Webフォームと定めたことで、「小さなツール」の曖昧さが解消され実装形態が単一画面の入力フォームに確定した。\"\n  },\n  {\n   \"question_point\": \"仕様メモの粒度・読み手\",\n   \"anchor_words\": [\n    \"仕様メモを書いて\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"開発者向け技術仕様\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#1b1f24\",\n     \"#2f3b45\",\n     \"#39d2c0\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"dense\",\n    \"corner\": \"sharp\",\n    \"tone_sample\": \"経費精算API仕様: POST /expenses のリクエストスキーマ定義\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"開発者向け技術仕様としたことで、仕様メモの読み手と記述粒度が実装担当者向けの技術的水準に定まった。\"\n  },\n  {\n   \"question_point\": \"対象とする経費の範囲\",\n   \"anchor_words\": [\n    \"経費精算\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"一般経費全般\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f4f6f5\",\n     \"#2f6b57\",\n     \"#e8a33d\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"経費精算、まるごと一本化。交通費も交際費も同じ画面で。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"一般経費全般としたことで、経費精算の対象範囲が特定費目に限定されず幅広く扱われることが確定した。\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"「ラクにする」対象・利用者・範囲・提供形態が未指定で、方向性を左右する判断点が複数残る。\",\n \"missing_materials\": [\n  \"対象人数・部署規模\",\n  \"既存の経費精算フロー・承認ルート\",\n  \"連携すべき既存システム(会計ソフト等)\",\n  \"予算・開発期限\"\n ]\n}"
+  },
+  "m10-invite": {
+   "brief_id": "m10-invite",
+   "brief": "昔の仲間を集める同窓会の案内、気軽に来たくなるやつ。",
+   "generated_at": "2026-08-01T08:37:39.855228+00:00",
+   "blind_order": "AB",
+   "raw_source": "pairs/(v1と同一物)",
+   "gen": {
+    "compiled": {
+     "attempts": 1,
+     "failed_attempts": []
+    }
+   },
+   "compiled_user": "{\n \"format\": \"unprompt.compiled_brief.v0\",\n \"source_brief\": \"昔の仲間を集める同窓会の案内、気軽に来たくなるやつ。\",\n \"compiled_at\": \"2026-08-01T07:42:16.156810+00:00\",\n \"decisions\": [\n  {\n   \"question_point\": \"参加対象の範囲\",\n   \"anchor_words\": [\n    \"昔の仲間を集める同窓会\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"学年全体広く\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#fdf6e9\",\n     \"#f2a93b\",\n     \"#2e7d5b\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"dense\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"○○年卒、みんな集合!同窓会でわいわい近況報告しよう\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"学年全体広くと定めたことで、案内は特定グループに限らず学年全体へ送る前提が確定する\"\n  },\n  {\n   \"question_point\": \"案内文のトーン\",\n   \"anchor_words\": [\n    \"気軽に来たくなるやつ\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"丁寧だが軽め\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#f2ede4\",\n     \"#8c6a4e\",\n     \"#b8895f\"\n    ],\n    \"heading_font\": \"sans\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"同窓会、まずは顔を見せに。近況はまたゆっくり。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"丁寧だが軽めと選んだことで、堅苦しさを避けつつ礼を欠かない文面の言葉遣いが定まる\"\n  },\n  {\n   \"question_point\": \"開催形式・規模の印象付け\",\n   \"anchor_words\": [\n    \"同窓会の案内\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"ゆるい飲み会風\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#3b2a22\",\n     \"#c9622b\",\n     \"#f2c879\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"normal\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"同窓会、居酒屋集合!とりあえず一杯やろうぜ\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"ゆるい飲み会風と定めたことで、格式ばった式典ではなく気楽な集まりとして伝える構成が確定する\"\n  },\n  {\n   \"question_point\": \"来てほしい動機の訴求軸\",\n   \"anchor_words\": [\n    \"気軽に来たくなるやつ\"\n   ],\n   \"status\": \"decided\",\n   \"chosen_label\": \"気軽さ・低負担訴求\",\n   \"visual_tokens\": {\n    \"palette\": [\n     \"#fff7ed\",\n     \"#fdba74\",\n     \"#fb923c\"\n    ],\n    \"heading_font\": \"rounded\",\n    \"density\": \"airy\",\n    \"corner\": \"soft\",\n    \"tone_sample\": \"同窓会、ふらっとおいでよ。手ぶらでOK、顔出すだけでいい。\"\n   },\n   \"tone_example\": null,\n   \"intent\": \"気軽さ・低負担訴求を選んだことで、参加のハードルを下げる文言を前面に出す方針が定まる\"\n  }\n ],\n \"residual_ambiguity_assessment\": \"対象範囲・トーン・形式・訴求軸が未指定で、成果物の方向性が大きく分かれる。\",\n \"missing_materials\": [\n  \"開催日時\",\n  \"開催場所\",\n  \"参加費\",\n  \"幹事・問い合わせ先の連絡先\"\n ]\n}"
+  }
+ }
+}

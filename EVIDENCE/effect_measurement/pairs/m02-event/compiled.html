@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>秋季社内勉強会のお知らせ</title>
+<style>
+/*
+  :root type scale (base 16px, ratio 1.25)
+  --fs-0: 16px 本文
+  --fs-1: 20px 小見出し
+  --fs-2: 25px 見出し
+  --fs-3: 39px 特大見出し(日時)
+*/
+:root{
+  /* GYAKUMON-CHOICE: ページの構成の重心 = 日時場所中心の告知型 */
+  --bg: #f4f1ea;
+  --navy: #1f2a44;
+  --gold: #b08d57;
+  --fs-0: 1rem;
+  --fs-1: 1.25rem;
+  --fs-2: 1.5625rem;
+  --fs-3: 2.44rem;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--navy);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  line-height:1.9;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+
+/* GYAKUMON-CHOICE: ページの構成の重心 = 日時場所中心の告知型 */
+header.hero{
+  padding:96px 0 80px;
+  border-bottom:2px solid var(--navy);
+}
+header.hero .eyebrow{
+  font-family:-apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  font-size:.8rem;
+  letter-spacing:.32em;
+  color:var(--gold);
+  margin:0 0 16px;
+}
+header.hero h1{
+  font-size:var(--fs-3);
+  font-weight:700;
+  letter-spacing:.04em;
+  margin:0 0 40px;
+  line-height:1.35;
+}
+.datebox{
+  display:flex;
+  gap:32px;
+  flex-wrap:wrap;
+  font-size:var(--fs-1);
+}
+.datebox .item{border-left:3px solid var(--gold);padding-left:16px;}
+.datebox .label{display:block;font-size:.75rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px;}
+
+section{padding:80px 0;border-bottom:1px solid rgba(31,42,68,.15);}
+section:last-of-type{border-bottom:none;}
+
+/* GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け */
+section.audience{
+  background:var(--navy);
+  color:#fff;
+  padding:56px 24px;
+  margin:0 -24px;
+}
+section.audience .wrap{padding:0;}
+section.audience h2{
+  font-family:-apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  font-weight:800;
+  letter-spacing:.02em;
+  font-size:var(--fs-2);
+  color:#f5a623;
+  margin:0 0 12px;
+}
+section.audience p{font-size:.95rem;margin:0 0 8px;}
+section.audience ul{margin:16px 0 0;padding-left:1.2em;font-size:.9rem;}
+section.audience li{margin-bottom:4px;}
+
+/* GYAKUMON-CHOICE: 勉強会の目的・訴求軸 = 交流・カルチャー重視 */
+section.purpose h2{
+  font-family: ui-rounded, "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight:700;
+  letter-spacing:.02em;
+  font-size:var(--fs-2);
+  color:#c97b3d;
+  margin:0 0 24px;
+}
+section.purpose p{font-size:1.05rem;margin:0 0 20px;}
+section.purpose .points{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+section.purpose .points div{
+  background:#fff;
+  border:1px solid rgba(201,123,61,.35);
+  border-radius:18px;
+  padding:20px;
+  font-size:.9rem;
+}
+
+/* GYAKUMON-CHOICE: 告知ページのトーン = カジュアル */
+section.tone-content{
+  background:#fff;
+  border-radius:18px;
+  padding:40px 32px;
+}
+section.tone-content h2{
+  font-family: ui-rounded, "Hiragino Maru Gothic ProN", sans-serif;
+  font-size:var(--fs-1);
+  color:#d97b4a;
+  margin:0 0 16px;
+}
+section.tone-content p{font-size:1rem;color:#5a4a3d;}
+section.tone-content .lead{
+  font-size:1.1rem;
+  color:#8a7460;
+  margin-bottom:24px;
+}
+
+section.howto h2{
+  font-family:-apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  font-weight:800;
+  font-size:var(--fs-2);
+  margin:0 0 24px;
+}
+section.howto ol{
+  padding-left:1.4em;
+  font-size:1rem;
+}
+section.howto li{margin-bottom:12px;}
+
+footer{
+  padding:56px 24px 80px;
+  text-align:center;
+  font-size:.8rem;
+  color:var(--gold);
+  letter-spacing:.1em;
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">社内勉強会 告知</p>
+    <h1>秋季社内勉強会<br>10/14(火)開催</h1>
+    <div class="datebox">
+      <div class="item"><span class="label">日時</span>18:30〜〈終了予定時刻〉</div>
+      <div class="item"><span class="label">会場</span>本社3F会議室〈またはオンライン併用〉</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="audience">
+  <div class="wrap">
+    <h2>全社員対象・秋の勉強会</h2>
+    <p>部署・役職を問わず、全社員が参加対象です。あなたの部署の知見もここに集結。</p>
+    <ul>
+      <li>普段関わりの少ない部署の話を聞ける機会です</li>
+      <li>発表者・参加者どちらの立場でも歓迎します</li>
+    </ul>
+  </div>
+</section>
+
+<section class="purpose">
+  <h2>語り合う勉強会へ</h2>
+  <p>秋の夜、社内の輪が広がる時間にしたいと考えています。知識を持ち帰るだけでなく、部署を越えて顔が見える関係をつくることを大事にした会です。</p>
+  <div class="points">
+    <div>発表を聞くだけでなく、その場での雑談・質問を歓迎する時間配分にします</div>
+    <div>テーマは〈テーマ未定〉。決まり次第、社内周知します</div>
+  </div>
+</section>
+
+<section class="tone-content">
+  <h2>気軽にどうぞ</h2>
+  <p class="lead">お茶でも片手に、社内でゆるっと学ぼう。</p>
+  <p>登壇者は〈登壇者未定〉。堅苦しい発表会ではなく、社内の誰かの知見に気軽に触れられる場を目指しています。予定が合えば途中参加・途中退出もOKです。</p>
+</section>
+
+<section class="howto">
+  <h2>参加方法</h2>
+  <ol>
+    <li>〈申込方法未定〉よりお申し込みください</li>
+    <li>参加は任意です。都合の良い方だけご参加ください</li>
+    <li>不明点は〈問い合わせ先〉までお気軽にどうぞ</li>
+  </ol>
+</section>
+
+</div>
+
+<footer>秋季社内勉強会 実行有志一同</footer>
+
+</body>
+</html>

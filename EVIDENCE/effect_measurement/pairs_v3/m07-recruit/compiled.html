@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用情報 | 〈会社名〉</title>
+<style>
+/*
+  GYAKUMON-CHOICE 判断点まとめ(機械照合用):
+  読み手として想定する対象 = 新卒・未経験者
+  熱意の伝え方の軸 = 現場社員の情熱軸
+  「飾らない」の具体的トーン = 率直な弱み含む自己開示
+  構成の中心軸 = 働く人・文化中心
+*/
+:root{
+  --bg:#2b2723;
+  --main:#d96b3a;
+  --accent:#f2c14e;
+  --ink:#f3ede4;
+  --sub:#c9beae;
+  /* タイプスケール(本文16pxを基準に1.25比率) */
+  --fs-body:16px;
+  --fs-lead:20px;
+  --fs-h2:26px;
+  --fs-h1:40px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic UI",sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+}
+main{max-width:720px;margin:0 auto;padding:0 24px;}
+section{padding:96px 0;border-bottom:1px solid rgba(243,237,228,0.08);}
+section:last-child{border-bottom:none;}
+
+/* GYAKUMON-CHOICE: 構成の中心軸 = 働く人・文化中心 */
+h1,h2,h3{
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic UI",sans-serif;
+  color:var(--ink);
+  font-weight:700;
+  letter-spacing:0.02em;
+  margin:0 0 24px;
+}
+h1{font-size:var(--fs-h1);line-height:1.4;}
+h2{font-size:var(--fs-h2);color:var(--accent);letter-spacing:0.04em;}
+p{margin:0 0 16px;color:var(--sub);}
+.lead{font-size:var(--fs-lead);color:var(--ink);}
+
+.hero{padding-top:120px;}
+.hero .kicker{
+  display:inline-block;
+  color:var(--main);
+  font-size:14px;
+  letter-spacing:0.12em;
+  margin-bottom:16px;
+}
+
+/* GYAKUMON-CHOICE: 「飾らない」の具体的トーン = 率直な弱み含む自己開示 */
+.honest{
+  background:rgba(217,107,58,0.08);
+  border-radius:16px;
+  padding:32px;
+  margin-top:24px;
+}
+.honest p:last-child{margin-bottom:0;}
+
+/* GYAKUMON-CHOICE: 読み手として想定する対象 = 新卒・未経験者 */
+.notice{
+  font-size:14px;
+  color:var(--sub);
+  border-left:3px solid var(--main);
+  padding-left:16px;
+  margin-top:32px;
+}
+
+/* GYAKUMON-CHOICE: 熱意の伝え方の軸 = 現場社員の情熱軸 */
+.voices{display:flex;flex-direction:column;gap:16px;}
+.voice{
+  background:#231f1b;
+  border-radius:16px;
+  padding:24px;
+}
+.voice .who{
+  font-weight:700;
+  color:var(--accent);
+  font-size:14px;
+  margin-bottom:8px;
+}
+.voice p{margin:0;color:var(--ink);}
+
+.values{display:grid;grid-template-columns:1fr;gap:16px;}
+.value{
+  border-radius:16px;
+  padding:24px;
+  background:linear-gradient(135deg, rgba(217,107,58,0.14), rgba(242,193,78,0.06));
+}
+.value h3{font-size:18px;margin-bottom:8px;color:var(--ink);}
+.value p{margin:0;}
+
+.cta{
+  background:var(--main);
+  border-radius:24px;
+  padding:48px 32px;
+  text-align:center;
+}
+.cta h2{color:var(--bg);}
+.cta p{color:rgba(43,39,35,0.85);}
+.cta a{
+  display:inline-block;
+  margin-top:16px;
+  background:var(--bg);
+  color:var(--accent);
+  text-decoration:none;
+  padding:14px 32px;
+  border-radius:999px;
+  font-weight:700;
+}
+footer{padding:48px 0;text-align:center;color:var(--sub);font-size:13px;}
+</style>
+</head>
+<body>
+<main>
+
+<!-- GYAKUMON-CHOICE: 熱意の伝え方の軸 = 現場社員の情熱軸 -->
+<section class="hero">
+  <span class="kicker">現場から、正直に</span>
+  <h1>「今日も手を動かしながら、この仕事に本気です。」<br>そう言い切れる人たちが、〈会社名〉にはいます。</h1>
+  <p class="lead">経営理念のスライドより先に、現場の一言を届けたい採用ページです。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 読み手として想定する対象 = 新卒・未経験者 -->
+<section>
+  <h2>〈会社名〉について、はじめての方へ</h2>
+  <p>専門用語をなるべく使わずに説明します。〈会社名〉は〈事業内容〉に取り組む会社です。経験や資格がまだ無くても、ここで働きながら覚えていけるように、先輩がそばにいる環境をつくっています。</p>
+  <div class="honest">
+    <p>正直に言うと、うちもまだ足りないことだらけです。仕組みが整いきっていない部分もあるし、教える側も日々手探りです。</p>
+    <p>それでも、「できないことを隠さない」というのがこの会社の姿勢です。分からないことは分からないと言い合える現場だからこそ、未経験の人が安心して飛び込める場所になっていると思っています。</p>
+  </div>
+  <p class="notice">〈会社の沿革・実績〉については、まだこのページでは詳しくご紹介できていません。気になる方は選考の中で遠慮なく聞いてください。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 構成の中心軸 = 働く人・文化中心 -->
+<section>
+  <h2>働く人の声</h2>
+  <div class="voices">
+    <div class="voice">
+      <div class="who">〈社員名〉・〈職種〉</div>
+      <p>「未経験で入りましたが、最初の3ヶ月は分からないことだらけでした。それでも周りが普通に助けてくれる空気があって、今ではこの仕事が自分の軸になっています。」</p>
+    </div>
+    <div class="voice">
+      <div class="who">〈社員名〉・〈職種〉</div>
+      <p>「うちはまだ発展途上の会社です。だからこそ、自分のやり方や意見がそのまま現場に反映される瞬間があります。それが一番のやりがいです。」</p>
+    </div>
+    <div class="voice">
+      <div class="who">〈社員名〉・〈職種〉</div>
+      <p>「正直、大変な日もあります。でも『今日も本気でやった』と思える日が積み重なっていくのは、悪くないです。」</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>大事にしていること</h2>
+  <div class="values">
+    <div class="value">
+      <h3>できないことを、できないと言う</h3>
+      <p>取り繕わず、現状をそのまま共有することを大事にしています。</p>
+    </div>
+    <div class="value">
+      <h3>手を動かした人の声を、一番信じる</h3>
+      <p>方針は現場の実感から生まれると考えています。</p>
+    </div>
+    <div class="value">
+      <h3>未経験は、これからの伸びしろ</h3>
+      <p>今できるかどうかより、これから一緒にやっていけるかを見ています。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>この人たちと、働いてみませんか</h2>
+  <p>飾った言葉より、現場の本音をそのまま届けたつもりです。少しでも気になったら、話を聞きにきてください。</p>
+  <a href="#">応募する・話を聞く</a>
+</section>
+
+</main>
+<footer>&copy; 〈会社名〉</footer>
+</body>
+</html>

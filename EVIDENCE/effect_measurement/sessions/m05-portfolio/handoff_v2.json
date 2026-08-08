@@ -1,0 +1,97 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "転職用のポートフォリオサイト、シンプルだけど印象に残る感じで。",
+ "compiled_at": "2026-08-01T07:41:32.811885+00:00",
+ "decisions": [
+  {
+   "question_point": "想定読み手(採用側)の職種領域",
+   "anchor_words": [
+    "転職用のポートフォリオサイト"
+   ],
+   "status": "decided",
+   "chosen_label": "デザイナー向け",
+   "visual_tokens": {
+    "palette": [
+     "#0a0a0a",
+     "#e8e4dc",
+     "#ff3b1f"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "portfolio — 手を動かした跡を、削ぎ落として見せる。"
+   },
+   "tone_example": null,
+   "intent": "採用側をデザイナー向けと確定させ、以降の作例選定や訴求軸をデザイン評価基準に一意に定める。"
+  },
+  {
+   "question_point": "「印象に残る」の実現方法",
+   "anchor_words": [
+    "印象に残る感じ"
+   ],
+   "status": "decided",
+   "chosen_label": "ビジュアル訴求型",
+   "visual_tokens": {
+    "palette": [
+     "#0a0a0f",
+     "#1c1c24",
+     "#ff3366"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "Portfolio — 一目で伝わる、作品が語るキャリア。"
+   },
+   "tone_example": null,
+   "intent": "「印象に残る感じ」の曖昧さをビジュアル訴求型と確定させ、写真や配色など視覚要素で差別化する方針が定まる。"
+  },
+  {
+   "question_point": "サイトの構成の重心",
+   "anchor_words": [
+    "ポートフォリオサイト"
+   ],
+   "status": "decided",
+   "chosen_label": "作品ギャラリー中心",
+   "visual_tokens": {
+    "palette": [
+     "#0b0b0c",
+     "#e8e4dc",
+     "#c9542a"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "作品が語る、余白の中で。"
+   },
+   "tone_example": null,
+   "intent": "ポートフォリオサイトの構成を作品ギャラリー中心と確定させ、経歴文より作品掲載が優先される情報設計が定まる。"
+  },
+  {
+   "question_point": "シンプルさの徹底度",
+   "anchor_words": [
+    "シンプルだけど印象に残る感じ"
+   ],
+   "status": "decided",
+   "chosen_label": "ミニマル徹底",
+   "visual_tokens": {
+    "palette": [
+     "#0a0a0a",
+     "#ffffff",
+     "#3d3d3d"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "余白が語る、ポートフォリオ。削ぎ落とした経歴だけを見せる。"
+   },
+   "tone_example": null,
+   "intent": "「シンプルだけど印象に残る」の両立をミニマル徹底と確定させ、装飾を極力排した余白重視のレイアウトに定まる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "読者・訴求軸・構成重心・シンプル度が未指定で曖昧度は高い。",
+ "missing_materials": [
+  "職種・業界情報",
+  "実績・作品データ",
+  "経歴・スキル情報"
+ ]
+}

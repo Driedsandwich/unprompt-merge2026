@@ -1,0 +1,119 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "社内の経費精算をラクにする小さなツールの仕様メモを書いて。",
+ "compiled_at": "2026-08-01T07:04:02.629474+00:00",
+ "decisions": [
+  {
+   "question_point": "利用者・利用シーンの想定",
+   "anchor_words": [
+    "社内の経費精算をラクにする"
+   ],
+   "status": "decided",
+   "chosen_label": "経理担当の処理効率化",
+   "visual_tokens": {
+    "palette": [
+     "#1e2a38",
+     "#3d5a73",
+     "#c97b2e"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "経理処理を高速化。経費精算の突合・仕訳を一括で捌く。"
+   },
+   "tone_example": null,
+   "intent": "利用者を経理担当と確定させ、下流の仕様は経理業務の処理効率化を目的として設計されることになる。"
+  },
+  {
+   "question_point": "「ラクにする」対象工程の範囲",
+   "anchor_words": [
+    "経費精算をラクにする"
+   ],
+   "status": "decided",
+   "chosen_label": "経理処理・集計の自動化",
+   "visual_tokens": {
+    "palette": [
+     "#12261f",
+     "#1f5c46",
+     "#7fe0b8"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "経費集計オートパイロット。仕訳と集計をツールが自動で締める。"
+   },
+   "tone_example": null,
+   "intent": "ラクにする対象を経理処理・集計の自動化と定めたことで、申請入力ではなく後段の処理工程が仕様の中心となる。"
+  },
+  {
+   "question_point": "ツールの提供形態",
+   "anchor_words": [
+    "小さなツール"
+   ],
+   "status": "decided",
+   "chosen_label": "単機能Webフォーム",
+   "visual_tokens": {
+    "palette": [
+     "#f4f5f3",
+     "#2f6f5e",
+     "#1c3d33"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "経費精算フォーム — 領収書を貼って送るだけ。"
+   },
+   "tone_example": null,
+   "intent": "小さなツールを単機能Webフォームと確定させ、多機能アプリではなく限定的なフォーム型の実装が仕様の前提となる。"
+  },
+  {
+   "question_point": "仕様メモの粒度・読み手",
+   "anchor_words": [
+    "仕様メモを書いて"
+   ],
+   "status": "decided",
+   "chosen_label": "開発者向け技術仕様",
+   "visual_tokens": {
+    "palette": [
+     "#1b1f24",
+     "#2e3a4a",
+     "#00e0a8"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "経費精算API仕様: POST /expenses"
+   },
+   "tone_example": null,
+   "intent": "仕様メモを開発者向け技術仕様と定めたことで、記述粒度は実装可能なレベルの技術的詳細に固定される。"
+  },
+  {
+   "question_point": "対象とする経費の範囲",
+   "anchor_words": [
+    "経費精算"
+   ],
+   "status": "decided",
+   "chosen_label": "一般経費全般",
+   "visual_tokens": {
+    "palette": [
+     "#f4f6f5",
+     "#2f8f6e",
+     "#12463a"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "経費精算メモ:交通費から備品購入まで、社内経費を一括管理。"
+   },
+   "tone_example": null,
+   "intent": "対象経費を一般経費全般と確定させたことで、特定費目に限定しない汎用的な入力・集計仕様が前提となる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "「ラクにする」対象・利用者・範囲・提供形態が未指定で、方向性を左右する判断点が複数残る。",
+ "missing_materials": [
+  "対象人数・部署規模",
+  "既存の経費精算フロー・承認ルート",
+  "連携すべき既存システム(会計ソフト等)",
+  "予算・開発期限"
+ ]
+}

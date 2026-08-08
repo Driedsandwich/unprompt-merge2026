@@ -1,0 +1,97 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "採用ページの会社紹介、飾らないけど熱意が伝わるように。",
+ "compiled_at": "2026-08-01T07:03:14.736162+00:00",
+ "decisions": [
+  {
+   "question_point": "読み手として想定する対象",
+   "anchor_words": [
+    "採用ページの会社紹介"
+   ],
+   "status": "decided",
+   "chosen_label": "新卒・未経験者",
+   "visual_tokens": {
+    "palette": [
+     "#fff7ed",
+     "#ff7a30",
+     "#1f2937"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "はじめての一歩を、ここから。未経験からでも熱意があれば大丈夫。"
+   },
+   "tone_example": null,
+   "intent": "読み手を新卒・未経験者と定めたことで、専門用語を避け入社後の成長物語を軸に語る方針が一意に定まる"
+  },
+  {
+   "question_point": "熱意の伝え方の軸",
+   "anchor_words": [
+    "熱意が伝わるように"
+   ],
+   "status": "decided",
+   "chosen_label": "現場社員の情熱軸",
+   "visual_tokens": {
+    "palette": [
+     "#1c1c1a",
+     "#e0521f",
+     "#f2c14e"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "soft",
+    "tone_sample": "現場から本音で。毎日この手で採用ページを作ってます。"
+   },
+   "tone_example": null,
+   "intent": "熱意の伝え方を現場社員の情熱軸に定めたことで、経営理念の抽象論ではなく実務者の生の声を主体とする構成が確定する"
+  },
+  {
+   "question_point": "「飾らない」の具体的トーン",
+   "anchor_words": [
+    "飾らないけど"
+   ],
+   "status": "decided",
+   "chosen_label": "率直な弱み含む自己開示",
+   "visual_tokens": {
+    "palette": [
+     "#20201c",
+     "#8a7a63",
+     "#c65a3c"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "採用ページで正直に言うと、うちにも足りない部分があります。"
+   },
+   "tone_example": null,
+   "intent": "飾らないの解釈を弱みも含む率直な自己開示と定めたことで、美化した成功談ではなく等身大の課題や失敗も語る文体が確定する"
+  },
+  {
+   "question_point": "構成の中心軸",
+   "anchor_words": [
+    "会社紹介"
+   ],
+   "status": "decided",
+   "chosen_label": "働く人・文化中心",
+   "visual_tokens": {
+    "palette": [
+     "#2b2521",
+     "#c46a3f",
+     "#e8b65a"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "私たちの毎日が、会社をつくる。同僚の顔が見える採用ページ。"
+   },
+   "tone_example": null,
+   "intent": "構成の中心軸を働く人・文化に定めたことで、事業内容や実績の羅列ではなく人物紹介やエピソードを主軸とする章立てが確定する"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象読者・トーンの質感・訴求軸・構成の重心が未指定で、方向性が大きく分かれる。",
+ "missing_materials": [
+  "会社の沿革・実績データ",
+  "事業内容の詳細",
+  "社員インタビューや写真素材"
+ ]
+}

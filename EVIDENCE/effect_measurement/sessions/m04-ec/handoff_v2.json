@@ -1,0 +1,98 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "この新商品の説明文、魅力的にお願い。",
+ "compiled_at": "2026-08-01T07:41:24.022786+00:00",
+ "decisions": [
+  {
+   "question_point": "想定読者",
+   "anchor_words": [
+    "この新商品の説明文"
+   ],
+   "status": "decided",
+   "chosen_label": "新規見込み客",
+   "visual_tokens": {
+    "palette": [
+     "#0b1220",
+     "#3b82f6",
+     "#f97316"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "はじめまして、この新商品があなたの毎日を変えます。"
+   },
+   "tone_example": null,
+   "intent": "読者を新規見込み客と確定させ、既存客向けの専門用語を避け訴求の前提を一意に定めるものだ。"
+  },
+  {
+   "question_point": "訴求の軸",
+   "anchor_words": [
+    "魅力的にお願い"
+   ],
+   "status": "decided",
+   "chosen_label": "感情・体験重視",
+   "visual_tokens": {
+    "palette": [
+     "#241c1f",
+     "#7a2e3b",
+     "#d99a5b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "触れた瞬間、時間が緩む。この新商品が届ける小さな余韻。"
+   },
+   "tone_example": null,
+   "intent": "訴求軸を感情・体験重視に定め、スペック列挙ではなく使用時の心理的満足を中心に構成することを規定するものだ。"
+  },
+  {
+   "question_point": "トーン・文体",
+   "anchor_words": [
+    "魅力的にお願い"
+   ],
+   "status": "decided",
+   "chosen_label": "親しみやすい",
+   "visual_tokens": {
+    "palette": [
+     "#fff7ed",
+     "#f4a65a",
+     "#e8654a"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "新商品、できました。まずはあなたに使ってみてほしいな。"
+   },
+   "tone_example": null,
+   "intent": "文体を親しみやすいに定め、硬い敬体や専門的言い回しを避けた語りかけの表現に統一することを規定するものだ。"
+  },
+  {
+   "question_point": "掲載媒体・構成",
+   "anchor_words": [
+    "この新商品の説明文"
+   ],
+   "status": "decided",
+   "chosen_label": "ECの商品ページ",
+   "visual_tokens": {
+    "palette": [
+     "#ffffff",
+     "#1a1a1a",
+     "#c9a227"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "sharp",
+    "tone_sample": "新商品詳細:仕様と魅力を余すことなくご紹介します。"
+   },
+   "tone_example": null,
+   "intent": "掲載先をECの商品ページと定め、購入導線を意識した見出しと訴求順の構成にすることを規定するものだ。"
+  }
+ ],
+ "residual_ambiguity_assessment": "読者・訴求軸・トーン・媒体が未指定で、方向性が大きく分かれる余地がある。",
+ "missing_materials": [
+  "新商品の名称・カテゴリ",
+  "商品の具体的な特徴・スペック",
+  "価格情報",
+  "競合や差別化ポイント"
+ ]
+}

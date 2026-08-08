@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉</title>
+<style>
+  :root{
+    --navy-950:#0b1220; --navy-900:#0f1b2d; --navy-800:#16283f; --navy-700:#22394f;
+    --ink-100:#e9edf3; --ink-300:#b7c2d0; --ink-500:#7c8aa0;
+    --brass:#c9a24b; --brass-soft:#e4c877;
+    --fs-1:1rem; --fs-2:1.25rem; --fs-3:1.75rem; --fs-4:2.75rem; --fs-5:4rem;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--navy-950);color:var(--ink-100);
+    font-family:"Hiragino Sans","Yu Gothic UI","Noto Sans JP",system-ui,sans-serif;
+    font-size:var(--fs-1);line-height:1.8;}
+  h1,h2,h3{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    color:var(--ink-100);font-weight:600;letter-spacing:.04em;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 32px}
+  section{padding:96px 0}
+  header.hero{position:relative;padding:120px 0 96px;border-bottom:1px solid var(--navy-700);overflow:hidden}
+  header.hero::before{content:"";position:absolute;top:-40%;right:-10%;width:640px;height:640px;
+    border:1px solid var(--navy-700);border-radius:50%}
+  .eyebrow{color:var(--brass);font-size:.85rem;letter-spacing:.28em;font-weight:700;margin-bottom:24px}
+  h1.headline{font-size:var(--fs-5);line-height:1.35;letter-spacing:.02em;max-width:14ch}
+  .headline .accent{color:var(--brass-soft)}
+  p.lead{margin-top:32px;max-width:46ch;color:var(--ink-300);font-size:var(--fs-2);line-height:1.9}
+  .cta-row{margin-top:48px;display:flex;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:16px 32px;font-size:var(--fs-1);font-weight:700;
+    letter-spacing:.08em;text-decoration:none;border-radius:2px}
+  .btn-primary{background:var(--brass);color:var(--navy-950)}
+  .btn-ghost{border:1px solid var(--navy-700);color:var(--ink-100)}
+  .value h2{font-size:var(--fs-4);max-width:18ch;margin-bottom:32px}
+  .value p{color:var(--ink-300);max-width:56ch;font-size:var(--fs-2);line-height:1.9}
+  .features{border-top:1px solid var(--navy-700);border-bottom:1px solid var(--navy-700)}
+  .features h2{font-size:var(--fs-3);color:var(--brass-soft);margin-bottom:56px}
+  .feat-list{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+  .feat{padding-top:24px;border-top:2px solid var(--brass)}
+  .feat .num{color:var(--ink-500);font-size:.85rem;letter-spacing:.2em}
+  .feat h3{font-size:var(--fs-2);margin:16px 0 12px}
+  .feat p{color:var(--ink-300);font-size:.95rem}
+  .flow h2{font-size:var(--fs-3);margin-bottom:56px}
+  .flow-item{display:flex;gap:32px;align-items:baseline;padding:28px 0;border-bottom:1px solid var(--navy-700)}
+  .flow-item:first-child{border-top:1px solid var(--navy-700)}
+  .flow-item .step{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:var(--fs-3);color:var(--brass);flex:0 0 64px}
+  .flow-item h3{font-size:var(--fs-2);font-weight:600;margin-bottom:6px}
+  .flow-item p{color:var(--ink-300);font-size:.95rem}
+  .cta{text-align:center;background:var(--navy-900);border-radius:4px}
+  .cta h2{font-size:var(--fs-4);margin-bottom:24px}
+  .cta p{color:var(--ink-300);margin-bottom:40px;font-size:var(--fs-2)}
+  footer{border-top:1px solid var(--navy-700);padding:64px 0 48px;color:var(--ink-500);font-size:.85rem}
+  footer .fname{color:var(--ink-300);font-weight:700;letter-spacing:.06em;margin-bottom:12px}
+  @media (max-width:720px){h1.headline{font-size:2.4rem}.feat-list{grid-template-columns:1fr}section{padding:64px 0}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">〈サービスの核となる一言キャッチ〉</div>
+    <h1 class="headline">〈解決する課題〉を、<span class="accent">〈サービス名〉</span>で正面から。</h1>
+    <p class="lead">〈発注内容から抽出した提供価値・対象顧客・強みの説明文をここに記載する〉</p>
+    <div class="cta-row">
+      <a href="#cta" class="btn btn-primary">〈主要CTA文言〉</a>
+      <a href="#flow" class="btn btn-ghost">利用の流れを見る</a>
+    </div>
+  </div>
+</header>
+<section class="value">
+  <div class="wrap">
+    <h2>なぜ〈サービス名〉なのか</h2>
+    <p>〈発注内容にある独自性・こだわり・提供体制についての説明。競合との違いや信頼を裏付ける要素をここに記載する〉</p>
+  </div>
+</section>
+<section class="features">
+  <div class="wrap">
+    <h2>特徴</h2>
+    <div class="feat-list">
+      <div class="feat"><div class="num">01</div><h3>〈特徴1の見出し〉</h3><p>〈特徴1の説明〉</p></div>
+      <div class="feat"><div class="num">02</div><h3>〈特徴2の見出し〉</h3><p>〈特徴2の説明〉</p></div>
+      <div class="feat"><div class="num">03</div><h3>〈特徴3の見出し〉</h3><p>〈特徴3の説明〉</p></div>
+    </div>
+  </div>
+</section>
+<section class="flow" id="flow">
+  <div class="wrap">
+    <h2>利用の流れ</h2>
+    <div class="flow-list">
+      <div class="flow-item"><div class="step">01</div><div><h3>〈ステップ1〉</h3><p>〈内容〉</p></div></div>
+      <div class="flow-item"><div class="step">02</div><div><h3>〈ステップ2〉</h3><p>〈内容〉</p></div></div>
+      <div class="flow-item"><div class="step">03</div><div><h3>〈ステップ3〉</h3><p>〈内容〉</p></div></div>
+    </div>
+  </div>
+</section>
+<section id="cta">
+  <div class="wrap cta">
+    <h2>〈サービス名〉を、まずは試してみませんか</h2>
+    <p>〈申し込み・問い合わせに関する補足文言〉</p>
+    <a href="#" class="btn btn-primary">〈主要CTA文言〉</a>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="fname">〈サービス名〉</div>
+    <div>〈運営会社名〉 ／ 〈お問い合わせ先〉</div>
+    <div style="margin-top:8px">&copy; 〈年〉 〈運営会社名〉</div>
+  </div>
+</footer>
+</body>
+</html>

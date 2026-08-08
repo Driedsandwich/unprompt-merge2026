@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>同窓会のお知らせ</title>
+<style>
+  /*
+    タイプスケール（基準16px, 比率1.5前後）
+    --fs-0: 16px 本文
+    --fs-1: 20px 小見出し
+    --fs-2: 30px 見出し
+    --fs-3: 42px 呼びかけ
+  */
+  :root{
+    --fs-0: 16px;
+    --fs-1: 20px;
+    --fs-2: 30px;
+    --fs-3: 42px;
+    --ink: #2b3a3a;
+    --paper: #eef1ea;
+    --accent: #b5651d;
+  }
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: var(--fs-0);
+    line-height: 1.9;
+    padding: 64px 24px 96px;
+  }
+  .sheet{
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .kicker{
+    font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin: 0 0 16px;
+  }
+  h1{
+    font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: var(--fs-3);
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    margin: 0 0 96px;
+    color: var(--ink);
+  }
+  h1 span{
+    display: block;
+    font-size: var(--fs-1);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    opacity: 0.75;
+    margin-top: 16px;
+  }
+  section{
+    margin: 0 0 96px;
+  }
+  section:last-of-type{
+    margin-bottom: 0;
+  }
+  h2{
+    font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: var(--fs-1);
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin: 0 0 24px;
+  }
+  p{
+    margin: 0;
+  }
+  .detail{
+    display: flex;
+    gap: 24px;
+    padding: 8px 0;
+  }
+  .detail dt{
+    flex: 0 0 88px;
+    font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+    opacity: 0.6;
+    letter-spacing: 0.08em;
+  }
+  .detail dd{
+    margin: 0;
+  }
+  dl{
+    margin: 0;
+    padding: 24px 0;
+    border-top: 1px solid rgba(43,58,58,0.2);
+  }
+  .closing{
+    font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    font-weight: 500;
+    text-align: right;
+  }
+  .closing .from{
+    display: block;
+    margin-top: 16px;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="kicker">REUNION</p>
+  <h1>そういえば、みんな今どうしてるんだろう。
+    <span>あの頃の面子で、ひさしぶりに集まりませんか。</span>
+  </h1>
+
+  <section>
+    <h2>開催概要</h2>
+    <dl>
+      <div class="detail"><dt>日時</dt><dd>〈開催日〉</dd></div>
+      <div class="detail"><dt>場所</dt><dd>〈会場〉</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>どんな会にしたいか</h2>
+    <p>
+      堅苦しい挨拶や余興はなし。
+      近況報告もしなくていいくらいの、ただの飲み会です。
+      何年ぶりでも、昨日会ったみたいに話せるのがこのメンバーのいいところ。
+      予定が合う人だけ、気軽に顔を出してください。
+    </p>
+  </section>
+
+  <section>
+    <h2>出欠のご連絡</h2>
+    <p>
+      参加・不参加は〈連絡先〉まで一言ください。
+      「行けたら行く」も歓迎です。当日の飛び入りもどうぞ。
+    </p>
+  </section>
+
+  <section class="closing">
+    <p>会えるのを楽しみにしています。</p>
+    <p class="from">幹事：〈幹事名〉</p>
+  </section>
+
+</div>
+</body>
+</html>

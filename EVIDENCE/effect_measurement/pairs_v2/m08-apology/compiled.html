@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>発送遅延のお詫び</title>
+<style>
+  /*
+    タイプスケール（基準16px、比率 1.25）
+    --fs-0: 16px  本文
+    --fs-1: 20px  小見出し
+    --fs-2: 25px  件名（H1）
+    見出し: sans（ゴシック）太め・字間を締める / 本文: 明朝系セリフでやわらかく読ませる
+  */
+  :root{
+    --bg: #f5f1ec;      /* 地色 */
+    --ink: #6b5b4f;     /* 主要色 */
+    --accent: #b0895f;  /* 強調色 */
+    --fs-0: 16px;
+    --fs-1: 20px;
+    --fs-2: 25px;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+    font-size: var(--fs-0);
+    line-height: 2;
+    -webkit-font-smoothing: antialiased;
+  }
+  .doc{
+    width: 720px;
+    max-width: 92vw;
+    margin: 96px auto;
+    padding: 64px 56px;
+    background: #ffffff;
+    border-radius: 18px; /* soft */
+  }
+  /* GYAKUMON-CHOICE: 謝罪の相手・遅延の状況説明範囲 = 個別注文への謝罪 */
+  .subject{
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    font-weight: 700;
+    font-size: var(--fs-2);
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .order-ref{
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 64px;
+  }
+  .addressee{
+    font-size: var(--fs-1);
+    margin: 0 0 40px;
+  }
+  section{
+    margin: 0 0 56px;
+  }
+  section:last-of-type{
+    margin-bottom: 0;
+  }
+  h2{
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    font-weight: 600;
+    font-size: var(--fs-1);
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e6ddd2;
+  }
+  p{
+    margin: 0 0 16px;
+  }
+  p:last-child{
+    margin-bottom: 0;
+  }
+  /* GYAKUMON-CHOICE: 新しい発送予定日の明記有無 = 具体的な日付を明記 */
+  .ship-date{
+    display: inline-block;
+    margin-top: 8px;
+    padding: 16px 24px;
+    background: var(--bg);
+    border-radius: 12px;
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .closing{
+    font-size: var(--fs-0);
+  }
+  .sign{
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <p class="subject">発送遅延のお詫び</p>
+  <p class="order-ref">ご注文番号：〈注文番号〉／商品：〈商品名〉</p>
+
+  <p class="addressee">〈お客様名〉様</p>
+
+  <section>
+    <h2>お詫びと状況説明</h2>
+    <!-- GYAKUMON-CHOICE: 謝罪の相手・遅延の状況説明範囲 = 個別注文への謝罪 -->
+    <p>
+      このたびは〈商品名〉をご注文いただきましたにもかかわらず、発送が遅れておりますこと、
+      心よりお詫び申し上げます。
+    </p>
+    <!-- GYAKUMON-CHOICE: 遅延理由の言及有無 = 簡潔に理由を説明 -->
+    <p>
+      在庫確認に想定より時間を要しており、通常のお届けスケジュールよりお時間をいただく状況です。
+      ご注文をお待ちいただいている中でのご連絡となり、申し訳ございません。
+    </p>
+  </section>
+
+  <section>
+    <h2>今後の対応</h2>
+    <p>
+      現在、発送に向けて確認作業を進めております。商品到着は下記日程を予定しております。
+    </p>
+    <p class="ship-date">新しいお届け予定：〈新しいお届け予定〉</p>
+    <!-- GYAKUMON-CHOICE: 補償・代替対応の提示有無 = 補償なし謝罪のみ -->
+    <p>
+      発送が完了しましたら、追ってご連絡いたします。ご不便をおかけしますが、
+      今しばらくお待ちいただけますと幸いです。
+    </p>
+  </section>
+
+  <section class="closing">
+    <h2>結び</h2>
+    <p>
+      この度はご迷惑をおかけし、誠に申し訳ございませんでした。
+      ご不明な点がございましたら、〈問い合わせ先窓口〉までお気軽にお問い合わせください。
+      引き続きどうぞよろしくお願いいたします。
+    </p>
+    <p class="sign">〈お客様名〉様<br>〈会社名〉 カスタマーサポート</p>
+  </section>
+
+</div>
+</body>
+</html>

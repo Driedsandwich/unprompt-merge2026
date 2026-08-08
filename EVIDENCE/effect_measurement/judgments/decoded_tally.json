@@ -1,0 +1,170 @@
+{
+ "decoded_at": "2026-08-01T16:27:31.714820",
+ "rows": [
+  {
+   "id": "m01-lp",
+   "order": "BA",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 4
+   },
+   "tp2": {
+    "cond": "compiled",
+    "conf": 4
+   }
+  },
+  {
+   "id": "m02-event",
+   "order": "BA",
+   "owner": {
+    "cond": "compiled",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 4
+   }
+  },
+  {
+   "id": "m03-scout",
+   "order": "AB",
+   "owner": {
+    "cond": "raw",
+    "conf": 3
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 4
+   },
+   "tp2": {
+    "cond": "compiled",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m04-ec",
+   "order": "AB",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "compiled",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m05-portfolio",
+   "order": "BA",
+   "owner": {
+    "cond": "raw",
+    "conf": 5
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 4
+   },
+   "tp2": {
+    "cond": "compiled",
+    "conf": 4
+   }
+  },
+  {
+   "id": "m06-news",
+   "order": "BA",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "compiled",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m07-recruit",
+   "order": "BA",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 4
+   }
+  },
+  {
+   "id": "m08-apology",
+   "order": "BA",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 4
+   }
+  },
+  {
+   "id": "m09-spec",
+   "order": "AB",
+   "owner": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp1": {
+    "cond": "raw",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 3
+   }
+  },
+  {
+   "id": "m10-invite",
+   "order": "AB",
+   "owner": {
+    "cond": "raw",
+    "conf": 4
+   },
+   "tp1": {
+    "cond": "compiled",
+    "conf": 3
+   },
+   "tp2": {
+    "cond": "raw",
+    "conf": 3
+   }
+  }
+ ],
+ "tally": {
+  "owner": "2/10",
+  "tp1": "8/10",
+  "tp2": "5/10"
+ }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>指示書効果測定 — ブラインド判定シート</title>
+<style>
+:root{--shu:#C73E2E;--ai:#2B3A67;--nezu:#8A8F98;--thin:rgba(43,58,103,.25)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Hiragino Kaku Gothic ProN",sans-serif;background:#FAF9F5;color:#2A2C30;padding:28px}
+h1{font-family:"Hiragino Mincho ProN",serif;font-size:22px;margin-bottom:4px}
+.note{font-size:12.5px;color:var(--nezu);margin-bottom:18px;line-height:1.7}
+.pair{background:#fff;border:1px solid var(--thin);margin-bottom:26px;padding:16px}
+.pair h2{font-size:15px;margin-bottom:2px}
+.pair .bf{font-size:13px;color:var(--nezu);margin-bottom:10px}
+.duo{display:flex;gap:10px;height:520px}
+.duo>div{flex:1;display:flex;flex-direction:column;min-width:0}
+.duo .ch{font-size:12px;padding:5px 10px;background:#2A2C30;color:#fff;letter-spacing:.1em}
+.duo iframe{flex:1;width:100%;border:1px solid var(--thin);background:#fff}
+.q{margin-top:12px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;font-size:13.5px}
+.q b{color:var(--ai)}
+.q label{margin-right:8px;cursor:pointer}
+.done{color:#fff;background:var(--ai);padding:2px 10px;font-size:11px;display:none}
+.pair.answered .done{display:inline-block}
+#export{margin:20px 0 60px;font-family:inherit;font-size:15px;padding:12px 28px;background:var(--ai);color:#fff;border:0;cursor:pointer}
+#stat{font-size:13px;color:var(--nezu);margin-left:14px}
+</style>
+</head>
+<body>
+<h1>ブラインド判定シート</h1>
+<div class="note">各ペアについて「<b>自分の意図に近いのはどちらか</b>」を直感で選び、確信度を付けてください。左右の並びはペアごとに機械的に入れ替えてあり、どちらがどの条件かは全問回答して書き出すまで表示されません。measure_manifest.json は判定完了まで開かないこと。</div>
+<div id="pairs">読み込み中… (このフォルダで python3 -m http.server 8899 を起動し http://127.0.0.1:8899/eval_blind.html で開く)</div>
+<button id="export">回答を書き出す (JSON)</button><span id="stat"></span>
+<script>
+let M=null; const answers={};
+fetch("measure_manifest.json").then(r=>r.json()).then(m=>{
+  M=m; const box=document.getElementById("pairs"); box.innerHTML="";
+  const ids=Object.keys(m.pairs).sort();
+  ids.forEach(id=>{
+    const p=m.pairs[id];
+    const order=p.blind_order; // "AB": 左=raw / "BA": 左=compiled — 画面には出さない
+    const leftFile = order==="AB" ? "raw.html" : "compiled.html";
+    const rightFile= order==="AB" ? "compiled.html" : "raw.html";
+    const d=document.createElement("div"); d.className="pair"; d.id="p-"+id;
+    d.innerHTML=`<h2>${id} <span class="done">回答済み</span></h2>
+      <div class="bf">一文: ${p.brief}</div>
+      <div class="duo">
+        <div><div class="ch">左</div><iframe loading="lazy" src="pairs/${id}/${leftFile}"></iframe></div>
+        <div><div class="ch">右</div><iframe loading="lazy" src="pairs/${id}/${rightFile}"></iframe></div>
+      </div>
+      <div class="q"><b>意図に近いのは:</b>
+        <span><label><input type="radio" name="w-${id}" value="left">左</label>
+        <label><input type="radio" name="w-${id}" value="right">右</label></span>
+        <b>確信度:</b>
+        <span>${[1,2,3,4,5].map(v=>`<label><input type="radio" name="c-${id}" value="${v}">${v}</label>`).join("")}</span>
+      </div>`;
+    box.appendChild(d);
+  });
+  document.addEventListener("change",e=>{
+    ids.forEach(id=>{
+      const w=document.querySelector(`input[name="w-${id}"]:checked`);
+      const c=document.querySelector(`input[name="c-${id}"]:checked`);
+      if(w&&c){answers[id]={side:w.value,confidence:+c.value};document.getElementById("p-"+id).classList.add("answered");}
+    });
+    document.getElementById("stat").textContent=`${Object.keys(answers).length} / ${ids.length} 回答`;
+  });
+}).catch(e=>{document.getElementById("pairs").textContent="manifest読込失敗: "+e;});
+
+document.getElementById("export").addEventListener("click",()=>{
+  const ids=Object.keys(M.pairs).sort();
+  if(Object.keys(answers).length<ids.length){alert("未回答のペアがあります");return;}
+  const out={format:"unprompt.effect_eval.v0",judged_at:new Date().toISOString(),judgments:{}};
+  ids.forEach(id=>{
+    const a=answers[id]; const order=M.pairs[id].blind_order;
+    const picked = (a.side==="left") ? order[0] : order[1]; // "A"=raw / "B"=compiled
+    out.judgments[id]={picked_side:a.side, picked_condition:picked==="A"?"raw":"compiled",
+      confidence:a.confidence, blind_order:order};
+  });
+  const wins=Object.values(out.judgments).filter(j=>j.picked_condition==="compiled").length;
+  out.summary={compiled_wins:wins, total:ids.length};
+  const blob=new Blob([JSON.stringify(out,null,1)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download="eval_owner_"+Date.now()+".json"; a.click();
+  alert(`書き出しました。指示書側の勝ち: ${wins}/${ids.length}`);
+});
+</script>
+</body>
+</html>

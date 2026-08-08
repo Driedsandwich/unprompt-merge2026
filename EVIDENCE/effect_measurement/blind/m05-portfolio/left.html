@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 — Portfolio</title>
+<style>
+  /*
+    type scale (base 16px, ratio ~1.5)
+    --fs-0: 16px  本文
+    --fs-1: 20px  小見出し
+    --fs-2: 30px  section見出し
+    --fs-3: 46px  hero sub
+    --fs-4: 72px  hero main
+  */
+  :root{
+    /* GYAKUMON-CHOICE: 想定読み手(採用側)の職種領域 = デザイナー向け */
+    --bg: #0d0d0d;
+    --panel: #1a1a1a;
+    --fg: #f2f0eb;
+    --accent: #ff3b1d;
+    --fs-0: 16px;
+    --fs-1: 20px;
+    --fs-2: 30px;
+    --fs-3: 46px;
+    --fs-4: 72px;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html,body{
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Hiragino Sans", "Yu Gothic UI", "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+    font-size: var(--fs-0);
+    line-height: 1.9;
+  }
+  /* GYAKUMON-CHOICE: シンプルさの徹底度 = ミニマル徹底 */
+  a{ color: var(--accent); text-decoration: none; }
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 32px; }
+  section{ padding: 112px 0; border-bottom: 1px solid #2a2a2a; }
+  section:last-of-type{ border-bottom: none; }
+
+  h1,h2,h3{
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  /* GYAKUMON-CHOICE: 「印象に残る」の実現方法 = ビジュアル訴求型 */
+  .hero{
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .hero::before{
+    content: "";
+    position: absolute;
+    right: -10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60vw;
+    height: 60vw;
+    max-width: 700px;
+    max-height: 700px;
+    border: 1px solid var(--accent);
+    opacity: 0.35;
+  }
+  .hero-label{
+    font-size: var(--fs-1);
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero h1{
+    font-size: var(--fs-4);
+    max-width: 10ch;
+  }
+  .hero .role{
+    font-size: var(--fs-3);
+    font-weight: 300;
+    color: #9a9a95;
+    margin-top: 16px;
+  }
+  .hero p.lead{
+    margin-top: 40px;
+    font-size: var(--fs-1);
+    max-width: 46ch;
+    color: #cfcdc6;
+  }
+
+  h2.section-title{
+    font-size: var(--fs-2);
+    margin-bottom: 56px;
+  }
+  h2.section-title span{
+    display: block;
+    font-size: var(--fs-0);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .about p{ max-width: 60ch; color: #d8d6cf; }
+
+  /* GYAKUMON-CHOICE: サイトの構成の重心 = 作品ギャラリー中心 */
+  .works{ display: flex; flex-direction: column; gap: 64px; }
+  .work{
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .work-visual{
+    aspect-ratio: 4/3;
+    background: var(--panel);
+    position: relative;
+    overflow: hidden;
+  }
+  .work-visual::after{
+    content: attr(data-n);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--accent);
+    opacity: 0.5;
+  }
+  .work h3{ font-size: var(--fs-1); margin-bottom: 8px; }
+  .work .tag{ color: var(--accent); font-size: 14px; letter-spacing: 0.1em; margin-bottom: 16px; display:inline-block; }
+  .work p{ color: #b8b6b0; max-width: 42ch; }
+
+  .skills ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .skills li{
+    border: 1px solid #333;
+    padding: 12px 20px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .contact .email{
+    font-size: var(--fs-3);
+    font-weight: 300;
+    display: inline-block;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8px;
+  }
+  .contact .links{ margin-top: 40px; display: flex; gap: 32px; }
+  footer{ padding: 48px 0; text-align: center; color: #555; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <div class="hero-label">Portfolio 2026</div>
+  <h1>〈氏名〉</h1>
+  <div class="role">〈職種・肩書き〉</div>
+  <p class="lead">余白で語るポートフォリオ、手を動かした痕跡がここにある。作品が語る、その先へ。</p>
+</header>
+
+<section class="about wrap">
+  <h2 class="section-title"><span>About</span>自己紹介</h2>
+  <p>〈自己紹介文をここに記載。経歴・関心領域・仕事への姿勢など、詳細は別途提供が必要です。〉</p>
+</section>
+
+<section class="works wrap">
+  <h2 class="section-title"><span>Works</span>作品</h2>
+  <div class="works">
+    <div class="work">
+      <div class="work-visual" data-n="01"></div>
+      <div>
+        <span class="tag">〈カテゴリ〉</span>
+        <h3>〈作品タイトル 1〉</h3>
+        <p>〈作品の概要・役割・使用ツールなど〉</p>
+      </div>
+    </div>
+    <div class="work">
+      <div class="work-visual" data-n="02"></div>
+      <div>
+        <span class="tag">〈カテゴリ〉</span>
+        <h3>〈作品タイトル 2〉</h3>
+        <p>〈作品の概要・役割・使用ツールなど〉</p>
+      </div>
+    </div>
+    <div class="work">
+      <div class="work-visual" data-n="03"></div>
+      <div>
+        <span class="tag">〈カテゴリ〉</span>
+        <h3>〈作品タイトル 3〉</h3>
+        <p>〈作品の概要・役割・使用ツールなど〉</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills wrap">
+  <h2 class="section-title"><span>Skills</span>スキル</h2>
+  <ul>
+    <li>〈スキル 1〉</li>
+    <li>〈スキル 2〉</li>
+    <li>〈スキル 3〉</li>
+    <li>〈スキル 4〉</li>
+    <li>〈スキル 5〉</li>
+  </ul>
+</section>
+
+<section class="contact wrap">
+  <h2 class="section-title"><span>Contact</span>連絡先</h2>
+  <a class="email" href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+  <div class="links">
+    <a href="〈ポートフォリオURL〉">〈ポートフォリオURL〉</a>
+    <a href="〈SNS/LinkedIn等〉">〈SNS / LinkedIn〉</a>
+  </div>
+</section>
+
+<footer class="wrap">© 〈氏名〉</footer>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "若手エンジニアに刺さるスカウトメール書いて。",
+ "compiled_at": "2026-08-01T07:01:49.825277+00:00",
+ "decisions": [
+  {
+   "question_point": "読み手エンジニアの経験層",
+   "anchor_words": [
+    "若手エンジニアに刺さる"
+   ],
+   "status": "decided",
+   "chosen_label": "実務2〜4年目",
+   "visual_tokens": {
+    "palette": [
+     "#132a3a",
+     "#1f6f6b",
+     "#e8b24a"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "実務2〜4年目のあなたへ、次の裁量を任せたい"
+   },
+   "tone_example": null,
+   "intent": "実務2〜4年目という層を確定させたことで、専門用語の密度や訴求内容の粒度が過不足なく定まる。"
+  },
+  {
+   "question_point": "スカウトメールの目的",
+   "anchor_words": [
+    "スカウトメール書いて"
+   ],
+   "status": "decided",
+   "chosen_label": "カジュアル面談誘導",
+   "visual_tokens": {
+    "palette": [
+     "#1f2a24",
+     "#3e8e6b",
+     "#b8f2c9"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "エンジニアのあなたへ、30分だけ雑談しませんか"
+   },
+   "tone_example": null,
+   "intent": "カジュアル面談誘導を目的に定めたことで、文末のCTAや心理的ハードルの下げ方が一意に決まる。"
+  },
+  {
+   "question_point": "訴求する魅力軸",
+   "anchor_words": [
+    "刺さる"
+   ],
+   "status": "decided",
+   "chosen_label": "技術・裁量訴求",
+   "visual_tokens": {
+    "palette": [
+     "#101418",
+     "#2f6f5e",
+     "#c7ff4d"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "コードで裁量を取りにいけ。若手にも大きな技術選定を任せる現場です。"
+   },
+   "tone_example": null,
+   "intent": "技術・裁量訴求を軸に選んだことで、盛り込む具体エピソードや強調すべき職場環境の観点が定まる。"
+  },
+  {
+   "question_point": "文体トーン",
+   "anchor_words": [
+    "書いて"
+   ],
+   "status": "decided",
+   "chosen_label": "フランク口語調",
+   "visual_tokens": {
+    "palette": [
+     "#1a1a1a",
+     "#f4e51c",
+     "#ff4d5e"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "その技術、うちで暴れさせない?若手エンジニア募集中。"
+   },
+   "tone_example": null,
+   "intent": "フランク口語調を選んだことで、敬語の硬さを抑えた語尾や言い回しの方向性が一意に定まる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象層・目的・訴求軸・トーンが未指定で、成果物の方向性が大きく分かれる曖昧なブリーフ。",
+ "missing_materials": [
+  "自社の会社名・事業内容",
+  "募集ポジションの職務内容",
+  "候補者の経歴やスカウト理由となる実績情報"
+ ]
+}

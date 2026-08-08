@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>経費精算ツール仕様メモ</title>
+<style>
+  /*
+    タイプスケール (base 16px, 比率 1.25):
+    --fs-body: 16px
+    --fs-h2:   20px (16*1.25)
+    --fs-h1:   28px (16*1.25^2, 切上げ)
+    見出し: システムsans-serif、太字・字間タイト(経理伝票の凝縮感)
+    本文: システムsans-serif、標準字間
+  */
+  :root{
+    /* GYAKUMON-CHOICE: 利用者・利用シーンの想定 = 経理担当の処理効率化 */
+    /* GYAKUMON-CHOICE: 「ラクにする」対象工程の範囲 = 経理処理・集計の自動化 */
+    --bg: #12261f;
+    --main: #1f5c46;
+    --accent: #7fe0b8;
+    --fs-body: 16px;
+    --fs-h2: 20px;
+    --fs-h1: 28px;
+  }
+  *{ box-sizing: border-box; }
+  html,body{
+    margin:0; padding:0;
+    background: var(--bg);
+    color: #e6f3ec;
+    font-family: "Segoe UI", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.5; /* dense密度: 詰め気味の行間 */
+  }
+  .doc{
+    width: 720px;
+    margin: 48px auto;
+    padding: 0 24px 64px;
+  }
+  header{
+    border-bottom: 2px solid var(--main);
+    padding-bottom: 16px;
+    margin-bottom: 40px;
+  }
+  .kicker{
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+  h1{
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: #f2fbf6;
+  }
+  section{
+    margin-bottom: 32px;
+  }
+  section + section{
+    margin-top: 40px;
+  }
+  h2{
+    font-size: var(--fs-h2);
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    color: var(--accent);
+    margin: 0 0 12px;
+    border-left: 4px solid var(--main);
+    padding-left: 10px;
+  }
+  p{
+    margin: 0 0 8px;
+  }
+  ul{
+    margin: 0;
+    padding-left: 20px;
+  }
+  li{
+    margin-bottom: 6px;
+  }
+  code{
+    background: #0b1712;
+    color: var(--accent);
+    padding: 1px 6px;
+    font-family: "SF Mono", Consolas, monospace;
+    font-size: 13px;
+  }
+  .note{
+    color: #a9c9bb;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<!-- GYAKUMON-CHOICE: 仕様メモの粒度・読み手 = 開発者向け技術仕様 -->
+<header>
+  <p class="kicker">経費精算オートパイロット / 仕様メモ v0.1</p>
+  <h1>経費集計オートパイロット</h1>
+</header>
+
+<section>
+  <h2>目的</h2>
+  <p>経費精算そのものより、経理担当が精算後に行う突合・仕訳・集計の負荷を減らすことが目的である。申請入力の改善は範囲外とし、経理側の処理工程を自動で締めるツールとして設計する。</p>
+</section>
+
+<section>
+  <!-- GYAKUMON-CHOICE: 利用者・利用シーンの想定 = 経理担当の処理効率化 -->
+  <h2>対象ユーザー</h2>
+  <p>社内の経理担当。申請者本人ではなく、提出済み経費データを受け取り仕訳・集計を行う側を主利用者とする。</p>
+</section>
+
+<section>
+  <!-- GYAKUMON-CHOICE: 「ラクにする」対象工程の範囲 = 経理処理・集計の自動化 -->
+  <!-- GYAKUMON-CHOICE: 対象とする経費の範囲 = 一般経費全般 -->
+  <h2>主要機能</h2>
+  <ul>
+    <li>経費データ受信: <code>POST /expenses</code> で申請1件を受け取り、費目を問わず一般経費全般(交通費〜備品購入等)を同一スキーマで格納する</li>
+    <li>自動仕訳: 費目に応じた勘定科目を自動付与し、手動仕訳の入力を不要にする</li>
+    <li>自動集計: 部署・期間単位で件数・金額を自動集計し、締め処理に必要な形で出力する</li>
+    <li>差分検知: 二重申請・金額不一致を検出し、経理担当の確認対象のみを一覧化する</li>
+  </ul>
+</section>
+
+<section>
+  <!-- GYAKUMON-CHOICE: ツールの提供形態 = 単機能Webフォーム -->
+  <h2>画面イメージの言葉での説明</h2>
+  <p>経理担当が開く画面は単機能のWebフォーム1枚のみ。上部に未処理の申請一覧、選択すると仕訳候補と集計プレビューが表示され、確認ボタン一つで確定する。多機能なダッシュボードや管理画面は持たない。</p>
+</section>
+
+<section>
+  <h2>使わないと決めたもの</h2>
+  <p>申請者向けの入力UI改善、承認ワークフロー機能、〈会計ソフト名〉等の外部システム連携は本仕様の対象外とする。まずは経理側の処理・集計自動化のみに絞る。</p>
+  <p class="note">対象人数・既存フロー・連携先・開発期限は未確定のため、着手前に確認が必要。</p>
+</section>
+
+</div>
+</body>
+</html>

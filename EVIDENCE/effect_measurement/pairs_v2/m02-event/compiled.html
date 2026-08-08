@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>秋季社内勉強会のお知らせ</title>
+<style>
+/* GYAKUMON-CHOICE: ページの構成の重心 = 日時場所中心の告知型 */
+:root{
+  /* タイプスケール(基準16px, 比率1.5) */
+  --step-0: 16px;
+  --step-1: 24px;
+  --step-2: 36px;
+  --step-3: 54px;
+  --bg: #0f1f3d;
+  --main: #1e3a6e;
+  --accent: #f2a900;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:#eef2f8;
+  font-family:"Hiragino Sans","Yu Gothic UI","Segoe UI",system-ui,sans-serif;
+  font-size:var(--step-0);
+  line-height:1.9;
+}
+/* GYAKUMON-CHOICE: 告知ページのトーン = カジュアル */
+h1,h2{
+  font-family:"YuGothic","Hiragino Kaku Gothic ProN","Segoe UI",system-ui,sans-serif;
+  font-weight:800;
+  letter-spacing:0.02em;
+  margin:0;
+  color:#ffffff;
+}
+main{
+  max-width:680px;
+  margin:0 auto;
+  padding:0 24px;
+}
+section{
+  padding:96px 0;
+  border-top:1px solid rgba(242,169,0,0.15);
+}
+section:first-of-type{border-top:none;}
+
+/* GYAKUMON-CHOICE: 想定読者の範囲 = 希望者のみ任意参加 */
+.hero{
+  padding:112px 24px 96px;
+  text-align:left;
+  background:
+    repeating-linear-gradient(135deg, rgba(242,169,0,0.06) 0 2px, transparent 2px 40px);
+}
+.hero-inner{max-width:680px;margin:0 auto;}
+.eyebrow{
+  display:inline-block;
+  color:var(--accent);
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  border:1px solid var(--accent);
+  border-radius:0;
+  padding:4px 12px;
+  margin-bottom:24px;
+}
+h1{
+  font-size:var(--step-3);
+  line-height:1.25;
+}
+.hero p.lead{
+  margin-top:24px;
+  font-size:var(--step-1);
+  color:#c9d4e6;
+}
+.infobar{
+  margin-top:48px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.infobar div{
+  background:var(--main);
+  border-radius:0;
+  padding:16px 20px;
+  min-width:180px;
+}
+.infobar span{
+  display:block;
+  font-size:12px;
+  color:var(--accent);
+  letter-spacing:0.08em;
+  margin-bottom:6px;
+}
+.infobar strong{
+  font-size:20px;
+  color:#fff;
+  font-weight:800;
+}
+
+h2{
+  font-size:var(--step-2);
+  margin-bottom:32px;
+  position:relative;
+  padding-left:20px;
+}
+h2::before{
+  content:"";
+  position:absolute;
+  left:0;top:6px;bottom:6px;
+  width:4px;
+  background:var(--accent);
+}
+
+/* GYAKUMON-CHOICE: 勉強会の目的・訴求軸 = 交流・カルチャー重視 */
+.about p{color:#dbe3f1;font-size:var(--step-0);}
+.about p + p{margin-top:16px;}
+
+.highlights ul{
+  list-style:none;
+  margin:0;padding:0;
+  display:grid;
+  gap:24px;
+}
+.highlights li{
+  background:var(--main);
+  padding:24px;
+  border-radius:0;
+}
+.highlights li h3{
+  margin:0 0 8px;
+  color:var(--accent);
+  font-size:18px;
+  font-weight:700;
+}
+.highlights li p{margin:0;color:#c9d4e6;}
+
+.join{
+  background:var(--main);
+  padding:40px;
+  border-radius:0;
+}
+.join p{margin:0 0 16px;color:#dbe3f1;}
+.join .note{
+  font-size:14px;
+  color:#a9b6cc;
+  border-top:1px solid rgba(242,169,0,0.2);
+  padding-top:16px;
+  margin-top:24px;
+}
+
+footer{
+  padding:64px 24px 96px;
+  text-align:center;
+  color:#5f6f8f;
+  font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">社内勉強会 告知</span>
+    <!-- GYAKUMON-CHOICE: ページの構成の重心 = 日時場所中心の告知型 -->
+    <h1>秋季社内勉強会、やります。</h1>
+    <p class="lead">秋の夜、語り合う勉強会。飲み物片手に、まずは顔を合わせよう。</p>
+    <div class="infobar">
+      <div><span>開催日時</span><strong>〈開催日〉 〈開始時刻〉〜</strong></div>
+      <div><span>会場</span><strong>〈会場/オンライン形式〉</strong></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- GYAKUMON-CHOICE: 勉強会の目的・訴求軸 = 交流・カルチャー重視 -->
+  <section class="about">
+    <h2>どんな会?</h2>
+    <p>今回は「学ぶ」よりも「話す」を大事にする回にします。テーマは〈テーマ・題材〉。堅い発表を聞くだけの時間ではなく、飲み物片手にゆるっと感想を交わせる空気を目指しています。</p>
+    <p>登壇や進行は〈登壇者/講師名〉が担当予定です。詳細は追ってお知らせします。</p>
+  </section>
+
+  <section class="highlights">
+    <h2>見どころ</h2>
+    <ul>
+      <li>
+        <h3>顔を合わせる時間</h3>
+        <p>普段あまり話さないメンバーとも、同じ話題で自然に会話が生まれます。</p>
+      </li>
+      <li>
+        <h3>肩ひじ張らない進行</h3>
+        <p>ガチガチの発表会ではなく、雑談混じりで進めます。途中参加・途中退出も気にせずどうぞ。</p>
+      </li>
+      <li>
+        <h3>秋の一夜の空気</h3>
+        <p>飲み物・軽食を用意する予定です(内容は〈用意物〉)。</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 想定読者の範囲 = 希望者のみ任意参加 -->
+  <section class="join">
+    <h2>参加方法</h2>
+    <p>参加は完全に希望者のみです。来たい人だけ、気軽に一枠のぞいてみてください。都合が合わない方への案内や返信は不要です。</p>
+    <p>申し込みは〈申込方法〉から。〆切は〈申込締切〉を予定しています。</p>
+    <p class="note">不参加でも何の問題もありません。次の機会にぜひ。</p>
+  </section>
+</main>
+
+<footer>
+  社内勉強会 告知ページ / 主催: 〈主催チーム〉
+</footer>
+
+</body>
+</html>

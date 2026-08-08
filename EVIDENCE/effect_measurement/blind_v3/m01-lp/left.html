@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読み手が誰か = 新規見込み客 */
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重配分 = 半々でバランス型 */
+/* GYAKUMON-CHOICE: トーン&マナー(文体) = クールで簡潔 */
+:root{
+  /* palette: 地色 #0a0e1a / 主要色 #1e3a8a / 強調色 #00d9c0 */
+  --bg:#0a0e1a; --main:#1e3a8a; --accent:#00d9c0; --text:#e8ecf5; --sub:#8a93ab;
+  /* type scale base 16px, ratio 1.5 */
+  --fs-base:16px; --fs-1:24px; --fs-2:36px; --fs-3:54px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:"Hiragino Sans","Yu Gothic UI","Segoe UI",system-ui,sans-serif;
+  font-size:var(--fs-base); line-height:1.9;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 32px;}
+section{padding:96px 0;}
+h1,h2,h3{font-family:"Hiragino Sans","Yu Gothic UI","Segoe UI",system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;}
+
+/* GYAKUMON-CHOICE: 冒頭は主張 = クールで簡潔なコピー */
+.hero{padding:160px 0 120px;border-bottom:1px solid #1c2436;}
+.hero .kicker{color:var(--accent);font-size:14px;letter-spacing:0.28em;font-weight:700;margin-bottom:24px;}
+.hero h1{font-size:var(--fs-3);line-height:1.3;margin-bottom:32px;}
+.hero h1 span{color:var(--accent);}
+.hero p{color:var(--sub);font-size:var(--fs-1);line-height:1.8;max-width:640px;margin-bottom:48px;}
+.btn{
+  display:inline-block; background:var(--accent); color:var(--bg);
+  font-weight:800; padding:20px 40px; border-radius:0; text-decoration:none;
+  font-size:16px; letter-spacing:0.04em;
+}
+.btn.ghost{background:transparent;border:1px solid var(--sub);color:var(--text);margin-left:16px;}
+
+/* GYAKUMON-CHOICE: LPの目的(コンバージョン行動) = 問い合わせ獲得 */
+.value{border-bottom:1px solid #1c2436;}
+.value h2{font-size:var(--fs-2);margin-bottom:24px;}
+.value p{color:var(--sub);font-size:var(--fs-1);max-width:700px;}
+
+.features{border-bottom:1px solid #1c2436;}
+.features h2{font-size:var(--fs-2);margin-bottom:64px;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;}
+.feat{border-top:2px solid var(--main);padding-top:24px;}
+.feat .num{color:var(--accent);font-size:14px;font-weight:800;letter-spacing:0.2em;margin-bottom:16px;}
+.feat h3{font-size:20px;margin-bottom:12px;}
+.feat p{color:var(--sub);font-size:15px;}
+
+.flow{border-bottom:1px solid #1c2436;}
+.flow h2{font-size:var(--fs-2);margin-bottom:64px;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:32px;padding:32px 0;border-top:1px solid #1c2436;align-items:baseline;}
+.step:last-child{border-bottom:1px solid #1c2436;}
+.step .n{font-size:var(--fs-1);font-weight:800;color:var(--accent);min-width:64px;}
+.step h3{font-size:18px;margin-bottom:8px;}
+.step p{color:var(--sub);font-size:15px;}
+
+/* GYAKUMON-CHOICE: 信頼感の訴求根拠 = 権威/導入企業で訴求 */
+.trust{border-bottom:1px solid #1c2436;}
+.trust h2{font-size:var(--fs-1);color:var(--sub);font-weight:700;margin-bottom:40px;}
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.logo{
+  border:1px solid #1c2436;height:72px;display:flex;align-items:center;justify-content:center;
+  color:var(--sub);font-size:13px;letter-spacing:0.08em;
+}
+
+.cta{text-align:center;background:linear-gradient(180deg,var(--bg),#0d1424);}
+.cta h2{font-size:var(--fs-2);margin-bottom:24px;}
+.cta p{color:var(--sub);font-size:var(--fs-1);margin-bottom:48px;}
+
+footer{padding:64px 0;border-top:1px solid #1c2436;color:var(--sub);font-size:13px;}
+footer .brand{color:var(--text);font-weight:800;}
+footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+
+@media(max-width:720px){
+  .feat-grid,.logos{grid-template-columns:1fr;}
+  .hero h1{font-size:32px;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">SERVICE FOR THOSE WHO DON'T KNOW IT YET</div>
+    <h1>まだ知らない人にこそ、<br><span>試す価値</span>がある。</h1>
+    <p>無駄なし、迷いなし。〈サービス名〉は本質だけを届けるために作られた。かっこよさと信頼、その両方を譲らない。</p>
+    <a href="#contact" class="btn">今すぐ相談する</a>
+    <a href="#flow" class="btn ghost">利用の流れを見る</a>
+  </div>
+</section>
+
+<section class="value">
+  <div class="wrap">
+    <h2>サービスの本質を、誠実にデザインする。</h2>
+    <p>〈サービス名〉は、見た目の派手さではなく実際に使える価値で選ばれることを目指している。まずはお気軽にご相談ください。専門スタッフが直接お答えします。</p>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <h2>選ばれる3つの理由</h2>
+    <div class="feat-grid">
+      <div class="feat"><div class="num">01</div><h3>〈特徴1〉</h3><p>詳細は〈サービスの具体的な機能〉に基づき記載します。</p></div>
+      <div class="feat"><div class="num">02</div><h3>〈特徴2〉</h3><p>詳細は〈サービスの具体的な機能〉に基づき記載します。</p></div>
+      <div class="feat"><div class="num">03</div><h3>〈特徴3〉</h3><p>詳細は〈サービスの具体的な機能〉に基づき記載します。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flow" id="flow">
+  <div class="wrap">
+    <h2>利用の流れ</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><div><h3>お問い合わせ</h3><p>フォームより概要をお送りください。</p></div></div>
+      <div class="step"><div class="n">02</div><div><h3>ヒアリング</h3><p>専門スタッフが要件を直接お伺いします。</p></div></div>
+      <div class="step"><div class="n">03</div><div><h3>ご提案・導入</h3><p>内容に合わせてご提案し、導入をサポートします。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <h2>導入企業が選ぶ理由。信頼はロゴが語る。</h2>
+    <div class="logos">
+      <div class="logo">〈導入企業A〉</div>
+      <div class="logo">〈導入企業B〉</div>
+      <div class="logo">〈導入企業C〉</div>
+      <div class="logo">〈導入企業D〉</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <h2>まずはお気軽にご相談ください。</h2>
+    <p>専門スタッフが直接お答えします。</p>
+    <a href="#" class="btn">問い合わせフォームへ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <div class="brand">〈サービス名〉</div>
+    <div>&copy; 〈サービス名〉</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈商品名〉のご紹介</title>
+<style>
+/*
+  GYAKUMON-CHOICE 適用まとめ(機械照合用コメント):
+  ・想定読者=新規見込み客 → 専門語を避け、はじめての人への語りかけで構成
+  ・訴求の軸=感情・体験重視 → スペック列挙でなく使用時の心理的満足を軸に構成
+  ・トーン・文体=親しみやすい → 語りかけ口調、硬い敬体を避ける
+  ・掲載媒体・構成=ECの商品ページ → 購入導線を意識した見出し順(キャッチ→リード→特徴→仕様→締め)
+  基調色は感情・体験重視の視覚トークンを採用(#241c1f 基調 / #d99a5b 強調)。
+  見出し書体は感情・体験重視の serif、密度は airy、角は soft を全体に反映。
+*/
+:root{
+  --bg:#241c1f;
+  --bg-soft:#2f2529;
+  --accent:#d99a5b;
+  --text:#f2e9e4;
+  --text-dim:#c9b8b0;
+
+  /* タイプスケール(本文16px基準、比率1.35) */
+  --fs-body:16px;
+  --fs-lead:19px;
+  --fs-h2:22px;
+  --fs-h1:34px;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--bg);
+  display:flex;
+  justify-content:center;
+  padding:64px 24px;
+}
+
+/* GYAKUMON-CHOICE: 掲載媒体・構成 = ECの商品ページ */
+main{
+  width:720px;
+  max-width:100%;
+  background:var(--bg-soft);
+  border-radius:24px;
+  padding:80px 64px;
+  font-family:"Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+  color:var(--text);
+}
+
+/* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験重視 */
+h1,h2{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  color:var(--text);
+  margin:0;
+}
+
+h1{
+  font-size:var(--fs-h1);
+  font-weight:600;
+  letter-spacing:0.04em;
+  line-height:1.5;
+}
+
+h2{
+  font-size:var(--fs-h2);
+  font-weight:500;
+  letter-spacing:0.02em;
+  color:var(--accent);
+  margin-bottom:16px;
+}
+
+section{
+  margin-top:96px;
+}
+
+section:first-of-type{
+  margin-top:64px;
+}
+
+/* GYAKUMON-CHOICE: トーン・文体 = 親しみやすい */
+p{
+  margin:0;
+}
+
+.lead{
+  font-size:var(--fs-lead);
+  color:var(--text-dim);
+}
+
+ul{
+  margin:0;
+  padding-left:1.2em;
+  color:var(--text-dim);
+}
+
+li{
+  margin-bottom:12px;
+}
+
+.spec{
+  border-top:1px solid rgba(217,154,91,0.3);
+  padding-top:32px;
+  font-size:14px;
+  color:var(--text-dim);
+}
+
+.spec dt{
+  color:var(--accent);
+  font-weight:600;
+  margin-top:12px;
+}
+
+.spec dd{
+  margin:4px 0 0 0;
+}
+
+.closing{
+  text-align:center;
+  color:var(--accent);
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:var(--fs-lead);
+  letter-spacing:0.02em;
+}
+</style>
+</head>
+<body>
+<main>
+
+<!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験重視 -->
+<section>
+<h1>触れた瞬間、今日が少しやわらかくなる。〈商品名〉、はじめまして。</h1>
+</section>
+
+<!-- GYAKUMON-CHOICE: 想定読者 = 新規見込み客 -->
+<section>
+<p class="lead">
+まだ〈商品名〉を知らないあなたへ。むずかしい説明は抜きにして、まずはこの感じを届けたくて作りました。使い方に迷うことはありません。手に取った瞬間から、なじむように作ってあります。
+</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: トーン・文体 = 親しみやすい -->
+<section>
+<h2>使うたびに、ふっと肩の力が抜ける</h2>
+<ul>
+<li>毎日の中にそっと入り込んで、気づけば手放せなくなる心地よさ。</li>
+<li>身構えなくていい、はじめての人にもすっとなじむつくり。</li>
+<li>忙しい一日の終わりに、小さな余韻を残してくれます。</li>
+</ul>
+</section>
+
+<!-- GYAKUMON-CHOICE: 掲載媒体・構成 = ECの商品ページ -->
+<section class="spec">
+<h2>仕様・注意</h2>
+<dl>
+<dt>商品名</dt>
+<dd>〈商品名〉</dd>
+<dt>カテゴリ</dt>
+<dd>〈カテゴリ〉</dd>
+<dt>価格</dt>
+<dd>〈価格〉</dd>
+<dt>ご注意</dt>
+<dd>詳細な仕様は入荷情報とあわせて随時更新いたします。</dd>
+</dl>
+</section>
+
+<section>
+<p class="closing">まずは、あなたに使ってみてほしいな。</p>
+</section>
+
+</main>
+</body>
+</html>

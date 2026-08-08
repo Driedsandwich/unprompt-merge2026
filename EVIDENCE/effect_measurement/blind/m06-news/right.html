@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>巻頭あいさつ</title>
+<style>
+  /*
+    タイプスケール(本文16pxを基準に1.333倍階調)
+    --step0: 16px 本文
+    --step1: 21px 小見出し
+    --step2: 28px 呼びかけタイトル
+  */
+  :root{
+    --ink:#2f3a34;
+    --sub:#5f6d64;
+    --accent:#c96a3c;
+    --paper:#f4f1ea;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hiragino Sans","Yu Gothic UI","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.9;
+  }
+  .sheet{
+    width:720px;
+    max-width:92%;
+    margin:96px auto;
+    padding:64px 56px;
+  }
+  .kicker{
+    font-size:13px;
+    letter-spacing:.28em;
+    color:var(--accent);
+    font-weight:700;
+    margin:0 0 16px;
+  }
+  h1{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:28px;
+    font-weight:600;
+    letter-spacing:.04em;
+    line-height:1.6;
+    margin:0 0 96px;
+    padding-bottom:32px;
+    border-bottom:1px solid #d8d2c4;
+  }
+  section{margin:0 0 96px;}
+  section:last-of-type{margin-bottom:0;}
+  h2{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.18em;
+    color:var(--sub);
+    margin:0 0 24px;
+  }
+  p{
+    font-size:16px;
+    margin:0;
+  }
+  .closing{
+    text-align:right;
+    font-size:16px;
+    color:var(--sub);
+  }
+  .closing .name{
+    display:block;
+    margin-top:24px;
+    color:var(--ink);
+    font-weight:600;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p class="kicker">〈会社名〉社内報 巻頭あいさつ</p>
+  <h1>暑さも折り返し、後半戦の話をしましょう。</h1>
+
+  <section>
+    <h2>呼びかけ</h2>
+    <p>皆さん、こんにちは。8月に入り、いよいよ今年も後半戦です。休暇の予定を立てている人も、目の前の仕事に追われている人も、まずは一息ついて今月号を開いてもらえたら嬉しいです。</p>
+  </section>
+
+  <section>
+    <h2>近況</h2>
+    <p>各チームともそれぞれのペースで着実に前へ進んでいる様子が伝わってきます。派手な報告でなくても、日々の積み重ねこそが一番の実績だと思っています。〈近況の詳細〉についても、追ってこの紙面で触れていきます。</p>
+  </section>
+
+  <section>
+    <h2>今月の話題</h2>
+    <p>今号では〈今月のトピック〉を特集しています。現場の声を交えながら、できるだけ肩の力を抜いて読める内容にまとめました。気になった記事があれば、ぜひ本人に感想を伝えてみてください。</p>
+  </section>
+
+  <section class="closing">
+    <p>それでは、今月もどうぞよろしくお願いします。</p>
+    <span class="name">〈執筆者名〉</span>
+  </section>
+</div>
+</body>
+</html>

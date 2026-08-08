@@ -1,0 +1,97 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "転職用のポートフォリオサイト、シンプルだけど印象に残る感じで。",
+ "compiled_at": "2026-08-01T07:02:31.174678+00:00",
+ "decisions": [
+  {
+   "question_point": "想定読み手(採用側)の職種領域",
+   "anchor_words": [
+    "転職用のポートフォリオサイト"
+   ],
+   "status": "decided",
+   "chosen_label": "デザイナー向け",
+   "visual_tokens": {
+    "palette": [
+     "#0d0d0d",
+     "#f2f0eb",
+     "#ff3b1d"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "余白で語るポートフォリオ、手を動かした痕跡がここにある。"
+   },
+   "tone_example": null,
+   "intent": "デザイナー向けと確定することで、以降の作品掲載基準やビジュアル表現の判断軸が定まる。"
+  },
+  {
+   "question_point": "「印象に残る」の実現方法",
+   "anchor_words": [
+    "印象に残る感じ"
+   ],
+   "status": "decided",
+   "chosen_label": "ビジュアル訴求型",
+   "visual_tokens": {
+    "palette": [
+     "#0a0a0a",
+     "#1f1f1f",
+     "#e8442a"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "見て、伝わる。ポートフォリオを一枚の絵として魅せる。"
+   },
+   "tone_example": null,
+   "intent": "ビジュアル訴求型を選ぶことで、印象付けの手段が文章や機能でなく視覚表現に一意に絞られる。"
+  },
+  {
+   "question_point": "サイトの構成の重心",
+   "anchor_words": [
+    "ポートフォリオサイト"
+   ],
+   "status": "decided",
+   "chosen_label": "作品ギャラリー中心",
+   "visual_tokens": {
+    "palette": [
+     "#0b0b0e",
+     "#1a1a20",
+     "#d4ff3f"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "作品が語る。ポートフォリオ、余白の先へ。"
+   },
+   "tone_example": null,
+   "intent": "作品ギャラリー中心とすることで、トップページや導線設計が作品閲覧を軸に組み立てられる。"
+  },
+  {
+   "question_point": "シンプルさの徹底度",
+   "anchor_words": [
+    "シンプルだけど印象に残る感じ"
+   ],
+   "status": "decided",
+   "chosen_label": "ミニマル徹底",
+   "visual_tokens": {
+    "palette": [
+     "#0b0b0c",
+     "#1c1c1e",
+     "#f5f5f0"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "portfolio — 職務経歴、削ぎ落として一枚に。"
+   },
+   "tone_example": null,
+   "intent": "ミニマル徹底を選ぶことで、要素追加や装飾の判断基準が削ぎ落とし優先で一貫する。"
+  }
+ ],
+ "residual_ambiguity_assessment": "読者・訴求軸・構成重心・シンプル度が未指定で曖昧度は高い。",
+ "missing_materials": [
+  "職種・業界情報",
+  "実績・作品データ",
+  "経歴・スキル情報"
+ ]
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>新商品のご紹介</title>
+<style>
+  /*
+    :root タイプスケール(基準16px, 比率 1.25)
+    --fs-0: 16px 本文
+    --fs-1: 20px 小見出し
+    --fs-2: 25px 見出し
+    --fs-3: 31px キャッチコピー
+  */
+  :root{
+    --bg: #fff7ed;
+    --primary: #f4a65a;
+    --accent: #e8654a;
+    --ink: #3a2c22;
+    --fs-0: 16px;
+    --fs-1: 20px;
+    --fs-2: 25px;
+    --fs-3: 31px;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    display:flex;
+    justify-content:center;
+    /* GYAKUMON-CHOICE: トーン・文体 = 親しみやすい */
+    font-family: "Yu Gothic Medium", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    font-size: var(--fs-0);
+    line-height: 1.9;
+  }
+  .sheet{
+    width: 720px;
+    max-width: 100%;
+    padding: 64px 48px 80px;
+  }
+  section{ margin-bottom: 64px; }
+  section:last-child{ margin-bottom: 0; }
+
+  h1, h2{
+    /* GYAKUMON-CHOICE: 想定読者 = 新規見込み客 */
+    font-family: "UD Digi Kyokasho N-R", "Rounded M+ 1c", "Hiragino Maru Gothic ProN", sans-serif;
+    color: var(--accent);
+    margin: 0 0 16px;
+  }
+  h1{
+    font-size: var(--fs-3);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
+  h2{
+    font-size: var(--fs-1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .lead{
+    font-size: var(--fs-1);
+  }
+  .catch{
+    /* GYAKUMON-CHOICE: 掲載媒体・構成 = ECの商品ページ */
+    text-align:center;
+    padding-bottom: 32px;
+  }
+  .catch p{
+    margin:8px 0 0;
+    color: var(--primary);
+    font-size: var(--fs-0);
+  }
+  .feature p{
+    /* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験重視 */
+    margin: 0;
+  }
+  .feature strong{
+    color: var(--accent);
+  }
+  .spec{
+    background: #ffffff;
+    /* GYAKUMON-CHOICE: 掲載媒体・構成 = ECの商品ページ */
+    border-radius: 24px;
+    padding: 32px;
+  }
+  .spec dl{
+    margin:0;
+    display:grid;
+    grid-template-columns: 96px 1fr;
+    row-gap: 12px;
+  }
+  .spec dt{ color:#8a6a52; }
+  .spec dd{ margin:0; }
+  .note{
+    font-size: 14px;
+    color:#8a6a52;
+    margin-top:16px;
+  }
+  .closing{
+    text-align:center;
+    font-size: var(--fs-1);
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <section class="catch">
+    <h1>はじめまして、〈新商品名〉です。<br>あなたの一日に、そっと寄り添いに来ました。</h1>
+    <p>新しいもの好きの、あなたへ。</p>
+  </section>
+
+  <section class="lead">
+    <p>朝の支度、夜のひとり時間——なんでもない瞬間に、ふっと心がゆるむ道具があったらいいなと思いませんか。〈新商品名〉は、そんな「ちょっといいな」を毎日に足すために生まれました。使い方に迷う複雑さはいりません。手に取った瞬間から、素直に気持ちよく使えます。</p>
+  </section>
+
+  <section class="feature">
+    <h2>使うたびに、ちいさな余裕が生まれる</h2>
+    <p><strong>触れた瞬間の心地よさ</strong>を一番に考えました。忙しい日でも、〈新商品名〉に触れる数十秒だけは、自分のための時間になります。難しい説明はいりません。使ってみれば、その理由がわかるはずです。はじめて手にする方にも迷いなく馴染む、やさしい佇まいです。</p>
+  </section>
+
+  <section class="spec">
+    <h2>仕様・ご購入前に</h2>
+    <dl>
+      <dt>商品名</dt><dd>〈新商品名〉</dd>
+      <dt>カテゴリ</dt><dd>〈商品カテゴリ〉</dd>
+      <dt>価格</dt><dd>〈価格〉</dd>
+      <dt>お届け</dt><dd>〈納期・配送に関する情報〉</dd>
+    </dl>
+    <p class="note">※詳しい仕様・素材・サイズは順次追記いたします。ご不明点はお問い合わせください。</p>
+  </section>
+
+  <section class="closing">
+    <p>まずは、あなたに使ってみてほしいな。</p>
+  </section>
+
+</div>
+</body>
+</html>

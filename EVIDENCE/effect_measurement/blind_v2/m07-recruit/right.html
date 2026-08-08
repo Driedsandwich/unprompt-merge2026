@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用ページ | 会社紹介</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手として想定する対象 = 新卒・未経験者 */
+/* GYAKUMON-CHOICE: 熱意の伝え方の軸 = 現場社員の情熱軸 */
+:root{
+  --bg:#1c1c1a;
+  --main:#e8532b;
+  --accent:#ffb100;
+  --ink:#fff8ec;
+  --fs-body:16px;
+  --fs-lead:21px;
+  --fs-h2:28px;
+  --fs-h1:50px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic UI",system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+}
+h1,h2,h3{
+  font-family:"Hiragino Maru Gothic ProN","Rounded Mplus 1c",system-ui,sans-serif;
+  font-weight:800;
+  letter-spacing:0.02em;
+  margin:0 0 16px;
+}
+section{padding:64px 24px;max-width:760px;margin:0 auto;}
+.hero{padding:96px 24px 72px;}
+.hero h1{font-size:var(--fs-h1);line-height:1.35;}
+.hero p.lead{font-size:var(--fs-lead);color:var(--accent);margin-top:8px;}
+.tag{
+  display:inline-block;
+  background:var(--main);
+  color:var(--ink);
+  padding:6px 16px;
+  border-radius:999px;
+  font-size:13px;
+  letter-spacing:0.08em;
+  margin-bottom:24px;
+}
+h2{font-size:var(--fs-h2);color:var(--accent);border-left:6px solid var(--main);padding-left:16px;}
+.card{
+  background:#26241f;
+  border-radius:16px;
+  padding:24px;
+  margin:16px 0;
+}
+.voice{
+  background:#26241f;
+  border-radius:16px;
+  padding:24px;
+  margin:24px 0;
+}
+.voice .role{color:var(--main);font-weight:700;font-size:14px;margin-bottom:8px;}
+.voice p{margin:0;}
+.honest{
+  border:2px solid var(--main);
+  border-radius:16px;
+  padding:24px;
+  margin:24px 0;
+}
+.honest .label{color:var(--accent);font-weight:700;font-size:14px;margin-bottom:8px;}
+ul.values{list-style:none;padding:0;margin:0;display:grid;gap:16px;}
+ul.values li{
+  background:#26241f;
+  border-radius:16px;
+  padding:20px 24px;
+  border-left:4px solid var(--accent);
+}
+.cta{text-align:center;padding-bottom:96px;}
+.cta a{
+  display:inline-block;
+  background:var(--main);
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:700;
+  padding:18px 48px;
+  border-radius:999px;
+  margin-top:16px;
+}
+.cta p.note{color:var(--accent);font-size:14px;margin-top:16px;}
+footer{text-align:center;padding:32px;color:#8c7a63;font-size:13px;}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <span class="tag">現場から:今日も手を動かしながら、この仕事に本気です。</span>
+  <h1>飾らないけど、<br>本気の話をしにきました。</h1>
+  <p class="lead">未経験から始まる、採用ページの本音。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 構成の中心軸 = 働く人・文化中心 -->
+<section>
+  <h2>〈会社名〉について</h2>
+  <div class="card">
+    <p>正直に言うと、事業の実績や沿革を誇らしげに並べられるほどの資料は、まだこのページには揃っていません。〈事業内容〉に関する詳しい説明も、これから伝えていく途中です。</p>
+    <p>それでも伝えたいのは、日々現場で手を動かしている人たちのことです。この会社を紹介するなら、数字よりもまず、その人たちの顔から始めたいと思っています。</p>
+  </div>
+</section>
+
+<section>
+  <h2>働く人の声</h2>
+  <div class="voice">
+    <div class="role">現場スタッフ 〈氏名〉</div>
+    <p>今日も手を動かしながら、この仕事に本気です。入った頃は分からないことだらけでしたが、周りに聞きながら一つずつ覚えていきました。未経験でも、ちゃんと居場所がある職場だと感じています。</p>
+  </div>
+  <div class="voice">
+    <div class="role">現場スタッフ 〈氏名〉</div>
+    <p>正直、うちもまだ足りないことだらけです。仕組みが整っていない部分もあります。それでも一緒に作っていける実感があるから、続けられています。</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「飾らない」の具体的トーン = 率直な弱み含む自己開示 -->
+<section>
+  <div class="honest">
+    <div class="label">正直に言うと</div>
+    <p>うちもまだ足りないことだらけです。整っていない制度や、これから作る仕組みもあります。それを隠して見せかけを良くするより、実際の姿を知ったうえで来てほしいと考えています。</p>
+  </div>
+</section>
+
+<section>
+  <h2>大事にしていること</h2>
+  <ul class="values">
+    <li>本音で話すこと。良いことも、足りないことも。</li>
+    <li>未経験を弱みにしない。分からないところから一緒に始める。</li>
+    <li>現場に立つ人の言葉を、会社の言葉より先に届けること。</li>
+  </ul>
+</section>
+
+<section class="cta">
+  <h2>応募への導線</h2>
+  <p>この人たちと、働きたい。少しでもそう思えたら、まずは話を聞きにきてください。</p>
+  <a href="#">エントリーする</a>
+  <p class="note">〈応募先メールアドレス／応募フォームURL〉</p>
+</section>
+
+<footer>&copy; 〈会社名〉</footer>
+
+</body>
+</html>

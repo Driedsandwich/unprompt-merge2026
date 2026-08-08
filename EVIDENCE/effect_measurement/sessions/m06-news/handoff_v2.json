@@ -1,0 +1,96 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "月イチの社内報の巻頭あいさつ、堅すぎない感じで。",
+ "compiled_at": "2026-08-01T07:41:43.323973+00:00",
+ "decisions": [
+  {
+   "question_point": "読み手(社員)の対象範囲",
+   "anchor_words": [
+    "社内報の巻頭あいさつ"
+   ],
+   "status": "decided",
+   "chosen_label": "全社員向け",
+   "visual_tokens": {
+    "palette": [
+     "#fff7e8",
+     "#ff8a3d",
+     "#2b2b2b"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "みんな、今月もお疲れさま!社員のみんなへ、ひと言。"
+   },
+   "tone_example": null,
+   "intent": "巻頭あいさつという語だけでは読者層が特定できないため全社員向けと定め表現や話題選定の前提を一意にした"
+  },
+  {
+   "question_point": "あいさつの主眼・目的",
+   "anchor_words": [
+    "巻頭あいさつ"
+   ],
+   "status": "decided",
+   "chosen_label": "号内容への導入",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#8a7b66",
+     "#c9a66b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "今月号へようこそ ― 特集の見どころを少しだけ先にご案内します。"
+   },
+   "tone_example": null,
+   "intent": "あいさつの役割が号内容への導入と定まったことで文章が単独の挨拶ではなく本編への橋渡しとして構成される"
+  },
+  {
+   "question_point": "「堅すぎない」の砕け度",
+   "anchor_words": [
+    "堅すぎない感じで"
+   ],
+   "status": "decided",
+   "chosen_label": "少し柔らかい程度",
+   "visual_tokens": {
+    "palette": [
+     "#fbf3e8",
+     "#d98b3f",
+     "#3e6b57"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "今月の社内報、はじめます。ゆるっと近況をお届けします。"
+   },
+   "tone_example": null,
+   "intent": "堅すぎないという曖昧な指示を少し柔らかい程度と定めたことで文体の砕け具合の振れ幅が確定した"
+  },
+  {
+   "question_point": "執筆者の立場・一人称",
+   "anchor_words": [
+    "巻頭あいさつ"
+   ],
+   "status": "decided",
+   "chosen_label": "編集担当目線",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ea",
+     "#3a6b5c",
+     "#e8873a"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "編集部より、今月号のあいさつをお届けします"
+   },
+   "tone_example": null,
+   "intent": "巻頭あいさつの語り手が誰かという不確定要素を編集担当目線と定め一人称や語り口の基準が固定された"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象読者・目的・トーンの強度・語り手立場が未指定で、方向性が大きく分かれる余地が残る。",
+ "missing_materials": [
+  "今月号の特集内容・トピック",
+  "発行号数・時期の具体情報"
+ ]
+}

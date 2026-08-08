@@ -1,0 +1,96 @@
+{
+ "brief": "m02-event",
+ "text": "秋にやる社内勉強会の告知ページ、いい感じにして。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "想定読者の範囲",
+    "anchor_words": [
+     "社内勉強会"
+    ],
+    "options": [
+     {
+      "label": "全社員向け"
+     },
+     {
+      "label": "特定部署/職種限定"
+     },
+     {
+      "label": "希望者のみ任意参加"
+     }
+    ],
+    "default_if_unresolved": "全社員向けとして進める"
+   },
+   {
+    "id": "b1",
+    "question_point": "勉強会の目的・訴求軸",
+    "anchor_words": [
+     "勉強会"
+    ],
+    "options": [
+     {
+      "label": "スキル習得重視"
+     },
+     {
+      "label": "交流・カルチャー重視"
+     },
+     {
+      "label": "情報共有重視"
+     }
+    ],
+    "default_if_unresolved": "スキル習得を主目的とする"
+   },
+   {
+    "id": "b2",
+    "question_point": "告知ページのトーン",
+    "anchor_words": [
+     "いい感じにして"
+    ],
+    "options": [
+     {
+      "label": "フォーマル"
+     },
+     {
+      "label": "カジュアル"
+     },
+     {
+      "label": "ポップ/軽快"
+     }
+    ],
+    "default_if_unresolved": "カジュアルなトーンで進める"
+   },
+   {
+    "id": "b3",
+    "question_point": "ページの構成の重心",
+    "anchor_words": [
+     "告知ページ"
+    ],
+    "options": [
+     {
+      "label": "日時場所中心の告知型"
+     },
+     {
+      "label": "内容訴求の説明型"
+     },
+     {
+      "label": "申込導線重視の訴求型"
+     }
+    ],
+    "default_if_unresolved": "告知情報中心の簡潔構成にする"
+   }
+  ],
+  "residual_ambiguity_assessment": "読者・目的・トーン・構成が未指定で、依頼文は方向性を示すのみ。判断点が複数残存する。",
+  "missing_materials": [
+   "開催日時",
+   "開催場所/形式(対面かオンラインか)",
+   "登壇者/講師名",
+   "勉強会のテーマ・題材",
+   "申込方法"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:55:55.946307+00:00"
+}

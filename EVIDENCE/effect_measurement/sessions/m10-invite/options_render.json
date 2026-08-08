@@ -1,0 +1,140 @@
+{
+ "brief": "m10-invite",
+ "rendered_at": "2026-08-01T07:35:07.387817+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "親しい少人数",
+    "tokens": {
+     "palette": [
+      "#2c2620",
+      "#8a6f52",
+      "#c79a5b"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "またこのメンバーで。近況、ゆっくり話そう。"
+    }
+   },
+   {
+    "label": "学年全体広く",
+    "tokens": {
+     "palette": [
+      "#fdf6e9",
+      "#f2a93b",
+      "#2e7d5b"
+     ],
+     "heading_font": "rounded",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "○○年卒、みんな集合!同窓会でわいわい近況報告しよう"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "くだけた友人口調",
+    "tokens": {
+     "palette": [
+      "#2b2118",
+      "#e8622c",
+      "#f4b33c"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "おい、同窓会やるぞ!昔のメンツで集まって飲もうぜ。"
+    }
+   },
+   {
+    "label": "丁寧だが軽め",
+    "tokens": {
+     "palette": [
+      "#f2ede4",
+      "#8c6a4e",
+      "#b8895f"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "同窓会、まずは顔を見せに。近況はまたゆっくり。"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "ゆるい飲み会風",
+    "tokens": {
+     "palette": [
+      "#3b2a22",
+      "#c9622b",
+      "#f2c879"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "同窓会、居酒屋集合!とりあえず一杯やろうぜ"
+    }
+   },
+   {
+    "label": "きちんとした式典風",
+    "tokens": {
+     "palette": [
+      "#101820",
+      "#5c4a2e",
+      "#c9a35a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "同窓会 御案内 — あの日の学び舎に、正装にて集う。"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "懐かしさ訴求",
+    "tokens": {
+     "palette": [
+      "#2b2320",
+      "#8a6a4b",
+      "#c9a35c"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "同窓会、あの頃の教室がまた開きます。"
+    }
+   },
+   {
+    "label": "近況交流訴求",
+    "tokens": {
+     "palette": [
+      "#2e4a3f",
+      "#d98c3a",
+      "#f2c94c"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "あの頃の仲間、今どうしてる?近況を肴に語ろう。"
+    }
+   },
+   {
+    "label": "気軽さ・低負担訴求",
+    "tokens": {
+     "palette": [
+      "#fff7ed",
+      "#fdba74",
+      "#fb923c"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "同窓会、ふらっとおいでよ。手ぶらでOK、顔出すだけでいい。"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈商品名〉 商品紹介</title>
+<style>
+  /*
+    タイプスケール(本文16pxを基準に×1.375で階層化)
+    --fs-body: 16px / --fs-lead: 18px / --fs-h2: 22px / --fs-h1: 30px
+  */
+  :root{
+    --ink:#26301f;
+    --paper:#f4f1e9;
+    --accent:#5c6b3f;
+    --fs-body:16px;
+    --fs-lead:18px;
+    --fs-h2:22px;
+    --fs-h1:30px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Yu Gothic","Hiragino Sans","Noto Sans JP",sans-serif;
+    font-size:var(--fs-body);
+    line-height:1.9;
+  }
+  .sheet{
+    width:720px;
+    margin:64px auto;
+    padding:0 16px;
+  }
+  .catch{
+    font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    font-size:var(--fs-h1);
+    font-weight:700;
+    letter-spacing:.02em;
+    line-height:1.5;
+    margin:0 0 48px;
+    color:var(--ink);
+  }
+  .catch span{ color:var(--accent); }
+  section{ margin:0 0 96px; }
+  section:last-of-type{ margin-bottom:0; }
+  h2{
+    font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    font-size:var(--fs-h2);
+    font-weight:600;
+    letter-spacing:.06em;
+    margin:0 0 16px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--accent);
+  }
+  .lead{ font-size:var(--fs-lead); margin:0; }
+  p{ margin:0; }
+  .spec{ font-size:14px; color:#5a5f4f; }
+  .spec dt{ font-weight:700; margin-top:12px; }
+  .spec dd{ margin:4px 0 0; }
+  .closing{
+    font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    font-size:var(--fs-lead);
+    text-align:right;
+    padding-top:24px;
+    border-top:1px solid var(--accent);
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="catch">〈商品の核となる特徴〉、<span>ひとつだけ選ぶなら。</span></p>
+
+  <section>
+    <p class="lead">〈使う人の困りごと〉に、〈商品名〉はまっすぐ応える。日々の中で見過ごしていた小さな不便を、無理のないかたちで解消する一本です。</p>
+  </section>
+
+  <section>
+    <h2>特徴</h2>
+    <p>〈素材・機能・工夫〉が、使うたびに実感できる違いをつくります。〈利用シーン〉での使い心地を第一に考え、余計な機能を削ぎ落として仕上げました。派手さより、続けたくなる心地よさを選んでいます。</p>
+  </section>
+
+  <section>
+    <h2>仕様・注意</h2>
+    <dl class="spec">
+      <dt>サイズ</dt><dd>〈サイズ〉</dd>
+      <dt>素材</dt><dd>〈素材〉</dd>
+      <dt>カラー</dt><dd>〈カラー展開〉</dd>
+      <dt>ご使用にあたって</dt><dd>〈取り扱い上の注意〉</dd>
+    </dl>
+  </section>
+
+  <p class="closing">〈商品名〉、暮らしにひとつ。</p>
+
+</div>
+</body>
+</html>

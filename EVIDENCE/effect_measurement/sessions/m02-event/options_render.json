@@ -1,0 +1,182 @@
+{
+ "brief": "m02-event",
+ "rendered_at": "2026-08-01T07:35:51.722992+00:00",
+ "options": {
+  "0": [
+   {
+    "label": "全社員向け",
+    "tokens": {
+     "palette": [
+      "#f4f6f8",
+      "#2f6fed",
+      "#12295c"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "全社員対象・秋の社内勉強会、開催決定のお知らせ。"
+    }
+   },
+   {
+    "label": "特定部署/職種限定",
+    "tokens": {
+     "palette": [
+      "#1c2333",
+      "#33415c",
+      "#8fa6c4"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "エンジニア職限定勉強会、秋の技術共有会を開催します。"
+    }
+   },
+   {
+    "label": "希望者のみ任意参加",
+    "tokens": {
+     "palette": [
+      "#0f1e1b",
+      "#1f4b3f",
+      "#7cffb2"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "秋の勉強会、来たい人だけどうぞ。気軽に一枠のぞいてみて。"
+    }
+   }
+  ],
+  "1": [
+   {
+    "label": "スキル習得重視",
+    "tokens": {
+     "palette": [
+      "#101820",
+      "#2e4057",
+      "#f2a93b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "実務スキルを、その場で使える形に。秋の集中トレーニング開講。"
+    }
+   },
+   {
+    "label": "交流・カルチャー重視",
+    "tokens": {
+     "palette": [
+      "#2b1b14",
+      "#c97b4a",
+      "#e8b84b"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "秋の夜、語り合う勉強会。飲み物片手に、まずは顔を合わせよう。"
+    }
+   },
+   {
+    "label": "情報共有重視",
+    "tokens": {
+     "palette": [
+      "#1b2733",
+      "#2f4c63",
+      "#8fa6b3"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "秋の勉強会:今期の知見を一気に共有します"
+    }
+   }
+  ],
+  "2": [
+   {
+    "label": "フォーマル",
+    "tokens": {
+     "palette": [
+      "#1c1f26",
+      "#3a4256",
+      "#b8974e"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "秋期社内勉強会開催のご案内 — 各位のご参加を賜りたく存じます。"
+    }
+   },
+   {
+    "label": "カジュアル",
+    "tokens": {
+     "palette": [
+      "#3a3630",
+      "#c4b8a5",
+      "#8a9a78"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "秋の勉強会、気軽にどうぞ。社内メンバーでゆるっと学ぶ会です。"
+    }
+   },
+   {
+    "label": "ポップ/軽快",
+    "tokens": {
+     "palette": [
+      "#fff7e8",
+      "#ff6f3c",
+      "#3cc7c0"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "秋の勉強会、ゆるっと集合!気軽に聞きに来て〜"
+    }
+   }
+  ],
+  "3": [
+   {
+    "label": "日時場所中心の告知型",
+    "tokens": {
+     "palette": [
+      "#0f1f3d",
+      "#1e3a6e",
+      "#f2a900"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "秋季社内勉強会 10/14(水) 19:00 会議室A、詳細はこちら"
+    }
+   },
+   {
+    "label": "内容訴求の説明型",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#2e3a2e",
+      "#8c6a3f"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "何を学ぶか——今回の勉強会テーマと狙いを詳しく解説します。"
+    }
+   },
+   {
+    "label": "申込導線重視の訴求型",
+    "tokens": {
+     "palette": [
+      "#141313",
+      "#ff5a1f",
+      "#ffe347"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "今すぐ席を確保。秋の社内勉強会、申込はこちら"
+    }
+   }
+  ]
+ }
+}

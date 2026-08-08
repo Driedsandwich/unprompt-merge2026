@@ -1,0 +1,114 @@
+{
+ "brief": "m01-lp",
+ "text": "かっこいいけど信頼感もあるLPを作って。うちのサービス用。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "想定読み手が誰か",
+    "anchor_words": [
+     "うちのサービス用"
+    ],
+    "options": [
+     {
+      "label": "新規見込み客"
+     },
+     {
+      "label": "既存ユーザー"
+     },
+     {
+      "label": "投資家/取引先"
+     }
+    ],
+    "default_if_unresolved": "新規見込み客向けに作成"
+   },
+   {
+    "id": "b1",
+    "question_point": "かっこよさと信頼感の比重配分",
+    "anchor_words": [
+     "かっこいいけど信頼感もある"
+    ],
+    "options": [
+     {
+      "label": "デザイン先鋭・攻め"
+     },
+     {
+      "label": "堅実重視・保守的"
+     },
+     {
+      "label": "半々でバランス型"
+     }
+    ],
+    "default_if_unresolved": "半々でバランス型を採用"
+   },
+   {
+    "id": "b2",
+    "question_point": "LPの目的(コンバージョン行動)",
+    "anchor_words": [
+     "LPを作って"
+    ],
+    "options": [
+     {
+      "label": "問い合わせ獲得"
+     },
+     {
+      "label": "資料請求"
+     },
+     {
+      "label": "即時購入/申込"
+     }
+    ],
+    "default_if_unresolved": "問い合わせ獲得を目的に設定"
+   },
+   {
+    "id": "b3",
+    "question_point": "信頼感の訴求根拠",
+    "anchor_words": [
+     "信頼感もある"
+    ],
+    "options": [
+     {
+      "label": "実績数値で訴求"
+     },
+     {
+      "label": "権威/導入企業で訴求"
+     },
+     {
+      "label": "デザイン品質で訴求"
+     }
+    ],
+    "default_if_unresolved": "デザイン品質で訴求"
+   },
+   {
+    "id": "b4",
+    "question_point": "トーン&マナー(文体)",
+    "anchor_words": [
+     "かっこいい"
+    ],
+    "options": [
+     {
+      "label": "クールで簡潔"
+     },
+     {
+      "label": "熱量高く煽る"
+     },
+     {
+      "label": "落ち着いた説明調"
+     }
+    ],
+    "default_if_unresolved": "クールで簡潔な文体を採用"
+   }
+  ],
+  "residual_ambiguity_assessment": "読者・目的・訴求根拠・トーンが未指定で、成果物の方向性を左右する分岐が複数残存している。",
+  "missing_materials": [
+   "サービス名",
+   "サービスの具体的な機能・特徴",
+   "実績データ(導入社数・数値)",
+   "ロゴ・ブランドカラー等の素材"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "api_ms": null,
+ "at": "2026-08-01T06:53:53.647389+00:00"
+}

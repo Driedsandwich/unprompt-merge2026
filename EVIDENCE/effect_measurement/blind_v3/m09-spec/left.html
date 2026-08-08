@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>仕様メモ:経費精算ツール</title>
+<style>
+  /*
+    タイプスケール(基準16px, 比率1.333)
+    --fs-0: 16px 本文
+    --fs-1: 21px 小見出し
+    --fs-2: 28px 見出し
+    --fs-3: 37px リード
+  */
+  :root{
+    --ink:#1f2a24;
+    --paper:#eef2ee;
+    --line:#c9d3c8;
+    --accent:#8a5a2b;
+    --fs-0:1rem;
+    --fs-1:1.313rem;
+    --fs-2:1.75rem;
+    --fs-3:2.313rem;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+    font-size:var(--fs-0);
+    line-height:1.9;
+    padding:96px 24px;
+  }
+  main{
+    max-width:720px;
+    margin:0 auto;
+  }
+  .kicker{
+    font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+    font-weight:700;
+    font-size:0.8rem;
+    letter-spacing:0.32em;
+    color:var(--accent);
+    margin:0 0 16px;
+  }
+  h1{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-weight:600;
+    font-size:var(--fs-3);
+    letter-spacing:0.02em;
+    line-height:1.5;
+    margin:0 0 8px;
+  }
+  .lead{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:var(--fs-1);
+    color:#3c473f;
+    margin:0 0 96px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+  section{
+    margin-bottom:96px;
+  }
+  section:last-of-type{
+    margin-bottom:0;
+  }
+  h2{
+    font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+    font-weight:700;
+    font-size:var(--fs-2);
+    letter-spacing:0.06em;
+    margin:0 0 24px;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+  }
+  h2 .num{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-weight:400;
+    font-size:var(--fs-1);
+    color:var(--accent);
+  }
+  p{margin:0 0 16px;}
+  ul{margin:0;padding-left:1.3em;}
+  li{margin-bottom:12px;}
+  li:last-child{margin-bottom:0;}
+  .placeholder{
+    color:var(--accent);
+  }
+  .note{
+    font-size:0.9rem;
+    color:#5b665d;
+    margin-top:24px;
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">社内ツール仕様メモ</p>
+  <h1>「その場で撮って、月末に見ない」経費精算にする</h1>
+  <p class="lead">領収書を溜めて月末にまとめて入力する作業をなくす。撮った瞬間に申請が終わっている状態を目指す、最小構成のツール。</p>
+
+  <section>
+    <h2><span class="num">01</span>目的</h2>
+    <p>経費精算の負担は「入力」よりも「溜め込み」から生まれる。本ツールは申請者が領収書を受け取った直後に処理を終えられるようにし、月末の一括入力と差し戻し対応をなくすことを目的とする。承認側の作業量は増やさない設計とする。</p>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>対象ユーザー</h2>
+    <p>日常的に経費が発生する〈対象部署〉のメンバーと、その申請を確認する〈承認者役職〉。ITツールに不慣れな人でも迷わないことを前提とする。</p>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>主要機能</h2>
+    <ul>
+      <li>領収書をスマホで撮影するとその場で申請カードが1件作成される</li>
+      <li>金額・日付・店舗名は撮影画像から自動で読み取り、申請者は科目だけ選べばよい</li>
+      <li>承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる</li>
+      <li>差し戻し理由は定型文から選ぶ形にし、文章を書かせない</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>画面イメージ</h2>
+    <p>申請者側は、撮影ボタンひとつだけが大きく置かれた画面から始まる。撮影後は読み取り結果が1枚のカードで表示され、科目を選んで送るだけで完了する。一覧やメニューは持たせず、迷う分岐を作らない。承認者側は縦に積み上がるカードを上から順にさばく形とし、保留や後回しの状態は作らない。</p>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span>使わないと決めたもの</h2>
+    <ul>
+      <li>PC向けの入力フォーム — スマホ撮影のみに絞り、二重の入力経路を作らない</li>
+      <li>承認フローの多段階化 — 金額によらず承認者は一人とし、差し戻し理由の自由記述も持たせない</li>
+      <li>月次レポートやグラフ機能 — 集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う</li>
+    </ul>
+    <p class="note">数値・対象部署・承認者役職などは発注内容に明記がないため<span class="placeholder">〈プレースホルダ〉</span>としている。</p>
+  </section>
+</main>
+</body>
+</html>

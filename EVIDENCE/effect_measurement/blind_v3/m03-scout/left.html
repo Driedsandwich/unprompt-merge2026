@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スカウトメール</title>
+<style>
+  :root{
+    --ink:#1b2430;
+    --ink-soft:#4a5568;
+    --paper:#eef1f5;
+    --accent:#c65a2e;
+    --line: rgba(27,36,48,0.14);
+    --fs--1: 0.8125rem;
+    --fs-0: 1rem;
+    --fs-1: 1.25rem;
+    --fs-2: 1.5625rem;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family: "Yu Gothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", system-ui, sans-serif;
+    font-size:var(--fs-0);
+    line-height:1.9;
+    padding:64px 24px 96px;
+  }
+  .doc{ max-width:720px; margin:0 auto; }
+  .kicker{
+    font-family: "SF Mono", "Menlo", "Consolas", "Courier New", monospace;
+    font-size:var(--fs--1); letter-spacing:0.18em; color:var(--accent);
+    margin:0 0 16px;
+  }
+  .subject{
+    font-family: "SF Mono", "Menlo", "Consolas", "Courier New", monospace;
+    font-size:var(--fs-2); font-weight:700; letter-spacing:-0.01em; line-height:1.5;
+    color:var(--ink); margin:0 0 96px; padding-bottom:32px; border-bottom:1px solid var(--line);
+  }
+  section{margin-bottom:96px;}
+  section:last-of-type{margin-bottom:0;}
+  .label{
+    font-family: "SF Mono", "Menlo", "Consolas", "Courier New", monospace;
+    font-size:var(--fs--1); letter-spacing:0.14em; color:var(--ink-soft); margin:0 0 24px;
+  }
+  .addressee{ font-size:var(--fs-1); font-weight:600; margin:0; }
+  .body p{ margin:0 0 24px; }
+  .body p:last-child{margin-bottom:0;}
+  .cta{ background:#fff; border-left:3px solid var(--accent); padding:24px 32px; }
+  .cta p{margin:0 0 8px;}
+  .cta p:last-child{margin:0;}
+  .sign{ padding-top:32px; border-top:1px solid var(--line); font-size:var(--fs-0); color:var(--ink-soft); }
+  .sign strong{ display:block; color:var(--ink); font-size:var(--fs-1); font-weight:600; margin-bottom:8px; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <p class="kicker">SCOUT MESSAGE</p>
+  <h1 class="subject">動いているコードの、次の一手を一緒に考えたい</h1>
+
+  <section>
+    <p class="label">TO</p>
+    <p class="addressee">〈候補者名〉様</p>
+  </section>
+
+  <section class="body">
+    <p>はじめまして、〈会社名〉で採用を担当している〈担当者名〉と申します。〈候補者名〉さんの公開されているコードや技術的なアウトプットを拝見し、ご連絡させていただきました。</p>
+    <p>手を動かして検証しながら考えるタイプの方だとお見受けし、今〈会社名〉が向き合っている〈課題領域〉というテーマに、一度目を通していただきたいと思っています。まだ正解の形が固まっていない領域だからこそ、設計から実装まで裁量を持って関われる余地が大きい段階です。</p>
+    <p>職種や条件の詳細をお伝えする前に、まずは〈候補者名〉さんが今どんな技術やプロダクトに関心があるのか、率直に伺えたら嬉しいです。合う合わないも含めて、フラットにお話しできればと思います。</p>
+  </section>
+
+  <section class="cta">
+    <p>ご興味があれば、30分ほどのカジュアルな面談から始めませんか。</p>
+    <p>ご都合の良い日時を、このメールへの返信でお知らせください。</p>
+  </section>
+
+  <section class="sign">
+    <strong>〈担当者名〉</strong>
+    〈会社名〉 採用担当<br>
+    〈連絡先メールアドレス〉
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "秋にやる社内勉強会の告知ページ、いい感じにして。",
+ "compiled_at": "2026-08-01T07:01:27.069330+00:00",
+ "decisions": [
+  {
+   "question_point": "想定読者の範囲",
+   "anchor_words": [
+    "社内勉強会"
+   ],
+   "status": "decided",
+   "chosen_label": "全社員向け",
+   "visual_tokens": {
+    "palette": [
+     "#0b2a4a",
+     "#f5a623",
+     "#ffffff"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "全社員対象・秋の勉強会、あなたの部署の知見もここに集結。"
+   },
+   "tone_example": null,
+   "intent": "社内勉強会という表現の曖昧さを全社員向けと確定し、告知文の対象範囲と参加呼びかけ方を一意に定める。"
+  },
+  {
+   "question_point": "勉強会の目的・訴求軸",
+   "anchor_words": [
+    "勉強会"
+   ],
+   "status": "decided",
+   "chosen_label": "交流・カルチャー重視",
+   "visual_tokens": {
+    "palette": [
+     "#2b1a14",
+     "#c97b3d",
+     "#e8b94a"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "秋の夜、社内の輪が広がる。語り合う勉強会へ。"
+   },
+   "tone_example": null,
+   "intent": "勉強会の訴求軸を交流・カルチャー重視と定めることで、内容説明よりも雰囲気や参加のしやすさを前面に出す構成が決まる。"
+  },
+  {
+   "question_point": "告知ページのトーン",
+   "anchor_words": [
+    "いい感じにして"
+   ],
+   "status": "decided",
+   "chosen_label": "カジュアル",
+   "visual_tokens": {
+    "palette": [
+     "#f4efe8",
+     "#8a7460",
+     "#d97b4a"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "秋の勉強会、気軽にどうぞ。お茶でも片手に社内でゆるっと学ぼう。"
+   },
+   "tone_example": null,
+   "intent": "いい感じにしてという指示をカジュアルなトーンと確定し、文体や語尾の親しみやすさを下流全体で統一する。"
+  },
+  {
+   "question_point": "ページの構成の重心",
+   "anchor_words": [
+    "告知ページ"
+   ],
+   "status": "decided",
+   "chosen_label": "日時場所中心の告知型",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ea",
+     "#1f2a44",
+     "#b08d57"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "秋季社内勉強会 10/14(火)18:30 本社3F会議室にて開催"
+   },
+   "tone_example": null,
+   "intent": "告知ページの重心を日時場所中心の告知型と定めることで、概要説明よりも開催情報の視認性を優先する構成が決まる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "読者・目的・トーン・構成が未指定で、依頼文は方向性を示すのみ。判断点が複数残存する。",
+ "missing_materials": [
+  "開催日時",
+  "開催場所/形式(対面かオンラインか)",
+  "登壇者/講師名",
+  "勉強会のテーマ・題材",
+  "申込方法"
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "format": "unprompt.compiled_brief.v0",
+ "source_brief": "発送遅延のお詫びメール、誠実だけど重すぎないトーンで。",
+ "compiled_at": "2026-08-01T07:03:35.683111+00:00",
+ "decisions": [
+  {
+   "question_point": "謝罪の相手・遅延の状況説明範囲",
+   "anchor_words": [
+    "発送遅延のお詫び"
+   ],
+   "status": "decided",
+   "chosen_label": "個別注文への謝罪",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#8a6d4e",
+     "#b98b4e"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "ご注文の発送遅延、心よりお詫び申し上げます。"
+   },
+   "tone_example": null,
+   "intent": "個別注文への謝罪を選んだことで、宛先は当該注文の顧客個人に限定され、状況説明も一般案内ではなくその注文固有の経緯に絞られる。"
+  },
+  {
+   "question_point": "遅延理由の言及有無",
+   "anchor_words": [
+    "発送遅延"
+   ],
+   "status": "decided",
+   "chosen_label": "簡潔に理由を説明",
+   "visual_tokens": {
+    "palette": [
+     "#f5f1ec",
+     "#8a6d52",
+     "#b8894f"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "発送遅延のお詫び 資材調達の遅れにより、発送が数日遅れております。"
+   },
+   "tone_example": null,
+   "intent": "遅延理由を簡潔に述べる方針としたことで、詳細な内部事情には踏み込まず、誠実さを示す最小限の説明にとどめる本文構成が定まる。"
+  },
+  {
+   "question_point": "補償・代替対応の提示有無",
+   "anchor_words": [
+    "お詫び"
+   ],
+   "status": "decided",
+   "chosen_label": "補償なし謝罪のみ",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#5b5347",
+     "#8a7f6b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "発送遅延のお詫び 誠意をもってご説明申し上げます"
+   },
+   "tone_example": null,
+   "intent": "補償なし謝罪のみとしたことで、クーポンや返金などの代替対応には触れず、謝意の表明に文面の焦点が絞られる。"
+  },
+  {
+   "question_point": "新しい発送予定日の明記有無",
+   "anchor_words": [
+    "発送遅延"
+   ],
+   "status": "decided",
+   "chosen_label": "具体的な日付を明記",
+   "visual_tokens": {
+    "palette": [
+     "#1f2a38",
+     "#3d5a73",
+     "#c97a3d"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "sharp",
+    "tone_sample": "新しい発送予定日は8月5日です。ご迷惑をおかけし申し訳ございません。"
+   },
+   "tone_example": null,
+   "intent": "新しい発送予定日を具体的に明記する方針としたことで、曖昧な見通しではなく実際の日付を本文中に確定情報として記載する構成となる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "トーンは指定済みだが、対象範囲・理由開示・補償・日程明記が未確定。",
+ "missing_materials": [
+  "対象の注文番号・商品名",
+  "新しい発送予定日",
+  "問い合わせ先窓口情報"
+ ]
+}
