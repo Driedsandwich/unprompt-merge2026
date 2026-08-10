@@ -1,0 +1,122 @@
+{
+ "brief": "m10-invite",
+ "text": "昔の仲間を集める同窓会の案内、気軽に来たくなるやつ。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "想定読者=誰との同窓会か",
+    "kind": "anchored",
+    "anchor_words": [
+     "昔の仲間"
+    ],
+    "options": [
+     {
+      "label": "学生時代の友人"
+     },
+     {
+      "label": "職場OB・OG"
+     },
+     {
+      "label": "サークル・部活仲間"
+     }
+    ],
+    "default_if_unresolved": "学生時代の友人向けとして進める"
+   },
+   {
+    "id": "b1",
+    "question_point": "「気軽に来たくなる」の障壁対象",
+    "kind": "anchored",
+    "anchor_words": [
+     "気軽に来たくなる"
+    ],
+    "options": [
+     {
+      "label": "忙しさへの配慮"
+     },
+     {
+      "label": "疎遠さへの配慮"
+     },
+     {
+      "label": "出費への配慮"
+     }
+    ],
+    "default_if_unresolved": "疎遠さへの配慮を中心に訴求"
+   },
+   {
+    "id": "b2",
+    "question_point": "文面のトーン",
+    "kind": "anchored",
+    "anchor_words": [
+     "気軽に来たくなるやつ"
+    ],
+    "options": [
+     {
+      "label": "くだけたノリ"
+     },
+     {
+      "label": "落ち着いた丁寧調"
+     },
+     {
+      "label": "ユーモア強め"
+     }
+    ],
+    "default_if_unresolved": "くだけた親しみトーン"
+   },
+   {
+    "id": "b3",
+    "question_point": "呼びかけの範囲・久しぶり感の強さ",
+    "kind": "anchored",
+    "anchor_words": [
+     "集める"
+    ],
+    "options": [
+     {
+      "label": "数年ぶり想定"
+     },
+     {
+      "label": "十年以上ぶり想定"
+     },
+     {
+      "label": "継続的に会う仲間"
+     }
+    ],
+    "default_if_unresolved": "数年ぶり想定で作成"
+   },
+   {
+    "id": "b4",
+    "question_point": "開催形式の前提(対面/オンライン)",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "対面での集まり"
+     },
+     {
+      "label": "オンライン開催"
+     }
+    ],
+    "default_if_unresolved": "対面での集まりとして作成",
+    "origin_rationale": "案内文には参加方法の前提が必ず反映され、対面かオンラインかで文面が変わるため"
+   }
+  ],
+  "residual_ambiguity_assessment": "読者・トーン・障壁の種類など複数未指定で、判断次第で文面が大きく変わる。",
+  "missing_materials": [
+   "開催日時",
+   "開催場所",
+   "会費・参加費",
+   "幹事の連絡先"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 10944,
+  "wall_ms": 11090,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:11:52.570048+00:00"
+}

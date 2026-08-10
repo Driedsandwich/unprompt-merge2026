@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>今月の巻頭あいさつ</title>
+<style>
+  /*
+    GYAKUMON compiled brief 反映メモ:
+    - 温度感/主題/立場の3決定は視覚トークンが概ね一致(rounded見出し・soft角・normal密度)
+      のためこれを枠の基準とし、パレットは #fff6e8 / #e8965a / #c4472b を採用。
+    - 距離感の決定はパレット・書体ではなく呼びかけ文の距離感(部署ごとの温度差配慮)として反映。
+  */
+  :root{
+    --bg: #fff6e8;
+    --main: #e8965a;
+    --accent: #c4472b;
+    --ink: #4a3527;
+    /* タイプスケール: 本文16px基準, 比率1.25 */
+    --fs-body: 16px;
+    --fs-lead: 20px;
+    --fs-h1: 25px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:#f2e4cf;
+    font-family:"Hiragino Sans","Yu Gothic Medium","Helvetica Neue",sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:48px 16px;
+  }
+  .sheet{
+    width:720px;
+    max-width:100%;
+    background:var(--bg);
+    border-radius:24px;
+    padding:64px 56px;
+    color:var(--ink);
+  }
+  /* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+  h1{
+    font-family:"Hiragino Maru Gothic ProN","Yu Gothic UI",system-ui,sans-serif;
+    font-size:var(--fs-h1);
+    font-weight:700;
+    letter-spacing:0.04em;
+    color:var(--accent);
+    margin:0 0 40px;
+  }
+  section{margin:0 0 40px;}
+  section:last-of-type{margin-bottom:0;}
+  p{
+    font-size:var(--fs-body);
+    line-height:1.9;
+    margin:0;
+  }
+  .lead{
+    font-size:var(--fs-lead);
+    line-height:1.7;
+    color:var(--accent);
+    font-weight:600;
+  }
+  .sign{
+    margin-top:40px;
+    font-size:14px;
+    color:var(--main);
+    text-align:right;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<!-- GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 -->
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+<h1>各部署のみなさん、今月もお疲れさまです</h1>
+
+<section>
+  <p class="lead">現場から一言、今月の社内報をお届けします。忙しかった部署も、ちょっと落ち着いていた部署も、それぞれのペースでどうぞ。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+<section>
+  <p>それにしても蒸し暑い日が続きますね。〈執筆者名〉は最近、給湯室で誰かがくれた冷やし飴にずっと助けられています。エアコンの効きが場所によって違うのも、いつものことながらままならないものです。</p>
+</section>
+
+<section>
+  <p>今月号の特集は〈今月の特集タイトル〉です。中面でじっくりお届けしますので、休憩がてらのぞいてみてください。無理のない範囲で結構です。</p>
+</section>
+
+<section>
+  <p>それでは今月もぼちぼち、よろしくお願いします。</p>
+</section>
+
+<p class="sign">〈執筆者名〉</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "昔の仲間を集める同窓会の案内、気軽に来たくなるやつ。",
+ "compiled_at": "2026-08-10T08:25:18.057677+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "想定読者=誰との同窓会か",
+   "kind": "anchored",
+   "anchor_words": [
+    "昔の仲間"
+   ],
+   "status": "decided",
+   "chosen_label": "サークル・部活仲間",
+   "visual_tokens": {
+    "palette": [
+     "#1b2a4a",
+     "#3b5ba5",
+     "#f2a93b"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "soft",
+    "tone_sample": "サークルの部室、また集まろう。あの頃のノリで一杯やろうぜ。"
+   },
+   "intent": "「昔の仲間」をサークル・部活仲間と確定させたことで、招待文の呼称や思い出の語り口が一意に定まる。"
+  },
+  {
+   "question_point": "「気軽に来たくなる」の障壁対象",
+   "kind": "anchored",
+   "anchor_words": [
+    "気軽に来たくなる"
+   ],
+   "status": "decided",
+   "chosen_label": "疎遠さへの配慮",
+   "visual_tokens": {
+    "palette": [
+     "#3a3a38",
+     "#8c7b6b",
+     "#b99a6b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "同窓会、久しぶりでも大丈夫。あの頃のまま話せます。"
+   },
+   "intent": "気軽さの阻害要因を疎遠さへの配慮と特定したことで、久々の連絡への引け目を解く文言を盛り込む方針が定まる。"
+  },
+  {
+   "question_point": "文面のトーン",
+   "kind": "anchored",
+   "anchor_words": [
+    "気軽に来たくなるやつ"
+   ],
+   "status": "decided",
+   "chosen_label": "くだけたノリ",
+   "visual_tokens": {
+    "palette": [
+     "#fff4d6",
+     "#ff7a1a",
+     "#2e2e2e"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "みんな集合〜!同窓会、ノリだけ持って来て。"
+   },
+   "intent": "「気軽に来たくなる」をくだけたノリと解釈したことで、敬語過多を避けた親しみやすい言葉選びが確定する。"
+  },
+  {
+   "question_point": "呼びかけの範囲・久しぶり感の強さ",
+   "kind": "anchored",
+   "anchor_words": [
+    "集める"
+   ],
+   "status": "decided",
+   "chosen_label": "十年以上ぶり想定",
+   "visual_tokens": {
+    "palette": [
+     "#2b2620",
+     "#8a6a45",
+     "#c9a24b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "十年ぶりの再会、あの部室の続きを話そう。"
+   },
+   "intent": "「集める」対象を十年以上ぶりの再会と想定したことで、近況説明や思い出喚起の分量・書き方が一意に定まる。"
+  },
+  {
+   "question_point": "開催形式の前提(対面/オンライン)",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "対面での集まり",
+   "visual_tokens": {
+    "palette": [
+     "#f5ede3",
+     "#c97b4a",
+     "#7a3b1e"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "また会おうね、同窓会。顔を見て、あの頃みたいに話そう。"
+   },
+   "intent": "原文に明記はないが成果物では必ず定まる前提であり、対面開催と確定したことで場所案内や持ち物等の実務的記載が方針として定まる。",
+   "origin_rationale": "案内文には参加方法の前提が必ず反映され、対面かオンラインかで文面が変わるため"
+  }
+ ],
+ "residual_ambiguity_assessment": "読者・トーン・障壁の種類など複数未指定で、判断次第で文面が大きく変わる。",
+ "missing_materials": [
+  "開催日時",
+  "開催場所",
+  "会費・参加費",
+  "幹事の連絡先"
+ ]
+}

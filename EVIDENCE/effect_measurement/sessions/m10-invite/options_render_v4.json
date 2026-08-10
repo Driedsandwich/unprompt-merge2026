@@ -1,0 +1,225 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "学生時代の友人",
+    "tokens": {
+     "palette": [
+      "#fff7ed",
+      "#f4a462",
+      "#2a9d8f"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "教室のあの空気、また笑おう。学生時代の友人と、気軽に集まる同窓会。"
+    },
+    "error": null
+   },
+   {
+    "label": "職場OB・OG",
+    "tokens": {
+     "palette": [
+      "#1f2a44",
+      "#8c6a3f",
+      "#c9a24b"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "〇〇部で共に働いた皆様へ、あの職場の同窓会にご案内します。"
+    },
+    "error": null
+   },
+   {
+    "label": "サークル・部活仲間",
+    "tokens": {
+     "palette": [
+      "#1b2a4a",
+      "#3b5ba5",
+      "#f2a93b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "サークルの部室、また集まろう。あの頃のノリで一杯やろうぜ。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "忙しさへの配慮",
+    "tokens": {
+     "palette": [
+      "#f4ede4",
+      "#c97b4a",
+      "#2e2a25"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "30分だけでもいいよ、同窓会、顔出しにおいで。"
+    },
+    "error": null
+   },
+   {
+    "label": "疎遠さへの配慮",
+    "tokens": {
+     "palette": [
+      "#3a3a38",
+      "#8c7b6b",
+      "#b99a6b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "同窓会、久しぶりでも大丈夫。あの頃のまま話せます。"
+    },
+    "error": null
+   },
+   {
+    "label": "出費への配慮",
+    "tokens": {
+     "palette": [
+      "#f4ede1",
+      "#c97b3d",
+      "#7a9a5a"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "同窓会、会費は気にしないで。まずは顔だけ見せに来て。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "くだけたノリ",
+    "tokens": {
+     "palette": [
+      "#fff4d6",
+      "#ff7a1a",
+      "#2e2e2e"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "みんな集合〜!同窓会、ノリだけ持って来て。"
+    },
+    "error": null
+   },
+   {
+    "label": "落ち着いた丁寧調",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#5b6455",
+      "#8c6a4e"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "同窓会のご案内 久しぶりに、皆様とゆっくりお話しできればと存じます。"
+    },
+    "error": null
+   },
+   {
+    "label": "ユーモア強め",
+    "tokens": {
+     "palette": [
+      "#2b1400",
+      "#ff7a1a",
+      "#ffd400"
+     ],
+     "heading_font": "rounded",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "同窓会、あの頃の黒歴史も全部持ち寄れ!"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "数年ぶり想定",
+    "tokens": {
+     "palette": [
+      "#fff7ec",
+      "#e8825a",
+      "#2f5d62"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "元気にしてた?同窓会、まずは顔見に来ない?"
+    },
+    "error": null
+   },
+   {
+    "label": "十年以上ぶり想定",
+    "tokens": {
+     "palette": [
+      "#2b2620",
+      "#8a6a45",
+      "#c9a24b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "十年ぶりの再会、あの部室の続きを話そう。"
+    },
+    "error": null
+   },
+   {
+    "label": "継続的に会う仲間",
+    "tokens": {
+     "palette": [
+      "#2e3a2f",
+      "#5c7a5e",
+      "#c9a227"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "同窓会、また今度もいつも通り集まろう。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "対面での集まり",
+    "tokens": {
+     "palette": [
+      "#f5ede3",
+      "#c97b4a",
+      "#7a3b1e"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "また会おうね、同窓会。顔を見て、あの頃みたいに話そう。"
+    },
+    "error": null
+   },
+   {
+    "label": "オンライン開催",
+    "tokens": {
+     "palette": [
+      "#0b1220",
+      "#3a5af5",
+      "#7df9e1"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "画面越しに、同窓会。乾杯だけは各自で。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:16:32.274000+00:00"
+}

@@ -1,0 +1,122 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "若手エンジニアに刺さるスカウトメール書いて。",
+ "compiled_at": "2026-08-10T08:24:14.183413+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "「若手エンジニア」の経験層",
+   "kind": "anchored",
+   "anchor_words": [
+    "若手エンジニア"
+   ],
+   "status": "decided",
+   "chosen_label": "実務2〜5年",
+   "visual_tokens": {
+    "palette": [
+     "#0b1e33",
+     "#1f5c6e",
+     "#3fb8af"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "sharp",
+    "tone_sample": "実務2〜5年目のエンジニアへ、次の裁量を任せる話をしたい。"
+   },
+   "intent": "「若手エンジニア」は年次の幅が広く読めるため、実務2〜5年と定めることで訴求文の実績表現の水準が一意に定まる。"
+  },
+  {
+   "question_point": "「刺さる」の訴求軸",
+   "kind": "anchored",
+   "anchor_words": [
+    "刺さる"
+   ],
+   "status": "decided",
+   "chosen_label": "裁量・自由度訴求",
+   "visual_tokens": {
+    "palette": [
+     "#0f0f10",
+     "#4b4f58",
+     "#c9ff3e"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "コード書く時間、誰にも縛らせない。エンジニア人生、自分の裁量で。"
+   },
+   "intent": "「刺さる」だけでは訴求軸が不定であり、裁量・自由度訴求を選ぶことで本文の強調ポイントと具体例の方向性が確定する。"
+  },
+  {
+   "question_point": "文面のトーン",
+   "kind": "anchored",
+   "anchor_words": [
+    "書いて"
+   ],
+   "status": "decided",
+   "chosen_label": "カジュアル",
+   "visual_tokens": {
+    "palette": [
+     "#1a1a24",
+     "#5b4fe8",
+     "#3dffc0"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "エンジニアさん、その技術力、次はうちで遊びませんか?"
+   },
+   "intent": "「書いて」には文体指定がないため、カジュアルを選ぶことで語尾・敬語レベル・絵文字使用の可否といった表現が一意に決まる。"
+  },
+  {
+   "question_point": "送付チャネルの前提",
+   "kind": "anchored",
+   "anchor_words": [
+    "メール"
+   ],
+   "status": "decided",
+   "chosen_label": "直接メール送付",
+   "visual_tokens": {
+    "palette": [
+     "#101820",
+     "#1f3a5f",
+     "#e8c547"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "エンジニアへ直接メール、〇〇さんへ個別にお声がけしました。"
+   },
+   "intent": "「メール」は媒体名のみで送付形態が不定だったため、直接メール送付と定めることで件名・署名など形式要素が確定する。"
+  },
+  {
+   "question_point": "読み手との温度感",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "親近感重視",
+   "visual_tokens": {
+    "palette": [
+     "#3b2a1e",
+     "#ff7a45",
+     "#ffd166"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "エンジニアさん、まずは気軽に話しませんか"
+   },
+   "intent": "文には明示されていないが初接触の距離感設定は成果物で必ず必要となるため、親近感重視とすることで挨拶や呼びかけの表現が確定する。",
+   "origin_rationale": "スカウトは初接触が前提で、距離感の設定を避けて書くことはできない"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象読者・目的・トーンなど主要な判断点が未指定で曖昧度が高い",
+ "missing_materials": [
+  "自社名・事業内容",
+  "募集ポジションの具体的な技術スタック",
+  "給与レンジ等の条件"
+ ]
+}

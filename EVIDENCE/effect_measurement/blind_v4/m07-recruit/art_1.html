@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用ページ | 会社紹介</title>
+<style>
+/*
+  GYAKUMON-CHOICE 適用まとめ:
+  想定読み手の経験層 = 新卒・未経験
+  「飾らない」の具体的な現れ方 = 社員の生の声中心
+  熱意の訴求軸 = チーム・人への熱意
+  文章の構成・分量 = ストーリー形式の長文
+  応募検討段階との距離感 = 認知・興味喚起段階
+*/
+:root{
+  --bg:#f4efe6;
+  --main:#b5673a;
+  --accent:#3c6e52;
+  --ink:#2c2620;
+  --fs-body:1rem;
+  --fs-small:0.85rem;
+  --fs-h3:1.33rem;
+  --fs-h2:1.77rem;
+  --fs-h1:2.6rem;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic",sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+}
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+h1,h2,h3{
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic UI","M PLUS Rounded 1c",sans-serif;
+  color:var(--ink);
+  margin:0;
+}
+section{
+  max-width:760px;
+  margin:0 auto;
+  padding:96px 32px;
+}
+.hero{
+  background:linear-gradient(180deg,var(--bg),#eee3d0);
+  padding:112px 32px 96px;
+  text-align:left;
+}
+.hero p.eyebrow{
+  font-size:var(--fs-small);
+  letter-spacing:0.12em;
+  color:var(--main);
+  margin:0 0 16px;
+  font-weight:700;
+}
+.hero h1{
+  font-size:var(--fs-h1);
+  font-weight:800;
+  letter-spacing:0.02em;
+  line-height:1.5;
+  max-width:680px;
+}
+.hero .lead{
+  margin-top:24px;
+  max-width:600px;
+  color:#5a4f42;
+}
+h2{
+  font-size:var(--fs-h2);
+  font-weight:700;
+  letter-spacing:0.04em;
+  border-left:8px solid var(--main);
+  border-radius:4px;
+  padding-left:16px;
+  margin-bottom:40px;
+}
+.intro p{margin:0 0 24px;}
+.intro p:last-child{margin-bottom:0;}
+.voices{
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+}
+.voice{
+  background:#fff;
+  border-radius:20px;
+  padding:32px;
+}
+.voice .role{
+  font-size:var(--fs-small);
+  color:var(--accent);
+  font-weight:700;
+  margin-bottom:8px;
+}
+.voice p.quote{
+  font-size:var(--fs-h3);
+  margin:0 0 12px;
+  font-weight:700;
+  line-height:1.6;
+}
+.voice p.body{margin:0;color:#5a4f42;}
+.values{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.value-item{
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+}
+.value-mark{
+  flex:0 0 auto;
+  width:40px;height:40px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+}
+.value-text h3{font-size:var(--fs-h3);margin-bottom:8px;}
+.value-text p{margin:0;color:#5a4f42;}
+.cta{
+  text-align:center;
+  background:var(--accent);
+  color:#fff;
+  border-radius:24px;
+  padding:80px 32px;
+}
+.cta h2{
+  color:#fff;
+  border-left:none;
+  padding-left:0;
+  margin-bottom:16px;
+}
+.cta p{
+  color:#e6efe9;
+  max-width:520px;
+  margin:0 auto 32px;
+}
+.cta a.btn{
+  display:inline-block;
+  background:#fff;
+  color:var(--accent);
+  font-weight:700;
+  padding:16px 40px;
+  border-radius:999px;
+  text-decoration:none;
+}
+.cta .sub{
+  margin-top:24px;
+  font-size:var(--fs-small);
+  color:#cfe3d6;
+}
+footer{
+  text-align:center;
+  padding:32px;
+  font-size:var(--fs-small);
+  color:#8a7f70;
+}
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+<section class="hero">
+  <p class="eyebrow">〈会社名〉採用ページ</p>
+  <h1>実績や数字より先に、<br>隣の席の人の話をします。</h1>
+  <p class="lead">
+    はじめまして、採用担当です。〈会社名〉のことを何から話そうか迷って、結局いちばん自信があるのは「一緒に働いている人たち」だという結論になりました。ここでは、その人たちの言葉をそのまま置いています。
+  </p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+<section class="intro">
+  <h2>会社の紹介</h2>
+  <div>
+    <p>
+      〈会社名〉は〈事業内容〉を手がけています。最初は数人で、手探りのまま毎日を積み重ねてきました。派手な打ち上げ花火のようなニュースは少ないかもしれません。それでも、一つひとつの仕事に誰かが真剣に向き合ってきた時間だけは、確かにここにあります。
+    </p>
+    <p>
+      未経験で入ってきたメンバーも多く、最初は誰もが分からないことだらけでした。分からないことを分からないと言える空気、隣の人に聞ける距離感。それを大事にしながら、少しずつチームは形になってきました。
+    </p>
+    <p>
+      この先どうなるかを、まだ全部は言い切れません。ただ、次に入ってくる人にも同じように、隣に誰かがいる安心感の中で育ってほしいと思っています。
+    </p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+<section class="voices">
+  <h2>働く人の声</h2>
+  <div class="voices">
+    <div class="voice">
+      <p class="role">〈部署名〉・入社〈年数〉年目</p>
+      <p class="quote">正直、最初の3か月は毎日不安でした。</p>
+      <p class="body">できないことばかりで焦っていたとき、先輩が「それ、みんな通る道だよ」って笑ってくれたのを覚えています。今は自分がその立場で誰かに同じ言葉をかけています。</p>
+    </div>
+    <div class="voice">
+      <p class="role">〈部署名〉・入社〈年数〉年目</p>
+      <p class="quote">結局、人がいいから続けている気がします。</p>
+      <p class="body">仕事の内容ももちろん大事ですが、困ったときに「大丈夫?」と聞いてくれる人がいるかどうかが、自分にとっては一番大きかったです。</p>
+    </div>
+    <div class="voice">
+      <p class="role">〈部署名〉・入社〈年数〉年目</p>
+      <p class="quote">未経験だった自分が、今は教える側にいます。</p>
+      <p class="body">何も知らずに入って、たくさん助けてもらいました。だからこそ、次の人には同じだけ返したいと思っています。それが自然にできるチームです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <h2>大事にしていること</h2>
+  <div class="values">
+    <div class="value-item">
+      <div class="value-mark">1</div>
+      <div class="value-text">
+        <h3>隣の人を気にかける</h3>
+        <p>成果の前に、まず隣にいる人の調子を見る。それが〈会社名〉のいちばん基本的な文化です。</p>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-mark">2</div>
+      <div class="value-text">
+        <h3>分からないと言える</h3>
+        <p>知ったかぶりより、素直に聞くことを歓迎します。未経験からのスタートを前提にしたチームです。</p>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-mark">3</div>
+      <div class="value-text">
+        <h3>時間をかけて育つ</h3>
+        <p>すぐに結果を求めません。じっくり関係を築きながら、一緒に育っていくことを大切にしています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+<section>
+  <div class="cta">
+    <h2>応募への導線</h2>
+    <p>今すぐ決めなくて大丈夫です。まずは私たちの日常を、もう少し覗いてみませんか。</p>
+    <a class="btn" href="#">募集要項を見てみる</a>
+    <p class="sub">〈募集職種〉について、詳しくは〈会社名〉採用ページの募集要項ページへ</p>
+  </div>
+</section>
+
+<footer>〈会社名〉 採用ページ</footer>
+
+</body>
+</html>

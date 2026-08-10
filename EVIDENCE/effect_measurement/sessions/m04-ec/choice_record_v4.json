@@ -1,0 +1,25 @@
+{
+ "picks": [
+  0,
+  1,
+  0,
+  0,
+  1
+ ],
+ "labels": [
+  "新規見込み客",
+  "感情・体験訴求",
+  "フォーマル",
+  "ECサイト商品ページ",
+  "敬意ある距離感"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored",
+  "beyond_text"
+ ],
+ "decided_at": "2026-08-10T08:24:23.561103+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}

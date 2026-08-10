@@ -1,0 +1,117 @@
+{
+ "brief": "m01-lp",
+ "text": "かっこいいけど信頼感もあるLPを作って。うちのサービス用。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "誰に向けたLPか",
+    "kind": "anchored",
+    "anchor_words": [
+     "うちのサービス用"
+    ],
+    "options": [
+     {
+      "label": "個人ユーザー向け"
+     },
+     {
+      "label": "法人担当者向け"
+     }
+    ],
+    "default_if_unresolved": "個人ユーザー向けとして進める"
+   },
+   {
+    "id": "b1",
+    "question_point": "かっこよさと信頼感の比重",
+    "kind": "anchored",
+    "anchor_words": [
+     "かっこいいけど信頼感もある"
+    ],
+    "options": [
+     {
+      "label": "かっこよさ優先"
+     },
+     {
+      "label": "信頼感優先"
+     },
+     {
+      "label": "均等バランス"
+     }
+    ],
+    "default_if_unresolved": "均等バランスで進める"
+   },
+   {
+    "id": "b2",
+    "question_point": "信頼感の演出方法",
+    "kind": "anchored",
+    "anchor_words": [
+     "信頼感もある"
+    ],
+    "options": [
+     {
+      "label": "実績・数値で訴求"
+     },
+     {
+      "label": "権威・提携で訴求"
+     },
+     {
+      "label": "デザインの端正さで訴求"
+     }
+    ],
+    "default_if_unresolved": "デザインの端正さで演出"
+   },
+   {
+    "id": "b3",
+    "question_point": "LPの主目的",
+    "kind": "anchored",
+    "anchor_words": [
+     "LPを作って"
+    ],
+    "options": [
+     {
+      "label": "問い合わせ獲得"
+     },
+     {
+      "label": "会員登録獲得"
+     },
+     {
+      "label": "認知・ブランディング"
+     }
+    ],
+    "default_if_unresolved": "問い合わせ獲得を主目的とする"
+   },
+   {
+    "id": "b4",
+    "question_point": "閲覧デバイスの前提",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "スマホ優先"
+     },
+     {
+      "label": "PC優先"
+     }
+    ],
+    "default_if_unresolved": "スマホ優先で設計する",
+    "origin_rationale": "LPは必ず何らかの画面幅で実装され、レイアウト配分が変わってしまうため"
+   }
+  ],
+  "residual_ambiguity_assessment": "対象読者・目的・訴求軸・構成が未指定で、成果物を左右する分岐が複数残存する",
+  "missing_materials": [
+   "サービス名・内容の詳細情報",
+   "実績・数値などの信頼性を示す素材"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 12686,
+  "wall_ms": 13476,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:10:12.114598+00:00"
+}

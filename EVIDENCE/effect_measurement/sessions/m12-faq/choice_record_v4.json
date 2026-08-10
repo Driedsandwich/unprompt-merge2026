@@ -1,0 +1,25 @@
+{
+ "picks": [
+  2,
+  2,
+  0,
+  1,
+  1
+ ],
+ "labels": [
+  "両方混在",
+  "透明性・条件明示",
+  "カテゴリ分類型",
+  "問合せ導線も維持",
+  "丁寧・寄り添い型"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored",
+  "beyond_text"
+ ],
+ "decided_at": "2026-08-10T08:25:34.957120+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}

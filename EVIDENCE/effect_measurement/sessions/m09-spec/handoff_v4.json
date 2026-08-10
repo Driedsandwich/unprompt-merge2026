@@ -1,0 +1,122 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "社内の経費精算をラクにする小さなツールの仕様メモを書いて。",
+ "compiled_at": "2026-08-10T08:25:08.975574+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "「ラクにする」対象工程",
+   "kind": "anchored",
+   "anchor_words": [
+    "経費精算をラクにする"
+   ],
+   "status": "decided",
+   "chosen_label": "集計・経理処理の自動化",
+   "visual_tokens": {
+    "palette": [
+     "#1f2a24",
+     "#2f6b4f",
+     "#c9a24b"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "経費、自動で締まる。集計・経理処理を自動化し月次を即完了。"
+   },
+   "intent": "「経費精算をラクにする」を集計・経理処理の自動化と確定させ、対象を申請入力ではなく経理側の集計作業に絞り込んだ。"
+  },
+  {
+   "question_point": "「小さなツール」の実装形態",
+   "kind": "anchored",
+   "anchor_words": [
+    "小さなツール"
+   ],
+   "status": "decided",
+   "chosen_label": "Excel/スプレッドシート",
+   "visual_tokens": {
+    "palette": [
+     "#f1f5e9",
+     "#5c7a3e",
+     "#8fa85e"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "経費精算シート、セルに入力するだけで完結。"
+   },
+   "intent": "「小さなツール」をExcel/スプレッドシートと確定させ、専用アプリ開発ではなく既存表計算ソフト上での実装を前提とした。"
+  },
+  {
+   "question_point": "想定利用者の層",
+   "kind": "anchored",
+   "anchor_words": [
+    "社内の経費精算"
+   ],
+   "status": "decided",
+   "chosen_label": "経理担当者向け",
+   "visual_tokens": {
+    "palette": [
+     "#1b2a22",
+     "#2f4f3e",
+     "#c9a24b"
+    ],
+    "heading_font": "serif",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "経費精算、仕訳突合を止めない小さな社内ツール仕様。"
+   },
+   "intent": "「社内の経費精算」の利用者を経理担当者向けと確定させ、申請者ではなく処理側の操作性を仕様検討の基準とした。"
+  },
+  {
+   "question_point": "仕様メモの詳細度・用途",
+   "kind": "anchored",
+   "anchor_words": [
+    "仕様メモ"
+   ],
+   "status": "decided",
+   "chosen_label": "要件概要レベル",
+   "visual_tokens": {
+    "palette": [
+     "#f7f6f3",
+     "#4a4842",
+     "#8c8577"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "経費精算ツール要件概要:目的とゴールだけを一枚で示す"
+   },
+   "intent": "「仕様メモ」の粒度を要件概要レベルと確定させ、詳細設計ではなく機能の大枠を示す文書として位置づけた。"
+  },
+  {
+   "question_point": "既存業務フローとの接続範囲",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "完全独立ツール",
+   "visual_tokens": {
+    "palette": [
+     "#1b1f24",
+     "#3a4552",
+     "#8aa1b4"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "経費精算メモ:このツール単体で完結、他システム接続なし。"
+   },
+   "intent": "文には書かれていないが既存経理システムとの接続要否は実装時に必ず定まる判断であり、完全独立ツールとすることで外部連携を持たない単独完結型として範囲を確定させた。",
+   "origin_rationale": "ツールが単独完結か既存経理システムに接続するかは実装で必ず決定される"
+  }
+ ],
+ "residual_ambiguity_assessment": "目的語のみで対象者・範囲・機能一式が未指定。分岐は多数潜在する",
+ "missing_materials": [
+  "現行の経費精算フロー・帳票フォーマット",
+  "対象社員数・利用部署",
+  "既存の会計/勤怠システム名"
+ ]
+}

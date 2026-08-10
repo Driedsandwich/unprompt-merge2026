@@ -1,0 +1,122 @@
+{
+ "brief": "m04-ec",
+ "text": "この新商品の説明文、魅力的にお願い。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "読み手が誰か",
+    "kind": "anchored",
+    "anchor_words": [
+     "この新商品の説明文"
+    ],
+    "options": [
+     {
+      "label": "新規見込み客"
+     },
+     {
+      "label": "既存顧客"
+     },
+     {
+      "label": "業界関係者"
+     }
+    ],
+    "default_if_unresolved": "新規見込み客向けとして書く"
+   },
+   {
+    "id": "b1",
+    "question_point": "訴求の軸",
+    "kind": "anchored",
+    "anchor_words": [
+     "魅力的にお願い"
+    ],
+    "options": [
+     {
+      "label": "機能・スペック訴求"
+     },
+     {
+      "label": "感情・体験訴求"
+     },
+     {
+      "label": "価格・お得感訴求"
+     }
+    ],
+    "default_if_unresolved": "機能と体験のバランス型"
+   },
+   {
+    "id": "b2",
+    "question_point": "文体・トーン",
+    "kind": "anchored",
+    "anchor_words": [
+     "魅力的にお願い"
+    ],
+    "options": [
+     {
+      "label": "フォーマル"
+     },
+     {
+      "label": "親しみやすい口語"
+     },
+     {
+      "label": "高級感のある格調体"
+     }
+    ],
+    "default_if_unresolved": "親しみやすい口語調"
+   },
+   {
+    "id": "b3",
+    "question_point": "掲載媒体・文章の長さ",
+    "kind": "anchored",
+    "anchor_words": [
+     "説明文"
+    ],
+    "options": [
+     {
+      "label": "ECサイト商品ページ"
+     },
+     {
+      "label": "SNS短文投稿"
+     },
+     {
+      "label": "カタログ・チラシ"
+     }
+    ],
+    "default_if_unresolved": "ECサイト商品ページ想定の中量文"
+   },
+   {
+    "id": "b4",
+    "question_point": "読み手との距離感",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "対等な語りかけ"
+     },
+     {
+      "label": "敬意ある距離感"
+     }
+    ],
+    "default_if_unresolved": "敬意を保った丁寧な語りかけ",
+    "origin_rationale": "説明文は必ず一人称・二人称の呼びかけ距離が定まってしまう性質を持つ"
+   }
+  ],
+  "residual_ambiguity_assessment": "商品情報も読者・目的も未指定で、説明文の方向を決める判断点が多数残存している。",
+  "missing_materials": [
+   "商品名",
+   "商品の具体的な特徴・仕様",
+   "価格",
+   "ターゲット層の詳細情報"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 11917,
+  "wall_ms": 12682,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:10:43.933238+00:00"
+}

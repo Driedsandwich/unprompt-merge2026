@@ -1,0 +1,225 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "エンジニア採用向け",
+    "tokens": {
+     "palette": [
+      "#0d1117",
+      "#1f2937",
+      "#39ff88"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "commit --push で示すエンジニア転職ポートフォリオ"
+    },
+    "error": null
+   },
+   {
+    "label": "デザイナー採用向け",
+    "tokens": {
+     "palette": [
+      "#0d0d0d",
+      "#f2f0eb",
+      "#ff3b1f"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "Design Portfolio — 見た人の記憶に残る余白と一手。"
+    },
+    "error": null
+   },
+   {
+    "label": "総合職・マネジメント向け",
+    "tokens": {
+     "palette": [
+      "#101820",
+      "#2e3a46",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "転職ポートフォリオ、実績で語る経営視点。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "作品の質で記憶させる",
+    "tokens": {
+     "palette": [
+      "#1c1c1c",
+      "#f4f2ee",
+      "#8a6a3c"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "作品集：一つひとつの制作物で語る仕事の質。"
+    },
+    "error": null
+   },
+   {
+    "label": "個性・世界観で記憶させる",
+    "tokens": {
+     "palette": [
+      "#171018",
+      "#7a2e4a",
+      "#d9a441"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "転職ポートフォリオ、これは私という物語。"
+    },
+    "error": null
+   },
+   {
+    "label": "実績数値で記憶させる",
+    "tokens": {
+     "palette": [
+      "#0b1e33",
+      "#123a5c",
+      "#f2a900"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "成果 138%達成、開発工数30%削減で証明する実績。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "ミニマルな視覚表現",
+    "tokens": {
+     "palette": [
+      "#f5f4f1",
+      "#1b1b1b",
+      "#c7a96b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "作品、削ぎ落として。ポートフォリオは一枚の余白から始まる。"
+    },
+    "error": null
+   },
+   {
+    "label": "導線・情報量の少なさ",
+    "tokens": {
+     "palette": [
+      "#f4f3ef",
+      "#1f1d1b",
+      "#b0a38f"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "経歴、要点のみ。ポートフォリオは迷わせない。"
+    },
+    "error": null
+   },
+   {
+    "label": "技術構成の軽量さ",
+    "tokens": {
+     "palette": [
+      "#0d1117",
+      "#1f6feb",
+      "#39d353"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "0KBの美学。転職ポートフォリオは軽さで語る。"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "作品一覧中心",
+    "tokens": {
+     "palette": [
+      "#0d0d0d",
+      "#1a1a1a",
+      "#e8ff3c"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "WORKS 2019–2026 手を動かした分だけ、ここに並ぶ。"
+    },
+    "error": null
+   },
+   {
+    "label": "自己紹介・経歴中心",
+    "tokens": {
+     "palette": [
+      "#f4f1ec",
+      "#2b2622",
+      "#9c7a4a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "経歴、積み重ねた歩み。転職の一歩を確かな輪郭で示す。"
+    },
+    "error": null
+   },
+   {
+    "label": "プロセス・思考解説中心",
+    "tokens": {
+     "palette": [
+      "#1b1b1e",
+      "#4a4e69",
+      "#c9a66b"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "なぜこの設計にしたか、判断の過程を辿るポートフォリオ。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "応募前の第一印象用",
+    "tokens": {
+     "palette": [
+      "#0b0f14",
+      "#1c2733",
+      "#3ec6e0"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "採用担当者様へ、3秒で伝わるポートフォリオ"
+    },
+    "error": null
+   },
+   {
+    "label": "面接時の深掘り資料用",
+    "tokens": {
+     "palette": [
+      "#1c1f26",
+      "#2e3a46",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "設計思想を語る、資料室。開発の意思決定を根拠とともに提示。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:14:48.917740+00:00"
+}

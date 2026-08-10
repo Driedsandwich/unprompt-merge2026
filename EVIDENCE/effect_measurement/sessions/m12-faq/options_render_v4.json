@@ -1,0 +1,210 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "返品前の検討者",
+    "tokens": {
+     "palette": [
+      "#f4efe6",
+      "#8c7355",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "返品、迷っていませんか。まず条件をゆっくりご確認ください。"
+    },
+    "error": null
+   },
+   {
+    "label": "返品手続き中の人",
+    "tokens": {
+     "palette": [
+      "#f4f1ec",
+      "#8a5a3b",
+      "#2f5d45"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "返品手続き、今どこまで進んだか一目で確認できます。"
+    },
+    "error": null
+   },
+   {
+    "label": "両方混在",
+    "tokens": {
+     "palette": [
+      "#f4f1eb",
+      "#5b7b6f",
+      "#c97b4a"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "返品FAQ、検討中もお手続き中も迷わず解決"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "保証明記で安心",
+    "tokens": {
+     "palette": [
+      "#0b2545",
+      "#13315c",
+      "#c9a24b"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "返品は全額保証、条件を満たせば必ず対応します。"
+    },
+    "error": null
+   },
+   {
+    "label": "人の温かみで安心",
+    "tokens": {
+     "palette": [
+      "#fbf3e9",
+      "#d98a5f",
+      "#b0472b"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "返品のこと、スタッフが親身にお答えします"
+    },
+    "error": null
+   },
+   {
+    "label": "透明性・条件明示",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#2b4a45",
+      "#c8a24a"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "返品条件、すべて明記します。対象・期限・送料まで一覧で確認可能。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "カテゴリ分類型",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#2f5233",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "返品ガイド:目的別に整理された案内で迷わず解決"
+    },
+    "error": null
+   },
+   {
+    "label": "検索窓中心",
+    "tokens": {
+     "palette": [
+      "#0b1f3a",
+      "#123a66",
+      "#3fd1c7"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "返品、ここに聞いて。検索ひとつで欲しい答えへ。"
+    },
+    "error": null
+   },
+   {
+    "label": "よくある質問順",
+    "tokens": {
+     "palette": [
+      "#f7f3ed",
+      "#8a6b4f",
+      "#c9502f"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "返品Q&Aランキング、質問の多い順にすぐ確認できます。"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "問合せ削減優先",
+    "tokens": {
+     "palette": [
+      "#0f172a",
+      "#1e3a5f",
+      "#b45309"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "返品理由、ここで即解決。もう問い合わせ不要です。"
+    },
+    "error": null
+   },
+   {
+    "label": "問合せ導線も維持",
+    "tokens": {
+     "palette": [
+      "#0b3d2e",
+      "#145c43",
+      "#e8b84b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "返品FAQ、それでも迷ったらすぐお問い合わせを。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "事務的・簡潔",
+    "tokens": {
+     "palette": [
+      "#f4f5f7",
+      "#37474f",
+      "#0b84a5"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "返品FAQ:条件・期限・手続きを一覧で確認。"
+    },
+    "error": null
+   },
+   {
+    "label": "丁寧・寄り添い型",
+    "tokens": {
+     "palette": [
+      "#fbf4ee",
+      "#c98a6b",
+      "#8a5a3c"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "返品のこと、ゆっくり一緒に確認しましょう"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:17:09.418694+00:00"
+}

@@ -1,0 +1,103 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "発送遅延のお詫びメール、誠実だけど重すぎないトーンで。",
+ "compiled_at": "2026-08-10T08:25:00.295263+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "謝罪の宛先(誰への遅延か)",
+   "kind": "anchored",
+   "anchor_words": [
+    "発送遅延のお詫びメール"
+   ],
+   "status": "decided",
+   "chosen_label": "個人客向け",
+   "visual_tokens": {
+    "palette": [
+     "#fff7f0",
+     "#e8825c",
+     "#f2b79a"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "発送遅延のお詫び。お荷物、もう少しだけお待ちください。"
+   },
+   "intent": "個人客向けと定めたことで、文体や敬語の砕け具合、企業間文書特有の形式的言い回しの要否が一意に定まる。"
+  },
+  {
+   "question_point": "遅延の原因説明の有無",
+   "kind": "anchored",
+   "anchor_words": [
+    "発送遅延"
+   ],
+   "status": "decided",
+   "chosen_label": "原因に触れない",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#8a8578",
+     "#5b7a6b"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "発送のご連絡、遅れております。まずは一言、お詫びまで。"
+   },
+   "intent": "原因に触れない選択により、発送遅延の背景説明を本文に含めず謝罪と今後の案内に絞る構成が確定する。"
+  },
+  {
+   "question_point": "代替措置・補償の言及有無",
+   "kind": "anchored",
+   "anchor_words": [
+    "お詫び"
+   ],
+   "status": "decided",
+   "chosen_label": "謝罪のみで完結",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ec",
+     "#5c5346",
+     "#8a7a5c"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "発送遅延のお詫び。誠意を込めて、まずはお詫び申し上げます。"
+   },
+   "intent": "謝罪のみで完結させる選択により、割引やクーポン等の代替措置・補償に関する記載を本文に含めないことが確定する。"
+  },
+  {
+   "question_point": "新たな発送時期の明示有無",
+   "kind": "anchored",
+   "anchor_words": [
+    "発送遅延"
+   ],
+   "status": "decided",
+   "chosen_label": "目安のみ示す",
+   "visual_tokens": {
+    "palette": [
+     "#f3ede4",
+     "#b08a5a",
+     "#7a5230"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "発送は来週半ば頃を予定しております"
+   },
+   "intent": "目安のみ示す選択により、確定日ではなくおおよその発送時期として案内する表現の粒度が定まる。"
+  }
+ ],
+ "residual_ambiguity_assessment": "宛先・原因説明・補償有無・新発送時期など複数の判断点が未確定。",
+ "missing_materials": [
+  "遅延の具体的な原因",
+  "新しい発送予定日",
+  "注文番号・顧客名などの差し込み情報",
+  "補償内容の詳細"
+ ]
+}

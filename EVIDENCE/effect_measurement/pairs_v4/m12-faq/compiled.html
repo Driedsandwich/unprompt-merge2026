@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>返品について よくあるご質問</title>
+<style>
+/*
+GYAKUMON-CHOICE: 読者の状況 = 両方混在
+GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示
+GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型
+GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持
+GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型
+*/
+:root{
+  /* タイプスケール: 基準16px, 比率1.25 */
+  --step-0: 16px;
+  --step-1: 20px;
+  --step-2: 25px;
+  --step-3: 31px;
+  --bg: #f4f1eb;
+  --main: #5b7b6f;
+  --accent: #c97b4a;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:#31423c;
+  font-family: "Hiragino Sans", "Yu Gothic UI", "Segoe UI", system-ui, sans-serif;
+  font-size:var(--step-0);
+  line-height:1.9;
+}
+.wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px;}
+
+/* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+header.hero{
+  padding:48px 32px;
+  background:linear-gradient(160deg, var(--bg) 0%, #eae4d8 100%);
+  border-radius:20px;
+  margin-bottom:64px;
+}
+header.hero p.eyebrow{
+  margin:0 0 12px;
+  font-size:14px;
+  letter-spacing:0.12em;
+  color:var(--main);
+  font-weight:600;
+}
+header.hero h1{
+  margin:0 0 20px;
+  font-family: "Hiragino Sans", "Yu Gothic UI", system-ui, sans-serif;
+  font-weight:800;
+  font-size:var(--step-3);
+  letter-spacing:0.02em;
+  color:#2c3f38;
+  line-height:1.5;
+}
+header.hero p.lead{
+  margin:0;
+  font-size:var(--step-1);
+  color:#4a5b53;
+}
+
+/* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+.assurance{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  background:#fff;
+  border:1px solid #e2ddcf;
+  border-radius:16px;
+  padding:24px;
+  margin-bottom:72px;
+}
+.assurance .mark{
+  flex:0 0 auto;
+  width:40px;height:40px;
+  border-radius:50%;
+  background:var(--main);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.assurance p{margin:0;color:#43554d;}
+.assurance strong{color:var(--main);}
+
+/* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+section.faq{margin-bottom:96px;}
+h2.section-title{
+  font-size:var(--step-2);
+  font-weight:800;
+  color:#2c3f38;
+  border-left:6px solid var(--accent);
+  padding-left:16px;
+  margin:0 0 32px;
+}
+details.qa{
+  background:#fff;
+  border-radius:16px;
+  padding:24px;
+  margin-bottom:16px;
+  border:1px solid #e6e1d4;
+}
+details.qa summary{
+  cursor:pointer;
+  font-weight:700;
+  font-size:var(--step-1);
+  color:#2c3f38;
+  list-style:none;
+}
+details.qa summary::before{
+  content:"Q";
+  display:inline-block;
+  width:28px;height:28px;
+  line-height:28px;
+  text-align:center;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fff;
+  font-size:14px;
+  margin-right:12px;
+}
+details.qa .answer{
+  margin-top:16px;
+  padding-top:16px;
+  border-top:1px dashed #ddd6c4;
+  color:#4a5b53;
+}
+
+/* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+section.contact{
+  background:linear-gradient(160deg,#eef2ee 0%, var(--bg) 100%);
+  border-radius:20px;
+  padding:48px 32px;
+  text-align:center;
+}
+section.contact h2{
+  margin:0 0 16px;
+  font-size:var(--step-2);
+  color:#2c3f38;
+}
+section.contact p{margin:0 0 24px;color:#4a5b53;}
+.contact-btn{
+  display:inline-block;
+  padding:14px 32px;
+  background:var(--main);
+  color:#fff;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+}
+footer{
+  text-align:center;
+  margin-top:48px;
+  color:#8a8a7c;
+  font-size:13px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">返品について</p>
+  <h1>迷っているときも、手続き中も、<br>ここで確認できます</h1>
+  <p class="lead">「返品できるかまだ迷っている」方も、「もう手続きを進めている」方も、それぞれの状況に合わせて必要な情報をまとめました。ゆっくり確認してください。</p>
+</header>
+
+<div class="assurance">
+  <div class="mark">✓</div>
+  <p><strong>対象・期限・送料の条件は、すべてこのページに明記しています。</strong>「書かれていないことで戸惑わせない」を大切にしているので、不明点があればいつでもお問い合わせください。</p>
+</div>
+
+<section class="faq">
+  <h2 class="section-title">返品できるかどうか</h2>
+
+  <details class="qa" open>
+    <summary>どんな商品でも返品できますか？</summary>
+    <div class="answer">対象となる商品・状態には条件があります。詳しい返品対象条件は〈返品ポリシーページ〉に記載の内容をご確認ください。条件に当てはまるか迷う場合は、下記の問い合わせ窓口からご相談いただけます。</div>
+  </details>
+
+  <details class="qa">
+    <summary>返品を申し込める期限はいつまでですか？</summary>
+    <div class="answer">返品期限は〈返品受付期限〉として定めています。期限を過ぎてしまった場合の対応可否についても、まずはお問い合わせください。</div>
+  </details>
+</section>
+
+<section class="faq">
+  <h2 class="section-title">手続きの進め方</h2>
+
+  <details class="qa">
+    <summary>返品の手続きはどこから始めればいいですか？</summary>
+    <div class="answer">〈マイページ〉または〈注文履歴〉から返品のお申し込みができます。手順の詳細は〈手続きページ〉をご案内していますので、そちらもあわせてご確認ください。</div>
+  </details>
+
+  <details class="qa">
+    <summary>返品時の送料はどちらが負担しますか？</summary>
+    <div class="answer">送料の負担については〈送料負担ルール〉に定めています。返品理由によって扱いが異なる場合がありますので、事前にご確認いただけると手続きがスムーズです。</div>
+  </details>
+
+  <details class="qa">
+    <summary>返金はいつ、どのように受け取れますか？</summary>
+    <div class="answer">返金の時期・方法は〈返金ルール〉のとおりです。商品到着確認後の処理となるため、多少お時間をいただく場合があります。状況によって前後することもございますので、ご了承ください。</div>
+  </details>
+</section>
+
+<section class="contact">
+  <h2>ここで解決しなかったときは</h2>
+  <p>このページで答えが見つからなかった場合も、遠慮なくお問い合わせください。一つひとつ、丁寧にご案内します。</p>
+  <a class="contact-btn" href="#">お問い合わせフォームへ</a>
+</section>
+
+<footer>〈ショップ名〉カスタマーサポート</footer>
+
+</div>
+</body>
+</html>

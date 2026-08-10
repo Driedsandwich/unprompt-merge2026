@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>秋の社内勉強会</title>
+<style>
+/*
+  :root タイプスケール(基準16px, 比率 1.25)
+  --fs-0: 16px 本文 / --fs-1: 20px / --fs-2: 25px / --fs-3: 31px / --fs-4: 39px
+*/
+:root{
+  --bg:#fff7e8;      /* 地色 */
+  --main:#ff8a3d;    /* 主要色 */
+  --accent:#2ec4b6;  /* 強調色 */
+  --ink:#3a2b1a;
+  --fs-0:16px; --fs-1:20px; --fs-2:25px; --fs-3:31px; --fs-4:39px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:var(--fs-0);
+  line-height:1.9;
+}
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+/* GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 */
+h1,h2{
+  font-family:"UD角ゴ Small","Rounded Mplus 1c","Hiragino Maru Gothic ProN",sans-serif;
+  font-weight:700;
+  color:var(--ink);
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+header.hero{
+  padding:96px 24px 64px;
+  background:linear-gradient(180deg,var(--bg) 0%,#ffefd2 100%);
+  text-align:center;
+}
+header.hero .eyebrow{
+  display:inline-block;
+  font-size:var(--fs-0);
+  letter-spacing:.08em;
+  color:var(--accent);
+  background:#ffffffaa;
+  padding:6px 16px;
+  border-radius:999px;
+  margin-bottom:24px;
+}
+header.hero h1{
+  font-size:var(--fs-4);
+  letter-spacing:.02em;
+  margin:0 0 16px;
+  line-height:1.4;
+}
+header.hero p.lead{
+  font-size:var(--fs-1);
+  color:#6b5233;
+  margin:0;
+}
+section{
+  padding:96px 0;
+  border-top:1px solid #ffffff;
+}
+section .wrap > h2{
+  font-size:var(--fs-2);
+  letter-spacing:.02em;
+  margin:0 0 32px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+section .wrap > h2::before{
+  content:"";
+  width:10px;height:10px;
+  background:var(--main);
+  border-radius:50%;
+  flex:none;
+}
+/* GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け */
+.info-card{
+  background:#fff;
+  border-radius:24px;
+  padding:32px;
+  display:grid;
+  grid-template-columns:96px 1fr;
+  row-gap:20px;
+  font-size:var(--fs-1);
+}
+.info-card dt{color:var(--accent);font-weight:700;}
+.info-card dd{margin:0;}
+/* GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 */
+.content-body p{margin:0 0 24px;font-size:var(--fs-1);}
+.highlights{
+  list-style:none;
+  margin:0;padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.highlights li{
+  background:#ffffffcc;
+  border-radius:20px;
+  padding:24px 28px;
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
+.highlights li .mark{
+  font-size:var(--fs-2);
+  color:var(--main);
+  flex:none;
+}
+/* GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ */
+.entry-box{
+  background:#ffffff;
+  border-radius:20px;
+  padding:32px;
+  font-size:var(--fs-1);
+}
+.entry-box p{margin:0 0 12px;}
+.entry-box .note{
+  font-size:var(--fs-0);
+  color:#6b5233;
+}
+footer{
+  padding:64px 24px 96px;
+  text-align:center;
+  color:#8a7355;
+  font-size:var(--fs-0);
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">社内勉強会・秋</span>
+    <!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+    <h1>お菓子片手に、知ってることをちょっと話す秋の会。</h1>
+    <p class="lead">誰かの「知ってること」が、誰かの「知りたかったこと」だったりする。<br>そんな交換をゆるっとやる時間です。</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>日時・場所</h2>
+    <div class="info-card">
+      <dt>日時</dt><dd>〈開催日〉〈開始時刻〉〜〈終了時刻〉</dd>
+      <dt>場所</dt><dd>〈会場〉（〈オンライン参加リンク〉）</dd>
+      <dt>対象</dt><dd>全社員（部署・役職を問わずどなたでも）</dd>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <!-- GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 -->
+    <h2>どんな会？</h2>
+    <div class="content-body">
+      <p>誰かが最近学んだこと、試してみたこと、ちょっとしたコツ——そういう知見をお互いに持ち寄って共有する時間です。ガチガチの講義ではなく、聞いた話にその場で質問したり、雑談っぽく広がったりするのも歓迎。</p>
+      <p>普段あまり接点のない部署の人と話すきっかけにもなればと思っています。テーマは〈発表内容〉、発表者は〈登壇者〉を予定しています。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <!-- GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 -->
+    <h2>見どころ</h2>
+    <ul class="highlights">
+      <li><span class="mark">◎</span><span>発表を聞くだけの参加も大歓迎。「なんとなく気になる」で十分です。</span></li>
+      <li><span class="mark">◎</span><span>質問・感想はその場で気軽に。堅い進行は特に用意していません。</span></li>
+      <li><span class="mark">◎</span><span>普段の業務では話さない人との接点が生まれるかもしれません。</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <!-- GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ -->
+    <h2>参加方法</h2>
+    <div class="entry-box">
+      <p>参加申込：〈申込方法〉</p>
+      <p>問い合わせ：〈問い合わせ先〉</p>
+      <p class="note">当日ふらっと参加も可能です。詳細は〈社内告知チャネル〉にてご案内します。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  秋の社内勉強会 運営：〈主催部署〉
+</footer>
+
+</body>
+</html>

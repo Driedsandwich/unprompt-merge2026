@@ -1,0 +1,112 @@
+{
+ "brief": "m03-scout",
+ "text": "若手エンジニアに刺さるスカウトメール書いて。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "「若手エンジニア」の経験層",
+    "kind": "anchored",
+    "anchor_words": [
+     "若手エンジニア"
+    ],
+    "options": [
+     {
+      "label": "新卒〜1年目"
+     },
+     {
+      "label": "実務2〜5年"
+     }
+    ],
+    "default_if_unresolved": "実務2〜5年を想定"
+   },
+   {
+    "id": "b1",
+    "question_point": "「刺さる」の訴求軸",
+    "kind": "anchored",
+    "anchor_words": [
+     "刺さる"
+    ],
+    "options": [
+     {
+      "label": "技術的成長訴求"
+     },
+     {
+      "label": "待遇・条件訴求"
+     },
+     {
+      "label": "裁量・自由度訴求"
+     }
+    ],
+    "default_if_unresolved": "技術的成長を軸にする"
+   },
+   {
+    "id": "b2",
+    "question_point": "文面のトーン",
+    "kind": "anchored",
+    "anchor_words": [
+     "書いて"
+    ],
+    "options": [
+     {
+      "label": "フォーマル"
+     },
+     {
+      "label": "カジュアル"
+     }
+    ],
+    "default_if_unresolved": "ややカジュアルにする"
+   },
+   {
+    "id": "b3",
+    "question_point": "送付チャネルの前提",
+    "kind": "anchored",
+    "anchor_words": [
+     "メール"
+    ],
+    "options": [
+     {
+      "label": "転職媒体経由DM"
+     },
+     {
+      "label": "直接メール送付"
+     }
+    ],
+    "default_if_unresolved": "転職媒体経由DM前提"
+   },
+   {
+    "id": "b4",
+    "question_point": "読み手との温度感",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "親近感重視"
+     },
+     {
+      "label": "プロフェッショナル距離"
+     }
+    ],
+    "default_if_unresolved": "プロフェッショナルな距離感",
+    "origin_rationale": "スカウトは初接触が前提で、距離感の設定を避けて書くことはできない"
+   }
+  ],
+  "residual_ambiguity_assessment": "対象読者・目的・トーンなど主要な判断点が未指定で曖昧度が高い",
+  "missing_materials": [
+   "自社名・事業内容",
+   "募集ポジションの具体的な技術スタック",
+   "給与レンジ等の条件"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 9917,
+  "wall_ms": 10065,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:10:31.250036+00:00"
+}

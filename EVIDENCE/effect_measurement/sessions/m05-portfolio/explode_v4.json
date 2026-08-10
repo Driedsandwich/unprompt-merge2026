@@ -1,0 +1,121 @@
+{
+ "brief": "m05-portfolio",
+ "text": "転職用のポートフォリオサイト、シンプルだけど印象に残る感じで。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "読み手(採用担当)の職種軸",
+    "kind": "anchored",
+    "anchor_words": [
+     "転職用のポートフォリオサイト"
+    ],
+    "options": [
+     {
+      "label": "エンジニア採用向け"
+     },
+     {
+      "label": "デザイナー採用向け"
+     },
+     {
+      "label": "総合職・マネジメント向け"
+     }
+    ],
+    "default_if_unresolved": "職種を特定しない汎用構成にする"
+   },
+   {
+    "id": "b1",
+    "question_point": "「印象に残る」の方向性",
+    "kind": "anchored",
+    "anchor_words": [
+     "印象に残る感じ"
+    ],
+    "options": [
+     {
+      "label": "作品の質で記憶させる"
+     },
+     {
+      "label": "個性・世界観で記憶させる"
+     },
+     {
+      "label": "実績数値で記憶させる"
+     }
+    ],
+    "default_if_unresolved": "作品の質で記憶させる方向"
+   },
+   {
+    "id": "b2",
+    "question_point": "「シンプル」の解釈",
+    "kind": "anchored",
+    "anchor_words": [
+     "シンプルだけど"
+    ],
+    "options": [
+     {
+      "label": "ミニマルな視覚表現"
+     },
+     {
+      "label": "導線・情報量の少なさ"
+     },
+     {
+      "label": "技術構成の軽量さ"
+     }
+    ],
+    "default_if_unresolved": "視覚表現のミニマルさとして扱う"
+   },
+   {
+    "id": "b3",
+    "question_point": "サイト構成の重心",
+    "kind": "anchored",
+    "anchor_words": [
+     "ポートフォリオサイト"
+    ],
+    "options": [
+     {
+      "label": "作品一覧中心"
+     },
+     {
+      "label": "自己紹介・経歴中心"
+     },
+     {
+      "label": "プロセス・思考解説中心"
+     }
+    ],
+    "default_if_unresolved": "作品一覧を中心に構成する"
+   },
+   {
+    "id": "b4",
+    "question_point": "閲覧者の初回接触タイミング",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "応募前の第一印象用"
+     },
+     {
+      "label": "面接時の深掘り資料用"
+     }
+    ],
+    "default_if_unresolved": "応募前の第一印象用として設計",
+    "origin_rationale": "採用選考のどの段階で見られるかにより情報密度と配置順が必ず決まるため"
+   }
+  ],
+  "residual_ambiguity_assessment": "対象読者・訴求軸・構成が未指定で、方向性を左右する分岐が複数残る",
+  "missing_materials": [
+   "職務経歴・実績データ",
+   "掲載作品・実績物",
+   "経歴書・スキルセット"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 12068,
+  "wall_ms": 12130,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:10:56.067194+00:00"
+}

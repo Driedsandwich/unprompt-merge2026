@@ -1,0 +1,22 @@
+{
+ "picks": [
+  0,
+  1,
+  1,
+  1
+ ],
+ "labels": [
+  "個人客向け",
+  "原因に触れない",
+  "謝罪のみで完結",
+  "目安のみ示す"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored"
+ ],
+ "decided_at": "2026-08-10T08:25:00.296349+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈ブランド名〉| Coffee Beans</title>
+<style>
+/*
+  タイプスケール(基準 16px, 比率 1.5)
+  --fs-0: 16px 本文
+  --fs-1: 24px 小見出し
+  --fs-2: 36px 中見出し
+  --fs-3: 54px ヒーロー
+  8pxグリッド運用
+*/
+:root{
+  --ink:#1f2420;
+  --paper:#eef0e6;
+  --line:#3c4438;
+  --accent:#b5651d;
+  --fs-0:16px;
+  --fs-1:24px;
+  --fs-2:36px;
+  --fs-3:54px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:"Hiragino Sans","Yu Gothic UI","Noto Sans JP",sans-serif;
+  font-size:var(--fs-0);
+  line-height:1.9;
+}
+h1,h2,h3{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  margin:0;
+}
+section{
+  padding:96px 24px;
+  max-width:720px;
+  margin:0 auto;
+}
+.hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:24px;
+  max-width:100%;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  right:-120px;
+  top:-120px;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, var(--accent), transparent 70%);
+  opacity:.35;
+}
+.eyebrow{
+  font-size:14px;
+  letter-spacing:.32em;
+  color:var(--accent);
+  margin-bottom:24px;
+}
+.hero h1{
+  font-size:var(--fs-3);
+  font-weight:700;
+  letter-spacing:.06em;
+  line-height:1.35;
+  max-width:640px;
+}
+.hero p.lead{
+  margin-top:32px;
+  max-width:520px;
+  font-size:var(--fs-1);
+  font-weight:300;
+  color:#cfd6c6;
+}
+h2{
+  font-size:var(--fs-2);
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--paper);
+  margin-bottom:40px;
+  position:relative;
+  padding-left:24px;
+}
+h2::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.15em;
+  width:8px;
+  height:8px;
+  background:var(--accent);
+  border-radius:50%;
+}
+p{color:#d3d8c9;}
+.story .quote{
+  margin:40px 0 0;
+  padding:24px 0 24px 24px;
+  border-left:2px solid var(--accent);
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:var(--fs-1);
+  font-weight:500;
+  color:var(--paper);
+}
+.cards{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:40px;
+}
+.card{
+  padding:24px;
+  background:#262c24;
+  display:flex;
+  gap:24px;
+  align-items:baseline;
+}
+.card .no{
+  font-family:"Hiragino Mincho ProN",serif;
+  font-size:var(--fs-1);
+  color:var(--accent);
+  flex-shrink:0;
+}
+.card h3{
+  font-size:19px;
+  font-weight:600;
+  margin-bottom:8px;
+  color:var(--paper);
+}
+.card p{margin:0;font-size:15px;}
+.lineup{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:40px;
+}
+.bean{
+  aspect-ratio:1;
+  background:linear-gradient(155deg,#2b1a10,#4a2a12 60%,var(--accent));
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  position:relative;
+}
+.bean span{
+  font-size:13px;
+  letter-spacing:.1em;
+  color:#e9d9bd;
+}
+.bean h3{
+  font-size:20px;
+  color:#fff;
+  margin-top:8px;
+}
+.cta{
+  text-align:center;
+}
+.cta p{max-width:480px;margin:0 auto 40px;}
+.btn{
+  display:inline-block;
+  padding:20px 48px;
+  background:var(--accent);
+  color:#1f1300;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-decoration:none;
+  font-size:15px;
+}
+footer{
+  padding:48px 24px;
+  text-align:center;
+  font-size:13px;
+  color:#7a8172;
+  border-top:1px solid var(--line);
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">NEW ROASTER</div>
+  <h1>まだ名前しかない、<br>コーヒー豆ブランドの話。</h1>
+  <p class="lead">〈ブランド名〉は、これから豆を選び、焙煎の方針を決め、味の輪郭を描いていくところから始まる。</p>
+</div>
+
+<section class="story">
+  <h2>ブランドの物語</h2>
+  <p>まだ多くを語れる段階にはない。決まっているのは、〈ブランド名〉という名前と、コーヒー豆を届けるという一点だけだ。物語のかたちは、これから豆を選び、焙煎を重ねる中でゆっくり定まっていく。</p>
+  <div class="quote">最初の一杯を、まだ誰も知らない。</div>
+</section>
+
+<section class="beans">
+  <h2>豆へのこだわり</h2>
+  <div class="cards">
+    <div class="card"><div class="no">01</div><div><h3>産地</h3><p>〈産地情報〉を予定。決まり次第、ここに記す。</p></div></div>
+    <div class="card"><div class="no">02</div><div><h3>焙煎</h3><p>〈焙煎方針〉を検討中。浅煎りか深煎りか、これから固めていく。</p></div></div>
+    <div class="card"><div class="no">03</div><div><h3>選定基準</h3><p>〈選定基準〉は未定。誰が、どう選ぶかを含めて設計段階にある。</p></div></div>
+  </div>
+</section>
+
+<section class="lineup">
+  <h2 style="max-width:720px;margin-left:auto;margin-right:auto;">ラインナップ</h2>
+  <div class="lineup" style="margin-top:0;">
+    <div class="bean"><span>COMING SOON</span><h3>〈商品名 1〉</h3></div>
+    <div class="bean"><span>COMING SOON</span><h3>〈商品名 2〉</h3></div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2 style="padding-left:0;">〈ブランド名〉を、はじめる前に</h2>
+  <p>取り扱いや発売時期は現時点で未定。詳細が決まり次第、あらためてお知らせする。</p>
+  <a class="btn" href="#">お知らせを待つ</a>
+</section>
+
+<footer>&copy; 〈ブランド名〉</footer>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+ "picks": [
+  1,
+  2,
+  1,
+  1,
+  0
+ ],
+ "labels": [
+  "実務2〜5年",
+  "裁量・自由度訴求",
+  "カジュアル",
+  "直接メール送付",
+  "親近感重視"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored",
+  "beyond_text"
+ ],
+ "decided_at": "2026-08-10T08:24:14.184345+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}

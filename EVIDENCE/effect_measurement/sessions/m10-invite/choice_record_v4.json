@@ -1,0 +1,25 @@
+{
+ "picks": [
+  2,
+  1,
+  0,
+  1,
+  0
+ ],
+ "labels": [
+  "サークル・部活仲間",
+  "疎遠さへの配慮",
+  "くだけたノリ",
+  "十年以上ぶり想定",
+  "対面での集まり"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored",
+  "beyond_text"
+ ],
+ "decided_at": "2026-08-10T08:25:18.058344+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}

@@ -1,0 +1,25 @@
+{
+ "picks": [
+  2,
+  0,
+  1,
+  0,
+  1
+ ],
+ "labels": [
+  "集計・経理処理の自動化",
+  "Excel/スプレッドシート",
+  "経理担当者向け",
+  "要件概要レベル",
+  "完全独立ツール"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored",
+  "beyond_text"
+ ],
+ "decided_at": "2026-08-10T08:25:08.976375+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}
