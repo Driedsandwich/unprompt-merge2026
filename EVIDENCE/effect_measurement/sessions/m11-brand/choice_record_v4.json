@@ -1,0 +1,25 @@
+{
+ "picks": [
+  2,
+  0,
+  1,
+  0,
+  0
+ ],
+ "labels": [
+  "ギフト検討者",
+  "高級・洗練",
+  "ブランド共感醸成",
+  "ストーリー中心",
+  "スマホ前提"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored",
+  "beyond_text"
+ ],
+ "decided_at": "2026-08-10T08:25:26.393083+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}

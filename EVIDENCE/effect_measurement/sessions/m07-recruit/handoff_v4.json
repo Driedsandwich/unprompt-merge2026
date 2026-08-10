@@ -1,0 +1,122 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "採用ページの会社紹介、飾らないけど熱意が伝わるように。",
+ "compiled_at": "2026-08-10T08:24:50.607178+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "想定読み手の経験層",
+   "kind": "anchored",
+   "anchor_words": [
+    "採用ページの会社紹介"
+   ],
+   "status": "decided",
+   "chosen_label": "新卒・未経験",
+   "visual_tokens": {
+    "palette": [
+     "#fff8ec",
+     "#ff9a3c",
+     "#1a1a1a"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "はじめの一歩を、ここから。未経験から採用の現場で育つ日々。"
+   },
+   "intent": "採用ページの会社紹介という前提のもと読み手を新卒・未経験層と定めたことで、専門用語を避けた平易な語り口が下流で一意に定まる。"
+  },
+  {
+   "question_point": "「飾らない」の具体的な現れ方",
+   "kind": "anchored",
+   "anchor_words": [
+    "飾らないけど熱意が伝わるように"
+   ],
+   "status": "decided",
+   "chosen_label": "社員の生の声中心",
+   "visual_tokens": {
+    "palette": [
+     "#f4efe6",
+     "#b5673a",
+     "#3c6e52"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "「入社3年目、正直こう思ってます」採用ページに社員の本音を並べました。"
+   },
+   "intent": "「飾らないけど熱意が伝わるように」という要望を社員の生の声中心と解したことで、経営視点の美辞麗句ではなく現場社員の発言を軸に構成することが決まる。"
+  },
+  {
+   "question_point": "熱意の訴求軸",
+   "kind": "anchored",
+   "anchor_words": [
+    "熱意が伝わるように"
+   ],
+   "status": "decided",
+   "chosen_label": "チーム・人への熱意",
+   "visual_tokens": {
+    "palette": [
+     "#2b2622",
+     "#c4623a",
+     "#e8b04b"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "採用ページ:隣にいる人の顔が見える会社です。"
+   },
+   "intent": "熱意が伝わるようにという指定をチーム・人への熱意と解したことで、事業規模や実績ではなく同僚・組織への思いを語る内容に絞られる。"
+  },
+  {
+   "question_point": "文章の構成・分量",
+   "kind": "anchored",
+   "anchor_words": [
+    "会社紹介"
+   ],
+   "status": "decided",
+   "chosen_label": "ストーリー形式の長文",
+   "visual_tokens": {
+    "palette": [
+     "#1c1a17",
+     "#4a3a2b",
+     "#c98a3e"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "入社の理由――先輩が語る、採用ページに載せた本音の道のり。"
+   },
+   "intent": "会社紹介という指定をストーリー形式の長文と解したことで、箇条書きの要点整理ではなく時系列や経緯を追う文章構成に定まる。"
+  },
+  {
+   "question_point": "応募検討段階との距離感",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "認知・興味喚起段階",
+   "visual_tokens": {
+    "palette": [
+     "#0e1a16",
+     "#1f6e4a",
+     "#8ff0c0"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "はじめまして、採用担当です。私たちの日常を覗いてみませんか。"
+   },
+   "intent": "原文には書かれていないが採用ページの制作では必ず定まる判断であり、認知・興味喚起段階と決めたことで応募を迫らず関心を育てる語りかけに定まる。",
+   "origin_rationale": "採用ページは応募直前か認知初期かで語りかけの前提が必ず変わるため"
+  }
+ ],
+ "residual_ambiguity_assessment": "目的語(誰が読む・何に使う採用ページか)が未指定で、方向性を左右する分岐が複数残る",
+ "missing_materials": [
+  "会社名・事業内容",
+  "募集職種・ポジション情報",
+  "社風や実際のエピソード素材"
+ ]
+}

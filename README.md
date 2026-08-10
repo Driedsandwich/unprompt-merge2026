@@ -4,6 +4,8 @@
 
 🏆 **MERGE 2026 AI Designathon — 3位** (14提出・決勝進出3組・2026-08-08) — [決勝登壇資料](docs/finals/) / 提出後の効果測定 (負けた回も含む全公開) は [EVIDENCE/effect_measurement/](EVIDENCE/effect_measurement/)
 
+✅ **公約履行 (2026-08-10)**: 決勝ピッチで宣言した「文の外の意図も質問する」次版を凍結明け当日に実装 (文外判断点 `kind: beyond_text`・[prompts/extraction_product_v2.txt](prompts/extraction_product_v2.txt)) し、測定v4 (やり直し回数・捏造率) を事前登録つきで実施 — **予測は2つとも外れ、その結果もそのまま公開** ([PREREGISTRATION.md 結果4](EVIDENCE/effect_measurement/PREREGISTRATION.md))
+
 **曖昧な一文を、AIに渡せる「意図の指示書」にコンパイルする。** AIはあなたの成果物を書かない — あなたの一文がまだ決めていないこと (判断点) を実物の見本つきで問い返し、あなたは**決める**か**委ねる**かをクリックするだけ。最初の一文のあと、タイプは0文字。
 
 <img src="assets/readme/flow.svg" alt="曖昧な一文 → 爆散(3〜5の判断点+見本) → 決める/委ねる(クリックのみ) → 意図の指示書(JSON) → いつものAIへ" width="100%">

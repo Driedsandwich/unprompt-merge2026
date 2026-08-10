@@ -1,0 +1,178 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "親しみ雑談調",
+    "tokens": {
+     "palette": [
+      "#fff6e8",
+      "#e8965a",
+      "#c4472b"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "おつかれさま、今月の社内報も気楽にどうぞ。"
+    },
+    "error": null
+   },
+   {
+    "label": "軽い丁寧語",
+    "tokens": {
+     "palette": [
+      "#faf7f2",
+      "#8c7a63",
+      "#b08d57"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "今月の社内報、少しだけご挨拶させてください。"
+    },
+    "error": null
+   },
+   {
+    "label": "ユーモア強め",
+    "tokens": {
+     "palette": [
+      "#1e1b16",
+      "#ff7a1a",
+      "#ffd400"
+     ],
+     "heading_font": "rounded",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "社内報、今月も好き放題書きます。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "近況・季節雑談",
+    "tokens": {
+     "palette": [
+      "#fdf6ec",
+      "#f2a65a",
+      "#5b8c5a"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "今日も蒸し暑いですね、最近ハマってる冷やし中華の話です。"
+    },
+    "error": null
+   },
+   {
+    "label": "今月の振り返り",
+    "tokens": {
+     "palette": [
+      "#f4ede4",
+      "#b5763f",
+      "#7a4a22"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "8月の振り返り:あの案件、みんなの頑張りで乗り切りました。"
+    },
+    "error": null
+   },
+   {
+    "label": "経営メッセージ",
+    "tokens": {
+     "palette": [
+      "#1b2a4a",
+      "#2e4372",
+      "#b08d2a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "経営より、皆さんへ ― 今月も事業の歩みを共有します。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "経営層目線",
+    "tokens": {
+     "palette": [
+      "#1c2430",
+      "#8a7239",
+      "#c9a94e"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "社員の皆さんへ、経営として今月伝えたいこと。"
+    },
+    "error": null
+   },
+   {
+    "label": "編集部目線",
+    "tokens": {
+     "palette": [
+      "#f5f1e8",
+      "#3a3630",
+      "#c7622a"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "編集部より:今月号、社内報チームがネタ集めに走り回りました。"
+    },
+    "error": null
+   },
+   {
+    "label": "現場社員目線",
+    "tokens": {
+     "palette": [
+      "#f4ede1",
+      "#c97b3d",
+      "#4e7a51"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "現場から一言、今月も社内報お届けします"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "全社一体感重視",
+    "tokens": {
+     "palette": [
+      "#1b2e5c",
+      "#2f6fed",
+      "#ffc94d"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "社内報:全社みんなで、今月もひとつに!"
+    },
+    "error": null
+   },
+   {
+    "label": "部署間温度差配慮",
+    "tokens": {
+     "palette": [
+      "#3a3f3c",
+      "#6b7c74",
+      "#b8a76a"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "各部署のみなさんへ、今月もそれぞれのペースでお疲れさまでした。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:15:10.111681+00:00"
+}

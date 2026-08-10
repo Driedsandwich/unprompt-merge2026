@@ -1,0 +1,121 @@
+{
+ "brief": "m09-spec",
+ "text": "社内の経費精算をラクにする小さなツールの仕様メモを書いて。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "「ラクにする」対象工程",
+    "kind": "anchored",
+    "anchor_words": [
+     "経費精算をラクにする"
+    ],
+    "options": [
+     {
+      "label": "申請入力の簡略化"
+     },
+     {
+      "label": "承認フローの効率化"
+     },
+     {
+      "label": "集計・経理処理の自動化"
+     }
+    ],
+    "default_if_unresolved": "申請入力の簡略化を主眼に設計"
+   },
+   {
+    "id": "b1",
+    "question_point": "「小さなツール」の実装形態",
+    "kind": "anchored",
+    "anchor_words": [
+     "小さなツール"
+    ],
+    "options": [
+     {
+      "label": "Excel/スプレッドシート"
+     },
+     {
+      "label": "社内Webアプリ"
+     },
+     {
+      "label": "チャットBot連携"
+     }
+    ],
+    "default_if_unresolved": "軽量Webアプリとして仕様化"
+   },
+   {
+    "id": "b2",
+    "question_point": "想定利用者の層",
+    "kind": "anchored",
+    "anchor_words": [
+     "社内の経費精算"
+    ],
+    "options": [
+     {
+      "label": "一般社員全員向け"
+     },
+     {
+      "label": "経理担当者向け"
+     },
+     {
+      "label": "管理職承認者向け"
+     }
+    ],
+    "default_if_unresolved": "一般社員向けを主対象とする"
+   },
+   {
+    "id": "b3",
+    "question_point": "仕様メモの詳細度・用途",
+    "kind": "anchored",
+    "anchor_words": [
+     "仕様メモ"
+    ],
+    "options": [
+     {
+      "label": "要件概要レベル"
+     },
+     {
+      "label": "画面/機能詳細レベル"
+     },
+     {
+      "label": "開発発注用仕様書レベル"
+     }
+    ],
+    "default_if_unresolved": "要件概要レベルでまとめる"
+   },
+   {
+    "id": "b4",
+    "question_point": "既存業務フローとの接続範囲",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "既存システムと連携前提"
+     },
+     {
+      "label": "完全独立ツール"
+     }
+    ],
+    "default_if_unresolved": "独立ツールとして仕様化",
+    "origin_rationale": "ツールが単独完結か既存経理システムに接続するかは実装で必ず決定される"
+   }
+  ],
+  "residual_ambiguity_assessment": "目的語のみで対象者・範囲・機能一式が未指定。分岐は多数潜在する",
+  "missing_materials": [
+   "現行の経費精算フロー・帳票フォーマット",
+   "対象社員数・利用部署",
+   "既存の会計/勤怠システム名"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 11224,
+  "wall_ms": 11398,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:11:41.478843+00:00"
+}

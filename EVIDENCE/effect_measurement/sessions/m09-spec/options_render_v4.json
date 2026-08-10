@@ -1,0 +1,225 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "申請入力の簡略化",
+    "tokens": {
+     "palette": [
+      "#f7f5f1",
+      "#3a6b52",
+      "#c97a3d"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "経費申請、3タップで完了。迷わず入力、迷わず提出。"
+    },
+    "error": null
+   },
+   {
+    "label": "承認フローの効率化",
+    "tokens": {
+     "palette": [
+      "#1b2430",
+      "#3d5a80",
+      "#ee964b"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "承認待ちゼロへ。経費申請を止めない決裁ライン。"
+    },
+    "error": null
+   },
+   {
+    "label": "集計・経理処理の自動化",
+    "tokens": {
+     "palette": [
+      "#1f2a24",
+      "#2f6b4f",
+      "#c9a24b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費、自動で締まる。集計・経理処理を自動化し月次を即完了。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "Excel/スプレッドシート",
+    "tokens": {
+     "palette": [
+      "#f1f5e9",
+      "#5c7a3e",
+      "#8fa85e"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費精算シート、セルに入力するだけで完結。"
+    },
+    "error": null
+   },
+   {
+    "label": "社内Webアプリ",
+    "tokens": {
+     "palette": [
+      "#0f172a",
+      "#1d4ed8",
+      "#38bdf8"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "経費精算アプリ、社内ブラウザから申請から承認まで一括管理。"
+    },
+    "error": null
+   },
+   {
+    "label": "チャットBot連携",
+    "tokens": {
+     "palette": [
+      "#0b0f1a",
+      "#3d5afe",
+      "#00e5c7"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "経費精算Bot、チャットで完結。領収書を送るだけで申請完了。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "一般社員全員向け",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#3b4a6b",
+      "#e8a33d"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "経費精算、もう迷わない。全社員が使えるシンプル申請"
+    },
+    "error": null
+   },
+   {
+    "label": "経理担当者向け",
+    "tokens": {
+     "palette": [
+      "#1b2a22",
+      "#2f4f3e",
+      "#c9a24b"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費精算、仕訳突合を止めない小さな社内ツール仕様。"
+    },
+    "error": null
+   },
+   {
+    "label": "管理職承認者向け",
+    "tokens": {
+     "palette": [
+      "#1c2333",
+      "#3a4a63",
+      "#b8863a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "承認者向け:経費申請を一目で判断、押印一つで完了。"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "要件概要レベル",
+    "tokens": {
+     "palette": [
+      "#f7f6f3",
+      "#4a4842",
+      "#8c8577"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "経費精算ツール要件概要:目的とゴールだけを一枚で示す"
+    },
+    "error": null
+   },
+   {
+    "label": "画面/機能詳細レベル",
+    "tokens": {
+     "palette": [
+      "#f4f6f8",
+      "#2d6cdf",
+      "#ff7a00"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費精算ツール 画面遷移メモ:申請フォーム→承認一覧→CSV出力"
+    },
+    "error": null
+   },
+   {
+    "label": "開発発注用仕様書レベル",
+    "tokens": {
+     "palette": [
+      "#12213b",
+      "#1f3a63",
+      "#b08a3e"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費精算ツール仕様書 3.2版：画面遷移・API・例外処理を規定する。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "既存システムと連携前提",
+    "tokens": {
+     "palette": [
+      "#101826",
+      "#1e3a5f",
+      "#3fa9f5"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "経費精算、既存会計システムに直結。二重入力ゼロで申請完了。"
+    },
+    "error": null
+   },
+   {
+    "label": "完全独立ツール",
+    "tokens": {
+     "palette": [
+      "#1b1f24",
+      "#3a4552",
+      "#8aa1b4"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "経費精算メモ:このツール単体で完結、他システム接続なし。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:16:10.494571+00:00"
+}

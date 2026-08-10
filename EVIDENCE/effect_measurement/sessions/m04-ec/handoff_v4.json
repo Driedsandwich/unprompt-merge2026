@@ -1,0 +1,123 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "この新商品の説明文、魅力的にお願い。",
+ "compiled_at": "2026-08-10T08:24:23.560270+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "読み手が誰か",
+   "kind": "anchored",
+   "anchor_words": [
+    "この新商品の説明文"
+   ],
+   "status": "decided",
+   "chosen_label": "新規見込み客",
+   "visual_tokens": {
+    "palette": [
+     "#0b1220",
+     "#2563eb",
+     "#f97316"
+    ],
+    "heading_font": "sans",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "はじめまして、その悩みを解決する新商品です。"
+   },
+   "intent": "説明文の宛先は文中に明示されないが新規見込み客と確定させたことで、専門用語を避け導入から惹きつける語り口が下流で一意に定まる"
+  },
+  {
+   "question_point": "訴求の軸",
+   "kind": "anchored",
+   "anchor_words": [
+    "魅力的にお願い"
+   ],
+   "status": "decided",
+   "chosen_label": "感情・体験訴求",
+   "visual_tokens": {
+    "palette": [
+     "#1b1420",
+     "#5c2a4d",
+     "#e0a05b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "新商品、はじめて触れた瞬間の高揚を。"
+   },
+   "intent": "魅力的にの語が示す訴求方向を感情・体験訴求と定めたことで、スペック列挙ではなく使用体験や情緒的価値を軸に文章を組む方針が確定する"
+  },
+  {
+   "question_point": "文体・トーン",
+   "kind": "anchored",
+   "anchor_words": [
+    "魅力的にお願い"
+   ],
+   "status": "decided",
+   "chosen_label": "フォーマル",
+   "visual_tokens": {
+    "palette": [
+     "#f4f5f7",
+     "#1f2a44",
+     "#3d5a80"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "sharp",
+    "tone_sample": "新製品のご案内。仕様と特長を的確にお伝えします。"
+   },
+   "intent": "魅力的にとの指示が持つトーンの幅をフォーマルと確定したことで、砕けた口語表現を排し丁寧な敬体で統一する方針が下流で一意に定まる"
+  },
+  {
+   "question_point": "掲載媒体・文章の長さ",
+   "kind": "anchored",
+   "anchor_words": [
+    "説明文"
+   ],
+   "status": "decided",
+   "chosen_label": "ECサイト商品ページ",
+   "visual_tokens": {
+    "palette": [
+     "#f7f4ef",
+     "#1f2a24",
+     "#b08a3e"
+    ],
+    "heading_font": "serif",
+    "density": "normal",
+    "corner": "sharp",
+    "tone_sample": "新商品、詳細スペックと共に。素材から仕立てまでを丁寧に解説します。"
+   },
+   "intent": "説明文が置かれる場をECサイト商品ページと定めたことで、購入検討者向けの適度な情報量と構成の長さが下流で確定する"
+  },
+  {
+   "question_point": "読み手との距離感",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "敬意ある距離感",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ea",
+     "#3a3226",
+     "#8c6a3f"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "新商品のご案内。厳選された品質を、静かにお届けいたします。"
+   },
+   "intent": "説明文には呼びかけ距離が明記されないが必ず定まる性質を持つため、敬意ある距離感と選び丁寧な二人称表現で統一する方針を確定させた",
+   "origin_rationale": "説明文は必ず一人称・二人称の呼びかけ距離が定まってしまう性質を持つ"
+  }
+ ],
+ "residual_ambiguity_assessment": "商品情報も読者・目的も未指定で、説明文の方向を決める判断点が多数残存している。",
+ "missing_materials": [
+  "商品名",
+  "商品の具体的な特徴・仕様",
+  "価格",
+  "ターゲット層の詳細情報"
+ ]
+}

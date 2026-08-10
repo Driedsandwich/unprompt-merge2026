@@ -1,0 +1,118 @@
+{
+ "brief": "m12-faq",
+ "text": "問い合わせが多い返品まわりのFAQページ、探しやすく安心感のある感じ。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "読者の状況",
+    "kind": "anchored",
+    "anchor_words": [
+     "問い合わせが多い返品まわり"
+    ],
+    "options": [
+     {
+      "label": "返品前の検討者"
+     },
+     {
+      "label": "返品手続き中の人"
+     },
+     {
+      "label": "両方混在"
+     }
+    ],
+    "default_if_unresolved": "両方混在として構成"
+   },
+   {
+    "id": "b1",
+    "question_point": "安心感の演出方法",
+    "kind": "anchored",
+    "anchor_words": [
+     "安心感のある感じ"
+    ],
+    "options": [
+     {
+      "label": "保証明記で安心"
+     },
+     {
+      "label": "人の温かみで安心"
+     },
+     {
+      "label": "透明性・条件明示"
+     }
+    ],
+    "default_if_unresolved": "条件明示で安心感を出す"
+   },
+   {
+    "id": "b2",
+    "question_point": "探しやすさの実現方法",
+    "kind": "anchored",
+    "anchor_words": [
+     "探しやすく"
+    ],
+    "options": [
+     {
+      "label": "カテゴリ分類型"
+     },
+     {
+      "label": "検索窓中心"
+     },
+     {
+      "label": "よくある質問順"
+     }
+    ],
+    "default_if_unresolved": "カテゴリ分類で構成"
+   },
+   {
+    "id": "b3",
+    "question_point": "問い合わせが多い理由への対応姿勢",
+    "kind": "anchored",
+    "anchor_words": [
+     "問い合わせが多い"
+    ],
+    "options": [
+     {
+      "label": "問合せ削減優先"
+     },
+     {
+      "label": "問合せ導線も維持"
+     }
+    ],
+    "default_if_unresolved": "問合せ削減を優先"
+   },
+   {
+    "id": "b4",
+    "question_point": "ページの読後の距離感",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "事務的・簡潔"
+     },
+     {
+      "label": "丁寧・寄り添い型"
+     }
+    ],
+    "default_if_unresolved": "丁寧・寄り添い型で作成",
+    "origin_rationale": "FAQは企業と顧客の関係性トーンを必ず帯びるため決めずに書けない"
+   }
+  ],
+  "residual_ambiguity_assessment": "対象読者・トーン・構成の指定がなく、複数の解釈が成果物を左右する状態。",
+  "missing_materials": [
+   "実際の返品ポリシー条件",
+   "過去の問い合わせ内容一覧",
+   "返品期限や送料負担の規定"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 10426,
+  "wall_ms": 10698,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:12:14.574231+00:00"
+}

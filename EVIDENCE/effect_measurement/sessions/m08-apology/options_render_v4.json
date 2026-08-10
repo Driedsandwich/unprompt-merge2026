@@ -1,0 +1,148 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "個人客向け",
+    "tokens": {
+     "palette": [
+      "#fff7f0",
+      "#e8825c",
+      "#f2b79a"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "発送遅延のお詫び。お荷物、もう少しだけお待ちください。"
+    },
+    "error": null
+   },
+   {
+    "label": "法人取引先向け",
+    "tokens": {
+     "palette": [
+      "#12233d",
+      "#1f3a5f",
+      "#9c7a3c"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "発送遅延のお詫び。貴社の業務に支障なきよう、迅速に対応いたします。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "原因に触れる",
+    "tokens": {
+     "palette": [
+      "#f4f0e8",
+      "#8a6d4e",
+      "#b8874f"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "発送遅延のお詫び:配送業者の混雑によりお届けが遅れております。"
+    },
+    "error": null
+   },
+   {
+    "label": "原因に触れない",
+    "tokens": {
+     "palette": [
+      "#f4f1ec",
+      "#8a8578",
+      "#5b7a6b"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "発送のご連絡、遅れております。まずは一言、お詫びまで。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "割引等を提示",
+    "tokens": {
+     "palette": [
+      "#f2eee6",
+      "#8c6a4e",
+      "#b8823c"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "発送遅延のお詫びに、送料を割引にてご案内いたします。"
+    },
+    "error": null
+   },
+   {
+    "label": "謝罪のみで完結",
+    "tokens": {
+     "palette": [
+      "#f4f1ec",
+      "#5c5346",
+      "#8a7a5c"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "発送遅延のお詫び。誠意を込めて、まずはお詫び申し上げます。"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "具体日を明示",
+    "tokens": {
+     "palette": [
+      "#f4efe9",
+      "#2e4433",
+      "#b8863a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "発送予定日は8月14日です。責任を持ってお届けします。"
+    },
+    "error": null
+   },
+   {
+    "label": "目安のみ示す",
+    "tokens": {
+     "palette": [
+      "#f3ede4",
+      "#b08a5a",
+      "#7a5230"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "発送は来週半ば頃を予定しております"
+    },
+    "error": null
+   },
+   {
+    "label": "時期に触れない",
+    "tokens": {
+     "palette": [
+      "#2a2c30",
+      "#5c6066",
+      "#8b7d6b"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "発送のご連絡、丁寧に。まずはお詫びを申し上げます。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:15:51.172997+00:00"
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>新商品のご案内</title>
+<style>
+  /*
+    GYAKUMON決定の反映方針:
+    ・読み手が誰か = 新規見込み客 / 訴求の軸 = 感情・体験訴求 / 文体・トーン = フォーマル
+      / 掲載媒体・文章の長さ = ECサイト商品ページ / 読み手との距離感 = 敬意ある距離感
+    複数決定のvisual_tokensが競合する軸は、決定件数の多数決で単一のフレームに統合した。
+    見出し書体: serif(体験訴求/媒体/距離感で指定) / 密度: airy(新規客/体験訴求/距離感で指定)
+    / 角: sharp(フォーマル/媒体/距離感で指定) / 配色: 媒体(ECサイト商品ページ)の指定を基調に採用。
+  */
+
+  /* GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ */
+  :root{
+    --bg: #f7f4ef;
+    --ink: #1f2a24;
+    --accent: #b08a3e;
+
+    /* タイプスケール(本文16pxを基準に1.25比) */
+    --fs-body: 16px;
+    --fs-lead: 18px;
+    --fs-h2: 20px;
+    --fs-h1: 31px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+    padding: 64px 24px;
+  }
+
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+  main{
+    width: 100%;
+    max-width: 720px;
+  }
+
+  /* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 */
+  h1{
+    font-family: "Iowan Old Style", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-h1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin: 0 0 40px;
+    color: var(--ink);
+    border-left: 4px solid var(--accent);
+    padding-left: 20px;
+  }
+
+  /* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+  p, li{
+    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    font-size: var(--fs-body);
+    line-height: 2;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+
+  /* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+  .lead{
+    font-size: var(--fs-lead);
+    margin-bottom: 96px;
+  }
+
+  section{
+    margin-bottom: 96px;
+  }
+
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+  h2{
+    font-family: "Iowan Old Style", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin: 0 0 24px;
+    color: var(--accent);
+  }
+
+  ul{
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  li{
+    margin-bottom: 16px;
+  }
+
+  .spec{
+    border-top: 1px solid var(--ink);
+    padding-top: 32px;
+  }
+
+  .spec dl{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    row-gap: 16px;
+    column-gap: 16px;
+    margin: 0 0 24px;
+  }
+
+  .spec dt{
+    font-size: 14px;
+    color: var(--accent);
+    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  }
+
+  .spec dd{
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .note{
+    font-size: 13px;
+    color: #5a5348;
+  }
+
+  .closing{
+    margin-top: 96px;
+    font-size: var(--fs-lead);
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+<main>
+
+<!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+<h1>はじめての方へ、静かな高揚をお届けします。</h1>
+
+<!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+<p class="lead">
+はじめまして。〈商品名〉は、〈お客様の悩み〉を抱える方のために生まれた新商品です。
+むずかしいご説明は最小限に、まずは手に取っていただいたときの心地よさから、お伝えしとうございます。
+</p>
+
+<section>
+<h2>この商品がお届けするもの</h2>
+<ul>
+<li>〈特徴1〉——箱を開けた瞬間から、その違いを感じていただけます。</li>
+<li>〈特徴2〉——毎日の中に、ささやかな満足をもたらします。</li>
+<li>〈特徴3〉——使うたびに、選んでよかったと思っていただけるはずです。</li>
+</ul>
+</section>
+
+<!-- GYAKUMON-CHOICE: 文体・トーン = フォーマル -->
+<section class="spec">
+<h2>仕様・ご注意</h2>
+<dl>
+<dt>素材</dt><dd>〈素材〉</dd>
+<dt>サイズ</dt><dd>〈サイズ〉</dd>
+<dt>お届け</dt><dd>〈お届け方法・目安〉</dd>
+</dl>
+<p class="note">※ 詳細な仕様は今後の情報公開をお待ちください。ご使用にあたっては〈注意事項〉にご留意くださいませ。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+<p class="closing">
+どうぞ、〈商品名〉との出会いをお楽しみに。
+</p>
+
+</main>
+</body>
+</html>

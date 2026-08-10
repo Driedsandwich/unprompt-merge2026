@@ -1,0 +1,121 @@
+{
+ "brief": "m11-brand",
+ "text": "新しいコーヒー豆ブランドの世界観が伝わる紹介ページ。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "想定読者の層",
+    "kind": "anchored",
+    "anchor_words": [
+     "新しいコーヒー豆ブランド"
+    ],
+    "options": [
+     {
+      "label": "コーヒー通"
+     },
+     {
+      "label": "ライトユーザー"
+     },
+     {
+      "label": "ギフト検討者"
+     }
+    ],
+    "default_if_unresolved": "ライトユーザー向けに平易に説明"
+   },
+   {
+    "id": "b1",
+    "question_point": "世界観の方向性",
+    "kind": "anchored",
+    "anchor_words": [
+     "世界観が伝わる"
+    ],
+    "options": [
+     {
+      "label": "高級・洗練"
+     },
+     {
+      "label": "素朴・手作り感"
+     },
+     {
+      "label": "個性的・遊び心"
+     }
+    ],
+    "default_if_unresolved": "落ち着いた洗練トーン"
+   },
+   {
+    "id": "b2",
+    "question_point": "ページの主目的",
+    "kind": "anchored",
+    "anchor_words": [
+     "紹介ページ"
+    ],
+    "options": [
+     {
+      "label": "購入促進"
+     },
+     {
+      "label": "ブランド共感醸成"
+     },
+     {
+      "label": "店舗・卸への信頼構築"
+     }
+    ],
+    "default_if_unresolved": "ブランド共感醸成を主眼に"
+   },
+   {
+    "id": "b3",
+    "question_point": "構成の重心",
+    "kind": "anchored",
+    "anchor_words": [
+     "紹介ページ"
+    ],
+    "options": [
+     {
+      "label": "ストーリー中心"
+     },
+     {
+      "label": "商品スペック中心"
+     },
+     {
+      "label": "作り手・生産者中心"
+     }
+    ],
+    "default_if_unresolved": "ストーリー中心の構成"
+   },
+   {
+    "id": "b4",
+    "question_point": "閲覧時の想定接点",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "スマホ前提"
+     },
+     {
+      "label": "PC前提"
+     }
+    ],
+    "default_if_unresolved": "スマホ前提でレイアウト",
+    "origin_rationale": "紹介ページは公開時に画面サイズと閲覧文脈が必ず定まり、余白や情報密度を左右する"
+   }
+  ],
+  "residual_ambiguity_assessment": "「世界観」「紹介」以外の情報がなく、読者・目的・トーン・構成が未指定で曖昧度は高い",
+  "missing_materials": [
+   "ブランド名",
+   "豆の産地・種類などの実データ",
+   "ブランドロゴ・写真素材"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 11797,
+  "wall_ms": 11299,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:12:03.873588+00:00"
+}

@@ -1,0 +1,121 @@
+{
+ "brief": "m07-recruit",
+ "text": "採用ページの会社紹介、飾らないけど熱意が伝わるように。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "想定読み手の経験層",
+    "kind": "anchored",
+    "anchor_words": [
+     "採用ページの会社紹介"
+    ],
+    "options": [
+     {
+      "label": "新卒・未経験"
+     },
+     {
+      "label": "即戦力の中途"
+     },
+     {
+      "label": "経営幹部候補"
+     }
+    ],
+    "default_if_unresolved": "中途一般層向けを想定"
+   },
+   {
+    "id": "b1",
+    "question_point": "「飾らない」の具体的な現れ方",
+    "kind": "anchored",
+    "anchor_words": [
+     "飾らないけど熱意が伝わるように"
+    ],
+    "options": [
+     {
+      "label": "率直な弱み開示"
+     },
+     {
+      "label": "誇張表現の排除"
+     },
+     {
+      "label": "社員の生の声中心"
+     }
+    ],
+    "default_if_unresolved": "誇張語を避けた事実ベースの文体"
+   },
+   {
+    "id": "b2",
+    "question_point": "熱意の訴求軸",
+    "kind": "anchored",
+    "anchor_words": [
+     "熱意が伝わるように"
+    ],
+    "options": [
+     {
+      "label": "事業ビジョンへの熱意"
+     },
+     {
+      "label": "チーム・人への熱意"
+     },
+     {
+      "label": "顧客・社会貢献への熱意"
+     }
+    ],
+    "default_if_unresolved": "事業ビジョンを軸に構成"
+   },
+   {
+    "id": "b3",
+    "question_point": "文章の構成・分量",
+    "kind": "anchored",
+    "anchor_words": [
+     "会社紹介"
+    ],
+    "options": [
+     {
+      "label": "短文キャッチ中心"
+     },
+     {
+      "label": "ストーリー形式の長文"
+     },
+     {
+      "label": "箇条書き情報中心"
+     }
+    ],
+    "default_if_unresolved": "短めのストーリー形式"
+   },
+   {
+    "id": "b4",
+    "question_point": "応募検討段階との距離感",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "応募直前の後押し"
+     },
+     {
+      "label": "認知・興味喚起段階"
+     }
+    ],
+    "default_if_unresolved": "応募検討中の読者を想定",
+    "origin_rationale": "採用ページは応募直前か認知初期かで語りかけの前提が必ず変わるため"
+   }
+  ],
+  "residual_ambiguity_assessment": "目的語(誰が読む・何に使う採用ページか)が未指定で、方向性を左右する分岐が複数残る",
+  "missing_materials": [
+   "会社名・事業内容",
+   "募集職種・ポジション情報",
+   "社風や実際のエピソード素材"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 12953,
+  "wall_ms": 12866,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:11:19.075419+00:00"
+}

@@ -1,0 +1,210 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "個人ユーザー向け",
+    "tokens": {
+     "palette": [
+      "#0b0f17",
+      "#5b4cfb",
+      "#00e0c6"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "そのサービス、もっと自分らしく。今日から始める新習慣。"
+    },
+    "error": null
+   },
+   {
+    "label": "法人担当者向け",
+    "tokens": {
+     "palette": [
+      "#0f1b2d",
+      "#1f3a5f",
+      "#b8924a"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "貴社の意思決定を支える、信頼のサービス基盤。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "かっこよさ優先",
+    "tokens": {
+     "palette": [
+      "#0a0a0f",
+      "#1c1c24",
+      "#d4ff3d"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "サービスが、常識を切り裂く。"
+    },
+    "error": null
+   },
+   {
+    "label": "信頼感優先",
+    "tokens": {
+     "palette": [
+      "#0b1c33",
+      "#1f3a5f",
+      "#b8935a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "実績で語るサービス。信頼は、静かに積み重ねる。"
+    },
+    "error": null
+   },
+   {
+    "label": "均等バランス",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#2e3a46",
+      "#b08d57"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "サービスの本質を、誠実にお届けします。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "実績・数値で訴求",
+    "tokens": {
+     "palette": [
+      "#0b1220",
+      "#13294b",
+      "#ffb300"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "導入企業500社、稼働率99.8%が語るサービスの実力。"
+    },
+    "error": null
+   },
+   {
+    "label": "権威・提携で訴求",
+    "tokens": {
+     "palette": [
+      "#12151c",
+      "#8a6a2f",
+      "#d4af37"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "◯◯協会推奨・大手企業提携済み。確かな後ろ盾があるサービスです。"
+    },
+    "error": null
+   },
+   {
+    "label": "デザインの端正さで訴求",
+    "tokens": {
+     "palette": [
+      "#0b0d10",
+      "#1c2126",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "余白が語る、サービスの品格。"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "問い合わせ獲得",
+    "tokens": {
+     "palette": [
+      "#0b1220",
+      "#12213d",
+      "#e8542a"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "今すぐお問い合わせを。専門スタッフが即対応します。"
+    },
+    "error": null
+   },
+   {
+    "label": "会員登録獲得",
+    "tokens": {
+     "palette": [
+      "#0b1220",
+      "#1e3a5f",
+      "#38e1c6"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "今すぐ無料登録、あなたのサービス体験を今日から。"
+    },
+    "error": null
+   },
+   {
+    "label": "認知・ブランディング",
+    "tokens": {
+     "palette": [
+      "#0b0e11",
+      "#1c2530",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "静かな強さを、サービスの名に。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "スマホ優先",
+    "tokens": {
+     "palette": [
+      "#0a0f1c",
+      "#1f2a44",
+      "#3ddc97"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "指先ひとつで、信頼と出会う。サービスはあなたのポケットに。"
+    },
+    "error": null
+   },
+   {
+    "label": "PC優先",
+    "tokens": {
+     "palette": [
+      "#0b0f14",
+      "#1c2938",
+      "#8fa6b8"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "大画面で魅せるサービスの全貌、信頼を刻む一枚。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:12:43.200382+00:00"
+}

@@ -1,0 +1,225 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "新卒・未経験",
+    "tokens": {
+     "palette": [
+      "#fff8ec",
+      "#ff9a3c",
+      "#1a1a1a"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "はじめの一歩を、ここから。未経験から採用の現場で育つ日々。"
+    },
+    "error": null
+   },
+   {
+    "label": "即戦力の中途",
+    "tokens": {
+     "palette": [
+      "#1c2530",
+      "#3e6e5e",
+      "#d98a3d"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "採用担当より:現場で即活躍できる仲間を探しています。"
+    },
+    "error": null
+   },
+   {
+    "label": "経営幹部候補",
+    "tokens": {
+     "palette": [
+      "#1b2431",
+      "#6b7280",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "採用ページで語る、経営を担う覚悟という熱意。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "率直な弱み開示",
+    "tokens": {
+     "palette": [
+      "#1f1b18",
+      "#3e362e",
+      "#b8501e"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "できないこともある採用チーム、それでも本気で向き合う。"
+    },
+    "error": null
+   },
+   {
+    "label": "誇張表現の排除",
+    "tokens": {
+     "palette": [
+      "#f4f3f0",
+      "#2b2b28",
+      "#8a6a3c"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "採用情報。誇張なく、事実だけを述べる。"
+    },
+    "error": null
+   },
+   {
+    "label": "社員の生の声中心",
+    "tokens": {
+     "palette": [
+      "#f4efe6",
+      "#b5673a",
+      "#3c6e52"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "「入社3年目、正直こう思ってます」採用ページに社員の本音を並べました。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "事業ビジョンへの熱意",
+    "tokens": {
+     "palette": [
+      "#0b1e33",
+      "#123b5c",
+      "#e8a33d"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "私たちが描く未来へ。事業で社会の課題を解く。"
+    },
+    "error": null
+   },
+   {
+    "label": "チーム・人への熱意",
+    "tokens": {
+     "palette": [
+      "#2b2622",
+      "#c4623a",
+      "#e8b04b"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "採用ページ:隣にいる人の顔が見える会社です。"
+    },
+    "error": null
+   },
+   {
+    "label": "顧客・社会貢献への熱意",
+    "tokens": {
+     "palette": [
+      "#0f2a24",
+      "#1f5c4b",
+      "#e8a33d"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "採用ページより、地域の暮らしに向き合う仕事があります。"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "短文キャッチ中心",
+    "tokens": {
+     "palette": [
+      "#0b0c0e",
+      "#f4f0e8",
+      "#d4432c"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "採用募集中。飾らず、本気でつくる仲間へ。"
+    },
+    "error": null
+   },
+   {
+    "label": "ストーリー形式の長文",
+    "tokens": {
+     "palette": [
+      "#1c1a17",
+      "#4a3a2b",
+      "#c98a3e"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "入社の理由――先輩が語る、採用ページに載せた本音の道のり。"
+    },
+    "error": null
+   },
+   {
+    "label": "箇条書き情報中心",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#2b2b28",
+      "#c9622a"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "採用情報:仕事内容・条件・環境を一つずつ明記します。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "応募直前の後押し",
+    "tokens": {
+     "palette": [
+      "#12100e",
+      "#c43a2e",
+      "#f2e4c8"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "採用ページ、まずは応募ボタンを押してください。"
+    },
+    "error": null
+   },
+   {
+    "label": "認知・興味喚起段階",
+    "tokens": {
+     "palette": [
+      "#0e1a16",
+      "#1f6e4a",
+      "#8ff0c0"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "はじめまして、採用担当です。私たちの日常を覗いてみませんか。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:15:30.529960+00:00"
+}

@@ -1,0 +1,25 @@
+{
+ "picks": [
+  1,
+  1,
+  2,
+  2,
+  1
+ ],
+ "labels": [
+  "法人担当者向け",
+  "信頼感優先",
+  "デザインの端正さで訴求",
+  "認知・ブランディング",
+  "PC優先"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored",
+  "beyond_text"
+ ],
+ "decided_at": "2026-08-10T08:23:52.155345+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}

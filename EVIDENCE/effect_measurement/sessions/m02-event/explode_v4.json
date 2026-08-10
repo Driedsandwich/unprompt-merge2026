@@ -1,0 +1,110 @@
+{
+ "brief": "m02-event",
+ "text": "秋にやる社内勉強会の告知ページ、いい感じにして。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "想定読者の範囲",
+    "kind": "anchored",
+    "anchor_words": [
+     "社内勉強会"
+    ],
+    "options": [
+     {
+      "label": "全社員向け"
+     },
+     {
+      "label": "特定職種向け"
+     }
+    ],
+    "default_if_unresolved": "全社員向けとして進める"
+   },
+   {
+    "id": "b1",
+    "question_point": "参加目的の性質",
+    "kind": "anchored",
+    "anchor_words": [
+     "勉強会"
+    ],
+    "options": [
+     {
+      "label": "スキル習得系"
+     },
+     {
+      "label": "情報共有・交流系"
+     }
+    ],
+    "default_if_unresolved": "スキル習得系として進める"
+   },
+   {
+    "id": "b2",
+    "question_point": "文面のトーン",
+    "kind": "anchored",
+    "anchor_words": [
+     "いい感じにして"
+    ],
+    "options": [
+     {
+      "label": "フォーマル"
+     },
+     {
+      "label": "カジュアル"
+     }
+    ],
+    "default_if_unresolved": "ややカジュアルで進める"
+   },
+   {
+    "id": "b3",
+    "question_point": "参加のハードル感の見せ方",
+    "kind": "anchored",
+    "anchor_words": [
+     "いい感じにして"
+    ],
+    "options": [
+     {
+      "label": "気軽に参加歓迎"
+     },
+     {
+      "label": "意欲ある人向け"
+     }
+    ],
+    "default_if_unresolved": "気軽に参加歓迎として進める"
+   },
+   {
+    "id": "b4",
+    "question_point": "申込への訴求強度",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "強く申込促す"
+     },
+     {
+      "label": "情報提示のみ"
+     }
+    ],
+    "default_if_unresolved": "軽く申込を促す程度にする",
+    "origin_rationale": "告知ページは必ずCTAの強さを持つため訴求の強弱が確定してしまう"
+   }
+  ],
+  "residual_ambiguity_assessment": "対象読者・目的・トーンが未指定で、告知の骨格が定まらない状態。",
+  "missing_materials": [
+   "開催日時",
+   "開催場所・形式",
+   "登壇者・テーマ内容",
+   "申込方法"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 5
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 8897,
+  "wall_ms": 9064,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:10:21.182951+00:00"
+}

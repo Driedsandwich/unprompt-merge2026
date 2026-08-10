@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 | コーヒー豆</title>
+<style>
+/* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+:root{
+  --bg:#151312;
+  --bg-2:#2e2823;
+  --accent:#b08d57;
+  --ink:#f2ece2;
+  --ink-dim:#c9beac;
+  /* タイプスケール(本文16pxを基準に1.5比) */
+  --fs-body:16px;
+  --fs-lead:20px;
+  --fs-h2:28px;
+  --fs-h1:42px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic","Helvetica Neue",sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-weight:600;
+  color:var(--ink);
+}
+section{
+  padding:96px 24px;
+  max-width:520px;
+  margin:0 auto;
+}
+/* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+.hero{
+  min-height:88vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:32px 24px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(176,141,87,0.18), transparent 60%),
+    var(--bg);
+  border-bottom:1px solid rgba(176,141,87,0.25);
+}
+.eyebrow{
+  font-size:13px;
+  letter-spacing:0.24em;
+  color:var(--accent);
+  margin-bottom:24px;
+}
+h1{
+  font-size:var(--fs-h1);
+  letter-spacing:0.06em;
+  line-height:1.5;
+  margin:0 0 32px;
+}
+.hero p{
+  font-size:var(--fs-lead);
+  color:var(--ink-dim);
+  margin:0;
+  line-height:1.9;
+}
+h2{
+  font-size:var(--fs-h2);
+  letter-spacing:0.08em;
+  margin:0 0 40px;
+}
+h2::before{
+  content:"";
+  display:block;
+  width:40px;
+  height:1px;
+  background:var(--accent);
+  margin-bottom:24px;
+}
+p{color:var(--ink-dim);margin:0 0 24px;}
+.story-block{margin-bottom:48px;}
+.story-block:last-child{margin-bottom:0;}
+.story-block .num{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  color:var(--accent);
+  font-size:14px;
+  letter-spacing:0.2em;
+  display:block;
+  margin-bottom:12px;
+}
+.beans{background:var(--bg-2);}
+.bean-grid{display:flex;flex-direction:column;gap:32px;}
+.bean-item{
+  border-left:1px solid rgba(176,141,87,0.4);
+  padding-left:24px;
+}
+.bean-item h3{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:0.04em;
+  margin:0 0 8px;
+  color:var(--ink);
+}
+.bean-item p{margin:0;font-size:15px;}
+.lineup-grid{display:flex;flex-direction:column;gap:24px;}
+.lineup-card{
+  background:var(--bg-2);
+  padding:32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:16px;
+}
+.lineup-card .name{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:18px;
+}
+.lineup-card .desc{
+  font-size:13px;
+  color:var(--ink-dim);
+  display:block;
+  margin-top:8px;
+}
+.lineup-card .price{
+  color:var(--accent);
+  font-size:14px;
+  white-space:nowrap;
+}
+.cta{
+  text-align:center;
+  border-top:1px solid rgba(176,141,87,0.25);
+}
+.cta p{max-width:400px;margin:0 auto 40px;}
+.cta a{
+  display:inline-block;
+  padding:18px 48px;
+  background:var(--accent);
+  color:var(--bg);
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:0.16em;
+  font-weight:600;
+}
+.cta .note{
+  margin-top:32px;
+  font-size:12px;
+  color:var(--ink-dim);
+  opacity:0.7;
+}
+footer{
+  text-align:center;
+  padding:48px 24px;
+  font-size:12px;
+  color:var(--ink-dim);
+  opacity:0.6;
+}
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 -->
+<section class="hero">
+  <div class="eyebrow">〈ブランド名〉</div>
+  <!-- GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 -->
+  <h1>気品のコーヒー、<br>ロースターの矜持を一杯に。</h1>
+  <!-- GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 -->
+  <p>大切な人へ贈る一杯のために、豆選びから焙煎まで、妥協のない時間を積み重ねている。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 -->
+<section class="story">
+  <h2>物語</h2>
+  <div class="story-block">
+    <span class="num">01</span>
+    <p>一杯の珈琲の奥には、ある農園から始まった長い旅がある。〈ブランド名〉は、その旅の記憶を損なわずに届けることを何よりも大切にしている。</p>
+  </div>
+  <div class="story-block">
+    <span class="num">02</span>
+    <p>土と焙煎の記憶を一粒に閉じ込める。派手さではなく、静かな確かさこそが〈ブランド名〉の世界観である。</p>
+  </div>
+  <div class="story-block">
+    <span class="num">03</span>
+    <p>贈る相手の顔を思い浮かべながら選ばれた一袋が、受け取る人の日常にささやかな気品をもたらす。それが〈ブランド名〉が目指す贈りものの姿。</p>
+  </div>
+</section>
+
+<section class="beans">
+  <h2>豆へのこだわり</h2>
+  <div class="bean-grid">
+    <div class="bean-item">
+      <h3>産地の選定</h3>
+      <p>〈産地情報〉— 詳細は準備中。一粒ごとの背景を大切に扱う姿勢を変えない。</p>
+    </div>
+    <div class="bean-item">
+      <h3>焙煎</h3>
+      <p>〈焙煎方針〉— ロースターの矜持を宿す工程として、丁寧に磨き上げていく。</p>
+    </div>
+    <div class="bean-item">
+      <h3>仕立て</h3>
+      <p>贈りものとしてふさわしい佇まいへ、〈パッケージ仕様〉を検討中。</p>
+    </div>
+  </div>
+</section>
+
+<section class="lineup">
+  <h2>ラインナップ</h2>
+  <div class="lineup-grid">
+    <div class="lineup-card">
+      <div>
+        <span class="name">〈商品名A〉</span>
+        <span class="desc">〈商品説明〉</span>
+      </div>
+      <span class="price">〈価格〉</span>
+    </div>
+    <div class="lineup-card">
+      <div>
+        <span class="name">〈商品名B〉</span>
+        <span class="desc">〈商品説明〉</span>
+      </div>
+      <span class="price">〈価格〉</span>
+    </div>
+    <div class="lineup-card">
+      <div>
+        <span class="name">〈ギフトセット〉</span>
+        <span class="desc">大切な人への贈りものに</span>
+      </div>
+      <span class="price">〈価格〉</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>贈りものを、探しにいく</h2>
+  <p>指先ひとつで、大切な人へ届くコーヒー豆に出会う。</p>
+  <a href="#">〈購入ページへ〉</a>
+  <p class="note">〈オンラインストアURL〉/〈お問い合わせ先〉</p>
+</section>
+
+<footer>&copy; 〈ブランド名〉</footer>
+
+</body>
+</html>

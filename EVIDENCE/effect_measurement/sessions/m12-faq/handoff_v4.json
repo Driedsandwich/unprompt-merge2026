@@ -1,0 +1,122 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "問い合わせが多い返品まわりのFAQページ、探しやすく安心感のある感じ。",
+ "compiled_at": "2026-08-10T08:25:34.956301+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "読者の状況",
+   "kind": "anchored",
+   "anchor_words": [
+    "問い合わせが多い返品まわり"
+   ],
+   "status": "decided",
+   "chosen_label": "両方混在",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1eb",
+     "#5b7b6f",
+     "#c97b4a"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "返品FAQ、検討中もお手続き中も迷わず解決"
+   },
+   "intent": "返品可否が未確定な読者と手続き段階の読者が混在すると確定し、両者を満たす構成が下流で必須となる。"
+  },
+  {
+   "question_point": "安心感の演出方法",
+   "kind": "anchored",
+   "anchor_words": [
+    "安心感のある感じ"
+   ],
+   "status": "decided",
+   "chosen_label": "透明性・条件明示",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ea",
+     "#2b4a45",
+     "#c8a24a"
+    ],
+    "heading_font": "serif",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "返品条件、すべて明記します。対象・期限・送料まで一覧で確認可能。"
+   },
+   "intent": "安心感を条件や範囲の明示で担保すると確定し、曖昧な言い回しでなく条件文の具体的記載が下流で求められる。"
+  },
+  {
+   "question_point": "探しやすさの実現方法",
+   "kind": "anchored",
+   "anchor_words": [
+    "探しやすく"
+   ],
+   "status": "decided",
+   "chosen_label": "カテゴリ分類型",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ea",
+     "#2f5233",
+     "#b08d57"
+    ],
+    "heading_font": "serif",
+    "density": "dense",
+    "corner": "sharp",
+    "tone_sample": "返品ガイド:目的別に整理された案内で迷わず解決"
+   },
+   "intent": "探しやすさをカテゴリ分類で実現すると確定し、質問一覧ではなく分類見出しによる構成が下流で決まる。"
+  },
+  {
+   "question_point": "問い合わせが多い理由への対応姿勢",
+   "kind": "anchored",
+   "anchor_words": [
+    "問い合わせが多い"
+   ],
+   "status": "decided",
+   "chosen_label": "問合せ導線も維持",
+   "visual_tokens": {
+    "palette": [
+     "#0b3d2e",
+     "#145c43",
+     "#e8b84b"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "soft",
+    "tone_sample": "返品FAQ、それでも迷ったらすぐお問い合わせを。"
+   },
+   "intent": "FAQで解決を図りつつ問合せ導線も残すと確定し、自己解決不可時の連絡手段の明記が下流で必要となる。"
+  },
+  {
+   "question_point": "ページの読後の距離感",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "丁寧・寄り添い型",
+   "visual_tokens": {
+    "palette": [
+     "#fbf4ee",
+     "#c98a6b",
+     "#8a5a3c"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "返品のこと、ゆっくり一緒に確認しましょう"
+   },
+   "intent": "原文に記載のない判断だが成果物では必ず定まるため、丁寧・寄り添い型の文体をAIの裁量で採用し文章全体の語調が確定した。",
+   "origin_rationale": "FAQは企業と顧客の関係性トーンを必ず帯びるため決めずに書けない"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象読者・トーン・構成の指定がなく、複数の解釈が成果物を左右する状態。",
+ "missing_materials": [
+  "実際の返品ポリシー条件",
+  "過去の問い合わせ内容一覧",
+  "返品期限や送料負担の規定"
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "brief": "m08-apology",
+ "text": "発送遅延のお詫びメール、誠実だけど重すぎないトーンで。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "謝罪の宛先(誰への遅延か)",
+    "kind": "anchored",
+    "anchor_words": [
+     "発送遅延のお詫びメール"
+    ],
+    "options": [
+     {
+      "label": "個人客向け"
+     },
+     {
+      "label": "法人取引先向け"
+     }
+    ],
+    "default_if_unresolved": "個人客向けとして作成"
+   },
+   {
+    "id": "b1",
+    "question_point": "遅延の原因説明の有無",
+    "kind": "anchored",
+    "anchor_words": [
+     "発送遅延"
+    ],
+    "options": [
+     {
+      "label": "原因に触れる"
+     },
+     {
+      "label": "原因に触れない"
+     }
+    ],
+    "default_if_unresolved": "原因には触れず簡潔に謝罪"
+   },
+   {
+    "id": "b2",
+    "question_point": "代替措置・補償の言及有無",
+    "kind": "anchored",
+    "anchor_words": [
+     "お詫び"
+    ],
+    "options": [
+     {
+      "label": "割引等を提示"
+     },
+     {
+      "label": "謝罪のみで完結"
+     }
+    ],
+    "default_if_unresolved": "補償には触れず謝罪のみ"
+   },
+   {
+    "id": "b3",
+    "question_point": "新たな発送時期の明示有無",
+    "kind": "anchored",
+    "anchor_words": [
+     "発送遅延"
+    ],
+    "options": [
+     {
+      "label": "具体日を明示"
+     },
+     {
+      "label": "目安のみ示す"
+     },
+     {
+      "label": "時期に触れない"
+     }
+    ],
+    "default_if_unresolved": "具体的な発送予定日は空欄で提示"
+   }
+  ],
+  "residual_ambiguity_assessment": "宛先・原因説明・補償有無・新発送時期など複数の判断点が未確定。",
+  "missing_materials": [
+   "遅延の具体的な原因",
+   "新しい発送予定日",
+   "注文番号・顧客名などの差し込み情報",
+   "補償内容の詳細"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 11086,
+  "wall_ms": 10999,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:11:30.078725+00:00"
+}

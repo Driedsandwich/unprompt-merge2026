@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>経費精算 集計自動化シート 仕様メモ</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化
+  GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け
+  パレット: 地色 #1b2a22 / 主要色 #2f4f3e / 強調色 #c9a24b(両決定に共通する暗緑+金を採用)
+  見出し書体は経理担当者向け決定のserifを採用、本文はExcel決定に合わせ実務的なゴシックで組む
+*/
+:root{
+  --bg: #1b2a22;
+  --panel: #22352b;
+  --ink: #eef1ea;
+  --sub: #a9baaf;
+  --main: #2f4f3e;
+  --accent: #c9a24b;
+  --fs-body: 16px;
+  --fs-h1: 30px;
+  --fs-h2: 19px;
+  --line: 1px solid rgba(201,162,75,0.35);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background: var(--bg);
+  display:flex;
+  justify-content:center;
+  padding: 64px 24px;
+}
+/* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+/* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+main{
+  width:720px;
+  background: var(--panel);
+  color: var(--ink);
+  border: var(--line);
+  padding: 56px 48px 64px;
+  font-family: -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+}
+h1{
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Georgia", serif;
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+p.lead{
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 17px;
+  color: var(--accent);
+  margin: 0 0 40px;
+  letter-spacing: 0.03em;
+}
+section{
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: var(--line);
+}
+section:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
+h2{
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+p{ margin: 0 0 8px; color: var(--ink); }
+ul{ margin: 0; padding-left: 20px; }
+li{ margin-bottom: 6px; }
+.sub{ color: var(--sub); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<h1>経費精算 集計自動化シート</h1>
+<p class="lead">経費、自動で締まる。</p>
+
+<section>
+<h2>目的</h2>
+<p>申請済みの経費データにかかる集計・仕訳突合・月次締めの手作業を自動化し、経理担当者の処理時間を短縮する。申請入力そのものの使い勝手改善は対象としない。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<section>
+<h2>対象ユーザー</h2>
+<p>経理担当者(処理・締め作業を行う側)。申請を行う一般社員は本メモの対象に含めない。</p>
+</section>
+
+<section>
+<h2>主要機能</h2>
+<ul>
+<li>申請データを貼り付けると勘定科目別に自動集計</li>
+<li>仕訳伝票フォーマットへの自動変換</li>
+<li>月次締め状況の一覧表示</li>
+<li>差異・重複行の自動ハイライト</li>
+</ul>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+<section>
+<h2>画面イメージ</h2>
+<p>Excel/スプレッドシート1ブックで構成し、「入力」「集計」「仕訳」の3シートをタブで切り替える。入力シートに申請データを貼り付けると、集計シートに科目別合計が即時反映され、仕訳シートに転記用の行が並ぶ。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+<!-- GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル -->
+<section>
+<h2>使わないと決めたもの</h2>
+<p>専用アプリの開発、既存の会計・勤怠システムとの連携、申請者向け入力画面の改善は範囲外とし、単体で完結するシートとして仕様化した。詳細な項目定義や関数設計は本メモの対象外とする。</p>
+</section>
+</main>
+</body>
+</html>

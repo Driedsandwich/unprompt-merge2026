@@ -1,0 +1,122 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "新しいコーヒー豆ブランドの世界観が伝わる紹介ページ。",
+ "compiled_at": "2026-08-10T08:25:26.392379+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "想定読者の層",
+   "kind": "anchored",
+   "anchor_words": [
+    "新しいコーヒー豆ブランド"
+   ],
+   "status": "decided",
+   "chosen_label": "ギフト検討者",
+   "visual_tokens": {
+    "palette": [
+     "#f7f1ec",
+     "#c89b7b",
+     "#b23b3b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "大切な人へ、コーヒー豆という贈りもの。"
+   },
+   "intent": "「新しいコーヒー豆ブランド」は読者像を明示しないため、ギフト検討者への絞り込みが訴求軸と語調を一意に定める"
+  },
+  {
+   "question_point": "世界観の方向性",
+   "kind": "anchored",
+   "anchor_words": [
+    "世界観が伝わる"
+   ],
+   "status": "decided",
+   "chosen_label": "高級・洗練",
+   "visual_tokens": {
+    "palette": [
+     "#151312",
+     "#2e2823",
+     "#b08d57"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "気品のコーヒー、ロースターの矜持を一杯に。"
+   },
+   "intent": "「世界観が伝わる」は方向性を規定しないため、高級・洗練を選ぶことで色調や言葉遣いの基準が定まる"
+  },
+  {
+   "question_point": "ページの主目的",
+   "kind": "anchored",
+   "anchor_words": [
+    "紹介ページ"
+   ],
+   "status": "decided",
+   "chosen_label": "ブランド共感醸成",
+   "visual_tokens": {
+    "palette": [
+     "#f4ece1",
+     "#7a5a44",
+     "#c98a4b"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "土と焙煎の記憶。ある農園の一粒から始まった物語。"
+   },
+   "intent": "「紹介ページ」は目的が購買喚起か共感醸成か曖昧なため、ブランド共感醸成の選択がCTAの強弱と情報量を決める"
+  },
+  {
+   "question_point": "構成の重心",
+   "kind": "anchored",
+   "anchor_words": [
+    "紹介ページ"
+   ],
+   "status": "decided",
+   "chosen_label": "ストーリー中心",
+   "visual_tokens": {
+    "palette": [
+     "#1c1712",
+     "#8a5a34",
+     "#d9a15c"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "一杯の珈琲に、旅の記憶を。ある農園から始まった物語。"
+   },
+   "intent": "「紹介ページ」だけでは構成方針が定まらないため、ストーリー中心とすることでセクション配列が物語順に確定する"
+  },
+  {
+   "question_point": "閲覧時の想定接点",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "スマホ前提",
+   "visual_tokens": {
+    "palette": [
+     "#1a1f17",
+     "#3f5c34",
+     "#e8c96b"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "片手で淹れたてへ。指先ひとつでコーヒー豆に出会う。"
+   },
+   "intent": "原文には画面環境の記載がないが公開時には必ず前提が生じるため、スマホ前提の選択が余白や情報密度の設計基準を確定させる",
+   "origin_rationale": "紹介ページは公開時に画面サイズと閲覧文脈が必ず定まり、余白や情報密度を左右する"
+  }
+ ],
+ "residual_ambiguity_assessment": "「世界観」「紹介」以外の情報がなく、読者・目的・トーン・構成が未指定で曖昧度は高い",
+ "missing_materials": [
+  "ブランド名",
+  "豆の産地・種類などの実データ",
+  "ブランドロゴ・写真素材"
+ ]
+}

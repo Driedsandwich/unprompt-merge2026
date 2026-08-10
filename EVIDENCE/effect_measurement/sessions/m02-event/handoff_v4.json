@@ -1,0 +1,123 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "秋にやる社内勉強会の告知ページ、いい感じにして。",
+ "compiled_at": "2026-08-10T08:24:04.356495+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "想定読者の範囲",
+   "kind": "anchored",
+   "anchor_words": [
+    "社内勉強会"
+   ],
+   "status": "decided",
+   "chosen_label": "全社員向け",
+   "visual_tokens": {
+    "palette": [
+     "#f4f1ea",
+     "#3a6ea5",
+     "#f2b138"
+    ],
+    "heading_font": "sans",
+    "density": "dense",
+    "corner": "soft",
+    "tone_sample": "秋の社内勉強会、全社員集合。誰でも学べる場です。"
+   },
+   "intent": "「社内勉強会」は範囲が未確定だったが全社員向けと定めたことで文面の専門用語配分や告知チャネルの粒度が一意に定まる。"
+  },
+  {
+   "question_point": "参加目的の性質",
+   "kind": "anchored",
+   "anchor_words": [
+    "勉強会"
+   ],
+   "status": "decided",
+   "chosen_label": "情報共有・交流系",
+   "visual_tokens": {
+    "palette": [
+     "#fbf4e8",
+     "#c97b4a",
+     "#3f6e5b"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "秋の勉強会、みんなでおしゃべりしながら学ぼう。"
+   },
+   "intent": "「勉強会」は学習系か交流系か曖昧だったが情報共有・交流系と定めたことで内容説明の重点が知見共有と横のつながりに固定される。"
+  },
+  {
+   "question_point": "文面のトーン",
+   "kind": "anchored",
+   "anchor_words": [
+    "いい感じにして"
+   ],
+   "status": "decided",
+   "chosen_label": "カジュアル",
+   "visual_tokens": {
+    "palette": [
+     "#fff7e8",
+     "#ff8a3d",
+     "#2ec4b6"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "秋の勉強会、ゆるっと集合！お菓子片手に気軽にどうぞ"
+   },
+   "intent": "「いい感じにして」という抽象指示をカジュアルなトーンと解釈したことで、文体や言葉遣いの硬軟が一意に確定した。"
+  },
+  {
+   "question_point": "参加のハードル感の見せ方",
+   "kind": "anchored",
+   "anchor_words": [
+    "いい感じにして"
+   ],
+   "status": "decided",
+   "chosen_label": "気軽に参加歓迎",
+   "visual_tokens": {
+    "palette": [
+     "#fff7e8",
+     "#ffb74d",
+     "#ff6f3c"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "秋の勉強会、ふらっとのぞきに来ませんか"
+   },
+   "intent": "「いい感じにして」を気軽に参加歓迎という方向で受け止めたことで、参加条件や呼びかけ文の敷居の高さが下流で固定される。"
+  },
+  {
+   "question_point": "申込への訴求強度",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "情報提示のみ",
+   "visual_tokens": {
+    "palette": [
+     "#f5f3ee",
+     "#3a3a38",
+     "#8a8578"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "社内勉強会 秋期開催のご案内。詳細は下記の通りです。"
+   },
+   "intent": "原文には書かれていないが告知ページは必ずCTAの強弱を持つため避けられない判断であり、情報提示のみとしたことで申込を強く煽らない文面構成が確定する。",
+   "origin_rationale": "告知ページは必ずCTAの強さを持つため訴求の強弱が確定してしまう"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象読者・目的・トーンが未指定で、告知の骨格が定まらない状態。",
+ "missing_materials": [
+  "開催日時",
+  "開催場所・形式",
+  "登壇者・テーマ内容",
+  "申込方法"
+ ]
+}

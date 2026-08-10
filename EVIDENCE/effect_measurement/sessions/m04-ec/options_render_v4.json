@@ -1,0 +1,225 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "新規見込み客",
+    "tokens": {
+     "palette": [
+      "#0b1220",
+      "#2563eb",
+      "#f97316"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "はじめまして、その悩みを解決する新商品です。"
+    },
+    "error": null
+   },
+   {
+    "label": "既存顧客",
+    "tokens": {
+     "palette": [
+      "#1e2a38",
+      "#3e5c76",
+      "#c9a24b"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "いつもの品を、もう一段深く。ご愛用の皆様へ先行のご案内です。"
+    },
+    "error": null
+   },
+   {
+    "label": "業界関係者",
+    "tokens": {
+     "palette": [
+      "#101820",
+      "#3a4a5c",
+      "#8c7a4e"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "業界様各位:新商品の技術仕様と導入実績をご案内いたします。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "機能・スペック訴求",
+    "tokens": {
+     "palette": [
+      "#1b2430",
+      "#3e5c76",
+      "#00e5a0"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "新商品、実測値で語る性能。数値が証明する精度。"
+    },
+    "error": null
+   },
+   {
+    "label": "感情・体験訴求",
+    "tokens": {
+     "palette": [
+      "#1b1420",
+      "#5c2a4d",
+      "#e0a05b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "新商品、はじめて触れた瞬間の高揚を。"
+    },
+    "error": null
+   },
+   {
+    "label": "価格・お得感訴求",
+    "tokens": {
+     "palette": [
+      "#fff6e5",
+      "#e4572e",
+      "#c81d25"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "新商品、今だけ特別価格。この機会にお得にゲット。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "フォーマル",
+    "tokens": {
+     "palette": [
+      "#f4f5f7",
+      "#1f2a44",
+      "#3d5a80"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "新製品のご案内。仕様と特長を的確にお伝えします。"
+    },
+    "error": null
+   },
+   {
+    "label": "親しみやすい口語",
+    "tokens": {
+     "palette": [
+      "#fff7e8",
+      "#ff8a5b",
+      "#3d2b1f"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "この新商品、ちょっと試してみない?毎日がふっと軽くなるよ。"
+    },
+    "error": null
+   },
+   {
+    "label": "高級感のある格調体",
+    "tokens": {
+     "palette": [
+      "#1c1712",
+      "#3d2f1f",
+      "#b8935a"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "静謐なる逸品、その仕立てに宿る格。"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "ECサイト商品ページ",
+    "tokens": {
+     "palette": [
+      "#f7f4ef",
+      "#1f2a24",
+      "#b08a3e"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "新商品、詳細スペックと共に。素材から仕立てまでを丁寧に解説します。"
+    },
+    "error": null
+   },
+   {
+    "label": "SNS短文投稿",
+    "tokens": {
+     "palette": [
+      "#0b0b0f",
+      "#7c3aed",
+      "#22d3ee"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "新登場、即チェック👀止まらない使い心地。"
+    },
+    "error": null
+   },
+   {
+    "label": "カタログ・チラシ",
+    "tokens": {
+     "palette": [
+      "#f4ece0",
+      "#7a5c3e",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "新商品カタログ掲載——素材と製法までじっくりご紹介します。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "対等な語りかけ",
+    "tokens": {
+     "palette": [
+      "#fdf6ec",
+      "#ff7a45",
+      "#2b2118"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "ねえ、この新商品、あなたに一番に教えたくて。"
+    },
+    "error": null
+   },
+   {
+    "label": "敬意ある距離感",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#3a3226",
+      "#8c6a3f"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "新商品のご案内。厳選された品質を、静かにお届けいたします。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:13:34.990679+00:00"
+}

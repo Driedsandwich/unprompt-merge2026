@@ -1,0 +1,121 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "かっこいいけど信頼感もあるLPを作って。うちのサービス用。",
+ "compiled_at": "2026-08-10T08:23:52.153269+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "誰に向けたLPか",
+   "kind": "anchored",
+   "anchor_words": [
+    "うちのサービス用"
+   ],
+   "status": "decided",
+   "chosen_label": "法人担当者向け",
+   "visual_tokens": {
+    "palette": [
+     "#0f1b2d",
+     "#1f3a5f",
+     "#b8924a"
+    ],
+    "heading_font": "serif",
+    "density": "normal",
+    "corner": "sharp",
+    "tone_sample": "貴社の意思決定を支える、信頼のサービス基盤。"
+   },
+   "intent": "「うちのサービス用」は対象読者を特定しておらず、法人担当者向けと確定させたことで訴求文言や事例の選定基準が定まる"
+  },
+  {
+   "question_point": "かっこよさと信頼感の比重",
+   "kind": "anchored",
+   "anchor_words": [
+    "かっこいいけど信頼感もある"
+   ],
+   "status": "decided",
+   "chosen_label": "信頼感優先",
+   "visual_tokens": {
+    "palette": [
+     "#0b1c33",
+     "#1f3a5f",
+     "#b8935a"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "実績で語るサービス。信頼は、静かに積み重ねる。"
+   },
+   "intent": "「かっこいいけど信頼感もある」は両立要件で優先順位が未指定だったが、信頼感優先と定めたことで要素間の優先度が判断可能になる"
+  },
+  {
+   "question_point": "信頼感の演出方法",
+   "kind": "anchored",
+   "anchor_words": [
+    "信頼感もある"
+   ],
+   "status": "decided",
+   "chosen_label": "デザインの端正さで訴求",
+   "visual_tokens": {
+    "palette": [
+     "#0b0d10",
+     "#1c2126",
+     "#b08d57"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "余白が語る、サービスの品格。"
+   },
+   "intent": "「信頼感もある」は演出手法を指定していないが、デザインの端正さで訴求すると定めたことでレイアウトや余白・書体選定の方針が一意になる"
+  },
+  {
+   "question_point": "LPの主目的",
+   "kind": "anchored",
+   "anchor_words": [
+    "LPを作って"
+   ],
+   "status": "decided",
+   "chosen_label": "認知・ブランディング",
+   "visual_tokens": {
+    "palette": [
+     "#0b0e11",
+     "#1c2530",
+     "#b08d57"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "静かな強さを、サービスの名に。"
+   },
+   "intent": "「LPを作って」は用途を明示していないが、認知・ブランディング目的と確定させたことでCTAの設計方針や訴求の重心が定まる"
+  },
+  {
+   "question_point": "閲覧デバイスの前提",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "PC優先",
+   "visual_tokens": {
+    "palette": [
+     "#0b0f14",
+     "#1c2938",
+     "#8fa6b8"
+    ],
+    "heading_font": "serif",
+    "density": "airy",
+    "corner": "sharp",
+    "tone_sample": "大画面で魅せるサービスの全貌、信頼を刻む一枚。"
+   },
+   "intent": "LPは必ず何らかの画面幅で実装されレイアウト配分が変わってしまうため原文に書かれていない判断が不可避であり、PC優先と定めたことでブレークポイントごとの情報配置の基準が定まる",
+   "origin_rationale": "LPは必ず何らかの画面幅で実装され、レイアウト配分が変わってしまうため"
+  }
+ ],
+ "residual_ambiguity_assessment": "対象読者・目的・訴求軸・構成が未指定で、成果物を左右する分岐が複数残存する",
+ "missing_materials": [
+  "サービス名・内容の詳細情報",
+  "実績・数値などの信頼性を示す素材"
+ ]
+}

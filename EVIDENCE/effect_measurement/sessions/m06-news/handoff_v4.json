@@ -1,0 +1,101 @@
+{
+ "format": "unprompt.compiled_brief.v1",
+ "source_brief": "月イチの社内報の巻頭あいさつ、堅すぎない感じで。",
+ "compiled_at": "2026-08-10T08:24:39.514166+00:00",
+ "generator_models": {
+  "extraction": null,
+  "rationale": "claude-sonnet-5",
+  "render": null
+ },
+ "decisions": [
+  {
+   "question_point": "「堅すぎない」の具体的な温度感",
+   "kind": "anchored",
+   "anchor_words": [
+    "堅すぎない感じで"
+   ],
+   "status": "decided",
+   "chosen_label": "親しみ雑談調",
+   "visual_tokens": {
+    "palette": [
+     "#fff6e8",
+     "#e8965a",
+     "#c4472b"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "おつかれさま、今月の社内報も気楽にどうぞ。"
+   },
+   "intent": "「堅すぎない感じで」という指定を親しみ雑談調と確定し、文体・語彙選択の基準を一意に定める。"
+  },
+  {
+   "question_point": "あいさつの主題・切り口",
+   "kind": "anchored",
+   "anchor_words": [
+    "巻頭あいさつ"
+   ],
+   "status": "decided",
+   "chosen_label": "近況・季節雑談",
+   "visual_tokens": {
+    "palette": [
+     "#fdf6ec",
+     "#f2a65a",
+     "#5b8c5a"
+    ],
+    "heading_font": "rounded",
+    "density": "airy",
+    "corner": "soft",
+    "tone_sample": "今日も蒸し暑いですね、最近ハマってる冷やし中華の話です。"
+   },
+   "intent": "巻頭あいさつという位置づけを近況・季節雑談の切り口と確定し、本文の話題選定を一意に定める。"
+  },
+  {
+   "question_point": "書き手の立場",
+   "kind": "anchored",
+   "anchor_words": [
+    "社内報"
+   ],
+   "status": "decided",
+   "chosen_label": "現場社員目線",
+   "visual_tokens": {
+    "palette": [
+     "#f4ede1",
+     "#c97b3d",
+     "#4e7a51"
+    ],
+    "heading_font": "rounded",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "現場から一言、今月も社内報お届けします"
+   },
+   "intent": "社内報という媒体特性から書き手を現場社員目線と確定し、語り口や視点の高さを一意に定める。"
+  },
+  {
+   "question_point": "読み手との距離感",
+   "kind": "beyond_text",
+   "anchor_words": [],
+   "status": "decided",
+   "chosen_label": "部署間温度差配慮",
+   "visual_tokens": {
+    "palette": [
+     "#3a3f3c",
+     "#6b7c74",
+     "#b8a76a"
+    ],
+    "heading_font": "sans",
+    "density": "normal",
+    "corner": "soft",
+    "tone_sample": "各部署のみなさんへ、今月もそれぞれのペースでお疲れさまでした。"
+   },
+   "intent": "原文に明記はないが部署間の温度差配慮は成果物の呼びかけ方で必ず決まる判断であり、それを部署間温度差配慮と確定し表現の距離感を一意に定める。",
+   "origin_rationale": "社内報は既読者が固定客なので呼びかけ方の距離が必ず決まる"
+  }
+ ],
+ "residual_ambiguity_assessment": "読者・トーンの手掛かり少なく、方向性次第で文面が大きく変わる",
+ "missing_materials": [
+  "今月号の特集・話題",
+  "発行者名または役職名",
+  "社員数・組織規模感"
+ ]
+}

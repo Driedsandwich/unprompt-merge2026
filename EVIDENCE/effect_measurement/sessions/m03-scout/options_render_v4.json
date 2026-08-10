@@ -1,0 +1,180 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "新卒〜1年目",
+    "tokens": {
+     "palette": [
+      "#f5f7fa",
+      "#3d8bfd",
+      "#ffc93c"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "はじめの一歩を、エンジニアとして。未経験からでも歓迎です。"
+    },
+    "error": null
+   },
+   {
+    "label": "実務2〜5年",
+    "tokens": {
+     "palette": [
+      "#0b1e33",
+      "#1f5c6e",
+      "#3fb8af"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "実務2〜5年目のエンジニアへ、次の裁量を任せる話をしたい。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "技術的成長訴求",
+    "tokens": {
+     "palette": [
+      "#0b1f3a",
+      "#1e5f8c",
+      "#39d6c0"
+     ],
+     "heading_font": "sans",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "エンジニアの技術力を、次の一段へ。難易度の高い開発で伸びる環境です。"
+    },
+    "error": null
+   },
+   {
+    "label": "待遇・条件訴求",
+    "tokens": {
+     "palette": [
+      "#0b2a4a",
+      "#f2b705",
+      "#123c63"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "年収提示、即決可。若手エンジニアの待遇を数字で約束します。"
+    },
+    "error": null
+   },
+   {
+    "label": "裁量・自由度訴求",
+    "tokens": {
+     "palette": [
+      "#0f0f10",
+      "#4b4f58",
+      "#c9ff3e"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "コード書く時間、誰にも縛らせない。エンジニア人生、自分の裁量で。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "フォーマル",
+    "tokens": {
+     "palette": [
+      "#101820",
+      "#1f3a5f",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "貴殿の技術力を、次の舞台へ——エンジニア職のご案内"
+    },
+    "error": null
+   },
+   {
+    "label": "カジュアル",
+    "tokens": {
+     "palette": [
+      "#1a1a24",
+      "#5b4fe8",
+      "#3dffc0"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "エンジニアさん、その技術力、次はうちで遊びませんか?"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "転職媒体経由DM",
+    "tokens": {
+     "palette": [
+      "#0b1220",
+      "#1e3a5f",
+      "#38bdf8"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "スカウトDM着信、若手エンジニア求む条件を今すぐ確認"
+    },
+    "error": null
+   },
+   {
+    "label": "直接メール送付",
+    "tokens": {
+     "palette": [
+      "#101820",
+      "#1f3a5f",
+      "#e8c547"
+     ],
+     "heading_font": "sans",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "エンジニアへ直接メール、〇〇さんへ個別にお声がけしました。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "親近感重視",
+    "tokens": {
+     "palette": [
+      "#3b2a1e",
+      "#ff7a45",
+      "#ffd166"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "エンジニアさん、まずは気軽に話しませんか"
+    },
+    "error": null
+   },
+   {
+    "label": "プロフェッショナル距離",
+    "tokens": {
+     "palette": [
+      "#12181f",
+      "#2c3b4e",
+      "#8a99a8"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "エンジニアへ、正式なご案内。貴殿の実績に基づき打診します。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:13:15.516982+00:00"
+}

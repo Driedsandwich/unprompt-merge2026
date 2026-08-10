@@ -1,0 +1,165 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "全社員向け",
+    "tokens": {
+     "palette": [
+      "#f4f1ea",
+      "#3a6ea5",
+      "#f2b138"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "秋の社内勉強会、全社員集合。誰でも学べる場です。"
+    },
+    "error": null
+   },
+   {
+    "label": "特定職種向け",
+    "tokens": {
+     "palette": [
+      "#132a24",
+      "#1f6f5c",
+      "#c9a24b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "エンジニア限定・秋の技術勉強会、参加条件をご確認ください。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "スキル習得系",
+    "tokens": {
+     "palette": [
+      "#0f1a2b",
+      "#1e3a5f",
+      "#00c2a8"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "実践で伸ばす、勉強会。手を動かして技術を身につける秋。"
+    },
+    "error": null
+   },
+   {
+    "label": "情報共有・交流系",
+    "tokens": {
+     "palette": [
+      "#fbf4e8",
+      "#c97b4a",
+      "#3f6e5b"
+     ],
+     "heading_font": "rounded",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "秋の勉強会、みんなでおしゃべりしながら学ぼう。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "フォーマル",
+    "tokens": {
+     "palette": [
+      "#1c2333",
+      "#8b7a4e",
+      "#c9a63c"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "秋季社内勉強会開催のご案内"
+    },
+    "error": null
+   },
+   {
+    "label": "カジュアル",
+    "tokens": {
+     "palette": [
+      "#fff7e8",
+      "#ff8a3d",
+      "#2ec4b6"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "秋の勉強会、ゆるっと集合！お菓子片手に気軽にどうぞ"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "気軽に参加歓迎",
+    "tokens": {
+     "palette": [
+      "#fff7e8",
+      "#ffb74d",
+      "#ff6f3c"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "秋の勉強会、ふらっとのぞきに来ませんか"
+    },
+    "error": null
+   },
+   {
+    "label": "意欲ある人向け",
+    "tokens": {
+     "palette": [
+      "#12181f",
+      "#2f4d6b",
+      "#8a95a0"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "社内勉強会、本気で学ぶ人だけへ。秋、腰を据えて臨む回。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "強く申込促す",
+    "tokens": {
+     "palette": [
+      "#1a1206",
+      "#8a3d0a",
+      "#ff6a00"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "秋の勉強会、今すぐ申込み！席数に限りあり、迷ったら損。"
+    },
+    "error": null
+   },
+   {
+    "label": "情報提示のみ",
+    "tokens": {
+     "palette": [
+      "#f5f3ee",
+      "#3a3a38",
+      "#8a8578"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "社内勉強会 秋期開催のご案内。詳細は下記の通りです。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:12:56.827283+00:00"
+}

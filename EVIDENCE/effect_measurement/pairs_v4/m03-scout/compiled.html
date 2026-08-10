@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スカウトメール</title>
+<style>
+  /*
+    GYAKUMON palette source: トーン(カジュアル) #1a1a24 / #5b4fe8 / #3dffc0
+    heading_font: sans (多数決 3/5) / density: airy (多数決 4/5) / corner: soft (多数決 3/5)
+  */
+  :root{
+    --bg:#1a1a24;
+    --ink:#f3f2f8;
+    --sub:#b9b6cc;
+    --accent:#5b4fe8;
+    --accent2:#3dffc0;
+    --line:#33324a;
+    --fs-body:16px;
+    --fs-lead:20px;
+    --fs-h1:30px;
+    --fs-small:13px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:linear-gradient(180deg,#141420,#1a1a24 40%);
+    color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:var(--fs-body);
+    line-height:1.9;
+    padding:64px 16px 96px;
+  }
+  .sheet{ max-width:720px; margin:0 auto; background:#20202e; border-radius:24px; padding:64px 56px; }
+  .direct-note{ font-size:var(--fs-small); letter-spacing:.04em; color:var(--sub); margin:0 0 40px; }
+  .subject-label{ font-size:var(--fs-small); color:var(--accent2); letter-spacing:.08em; margin:0 0 8px; font-weight:700; }
+  h1{ font-size:var(--fs-h1); font-weight:800; letter-spacing:-.01em; line-height:1.5; margin:0 0 56px; color:var(--ink); }
+  h1 span{color:var(--accent2);}
+  .greeting{ font-size:var(--fs-lead); font-weight:700; margin:0 0 40px; color:var(--ink); }
+  p{ margin:0 0 32px; color:var(--ink); }
+  p.sub{color:var(--sub);}
+  .tag{ display:inline-block; background:rgba(61,255,192,.12); color:var(--accent2); border-radius:999px; padding:4px 14px; font-size:var(--fs-small); font-weight:700; margin:0 0 32px; }
+  .cta{ margin-top:56px; padding-top:40px; border-top:1px solid var(--line); }
+  .cta p{margin:0 0 24px;}
+  .cta a{ display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; padding:14px 28px; border-radius:16px; }
+  .sign{ margin-top:64px; padding-top:32px; border-top:1px solid var(--line); color:var(--sub); font-size:var(--fs-small); line-height:1.8; }
+  .sign strong{ display:block; color:var(--ink); font-size:var(--fs-body); margin-bottom:4px; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p class="direct-note">〈候補者名〉さんへ個別にお送りしています</p>
+  <p class="subject-label">件名</p>
+  <h1>そのコード、誰の時間で書いてます?<span>裁量、こっちに引き取りませんか。</span></h1>
+  <p class="greeting">〈候補者名〉さん、はじめまして。</p>
+  <span class="tag">実務2〜5年目のエンジニアの方へ</span>
+  <p>いきなりのメール、驚かせてしまったらすみません。〈候補者名〉さんの経歴を拝見して、そろそろ「言われた仕様を実装する」段階から一歩進んで、何を作るか・どう作るかを自分で決める側に回ってもいい頃合いなんじゃないかと思って、個別にご連絡しました。</p>
+  <p>うちで大事にしているのは、技術選定も進め方も、現場のエンジニアに預けるということです。会議のための資料より動くもの、上への説明より手元のコードを優先していい環境です。働く時間や場所の縛りも最小限にしています。</p>
+  <p class="sub">まだ会社名や具体的なポジションの詳細までお伝えできる段階ではないのですが、まずは今どんな裁量の少なさにモヤモヤしているか、逆にどこまで裁量があったら面白がれそうか、そのあたりを気軽に話せたらうれしいです。売り込みではなく、雑談のつもりで大丈夫です。</p>
+  <div class="cta">
+    <p>ピンときたら、返信一本で構いません。30分だけ、オンラインで話しませんか。</p>
+    <a href="#">まずは気軽に話してみる</a>
+  </div>
+  <div class="sign">
+    <strong>〈会社名〉 採用担当</strong>
+    〈担当者名〉<br>
+    〈連絡先メールアドレス〉
+  </div>
+</div>
+</body>
+</html>

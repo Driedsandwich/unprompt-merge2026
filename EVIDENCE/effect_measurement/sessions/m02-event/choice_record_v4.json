@@ -1,0 +1,25 @@
+{
+ "picks": [
+  0,
+  1,
+  1,
+  0,
+  1
+ ],
+ "labels": [
+  "全社員向け",
+  "情報共有・交流系",
+  "カジュアル",
+  "気軽に参加歓迎",
+  "情報提示のみ"
+ ],
+ "kinds": [
+  "anchored",
+  "anchored",
+  "anchored",
+  "anchored",
+  "beyond_text"
+ ],
+ "decided_at": "2026-08-10T08:24:04.357881+00:00",
+ "owner": "AIペルソナ (意図メモ owner_memos.md 準拠・見本つき選択)"
+}

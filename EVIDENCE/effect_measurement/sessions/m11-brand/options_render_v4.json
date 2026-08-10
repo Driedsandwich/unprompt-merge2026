@@ -1,0 +1,225 @@
+{
+ "options": {
+  "0": [
+   {
+    "label": "コーヒー通",
+    "tokens": {
+     "palette": [
+      "#1c1611",
+      "#4a2e1e",
+      "#b8894a"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "精選シングルオリジン、焙煎日と農園データを開示する一杯。"
+    },
+    "error": null
+   },
+   {
+    "label": "ライトユーザー",
+    "tokens": {
+     "palette": [
+      "#fff7ec",
+      "#e8a33d",
+      "#ff6b4a"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "コーヒー、はじめました。毎朝ひとくち、気楽に。"
+    },
+    "error": null
+   },
+   {
+    "label": "ギフト検討者",
+    "tokens": {
+     "palette": [
+      "#f7f1ec",
+      "#c89b7b",
+      "#b23b3b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "大切な人へ、コーヒー豆という贈りもの。"
+    },
+    "error": null
+   }
+  ],
+  "1": [
+   {
+    "label": "高級・洗練",
+    "tokens": {
+     "palette": [
+      "#151312",
+      "#2e2823",
+      "#b08d57"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "sharp",
+     "tone_sample": "気品のコーヒー、ロースターの矜持を一杯に。"
+    },
+    "error": null
+   },
+   {
+    "label": "素朴・手作り感",
+    "tokens": {
+     "palette": [
+      "#f1e5d3",
+      "#8a5a34",
+      "#4a3222"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "焙煎したての一粒から、手仕事のコーヒー豆。"
+    },
+    "error": null
+   },
+   {
+    "label": "個性的・遊び心",
+    "tokens": {
+     "palette": [
+      "#1a1410",
+      "#ff7a1a",
+      "#ffd400"
+     ],
+     "heading_font": "rounded",
+     "density": "dense",
+     "corner": "soft",
+     "tone_sample": "コーヒー豆、こんな顔してました。毎朝ニヤける一杯を。"
+    },
+    "error": null
+   }
+  ],
+  "2": [
+   {
+    "label": "購入促進",
+    "tokens": {
+     "palette": [
+      "#1a1410",
+      "#8c2f1b",
+      "#e0a93e"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "今すぐ届く一杯。数量限定のコーヒー豆、今日中に注文を。"
+    },
+    "error": null
+   },
+   {
+    "label": "ブランド共感醸成",
+    "tokens": {
+     "palette": [
+      "#f4ece1",
+      "#7a5a44",
+      "#c98a4b"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "土と焙煎の記憶。ある農園の一粒から始まった物語。"
+    },
+    "error": null
+   },
+   {
+    "label": "店舗・卸への信頼構築",
+    "tokens": {
+     "palette": [
+      "#1c2521",
+      "#2f4239",
+      "#b8862e"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "sharp",
+     "tone_sample": "コーヒー豆生豆供給、品質と継続性を約束します。"
+    },
+    "error": null
+   }
+  ],
+  "3": [
+   {
+    "label": "ストーリー中心",
+    "tokens": {
+     "palette": [
+      "#1c1712",
+      "#8a5a34",
+      "#d9a15c"
+     ],
+     "heading_font": "serif",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "一杯の珈琲に、旅の記憶を。ある農園から始まった物語。"
+    },
+    "error": null
+   },
+   {
+    "label": "商品スペック中心",
+    "tokens": {
+     "palette": [
+      "#1c1f24",
+      "#3a4048",
+      "#c9a24b"
+     ],
+     "heading_font": "sans",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "焙煎度L、酸味2/苦味4。コーヒー豆100g単位で規格表示。"
+    },
+    "error": null
+   },
+   {
+    "label": "作り手・生産者中心",
+    "tokens": {
+     "palette": [
+      "#efe7da",
+      "#7a5a3c",
+      "#b0672e"
+     ],
+     "heading_font": "serif",
+     "density": "normal",
+     "corner": "soft",
+     "tone_sample": "標高千mの畑にて、豆を選りわける手仕事。"
+    },
+    "error": null
+   }
+  ],
+  "4": [
+   {
+    "label": "スマホ前提",
+    "tokens": {
+     "palette": [
+      "#1a1f17",
+      "#3f5c34",
+      "#e8c96b"
+     ],
+     "heading_font": "rounded",
+     "density": "airy",
+     "corner": "soft",
+     "tone_sample": "片手で淹れたてへ。指先ひとつでコーヒー豆に出会う。"
+    },
+    "error": null
+   },
+   {
+    "label": "PC前提",
+    "tokens": {
+     "palette": [
+      "#12181f",
+      "#2c3a4a",
+      "#c99a4a"
+     ],
+     "heading_font": "serif",
+     "density": "dense",
+     "corner": "sharp",
+     "tone_sample": "コーヒー豆ブランド、大画面で読む一杯の物語。"
+    },
+    "error": null
+   }
+  ]
+ },
+ "at": "2026-08-10T08:16:52.610846+00:00"
+}

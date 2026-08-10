@@ -1,0 +1,101 @@
+{
+ "brief": "m06-news",
+ "text": "月イチの社内報の巻頭あいさつ、堅すぎない感じで。",
+ "payload": {
+  "branches": [
+   {
+    "id": "b0",
+    "question_point": "「堅すぎない」の具体的な温度感",
+    "kind": "anchored",
+    "anchor_words": [
+     "堅すぎない感じで"
+    ],
+    "options": [
+     {
+      "label": "親しみ雑談調"
+     },
+     {
+      "label": "軽い丁寧語"
+     },
+     {
+      "label": "ユーモア強め"
+     }
+    ],
+    "default_if_unresolved": "軽い丁寧語で進める"
+   },
+   {
+    "id": "b1",
+    "question_point": "あいさつの主題・切り口",
+    "kind": "anchored",
+    "anchor_words": [
+     "巻頭あいさつ"
+    ],
+    "options": [
+     {
+      "label": "近況・季節雑談"
+     },
+     {
+      "label": "今月の振り返り"
+     },
+     {
+      "label": "経営メッセージ"
+     }
+    ],
+    "default_if_unresolved": "季節雑談から自然につなぐ"
+   },
+   {
+    "id": "b2",
+    "question_point": "書き手の立場",
+    "kind": "anchored",
+    "anchor_words": [
+     "社内報"
+    ],
+    "options": [
+     {
+      "label": "経営層目線"
+     },
+     {
+      "label": "編集部目線"
+     },
+     {
+      "label": "現場社員目線"
+     }
+    ],
+    "default_if_unresolved": "編集部目線で書く"
+   },
+   {
+    "id": "b3",
+    "question_point": "読み手との距離感",
+    "kind": "beyond_text",
+    "anchor_words": [],
+    "options": [
+     {
+      "label": "全社一体感重視"
+     },
+     {
+      "label": "部署間温度差配慮"
+     }
+    ],
+    "default_if_unresolved": "全社一体感を前提に書く",
+    "origin_rationale": "社内報は既読者が固定客なので呼びかけ方の距離が必ず決まる"
+   }
+  ],
+  "residual_ambiguity_assessment": "読者・トーンの手掛かり少なく、方向性次第で文面が大きく変わる",
+  "missing_materials": [
+   "今月号の特集・話題",
+   "発行者名または役職名",
+   "社員数・組織規模感"
+  ],
+  "rejected_branches": [],
+  "branches_returned_by_model": 4
+ },
+ "meta": {
+  "attempts": 1,
+  "input_form": "raw_brief_text",
+  "api_ms": 9341,
+  "wall_ms": 10138,
+  "failed_attempts": []
+ },
+ "extraction_prompt": "extraction_product_v2.txt",
+ "at": "2026-08-10T08:11:06.206575+00:00"
+}
