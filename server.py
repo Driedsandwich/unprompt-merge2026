@@ -13,7 +13,7 @@ GYAKUMON — Intent Compiler ローカルサーバ(python3 標準ライブラリ
 
 エンドポイント:
   POST /api/explode  {brief}
-       → --model <model>       + prompts/extraction_product_v1.txt(スリムスキーマ)
+       → --model <model>       + prompts/extraction_product_v2.txt(スリムスキーマ+文外判断点)
        → {ok, branches[], residual_ambiguity_assessment, missing_materials[], timing}
          branches[] = {id, question_point, anchor_words[], options:[{label}], default_if_unresolved}
          downstream_impact / thumbnail_description / px200_rationale は存在しない(スリム化で削除)。
@@ -36,7 +36,7 @@ GYAKUMON — Intent Compiler ローカルサーバ(python3 標準ライブラリ
          担保する。レンダラーが「何から離れるべきか」を直接知る方式。
          旧フィールド(downstream_impact / option.thumbnail_description)が来ても無視する。
   POST /api/compile  {brief, decisions:[{question_point, anchor_words, status, chosen_label?, chosen_tokens?}]}
-       → --model <model>       + prompts/compile_v0.txt
+       → --model <model>       + prompts/compile_v1.txt
        → {ok, rationales:{question_point→1文}, timing}
          ブリーフ本文(MD/JSON)の組み立てはクライアント側の決定論処理。LLMは根拠文のみ。
   POST /api/recommend {brief, branches:[{question_point, options:[label...]}, ...]}
@@ -102,9 +102,9 @@ APP_DIR = BASE_DIR / "app"
 PROMPTS_DIR = BASE_DIR / "prompts"
 LOGS_DIR = BASE_DIR / "logs"
 
-EXTRACTION_PROMPT_PATH = PROMPTS_DIR / "extraction_product_v1.txt"
+EXTRACTION_PROMPT_PATH = PROMPTS_DIR / "extraction_product_v2.txt"
 RENDER_PROMPT_PATH = PROMPTS_DIR / "render_v0.txt"
-COMPILE_PROMPT_PATH = PROMPTS_DIR / "compile_v0.txt"
+COMPILE_PROMPT_PATH = PROMPTS_DIR / "compile_v1.txt"
 RECOMMEND_PROMPT_PATH = PROMPTS_DIR / "recommend_v1.txt"
 
 DEFAULT_PORT = 8321
@@ -125,6 +125,7 @@ KILL_GRACE_S = 2                    # KILL 後に回収(wait)を待つ上限
 PUMP_JOIN_S = 2                     # 出力吸い出しスレッドの join 上限
 MAX_BODY_BYTES = 512 * 1024         # リクエストボディ上限
 MAX_BRANCHES = 5                    # カードは最大5枚(UI仕様)
+MAX_BEYOND_TEXT = 2                 # 文外判断点(kind=beyond_text)は最大2件(Wave 2仕様)
 
 TEXT_MIME_CHARSET = {
     ".html": "text/html; charset=utf-8",
@@ -173,9 +174,20 @@ EXTRACTION_SCHEMA = {
                 "type": "object",
                 "properties": {
                     "question_point": {"type": "string"},
+                    "kind": {
+                        "enum": ["anchored", "beyond_text"],
+                        "description": "anchored=原文に係留された判断点(既定・省略可) / "
+                                       "beyond_text=文には書かれていないが必ず決まってしまう判断点(最大2件)"
+                    },
                     "anchor_words": {
-                        "type": "array", "minItems": 1, "items": {"type": "string"},
-                        "description": "原文の連続部分文字列をそのまま・可能な限り最長フレーズで"
+                        "type": "array", "items": {"type": "string"},
+                        "description": "kind=anchored では必須(1件以上)。原文の連続部分文字列をそのまま・"
+                                       "可能な限り最長フレーズで。kind=beyond_text では空配列にする"
+                    },
+                    "origin_rationale": {
+                        "type": "string",
+                        "description": "kind=beyond_text のみ必須。なぜこの決定が避けられないか(由来)を1文で。"
+                                       "anchored では書かない"
                     },
                     "options": {
                         "type": "array", "minItems": 2, "maxItems": 3,
@@ -246,7 +258,7 @@ RECOMMEND_REASON_MAX = 60           # プロンプトが要求する上限。超
 def build_extraction_system(extraction_prompt: str) -> str:
     """抽出プロンプト + 出力規則(単一JSONのみ + スキーマ全文)。run.py と同一方針。
 
-    prompts/extraction_product_v1.txt(スリムスキーマ)を前提とする。
+    prompts/extraction_product_v2.txt(スリムスキーマ+文外判断点)を前提とする。
     旧 extraction_v0.txt を --extraction-prompt 相当で差し込んだ場合に備え、
     report_branches ツール前提の文言だけは読み替える。"""
     adapted = extraction_prompt.replace(
@@ -1163,20 +1175,38 @@ def validate_branch(brief_text, br, idx):
     if not _nonempty_str(qp):
         reasons.append("question_point が空")
 
-    anchors_raw = br.get("anchor_words") if isinstance(br.get("anchor_words"), list) else []
-    anchors, bad_anchors = [], []
-    for a in anchors_raw:
-        s = a if isinstance(a, str) else str(a)
-        # 空文字・空白のみは常に部分一致してしまうため違反扱い(run.py と同基準)
-        if s.strip() == "" or (s not in brief_text):
-            bad_anchors.append(s)
+    # Wave 2: kind は "anchored"(既定・省略可) か "beyond_text"。
+    # beyond_text は原文一致の代わりに origin_rationale(由来1文)を必須とする。
+    # anchored の検証コードパスは Wave 2 以前と一字も変えていない(退行対照は
+    # scripts/fixture_validate_pre_wave2.json + scripts/test_validate_wave2.py)。
+    kind = br.get("kind")
+    kind = kind if kind in ("anchored", "beyond_text") else "anchored"
+
+    origin = ""
+    if kind == "beyond_text":
+        # 文外判断点: anchor_words は根拠として扱わない(何が来ても捨てる)。
+        # 「原文に係留できるなら anchored にすべき」であり、両建ての根拠表示は
+        # 検証の境界を曖昧にするため、由来1文だけを根拠として要求する。
+        anchors = []
+        if _nonempty_str(br.get("origin_rationale")):
+            origin = br["origin_rationale"].strip()
         else:
-            anchors.append(s)
-    if not anchors_raw:
-        reasons.append("anchor_words が空(原文根拠なし)")
-    if bad_anchors:
-        reasons.append("anchor_words が原文の連続部分文字列でない: " +
-                       " / ".join(repr(x)[:60] for x in bad_anchors[:3]))
+            reasons.append("origin_rationale が空(文外判断点は由来1文が必須)")
+    else:
+        anchors_raw = br.get("anchor_words") if isinstance(br.get("anchor_words"), list) else []
+        anchors, bad_anchors = [], []
+        for a in anchors_raw:
+            s = a if isinstance(a, str) else str(a)
+            # 空文字・空白のみは常に部分一致してしまうため違反扱い(run.py と同基準)
+            if s.strip() == "" or (s not in brief_text):
+                bad_anchors.append(s)
+            else:
+                anchors.append(s)
+        if not anchors_raw:
+            reasons.append("anchor_words が空(原文根拠なし)")
+        if bad_anchors:
+            reasons.append("anchor_words が原文の連続部分文字列でない: " +
+                           " / ".join(repr(x)[:60] for x in bad_anchors[:3]))
 
     # スリムスキーマ: option は label のみが必須。thumbnail_description /
     # px200_rationale はスキーマから外したので、来ても要求しない(来たら捨てる)。
@@ -1200,14 +1230,18 @@ def validate_branch(brief_text, br, idx):
     if reasons:
         return None, reasons
 
-    return {
+    out = {
         "id": "b%d" % idx,
         "question_point": qp.strip(),
+        "kind": kind,
         "anchor_words": anchors,
         "options": options,
         "default_if_unresolved": (br.get("default_if_unresolved").strip()
                                   if _nonempty_str(br.get("default_if_unresolved")) else "")
-    }, None
+    }
+    if kind == "beyond_text":
+        out["origin_rationale"] = origin
+    return out, None
 
 
 def validate_extraction(brief_text, ex):
@@ -1224,6 +1258,7 @@ def validate_extraction(brief_text, ex):
     raw_branches = ex.get("branches") if isinstance(ex.get("branches"), list) else []
     accepted, rejected = [], []
 
+    beyond_seen = 0
     for idx, br in enumerate(raw_branches):
         ok_branch, reasons = validate_branch(brief_text, br, idx)
         if ok_branch is None:
@@ -1232,6 +1267,13 @@ def validate_extraction(brief_text, ex):
                              "question_point": qp if isinstance(qp, str) else "",
                              "reasons": reasons})
             continue
+        # 文外判断点は最大2件(Wave 2仕様)。超過分は棄却として可視化する。
+        if ok_branch["kind"] == "beyond_text":
+            if beyond_seen >= MAX_BEYOND_TEXT:
+                rejected.append({"index": idx, "question_point": ok_branch["question_point"],
+                                 "reasons": ["文外判断点の上限%d件を超過したため切り捨て" % MAX_BEYOND_TEXT]})
+                continue
+            beyond_seen += 1
         accepted.append(ok_branch)
 
     # 影響の大きい順に並んでいる前提で先頭から最大5件(UI仕様: カードは最大5枚)
@@ -1593,7 +1635,7 @@ def handle_explode(body):
     system_prompt = STATE.prompts.get("explode")
     if system_prompt is None:
         return err(STATE.prompt_errors.get("explode", "抽出プロンプトが読めない"),
-                   "prompts/extraction_product_v1.txt を確認してサーバを再起動する。"), None, STATE.model
+                   "prompts/extraction_product_v2.txt を確認してサーバを再起動する。"), None, STATE.model
 
     model = STATE.model
 
@@ -1726,7 +1768,7 @@ def handle_explode_stream(body, emit):
     if system_prompt is None:
         emit({"type": "error",
               "error": STATE.prompt_errors.get("explode_stream", "抽出プロンプトが読めない"),
-              "hint": "prompts/extraction_product_v1.txt を確認してサーバを再起動する。"})
+              "hint": "prompts/extraction_product_v2.txt を確認してサーバを再起動する。"})
         return False, model, ms(), None, first_branch_ms, False
 
     def run_attempt():
@@ -1755,6 +1797,12 @@ def handle_explode_stream(body, emit):
             if len(st["accepted"]) >= MAX_BRANCHES:
                 st["rejected"].append({"index": raw_idx, "question_point": br["question_point"],
                                        "reasons": ["上限%d件を超過したため切り捨て" % MAX_BRANCHES]})
+                return True
+            # 文外判断点の上限(一括経路 validate_extraction と同じ規則をストリームでも適用)
+            if br["kind"] == "beyond_text" and \
+               sum(1 for a in st["accepted"] if a["kind"] == "beyond_text") >= MAX_BEYOND_TEXT:
+                st["rejected"].append({"index": raw_idx, "question_point": br["question_point"],
+                                       "reasons": ["文外判断点の上限%d件を超過したため切り捨て" % MAX_BEYOND_TEXT]})
                 return True
             st["accepted"].append(br)
             if first_branch_ms is None:
@@ -1824,6 +1872,10 @@ def handle_explode_stream(body, emit):
             known = {b["id"] for b in st["accepted"]}
             for br in payload["branches"]:
                 if br["id"] in known or len(st["accepted"]) >= MAX_BRANCHES:
+                    continue
+                # 追送でも文外判断点の上限を守る(増分側で既に2件通っている場合の素通り防止)
+                if br["kind"] == "beyond_text" and \
+                   sum(1 for a in st["accepted"] if a["kind"] == "beyond_text") >= MAX_BEYOND_TEXT:
                     continue
                 st["accepted"].append(br)
                 if first_branch_ms is None:
@@ -2017,6 +2069,12 @@ def handle_compile(body):
         item = {"question_point": d["question_point"],
                 "anchor_words": [a for a in aw if _nonempty_str(a)] if isinstance(aw, list) else [],
                 "status": status}
+        # Wave 2: 文外判断点は kind と由来1文をそのまま根拠文プロンプトへ渡す
+        # (compile_v1.txt 規則4が参照する)。anchored では両フィールドとも付けない。
+        if d.get("kind") == "beyond_text":
+            item["kind"] = "beyond_text"
+            if _nonempty_str(d.get("origin_rationale")):
+                item["origin_rationale"] = d["origin_rationale"]
         if _nonempty_str(d.get("chosen_label")):
             item["chosen_label"] = d["chosen_label"]
         if isinstance(d.get("chosen_tokens"), dict):
@@ -2028,7 +2086,7 @@ def handle_compile(body):
     system_prompt = STATE.prompts.get("compile")
     if system_prompt is None:
         return err(STATE.prompt_errors.get("compile", "コンパイルプロンプトが読めない"),
-                   "prompts/compile_v0.txt を確認してサーバを再起動する。"), None, model
+                   "prompts/compile_v1.txt を確認してサーバを再起動する。"), None, model
 
     user_payload = json.dumps({"brief": brief, "decisions": clean}, ensure_ascii=False, indent=2)
     rec, timing = call_claude("/api/compile", system_prompt, user_payload, model)

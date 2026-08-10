@@ -1,0 +1,136 @@
+{
+  "brief": "実家の和菓子屋のLPを作って。母が代替わりして雰囲気を少し今っぽくしたい。",
+  "cases": {
+    "anchored_good": {
+      "question_point": "今っぽさの方向",
+      "anchor_words": [
+        "今っぽくしたい"
+      ],
+      "options": [
+        {
+          "label": "老舗の格を残す"
+        },
+        {
+          "label": "カフェ風に振る"
+        }
+      ],
+      "default_if_unresolved": "老舗の格を残す"
+    },
+    "anchored_bad_anchor": {
+      "question_point": "対象読者",
+      "anchor_words": [
+        "若い女性向け"
+      ],
+      "options": [
+        {
+          "label": "地元常連"
+        },
+        {
+          "label": "観光客"
+        }
+      ],
+      "default_if_unresolved": "地元常連"
+    },
+    "anchored_empty_anchor": {
+      "question_point": "構成",
+      "anchor_words": [],
+      "options": [
+        {
+          "label": "縦長1枚"
+        },
+        {
+          "label": "複数ページ"
+        }
+      ],
+      "default_if_unresolved": "縦長1枚"
+    },
+    "options_too_few": {
+      "question_point": "トーン",
+      "anchor_words": [
+        "雰囲気"
+      ],
+      "options": [
+        {
+          "label": "唯一"
+        }
+      ],
+      "default_if_unresolved": "唯一"
+    }
+  },
+  "expected": {
+    "anchored_good": {
+      "accepted": {
+        "id": "b0",
+        "question_point": "今っぽさの方向",
+        "anchor_words": [
+          "今っぽくしたい"
+        ],
+        "options": [
+          {
+            "label": "老舗の格を残す"
+          },
+          {
+            "label": "カフェ風に振る"
+          }
+        ],
+        "default_if_unresolved": "老舗の格を残す"
+      },
+      "reasons": null
+    },
+    "anchored_bad_anchor": {
+      "accepted": null,
+      "reasons": [
+        "anchor_words が原文の連続部分文字列でない: '若い女性向け'"
+      ]
+    },
+    "anchored_empty_anchor": {
+      "accepted": null,
+      "reasons": [
+        "anchor_words が空(原文根拠なし)"
+      ]
+    },
+    "options_too_few": {
+      "accepted": null,
+      "reasons": [
+        "options が2〜3件でない(有効 1 件)"
+      ]
+    },
+    "extraction_mixed": {
+      "payload": {
+        "branches": [
+          {
+            "id": "b0",
+            "question_point": "今っぽさの方向",
+            "anchor_words": [
+              "今っぽくしたい"
+            ],
+            "options": [
+              {
+                "label": "老舗の格を残す"
+              },
+              {
+                "label": "カフェ風に振る"
+              }
+            ],
+            "default_if_unresolved": "老舗の格を残す"
+          }
+        ],
+        "residual_ambiguity_assessment": "評価文",
+        "missing_materials": [
+          "ロゴ素材"
+        ],
+        "rejected_branches": [
+          {
+            "index": 1,
+            "question_point": "対象読者",
+            "reasons": [
+              "anchor_words が原文の連続部分文字列でない: '若い女性向け'"
+            ]
+          }
+        ],
+        "branches_returned_by_model": 2
+      },
+      "why": null
+    }
+  }
+}

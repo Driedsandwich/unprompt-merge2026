@@ -620,6 +620,19 @@
     font-size:11px; line-height:1.85; color:var(--muted); margin-top:6px;
     letter-spacing:var(--ui-ls);
   }
+  /* 文外判断点(Wave 2)。原文の語に係留されないため圏点もテザーも持たない。
+     その不在を隠さず、カード側に「文には書かれていません」を明示する。
+     破線 = 原文の外(委任の破線と同じ「本文の実線ではない」の意味系)。 */
+  .card .beyond{margin-top:6px}
+  .card .beyond-badge{
+    display:inline-block; font-size:9.5px; line-height:1.5; letter-spacing:.12em;
+    color:var(--ink-soft); border:1px dashed var(--ink-soft); border-radius:0;
+    padding:1px 7px 2px;
+  }
+  .card .beyond-origin{
+    display:block; font-size:11px; line-height:1.85; color:var(--muted); margin-top:4px;
+    letter-spacing:var(--ui-ls);
+  }
   /* 見本の行は上端揃え。ラベルが2行に折り返しても、行をまたいでもサムネイルの上端が
      揃うよう、ラベル領域は2行ぶんを常に確保する(2026-07-30 第7FB 5a)。 */
   .card .opts{display:flex; flex-wrap:wrap; align-items:flex-start; gap:12px; margin-top:14px}
@@ -2560,6 +2573,14 @@ function buildCard(bi){
   card.style.transitionDelay = (bi * 70) + 'ms';
 
   card.appendChild(el('div', 'q', String(b.question_point || '(判断点)')));
+  // 文外判断点(Wave 2): 係留語バッジの代わりに「書かれていない」ことを明示し、
+  // 由来1文(サーバが必須検証済み)を添える。UXの2動詞(決める/委ねる)は同一。
+  if (b.kind === 'beyond_text'){
+    const bx = el('div', 'beyond');
+    bx.appendChild(el('span', 'beyond-badge', '文には書かれていません'));
+    if (b.origin_rationale) bx.appendChild(el('span', 'beyond-origin', String(b.origin_rationale)));
+    card.appendChild(bx);
+  }
   if (b.downstream_impact) card.appendChild(el('div', 'impact', String(b.downstream_impact)));
 
   const opts = el('div', 'opts');
@@ -3487,6 +3508,11 @@ async function compile(){
       anchor_words: Array.isArray(b.anchor_words) ? b.anchor_words.map(String) : [],
       status: d.status === 'decided' ? 'decided' : 'delegated'
     };
+    // 文外判断点は kind と由来1文を根拠文プロンプト(compile_v1 規則4)へ渡す
+    if (b.kind === 'beyond_text'){
+      o.kind = 'beyond_text';
+      if (b.origin_rationale) o.origin_rationale = String(b.origin_rationale);
+    }
     if (d.status === 'decided'){
       const opt = (Array.isArray(b.options) ? b.options : [])[d.oi] || {};
       o.chosen_label = String(opt.label || '');
@@ -3576,7 +3602,11 @@ function buildMarkdown(){
       L.push('');
       L.push('- 選択: ' + String(opt.label || ''));
       if (opt.thumbnail_description) L.push('- 見え方: ' + String(opt.thumbnail_description));
-      L.push('- 原文の根拠語: ' + (Array.isArray(b.anchor_words) ? b.anchor_words.map(a => '「' + a + '」').join(' ') : ''));
+      if (b.kind === 'beyond_text'){
+        L.push('- 文には書かれていない判断: ' + String(b.origin_rationale || '(由来の記録なし)'));
+      }else{
+        L.push('- 原文の根拠語: ' + (Array.isArray(b.anchor_words) ? b.anchor_words.map(a => '「' + a + '」').join(' ') : ''));
+      }
       if (st && st.state === 'ok'){
         L.push('- 見た目の指定: ' + tokensLine(st.tokens));
         if (st.tokens && st.tokens.tone_sample) L.push('- トーン例: ' + String(st.tokens.tone_sample).replace(/\n/g, ' '));
@@ -3596,7 +3626,11 @@ function buildMarkdown(){
       L.push('### ' + String(b.question_point || ''));
       L.push('');
       L.push('- 委任: 制作者(AI)の裁量に委ねる');
-      L.push('- 原文の根拠語: ' + (Array.isArray(b.anchor_words) ? b.anchor_words.map(a => '「' + a + '」').join(' ') : ''));
+      if (b.kind === 'beyond_text'){
+        L.push('- 文には書かれていない判断: ' + String(b.origin_rationale || '(由来の記録なし)'));
+      }else{
+        L.push('- 原文の根拠語: ' + (Array.isArray(b.anchor_words) ? b.anchor_words.map(a => '「' + a + '」').join(' ') : ''));
+      }
       if (b.default_if_unresolved) L.push('- 既定解: ' + String(b.default_if_unresolved));
       if (b.downstream_impact) L.push('- 未解決なら壊れるもの: ' + String(b.downstream_impact));
       const ra = S.rationales[b.question_point];
@@ -3617,16 +3651,31 @@ function buildMarkdown(){
   L.push('---');
   L.push('');
   L.push('この指示書は、上の1文と ' + S.branches.length + ' 回の選択だけから Unprompt が機械的に組み立てた。');
-  L.push('本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。');
+  const beyondN = S.branches.filter(b => b.kind === 'beyond_text').length;
+  if (beyondN){
+    L.push('本文の文言は発注者の原文と選択ラベルに由来する。ただし「文には書かれていない判断」' + beyondN +
+           '件の判断点名と由来はAIの提案であり、原文には存在しない(だからこそ明示して選ばせた)。' +
+           'AIが生成したのは各「意図」の1文と、その提案のみ。');
+  }else{
+    L.push('本文の文言は発注者の原文と選択ラベルに由来する。AIが生成したのは各「意図」の1文のみ。');
+  }
   if (S.compileError) L.push('注: 意図の生成に失敗した(' + S.compileError + ')。本文は選択だけから組み立てられている。');
   return L.join('\n');
 }
 
 function buildJSON(){
   const obj = {
-    format: 'unprompt.compiled_brief.v0',
+    format: 'unprompt.compiled_brief.v1',
     source_brief: S.brief,
     compiled_at: S.compiledAtIso || new Date().toISOString(),
+    // 生成に使ったモデルの正準ID(観測台帳 canonicalId のみ・未観測は null。捏造しない)。
+    // 「AIアップデート後に同じ指示書から同じ成果物が出るか」を検証可能にするための記録
+    // (決勝審査員の関心事項への対応・Wave 2)。
+    generator_models: {
+      extraction: canonicalId(healthModel('model')),
+      rationale: canonicalId(healthModel('compile_model') || healthModel('model')),
+      render: canonicalId(healthModel('render_model') || healthModel('model'))
+    },
     evidence: {
       typed_characters_after_brief: S.typedAfter,
       choice_count: S.branches.length,
@@ -3651,12 +3700,14 @@ function buildJSON(){
       const d = S.decisions[bi];
       const rec = {
         question_point: String(b.question_point || ''),
+        kind: (b.kind === 'beyond_text') ? 'beyond_text' : 'anchored',
         anchor_words: Array.isArray(b.anchor_words) ? b.anchor_words.map(String) : [],
         status: d.status === 'decided' ? 'decided' : 'delegated',
         chosen: null,
         default_if_unresolved: String(b.default_if_unresolved || ''),
         rationale: S.rationales[b.question_point] ? String(S.rationales[b.question_point]) : null
       };
+      if (b.kind === 'beyond_text') rec.origin_rationale = String(b.origin_rationale || '');
       // downstream_impact はスリムスキーマには無い。来た場合だけ載せる(空文字を吐かない)。
       if (b.downstream_impact) rec.downstream_impact = String(b.downstream_impact);
       if (d.status === 'decided'){
