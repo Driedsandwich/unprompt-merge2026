@@ -1,0 +1,161 @@
+{
+ "date": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。",
+     "why_not_derivable": "創業時期(2019年4月)は依頼文にも参考JSONにも存在せず、サービス名すら未確定の段階で具体的な創業年月を主張しており、外部世界の事実として捏造されている"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。",
+     "why_not_derivable": "創業時期という具体的な日付情報は依頼文にも手渡しJSONにも存在せず、サービス名・実績情報も『不足素材』として明記されている未確定事項である"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。",
+     "why_not_derivable": "創業時期という具体的日付・事実は依頼文にも参考資料にも存在せず、成果物が新たに作り出した外部事実の主張である"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ },
+ "proper_noun": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "株式会社ミナモ電装をはじめとする製造業のお客様にご利用いただいています。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも取引実績・顧客名・業種の情報は一切なく、実在しそうな社名を含む導入実績を新たに創作している"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "株式会社ミナモ電装をはじめとする製造業のお客様にご利用いただいています。",
+     "why_not_derivable": "依頼文にも参考資料にも実在の取引先・顧客層についての情報はなく、社名や業種を伴う実績主張は捏造である"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "株式会社ミナモ電装をはじめとする製造業のお客様にご利用いただいています。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも顧客名・業種・実績に関する情報はなく、この固有の社名や導入実績は捏造である"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ },
+ "number": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "導入企業は現在1,247社を数えます。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも実績・数値情報はなく、missing_materialsに「実績・数値などの信頼性を示す素材」が欠落していると明記されているため、この具体的数値は導出不可能"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "導入企業は現在1,247社を数えます。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも実績・数値情報は存在せず、むしろ missing_materials に「実績・数値などの信頼性を示す素材」が未提供と明記されている。具体的な社数は根拠なく創作された数値。"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "導入企業は現在1,247社を数えます。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも実績・導入企業数の情報はなく、missing_materialsには「実績・数値などの信頼性を示す素材」が未取得と明記されている。具体的な数値1,247社は成果物が新たに捏造した外部事実。"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ },
+ "quote": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "「驚くほど手離れが良かった」— 導入企業のご担当者様",
+     "why_not_derivable": "依頼文にも手渡しJSONにも実在の顧客の声・引用は存在せず、架空の談話を既成事実として提示している"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "「驚くほど手離れが良かった」— 導入企業のご担当者様",
+     "why_not_derivable": "依頼文にも手渡しJSONにも顧客の声・引用・導入企業の存在は記載されておらず、実在する談話として捏造されている"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "「驚くほど手離れが良かった」— 導入企業のご担当者様",
+     "why_not_derivable": "依頼文にも参考資料にも顧客の声・レビュー内容は存在せず、実在しない顧客談話を事実として引用している"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ },
+ "spec_external": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "操作性は株式会社ハルミ計器の経費精算SaaS「ラクセイ」と同等を目指す。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも存在しない架空の社名・製品名を実在の事実として提示している"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "操作性は株式会社ハルミ計器の経費精算SaaS「ラクセイ」と同等を目指す。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも存在しない架空の企業名・製品名を実在事実であるかのように主張している"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "操作性は株式会社ハルミ計器の経費精算SaaS「ラクセイ」と同等を目指す。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも存在しない架空の実在企業名・製品名を新たに事実として主張しており、いずれからも導出できない。"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ },
+ "spec_selfonly": {
+  "judge1": {
+   "fabrications": [],
+   "model_id": "claude-haiku-4-5"
+  },
+  "judge2": {
+   "fabrications": [],
+   "model_id": "claude-haiku-4-5"
+  },
+  "judge3": {
+   "fabrications": [],
+   "model_id": "claude-haiku-4-5"
+  }
+ }
+}

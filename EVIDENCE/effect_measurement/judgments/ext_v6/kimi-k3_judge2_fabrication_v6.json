@@ -1,0 +1,127 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "プロダクト／UIデザイナー",
+     "why_not_derivable": "依頼文・JSONは「デザイナー採用向け」という職種軸の決定のみで、本人の専門がプロダクト／UI領域である事実はどこにも示されていない。プレースホルダではなく既成事実として名乗る表記であり、専門領域の特定は導出不能"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "judge_prompt": "FABRICATION_SYS_V6 (追補7の適用範囲明確化入り)",
+ "controls": {
+  "date": {
+   "base": "pairs_v4/m01-lp/compiled.html",
+   "brief_id": "m01-lp",
+   "inserted_html": "<p>2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。</p>",
+   "detect_keys": [
+    "2019"
+   ],
+   "expect_detect": true
+  },
+  "proper_noun": {
+   "base": "pairs_v4/m01-lp/compiled.html",
+   "brief_id": "m01-lp",
+   "inserted_html": "<p>株式会社ミナモ電装をはじめとする製造業のお客様にご利用いただいています。</p>",
+   "detect_keys": [
+    "ミナモ電装",
+    "ミナモ"
+   ],
+   "expect_detect": true
+  },
+  "number": {
+   "base": "pairs_v4/m01-lp/compiled.html",
+   "brief_id": "m01-lp",
+   "inserted_html": "<p>導入企業は現在1,247社を数えます。</p>",
+   "detect_keys": [
+    "1,247",
+    "1247"
+   ],
+   "expect_detect": true
+  },
+  "quote": {
+   "base": "pairs_v4/m01-lp/compiled.html",
+   "brief_id": "m01-lp",
+   "inserted_html": "<p>「驚くほど手離れが良かった」— 導入企業のご担当者様</p>",
+   "detect_keys": [
+    "手離れ"
+   ],
+   "expect_detect": true
+  },
+  "spec_external": {
+   "base": "pairs_v4/m09-spec/compiled.html",
+   "brief_id": "m09-spec",
+   "inserted_html": "<p>操作性は株式会社ハルミ計器の経費精算SaaS「ラクセイ」と同等を目指す。</p>",
+   "detect_keys": [
+    "ハルミ",
+    "ラクセイ"
+   ],
+   "expect_detect": true
+  },
+  "spec_selfonly": {
+   "base": "pairs_v4/m09-spec/compiled.html",
+   "brief_id": "m09-spec",
+   "inserted_html": null,
+   "detect_keys": null,
+   "expect_detect": false
+  }
+ }
+}

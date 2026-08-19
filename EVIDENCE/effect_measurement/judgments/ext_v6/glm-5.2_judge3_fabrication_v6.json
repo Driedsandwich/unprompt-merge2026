@@ -1,0 +1,127 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "プロダクト／UIデザイナー",
+     "why_not_derivable": "JSONでは読み手軸が「デザイナー採用向け」と定められているが、ポートフォリオ所有者の職種・役職名は「プロダクト／UIデザイナー」とは特定されておらず、プレースホルダにもなっていない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ }
+}

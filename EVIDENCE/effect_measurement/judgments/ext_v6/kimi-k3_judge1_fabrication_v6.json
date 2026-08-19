@@ -1,0 +1,132 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "プロダクト／UIデザイナー",
+     "why_not_derivable": "依頼文と手渡しJSONにあるのは「デザイナー採用向け」という軸のみであり、『プロダクト／UIデザイナー』という具体的な職種名・肩書きはどこにも記載がなく直接導出もできない。プレースホルダでもなく確定表現として記述されている。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "手渡しJSONでは「完全独立ツール(他システム接続なし)」と決定されており、さらにmissing_materialsに「既存の会計/勤怠システム名」が未知事項として挙げられている。既存の会計システムが存在し集計を担っているという既成事実の主張は依頼文・JSONのどちらからも導出できない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ }
+}

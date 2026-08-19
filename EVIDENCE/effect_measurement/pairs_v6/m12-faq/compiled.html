@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>返品FAQ</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 読者の状況 = 両方混在
+  GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示
+  GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型
+  GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持
+  GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型
+*/
+:root{
+  --bg:#f4f1ea;
+  --main:#2b4a45;
+  --accent:#c8a24a;
+  --ink:#2b2b26;
+  --step:1.25;
+  --fs-base:16px;
+  --fs-h1:calc(var(--fs-base) * var(--step) * var(--step) * var(--step));
+  --fs-h2:calc(var(--fs-base) * var(--step) * var(--step));
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:var(--fs-base);
+  line-height:1.9;
+}
+.wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px;}
+
+header.hero{
+  padding:0 0 40px;
+  border-bottom:1px solid rgba(43,74,69,0.25);
+  margin-bottom:64px;
+}
+header.hero .eyebrow{
+  font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:13px;
+  letter-spacing:0.18em;
+  color:var(--accent);
+  font-weight:600;
+}
+header.hero h1{
+  font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:var(--fs-h1);
+  font-weight:800;
+  letter-spacing:0.02em;
+  line-height:1.4;
+  margin:16px 0 20px;
+  color:var(--main);
+}
+header.hero p{
+  font-size:15px;
+  color:var(--ink);
+  opacity:0.85;
+  max-width:32em;
+}
+
+section{margin-bottom:64px;}
+h2{
+  font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:var(--fs-h2);
+  font-weight:700;
+  color:var(--main);
+  letter-spacing:0.03em;
+  margin:0 0 24px;
+  padding-bottom:8px;
+  border-bottom:2px solid var(--accent);
+  display:inline-block;
+}
+
+/* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+.category{margin-bottom:40px;}
+.category h3{
+  font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:14px;
+  letter-spacing:0.12em;
+  color:var(--accent);
+  margin:0 0 16px;
+  font-weight:700;
+}
+
+.qa{
+  background:#fff;
+  padding:24px 24px;
+  margin-bottom:16px;
+}
+.qa .q{
+  font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-weight:700;
+  color:var(--main);
+  margin:0 0 8px;
+  display:flex;
+  gap:8px;
+}
+.qa .q::before{content:"Q";color:var(--accent);font-weight:800;}
+.qa .a{
+  margin:0;
+  display:flex;
+  gap:8px;
+}
+.qa .a::before{content:"A";color:var(--main);font-weight:800;font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}
+
+.contact{
+  background:var(--main);
+  color:var(--bg);
+  padding:40px 32px;
+}
+.contact h2{color:var(--bg);border-bottom-color:var(--accent);}
+.contact p{margin:0 0 20px;opacity:0.92;}
+.contact .btn{
+  display:inline-block;
+  background:var(--accent);
+  color:var(--main);
+  font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-weight:700;
+  padding:12px 24px;
+  text-decoration:none;
+}
+
+footer{
+  margin-top:64px;
+  font-size:12px;
+  color:var(--ink);
+  opacity:0.6;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+<header class="hero">
+  <div class="eyebrow">RETURN GUIDE</div>
+  <!-- GYAKUMON-CHOICE: 読者の状況 = 両方混在 -->
+  <h1>返品できるか迷っている方も、<br>手続きの途中の方も。<br>ここで一度、整理しましょう。</h1>
+  <!-- GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 -->
+  <p>お問い合わせの多い内容を、目的別にまとめました。急いでいるときも、ゆっくり確認したいときも、必要なところだけ読んでいただければと思います。</p>
+</header>
+
+<section>
+  <h2>よくあるご質問</h2>
+
+  <!-- GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 -->
+  <div class="category">
+    <h3>返品できるかどうか</h3>
+    <div class="qa">
+      <p class="q"><span>この商品は返品できますか?</span></p>
+      <!-- GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 -->
+      <p class="a"><span>対象は〈対象商品の条件、例:未使用・タグ付き〉の商品です。〈対象外となる商品カテゴリ〉は対象外となります。迷われた場合は下記の連絡先までご確認ください。</span></p>
+    </div>
+    <div class="qa">
+      <p class="q"><span>いつまでなら返品を受け付けてもらえますか?</span></p>
+      <p class="a"><span>到着日から〈返品期限の日数〉以内にご連絡いただければ承ります。期限を過ぎた場合の扱いは〈期限超過時の対応方針〉です。</span></p>
+    </div>
+  </div>
+
+  <div class="category">
+    <h3>手続きの進め方</h3>
+    <div class="qa">
+      <p class="q"><span>返品の手続きはどこから始めればいいですか?</span></p>
+      <p class="a"><span>〈返品受付の窓口・フォーム名〉からお申し込みください。受付後、〈発送方法・返送先の案内〉をお送りします。</span></p>
+    </div>
+    <div class="qa">
+      <p class="q"><span>送料や手数料はどちらの負担になりますか?</span></p>
+      <p class="a"><span>〈送料負担の条件、例:初期不良は当店負担・お客様都合は自己負担〉です。返金額から差し引かれる場合は〈差し引きの有無〉のとおりとなります。</span></p>
+    </div>
+  </div>
+
+  <div class="category">
+    <h3>返金について</h3>
+    <div class="qa">
+      <p class="q"><span>返金はいつ頃、どの方法で行われますか?</span></p>
+      <p class="a"><span>商品到着の確認後、〈返金までの目安日数〉ほどで〈返金方法、例:元の決済方法〉にて処理いたします。</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+<section class="contact">
+  <h2>解決しない場合は</h2>
+  <p>ここに書ききれないご事情もあるかと思います。〈確認: これまでの問い合わせで特に多かった具体的なつまずき事例を1つ〉のようなケースも、遠慮なくお知らせください。担当者が状況を伺いながらご案内します。</p>
+  <a class="btn" href="〈お問い合わせフォームのURL〉">お問い合わせはこちら</a>
+</section>
+
+<footer>〈ショップ名〉 カスタマーサポート</footer>
+
+</div>
+</body>
+</html>

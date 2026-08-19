@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>巻頭あいさつ</title>
+<style>
+  /*
+    :root タイプスケール(本文16pxを基準に1.25比率)
+    --fs-body: 16px
+    --fs-lead: 20px
+    --fs-h1:   28px
+  */
+  :root{
+    --bg:   #fff6e8; /* 地色 */
+    --main: #e8965a; /* 主要色 */
+    --acc:  #c4472b; /* 強調色 */
+    --ink:  #4a3324;
+    --fs-body: 16px;
+    --fs-lead: 20px;
+    --fs-h1: 28px;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+    padding: 64px 16px;
+    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  }
+  /* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+  main{
+    width: 720px;
+    max-width: 100%;
+    background: #fffdf8;
+    border-radius: 24px; /* soft */
+    padding: 64px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    line-height: 1.9;
+  }
+  .kicker{
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    color: var(--acc);
+    font-weight: 700;
+  }
+  /* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+  h1{
+    font-family: "Yuji Syuku", "Hiragino Maru Gothic ProN", "UD Digi Kyokasho N-B", "Rounded Mplus 1c", sans-serif;
+    font-size: var(--fs-h1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0;
+    color: var(--acc);
+  }
+  section{
+    font-size: var(--fs-body);
+  }
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+  p.greeting{
+    font-size: var(--fs-lead);
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  p{
+    margin: 0;
+  }
+  .topic{
+    padding: 24px;
+    background: var(--bg);
+    border-radius: 16px;
+  }
+  .topic-label{
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--main);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  /* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+  .signoff{
+    text-align: right;
+    font-size: 14px;
+    color: var(--main);
+  }
+  .closing{
+    font-weight: 600;
+    color: var(--acc);
+  }
+</style>
+</head>
+<body>
+<main>
+  <div>
+    <div class="kicker">社内報 巻頭あいさつ</div>
+    <h1>今月もおつかれさまです</h1>
+  </div>
+
+  <section>
+    <p class="greeting">各部署のみなさんへ</p>
+    <p>忙しい部署もそうでない部署もあると思いますが、今月もそれぞれのペースでお疲れさまでした。現場からひとこと、今月号をお届けします。</p>
+  </section>
+
+  <section>
+    <p>最近は蒸し暑い日が続いていますね。〈執筆者名〉は最近〈確認: 最近ハマっていることを1つ〉にハマっていて、そんな雑談から今月号もゆるっとスタートです。</p>
+  </section>
+
+  <section class="topic">
+    <span class="topic-label">今月の話題</span>
+    <p>今月号の特集は〈今月号の特集テーマ〉です。〈確認: 現場で実際にあった出来事や工夫のエピソードを1つ〉を聞いていて、気になった方はぜひ本編もあわせてどうぞ。</p>
+  </section>
+
+  <section>
+    <p class="closing">それでは、今月も無理せず、気楽にいきましょう。</p>
+    <p class="signoff">〈執筆者名〉より</p>
+  </section>
+</main>
+</body>
+</html>

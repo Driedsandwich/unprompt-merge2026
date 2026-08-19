@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>経費精算 集計ツール仕様メモ</title>
+<style>
+/*
+  :root タイプスケール (基準16px, 比率 1.25)
+  --fs-body: 16px
+  --fs-h2:   20px  (16 * 1.25)
+  --fs-h1:   26px  (16 * 1.25^2, 切り上げ)
+*/
+:root{
+  --bg:#1f2a24;
+  --main:#2f6b4f;
+  --accent:#c9a24b;
+  --fs-body:16px;
+  --fs-h2:20px;
+  --fs-h1:26px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:#e9ece7;
+  font-family:"Hiragino Sans","Yu Gothic","Helvetica Neue",Arial,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.55;
+}
+.sheet{
+  width:720px;
+  margin:64px auto;
+  padding:40px 40px 56px;
+  background:#233229;
+  border:1px solid var(--main);
+}
+header{
+  margin-bottom:32px;
+  padding-bottom:24px;
+  border-bottom:2px solid var(--accent);
+}
+h1{
+  font-family:"Hiragino Sans","Yu Gothic",sans-serif;
+  font-weight:800;
+  font-size:var(--fs-h1);
+  letter-spacing:0.02em;
+  margin:0 0 8px;
+  color:#ffffff;
+}
+.lead{
+  color:var(--accent);
+  font-weight:600;
+  margin:0;
+  font-size:15px;
+}
+h2{
+  font-family:"Hiragino Sans","Yu Gothic",sans-serif;
+  font-weight:700;
+  font-size:var(--fs-h2);
+  letter-spacing:0.04em;
+  color:var(--accent);
+  margin:32px 0 8px;
+  padding-bottom:4px;
+  border-bottom:1px solid var(--main);
+}
+section:first-of-type h2{margin-top:0;}
+p{margin:8px 0;}
+ul{margin:8px 0;padding-left:20px;}
+li{margin:4px 0;}
+.imgline{color:#c7d2cb;}
+.note{
+  margin-top:40px;
+  padding-top:16px;
+  border-top:1px dashed var(--main);
+  color:#b9c3bc;
+  font-size:14px;
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<h1>経費、自動で締まる。</h1>
+<p class="lead">申請の入力画面はいじらない。詰まっているのは、そのあとの集計と経理処理だ。</p>
+</header>
+
+<section>
+<h2>目的</h2>
+<p>
+月末になると経理担当者の手元に溜まる経費データを、手集計・手仕訳から解放する。
+申請そのものを変えるのではなく、集まった経費を締める工程――集計・仕訳突合・月次確定――を
+自動化し、月次を早く閉じられる状態を作る。
+</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<h2>対象ユーザー</h2>
+<p>
+社員本人ではなく、経理担当者。申請済みの経費データを受け取り、確認・集計・月次処理を行う側の
+操作性を基準に設計する。対象部署・対象人数は〈対象社員数・利用部署〉。
+</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+<h2>主要機能</h2>
+<ul>
+<li>経費データを1行1件で貼り付け・入力するだけの一覧シート(勘定科目・金額・申請部署・日付の列を用意)</li>
+<li>科目別・部署別の自動集計シート(関数で自動再計算、手作業の再集計を不要にする)</li>
+<li>月次締め用のサマリーシート(月合計・科目別内訳を1画面に表示し、確認だけで完了させる)</li>
+<li>入力エラー(金額未入力・科目未選択など)をセルの色分けで自動検知</li>
+</ul>
+</section>
+
+<section>
+<h2>画面イメージの言葉での説明</h2>
+<p class="imgline">
+Excel/スプレッドシートのブック内に「入力」「集計」「月次サマリー」の3枚のシートが並ぶ構成。
+「入力」シートに経費データが積み上がると、「集計」シートの科目別・部署別の表が数式で自動更新され、
+「月次サマリー」シートには当月合計と数値一覧だけが残る。経理担当者は
+入力シートを確認し、月次サマリーを見て締める、という2ステップで完結する。
+</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+<h2>使わないと決めたもの</h2>
+<ul>
+<li>既存の会計システム・勤怠システムとの自動連携(〈既存の会計/勤怠システム名〉との接続は行わず、単体のシートで完結させる)</li>
+<li>申請者側の入力体験の改善(対象は経理側の集計工程のみ)</li>
+<li>専用アプリ・Webシステムとしての新規開発</li>
+</ul>
+</section>
+
+<!-- GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル -->
+<p class="note">
+本メモは要件概要レベルの一枚仕様であり、シート設計・数式の詳細は別途詰める。
+現行の経費精算フロー・帳票フォーマットは〈現行の経費精算フロー・帳票フォーマット〉。
+</p>
+
+</div>
+</body>
+</html>

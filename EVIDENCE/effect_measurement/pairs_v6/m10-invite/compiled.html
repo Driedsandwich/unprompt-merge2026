@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>同窓会のお知らせ</title>
+<style>
+  /*
+    GYAKUMON-CHOICE: 文面のトーン = くだけたノリ
+    上記トーン決定を軸に、配色(基調 #fff4d6 / アクセント #ff7a1a / 締め #2e2e2e)と
+    丸ゴシック見出し・airy密度・soft角を採用する。
+  */
+  :root{
+    --bg:#fff4d6;
+    --accent:#ff7a1a;
+    --ink:#2e2e2e;
+    /* タイプスケール(本文16pxを基準に×1.25系) */
+    --fs-body:16px;
+    --fs-lead:20px;
+    --fs-h1:34px;
+    --fs-h2:15px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:#f3e6bd;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    color:var(--ink);
+    display:flex;
+    justify-content:center;
+    padding:64px 16px;
+  }
+  .card{
+    width:720px;
+    max-width:100%;
+    background:var(--bg);
+    border-radius:24px;
+    padding:64px 56px;
+  }
+  header{
+    margin-bottom:96px;
+  }
+  h1{
+    font-family:"Rounded Mplus 1c","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+    font-weight:800;
+    font-size:var(--fs-h1);
+    letter-spacing:0.02em;
+    line-height:1.35;
+    margin:0 0 16px;
+    color:var(--ink);
+  }
+  .lead{
+    font-size:var(--fs-lead);
+    line-height:1.9;
+    margin:0;
+  }
+  .lead strong{
+    color:var(--accent);
+  }
+  section{
+    margin-bottom:96px;
+  }
+  h2{
+    font-family:"Rounded Mplus 1c","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+    font-weight:700;
+    font-size:var(--fs-h2);
+    letter-spacing:0.12em;
+    color:var(--accent);
+    margin:0 0 24px;
+  }
+  p, dl{
+    font-size:var(--fs-body);
+    line-height:2.0;
+    margin:0;
+  }
+  dl{
+    display:grid;
+    grid-template-columns:96px 1fr;
+    row-gap:12px;
+  }
+  dt{
+    color:#8a6a3a;
+    font-weight:700;
+  }
+  dd{
+    margin:0;
+  }
+  .rsvp{
+    background:#ffe6b8;
+    border-radius:16px;
+    padding:32px;
+  }
+  footer{
+    text-align:center;
+    padding-top:32px;
+  }
+  footer p{
+    font-size:var(--fs-lead);
+    font-weight:700;
+  }
+  .ph{
+    color:#a05a10;
+    font-style:normal;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <header>
+    <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+    <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+    <h1>部室のメンバー、集合〜!</h1>
+    <p class="lead">
+      あの頃のノリのまま、また一杯やろう。<strong>〈年数〉ぶり</strong>の同窓会、やります。
+    </p>
+  </header>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+    <h2>開催概要</h2>
+    <dl>
+      <dt>日時</dt><dd><span class="ph">〈開催日時〉</span></dd>
+      <dt>場所</dt><dd><span class="ph">〈会場〉</span>で対面開催。詳細は当日連絡します</dd>
+      <dt>会費</dt><dd><span class="ph">〈会費〉</span>予定</dd>
+    </dl>
+  </section>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+    <h2>どんな会にしたいか</h2>
+    <p>
+      堅苦しいのは無し。近況報告もいらないし、しばらく連絡取ってなかった人もそのままでOK。
+      あの頃みたいに、思い出話でも今の話でも好きに喋るだけの会にしたいです。
+    </p>
+  </section>
+
+  <section class="rsvp">
+    <h2>出欠の連絡</h2>
+    <p>
+      「行けそう!」の一言だけでいいので、<span class="ph">〈幹事名〉</span>まで
+      <span class="ph">〈連絡先〉</span>に返信ください。迷ってても、とりあえず連絡くれたら嬉しいです。
+    </p>
+  </section>
+
+  <footer>
+    <p>無理せず、来れる人だけで。<br>会えるの楽しみにしてます。</p>
+  </footer>
+
+</div>
+</body>
+</html>

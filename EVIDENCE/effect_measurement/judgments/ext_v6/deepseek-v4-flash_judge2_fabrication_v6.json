@@ -1,0 +1,159 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "誰かが5〜10分ほど話して",
+     "why_not_derivable": "依頼文および手渡しJSONのいずれにも発表時間の長さに関する情報はなく、そこから導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "設計の決め方も、進め方も、コードを書く時間の作り方も、細かく管理するより本人に預けたほうが結果が出るという考え方でやっています。",
+     "why_not_derivable": "手渡しJSONには会社の経営方針や裁量権の運用実態に関する情報は一切含まれておらず、依頼文からも導出できない。これは特定の企業の実在する方針を事実として主張しているが、成果物作成時に与えられた情報からは全く根拠がない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "プロダクト／UIデザイナー",
+     "why_not_derivable": "依頼文と手渡しJSONではデザイナー採用向けであることのみ示されており、具体的な職種（プロダクト／UIデザイナー）は指定されていない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "最近は蒸し暑い日が続いていますね。",
+     "why_not_derivable": "依頼文・手渡しJSONに気候や季節に関する記述はなく、この具体的な気象情報を導出できない。"
+    },
+    {
+     "fact": "〈確認: 最近ハマっていることを1つ〉にハマっていて",
+     "why_not_derivable": "依頼文・手渡しJSONに執筆者の趣味や嗜好に関する情報はなく、この具体的な事実を導出できない。"
+    },
+    {
+     "fact": "今月号の特集は〈今月号の特集テーマ〉です。",
+     "why_not_derivable": "依頼文・手渡しJSONに今月号の特集内容に関する記述はなく、この具体的な事実を導出できない。"
+    },
+    {
+     "fact": "〈確認: 現場で実際にあった出来事や工夫のエピソードを1つ〉を聞いていて",
+     "why_not_derivable": "依頼文・手渡しJSONに現場のエピソードに関する情報はなく、この具体的な事実を導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "8月に入り",
+     "why_not_derivable": "依頼文には「月イチの社内報」とあるだけで何月号かは指定されていない。手渡しJSONのcompiled_atは2026-08-10だが、これは参考資料の作成日時に過ぎず、成果物の内容として「8月に入り」と書く根拠にはならない。したがってこの月の記述は依頼文・参考資料から導出できない具体的事実である。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ }
+}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 | 法人向けサービス基盤</title>
+<style>
+/*
+  type scale (base 16px, ratio 1.5 airy):
+  --fs-base: 16px / --fs-lead: 20px / --fs-h3: 24px
+  --fs-h2: 32px / --fs-h1: 52px
+  heading: serif / body: sans-serif system stack
+*/
+:root{
+  --bg: #0b0e11;
+  --panel: #1c2530;
+  --accent: #b08d57;
+  --fg: #eef1f4;
+  --fg-dim: #9fabb8;
+  --fs-base: 16px;
+  --fs-lead: 20px;
+  --fs-h3: 24px;
+  --fs-h2: 32px;
+  --fs-h1: 52px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:var(--bg);}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:"Hiragino Sans","Yu Gothic",-apple-system,"Segoe UI",sans-serif;
+  font-size:var(--fs-base);
+  line-height:1.9;
+  min-width:1024px;
+}
+.heading{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  letter-spacing:0.04em;
+  font-weight:600;
+  color:var(--fg);
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+/* GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け */
+/* GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 */
+header{
+  padding:40px 0;
+  border-bottom:1px solid rgba(176,141,87,0.2);
+}
+header .wrap{display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:22px;letter-spacing:0.12em;}
+.logo b{color:var(--accent);}
+nav span{color:var(--fg-dim);font-size:14px;letter-spacing:0.06em;}
+
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+.hero{
+  padding:128px 0 112px;
+  background: linear-gradient(180deg, var(--bg) 0%, #0d1319 100%);
+  border-bottom:1px solid rgba(176,141,87,0.15);
+}
+.hero .eyebrow{
+  color:var(--accent);
+  font-size:14px;
+  letter-spacing:0.2em;
+  margin-bottom:24px;
+}
+.hero h1{
+  font-size:var(--fs-h1);
+  line-height:1.5;
+  max-width:760px;
+  margin-bottom:32px;
+}
+.hero p.lead{
+  font-size:var(--fs-lead);
+  color:var(--fg-dim);
+  max-width:600px;
+  margin-bottom:48px;
+}
+.hero-rule{
+  width:64px;
+  height:1px;
+  background:var(--accent);
+  margin:0 0 48px;
+}
+
+/* GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング */
+.cta-btn{
+  display:inline-block;
+  padding:18px 40px;
+  background:transparent;
+  color:var(--fg);
+  border:1px solid var(--accent);
+  text-decoration:none;
+  font-size:15px;
+  letter-spacing:0.1em;
+}
+.cta-btn.filled{
+  background:var(--accent);
+  color:var(--bg);
+  font-weight:600;
+}
+
+section{padding:96px 0;}
+section h2{
+  font-size:var(--fs-h2);
+  margin-bottom:16px;
+}
+section .section-lead{
+  color:var(--fg-dim);
+  font-size:var(--fs-lead);
+  max-width:600px;
+  margin-bottom:64px;
+}
+
+.value{border-bottom:1px solid rgba(176,141,87,0.15);}
+.value-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+}
+.value-grid p{color:var(--fg-dim);}
+
+.features{border-bottom:1px solid rgba(176,141,87,0.15);}
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:48px;
+}
+.feature{
+  border-top:1px solid var(--accent);
+  padding-top:24px;
+}
+.feature .num{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  color:var(--accent);
+  font-size:14px;
+  letter-spacing:0.1em;
+  margin-bottom:16px;
+  display:block;
+}
+.feature h3{
+  font-size:var(--fs-h3);
+  margin-bottom:16px;
+}
+.feature p{color:var(--fg-dim);}
+
+.flow{border-bottom:1px solid rgba(176,141,87,0.15);}
+.flow-item{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:32px;
+  padding:32px 0;
+  border-top:1px solid rgba(176,141,87,0.15);
+}
+.flow-item:last-child{border-bottom:1px solid rgba(176,141,87,0.15);}
+.flow-item .step{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  color:var(--accent);
+  font-size:28px;
+}
+.flow-item h3{font-size:18px;margin-bottom:8px;}
+.flow-item p{color:var(--fg-dim);font-size:14px;}
+
+.cta-section{
+  text-align:center;
+  background:var(--panel);
+}
+.cta-section h2{margin-bottom:24px;}
+.cta-section .section-lead{margin-left:auto;margin-right:auto;}
+.cta-section .cta-row{
+  display:flex;
+  justify-content:center;
+  gap:24px;
+  margin-top:16px;
+}
+
+footer{
+  padding:64px 0;
+  border-top:1px solid rgba(176,141,87,0.15);
+}
+footer .wrap{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  color:var(--fg-dim);
+  font-size:13px;
+}
+footer .logo{font-size:16px;margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo"><b>〈</b>サービス名<b>〉</b></div>
+    <nav><span>法人のご担当者様へ</span></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">CORPORATE SERVICE</div>
+    <h1 class="heading">貴社の意思決定を、<br>静かに支える基盤へ。</h1>
+    <div class="hero-rule"></div>
+    <p class="lead">派手さではなく、積み重ねる信頼で選ばれるサービスでありたい。〈サービス名〉は、法人のご担当者様が意思決定を安心して任せられる基盤を目指しています。</p>
+    <a href="#contact" class="cta-btn filled">資料を請求する</a>
+  </div>
+</section>
+
+<section class="value">
+  <div class="wrap">
+    <h2 class="heading">実績で語る、という選択</h2>
+    <p class="section-lead">見た目の新しさより、まず信頼できるかどうか。私たちはそこを最優先に設計しています。</p>
+    <div class="value-grid">
+      <div>
+        <p>〈サービス名〉が提供する価値の核心は〈確認: このサービスが法人担当者にとって最も信頼できると言える理由を1つ〉です。派手な演出ではなく、業務の現場で長く使い続けられることを前提に作られています。</p>
+      </div>
+      <div>
+        <p>導入企業の声や具体的な実績数値は現時点で確定していません。〈確認: 公開可能な導入実績・利用企業数・継続率などの数値があれば1つ〉が定まり次第、この場所で誠実にお伝えします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <h2 class="heading">選ばれる、3つの理由</h2>
+    <p class="section-lead">機能の多さではなく、法人利用に必要な条件を満たしているかで設計しました。</p>
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="num">01</span>
+        <h3 class="heading">〈特徴1のタイトル〉</h3>
+        <p>〈確認: このサービスならではの機能・仕組みで、他にはない強みを1つ〉</p>
+      </div>
+      <div class="feature">
+        <span class="num">02</span>
+        <h3 class="heading">〈特徴2のタイトル〉</h3>
+        <p>〈確認: 法人利用における運用体制・サポート内容の具体を1つ〉</p>
+      </div>
+      <div class="feature">
+        <span class="num">03</span>
+        <h3 class="heading">〈特徴3のタイトル〉</h3>
+        <p>〈確認: セキュリティ・契約条件など信頼性を裏付ける具体を1つ〉</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap">
+    <h2 class="heading">ご利用までの流れ</h2>
+    <p class="section-lead">法人契約に必要な手順を、はじめから明確にお伝えします。</p>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="step">01</div>
+        <div>
+          <h3 class="heading">お問い合わせ</h3>
+          <p>フォームより貴社の課題・ご要望をお送りください。〈確認: 問い合わせ後の初回連絡までの目安期間〉</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="step">02</div>
+        <div>
+          <h3 class="heading">ヒアリング・ご提案</h3>
+          <p>担当者が貴社の状況を伺い、導入プランをご提案します。</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="step">03</div>
+        <div>
+          <h3 class="heading">ご契約・導入</h3>
+          <p>〈確認: 導入までに必要な準備期間・手続きの概要〉を経て、ご利用を開始いただけます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="wrap">
+    <h2 class="heading">信頼は、静かに積み重ねる。</h2>
+    <p class="section-lead">まずは資料にて、〈サービス名〉が貴社の意思決定にどう寄り添えるかをご覧ください。</p>
+    <div class="cta-row">
+      <a href="#" class="cta-btn filled">資料請求</a>
+      <a href="#" class="cta-btn">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="logo heading">〈サービス名〉</div>
+      <div>〈会社名〉</div>
+    </div>
+    <div>
+      <div>〈所在地〉</div>
+      <div>〈お問い合わせ先〉</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

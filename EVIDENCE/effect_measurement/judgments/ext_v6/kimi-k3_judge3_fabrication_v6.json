@@ -1,0 +1,145 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "大きな会社ではありませんが、その分ひとりひとりの判断が仕事の質に直結します。",
+     "why_not_derivable": "依頼文・JSONのどこにも会社規模に関する情報がなく、「小規模な会社である」という事実的主張は導出できない。手渡しJSONでも従業員数は欠落情報(〈従業員数〉プレースホルダ)とされている。"
+    },
+    {
+     "fact": "派手な看板は持っていません。代わりに、日々の仕事に手を抜かなかった時間があります。",
+     "why_not_derivable": "会社の実態(看板の有無・日々の仕事ぶりの実績)についての既成事実の主張であり、依頼文やJSONからは導出できない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "「既存の会計システム」が存在し集計機能を担えることを既成事実として主張しているが、依頼文・手渡しJSONにその存在の記述はなく、むしろJSONでは「既存の会計/勤怠システム名」が未提供資料(missing_materials)とされ、判断としても「完全独立ツール・他システム接続なし」と決定されている"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "商品到着後〈返品受付期間〉以内にご連絡ください。",
+     "why_not_derivable": "返品受付期間の起算点が「商品到着後」であるというポリシー上の条件は依頼文・JSONのどこにもなく、JSONのmissing_materialsにも返品期限の規定は未提供と明記されている。"
+    },
+    {
+     "fact": "商品到着・確認後、〈返金までの目安日数〉を目安に〈返金方法〉にて返金いたします。",
+     "why_not_derivable": "返金が商品到着・確認後に行われるという返金プロセスの既成事実は依頼文・JSONから導出できず、missing_materialsにも返品ポリシー条件が欠けているとされている。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ }
+}

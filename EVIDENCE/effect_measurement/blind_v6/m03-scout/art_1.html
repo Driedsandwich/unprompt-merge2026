@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スカウトメール</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視
+  GYAKUMON-CHOICE: 文面のトーン = カジュアル
+  base palette source: 文面のトーン decision tokens
+*/
+:root{
+  --bg:#1a1a24;
+  --accent:#5b4fe8;
+  --mint:#3dffc0;
+  --ink:#eae9f2;
+  --sub:#a9a7c2;
+
+  --fs-body: 16px;
+  --fs-lead: 20px;
+  --fs-h2: 25px;
+  --fs-h1: 31px;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family: "Hiragino Maru Gothic ProN", "BIZ UDGothic", "Yu Gothic", "Segoe UI", system-ui, sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+  padding:96px 24px;
+}
+
+.doc{
+  max-width:720px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:64px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.field-label{
+  font-size:12px;
+  letter-spacing:0.12em;
+  color:var(--mint);
+  text-transform:uppercase;
+}
+
+/* GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 */
+.subject{
+  font-family:"Hiragino Maru Gothic ProN","BIZ UDGothic",system-ui,sans-serif;
+  font-weight:800;
+  font-size:var(--fs-h1);
+  letter-spacing:0.01em;
+  line-height:1.5;
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(91,79,232,0.18), rgba(91,79,232,0));
+  padding:24px 24px;
+}
+
+.to{
+  font-size:var(--fs-lead);
+  font-weight:700;
+}
+
+.body-text{
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+}
+
+.body-text p{
+  margin:0;
+}
+
+/* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 */
+.lead{
+  font-size:var(--fs-h2);
+  font-weight:700;
+  color:var(--mint);
+  line-height:1.6;
+  border-radius:16px;
+}
+
+.closing{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  padding-top:16px;
+}
+
+.cta{
+  display:inline-block;
+  align-self:flex-start;
+  background:var(--accent);
+  color:#fff;
+  font-weight:700;
+  padding:16px 32px;
+  border-radius:999px;
+  text-decoration:none;
+}
+
+.sign{
+  margin-top:16px;
+  padding-top:32px;
+  border-top:1px solid rgba(255,255,255,0.12);
+  color:var(--sub);
+  font-size:14px;
+  line-height:1.8;
+}
+
+.sign strong{
+  display:block;
+  color:var(--ink);
+  font-size:var(--fs-lead);
+  margin-bottom:8px;
+}
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="field">
+    <span class="field-label">件名</span>
+    <div class="subject">その裁量、他社に譲りますか。〈会社名〉から2〜5年目エンジニアの方へ</div>
+  </div>
+
+  <div class="field">
+    <span class="field-label">宛名</span>
+    <div class="to">〈候補者名〉さん</div>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+  <div class="field body-text">
+    <span class="field-label">本文</span>
+
+    <p class="lead">突然のご連絡失礼します。〈候補者名〉さんの経歴を拝見して、個別にお声がけしたくなりました。</p>
+
+    <p>実務2〜5年目って、任される仕事の型がだいたい見えてきて、そろそろ「もっと自分のやり方でやらせてくれ」って思い始める時期じゃないでしょうか。うちはそこ、けっこう本気で任せます。設計の決め方も、進め方も、コードを書く時間の作り方も、細かく管理するより本人に預けたほうが結果が出るという考え方でやっています。</p>
+
+    <p>〈会社名〉は〈事業内容〉をやっている会社です。今回募集しているポジションで扱う技術スタックは〈技術スタック〉。ここまで読んで「自分の裁量でやれる環境」に少しでも心が動いたなら、それだけで話す価値はあると思っています。</p>
+
+    <p>まずは選考というより、雑談ベースでお話しできたら嬉しいです。今どんな環境で、何にモヤモヤしているか聞かせてもらえるだけでも十分です。〈確認: 現場で実際にあった裁量の効いたエピソードを1つ〉あれば、そのまま次のメールで紹介させてください。</p>
+  </div>
+
+  <div class="field closing">
+    <span class="field-label">結びと次の一歩</span>
+    <p>ご興味あれば、このメールに一言返信いただくだけでOKです。30分だけオンラインで話しましょう。条件面(〈給与レンジ等の条件〉)含め、気になることは何でも聞いてください。</p>
+    <a class="cta" href="mailto:〈メールアドレス〉">まずは気軽に返信する</a>
+  </div>
+
+  <div class="sign">
+    <strong>〈担当者名〉</strong>
+    〈会社名〉 採用担当<br>
+    〈連絡先メールアドレス〉
+  </div>
+
+</div>
+</body>
+</html>

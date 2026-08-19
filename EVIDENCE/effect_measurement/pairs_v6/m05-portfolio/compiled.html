@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈氏名〉 | Design Portfolio</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+/* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+:root{
+  --bg:#0d0d0d;
+  --fg:#f2f0eb;
+  --accent:#ff3b1f;
+  --s0:1rem;
+  --s1:1.5rem;
+  --s2:2.25rem;
+  --s3:3.375rem;
+  --s4:5rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:"Hiragino Sans","Yu Gothic UI",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.9;
+}
+h1,h2,h3{
+  font-family:"Hiragino Kaku Gothic StdN","Yu Gothic UI",system-ui,sans-serif;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+section{
+  max-width:760px;
+  margin:0 auto;
+  padding:96px 24px;
+}
+a{color:var(--accent)}
+
+/* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+.hero{
+  min-height:92vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 24px;
+  border-bottom:1px solid #2a2a2a;
+}
+.hero .eyebrow{
+  font-size:.85rem;
+  letter-spacing:.3em;
+  color:var(--accent);
+  margin-bottom:var(--s1);
+}
+.hero h1{
+  font-size:clamp(2.4rem,7vw,var(--s4));
+  line-height:1.15;
+}
+.hero .role{
+  font-size:var(--s1);
+  color:#b8b6b0;
+  margin-top:var(--s1);
+}
+.hero .lead{
+  margin-top:var(--s2);
+  font-size:1.15rem;
+  max-width:32em;
+  color:#d8d6d0;
+}
+
+h2.section-title{
+  font-size:var(--s2);
+  margin-bottom:var(--s2);
+  position:relative;
+  display:inline-block;
+}
+h2.section-title::after{
+  content:"";
+  display:block;
+  width:48px;
+  height:4px;
+  background:var(--accent);
+  margin-top:12px;
+}
+
+.intro p{max-width:38em;font-size:1.05rem;color:#e6e4de;margin-top:var(--s1)}
+.intro p:first-of-type{margin-top:0}
+
+/* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+.works{display:flex;flex-direction:column;gap:64px}
+.work{
+  border:1px solid #2a2a2a;
+  padding:var(--s2);
+}
+.work .thumb{
+  height:160px;
+  margin-bottom:var(--s1);
+  background:
+    linear-gradient(135deg,#1a1a1a 25%,transparent 25%) 0 0/24px 24px,
+    linear-gradient(315deg,#1a1a1a 25%,transparent 25%) 0 0/24px 24px,
+    var(--bg);
+  border:1px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;letter-spacing:.2em;color:#7a7873;
+}
+.work h3{font-size:1.4rem;margin-bottom:8px}
+.work .tag{font-size:.8rem;color:var(--accent);letter-spacing:.1em;margin-bottom:16px}
+.work .block-label{font-size:.8rem;color:#8a8880;letter-spacing:.05em;margin-top:16px}
+.work p{color:#d0cec8;margin-top:4px}
+
+/* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+.works-note{margin-top:var(--s1);color:#a8a6a0;font-size:.95rem;max-width:40em}
+
+.skills{display:flex;flex-wrap:wrap;gap:12px}
+.skills span{
+  border:1px solid #3a3a3a;
+  padding:8px 16px;
+  font-size:.9rem;
+  color:#e6e4de;
+}
+
+.contact p{color:#d8d6d0;margin-top:var(--s1)}
+.contact .email{
+  display:inline-block;
+  margin-top:var(--s2);
+  font-size:1.3rem;
+  border-bottom:2px solid var(--accent);
+  padding-bottom:4px;
+}
+footer{
+  text-align:center;
+  padding:48px 24px;
+  color:#5a5850;
+  font-size:.8rem;
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="eyebrow">DESIGN PORTFOLIO</div>
+  <h1>〈氏名〉</h1>
+  <div class="role">プロダクト／UIデザイナー</div>
+  <p class="lead">見た人の記憶に残るのは、派手さではなく一手の判断です。ここに置くのは完成物だけでなく、なぜその形にしたかという過程です。</p>
+</section>
+
+<section class="intro">
+  <h2 class="section-title">自己紹介</h2>
+  <p>〈氏名〉。〈確認: これまでのデザイナーとしての経歴を一言で〉。ものを削り、意味の残る形だけを残す仕事の仕方を大事にしています。</p>
+  <p>〈確認: 転職で実現したいこと・志望動機の核〉</p>
+</section>
+
+<section class="works">
+  <h2 class="section-title">作品</h2>
+
+  <div class="work">
+    <div class="thumb">〈作品1 ビジュアル〉</div>
+    <div class="tag">〈カテゴリ〉</div>
+    <h3>〈作品タイトル1〉</h3>
+    <p>〈概要: 誰のための、どんな課題を解いたものか〉</p>
+    <div class="block-label">判断の過程</div>
+    <p>〈確認: この作品で最も重要だった設計判断とその理由〉</p>
+  </div>
+
+  <div class="work">
+    <div class="thumb">〈作品2 ビジュアル〉</div>
+    <div class="tag">〈カテゴリ〉</div>
+    <h3>〈作品タイトル2〉</h3>
+    <p>〈概要: 誰のための、どんな課題を解いたものか〉</p>
+    <div class="block-label">判断の過程</div>
+    <p>〈確認: この作品で最も重要だった設計判断とその理由〉</p>
+  </div>
+
+  <div class="work">
+    <div class="thumb">〈作品3 ビジュアル〉</div>
+    <div class="tag">〈カテゴリ〉</div>
+    <h3>〈作品タイトル3〉</h3>
+    <p>〈概要: 誰のための、どんな課題を解いたものか〉</p>
+    <div class="block-label">判断の過程</div>
+    <p>〈確認: この作品で最も重要だった設計判断とその理由〉</p>
+  </div>
+
+  <p class="works-note">数を並べるより、一つずつの制作物で仕事の質を語ることを優先しています。</p>
+</section>
+
+<section class="skills-section">
+  <h2 class="section-title">スキル</h2>
+  <div class="skills">
+    <span>〈デザインツール〉</span>
+    <span>〈手法・領域〉</span>
+    <span>〈実装スキル〉</span>
+    <span>〈その他〉</span>
+  </div>
+</section>
+
+<section class="contact">
+  <h2 class="section-title">連絡先</h2>
+  <p>お仕事のご相談、選考に関するご連絡はこちらまでお願いします。</p>
+  <a class="email" href="mailto:〈連絡先メールアドレス〉">〈連絡先メールアドレス〉</a>
+</section>
+
+<footer>© 〈年〉 〈氏名〉</footer>
+
+</body>
+</html>

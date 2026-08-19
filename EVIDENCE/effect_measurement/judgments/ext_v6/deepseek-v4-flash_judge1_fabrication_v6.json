@@ -1,0 +1,140 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "プロダクト／UIデザイナー",
+     "why_not_derivable": "依頼文は「転職用のポートフォリオサイト」とだけ指定し、手渡しJSONは読み手の職種軸を「デザイナー採用向け」と決めているが、サイトの主体（作成者）が具体的に「プロダクト／UIデザイナー」であることは、依頼文・手渡しJSONのいずれからも導出できない。デザイナー一般の枠を超えた専門的な肩書きであり、成果物が新たに主張している具体的事実である。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "簡潔さは、削り切る意志である",
+     "why_not_derivable": "依頼文は「シンプルだけど印象に残る感じ」とあるのみで、本人の信条や哲学としての具体的な言葉は一切指定されておらず、手渡しJSONのトーンサンプルにも該当表現はない。"
+    },
+    {
+     "fact": "要らないものを見極める仕事をしてきました",
+     "why_not_derivable": "依頼文・JSONのいずれにも本人の職務内容や仕事の姿勢に関する具体的事実は記載されておらず、この主張を導出できない。"
+    },
+    {
+     "fact": "装飾を足すより、要素を削って輪郭を立たせることに関心があります",
+     "why_not_derivable": "依頼文は「シンプルだけど印象に残る」と抽象的な方向性を示すのみで、本人の関心や設計思想としての具体的な記述はなく、JSONの決定事項からも直接導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ }
+}

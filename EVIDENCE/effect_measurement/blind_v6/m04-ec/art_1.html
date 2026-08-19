@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈商品名〉のご案内</title>
+<style>
+  /*
+    type scale (base 16px, ratio 1.333)
+    display: 42px / lead: 19px / body: 16px / small: 13px
+    GYAKUMON-CHOICE: 文体・トーン = フォーマル（角=sharp, 密度=normal を採用）
+    GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感（配色=温かい生成り×墨×金土 を採用）
+  */
+  :root{
+    --bg:#f4f1ea;
+    --ink:#3a3226;
+    --accent:#8c6a3f;
+    --step-display: 2.625rem;
+    --step-lead: 1.1875rem;
+    --step-body: 1rem;
+    --step-small: 0.8125rem;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  }
+  .sheet{
+    width:720px;
+    max-width:92vw;
+    margin:64px auto;
+    padding:64px 56px;
+    background:var(--bg);
+  }
+  h1, h2{
+    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  }
+  h1{
+    font-size: var(--step-display);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+    margin: 0 0 40px;
+    color: var(--ink);
+  }
+  .lead{
+    font-size: var(--step-lead);
+    line-height: 2.1;
+    margin: 0 0 56px;
+    color: var(--ink);
+  }
+  section{
+    margin: 0 0 56px;
+  }
+  h2{
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(140,106,63,0.35);
+  }
+  p{
+    font-size: var(--step-body);
+    line-height: 2;
+    margin: 0 0 16px;
+  }
+  .spec{
+    font-size: var(--step-small);
+    line-height: 1.9;
+    color: var(--ink);
+    opacity: 0.85;
+  }
+  .spec dl{
+    margin:0;
+    display:grid;
+    grid-template-columns: 128px 1fr;
+    row-gap: 12px;
+  }
+  .spec dt{ color:var(--accent); }
+  .spec dd{ margin:0; }
+  .closing{
+    font-size: var(--step-lead);
+    line-height: 2;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(140,106,63,0.35);
+    text-align: right;
+  }
+  .ph{
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+  <!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+  <h1>はじめての方へ、〈商品名〉。<br>手にした瞬間から、変わります。</h1>
+
+  <p class="lead">
+    箱を開け、はじめて〈商品名〉に触れていただくその一瞬のために、
+    わたしたちはこの商品をつくりました。日々の中で見過ごしてきた〈確認: 想定する悩み・不便を1つ〉が、
+    静かにほどけていく感覚を、どうぞご体験ください。
+  </p>
+
+  <section>
+    <h2>特徴</h2>
+    <p>
+      〈確認: 素材・製法・使い心地など、体験の核になる具体的な特徴を1つ〉。
+      使うたびに、その違いをきっと実感していただけるはずです。
+      派手さではなく、日々に寄り添う確かさを大切にしました。
+    </p>
+    <p>
+      〈確認: もう一つ、使用シーンや変化として語れる具体的な特徴〉。
+      はじめてお使いになる方にも安心してお選びいただけるよう、細部まで見直しております。
+    </p>
+  </section>
+
+  <section class="spec">
+    <h2>仕様・お取り扱い</h2>
+    <dl>
+      <dt>サイズ</dt><dd class="ph">〈サイズ〉</dd>
+      <dt>素材</dt><dd class="ph">〈素材〉</dd>
+      <dt>価格</dt><dd class="ph">〈価格〉（税込）</dd>
+      <dt>ご注意</dt><dd class="ph">〈お取り扱い上の注意〉</dd>
+    </dl>
+  </section>
+
+  <p class="closing">
+    〈商品名〉との出会いが、<br>
+    皆様の毎日にささやかな高揚をもたらしますように。
+  </p>
+
+</div>
+</body>
+</html>

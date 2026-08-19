@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用ページ | 会社紹介</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験
+  GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心
+  GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意
+  GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文
+  GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階
+  type scale (base 17px, ratio ~1.25):
+  --fs-body:17px --fs-lead:21px --fs-h3:24px --fs-h2:32px --fs-h1:44px
+*/
+:root{
+  --bg:#1c1a17;
+  --sub:#4a3a2b;
+  --accent:#c98a3e;
+  --ink:#f4efe6;
+  --fs-body:17px;
+  --fs-lead:21px;
+  --fs-h3:24px;
+  --fs-h2:32px;
+  --fs-h1:44px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+}
+h1,h2,h3{
+  /* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic","Rounded Mplus 1c",sans-serif;
+  font-weight:700;
+  color:var(--ink);
+  margin:0;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 32px;}
+section{padding:96px 0;}
+section + section{border-top:1px solid rgba(244,239,230,0.08);}
+
+/* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+.hero{padding-top:120px;}
+.hero .eyebrow{
+  display:inline-block;
+  font-size:14px;
+  letter-spacing:0.12em;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  border-radius:999px;
+  padding:6px 16px;
+  margin-bottom:24px;
+}
+.hero h1{
+  font-size:var(--fs-h1);
+  letter-spacing:0.02em;
+  line-height:1.5;
+}
+.hero p.lead{
+  font-size:var(--fs-lead);
+  color:rgba(244,239,230,0.8);
+  margin-top:24px;
+  max-width:26em;
+}
+
+/* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+h2{font-size:var(--fs-h2);letter-spacing:0.03em;margin-bottom:40px;}
+h2 span{display:block;font-size:14px;color:var(--accent);letter-spacing:0.2em;margin-bottom:8px;font-weight:500;}
+.story p{max-width:32em;margin:0 0 24px;color:rgba(244,239,230,0.9);}
+.story p:first-of-type::first-letter{
+  font-size:1.4em;color:var(--accent);
+}
+
+/* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+.voices{display:flex;flex-direction:column;gap:40px;}
+.voice{
+  border-left:3px solid var(--accent);
+  padding-left:24px;
+}
+.voice p.quote{font-size:var(--fs-h3);line-height:1.7;margin:0 0 12px;color:var(--ink);}
+.voice p.meta{font-size:14px;color:rgba(244,239,230,0.6);margin:0;}
+
+/* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+.values{display:flex;flex-direction:column;gap:32px;}
+.value{
+  background:rgba(201,138,62,0.08);
+  border-radius:20px;
+  padding:32px;
+}
+.value h3{font-size:var(--fs-h3);color:var(--accent);margin-bottom:12px;}
+.value p{margin:0;color:rgba(244,239,230,0.85);}
+
+.cta{text-align:left;}
+.cta p{color:rgba(244,239,230,0.85);max-width:30em;}
+.cta a.btn{
+  display:inline-block;
+  margin-top:16px;
+  background:var(--accent);
+  color:#1c1a17;
+  font-weight:700;
+  padding:16px 32px;
+  border-radius:999px;
+  text-decoration:none;
+}
+.cta .note{font-size:14px;color:rgba(244,239,230,0.5);margin-top:24px;}
+footer{padding:48px 0;text-align:center;font-size:13px;color:rgba(244,239,230,0.4);}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">はじめまして、採用担当です</span>
+    <h1>隣にいる人の顔が、<br>ちゃんと見える会社です。</h1>
+    <p class="lead">応募する前に、まずは私たちの日常を少しだけ覗いてみませんか。〈会社名〉で働くとはどういうことか、飾らずにお話しします。</p>
+  </div>
+</section>
+
+<section class="story">
+  <div class="wrap">
+    <h2><span>会社の紹介</span>ここまでの道のり</h2>
+    <p>〈会社名〉は〈事業内容〉をしています。最初から順風満帆だったわけではなく、〈確認: 創業や立ち上げ期にあった苦労・失敗談を1つ〉というようなこともありました。それでも続けてこられたのは、そのときどきで隣にいたメンバーのおかげだったと思います。</p>
+    <p>今は〈人数規模の目安、未確定なら〈規模感〉〉ほどのチームになりましたが、大きくなっても変えたくないと思っていることがあります。それは、一人ひとりの顔と名前がちゃんと一致する距離感で仕事をすること。数字や実績の前に、まず「誰と働くか」を大事にしたいという気持ちが、今のこの採用ページを作った理由です。</p>
+  </div>
+</section>
+
+<section class="voices">
+  <div class="wrap">
+    <h2><span>働く人の声</span>先輩たちの本音</h2>
+    <div class="voices">
+      <div class="voice">
+        <p class="quote">「〈確認: 入社の決め手になった出来事や一言を教えてください〉」</p>
+        <p class="meta">〈職種〉・入社〈年数〉年目</p>
+      </div>
+      <div class="voice">
+        <p class="quote">「〈確認: 未経験から始めて大変だった時期に、誰にどう助けられたかを教えてください〉」</p>
+        <p class="meta">〈職種〉・入社〈年数〉年目</p>
+      </div>
+      <div class="voice">
+        <p class="quote">「〈確認: この会社らしいと思う日常の一コマを教えてください〉」</p>
+        <p class="meta">〈職種〉・入社〈年数〉年目</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="wrap">
+    <h2><span>大事にしていること</span>私たちが手放さないもの</h2>
+    <div class="values">
+      <div class="value">
+        <h3>困ったときに、隣に人がいる</h3>
+        <p>一人で抱え込ませないことを、仕組みよりも先に習慣として大事にしています。〈確認: 新人をチームで支える具体的な取り組みがあれば1つ〉</p>
+      </div>
+      <div class="value">
+        <h3>経験より、まず気持ち</h3>
+        <p>未経験であること自体は、ここでは弱点になりません。分からないと言えることの方が、ずっと価値があると考えています。</p>
+      </div>
+      <div class="value">
+        <h3>成果の前に、まず信頼</h3>
+        <p>チームの誰かがうまくいっていないとき、それを自分ごととして気にかけられる人でありたい。数字はその先についてきます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2><span>応募への導線</span>まずは知ることから</h2>
+    <p>今すぐの応募でなくても大丈夫です。もう少し私たちのことを知りたいと思ったら、下のボタンから募集内容をのぞいてみてください。〈募集職種〉について、担当者が直接お話しすることもできます。</p>
+    <a class="btn" href="#">募集職種を見てみる</a>
+    <p class="note">〈お問い合わせ先・応募フォームURL〉</p>
+  </div>
+</section>
+
+<footer>&copy; 〈会社名〉</footer>
+
+</body>
+</html>

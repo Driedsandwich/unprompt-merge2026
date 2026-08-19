@@ -1,0 +1,94 @@
+{
+ "format": "unprompt.fab_rules_compare.v1",
+ "note": "excl_m09 = 旧→新規則の機械近似 (追補7開示)",
+ "v5": {
+  "judge_prompt": "旧判定文",
+  "sonnet": {
+   "all": {
+    "compiled": 4,
+    "raw": 4
+   },
+   "excl_m09": {
+    "compiled": 0,
+    "raw": 0
+   }
+  },
+  "external": {
+   "deepseek-v4-flash": {
+    "all": {
+     "compiled": 8,
+     "raw": 34
+    },
+    "excl_m09": {
+     "compiled": 7,
+     "raw": 12
+    }
+   },
+   "glm-5.2": {
+    "all": {
+     "compiled": 9,
+     "raw": 30
+    },
+    "excl_m09": {
+     "compiled": 9,
+     "raw": 7
+    }
+   },
+   "kimi-k3": {
+    "all": {
+     "compiled": 15,
+     "raw": 8
+    },
+    "excl_m09": {
+     "compiled": 14,
+     "raw": 4
+    }
+   }
+  }
+ },
+ "v6": {
+  "judge_prompt": "新判定文 (自己定義仕様の除外)",
+  "sonnet": {
+   "all": {
+    "compiled": 2,
+    "raw": 0
+   },
+   "excl_m09": {
+    "compiled": 2,
+    "raw": 0
+   }
+  },
+  "external": {
+   "kimi-k3": {
+    "all": {
+     "compiled": 2,
+     "raw": 6
+    },
+    "excl_m09": {
+     "compiled": 2,
+     "raw": 4
+    }
+   },
+   "glm-5.2": {
+    "all": {
+     "compiled": 2,
+     "raw": 2
+    },
+    "excl_m09": {
+     "compiled": 2,
+     "raw": 2
+    }
+   },
+   "deepseek-v4-flash": {
+    "all": {
+     "compiled": 10,
+     "raw": 5
+    },
+    "excl_m09": {
+     "compiled": 10,
+     "raw": 5
+    }
+   }
+  }
+ }
+}

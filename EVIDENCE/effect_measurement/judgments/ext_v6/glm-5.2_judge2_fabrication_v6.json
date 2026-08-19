@@ -1,0 +1,137 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "〈候補者名〉さんの公開されているコードや技術的なアウトプットを拝見し、ご連絡させていただきました",
+     "why_not_derivable": "候補者が公開コードや技術的アウトプットを持っていること、および候補者の発見経路がそれであることは、依頼文・JSONのいずれにも記載がない"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "解消する一本です",
+     "why_not_derivable": "商品が「一本」と数える物理的な形態（筆記具やボトル等）であることは依頼文や参考資料から導出できない"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "<div class=\"role\">プロダクト／UIデザイナー</div>",
+     "why_not_derivable": "JSONでは「デザイナー採用向け」という職種軸が示されているが、人物の専門領域が「プロダクト／UIデザイナー」であるという事実は導出できない。またmissing_materialsに「経歴書・スキルセット」が含まれており、具体的内容は未提供である。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ }
+}
