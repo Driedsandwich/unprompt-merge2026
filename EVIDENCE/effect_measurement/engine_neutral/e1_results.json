@@ -1,0 +1,2201 @@
+{
+ "explode": {
+  "deepseek-v4-flash:m01-lp": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 2,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "「かっこいい」の方向性",
+      "kind": "anchored",
+      "anchor_words": [
+       "かっこいい"
+      ],
+      "options": [
+       {
+        "label": "クール/近未来的"
+       },
+       {
+        "label": "重厚/高級感"
+       }
+      ],
+      "default_if_unresolved": "クール/近未来的"
+     },
+     {
+      "id": "b1",
+      "question_point": "「信頼感」の出し方",
+      "kind": "anchored",
+      "anchor_words": [
+       "信頼感"
+      ],
+      "options": [
+       {
+        "label": "実績/データ重視"
+       },
+       {
+        "label": "安心感/親しみやすさ"
+       }
+      ],
+      "default_if_unresolved": "実績/データ重視"
+     },
+     {
+      "id": "b2",
+      "question_point": "「うちのサービス」の印象優先度",
+      "kind": "anchored",
+      "anchor_words": [
+       "うちのサービス"
+      ],
+      "options": [
+       {
+        "label": "革新性を前面"
+       },
+       {
+        "label": "安定性を前面"
+       }
+      ],
+      "default_if_unresolved": "革新性を前面"
+     },
+     {
+      "id": "b3",
+      "question_point": "サイトの目的と導線",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "資料請求/問合せ"
+       },
+       {
+        "label": "サービス申込/購入"
+       },
+       {
+        "label": "ブランド認知/興味喚起"
+       }
+      ],
+      "default_if_unresolved": "資料請求/問合せ",
+      "origin_rationale": "LPは必ず何かの行動を促すが、その目的が明記されていない"
+     },
+     {
+      "id": "b4",
+      "question_point": "ファーストビューの構成",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "動画/アニメーションメイン"
+       },
+       {
+        "label": "静止画/タイポグラフィメイン"
+       }
+      ],
+      "default_if_unresolved": "静止画/タイポグラフィメイン",
+      "origin_rationale": "LPの冒頭は必ず決まるが、映像・写真・テキストの選択肢が未指定"
+     }
+    ],
+    "residual_ambiguity_assessment": "方向性は特定されたが、サービスの実体と読者が未確定で高曖昧",
+    "missing_materials": [
+     "サービス名",
+     "サービスジャンル・業種",
+     "ターゲット読者",
+     "競合との差別化ポイント"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "deepseek-v4-flash:m02-event": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "勉強会の目的と訴求軸",
+      "kind": "anchored",
+      "anchor_words": [
+       "社内勉強会"
+      ],
+      "options": [
+       {
+        "label": "スキル向上"
+       },
+       {
+        "label": "社内交流・ゆるさ"
+       }
+      ],
+      "default_if_unresolved": "スキル向上"
+     },
+     {
+      "id": "b1",
+      "question_point": "ターゲット読者の範囲",
+      "kind": "anchored",
+      "anchor_words": [
+       "社内勉強会"
+      ],
+      "options": [
+       {
+        "label": "参加前提の社員"
+       },
+       {
+        "label": "未参加層への勧誘"
+       }
+      ],
+      "default_if_unresolved": "参加前提の社員"
+     },
+     {
+      "id": "b2",
+      "question_point": "告知ページのトーン",
+      "kind": "anchored",
+      "anchor_words": [
+       "いい感じ"
+      ],
+      "options": [
+       {
+        "label": "親しみやすい"
+       },
+       {
+        "label": "プロフェッショナル"
+       }
+      ],
+      "default_if_unresolved": "親しみやすい"
+     },
+     {
+      "id": "b3",
+      "question_point": "強調する参加メリット",
+      "kind": "anchored",
+      "anchor_words": [
+       "いい感じ"
+      ],
+      "options": [
+       {
+        "label": "知識が身につく"
+       },
+       {
+        "label": "仲間ができる"
+       },
+       {
+        "label": "気軽に参加できる"
+       }
+      ],
+      "default_if_unresolved": "知識が身につく"
+     },
+     {
+      "id": "b4",
+      "question_point": "季節感の反映有無",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "秋らしさを入れる"
+       },
+       {
+        "label": "季節感は無し"
+       }
+      ],
+      "default_if_unresolved": "秋らしさを入れる",
+      "origin_rationale": "秋の開催であるため、ビジュアルや文言に季節感を入れるか否かが必ず決まる"
+     }
+    ],
+    "residual_ambiguity_assessment": "目的・読者・トーン・訴求軸が未指定で、本質的な判断点が4件残る。",
+    "missing_materials": [
+     "開催日時",
+     "開催場所",
+     "テーマ・内容",
+     "対象部署・役職"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "deepseek-v4-flash:m03-scout": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "刺さる定義の方向性",
+      "kind": "anchored",
+      "anchor_words": [
+       "刺さる"
+      ],
+      "options": [
+       {
+        "label": "成長機会訴求"
+       },
+       {
+        "label": "安定・待遇訴求"
+       }
+      ],
+      "default_if_unresolved": "成長機会訴求"
+     },
+     {
+      "id": "b1",
+      "question_point": "対象の経験年数",
+      "kind": "anchored",
+      "anchor_words": [
+       "若手エンジニア"
+      ],
+      "options": [
+       {
+        "label": "新卒〜2年目"
+       },
+       {
+        "label": "3〜5年目"
+       }
+      ],
+      "default_if_unresolved": "新卒〜2年目"
+     },
+     {
+      "id": "b2",
+      "question_point": "スカウトのトーン",
+      "kind": "anchored",
+      "anchor_words": [
+       "スカウトメール"
+      ],
+      "options": [
+       {
+        "label": "フレンドリー・カジュアル"
+       },
+       {
+        "label": "フォーマル・信頼感"
+       }
+      ],
+      "default_if_unresolved": "フレンドリー・カジュアル"
+     },
+     {
+      "id": "b3",
+      "question_point": "本文の長さと構成",
+      "kind": "anchored",
+      "anchor_words": [
+       "スカウトメール"
+      ],
+      "options": [
+       {
+        "label": "短め・即アクション型"
+       },
+       {
+        "label": "詳しい・導入型"
+       }
+      ],
+      "default_if_unresolved": "短め・即アクション型"
+     },
+     {
+      "id": "b4",
+      "question_point": "送り手の立場",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "現役エンジニア"
+       },
+       {
+        "label": "人事・採用担当"
+       }
+      ],
+      "default_if_unresolved": "現役エンジニア",
+      "origin_rationale": "誰から来たかで信頼性と響き方が変わるため"
+     }
+    ],
+    "residual_ambiguity_assessment": "目的語・読者像・トーンが未指定で、成果物の方向性を大きく左右する分岐が残る",
+    "missing_materials": [
+     "企業名",
+     "職種・技術スタック",
+     "具体的な待遇・給与レンジ",
+     "求める人物像の詳細"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "deepseek-v4-flash:m04-ec": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "説明文の目的と訴求軸",
+      "kind": "anchored",
+      "anchor_words": [
+       "魅力的にお願い"
+      ],
+      "options": [
+       {
+        "label": "感情訴求型"
+       },
+       {
+        "label": "機能訴求型"
+       }
+      ],
+      "default_if_unresolved": "感情訴求型"
+     },
+     {
+      "id": "b1",
+      "question_point": "想定する読者（ターゲット）",
+      "kind": "anchored",
+      "anchor_words": [
+       "新商品の説明文"
+      ],
+      "options": [
+       {
+        "label": "一般消費者向け"
+       },
+       {
+        "label": "業界・専門家向け"
+       }
+      ],
+      "default_if_unresolved": "一般消費者向け"
+     },
+     {
+      "id": "b2",
+      "question_point": "文章全体のトーン",
+      "kind": "anchored",
+      "anchor_words": [
+       "魅力的にお願い"
+      ],
+      "options": [
+       {
+        "label": "親しみやすいカジュアル"
+       },
+       {
+        "label": "信頼感のあるフォーマル"
+       },
+       {
+        "label": "刺激的で斬新"
+       }
+      ],
+      "default_if_unresolved": "親しみやすいカジュアル"
+     },
+     {
+      "id": "b3",
+      "question_point": "説明文の構成と長さ",
+      "kind": "anchored",
+      "anchor_words": [
+       "説明文"
+      ],
+      "options": [
+       {
+        "label": "簡潔なキャッチコピー"
+       },
+       {
+        "label": "段落構成の詳細文"
+       }
+      ],
+      "default_if_unresolved": "段落構成の詳細文"
+     },
+     {
+      "id": "b4",
+      "question_point": "説明文が置かれる媒体・文脈",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "Web商品ページ"
+       },
+       {
+        "label": "SNS投稿"
+       },
+       {
+        "label": "チラシ・カタログ"
+       }
+      ],
+      "default_if_unresolved": "Web商品ページ",
+      "origin_rationale": "説明文の長さやスタイルは掲載媒体で必然的に変わるため"
+     }
+    ],
+    "residual_ambiguity_assessment": "目的・読者・トーン・構成が未指定で高い曖昧性が残る",
+    "missing_materials": [
+     "商品名",
+     "商品カテゴリ",
+     "商品の具体的な特徴やベネフィット",
+     "ターゲット顧客像"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "deepseek-v4-flash:m05-portfolio": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 4,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "ポートフォリオの目的軸",
+      "kind": "anchored",
+      "anchor_words": [
+       "転職用のポートフォリオサイト"
+      ],
+      "options": [
+       {
+        "label": "実績アピール型"
+       },
+       {
+        "label": "人間性重視型"
+       }
+      ],
+      "default_if_unresolved": "実績アピール型"
+     },
+     {
+      "id": "b1",
+      "question_point": "印象の種類",
+      "kind": "anchored",
+      "anchor_words": [
+       "印象に残る"
+      ],
+      "options": [
+       {
+        "label": "クリエイティブ印象"
+       },
+       {
+        "label": "信頼感印象"
+       }
+      ],
+      "default_if_unresolved": "クリエイティブ印象"
+     },
+     {
+      "id": "b2",
+      "question_point": "シンプルの解釈",
+      "kind": "anchored",
+      "anchor_words": [
+       "シンプル"
+      ],
+      "options": [
+       {
+        "label": "ミニマル・白基調"
+       },
+       {
+        "label": "余白重視・装飾削減"
+       }
+      ],
+      "default_if_unresolved": "ミニマル・白基調"
+     },
+     {
+      "id": "b3",
+      "question_point": "主な閲覧環境",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "スマホファースト"
+       },
+       {
+        "label": "PCファースト"
+       }
+      ],
+      "default_if_unresolved": "PCファースト",
+      "origin_rationale": "転職用ポートフォリオは採用担当者がスマホ・PCどちらで見るか想定が必要"
+     }
+    ],
+    "residual_ambiguity_assessment": "目的・トーン・構成の軸が未指定で複数解釈可能。素材情報が不足。",
+    "missing_materials": [
+     "職種・スキル分野",
+     "掲載する実績サンプル数",
+     "希望する連絡先形式"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+   }
+  },
+  "deepseek-v4-flash:m06-news": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 4,
+   "beyond_text": 0,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "読者の内訳と距離感",
+      "kind": "anchored",
+      "anchor_words": [
+       "社内報"
+      ],
+      "options": [
+       {
+        "label": "全社員向け"
+       },
+       {
+        "label": "管理職向け"
+       },
+       {
+        "label": "新入社員向け"
+       }
+      ],
+      "default_if_unresolved": "全社員向け"
+     },
+     {
+      "id": "b1",
+      "question_point": "巻頭あいさつの目的",
+      "kind": "anchored",
+      "anchor_words": [
+       "巻頭あいさつ"
+      ],
+      "options": [
+       {
+        "label": "今月の成果報告"
+       },
+       {
+        "label": "理念・方向性の浸透"
+       },
+       {
+        "label": "社員へのねぎらい・鼓舞"
+       }
+      ],
+      "default_if_unresolved": "社員へのねぎらい・鼓舞"
+     },
+     {
+      "id": "b2",
+      "question_point": "トーンの緩さの程度",
+      "kind": "anchored",
+      "anchor_words": [
+       "堅すぎない感じ"
+      ],
+      "options": [
+       {
+        "label": "カジュアル雑談調"
+       },
+       {
+        "label": "軽めのビジネス調"
+       },
+       {
+        "label": "砕けすぎない親しみ調"
+       }
+      ],
+      "default_if_unresolved": "軽めのビジネス調"
+     },
+     {
+      "id": "b3",
+      "question_point": "構成と締めの要素",
+      "kind": "anchored",
+      "anchor_words": [
+       "巻頭あいさつ"
+      ],
+      "options": [
+       {
+        "label": "近況→展望→決意"
+       },
+       {
+        "label": "エピソード→教訓→感謝"
+       },
+       {
+        "label": "データ→分析→激励"
+       }
+      ],
+      "default_if_unresolved": "エピソード→教訓→感謝"
+     }
+    ],
+    "residual_ambiguity_assessment": "読者・目的・トーン・構成の複数軸で判断点が残る中程度の曖昧さ。",
+    "missing_materials": [
+     "会社名",
+     "社員数",
+     "発行月",
+     "直近のトピック"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+   }
+  },
+  "deepseek-v4-flash:m07-recruit": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "読者の想定スキルレベル",
+      "kind": "anchored",
+      "anchor_words": [
+       "採用ページ"
+      ],
+      "options": [
+       {
+        "label": "新卒向け"
+       },
+       {
+        "label": "中途向け"
+       },
+       {
+        "label": "両方混在"
+       }
+      ],
+      "default_if_unresolved": "新卒向け"
+     },
+     {
+      "id": "b1",
+      "question_point": "熱意の伝え方の軸",
+      "kind": "anchored",
+      "anchor_words": [
+       "熱意が伝わるように"
+      ],
+      "options": [
+       {
+        "label": "ビジョン語り"
+       },
+       {
+        "label": "社員の声・実体験"
+       },
+       {
+        "label": "数字や実績で示す"
+       }
+      ],
+      "default_if_unresolved": "ビジョン語り"
+     },
+     {
+      "id": "b2",
+      "question_point": "飾らなさの度合い",
+      "kind": "anchored",
+      "anchor_words": [
+       "飾らないけど"
+      ],
+      "options": [
+       {
+        "label": "カジュアル口語"
+       },
+       {
+        "label": "堅苦しくないが丁寧"
+       },
+       {
+        "label": "ほぼフランク"
+       }
+      ],
+      "default_if_unresolved": "カジュアル口語"
+     },
+     {
+      "id": "b3",
+      "question_point": "構成の中心",
+      "kind": "anchored",
+      "anchor_words": [
+       "会社紹介"
+      ],
+      "options": [
+       {
+        "label": "沿革・事業説明"
+       },
+       {
+        "label": "カルチャー・価値観"
+       },
+       {
+        "label": "募集背景・成長ストーリー"
+       }
+      ],
+      "default_if_unresolved": "カルチャー・価値観"
+     },
+     {
+      "id": "b4",
+      "question_point": "ページの雰囲気（季節やイベント感）",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "通年採用の定常感"
+       },
+       {
+        "label": "新卒一括の季節感"
+       }
+      ],
+      "default_if_unresolved": "通年採用の定常感",
+      "origin_rationale": "採用ページは掲載時期により読者の受け止めが変わるため"
+     }
+    ],
+    "residual_ambiguity_assessment": "読者・目的・具体的な熱意の表現方法が未指定で、複数の判断点が残る。",
+    "missing_materials": [
+     "採用ターゲット職種",
+     "会社名",
+     "業界",
+     "伝えるべき具体的なエピソードや実績"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "deepseek-v4-flash:m08-apology": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "お詫びの重心: 原因説明か影響回避か",
+      "kind": "anchored",
+      "anchor_words": [
+       "誠実だけど重すぎない"
+      ],
+      "options": [
+       {
+        "label": "原因詳述型"
+       },
+       {
+        "label": "影響最小化型"
+       }
+      ],
+      "default_if_unresolved": "影響最小化型"
+     },
+     {
+      "id": "b1",
+      "question_point": "読者との距離感",
+      "kind": "anchored",
+      "anchor_words": [
+       "お詫びメール",
+       "誠実だけど重すぎない"
+      ],
+      "options": [
+       {
+        "label": "距離近め・共感"
+       },
+       {
+        "label": "距離適度・丁寧"
+       }
+      ],
+      "default_if_unresolved": "距離適度・丁寧"
+     },
+     {
+      "id": "b2",
+      "question_point": "今後の保証の出し方",
+      "kind": "anchored",
+      "anchor_words": [
+       "発送遅延のお詫び"
+      ],
+      "options": [
+       {
+        "label": "具体策明示"
+       },
+       {
+        "label": "再発防止宣言"
+       }
+      ],
+      "default_if_unresolved": "具体策明示"
+     },
+     {
+      "id": "b3",
+      "question_point": "締めくくりの方向性",
+      "kind": "anchored",
+      "anchor_words": [
+       "お詫びメール",
+       "重すぎない"
+      ],
+      "options": [
+       {
+        "label": "感謝で締め"
+       },
+       {
+        "label": "謝罪で締め"
+       }
+      ],
+      "default_if_unresolved": "感謝で締め"
+     },
+     {
+      "id": "b4",
+      "question_point": "発送遅延の時期の空気感",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "繁忙期の遅延"
+       },
+       {
+        "label": "通常期の遅延"
+       }
+      ],
+      "default_if_unresolved": "通常期の遅延",
+      "origin_rationale": "時期によってトーン調整が必須だが原文に指定なし"
+     }
+    ],
+    "residual_ambiguity_assessment": "トーンの軸は概ね抽出したが、文字量・件名の有無は未特定",
+    "missing_materials": [
+     "発注者名",
+     "顧客名",
+     "遅延日数",
+     "対象商品",
+     "発送予定日"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "deepseek-v4-flash:m09-spec": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 4,
+   "beyond_text": 0,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "読者の技術レベル",
+      "kind": "anchored",
+      "anchor_words": [
+       "社内の経費精算をラクにする小さなツールの仕様メモ"
+      ],
+      "options": [
+       {
+        "label": "非エンジニア向け"
+       },
+       {
+        "label": "エンジニア向け"
+       }
+      ],
+      "default_if_unresolved": "非エンジニア向け"
+     },
+     {
+      "id": "b1",
+      "question_point": "ツールの実現形態",
+      "kind": "anchored",
+      "anchor_words": [
+       "小さなツール"
+      ],
+      "options": [
+       {
+        "label": "スプレッドシート連携"
+       },
+       {
+        "label": "スタンドアロンアプリ"
+       },
+       {
+        "label": "スクリプト・マクロ"
+       }
+      ],
+      "default_if_unresolved": "スプレッドシート連携"
+     },
+     {
+      "id": "b2",
+      "question_point": "仕様メモの粒度",
+      "kind": "anchored",
+      "anchor_words": [
+       "仕様メモを書いて"
+      ],
+      "options": [
+       {
+        "label": "骨子のみ箇条書き"
+       },
+       {
+        "label": "詳細な機能一覧"
+       }
+      ],
+      "default_if_unresolved": "骨子のみ箇条書き"
+     },
+     {
+      "id": "b3",
+      "question_point": "経費精算の主要課題",
+      "kind": "anchored",
+      "anchor_words": [
+       "経費精算をラクにする"
+      ],
+      "options": [
+       {
+        "label": "入力の手間削減"
+       },
+       {
+        "label": "承認フローの簡略化"
+       },
+       {
+        "label": "領収書管理の効率化"
+       }
+      ],
+      "default_if_unresolved": "入力の手間削減"
+     }
+    ],
+    "residual_ambiguity_assessment": "読者・実現形態・粒度・課題軸が未確定で、成果物が大きく変わる4件の分岐あり",
+    "missing_materials": [
+     "社内の規模（人数）",
+     "既存の経費精算フロー",
+     "予算や開発リソースの制約"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+   }
+  },
+  "deepseek-v4-flash:m10-invite": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 4,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "案内の届け先の雰囲気",
+      "kind": "anchored",
+      "anchor_words": [
+       "昔の仲間"
+      ],
+      "options": [
+       {
+        "label": "懐かしさ重視"
+       },
+       {
+        "label": "今の近況共有重視"
+       }
+      ],
+      "default_if_unresolved": "懐かしさ重視"
+     },
+     {
+      "id": "b1",
+      "question_point": "気軽に来たくなるトーン",
+      "kind": "anchored",
+      "anchor_words": [
+       "気軽に来たくなる"
+      ],
+      "options": [
+       {
+        "label": "カジュアル・軽快"
+       },
+       {
+        "label": "温かみ・くだけた"
+       },
+       {
+        "label": "ユーモア・遊び心"
+       }
+      ],
+      "default_if_unresolved": "カジュアル・軽快"
+     },
+     {
+      "id": "b2",
+      "question_point": "案内の主目的の明示度",
+      "kind": "anchored",
+      "anchor_words": [
+       "同窓会の案内"
+      ],
+      "options": [
+       {
+        "label": "詳細・段取り重視"
+       },
+       {
+        "label": "雰囲気・空気感重視"
+       }
+      ],
+      "default_if_unresolved": "雰囲気・空気感重視"
+     },
+     {
+      "id": "b3",
+      "question_point": "同窓会のフォーマル度",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "立食・カジュアル"
+       },
+       {
+        "label": "会食・やや改まった"
+       },
+       {
+        "label": "アウトドア"
+       }
+      ],
+      "default_if_unresolved": "立食・カジュアル",
+      "origin_rationale": "会の性格（立食・会食・BBQ等）で案内の書き方が本質的に変わるため。"
+     }
+    ],
+    "residual_ambiguity_assessment": "対象読者層・同窓会の規模感・連絡手段が未指定で中程度の曖昧さが残る。",
+    "missing_materials": [
+     "同窓会の日時",
+     "開催場所",
+     "対象となる学校名・学年"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+   }
+  },
+  "deepseek-v4-flash:m11-brand": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 4,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "読者の設定",
+      "kind": "anchored",
+      "anchor_words": [
+       "新しいコーヒー豆ブランドの世界観が伝わる紹介ページ"
+      ],
+      "options": [
+       {
+        "label": "コアファン向け"
+       },
+       {
+        "label": "ライト層向け"
+       }
+      ],
+      "default_if_unresolved": "コアファン向け"
+     },
+     {
+      "id": "b1",
+      "question_point": "伝える世界観の軸",
+      "kind": "anchored",
+      "anchor_words": [
+       "世界観が伝わる"
+      ],
+      "options": [
+       {
+        "label": "生産背景重視"
+       },
+       {
+        "label": "味わい体験重視"
+       }
+      ],
+      "default_if_unresolved": "生産背景重視"
+     },
+     {
+      "id": "b2",
+      "question_point": "トーンの方向性",
+      "kind": "anchored",
+      "anchor_words": [
+       "世界観が伝わる"
+      ],
+      "options": [
+       {
+        "label": "ストーリーテリング"
+       },
+       {
+        "label": "ミニマル・詩的"
+       }
+      ],
+      "default_if_unresolved": "ストーリーテリング"
+     },
+     {
+      "id": "b3",
+      "question_point": "ページのゴール",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "ブランド理解優先"
+       },
+       {
+        "label": "購入導線優先"
+       }
+      ],
+      "default_if_unresolved": "ブランド理解優先",
+      "origin_rationale": "紹介ページは必ず何らかのアクションを暗に期待するため"
+     }
+    ],
+    "residual_ambiguity_assessment": "読者・世界観軸・トーン・ゴールが未指定で、多くの判断点が残る",
+    "missing_materials": [
+     "ブランド名",
+     "コーヒー豆の産地・品種",
+     "ブランドの理念・ストーリー素材"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+   }
+  },
+  "deepseek-v4-flash:m12-faq": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 4,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "FAQの構成軸",
+      "kind": "anchored",
+      "anchor_words": [
+       "返品まわりのFAQページ"
+      ],
+      "options": [
+       {
+        "label": "よくある質問順"
+       },
+       {
+        "label": "手続きフロー順"
+       },
+       {
+        "label": "カテゴリ別"
+       }
+      ],
+      "default_if_unresolved": "よくある質問順"
+     },
+     {
+      "id": "b1",
+      "question_point": "安心感の訴求手段",
+      "kind": "anchored",
+      "anchor_words": [
+       "安心感のある感じ"
+      ],
+      "options": [
+       {
+        "label": "保証文言の強調"
+       },
+       {
+        "label": "サポート窓口の明示"
+       },
+       {
+        "label": "実際の対応実績"
+       }
+      ],
+      "default_if_unresolved": "サポート窓口の明示"
+     },
+     {
+      "id": "b2",
+      "question_point": "探しやすさの優先度",
+      "kind": "anchored",
+      "anchor_words": [
+       "探しやすく"
+      ],
+      "options": [
+       {
+        "label": "検索性重視"
+       },
+       {
+        "label": "視認性・一覧性重視"
+       }
+      ],
+      "default_if_unresolved": "検索性重視"
+     },
+     {
+      "id": "b3",
+      "question_point": "対象読者の想定",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "初めての利用者"
+       },
+       {
+        "label": "頻繁に利用するリピーター"
+       }
+      ],
+      "default_if_unresolved": "初めての利用者",
+      "origin_rationale": "FAQの粒度と用語は誰に向けて書くかで決まる"
+     }
+    ],
+    "residual_ambiguity_assessment": "トーン・構成軸・読者層が未指定で、3軸の判断点と1件の文外判断点を抽出。",
+    "missing_materials": [
+     "返品ポリシー本文",
+     "よくある返品質問のリスト",
+     "サポート連絡先"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+   }
+  },
+  "glm-5.2:m01-lp": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "ターゲット読者の想定",
+      "kind": "anchored",
+      "anchor_words": [
+       "うちのサービス用"
+      ],
+      "options": [
+       {
+        "label": "B2B意思決定者"
+       },
+       {
+        "label": "B2C一般消費者"
+       },
+       {
+        "label": "特定ニッチ層"
+       }
+      ],
+      "default_if_unresolved": "B2B意思決定者を想定"
+     },
+     {
+      "id": "b1",
+      "question_point": "「かっこいい」の方向性",
+      "kind": "anchored",
+      "anchor_words": [
+       "かっこいい"
+      ],
+      "options": [
+       {
+        "label": "近未来テック感"
+       },
+       {
+        "label": "洗練ミニマル"
+       },
+       {
+        "label": "大胆ビジュアル重視"
+       }
+      ],
+      "default_if_unresolved": "洗練ミニマル"
+     },
+     {
+      "id": "b2",
+      "question_point": "「信頼感」の根拠の見せ方",
+      "kind": "anchored",
+      "anchor_words": [
+       "信頼感もある"
+      ],
+      "options": [
+       {
+        "label": "実績・数値の提示"
+       },
+       {
+        "label": "セキュリティ・準拠強調"
+       },
+       {
+        "label": "お客様の声・事例"
+       }
+      ],
+      "default_if_unresolved": "実績・数値の提示"
+     },
+     {
+      "id": "b3",
+      "question_point": "LPの主目的(CTA)",
+      "kind": "anchored",
+      "anchor_words": [
+       "LPを作って"
+      ],
+      "options": [
+       {
+        "label": "資料請求・問合せ"
+       },
+       {
+        "label": "無料登録・トライアル"
+       },
+       {
+        "label": "認知向上・ブランディング"
+       }
+      ],
+      "default_if_unresolved": "資料請求・問合せ"
+     },
+     {
+      "id": "b4",
+      "question_point": "公開環境と前提デバイス",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "スマホ最優先"
+       },
+       {
+        "label": "PC最優先"
+       },
+       {
+        "label": "両方同等"
+       }
+      ],
+      "default_if_unresolved": "スマホ最優先",
+      "origin_rationale": "LPは必ず何らかの環境で公開され、モバイル前提かPC前提かで設計が本質的に分かれる。"
+     }
+    ],
+    "residual_ambiguity_assessment": "「かっこいい」「信頼感」が主観で対象読者と訴求軸が未定。LPの構成と説得戦略が分かれる。",
+    "missing_materials": [
+     "サービス名",
+     "サービスの概要・機能",
+     "ターゲット層",
+     "実績・定量データ",
+     "既存ブランドガイドライン"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "glm-5.2:m07-recruit": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 3,
+   "beyond_text": 0,
+   "rejected_branches": 1,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "想定読者の採用段階",
+      "kind": "anchored",
+      "anchor_words": [
+       "採用ページ"
+      ],
+      "options": [
+       {
+        "label": "初次訪問の候補者"
+       },
+       {
+        "label": "最終面接前の候補者"
+       },
+       {
+        "label": "内定後の入社検討者"
+       }
+      ],
+      "default_if_unresolved": "初めて会社を見る候補者"
+     },
+     {
+      "id": "b1",
+      "question_point": "熱意の対象軸",
+      "kind": "anchored",
+      "anchor_words": [
+       "熱意が伝わる"
+      ],
+      "options": [
+       {
+        "label": "事業への熱意"
+       },
+       {
+        "label": "採用への熱意"
+       },
+       {
+        "label": "社員成長への熱意"
+       }
+      ],
+      "default_if_unresolved": "事業とチーム両方への熱意"
+     },
+     {
+      "id": "b3",
+      "question_point": "紹介の主役",
+      "kind": "anchored",
+      "anchor_words": [
+       "会社紹介"
+      ],
+      "options": [
+       {
+        "label": "会社(事業・歴史)"
+       },
+       {
+        "label": "社員(人の声)"
+       },
+       {
+        "label": "社風・働き方"
+       }
+      ],
+      "default_if_unresolved": "会社と社員の双方を配置"
+     }
+    ],
+    "residual_ambiguity_assessment": "読者・熱意の方向・飾らないの程度・構成が未指定で成果物が本質的に分かれる。",
+    "missing_materials": [
+     "会社の実情報(事業内容・規模・理念)",
+     "差別化要素(他社との違い)"
+    ],
+    "rejected_branches": [
+     {
+      "index": 2,
+      "question_point": "",
+      "reasons": [
+       "question_point が空"
+      ]
+     }
+    ],
+    "branches_returned_by_model": 4
+   }
+  },
+  "glm-5.2:m12-faq": {
+   "final_pass": true,
+   "attempts": 2,
+   "first_attempt_pass": false,
+   "branches": 4,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [
+    "attempt1: 判断点0件(棄却 4 件)"
+   ],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "探しやすさの実現手段",
+      "kind": "anchored",
+      "anchor_words": [
+       "探しやすく"
+      ],
+      "options": [
+       {
+        "label": "カテゴリ分割型"
+       },
+       {
+        "label": "検索ボックス先頭型"
+       },
+       {
+        "label": "Q&A一覧展開型"
+       }
+      ],
+      "default_if_unresolved": "カテゴリ分割型を既定とする"
+     },
+     {
+      "id": "b1",
+      "question_point": "安心感の出し方の方向性",
+      "kind": "anchored",
+      "anchor_words": [
+       "安心感のある感じ"
+      ],
+      "options": [
+       {
+        "label": "トーンで安心(寄り添い)"
+       },
+       {
+        "label": "網羅性で安心(仕様明示)"
+       },
+       {
+        "label": "実績で安心(数字・保証)"
+       }
+      ],
+      "default_if_unresolved": "寄り添うトーンと丁寧な説明で安心感を出す"
+     },
+     {
+      "id": "b2",
+      "question_point": "想定読者の状況",
+      "kind": "anchored",
+      "anchor_words": [
+       "問い合わせが多い返品まわり"
+      ],
+      "options": [
+       {
+        "label": "返品を迷っている人"
+       },
+       {
+        "label": "返品手続き中の人"
+       },
+       {
+        "label": "返品トラブル中の人"
+       }
+      ],
+      "default_if_unresolved": "返品を検討中の一般ユーザーを想定"
+     },
+     {
+      "id": "b3",
+      "question_point": "ページの設置場所と導線",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "サイト内ヘルプとして"
+       },
+       {
+        "label": "返品画面に直接組込"
+       },
+       {
+        "label": "独立LPとして露出"
+       }
+      ],
+      "default_if_unresolved": "サイト内ヘルプセクションの一部として配置",
+      "origin_rationale": "FAQページをどこに置きどう誘導するかは制作上必ず決まる。"
+     }
+    ],
+    "residual_ambiguity_assessment": "探しやすさの構造と安心感のトーン、想定読者の段階が未指定で成果物が本質的に分かれる。",
+    "missing_materials": [
+     "既存FAQの質問と回答一覧",
+     "返品ポリシーの正式な規定",
+     "ブランドガイドライン・配色指定"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 4
+   }
+  },
+  "kimi-k3:m01-lp": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "「かっこいい」と「信頼感」のどちらを主軸にするか",
+      "kind": "anchored",
+      "anchor_words": [
+       "かっこいいけど信頼感もある"
+      ],
+      "options": [
+       {
+        "label": "かっこよさ優先"
+       },
+       {
+        "label": "信頼感優先"
+       },
+       {
+        "label": "完全に半々"
+       }
+      ],
+      "default_if_unresolved": "信頼感を土台にかっこよさを載せる"
+     },
+     {
+      "id": "b1",
+      "question_point": "「かっこいい」の解釈方向",
+      "kind": "anchored",
+      "anchor_words": [
+       "かっこいい"
+      ],
+      "options": [
+       {
+        "label": "シックで高級感"
+       },
+       {
+        "label": "先進的でテック系"
+       },
+       {
+        "label": "ポップでエネルギッシュ"
+       }
+      ],
+      "default_if_unresolved": "ダーク基調のシック系で進める"
+     },
+     {
+      "id": "b2",
+      "question_point": "「信頼感」を何で担保するか",
+      "kind": "anchored",
+      "anchor_words": [
+       "信頼感"
+      ],
+      "options": [
+       {
+        "label": "実績・数字で訴求"
+       },
+       {
+        "label": "堅実なトーンで訴求"
+       },
+       {
+        "label": "利用者の声で訴求"
+       }
+      ],
+      "default_if_unresolved": "実績数字と落ち着いたトーンを併用"
+     },
+     {
+      "id": "b3",
+      "question_point": "LPの目的・コンバージョン地点",
+      "kind": "anchored",
+      "anchor_words": [
+       "LPを作って"
+      ],
+      "options": [
+       {
+        "label": "問い合わせ獲得"
+       },
+       {
+        "label": "無料登録・申込"
+       },
+       {
+        "label": "認知・ブランド訴求"
+       }
+      ],
+      "default_if_unresolved": "問い合わせ獲得型の構成にする"
+     },
+     {
+      "id": "b4",
+      "question_point": "ターゲット読者は誰か",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "法人・担当者向け"
+       },
+       {
+        "label": "一般消費者向け"
+       },
+       {
+        "label": "専門職・プロ向け"
+       }
+      ],
+      "default_if_unresolved": "法人担当者向けとして書く",
+      "origin_rationale": "LPは読者層を決めずにコピーとデザインのトーンを定められない"
+     }
+    ],
+    "residual_ambiguity_assessment": "トーンの二軸が両方抽象的で、目的・読者・サービス内容が全て未指定。判断点が多く残る依頼。",
+    "missing_materials": [
+     "サービスの種類・内容",
+     "サービス名・会社名",
+     "競合や差別化ポイント",
+     "掲載可能な実績・事例データ",
+     "ロゴや写真などの素材"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "kimi-k3:m07-recruit": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "想定する求職者像は誰か",
+      "kind": "anchored",
+      "anchor_words": [
+       "採用ページ"
+      ],
+      "options": [
+       {
+        "label": "新卒・第二新卒"
+       },
+       {
+        "label": "中途即戦力層"
+       },
+       {
+        "label": "業界未経験者"
+       }
+      ],
+      "default_if_unresolved": "中途・未経験も含む汎用の求職者向けに書く"
+     },
+     {
+      "id": "b1",
+      "question_point": "熱意は何に向けられたものか",
+      "kind": "anchored",
+      "anchor_words": [
+       "熱意が伝わるように"
+      ],
+      "options": [
+       {
+        "label": "事業・プロダクト"
+       },
+       {
+        "label": "チームと人"
+       },
+       {
+        "label": "社会課題への使命"
+       }
+      ],
+      "default_if_unresolved": "事業とチーム両面にバランスよく熱意を配分"
+     },
+     {
+      "id": "b2",
+      "question_point": "「飾らない」をどう体現するか",
+      "kind": "anchored",
+      "anchor_words": [
+       "飾らないけど"
+      ],
+      "options": [
+       {
+        "label": "等身大で率直"
+       },
+       {
+        "label": "実績数字で淡々"
+       },
+       {
+        "label": "課題も正直に開示"
+       }
+      ],
+      "default_if_unresolved": "誇張を避けた等身大の率直な文体にする"
+     },
+     {
+      "id": "b3",
+      "question_point": "会社紹介の主軸コンテンツは何か",
+      "kind": "anchored",
+      "anchor_words": [
+       "会社紹介"
+      ],
+      "options": [
+       {
+        "label": "理念・ビジョン"
+       },
+       {
+        "label": "事業と強み"
+       },
+       {
+        "label": "働く環境と文化"
+       }
+      ],
+      "default_if_unresolved": "理念→事業→文化の標準構成で書く"
+     },
+     {
+      "id": "b4",
+      "question_point": "誰が語る文章にするか",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "代表の一人称"
+       },
+       {
+        "label": "会社として叙述"
+       },
+       {
+        "label": "社員の声を編集"
+       }
+      ],
+      "default_if_unresolved": "会社としての三人称的な叙述に統一する",
+      "origin_rationale": "会社紹介文は語り手の視点なしには成立せず、一人称か叙述かで印象が根本から変わる"
+     }
+    ],
+    "residual_ambiguity_assessment": "「飾らない熱意」は評価語のみで、読者・訴求軸・語り手・主軸が全て未指定。解釈次第で全く別物になる。",
+    "missing_materials": [
+     "企業理念・ミッションの原文",
+     "事業内容と主力サービスの具体情報",
+     "会社概要(設立年・従業員数・拠点)",
+     "熱意を裏づける実エピソードや社員の声",
+     "募集職種・求める人物像"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  },
+  "kimi-k3:m12-faq": {
+   "final_pass": true,
+   "attempts": 1,
+   "first_attempt_pass": true,
+   "branches": 5,
+   "beyond_text": 1,
+   "rejected_branches": 0,
+   "failed_attempts": [],
+   "payload": {
+    "branches": [
+     {
+      "id": "b0",
+      "question_point": "想定読者の状態(購入前の確認か、トラブル中の客か)",
+      "kind": "anchored",
+      "anchor_words": [
+       "問い合わせが多い返品まわりのFAQページ"
+      ],
+      "options": [
+       {
+        "label": "怒り・困り中の客"
+       },
+       {
+        "label": "購入前の不安解消"
+       },
+       {
+        "label": "両方を混在想定"
+       }
+      ],
+      "default_if_unresolved": "困っている既存顧客を主対象にする"
+     },
+     {
+      "id": "b1",
+      "question_point": "「探しやすい」の実現手段(構成の軸)",
+      "kind": "anchored",
+      "anchor_words": [
+       "探しやすく"
+      ],
+      "options": [
+       {
+        "label": "質問カテゴリ分類"
+       },
+       {
+        "label": "状況別フロー誘導"
+       },
+       {
+        "label": "検索窓中心"
+       }
+      ],
+      "default_if_unresolved": "カテゴリ分類の一覧形式にする"
+     },
+     {
+      "id": "b2",
+      "question_point": "「安心感」の出し方(トーンと保証の示し方)",
+      "kind": "anchored",
+      "anchor_words": [
+       "安心感のある感じ"
+      ],
+      "options": [
+       {
+        "label": "丁寧で柔らかい文体"
+       },
+       {
+        "label": "手続きの明確さ重視"
+       },
+       {
+        "label": "柔軟対応の姿勢強調"
+       }
+      ],
+      "default_if_unresolved": "丁寧な文体で手続きを明示する"
+     },
+     {
+      "id": "b3",
+      "question_point": "返品対応の方針の見せ方(厳格さか柔軟さか)",
+      "kind": "anchored",
+      "anchor_words": [
+       "返品まわり"
+      ],
+      "options": [
+       {
+        "label": "条件を厳密に明記"
+       },
+       {
+        "label": "相談できる余地を強調"
+       }
+      ],
+      "default_if_unresolved": "条件明記と相談窓口を併記する"
+     },
+     {
+      "id": "b4",
+      "question_point": "問い合わせ削減か誘導か(FAQの目的)",
+      "kind": "beyond_text",
+      "anchor_words": [],
+      "options": [
+       {
+        "label": "自己解決で問合せ削減"
+       },
+       {
+        "label": "窓口への誘導重視"
+       }
+      ],
+      "default_if_unresolved": "自己解決優先・末尾に窓口案内",
+      "origin_rationale": "FAQは問い合わせを減らす目的か窓口へ誘導する目的かで必ず設計が分かれる"
+     }
+    ],
+    "residual_ambiguity_assessment": "読者像・構成方針・トーン・返品方針の見せ方が未指定で、方向が大きく分かれうる依頼。",
+    "missing_materials": [
+     "実際に多い問い合わせ内容の一覧",
+     "返品ポリシー(期間・条件・送料負担)",
+     "既存サイトのトーンやデザイン規約"
+    ],
+    "rejected_branches": [],
+    "branches_returned_by_model": 5
+   }
+  }
+ },
+ "render": {
+  "m01-lp": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m02-event": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m03-scout": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m04-ec": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m05-portfolio": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m06-news": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m07-recruit": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m08-apology": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m09-spec": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m10-invite": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m11-brand": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ],
+  "m12-faq": [
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   },
+   {
+    "ok": true,
+    "error": null
+   }
+  ]
+ },
+ "compile": {
+  "m01-lp": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 5
+  },
+  "m02-event": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 5
+  },
+  "m03-scout": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 5
+  },
+  "m04-ec": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 5
+  },
+  "m05-portfolio": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 4
+  },
+  "m06-news": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 4
+  },
+  "m07-recruit": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 5
+  },
+  "m08-apology": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 5
+  },
+  "m09-spec": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 4
+  },
+  "m10-invite": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 4
+  },
+  "m11-brand": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 4
+  },
+  "m12-faq": {
+   "ok": true,
+   "warn": [],
+   "n_rationales": 4
+  }
+ }
+}
