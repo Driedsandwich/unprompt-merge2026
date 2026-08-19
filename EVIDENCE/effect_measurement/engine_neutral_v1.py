@@ -54,8 +54,10 @@ class AiandRunner:
         rec = {"ok": False, "wall_ms": None, "api_ms": None, "duration_ms": None,
                "model_id": None, "result_text": None, "error": None, "hint": None,
                "exit_code": None}
-        # kimi-k3 は "none" 非対応 (low/high/max のみ・HTTP 400 を実測) — 最小の "low" で代替
-        effort = "low" if model == "moonshotai/kimi-k3" else "none"
+        # 各モデルの対応値から最小を選ぶ (カタログ実測: kimi-k3 は none 非対応・
+        # kimi-k2.7-code は high のみ対応。誤指定は HTTP 400 で全滅する)
+        effort = {"moonshotai/kimi-k3": "low",
+                  "moonshotai/kimi-k2.7-code": "high"}.get(model, "none")
         body = json.dumps({
             "model": model, "reasoning_effort": effort, "max_tokens": 8000,
             "messages": [{"role": "system", "content": system_prompt},
