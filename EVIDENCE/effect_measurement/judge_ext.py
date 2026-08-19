@@ -39,11 +39,17 @@ EXT = None
 COSTS = None
 
 
+FAB_SYS = FABRICATION_SYS
+
+
 def bind_paths(suffix):
-    global BLIND, EXT, COSTS
+    global BLIND, EXT, COSTS, FAB_SYS
     BLIND = HERE / f"blind_{suffix}"
     EXT = HERE / "judgments" / ("ext" if suffix == "v4" else f"ext_{suffix}")
     COSTS = EXT / f"costs_{suffix}ext.jsonl"
+    if suffix == "v6":  # 追補7: 捏造判定の適用範囲明確化 (単一ソース = judge_v6)
+        from judge_v6 import FABRICATION_SYS_V6
+        FAB_SYS = FABRICATION_SYS_V6
 
 
 def api_key():
@@ -98,7 +104,7 @@ def build_messages(metric, jid, bid, art):
         accept = lambda o: isinstance(o.get("rework_requests"), list)
     else:
         handoff = (SESS / bid / "handoff_v4.json").read_text(encoding="utf-8").strip()
-        system = FABRICATION_SYS.replace("{jid}", str(jid))
+        system = FAB_SYS.replace("{jid}", str(jid))
         user = ("## 依頼文\n%s\n\n## 手渡しJSON (参考資料)\n%s\n\n## 成果物 (HTML全文)\n%s"
                 % (brief, handoff, html))
         accept = lambda o: isinstance(o.get("fabrications"), list)
@@ -119,7 +125,7 @@ def main():
     ap.add_argument("--limit", type=int, default=None, help="新規呼び出し数の上限 (較正走用)")
     ap.add_argument("--max-tokens", type=int, default=6000)
     ap.add_argument("--timeout", type=int, default=420)
-    ap.add_argument("--suffix", choices=["v4", "v5"], default="v4", help="blind/出力の版")
+    ap.add_argument("--suffix", choices=["v4", "v5", "v6"], default="v4", help="blind/出力の版")
     args = ap.parse_args()
 
     bind_paths(args.suffix)
