@@ -1,0 +1,206 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談",
+     "why_not_derivable": "依頼文および手渡しJSONには面談の時間についての記述がなく、30分という具体的な期間は導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "無理のないかたちで解消する一本です。",
+     "why_not_derivable": "商品の物理的形態（一本で数える棒状の品であること）が断定されているが、依頼文にもJSONにも商品の種類や形状は未指定であり、missing_materialsに「商品の具体的な特徴・仕様」が挙がっている"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "給湯室で誰かがくれた冷やし飴にずっと助けられています",
+     "why_not_derivable": "誰かが冷やし飴をくれたという具体的な出来事は、依頼文にもJSONにも記載がなく、tone_sampleの「冷やし中華」とも異なる独自の事実として作られている"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "最初は数人で、手探りのまま毎日を積み重ねてきました。",
+     "why_not_derivable": "会社の設立時や初期の人数についての記述は依頼文・手渡しJSONのいずれにも存在しない。"
+    },
+    {
+     "fact": "最初の3か月は毎日不安でした。",
+     "why_not_derivable": "入社後の期間「3か月」という具体的な数値は依頼文・手渡しJSONのいずれにも記載がない。"
+    },
+    {
+     "fact": "先輩が「それ、みんな通る道だよ」って笑ってくれた",
+     "why_not_derivable": "具体的な社員の談話の引用は依頼文・手渡しJSONのいずれにも存在しない。"
+    },
+    {
+     "fact": "「大丈夫?」と聞いてくれる人がいる",
+     "why_not_derivable": "具体的な社員の談話の引用は依頼文・手渡しJSONのいずれにも存在しない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "差異・重複行の自動ハイライト",
+     "why_not_derivable": "JSONのtone_sampleに「仕訳突合」はあるが、重複行の検出・ハイライトという具体機能は依頼文・JSONのいずれからも導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される",
+     "why_not_derivable": "JSONは「小さなツール」の実装形態をExcel/スプレッドシートと確定しており、スマホ撮影アプリとしての機能はそこから導出できない。依頼文にもスマホや撮影の記述はない。"
+    },
+    {
+     "fact": "金額・日付・店舗名は撮影画像から自動で読み取り",
+     "why_not_derivable": "OCR・画像認識機能は依頼文にもJSONにも一切記載がなく、導出できない。"
+    },
+    {
+     "fact": "承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる",
+     "why_not_derivable": "JSONは想定利用者を「経理担当者向け」と確定し、対象工程を「集計・経理処理の自動化」に絞り込んでいる。申請・承認フロー機能はそこから導出できない。"
+    },
+    {
+     "fact": "差し戻し理由は定型文から選ぶ形にし、文章を書かせない",
+     "why_not_derivable": "差し戻し機能自体が導出不可能であり、その理由を定型文にするという仕様も依頼文・JSONのいずれにも根拠がない。"
+    },
+    {
+     "fact": "承認フローの多段階化 — 金額によらず承認者は一人とし",
+     "why_not_derivable": "承認者を一人とする仕様は依頼文にもJSONにも記載がなく、導出できない。"
+    },
+    {
+     "fact": "集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "JSONは対象工程を「集計・経理処理の自動化」と確定し、既存フローとの接続を「完全独立ツール」としている。本ツールが申請と承認のみを行い集計を外部に任せる構成は両方の決定に反し、導出できない。"
+    },
+    {
+     "fact": "月末の一括入力と差し戻し対応をなくすことを目的とする",
+     "why_not_derivable": "JSONは「ラクにする」対象を経理側の集計作業と確定したが、成果物は申請者の月末一括入力を目的としており、JSONの決定から導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "商品到着確認後の処理となるため、多少お時間をいただく場合があります。",
+     "why_not_derivable": "返金処理が返品商品の到着確認後に行われるという具体的な手続き事実は、依頼文にも参考資料にも記載がない。"
+    },
+    {
+     "fact": "返品理由によって扱いが異なる場合があります",
+     "why_not_derivable": "送料の負担が返品理由によって異なるという具体的なルールは、参考資料のいずれにも存在しない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "商品到着・確認後、〈返金までの目安日数〉を目安に〈返金方法〉にて返金いたします",
+     "why_not_derivable": "返金が商品到着・確認後に行われるという具体的な返金プロセスの事実主張であり、依頼文にもJSONにも返金処理のタイミングに関する記述がなく、missing_materialsに返品ポリシー条件が明示されているため導出できない。"
+    },
+    {
+     "fact": "反映時期は決済方法により前後する場合があります",
+     "why_not_derivable": "返金反映時期が決済方法によって変動するという具体的な事実主張であり、依頼文・JSONのいずれからも決済方法と返金時期の関係は導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ }
+}

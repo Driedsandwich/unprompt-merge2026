@@ -1,0 +1,179 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談から始めませんか",
+     "why_not_derivable": "面談の所要時間「30分」は依頼文にも手渡しJSONにも記載がなく、導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "30分だけ、オンラインで話しませんか。",
+     "why_not_derivable": "「30分」という具体的な期間は依頼文にも手渡しJSONにも記載がなく、導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "正直、最初の3か月は毎日不安でした。",
+     "why_not_derivable": "具体的な社員の談話引用であり、JSONのtone_sampleはトーン例示であって実際の発言内容ではない。missing_materialsにも「社風や実際のエピソード素材」が欠落として挙がっている。"
+    },
+    {
+     "fact": "結局、人がいいから続けている気がします。",
+     "why_not_derivable": "具体的な社員の談話引用であり、依頼文・JSONのいずれにも存在しない。"
+    },
+    {
+     "fact": "未経験だった自分が、今は教える側にいます。",
+     "why_not_derivable": "具体的な社員の談話引用であり、依頼文・JSONのいずれにも存在しない。"
+    },
+    {
+     "fact": "できないことばかりで焦っていたとき、先輩が「それ、みんな通る道だよ」って笑ってくれたのを覚えています。",
+     "why_not_derivable": "具体的な社員のエピソード引用（先輩の発言含む）であり、参考資料には含まれない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される",
+     "why_not_derivable": "JSONで実装形態を「Excel/スプレッドシート」と確定している。スマホ撮影アプリの機能はそこから導出できない。"
+    },
+    {
+     "fact": "金額・日付・店舗名は撮影画像から自動で読み取り",
+     "why_not_derivable": "OCRによる画像読み取り機能は依頼文にもJSONにも記載がなく、Excel/スプレッドシート実装という決定からも導出できない。"
+    },
+    {
+     "fact": "本ツールは申請と承認だけを担う",
+     "why_not_derivable": "JSONで「集計・経理処理の自動化」を対象工程と確定しており、申請・承認のみに限定する記述は導出できない。"
+    },
+    {
+     "fact": "集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "JSONで「完全独立ツール（他システム接続なし）」と「集計・経理処理の自動化」を決定している。既存会計システムへの連携・丸投げは両決定と矛盾する。"
+    },
+    {
+     "fact": "日常的に経費が発生する〈対象部署〉のメンバーと、その申請を確認する〈承認者役職〉",
+     "why_not_derivable": "JSONで想定利用者を「経理担当者向け」と確定している。申請者・承認者を主対象とする内容は導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "商品到着確認後の処理となるため、多少お時間をいただく場合があります",
+     "why_not_derivable": "返金が商品到着確認後に行われるという具体的な業務手順は、依頼文にもJSONにも記載がなく、missing_materialsにも「返品期限や送料負担の規定」が不足していると明示されている"
+    },
+    {
+     "fact": "返品理由によって扱いが異なる場合がありますので",
+     "why_not_derivable": "送料負担が返品理由によって異なるという具体的なポリシー内容は、依頼文にもJSONにも記載がなく、missing_materialsにも「実際の返品ポリシー条件」「送料負担の規定」が不足していると明示されている"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ }
+}

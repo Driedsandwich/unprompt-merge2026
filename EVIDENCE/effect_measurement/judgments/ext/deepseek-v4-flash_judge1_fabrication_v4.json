@@ -1,0 +1,151 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談から始めませんか",
+     "why_not_derivable": "手渡しJSONには面談の所要時間に関する指定はなく、依頼文からも導出できない。30分という具体的な期間は作成者が追加したものである。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "会議のための資料より動くもの、上への説明より手元のコードを優先していい環境です",
+     "why_not_derivable": "依頼文や手渡しJSONには自社の事業内容や社内文化に関する情報が一切含まれておらず、『会議よりコード優先』という具体的な価値観や行動規範は導出できない。"
+    },
+    {
+     "fact": "働く時間や場所の縛りも最小限にしています",
+     "why_not_derivable": "手渡しJSONには給与レンジ等の条件が欠落していると明記されており、労働条件（時間や場所の自由度）に関する情報は与えられていないため、この具体的な待遇主張は導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月に入り",
+     "why_not_derivable": "依頼文や手渡しJSONのいずれにも8月という月は指定されておらず、compiled_atが8月であることからもニュースレターの月として直接導出できない（今月号の月は不明）。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "給湯室で誰かがくれた冷やし飴",
+     "why_not_derivable": "依頼文および手渡しJSONでは、具体的な場所（給湯室）やアイテム（冷やし飴）について一切言及されていない。tone_sampleに「冷やし中華」があるが、それはサンプル例であり実際のエピソードとして指定されたものではない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "正直、最初の3か月は毎日不安でした。",
+     "why_not_derivable": "「3か月」という具体的な期間は、依頼文や手渡しJSONのいずれにも記載されておらず、そこから導出することもできない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ }
+}

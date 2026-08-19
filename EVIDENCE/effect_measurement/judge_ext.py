@@ -56,6 +56,8 @@ def call_api(key, model, system, user, max_tokens, timeout):
         "Authorization": "Bearer " + key,
         "Content-Type": "application/json",
         "X-Aiand-Metrics": "true",
+        # urllib 既定UA (Python-urllib/3.x) は Cloudflare に 403 (1010) で遮断される実測
+        "User-Agent": "unprompt-judge-ext/1.0",
     })
     last_err = None
     for attempt in range(5):
@@ -113,7 +115,9 @@ def main():
 
     EXT.mkdir(parents=True, exist_ok=True)
     short = args.model.split("/")[-1]
-    out_path = EXT / f"{short}_judge{args.judge}_v4.json"
+    # 指標ごとに別ファイル。rework/fabrication を同一ファイルに並行書き込みすると
+    # 後勝ちで片方が消える事故を実際に起こした (2026-08-19・216判定を再実行した)
+    out_path = EXT / f"{short}_judge{args.judge}_{args.metric}_v4.json"
     data = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() else {}
     key = api_key()
     done = 0
@@ -124,6 +128,7 @@ def main():
             store_key = "rework" if args.metric == "rework" else "fabrications"
             if store_key in slot:
                 continue
+            # limit は成功・失敗を問わず「試行数」で数える (失敗連発時の暴走防止)
             if args.limit is not None and done >= args.limit:
                 print(f"limit {args.limit} 到達 — 停止 (再実行で続き)")
                 return
@@ -131,6 +136,7 @@ def main():
             t0 = time.time()
             resp, heads, err = call_api(key, args.model, system, user,
                                         args.max_tokens, args.timeout)
+            done += 1
             cost_rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
                         "model": args.model, "judge": args.judge,
                         "metric": args.metric, "bid": bid, "art": art,
@@ -163,7 +169,6 @@ def main():
             slot.setdefault("model_id", resp.get("model"))
             out_path.write_text(json.dumps(data, ensure_ascii=False, indent=1),
                                 encoding="utf-8")
-            done += 1
             n = len(slot[store_key])
             print(f"  [{short} j{args.judge} {bid}/{art}] {args.metric}: {n}件 "
                   f"¥{heads.get('x-cost')} ({cost_rec['wall_s']}s)")

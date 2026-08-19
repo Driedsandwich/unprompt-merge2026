@@ -1,0 +1,615 @@
+{
+ "format": "unprompt.effect_tally.v4ext",
+ "models": {
+  "deepseek-v4-flash": {
+   "per_brief": {
+    "m01-lp": {
+     "rework_mean": {
+      "compiled": 2.0,
+      "raw": 0.6666666666666666
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m02-event": {
+     "rework_mean": {
+      "compiled": 0.6666666666666666,
+      "raw": 2.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.3333333333333333
+     },
+     "rework_winner": "compiled"
+    },
+    "m03-scout": {
+     "rework_mean": {
+      "compiled": 2.3333333333333335,
+      "raw": 1.6666666666666667
+     },
+     "fabrication_mean": {
+      "compiled": 1.0,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "raw"
+    },
+    "m04-ec": {
+     "rework_mean": {
+      "compiled": 3.0,
+      "raw": 2.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m05-portfolio": {
+     "rework_mean": {
+      "compiled": 2.0,
+      "raw": 3.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.6666666666666666,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m06-news": {
+     "rework_mean": {
+      "compiled": 3.0,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.6666666666666666,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "compiled"
+    },
+    "m07-recruit": {
+     "rework_mean": {
+      "compiled": 4.333333333333333,
+      "raw": 2.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 1.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m08-apology": {
+     "rework_mean": {
+      "compiled": 4.333333333333333,
+      "raw": 2.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m09-spec": {
+     "rework_mean": {
+      "compiled": 5.333333333333333,
+      "raw": 5.0
+     },
+     "fabrication_mean": {
+      "compiled": 1.6666666666666667,
+      "raw": 5.333333333333333
+     },
+     "rework_winner": "raw"
+    },
+    "m10-invite": {
+     "rework_mean": {
+      "compiled": 2.0,
+      "raw": 2.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m11-brand": {
+     "rework_mean": {
+      "compiled": 5.666666666666667,
+      "raw": 3.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m12-faq": {
+     "rework_mean": {
+      "compiled": 5.0,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 2.3333333333333335,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    }
+   },
+   "missing_slots": 0,
+   "summary": {
+    "rework_wins": {
+     "compiled": 4,
+     "raw": 8,
+     "tie": 0
+    },
+    "rework_mean_per_artifact": {
+     "compiled": 3.3055555555555554,
+     "raw": 2.8333333333333335
+    },
+    "fabrication_total": {
+     "compiled": 22,
+     "raw": 21
+    }
+   },
+   "known_fab_overlap": {
+    "m06-news:compiled": {
+     "keywords": [
+      "冷やし飴"
+     ],
+     "hit": true,
+     "ext_facts": [
+      "給湯室で誰かがくれた冷やし飴",
+      "給湯室で誰かがくれた冷やし飴にずっと助けられています"
+     ]
+    },
+    "m07-recruit:compiled": {
+     "keywords": [
+      "3か月",
+      "3ヶ月",
+      "三か月"
+     ],
+     "hit": true,
+     "ext_facts": [
+      "正直、最初の3か月は毎日不安でした。",
+      "最初は数人で",
+      "最初の3か月は毎日不安でした"
+     ]
+    },
+    "m06-news:raw": {
+     "keywords": [
+      "8月"
+     ],
+     "hit": true,
+     "ext_facts": [
+      "8月に入り",
+      "8月に入り"
+     ]
+    }
+   },
+   "concordance_vs_sonnet": {
+    "direction_rework_match": true,
+    "direction_fabrication_match": true,
+    "per_brief_winner_match": "9/12"
+   }
+  },
+  "glm-5.2": {
+   "per_brief": {
+    "m01-lp": {
+     "rework_mean": {
+      "compiled": 1.6666666666666667,
+      "raw": 1.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m02-event": {
+     "rework_mean": {
+      "compiled": 0.6666666666666666,
+      "raw": 3.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m03-scout": {
+     "rework_mean": {
+      "compiled": 3.3333333333333335,
+      "raw": 1.6666666666666667
+     },
+     "fabrication_mean": {
+      "compiled": 0.3333333333333333,
+      "raw": 1.0
+     },
+     "rework_winner": "raw"
+    },
+    "m04-ec": {
+     "rework_mean": {
+      "compiled": 2.6666666666666665,
+      "raw": 4.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 1.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m05-portfolio": {
+     "rework_mean": {
+      "compiled": 3.0,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m06-news": {
+     "rework_mean": {
+      "compiled": 2.0,
+      "raw": 4.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.6666666666666666,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "compiled"
+    },
+    "m07-recruit": {
+     "rework_mean": {
+      "compiled": 3.0,
+      "raw": 2.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 2.6666666666666665,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m08-apology": {
+     "rework_mean": {
+      "compiled": 4.333333333333333,
+      "raw": 3.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m09-spec": {
+     "rework_mean": {
+      "compiled": 4.0,
+      "raw": 5.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.3333333333333333,
+      "raw": 7.333333333333333
+     },
+     "rework_winner": "compiled"
+    },
+    "m10-invite": {
+     "rework_mean": {
+      "compiled": 3.0,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m11-brand": {
+     "rework_mean": {
+      "compiled": 5.0,
+      "raw": 4.666666666666667
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m12-faq": {
+     "rework_mean": {
+      "compiled": 2.3333333333333335,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 2.3333333333333335,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "compiled"
+    }
+   },
+   "missing_slots": 0,
+   "summary": {
+    "rework_wins": {
+     "compiled": 7,
+     "raw": 5,
+     "tie": 0
+    },
+    "rework_mean_per_artifact": {
+     "compiled": 2.9166666666666665,
+     "raw": 3.388888888888889
+    },
+    "fabrication_total": {
+     "compiled": 19,
+     "raw": 32
+    }
+   },
+   "known_fab_overlap": {
+    "m06-news:compiled": {
+     "keywords": [
+      "冷やし飴"
+     ],
+     "hit": true,
+     "ext_facts": [
+      "給湯室で誰かがくれた冷やし飴にずっと助けられています",
+      "給湯室で誰かがくれた冷やし飴にずっと助けられています"
+     ]
+    },
+    "m07-recruit:compiled": {
+     "keywords": [
+      "3か月",
+      "3ヶ月",
+      "三か月"
+     ],
+     "hit": true,
+     "ext_facts": [
+      "正直、最初の3か月は毎日不安でした。",
+      "結局、人がいいから続けている気がします。",
+      "未経験だった自分が、今は教える側にいます。",
+      "できないことばかりで焦っていたとき、先輩が「それ、みんな通る道だよ」って笑ってくれたのを覚えています。",
+      "最初は数人で、手探りのまま毎日を積み重ねてきました。",
+      "最初の3か月は毎日不安でした。",
+      "先輩が「それ、みんな通る道だよ」って笑ってくれた",
+      "「大丈夫?」と聞いてくれる人がいる"
+     ]
+    },
+    "m06-news:raw": {
+     "keywords": [
+      "8月"
+     ],
+     "hit": false,
+     "ext_facts": [
+      "各チームともそれぞれのペースで着実に前へ進んでいる様子が伝わってきます",
+      "現場の声を交えながら、できるだけ肩の力を抜いて読める内容にまとめました。"
+     ]
+    }
+   },
+   "concordance_vs_sonnet": {
+    "direction_rework_match": false,
+    "direction_fabrication_match": false,
+    "per_brief_winner_match": "7/12"
+   }
+  },
+  "kimi-k3": {
+   "per_brief": {
+    "m01-lp": {
+     "rework_mean": {
+      "compiled": 4.666666666666667,
+      "raw": 2.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 1.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m02-event": {
+     "rework_mean": {
+      "compiled": 2.0,
+      "raw": 3.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m03-scout": {
+     "rework_mean": {
+      "compiled": 3.3333333333333335,
+      "raw": 3.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 0.6666666666666666,
+      "raw": 1.0
+     },
+     "rework_winner": "tie"
+    },
+    "m04-ec": {
+     "rework_mean": {
+      "compiled": 5.666666666666667,
+      "raw": 5.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m05-portfolio": {
+     "rework_mean": {
+      "compiled": 5.0,
+      "raw": 6.333333333333333
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m06-news": {
+     "rework_mean": {
+      "compiled": 3.0,
+      "raw": 4.666666666666667
+     },
+     "fabrication_mean": {
+      "compiled": 1.0,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "compiled"
+    },
+    "m07-recruit": {
+     "rework_mean": {
+      "compiled": 6.666666666666667,
+      "raw": 4.333333333333333
+     },
+     "fabrication_mean": {
+      "compiled": 3.0,
+      "raw": 0.3333333333333333
+     },
+     "rework_winner": "raw"
+    },
+    "m08-apology": {
+     "rework_mean": {
+      "compiled": 5.666666666666667,
+      "raw": 5.666666666666667
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "tie"
+    },
+    "m09-spec": {
+     "rework_mean": {
+      "compiled": 5.0,
+      "raw": 6.666666666666667
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "compiled"
+    },
+    "m10-invite": {
+     "rework_mean": {
+      "compiled": 3.3333333333333335,
+      "raw": 4.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.3333333333333333,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m11-brand": {
+     "rework_mean": {
+      "compiled": 5.666666666666667,
+      "raw": 6.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m12-faq": {
+     "rework_mean": {
+      "compiled": 6.0,
+      "raw": 4.333333333333333
+     },
+     "fabrication_mean": {
+      "compiled": 1.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    }
+   },
+   "missing_slots": 0,
+   "summary": {
+    "rework_wins": {
+     "compiled": 6,
+     "raw": 4,
+     "tie": 2
+    },
+    "rework_mean_per_artifact": {
+     "compiled": 4.666666666666667,
+     "raw": 4.666666666666667
+    },
+    "fabrication_total": {
+     "compiled": 21,
+     "raw": 8
+    }
+   },
+   "known_fab_overlap": {
+    "m06-news:compiled": {
+     "keywords": [
+      "冷やし飴"
+     ],
+     "hit": true,
+     "ext_facts": [
+      "〈執筆者名〉は最近、給湯室で誰かがくれた冷やし飴にずっと助けられています",
+      "〈執筆者名〉は最近、給湯室で誰かがくれた冷やし飴にずっと助けられています",
+      "エアコンの効きが場所によって違うのも、いつものことながらままならないものです"
+     ]
+    },
+    "m07-recruit:compiled": {
+     "keywords": [
+      "3か月",
+      "3ヶ月",
+      "三か月"
+     ],
+     "hit": true,
+     "ext_facts": [
+      "最初は数人で、手探りのまま毎日を積み重ねてきました",
+      "未経験で入ってきたメンバーも多く",
+      "「正直、最初の3か月は毎日不安でした。」「先輩が『それ、みんな通る道だよ』って笑ってくれた」等の社員の声",
+      "「正直、最初の3か月は毎日不安でした。」",
+      "「最初は数人で、手探りのまま毎日を積み重ねてきました」",
+      "「正直、最初の3か月は毎日不安でした。」という社員の声 (入社〈年数〉年目の社員談話)",
+      "「結局、人がいいから続けている気がします。」という社員の声",
+      "「未経験だった自分が、今は教える側にいます。」という社員の声",
+      "「未経験で入ってきたメンバーも多く」「最初は数人で」という会社の実態に関する記述"
+     ]
+    },
+    "m06-news:raw": {
+     "keywords": [
+      "8月"
+     ],
+     "hit": false,
+     "ext_facts": [
+      "今号では〈今月のトピック〉を特集しています。現場の声を交えながら……まとめました",
+      "各チームともそれぞれのペースで着実に前へ進んでいる様子が伝わってきます"
+     ]
+    }
+   },
+   "concordance_vs_sonnet": {
+    "direction_rework_match": false,
+    "direction_fabrication_match": true,
+    "per_brief_winner_match": "7/12"
+   }
+  }
+ },
+ "costs": {
+  "per_model": {
+   "deepseek-v4-flash": {
+    "calls": 216,
+    "errors": 24,
+    "jpy": 26.76
+   },
+   "glm-5.2": {
+    "calls": 216,
+    "errors": 24,
+    "jpy": 231.22
+   },
+   "kimi-k3": {
+    "calls": 216,
+    "errors": 0,
+    "jpy": 422.28
+   }
+  },
+  "billed_calls": 648,
+  "errored_calls": 48,
+  "total_jpy": 680.25
+ }
+}

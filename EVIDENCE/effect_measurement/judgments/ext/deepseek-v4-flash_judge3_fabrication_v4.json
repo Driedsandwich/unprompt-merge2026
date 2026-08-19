@@ -1,0 +1,226 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "持ち帰れる一日を、秋にひとつ。",
+     "why_not_derivable": "依頼文には「秋にやる社内勉強会」とあるだけで、勉強会の長さが「一日」であることは指定されておらず、手渡しJSONの判断（全社員向け・情報共有交流系・カジュアルなど）からも導出できない。複数日にわたる可能性が排除されておらず、期間を「一日」と具体化する根拠が欠けている。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談",
+     "why_not_derivable": "依頼文および手渡しJSONのいずれにも「30分」という具体的な時間数は記載されておらず、またそこから導出できる根拠もない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "contact@example.com",
+     "why_not_derivable": "依頼文と手渡しJSONには連絡先に関する情報が一切含まれておらず、このメールアドレスは導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月に入り",
+     "why_not_derivable": "依頼文・手渡しJSONのいずれにも「8月」という月の指定はなく、compiled_atは参考資料作成日であり社内報の発行月を決定づけるものではない。またdecisionsで季節雑談が指定されているが具体的な月までは決められていない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "給湯室で誰かがくれた冷やし飴にずっと助けられています",
+     "why_not_derivable": "依頼文・手渡しJSONのいずれにも「冷やし飴」「給湯室」の記述はなく、tone_sampleの「冷やし中華」とも異なる。書き手の立場や部署間温度差配慮の決定から直接導出できない独自の具体的事実である。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "最初は数人で",
+     "why_not_derivable": "会社の初期人数（数人）は依頼文・手渡しJSONのいずれにも記載がなく、導出できない。"
+    },
+    {
+     "fact": "最初の3か月は毎日不安でした",
+     "why_not_derivable": "「3か月」という具体的な期間は依頼文・手渡しJSONから導出できない。社員の生の声を入れることは指定されているが、具体的な数字までは指定されていない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "申請データを貼り付けると勘定科目別に自動集計",
+     "why_not_derivable": "依頼文・手渡しJSONには「集計・経理処理の自動化」とあるが、具体的な集計区分（勘定科目別）は指定されておらず、導出できない。"
+    },
+    {
+     "fact": "仕訳伝票フォーマットへの自動変換",
+     "why_not_derivable": "依頼文・手渡しJSONには出力形式の指定がなく、仕訳伝票フォーマットという具体的な変換先は導出できない。"
+    },
+    {
+     "fact": "月次締め状況の一覧表示",
+     "why_not_derivable": "手渡しJSONのtone_sampleに「月次」の語はあるが、それはトーンの例示であり、一覧表示という具体的なUI機能は導出できない。"
+    },
+    {
+     "fact": "差異・重複行の自動ハイライト",
+     "why_not_derivable": "依頼文・手渡しJSONにはチェック機能に関する記述がなく、差異や重複行をハイライトするという具体的事実は導出できない。"
+    },
+    {
+     "fact": "「入力」「集計」「仕訳」の3シートをタブで切り替える",
+     "why_not_derivable": "手渡しJSONには「Excel/スプレッドシート」という実装形態があるが、シート名や3シート構成、タブ切り替えUIは指定されておらず、導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される",
+     "why_not_derivable": "依頼文は「経費精算をラクにする小さなツール」、手渡しJSONは実装形態をExcel/スプレッドシート、想定利用者を経理担当者向けと定めており、スマホ撮影による申請カード作成という機能は導出できない。"
+    },
+    {
+     "fact": "金額・日付・店舗名は撮影画像から自動で読み取り、申請者は科目だけ選べばよい",
+     "why_not_derivable": "OCRによる自動読み取りや科目選択のみの操作は、依頼文や手渡しJSONのいずれにも記載がなく、Excel/スプレッドシートという実装形態からも導出できない。"
+    },
+    {
+     "fact": "承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる",
+     "why_not_derivable": "承認ワークフローやリアルタイム表示は、依頼文および手渡しJSON（経理担当者向け・完全独立ツール）からは導出できない。"
+    },
+    {
+     "fact": "差し戻し理由は定型文から選ぶ形にし、文章を書かせない",
+     "why_not_derivable": "定型文による差し戻し理由の選択は、依頼文や手渡しJSONのいずれにも含まれていない。"
+    },
+    {
+     "fact": "撮影ボタンひとつだけが大きく置かれた画面から始まる",
+     "why_not_derivable": "具体的なUIレイアウトは依頼文や手渡しJSONに一切指定されておらず、導出できない。"
+    },
+    {
+     "fact": "一覧やメニューは持たせず、迷う分岐を作らない",
+     "why_not_derivable": "ナビゲーションの排除という設計判断は、依頼文や手渡しJSONからは導出できない。"
+    },
+    {
+     "fact": "承認者側は縦に積み上がるカードを上から順にさばく形とし、保留や後回しの状態は作らない",
+     "why_not_derivable": "承認者側の具体的な表示形式や保留禁止の設計は、依頼文や手渡しJSONに記載がない。"
+    },
+    {
+     "fact": "PC向けの入力フォーム — スマホ撮影のみに絞り、二重の入力経路を作らない",
+     "why_not_derivable": "PC入力を排除する判断は、手渡しJSONで実装形態がExcel/スプレッドシートと定められていることと矛盾し、導出できない。"
+    },
+    {
+     "fact": "承認フローの多段階化 — 金額によらず承認者は一人とし、差し戻し理由の自由記述も持たせない",
+     "why_not_derivable": "単一承認者や自由記述排除は、依頼文や手渡しJSONからは導出できない。"
+    },
+    {
+     "fact": "月次レポートやグラフ機能 — 集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "手渡しJSONはツールを「完全独立ツール」「他システム接続なし」と決定しており、既存会計システムへの依存を前提とするこの記述は導出できない。"
+    },
+    {
+     "fact": "対象ユーザーは日常的に経費が発生する〈対象部署〉のメンバーとその申請を確認する〈承認者役職〉",
+     "why_not_derivable": "手渡しJSONは想定利用者を経理担当者向けと定めており、申請者や承認者を対象とするこの記述は導出できない。"
+    },
+    {
+     "fact": "「その場で撮って、月末に見ない」という目標",
+     "why_not_derivable": "この具体的なキャッチフレーズは依頼文や手渡しJSONのいずれにも含まれていない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ }
+}

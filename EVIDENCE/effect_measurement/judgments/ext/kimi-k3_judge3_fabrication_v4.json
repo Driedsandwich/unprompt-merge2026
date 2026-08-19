@@ -1,0 +1,190 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "専任担当による伴走／窓口を一本化し、貴社の状況に合わせて対応します。",
+     "why_not_derivable": "依頼文にもJSONにもサービス内容の記述がなく、missing_materialsにも「サービス名・内容の詳細情報」が欠けていると明示されている。専任担当制という提供体制は導出不可能な具体的サービス事実。"
+    },
+    {
+     "fact": "透明性のある運用体制／進捗や状況を随時ご確認いただけます。",
+     "why_not_derivable": "進捗を随時確認できる運用・報告体制の存在は、依頼文・手渡しJSONのどこにも根拠がない具体的なサービス機能の主張。"
+    },
+    {
+     "fact": "一貫した品質基準／導入から運用まで、同じ基準で対応します。",
+     "why_not_derivable": "サービスの品質基準・対応方針に関する具体的事実の主張だが、依頼文・JSONともにサービス内容の情報を含まず導出できない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談から始めませんか",
+     "why_not_derivable": "依頼文にも手渡しJSONにも面談の所要時間に関する記述はなく、「30分」という具体的な時間数値は導出できない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "ピンときたら、返信一本で構いません。30分だけ、オンラインで話しませんか。",
+     "why_not_derivable": "面談時間を「30分」とする具体的な数値は依頼文にも手渡しJSONにもなく、JSONの判断事項(実務2〜5年、裁量・自由度訴求、カジュアル、直接メール、親近感重視)からも導出できない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "今号では〈今月のトピック〉を特集しています。現場の声を交えながら……まとめました",
+     "why_not_derivable": "手渡しJSONでは「今月号の特集・話題」はmissing_materials(不明情報)とされており、今号に特集が存在することやその内容(現場の声を交えた構成)は依頼文・JSONのどこからも導出できない"
+    },
+    {
+     "fact": "各チームともそれぞれのペースで着実に前へ進んでいる様子が伝わってきます",
+     "why_not_derivable": "社内の各チームの進捗状況に関する実績・状況の主張であり、依頼文にもJSONにも根拠となる情報がない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "〈執筆者名〉は最近、給湯室で誰かがくれた冷やし飴にずっと助けられています",
+     "why_not_derivable": "給湯室で冷やし飴をもらったという具体的エピソードは依頼文・JSONのいずれにも存在しない。JSONのトーンサンプルにあるのは「冷やし中華」であり、別物の出来事を実話として主張している。"
+    },
+    {
+     "fact": "エアコンの効きが場所によって違うのも、いつものことながらままならないものです",
+     "why_not_derivable": "社内のエアコン事情が場所により異なり恒常化しているという職場固有の事実主張は、依頼文・手渡しJSONのどこにも根拠がない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "「正直、最初の3か月は毎日不安でした。」という社員の声 (入社〈年数〉年目の社員談話)",
+     "why_not_derivable": "依頼文にも参考JSONにも実在する社員の発言素材はなく、「3か月」という具体的期間を含む談話引用は導出できない (missing_materials にも「社風や実際のエピソード素材」欠如と明記)"
+    },
+    {
+     "fact": "「結局、人がいいから続けている気がします。」という社員の声",
+     "why_not_derivable": "実在の社員からの引用を装った発言だが、依頼文・参考JSONのいずれにも該当する談話・エピソードの記述がなく導出できない"
+    },
+    {
+     "fact": "「未経験だった自分が、今は教える側にいます。」という社員の声",
+     "why_not_derivable": "実在の社員の経歴変化を主張する引用だが、依頼文・参考JSONに根拠となる素材がなく導出できない"
+    },
+    {
+     "fact": "「未経験で入ってきたメンバーも多く」「最初は数人で」という会社の実態に関する記述",
+     "why_not_derivable": "「未経験」は想定読み手の経験層の指定であり、実際に未経験入社の社員が多い・創業時数人だったという会社の事実は依頼文・参考JSONのどこにも記載がない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "社内に集計を担う既存の会計システムが存在するという事実は依頼文になく、手渡しJSONでも「既存の会計/勤怠システム名」は不足資料とされ、判断として「完全独立ツール(他システム接続なし)」と決定されているため導出できない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "返金の時期・方法は〈返金ルール〉のとおりです。商品到着確認後の処理となるため、多少お時間をいただく場合があります。",
+     "why_not_derivable": "「返金は商品到着確認後の処理」という返金プロセスに関する具体的な事実主張だが、依頼文にも手渡しJSONにも返金手順の情報はなく、missing_materials にも返品規定が未提供と明記されているため導出できない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ }
+}

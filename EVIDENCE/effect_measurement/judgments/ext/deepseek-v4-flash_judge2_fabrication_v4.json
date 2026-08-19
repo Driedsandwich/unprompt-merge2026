@@ -1,0 +1,178 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "30分だけ、オンラインで話しませんか",
+     "why_not_derivable": "面談時間（30分）や形式（オンライン）は依頼文・手渡しJSONのいずれにも指定されておらず、裁量訴求やカジュアルトーンから直接導出できる具体的事実ではない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "contact@example.com",
+     "why_not_derivable": "依頼文および手渡しJSONには具体的なメールアドレスが一切記載されておらず、導出不可能。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される",
+     "why_not_derivable": "依頼文に撮影機能の記載はなく、手渡しJSONでは実装形態をExcel／スプレッドシートと決定しており、スマホ撮影を前提とする機能は導出できない。"
+    },
+    {
+     "fact": "金額・日付・店舗名は撮影画像から自動で読み取り",
+     "why_not_derivable": "OCRによる自動読み取り機能は依頼文にも手渡しJSONにも一切記載がなく、導出できない。"
+    },
+    {
+     "fact": "承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる",
+     "why_not_derivable": "承認フローの具体的な表示順や操作は依頼文・手渡しJSONのいずれにも指定されておらず、導出できない。"
+    },
+    {
+     "fact": "集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "手渡しJSONでは完全独立ツールと決定されており、外部システムへの依存を前提とする記述は導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "返品できるかどうか",
+     "why_not_derivable": "カテゴリ分類型とあるが、具体的なカテゴリ名は依頼文にもJSONにも指定されていない。"
+    },
+    {
+     "fact": "手続きの進め方",
+     "why_not_derivable": "同上。具体的なカテゴリ名はどこにも記載がない。"
+    },
+    {
+     "fact": "どんな商品でも返品できますか？",
+     "why_not_derivable": "具体的なFAQ質問文は依頼文やJSONのトーンサンプルに含まれておらず、導出できない。"
+    },
+    {
+     "fact": "返品を申し込める期限はいつまでですか？",
+     "why_not_derivable": "同上。具体的な質問文は一切指定されていない。"
+    },
+    {
+     "fact": "返品の手続きはどこから始めればいいですか？",
+     "why_not_derivable": "同上。"
+    },
+    {
+     "fact": "返品時の送料はどちらが負担しますか？",
+     "why_not_derivable": "同上。"
+    },
+    {
+     "fact": "返金はいつ、どのように受け取れますか？",
+     "why_not_derivable": "同上。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ }
+}
