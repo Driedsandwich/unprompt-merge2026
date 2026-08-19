@@ -6,6 +6,8 @@
 
 ✅ **公約履行 (2026-08-10)**: 決勝ピッチで宣言した「文の外の意図も質問する」次版を凍結明け当日に実装 (文外判断点 `kind: beyond_text`・[prompts/extraction_product_v2.txt](prompts/extraction_product_v2.txt)) し、測定v4 (やり直し回数・捏造率) を事前登録つきで実施 — **予測は2つとも外れ、その結果もそのまま公開** ([PREREGISTRATION.md 結果4](EVIDENCE/effect_measurement/PREREGISTRATION.md))
 
+📊 **測定シリーズ完結 (2026-08-19・v1〜v6)**: 受賞クレジットで判定を非Claude系3エンジン (deepseek / glm / kimi) へ拡張し、二律・質問形プレースホルダなど3版の製品改変を事前登録つきで測定。**効果の言明の現在地** — ①捏造の抑制は3エンジンで頑健に再現 (compiled 22→8 / 19→2 / 21→2) ②やり直し件数は raw と同等〜微優位 (2.78 vs 2.89・8/12) まで、**「品質が上がる」は主張しない** ③途中の誤集計1件も訂正履歴ごと公開。全文=[シリーズ総括](EVIDENCE/effect_measurement/PREREGISTRATION.md)・実費記録つき生データ=[EVIDENCE/effect_measurement/](EVIDENCE/effect_measurement/)
+
 **曖昧な一文を、AIに渡せる「意図の指示書」にコンパイルする。** AIはあなたの成果物を書かない — あなたの一文がまだ決めていないこと (判断点) を実物の見本つきで問い返し、あなたは**決める**か**委ねる**かをクリックするだけ。最初の一文のあと、タイプは0文字。
 
 <img src="assets/readme/flow.svg" alt="曖昧な一文 → 爆散(3〜5の判断点+見本) → 決める/委ねる(クリックのみ) → 意図の指示書(JSON) → いつものAIへ" width="100%">
