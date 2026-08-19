@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 — 豆の履歴書</title>
+<style>
+:root{
+  --ink:#1c1915;
+  --paper:#f3ede1;
+  --ember:#b8410f;
+  --line:#d6cdb8;
+  --body:15px;
+  --ratio:1.333;
+  --h3:calc(var(--body)*var(--ratio));
+  --h2:calc(var(--h3)*var(--ratio));
+  --h1:calc(var(--h2)*var(--ratio)*1.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:var(--body)}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Hiragino Mincho ProN","Yu Mincho","MS PMincho",serif;
+  line-height:1.85;
+  letter-spacing:.02em;
+}
+section{padding:96px 8px}
+.wrap{max-width:680px;margin:0 auto;width:100%;padding:0 24px}
+.lh{
+  font-family:"Hiragino Sans","Helvetica Neue","Arial",sans-serif;
+  font-weight:800;
+  letter-spacing:-.02em;
+  line-height:1.18;
+}
+.eyebrow{
+  font-family:"Hiragino Sans",sans-serif;
+  font-size:.8rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--ember);
+  margin-bottom:24px;
+  font-weight:600;
+}
+h2.lh{font-size:var(--h2);margin-bottom:40px}
+h3.lh{font-size:var(--h3);margin-bottom:16px}
+p{margin-bottom:16px}
+p+p{margin-top:0}
+.lede{
+  font-family:"Hiragino Mincho ProN",serif;
+  font-size:1.13rem;
+  line-height:1.9;
+  letter-spacing:.03em;
+}
+
+/* Hero */
+.hero{
+  padding:128px 8px 96px;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 25% 85%,rgba(184,65,15,.10) 0%,transparent 60%),
+    var(--paper);
+}
+.hero .wrap{max-width:760px}
+.hero h1{
+  font-size:clamp(2.6rem,7vw,var(--h1));
+  margin-bottom:32px;
+  font-style:italic;
+}
+.hero .lede{max-width:520px}
+.hero .meta{
+  display:flex;
+  gap:32px;
+  margin-top:48px;
+  flex-wrap:wrap;
+  font-family:"Hiragino Sans",sans-serif;
+  font-size:.82rem;
+  letter-spacing:.08em;
+}
+.hero .meta b{
+  font-weight:700;
+  color:var(--ember);
+  display:block;
+  font-size:1.7rem;
+  margin-bottom:4px;
+  font-family:"Hiragino Mincho ProN",serif;
+  letter-spacing:0;
+}
+
+/* Story */
+.story{
+  border-bottom:1px solid var(--line);
+  background:var(--paper);
+}
+.story blockquote{
+  font-size:1.2rem;
+  font-style:italic;
+  margin:40px 0;
+  padding-left:24px;
+  border-left:3px solid var(--ember);
+  letter-spacing:.04em;
+}
+
+/* Commitment */
+.commit{background:var(--ink);color:var(--paper)}
+.commit .eyebrow{color:#e89060}
+.commit h2{color:var(--paper)}
+.commit p{color:#d8d1c0}
+.commit .row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  margin-top:48px;
+}
+.commit .row h3{color:var(--paper)}
+@media(max-width:560px){
+  .commit .row{grid-template-columns:1fr;gap:40px}
+}
+
+/* Lineup */
+.lineup{border-bottom:1px solid var(--line)}
+.beans{
+  margin-top:48px;
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+}
+.bean{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:24px;
+  padding:32px 0;
+  border-top:1px solid var(--line);
+}
+.bean:last-child{border-bottom:1px solid var(--line)}
+.bean-mark{
+  width:80px;height:80px;
+  border-radius:50% 50% 48% 48% / 60% 60% 40% 40%;
+  background:
+    radial-gradient(ellipse at 38% 28%,rgba(255,255,255,.28) 0%,transparent 45%),
+    radial-gradient(ellipse at 50% 50%,var(--ink) 0%,#3a3026 100%);
+  position:relative;
+  box-shadow:inset 0 -8px 16px rgba(0,0,0,.4);
+}
+.bean-mark::after{
+  content:"";
+  position:absolute;
+  left:50%;top:14%;
+  width:3px;height:72%;
+  background:rgba(0,0,0,.55);
+  border-radius:50%;
+  transform:translateX(-50%) rotate(4deg);
+}
+.bean h3{margin-bottom:8px}
+.bean .tags{
+  font-family:"Hiragino Sans",sans-serif;
+  font-size:.76rem;
+  letter-spacing:.08em;
+  color:var(--ember);
+  margin-bottom:8px;
+  font-weight:600;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  padding:128px 8px;
+  background:
+    radial-gradient(circle at 50% 25%,rgba(184,65,15,.09) 0%,transparent 55%),
+    var(--paper);
+}
+.cta h2{font-size:var(--h2);margin-bottom:16px;font-style:italic}
+.cta p{margin:0 auto 40px;max-width:420px}
+.btn{
+  display:inline-block;
+  padding:18px 56px;
+  background:var(--ink);
+  color:var(--paper);
+  text-decoration:none;
+  font-family:"Hiragino Sans",sans-serif;
+  font-weight:700;
+  font-size:.9rem;
+  letter-spacing:.16em;
+  border:2px solid var(--ink);
+  transition:background .2s,color .2s;
+}
+.btn:hover{background:var(--ember);border-color:var(--ember)}
+footer{
+  padding:32px 8px;
+  text-align:center;
+  font-family:"Hiragino Sans",sans-serif;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  color:#7a7468;
+  border-top:1px solid var(--line);
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Single Origin / Fresh Roast</div>
+    <h1 class="lh">一杯のなかに、<br>畑の記憶を。</h1>
+    <p class="lede">〈ブランド名〉は、産地・品種・精製までを記録した豆だけを扱います。豆には履歴があり、飲むひとには好みがある。その両端を結ぶのが、私たちの仕事です。</p>
+    <div class="meta">
+      <div><b>1</b>産地 / 農園</div>
+      <div><b>0</b>ブレンド</div>
+      <div><b>48h</b>以内に出荷</div>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="wrap">
+    <div class="eyebrow">Our Story</div>
+    <h2 class="lh">豆の履歴書を、届ける。</h2>
+    <p>〈ブランド名〉が始まったのは、〈設立年〉のことです。〈創業者名〉は、豆を買うたびに「この豆がどこで、だれの手で育てられたか」が書かれていないことに違和感を覚えていました。</p>
+    <blockquote>「一杯の背景が語れないなら、それはただの飲み物でしかない」</blockquote>
+    <p>だから私たちは、一本のラインで豆を追いかけます。農園の名前、標高、品種、精製方法、収穫時期。それらを豆一袋に同封して、お届けします。〈生産地の地域名〉の農家と直接向き合い、条件に合わない豆は扱いません。</p>
+  </div>
+</section>
+
+<section class="commit">
+  <div class="wrap">
+    <div class="eyebrow">Commitment</div>
+    <h2 class="lh">豆への、三つのこだわり。</h2>
+    <div class="row">
+      <div>
+        <h3 class="lh">01　産地を絞る</h3>
+        <p>扱うのは、私たちが足を運び、対話できた農園だけ。中間業者を通さず、年間を通した関係づくりを心がけています。</p>
+      </div>
+      <div>
+        <h3 class="lh">02　鮮度を守る</h3>
+        <p>受注後に焙煎し、48時間以内に出荷。古い豆は在庫として置きません。一杯ごとに香りが立つこと、それが私たちの基準です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lineup">
+  <div class="wrap">
+    <div class="eyebrow">Lineup</div>
+    <h2 class="lh">三つの豆。</h2>
+    <div class="beans">
+      <div class="bean">
+        <div class="bean-mark"></div>
+        <div>
+          <div class="tags">LIGHT ROAST</div>
+          <h3 class="lh">〈豆の銘柄 A〉</h3>
+          <p>柑橘のような明るい酸。朝の一杯に。浅煎りで、豆そのものの産地の個性を引き出しました。</p>
+        </div>
+      </div>
+      <div class="bean">
+        <div class="bean-mark"></div>
+        <div>
+          <div class="tags">MEDIUM ROAST</div>
+          <h3 class="lh">〈豆の銘柄 B〉</h3>
+          <p>甘みと焙煎香のバランス。食後に合う一杯を。中煎りで、日常のどんな時間にも寄り添います。</p>
+        </div>
+      </div>
+      <div class="bean">
+        <div class="bean-mark"></div>
+        <div>
+          <div class="tags">DARK ROAST</div>
+          <h3 class="lh">〈豆の銘柄 C〉</h3>
+          <p>深いコクと、かすかな煙る香り。夜に、ゆっくり。深煎りで、豆の重さをそのまま活かしました。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="lh">豆の履歴を、手元に。</h2>
+    <p>毎週木曜に焙煎。お届けは〈対応地域〉全域。まずは一杯から。</p>
+    <a href="#" class="btn">オンラインショップへ</a>
+  </div>
+</section>
+
+<footer>© 〈ブランド名〉 — Coffee with a backstory.</footer>
+
+</body>
+</html>

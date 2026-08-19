@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会のお知らせ</title>
+<style>
+  :root {
+    --bg: #f4eadb;
+    --primary: #2e2e2e;
+    --accent: #ff7a1a;
+    --muted: #6b5d4f;
+    --base-size: 16px;
+    --h1-size: 30px;
+    --h2-size: 14px;
+    --radius: 14px;
+  }
+  /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+  /* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+  /* GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--primary);
+    line-height: 1.95;
+    -webkit-font-smoothing: antialiased;
+    padding: 48px 16px;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    padding: 48px 0 56px;
+  }
+  .header h1 {
+    font-size: var(--h1-size);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--primary);
+  }
+  .header .subtitle {
+    font-size: var(--base-size);
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 12px;
+    letter-spacing: 0.08em;
+  }
+  .section {
+    padding: 24px 0;
+  }
+  .section + .section {
+    border-top: 1px solid rgba(46,46,46,0.10);
+  }
+  .section h2 {
+    font-size: var(--h2-size);
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  .section p {
+    font-size: var(--base-size);
+    color: var(--primary);
+  }
+  .overview {
+    background: rgba(255,255,255,0.55);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+  }
+  .overview dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px 32px;
+    font-size: 15px;
+  }
+  .overview dt {
+    font-weight: 700;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .overview dd {
+    color: var(--primary);
+  }
+  .footer {
+    text-align: center;
+    padding: 56px 0 16px;
+  }
+  .footer .sign {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 2;
+  }
+  .footer .sign strong {
+    color: var(--primary);
+    font-weight: 800;
+  }
+  .closing {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <h1>久しぶり！</h1>
+    <p class="subtitle">同窓会やりまーす</p>
+  </header>
+
+  <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+  <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+  <section class="section">
+    <p>みんな集合〜！あの部室でわいわいやってたメンバー、また集まろう。〈確認: 何年ぶりか目安〉ぶりになるけど、久しぶりでも全然大丈夫。ノリだけで来ていいよ。</p>
+  </section>
+
+  <section class="section">
+    <h2>開催概要</h2>
+    <div class="overview">
+      <dl>
+        <dt>日時</dt><dd>〈開催日時〉</dd>
+        <dt>場所</dt><dd>〈開催場所〉</dd>
+        <dt>会費</dt><dd>〈会費〉</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>どんな会にしたいか</h2>
+    <p>あの頃のままで話せる会にしたい。顔を見て、近況とか、部室のあの話とか、どうでもいい話でも。続編を語ろう。</p>
+  </section>
+
+  <section class="section">
+    <h2>出欠の連絡</h2>
+    <p>来られるかは〈締切日〉までに幹事まで連絡してほしい。迷ってる人もとりあえず一声かけて。〈幹事の連絡先〉</p>
+  </section>
+
+  <footer class="footer">
+    <p class="closing">また会おう！</p>
+    <p class="sign">幹事 〈幹事名〉</p>
+  </footer>
+
+</div>
+</body>
+</html>

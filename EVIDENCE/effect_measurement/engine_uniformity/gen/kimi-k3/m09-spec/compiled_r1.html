@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+  /* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+  :root{
+    --bg:#1b2a22;
+    --ink:#2f4f3e;
+    --acc:#c9a24b;
+    --paper:#fdfcf9;
+    /* タイプスケール: 本文15px 基準 / 見出し 1.6倍・1.25倍 (dense 前提) */
+  }
+  body{
+    background:var(--bg);
+    color:#22281f;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:15px;
+    line-height:1.7;
+    margin:0;
+  }
+  .sheet{
+    width:720px;
+    margin:48px auto;
+    background:var(--paper);
+    padding:48px 56px;
+    /* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+    border-radius:0;
+  }
+  h1{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:24px;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:var(--bg);
+    margin:0 0 8px;
+    border-bottom:3px solid var(--acc);
+    padding-bottom:8px;
+  }
+  h2{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:.02em;
+    color:var(--ink);
+    margin:32px 0 8px;
+  }
+  p{margin:0 0 8px;}
+  ul{margin:0 0 8px; padding-left:24px;}
+  li{margin:0 0 4px;}
+  .lead{color:var(--ink); font-weight:600;}
+  .ph{color:var(--acc);}
+</style>
+</head>
+<body>
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<div class="sheet">
+  <h1>経費精算の集計・経理処理を自動で締める — 仕様メモ</h1>
+  <p class="lead">月次の集計と仕訳突合に時間を取られる処理側の作業を、表計算ソフト上の小さなツールひとつで即完了にする。</p>
+
+  <h2>目的</h2>
+  <p>経理担当者が毎月行う経費データの集計・仕訳候補の作成・突合を自動化し、月次締めの手作業を減らす。専用アプリは作らず、既存の表計算ソフト(Excel/スプレッドシート)に入力するだけで完結する形を目指す。</p>
+
+  <h2>対象ユーザー</h2>
+  <p>社内の経理担当者。申請者ではなく、処理する側の操作性を基準に仕様を検討する。利用部署・対象人数は<span class="ph">〈確認: 対象部署と利用者数〉</span>。</p>
+
+  <h2>主要機能</h2>
+  <!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+  <ul>
+    <li>申請データ(日付・費目・金額・摘要)をシートに貼り付けると、費目別・部門別に自動集計する</li>
+    <li>費目から勘定科目への対応表を持ち、仕訳候補行を自動生成する</li>
+    <li>二重計上や金額不整合などの異常値を色で知らせるチェック欄</li>
+    <li>月次締め用の合計シートをワンクリックで出力する</li>
+    <li>外部システムとは連携せず、このファイル単体で完結する</li>
+  </ul>
+
+  <h2>画面イメージ(言葉での説明)</h2>
+  <p>構成は3シート。1枚目「入力」は申請データを貼るだけの白い表。2枚目「集計」は費目×部門のクロス表で、異常行はアクセント色のセルで目立たせる。3枚目「仕訳出力」は貸借の科目・金額が並ぶ一覧で、そのまま会計処理の下書きに使える。ボタンは「締め処理実行」のひとつだけ。</p>
+
+  <h2>使わないと決めたもの</h2>
+  <p>専用アプリ開発、会計システムや勤怠システムとの連携、申請者向け入力画面、承認ワークフロー。これらは本ツールの範囲外とし、単独完結の表計算ツールに絞る。詳細設計(マクロ構成・セル定義)は別文書とし、本メモは要件概要レベルに留める。</p>
+</div>
+<!-- GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル -->
+</body>
+</html>

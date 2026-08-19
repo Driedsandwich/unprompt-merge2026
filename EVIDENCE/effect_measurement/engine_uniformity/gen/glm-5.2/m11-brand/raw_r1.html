@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 — 豆から始まる朝の設計</title>
+<style>
+  :root {
+    --base: #1c1814;
+    --paper: #f4ede1;
+    --accent: #8b3a1a;
+    --muted: #6b5d4f;
+    --hairline: rgba(28,24,20,0.12);
+    /* type scale: body 16px, ratio 1.250 */
+    --fs-body: 16px;
+    --fs-sm: 13px;
+    --fs-h4: 20px;
+    --fs-h3: 25px;
+    --fs-h2: 39px;
+    --fs-h1: 49px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.75;
+    color: var(--base);
+    background: var(--paper);
+  }
+  .serif {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 104px 0; }
+
+  /* HERO */
+  .hero {
+    background: var(--base);
+    color: var(--paper);
+    padding: 128px 0 104px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; right: -80px; top: 40px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #6b3a1a 0%, #2a1a10 70%);
+    opacity: 0.6;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: var(--fs-sm);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    font-weight: 600;
+  }
+  .hero h1 {
+    font-size: var(--fs-h1);
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    margin-bottom: 32px;
+    max-width: 16ch;
+  }
+  .hero-lead {
+    font-size: 17px;
+    line-height: 1.85;
+    max-width: 38ch;
+    opacity: 0.85;
+  }
+
+  /* STORY */
+  .story h2 {
+    font-size: var(--fs-h2);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-bottom: 48px;
+    line-height: 1.4;
+  }
+  .story p { margin-bottom: 24px; color: var(--muted); }
+  .story p:first-of-type::first-letter {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 3.2em;
+    float: left;
+    line-height: 0.9;
+    padding: 8px 12px 0 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* COMMITMENT */
+  .commitment {
+    background: var(--base);
+    color: var(--paper);
+  }
+  .commitment h2 {
+    font-size: var(--fs-h2);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-bottom: 56px;
+  }
+  .commitment-list { display: grid; gap: 40px; }
+  .commitment-item {
+    padding-left: 24px;
+    border-left: 2px solid var(--accent);
+  }
+  .commitment-item h3 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-h4);
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .commitment-item p { font-size: 15px; opacity: 0.75; }
+
+  /* LINEUP */
+  .lineup h2 {
+    font-size: var(--fs-h2);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .lineup-sub { color: var(--muted); margin-bottom: 56px; font-size: 15px; }
+  .bean-card {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 24px;
+    padding: 32px 0;
+    border-top: 1px solid var(--hairline);
+    align-items: start;
+  }
+  .bean-card:last-child { border-bottom: 1px solid var(--hairline); }
+  .bean-mark {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--paper);
+  }
+  .bean-1 .bean-mark { background: linear-gradient(135deg, #8b3a1a, #5a2410); }
+  .bean-2 .bean-mark { background: linear-gradient(135deg, #6b5d4f, #3a322a); }
+  .bean-3 .bean-mark { background: linear-gradient(135deg, #a0552a, #6b3a1a); }
+  .bean-card h3 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-h4);
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+  .bean-card .meta { font-size: var(--fs-sm); color: var(--muted); margin-bottom: 8px; letter-spacing: 0.05em; }
+  .bean-card p { font-size: 14px; color: var(--muted); }
+
+  /* CTA */
+  .cta {
+    background: var(--base);
+    color: var(--paper);
+    text-align: center;
+    padding: 112px 0;
+  }
+  .cta h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+  }
+  .cta p { font-size: 15px; opacity: 0.7; margin-bottom: 48px; }
+  .cta-button {
+    display: inline-block;
+    padding: 18px 56px;
+    background: var(--paper);
+    color: var(--base);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  .cta-button:hover { background: var(--accent); color: var(--paper); }
+  footer {
+    background: var(--base);
+    color: var(--muted);
+    text-align: center;
+    padding: 32px 0;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">COFFEE ROASTERY</div>
+    <h1 class="serif">豆から始まる、<br>朝の設計。</h1>
+    <p class="hero-lead">〈ブランド名〉は、一杯の輪郭を決めるのは火加減ではなく豆そのものだと信じています。焙煎の前に、農園と土と手を知る。その順番を変えないロースタリーです。</p>
+  </div>
+</header>
+
+<section class="story">
+  <div class="container">
+    <h2 class="serif">ブランドの物語</h2>
+    <p>〈ブランド名〉が始まったのは、ひとつの違和感からでした。どれほど腕の良いバリスタが淹れても、豆が語るものを持たなければ杯は深くならない。私たちはそのことに気づいたとき、焙煎の前に立つのをやめました。</p>
+    <p>まず農園に行きました。土に触れ、農家の話を聞き、豆が摘まれる朝の空気の匂いを知りました。〈産地〉の〈生産者〉と話すなかで、私たちが求めていたのは「味の仕上げ」ではなく「豆の声をそのまま届けること」だとわかりました。</p>
+    <p>だから〈ブランド名〉の焙煎曲線は、豆が教えてくれるものです。私たちが押し付けるのではなく、豆が一番よく鳴る温度と時間を探す。一杯の咖啡に、農園の朝がそのまま届く。それが私たちの約束です。</p>
+  </div>
+</section>
+
+<section class="commitment">
+  <div class="container">
+    <h2 class="serif">豆へのこだわり</h2>
+    <div class="commitment-list">
+      <div class="commitment-item">
+        <h3>産地を歩いて選ぶ</h3>
+        <p>カタログの等級ではなく、土と人と季節を見て豆を決めています。毎年訪れる農園との対話が、焙煎以前の品質を作っています。</p>
+      </div>
+      <div class="commitment-item">
+        <h3>豆が主役の焙煎</h3>
+        <p>定番のプロファイルに豆を当てはめるのではなく、各ロットごとに豆が最もよく鳴る温度と時間を探し、小ロットで焙煎しています。</p>
+      </div>
+      <div class="commitment-item">
+        <h3>杯までの距離を測る</h3>
+        <p>焙煎日を記録し、最適な熟成期間を明示。豆が一番輝く瞬間を、手元で掴めるようにしています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lineup">
+  <div class="container">
+    <h2 class="serif">ラインナップ</h2>
+    <p class="lineup-sub">三つの輪郭。朝の時間に合わせて。</p>
+    <div class="bean-card bean-1">
+      <div class="bean-mark">MORNING</div>
+      <div>
+        <h3>〈ブレンド名〉</h3>
+        <div class="meta">MEDIUM ROAST / 産地: 〈産地〉</div>
+        <p>目覚めの杯に。はっきりとした苦味と甘みの輪郭で、一日の始まりを引き受ける一杯。</p>
+      </div>
+    </div>
+    <div class="bean-card bean-2">
+      <div class="bean-mark">QUIET</div>
+      <div>
+        <h3>〈ブレンド名〉</h3>
+        <div class="meta">DARK ROAST / 産地: 〈産地〉</div>
+        <p>静かな時間に。深く沈むようなコクと、余韻に残る微かな甘み。</p>
+      </div>
+    </div>
+    <div class="bean-card bean-3">
+      <div class="bean-mark">SINGLE</div>
+      <div>
+        <h3>〈シングルオリジン名〉</h3>
+        <div class="meta">LIGHT ROAST / 産地: 〈産地〉</div>
+        <p>農園の声をそのままに。フルーティな酸と花のような香りが、豆が持って生まれた個性です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>あなたの朝を、豆から。</h2>
+    <p>〈ブランド名〉の豆を、ご自宅でお試しください。</p>
+    <a href="#" class="cta-button">オンラインショップへ</a>
+  </div>
+</section>
+
+<footer>
+  © 〈ブランド名〉 COFFEE ROASTERY
+</footer>
+
+</body>
+</html>

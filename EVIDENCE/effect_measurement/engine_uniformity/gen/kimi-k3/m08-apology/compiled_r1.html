@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>発送遅延のお詫び</title>
+<style>
+/* GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け */
+:root{
+  --bg:#fff7f0;
+  --main:#e8825c;
+  --accent:#f2b79a;
+  --ink:#4a3b32;
+  /* type scale: 本文 16px 基準、件名 1.5x、宛名 1.125x */
+  --fs-body:16px;
+  --fs-title:24px;
+  --fs-name:18px;
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  line-height:2.1; /* density: airy */
+}
+.wrap{
+  max-width:720px;
+  margin:48px auto;
+  padding:56px 48px;
+  background:#ffffff;
+  border-radius:16px; /* corner: soft */
+}
+h1{
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; /* heading_font: rounded */
+  font-size:var(--fs-title);
+  font-weight:600;
+  letter-spacing:.05em;
+  color:var(--main);
+  margin:0 0 40px 0;
+  border-bottom:2px solid var(--accent);
+  padding-bottom:16px;
+}
+.name{
+  font-size:var(--fs-name);
+  font-weight:600;
+  margin:0 0 32px 0;
+}
+p{ font-size:var(--fs-body); margin:0 0 32px 0; }
+.section-label{
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:var(--fs-body);
+  font-weight:600;
+  color:var(--main);
+  margin:0 0 8px 0;
+}
+.sign{ margin-top:56px; color:var(--ink); }
+.ph{ background:var(--bg); border-radius:4px; padding:0 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け -->
+<h1>お荷物、もう少しだけお待ちください</h1>
+
+<p class="name"><span class="ph">〈お客様名〉</span> 様</p>
+
+<p>いつもご利用いただき、ありがとうございます。<span class="ph">〈ショップ名〉</span>です。<br>
+このたびは、ご注文いただいた商品<span class="ph">〈商品名〉</span>の発送が、お約束の時期より遅れております。楽しみにお待ちいただいているところ、心よりお詫び申し上げます。</p>
+
+<!-- GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない -->
+<p class="section-label">いまの状況について</p>
+<p>現在、順次発送の準備を進めております。ご心配をおかけしておりますこと、重ねてお詫びいたします。</p>
+
+<!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+<p class="section-label">これからのご案内</p>
+<p>発送は<span class="ph">〈おおよその発送時期(例: 来週半ば頃)〉</span>を予定しております。出荷の手続きが完了しましたら、追跡番号を添えて改めてメールでお知らせいたしますので、今しばらくお待ちいただけますと幸いです。</p>
+
+<!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+<p>ご不明な点や、お届け先の変更などがございましたら、このメールへのご返信にていつでもお知らせください。<br>
+このたびはお待たせしてしまい、誠に申し訳ございません。一日も早くお手元にお届けできるよう、心を込めて準備いたします。</p>
+
+<p class="sign"><span class="ph">〈ショップ名〉</span><br>
+<span class="ph">〈問い合わせ先〉</span></p>
+
+</div>
+</body>
+</html>

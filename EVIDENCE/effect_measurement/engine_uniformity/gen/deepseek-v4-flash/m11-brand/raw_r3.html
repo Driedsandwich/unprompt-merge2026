@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>coffee brand</title>
+<style>
+:root {
+  --body-size: 1rem;
+  --h3-size: 1.25rem;
+  --h2-size: 1.75rem;
+  --h1-size: 2.5rem;
+  --ratio: 1.25;
+  --space-unit: 8px;
+  --c-base: #2e241f;
+  --c-accent: #b87b4a;
+  --c-bg: #f7f3ed;
+  --c-light: #e8ddd0;
+  --c-white: #fffcf7;
+  --c-text: #1f1a16;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: "Noto Sans JP", "Hiragino Sans", "Helvetica Neue", Arial, "Yu Gothic", sans-serif;
+  font-size: var(--body-size);
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+}
+
+h1, h2, h3 {
+  font-family: "Noto Serif JP", "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: var(--h1-size);
+}
+
+h2 {
+  font-size: var(--h2-size);
+  margin-bottom: calc(3 * var(--space-unit));
+}
+
+h3 {
+  font-size: var(--h3-size);
+  font-weight: 700;
+  margin-bottom: calc(2 * var(--space-unit));
+}
+
+.section {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: calc(12 * var(--space-unit)) calc(2 * var(--space-unit));
+}
+
+/* ===== Hero ===== */
+.hero {
+  background: var(--c-base);
+  color: var(--c-white);
+  padding: calc(16 * var(--space-unit)) calc(2 * var(--space-unit));
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(184,123,74,0.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 40%, rgba(46,36,31,0.6) 0%, transparent 50%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-symbol {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto calc(3 * var(--space-unit));
+  display: block;
+}
+
+.hero h1 {
+  font-size: var(--h1-size);
+  margin-bottom: calc(2 * var(--space-unit));
+}
+
+.hero p {
+  font-size: 1.125rem;
+  opacity: 0.85;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ===== Story ===== */
+.story {
+  background: var(--c-white);
+}
+
+.story-lead {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: calc(3 * var(--space-unit));
+  color: var(--c-base);
+}
+
+/* ===== Commitment ===== */
+.commitment {
+  background: var(--c-bg);
+}
+
+.commitment-grid {
+  display: flex;
+  flex-direction: column;
+  gap: calc(4 * var(--space-unit));
+}
+
+.commitment-item {
+  display: flex;
+  gap: calc(2 * var(--space-unit));
+  align-items: flex-start;
+}
+
+.commitment-icon {
+  flex: 0 0 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--c-white);
+}
+
+.commitment-item p {
+  flex: 1;
+}
+
+/* ===== Lineup ===== */
+.lineup {
+  background: var(--c-white);
+}
+
+.lineup-grid {
+  display: flex;
+  flex-direction: column;
+  gap: calc(5 * var(--space-unit));
+}
+
+.lineup-card {
+  border: 1px solid var(--c-light);
+  border-radius: 4px;
+  padding: calc(3 * var(--space-unit)) calc(3 * var(--space-unit)) calc(4 * var(--space-unit));
+  background: var(--c-bg);
+  transition: box-shadow 0.2s;
+}
+
+.lineup-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.lineup-card h3 {
+  color: var(--c-base);
+  margin-bottom: calc(1 * var(--space-unit));
+}
+
+.lineup-card .sub {
+  font-size: 0.875rem;
+  color: var(--c-accent);
+  margin-bottom: calc(2 * var(--space-unit));
+  letter-spacing: 0.1em;
+}
+
+.lineup-card p {
+  font-size: 0.9375rem;
+}
+
+/* ===== CTA ===== */
+.cta {
+  background: var(--c-base);
+  color: var(--c-white);
+  text-align: center;
+}
+
+.cta h2 {
+  color: var(--c-white);
+}
+
+.cta p {
+  margin-bottom: calc(4 * var(--space-unit));
+  opacity: 0.8;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--c-accent);
+  color: var(--c-white);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: calc(2 * var(--space-unit)) calc(6 * var(--space-unit));
+  border-radius: 2px;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: background 0.2s;
+}
+
+.cta-button:hover {
+  background: #a06a3e;
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: var(--c-base);
+  border-top: 1px solid rgba(255,252,247,0.1);
+  padding: calc(4 * var(--space-unit)) calc(2 * var(--space-unit));
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255,252,247,0.5);
+}
+
+@media (min-width: 600px) {
+  :root {
+    --h1-size: 3rem;
+    --h2-size: 2rem;
+    --h3-size: 1.375rem;
+  }
+  .section {
+    padding: calc(14 * var(--space-unit)) calc(4 * var(--space-unit));
+  }
+  .commitment-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .commitment-item {
+    flex: 1 1 280px;
+  }
+  .lineup-grid {
+    flex-direction: row;
+    gap: calc(3 * var(--space-unit));
+  }
+  .lineup-card {
+    flex: 1;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <svg class="hero-symbol" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="28" stroke="#b87b4a" stroke-width="2" fill="none"/>
+      <circle cx="32" cy="32" r="18" stroke="#e8ddd0" stroke-width="1.5" fill="none"/>
+      <circle cx="32" cy="32" r="8" fill="#b87b4a"/>
+      <path d="M18 50 Q32 56 46 50" stroke="#e8ddd0" stroke-width="1.5" fill="none"/>
+    </svg>
+    <h1>〈珈琲の環〉</h1>
+    <p>焙煎のその先へ。<br>産地と飲み手をつなぐ、ひとつの環。</p>
+  </div>
+</section>
+
+<section class="story section">
+  <h2>ブランドの物語</h2>
+  <p class="story-lead">ある焙煎所の一角から、もう一度「生豆の声を聴く」ことから始めた。</p>
+  <p>〈珈琲の環〉は、単なるコーヒー豆の袋ではない。焙煎士が産地を訪ね、農園と対話し、その年の収穫に合わせて火加減を一本の曲線として描く。届いた豆の袋には、その焙煎曲線を記した小さなカードが一枚添えられている。開封した瞬間、焙煎室の空気がよみがえる――そんな体験を目指している。</p>
+</section>
+
+<section class="commitment section">
+  <h2>豆へのこだわり</h2>
+  <div class="commitment-grid">
+    <div class="commitment-item">
+      <div class="commitment-icon">◯</div>
+      <div>
+        <h3>対話から生まれる焙煎度</h3>
+        <p>浅煎り・中煎り・深煎りという区分ではなく、豆一粒一粒の密度と水分量に合わせた「その豆だけの焼き加減」。毎ロット焙煎曲線を記録し、次に活かす。</p>
+      </div>
+    </div>
+    <div class="commitment-item">
+      <div class="commitment-icon">◯</div>
+      <div>
+        <h3>追跡できる生産者</h3>
+        <p>仕入れたロットごとに、農園名・標高・収穫月・精選方法を公開。焙煎士が実際に足を運んだ農園だけを扱うため、透明性が違う。</p>
+      </div>
+    </div>
+    <div class="commitment-item">
+      <div class="commitment-icon">◯</div>
+      <div>
+        <h3>届いたその日が飲み頃</h3>
+        <p>焙煎から48時間以内に出荷。届いたその日のうちに開封し、ガス抜きを経て最も香りが立つタイミングを迎えられるよう、曜日指定配送に対応。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lineup section">
+  <h2>ラインナップ</h2>
+  <div class="lineup-grid">
+    <div class="lineup-card">
+      <h3>〈暁〉</h3>
+      <div class="sub">エチオピア イルガチェフェ G1</div>
+      <p>レモンティーのような明るい酸味とジャスミンの余韻。浅煎りながらボディはしっかり。朝の一杯に。</p>
+    </div>
+    <div class="lineup-card">
+      <h3>〈晩鐘〉</h3>
+      <div class="sub">グアテマラ アンティグア</div>
+      <p>カカオとナッツの甘さ、落ち着いた苦味。深煎りだけど雑味が少なく、食後や夜に寄り添う味わい。</p>
+    </div>
+    <div class="lineup-card">
+      <h3>〈渡り鳥〉</h3>
+      <div class="sub">季節のブレンド</div>
+      <p>その時々で最も状態の良い豆を組み合わせる一期一会のブレンド。焙煎士が「今月の一枚」を提案する。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta section">
+  <h2>はじめての環を、あなたのもとへ</h2>
+  <p>初回限定の飲み比べセット（3種各100g）をご用意しています。<br>焙煎カード付きで、自宅で小さな焙煎体験を。</p>
+  <a href="#" class="cta-button">詳細を見る</a>
+</section>
+
+<footer class="footer">
+  〈珈琲の環〉— 焙煎所から、環をむすぶ。
+</footer>
+
+</body>
+</html>

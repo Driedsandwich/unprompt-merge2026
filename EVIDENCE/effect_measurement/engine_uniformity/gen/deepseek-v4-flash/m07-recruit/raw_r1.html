@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>採用情報 – 会社紹介</title>
+  <style>
+    /* タイプスケール: 本文 1rem → 見出しh2 1.75rem, h3 1.25rem, キャッチ 2.25rem */
+    :root {
+      font-size: 16px;
+      --body: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      --heading: "Georgia", "Times New Roman", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+      --base: #1e1e1e;
+      --accent: #c44536;
+      --bg-light: #f7f5f2;
+      --white: #ffffff;
+      --gray-line: #d6d2cb;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: var(--body);
+      color: var(--base);
+      background: var(--white);
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* セクション余白 104px (8の倍数) */
+    section {
+      padding: 104px 0;
+    }
+    section + section {
+      border-top: 1px solid var(--gray-line);
+    }
+
+    /* ---- 冒頭 ---- */
+    .hero {
+      padding: 128px 0 104px;
+      text-align: center;
+    }
+    .hero__label {
+      display: inline-block;
+      font-family: var(--heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+    .hero__catch {
+      font-family: var(--heading);
+      font-size: 2.25rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+    .hero__lead {
+      font-size: 1rem;
+      max-width: 620px;
+      margin: 0 auto;
+      color: #444;
+    }
+
+    /* ---- 見出し ---- */
+    h2 {
+      font-family: var(--heading);
+      font-size: 1.75rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 48px;
+      position: relative;
+      display: inline-block;
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin-top: 12px;
+    }
+    h3 {
+      font-family: var(--heading);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    /* ---- 会社紹介: グリッド ---- */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 40px;
+    }
+    .intro-item {
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+    .intro-item__title {
+      font-family: var(--heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .intro-item p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    /* ---- 働く人の声 ---- */
+    .voices {
+      background: var(--bg-light);
+    }
+    .voice-card {
+      background: var(--white);
+      padding: 40px 32px;
+      margin-bottom: 32px;
+      border-radius: 0;
+      box-shadow: none;
+      border: 1px solid var(--gray-line);
+      position: relative;
+    }
+    .voice-card:last-child {
+      margin-bottom: 0;
+    }
+    .voice-card__icon {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .voice-card blockquote {
+      font-size: 1rem;
+      font-style: normal;
+      margin-bottom: 16px;
+    }
+    .voice-card__meta {
+      font-size: 0.85rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .voice-card__meta span {
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.7rem;
+      padding: 2px 10px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---- 大事にしていること ---- */
+    .values-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px 48px;
+    }
+    .values-list li {
+      flex: 1 1 200px;
+    }
+    .values-list li::before {
+      content: "◆";
+      color: var(--accent);
+      font-size: 0.7rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .values-list h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .values-list p {
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    /* ---- 応募導線 ---- */
+    .cta {
+      text-align: center;
+      padding: 96px 0;
+    }
+    .cta p {
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      color: #333;
+    }
+    .cta__btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--heading);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      padding: 16px 56px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .cta__btn:hover {
+      background: #a33225;
+    }
+    .cta__note {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 24px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 640px) {
+      .hero__catch { font-size: 1.6rem; }
+      .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+      .values-list { flex-direction: column; gap: 32px; }
+      section { padding: 72px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 冒頭 -->
+    <div class="hero">
+      <div class="hero__label">Recruit</div>
+      <p class="hero__catch">「このチームで、<br>もう一度働きたい」<br>と思える職場を。</p>
+      <p class="hero__lead">〈会社名〉は、メンバーが自ら手を挙げて責任を取る文化。<br>飾らない言葉で、日々の熱量をそのまま伝えます。</p>
+    </div>
+
+    <!-- 会社紹介 -->
+    <section>
+      <h2>会社のこと</h2>
+      <div class="intro-grid">
+        <div class="intro-item">
+          <div class="intro-item__title">設立</div>
+          <p>〈年〉〈月〉。小さなチームから、顧客とともに歩むスタイルで成長してきました。</p>
+        </div>
+        <div class="intro-item">
+          <div class="intro-item__title">事業</div>
+          <p>〈事業内容〉の企画・開発・運用。クライアントの「やりたい」を、形に落とす仕事です。</p>
+        </div>
+        <div class="intro-item">
+          <div class="intro-item__title">メンバー</div>
+          <p>〈人数〉名。エンジニア、デザイナー、ディレクター。全員が異なるバックグラウンドを持ちます。</p>
+        </div>
+        <div class="intro-item">
+          <div class="intro-item__title">拠点</div>
+          <p>〈所在地〉。フルリモート併用。週2〜3回集まって顔を合わせるハイブリッド勤務。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 働く人の声 -->
+    <section class="voices">
+      <h2>働く人の声</h2>
+      <div class="voice-card">
+        <span class="voice-card__icon">🗣️</span>
+        <blockquote>「入社1年目から、自分で提案した企画が通りました。『まだ早い』と言われたことは一度もないです。」</blockquote>
+        <div class="voice-card__meta">
+          <span>デザイナー</span>
+          〈名前〉 / 入社〈年数〉年目
+        </div>
+      </div>
+      <div class="voice-card">
+        <span class="voice-card__icon">🗣️</span>
+        <blockquote>「リモートでも『見てますよ』という空気感があって、孤独じゃない。困ったらすぐSlackで拾ってもらえます。」</blockquote>
+        <div class="voice-card__meta">
+          <span>エンジニア</span>
+          〈名前〉 / 入社〈年数〉年目
+        </div>
+      </div>
+    </section>
+
+    <!-- 大事にしていること -->
+    <section>
+      <h2>大事にしていること</h2>
+      <ul class="values-list">
+        <li>
+          <h3>「わからない」を言える</h3>
+          <p>経験年数に関係なく、迷ったらすぐ聞く。質問が成長の入り口だと、全員が思っています。</p>
+        </li>
+        <li>
+          <h3>決めたらやる</h3>
+          <p>ミーティングで決まったことは、その場で担当と期限を決める。「いつかやろう」を置き去りにしません。</p>
+        </li>
+        <li>
+          <h3>仕事を面白がる</h3>
+          <p>どんな案件にも「どうやったらもっと良くなるか」を考える。その姿勢が、結果的に顧客の評価につながっています。</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 応募導線 -->
+    <section class="cta">
+      <p>まずはカジュアルにお話ししませんか。<br>あなたの「やってみたい」を聞かせてください。</p>
+      <a href="#" class="cta__btn">応募する</a>
+      <p class="cta__note">※現在〈募集職種〉を募集中。詳細はエントリー後にお伝えします。</p>
+    </section>
+  </div>
+</body>
+</html>

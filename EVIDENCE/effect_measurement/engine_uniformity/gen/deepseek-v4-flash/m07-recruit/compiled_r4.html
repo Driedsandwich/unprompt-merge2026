@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用ページ – 〈会社名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+/* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+/* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+/* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+/* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+
+:root {
+  /* palette: 地色 #fff8ec, 主要色 #ff9a3c, 強調色 #1a1a1a */
+  --bg: #fff8ec;
+  --main: #ff9a3c;
+  --accent: #1a1a1a;
+  --text: #2b2b2b;
+  --muted: #8a8075;
+  --card-bg: #ffffff;
+  --border-light: #e8ddd0;
+  /* タイプスケール: 本文 16px → 比率 1.25 (major third) */
+  --body-size: 1rem;           /* 16px */
+  --h3-size: 1.25rem;          /* 20px */
+  --h2-size: 1.563rem;         /* 25px */
+  --h1-size: 2.441rem;         /* 39px */
+  --small-size: 0.875rem;      /* 14px */
+  --leading-body: 1.8;
+  --leading-heading: 1.3;
+  --space-unit: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--body-size);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 4);
+}
+
+/* ヘッダー / 冒頭 */
+.hero {
+  text-align: left;
+  margin-bottom: calc(var(--space-unit) * 16);
+  padding: calc(var(--space-unit) * 6) 0;
+}
+
+.hero__label {
+  display: inline-block;
+  font-size: var(--small-size);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--main);
+  border: 2px solid var(--main);
+  border-radius: 30px;
+  padding: calc(var(--space-unit) * 0.5) calc(var(--space-unit) * 3);
+  margin-bottom: calc(var(--space-unit) * 4);
+}
+
+.hero__title {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-weight: 800;
+  font-size: var(--h1-size);
+  line-height: var(--leading-heading);
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.hero__lead {
+  font-size: 1.125rem;
+  line-height: var(--leading-body);
+  color: var(--text);
+  max-width: 600px;
+}
+
+/* セクション共通 */
+section {
+  margin-bottom: calc(var(--space-unit) * 16);
+}
+
+.section-title {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: var(--h2-size);
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  padding-bottom: calc(var(--space-unit) * 2);
+  margin-bottom: calc(var(--space-unit) * 6);
+  border-bottom: 4px solid var(--main);
+  display: inline-block;
+}
+
+/* 会社紹介（ストーリー形式） */
+.story p {
+  margin-bottom: calc(var(--space-unit) * 4);
+}
+
+.story p:last-child {
+  margin-bottom: 0;
+}
+
+.story__highlight {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: calc(var(--space-unit) * 5) calc(var(--space-unit) * 6);
+  margin: calc(var(--space-unit) * 6) 0;
+  border-left: 6px solid var(--main);
+}
+
+.story__highlight p {
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.story__highlight .speaker {
+  font-weight: 700;
+  color: var(--main);
+  font-size: var(--small-size);
+  letter-spacing: 0.05em;
+}
+
+/* 働く人の声（生の声中心） */
+.voices {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-unit) * 6);
+}
+
+.voice-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: calc(var(--space-unit) * 6);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  position: relative;
+}
+
+/* 装飾削除: 影を残すが装飾をひとつ削る指示により、voice-cardの左装飾線を削除（無くても成立） */
+.voice-card__quote {
+  font-size: 1.125rem;
+  line-height: var(--leading-body);
+  margin-bottom: calc(var(--space-unit) * 3);
+  position: relative;
+  padding-left: calc(var(--space-unit) * 2);
+}
+
+.voice-card__quote::before {
+  content: "“";
+  font-size: 3rem;
+  color: var(--main);
+  position: absolute;
+  left: -4px;
+  top: -12px;
+  line-height: 1;
+  font-family: serif;
+}
+
+.voice-card__meta {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space-unit) * 2);
+}
+
+.voice-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--main);
+  opacity: 0.25;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.25rem;
+  opacity: 0.5;
+}
+
+.voice-card__name {
+  font-weight: 700;
+  font-size: var(--body-size);
+}
+
+.voice-card__role {
+  font-size: var(--small-size);
+  color: var(--muted);
+}
+
+/* 大事にしていること */
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--space-unit) * 5);
+}
+
+@media (max-width: 560px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.value-item {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: calc(var(--space-unit) * 5) calc(var(--space-unit) * 4);
+  text-align: center;
+}
+
+.value-item__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto calc(var(--space-unit) * 3);
+  background: var(--main);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.value-item__title {
+  font-weight: 700;
+  font-size: var(--h3-size);
+  letter-spacing: 0.02em;
+  margin-bottom: calc(var(--space-unit) * 2);
+  color: var(--accent);
+}
+
+.value-item__desc {
+  font-size: var(--body-size);
+  line-height: var(--leading-body);
+  color: var(--text);
+}
+
+/* 応募への導線 */
+.cta {
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 32px;
+  padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 6);
+  text-align: center;
+}
+
+.cta__title {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: var(--h2-size);
+  letter-spacing: 0.04em;
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.cta__text {
+  font-size: var(--body-size);
+  line-height: var(--leading-body);
+  margin-bottom: calc(var(--space-unit) * 6);
+  opacity: 0.85;
+}
+
+.cta__button {
+  display: inline-block;
+  background: var(--main);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+  padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 10);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.cta__button:hover {
+  opacity: 0.85;
+}
+
+.cta__note {
+  font-size: var(--small-size);
+  margin-top: calc(var(--space-unit) * 4);
+  opacity: 0.6;
+}
+
+footer {
+  text-align: center;
+  padding: calc(var(--space-unit) * 8) 0;
+  font-size: var(--small-size);
+  color: var(--muted);
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 冒頭：キャッチコピー + 導入 -->
+  <header class="hero">
+    <span class="hero__label">はじめまして、〈会社名〉です</span>
+    <h1 class="hero__title">はじめの一歩を、<br>ここから。</h1>
+    <p class="hero__lead">
+      未経験から採用の現場で育つ日々。誰かの「はじめまして」を支える仕事を、私たちはしています。
+    </p>
+  </header>
+
+  <!-- 会社紹介：ストーリー形式 -->
+  <!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+  <section class="story">
+    <h2 class="section-title">この会社で、働くということ</h2>
+    <p>
+      〈会社名〉は、〈設立年数〉前に〈所在地〉で生まれました。最初はたった〈人数〉人。得意なことは「人のご縁をつなぐこと」ただそれだけでした。
+    </p>
+    <p>
+      そこから少しずつ仲間が増え、今では〈現在の人数〉人が働いています。それでも変わらないのは、隣の人の顔が見える距離感。役職や経験年数よりも、その人が何を考えているかを大切にする文化が根づいています。
+    </p>
+    <div class="story__highlight">
+      <!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+      <p>
+        「入社したときは本当に何もできなくて、先輩に迷惑ばかりかけていました。でも、『できなくて当たり前だよ』と言って、何度も何度も教えてくれたんです。その優しさに応えたくて、気づいたら自分も同じように新人を見るようになっていました。」
+      </p>
+      <p class="speaker">—— 入社〈年数〉年目・〈職種〉〈確認: 社員の実際の名前または匿名希望の表記を確認〉</p>
+    </div>
+    <p>
+      私たちは「売上」や「数字」よりも、チームで働く喜びを大事にしてきました。もちろん仕事は真剣です。でも、互いを認め合い、助け合う空気があるからこそ、困難な案件にも前向きに取り組めています。
+    </p>
+    <p>
+      採用ページでよくあるような、かっこいいミッションはまだ言葉にできていません。けれど、毎日の仕事の中で「この人の役に立てた」「このチームでよかった」と思う瞬間が、確かにあります。
+    </p>
+  </section>
+
+  <!-- 働く人の声（生の声中心） -->
+  <!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+  <section>
+    <h2 class="section-title">社員の、飾らない声</h2>
+    <div class="voices">
+
+      <div class="voice-card">
+        <div class="voice-card__quote">
+          正直、最初は不安しかなかったです。でも、わからないことを「わからない」と言える空気がここにはあります。先輩も後輩も関係なく、教え合うのが当たり前。気づいたら自分も誰かに教える立場になっていました。
+        </div>
+        <div class="voice-card__meta">
+          <div class="voice-card__avatar">S</div>
+          <div>
+            <div class="voice-card__name">〈確認: 社員の名前〉</div>
+            <div class="voice-card__role">入社〈年数〉年目 / 〈職種〉</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="voice-card__quote">
+          一番驚いたのは、ミスをしても怒る人がいないことです。その代わり、「次はどうしようか」って一緒に考えてくれる。だから失敗を恐れず挑戦できるんだと思います。
+        </div>
+        <div class="voice-card__meta">
+          <div class="voice-card__avatar">K</div>
+          <div>
+            <div class="voice-card__name">〈確認: 社員の名前〉</div>
+            <div class="voice-card__role">入社〈年数〉年目 / 〈職種〉</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="voice-card__quote">
+          この会社のいいところは、一人ひとりのペースを尊重してくれるところ。『こうあるべき』を押し付けられないから、自分らしい働き方が見つけられました。
+        </div>
+        <div class="voice-card__meta">
+          <div class="voice-card__avatar">M</div>
+          <div>
+            <div class="voice-card__name">〈確認: 社員の名前〉</div>
+            <div class="voice-card__role">入社〈年数〉年目 / 〈職種〉</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 大事にしていること -->
+  <!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+  <section>
+    <h2 class="section-title">私たちが大事にしていること</h2>
+    <div class="values-grid">
+
+      <div class="value-item">
+        <div class="value-item__icon">1</div>
+        <h3 class="value-item__title">「当たり前」を疑わない</h3>
+        <p class="value-item__desc">
+          前例や慣習にとらわれず、今のチームにとってベストな方法を選びます。小さな違和感を大切にする文化です。
+        </p>
+      </div>
+
+      <div class="value-item">
+        <div class="value-item__icon">2</div>
+        <h3 class="value-item__title">教えることは、育てること</h3>
+        <p class="value-item__desc">
+          知識やスキルを惜しみなく共有します。誰かの成長が、チーム全体の成長につながると信じています。
+        </p>
+      </div>
+
+      <div class="value-item">
+        <div class="value-item__icon">3</div>
+        <h3 class="value-item__title">できないを、恥じない</h3>
+        <p class="value-item__desc">
+          未経験であることを歓迎します。「わからない」が言えるからこそ、新しい学びが生まれます。
+        </p>
+      </div>
+
+      <div class="value-item">
+        <div class="value-item__icon">4</div>
+        <h3 class="value-item__title">隣の人の顔を見る</h3>
+        <p class="value-item__desc">
+          リモートでも対面でも、互いの存在を感じられる距離感を大切にしています。一人で抱え込ませない。
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 応募への導線：認知・興味喚起段階 -->
+  <!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+  <section class="cta">
+    <h2 class="cta__title">あなたの一歩を、<br>待っています</h2>
+    <p class="cta__text">
+      経験やスキルは問いません。「人の役に立ちたい」「チームで働くってどんな感じだろう」——<br>
+      そんな気持ちがあれば、十分です。まずは気軽に話を聞きに来てください。
+    </p>
+    <a href="#" class="cta__button">エントリーはこちら</a>
+    <p class="cta__note">※エントリー前にカジュアル面談も可能です。お気軽にどうぞ。</p>
+  </section>
+
+  <footer>
+    〈会社名〉 — 採用ページ
+  </footer>
+
+</div>
+
+</body>
+</html>

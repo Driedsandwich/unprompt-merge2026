@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+  :root {
+    --body-size: 15px;
+    --lead-size: 17px;
+    --caption-size: 13px;
+    --ink: #2b2b2b;
+    --muted: #6b6b6b;
+    --accent: #8a6d3b;
+    --line: #d8d4cc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: var(--body-size);
+    line-height: 1.85;
+    color: var(--ink);
+    background: #f0eee9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 72px 64px 80px;
+  }
+
+  .subject {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .label {
+    display: block;
+    font-size: var(--caption-size);
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .greeting {
+    margin-top: 40px;
+  }
+
+  .body-text {
+    margin-top: 24px;
+  }
+
+  .accent-line {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .section {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-weight: 600;
+    font-size: var(--lead-size);
+    letter-spacing: 0.03em;
+    margin-bottom: 20px;
+  }
+
+  .signature {
+    margin-top: 56px;
+    font-size: var(--caption-size);
+    color: var(--muted);
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="label">件名</p>
+  <h1 class="subject">ご注文いただいた〈商品名〉のお届けが遅れております</h1>
+
+  <p class="greeting">〈お客様名〉 様</p>
+
+  <div class="body-text">
+    <p>この度は〈店舗名〉をご利用いただき、ありがとうございます。</p>
+    <p style="margin-top:16px;">
+      ご注文いただいた〈商品名〉につきまして、<span class="accent-line">本来お届け予定していた期日を過ぎてしまっている</span>にもかかわらず、まだ発送が完了していない状況です。楽しみにお待ちいただいていたところ、多大なるご不便とご心配をおかけしておりますこと、心よりお詫び申し上げます。
+    </p>
+  </div>
+
+  <section class="section">
+    <h2>現在の状況と対応</h2>
+    <p>
+      現在、倉庫にて入荷待ちの状態が続いており、<span class="accent-line">新しいお届け予定は〈新しいお届け予定〉</span>となります。ただちにお手元にお届けできないことを重く受け止めております。
+    </p>
+    <p style="margin-top:16px;">
+      なお、発送準備が整い次第、追跡番号をあらためてご連絡いたします。もし今回の遅延によりご注文をキャンセルされたい場合は、このメールへのご返信でお知らせください。すぐに対応させていただきます。
+    </p>
+  </section>
+
+  <div class="signature">
+    末筆にて改めてお詫び申し上げます。<br>
+    引き続き何卒よろしくお願い申し上げます。
+    <p style="margin-top:24px;">
+      〈店舗名〉 カスタマーサポート<br>
+      〈メールアドレス〉
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

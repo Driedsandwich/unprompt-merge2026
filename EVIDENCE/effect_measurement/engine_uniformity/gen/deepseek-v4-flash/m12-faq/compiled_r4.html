@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品に関するご案内 – 〈ショップ名〉サポート</title>
+<style>
+/* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+/* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+/* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+/* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+/* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+
+:root {
+    /* palette: #f4f1ea (地色), #2f5233 (主要色), #b08d57 (強調色) */
+    --bg: #f4f1ea;
+    --major: #2f5233;
+    --accent: #b08d57;
+    --text: #1f1e1c;
+    --border: #d6d0c0;
+    --white: #ffffff;
+    --light-major: #e5ede5;
+    --light-accent: #f2e8d8;
+
+    /* タイプスケール: 本文 16px → 小見出し 18px → 中見出し 24px → 大見出し 32px */
+    --body: 16px;
+    --h3: 18px;
+    --h2: 24px;
+    --h1: 32px;
+
+    font-size: var(--body);
+    line-height: 1.75;
+    letter-spacing: 0.02em;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 96px;
+}
+
+/* 冒頭: 条件明示で安心感を最初に言う */
+/* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+.hero {
+    padding: 64px 0 48px;
+    border-bottom: 2px solid var(--border);
+}
+
+.hero__label {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--h3);
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+}
+
+.hero__heading {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--h1);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    color: var(--major);
+    margin-bottom: 24px;
+}
+
+.hero__lead {
+    font-size: calc(var(--body) + 2px);
+    line-height: 1.8;
+    color: #3a3a38;
+}
+
+/* カテゴリ分類型：見出しでセクションを区切る */
+/* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+.section {
+    padding: 40px 0 32px;
+}
+
+.section + .section {
+    border-top: 1px solid var(--border);
+}
+
+.section__heading {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--h2);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--major);
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+
+/* カテゴリ小見出し */
+.category-label {
+    font-size: var(--h3);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--major);
+    margin: 32px 0 16px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+}
+
+.category-label:first-of-type {
+    margin-top: 0;
+}
+
+/* FAQ項目: 質問＋答え */
+/* GYAKUMON-CHOICE: 丁寧・寄り添い型 */
+.faq-item {
+    margin-bottom: 24px;
+}
+
+.faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.faq-q {
+    font-weight: 700;
+    font-size: var(--body);
+    color: var(--major);
+    padding: 16px 16px 8px;
+    background: var(--light-major);
+    border-radius: 8px 8px 0 0;
+    line-height: 1.6;
+    position: relative;
+}
+
+.faq-q::before {
+    content: "Q.";
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-weight: 700;
+    color: var(--accent);
+    margin-right: 8px;
+}
+
+.faq-a {
+    padding: 8px 16px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    line-height: 1.8;
+}
+
+.faq-a p {
+    margin-bottom: 8px;
+}
+
+.faq-a p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-a ul {
+    padding-left: 20px;
+    margin: 8px 0;
+}
+
+.faq-a li {
+    margin-bottom: 4px;
+}
+
+/* 連絡導線 */
+/* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+.contact-block {
+    margin-top: 48px;
+    padding: 40px 32px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.contact-block__heading {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--h2);
+    font-weight: 600;
+    color: var(--major);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+}
+
+.contact-block__text {
+    margin-bottom: 24px;
+    color: #3a3a38;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 16px 48px;
+    background: var(--major);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: var(--body);
+    letter-spacing: 0.06em;
+    border-radius: 40px;
+    transition: background 0.2s;
+}
+
+.contact-btn:hover {
+    background: #1d3b30;
+}
+
+.contact-block__note {
+    margin-top: 16px;
+    font-size: calc(var(--body) - 2px);
+    color: #6b6a66;
+}
+
+/* 細かい調整 */
+.small-note {
+    font-size: calc(var(--body) - 2px);
+    color: #6b6a66;
+}
+
+.emphasis {
+    font-weight: 700;
+    color: var(--major);
+}
+
+.accent-text {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- 冒頭: 透明性・条件明示 -->
+    <!-- GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 -->
+    <div class="hero">
+        <p class="hero__label">返品ガイド</p>
+        <h1 class="hero__heading">返品条件、すべて明記します。<br>対象・期限・送料まで一覧で確認できます</h1>
+        <p class="hero__lead">
+            返品をお考えの方も、すでにお手続き中の方も。条件や手順をあらかじめお知らせすることで、迷わずスムーズに対応いただくことを目指しています。
+        </p>
+    </div>
+
+    <!-- カテゴリ分類: 条件を確認する -->
+    <!-- GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 -->
+    <div class="section">
+        <h2 class="section__heading">条件を確認する</h2>
+
+        <p class="category-label">返品できるケース</p>
+
+        <div class="faq-item">
+            <div class="faq-q">どんな商品が返品の対象になりますか？</div>
+            <div class="faq-a">
+                <p>未開封・未使用の商品で、到着日から〈返品可能日数〉以内のものが対象です。タグ・付属品・箱などが揃っている状態でお送りください。</p>
+                <p class="small-note">※ 商品ページに「返品不可」と記載があるものは対象外です。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">返品できない商品はありますか？</div>
+            <div class="faq-a">
+                <p>以下の商品は、お客様都合による返品をお受けしておりません。</p>
+                <ul>
+                    <li>開封済みの食品・化粧品・衛生用品</li>
+                    <li>お客様のもとで使用・加工・洗濯された商品</li>
+                    <li>セール品・アウトレット品・福袋</li>
+                    <li>オーダーメイド・受注生産品</li>
+                    <li>〈その他、条件に応じて追加〉</li>
+                </ul>
+                <p>商品の不良・誤配送の場合は上記にかかわらず対応いたしますので、お問い合わせください。</p>
+            </div>
+        </div>
+
+        <p class="category-label">返品の期限と送料</p>
+
+        <div class="faq-item">
+            <div class="faq-q">返品の期限はありますか？</div>
+            <div class="faq-a">
+                <p>商品到着日を含めて〈返品可能日数〉以内にご連絡・ご発送ください。期限を過ぎた場合はお受けできません。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">返品時の送料はどちらが負担しますか？</div>
+            <div class="faq-a">
+                <p><span class="emphasis">お客様都合の場合</span>：返送料はお客様のご負担となります。元払いにてご発送ください。</p>
+                <p><span class="emphasis">商品不良・誤配送の場合</span>：当店が着払いにて返送料を負担いたします。お手数ですが、到着後〈連絡受付期間〉以内にご連絡ください。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- カテゴリ分類: 手続きの流れ -->
+    <div class="section">
+        <h2 class="section__heading">手続きの流れを確認する</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">返品の手順を教えてください</div>
+            <div class="faq-a">
+                <p>以下の手順でお進みください。</p>
+                <ol style="padding-left:20px; margin:8px 0;">
+                    <li>商品到着後〈返品可能日数〉以内に、ご注文番号と返品理由を添えてお問い合わせフォームまたはお電話でご連絡ください。</li>
+                    <li>当店より返品受付番号と返送先住所をお知らせします。</li>
+                    <li>商品を元の状態で梱包し、受付番号を明記の上、ご指定の方法でご発送ください。</li>
+                    <li>当店到着後、内容を確認し、返金手続きを開始します。返金はご注文時の決済方法に応じて〈返金所要日数〉程度で完了します。</li>
+                </ol>
+                <p class="small-note">※ 着払いでのご発送はご遠慮ください（不良品・誤配送の場合を除く）。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">交換はできますか？ 返品とは別の手続きですか？</div>
+            <div class="faq-a">
+                <p>交換をご希望の場合も、まずは上記の返品手順でご連絡ください。在庫状況を確認の上、交換対応が可能かご案内します。<span class="accent-text">交換の場合も送料の負担ルールは返品と同様</span>です。在庫切れの場合は返金での対応となります。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- カテゴリ分類: 返金・その他 -->
+    <div class="section">
+        <h2 class="section__heading">返金・その他</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">返金はいつ・どのように行われますか？</div>
+            <div class="faq-a">
+                <p>当店で商品を確認後、〈返金所要日数〉以内にご注文時と同じ決済方法で返金いたします。クレジットカードの場合はカード会社の締め日により、ご利用明細への反映までに時間がかかる場合がございます。代金引換の場合は、指定の銀行口座へのお振り込みとなります。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">返品した商品が届かない・返金が確認できません</div>
+            <div class="faq-a">
+                <p>配送状況の追跡番号をお手元にご用意の上、お問い合わせください。返金については、ご利用の決済方法により反映時期が異なります。〈返金所要日数〉を過ぎても反映されない場合は、お手数ですがお問い合わせフォームよりご連絡ください。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 連絡導線: 問合せ導線も維持 -->
+    <!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+    <!-- GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 -->
+    <div class="contact-block">
+        <h2 class="contact-block__heading">それでも解決しないときは</h2>
+        <p class="contact-block__text">
+            ご自身のケースに当てはまらない、あるいは手続き中に不安なことがあれば、遠慮なくお尋ねください。お客様一人ひとりの状況に合わせてご案内します。
+        </p>
+        <a href="#" class="contact-btn">お問い合わせフォームへ</a>
+        <p class="contact-block__note">受付時間: 平日 10:00–17:00（土日祝・年末年始を除く）<br>電話: 〈電話番号〉 ／ メール: 〈メールアドレス〉</p>
+    </div>
+
+</div>
+
+</body>
+</html>

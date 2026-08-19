@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈会社名〉の会社紹介</title>
+<style>
+  :root {
+    --bg: #2b2622;
+    --primary: #c4623a;
+    --accent: #e8b04b;
+    --text: #f5ede0;
+    --muted: rgba(245,237,224,0.55);
+    --line: rgba(245,237,224,0.12);
+    --r-lg: 18px;
+    --r-md: 12px;
+    /* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+    /* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+    /* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+    /* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+    /* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.02em;
+  }
+  /* GYAKUMON-CHOICE: 角 = soft */
+  h1, h2, h3 {
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  /* GYAKUMON-CHOICE: 密度 = airy */
+  section { padding: 96px 24px; max-width: 720px; margin: 0 auto; }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .hero h1 { font-size: 36px; margin: 20px 0 32px; line-height: 1.45; }
+  .hero p { font-size: 16px; color: rgba(245,237,224,0.72); }
+  .hero { border-bottom: 1px solid var(--line); }
+  .story h2 { font-size: 26px; line-height: 1.5; margin-bottom: 32px; color: var(--text); }
+  .story p { margin-bottom: 24px; color: rgba(245,237,224,0.78); }
+  .story p:last-child { margin-bottom: 0; }
+  .story strong { color: var(--accent); font-weight: 600; }
+  .voices { border-top: 1px solid var(--line); }
+  .voices h2 { font-size: 26px; line-height: 1.5; margin-bottom: 48px; }
+  .voice {
+    background: rgba(196,98,58,0.08);
+    border-radius: var(--r-lg);
+    padding: 40px;
+    margin-bottom: 32px;
+  }
+  .voice:last-child { margin-bottom: 0; }
+  .voice p { font-size: 15px; line-height: 1.95; margin-bottom: 24px; color: rgba(245,237,224,0.85); }
+  .voice p:last-of-type { margin-bottom: 0; }
+  .voice .who { font-size: 14px; color: var(--accent); font-weight: 600; letter-spacing: 0.06em; }
+  .values { border-top: 1px solid var(--line); }
+  .values h2 { font-size: 26px; line-height: 1.5; margin-bottom: 16px; }
+  .values .lead { color: rgba(245,237,224,0.6); margin-bottom: 48px; }
+  .value-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .value-item:last-child { margin-bottom: 0; }
+  .value-item .marker {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    margin-top: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+  }
+  .value-item h3 { font-size: 18px; margin-bottom: 8px; color: var(--accent); }
+  .value-item p { font-size: 15px; color: rgba(245,237,224,0.72); }
+  .cta {
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .cta h2 { font-size: 28px; margin-bottom: 16px; line-height: 1.5; }
+  .cta p { color: rgba(245,237,224,0.6); margin-bottom: 40px; }
+  .cta a {
+    display: inline-block;
+    padding: 18px 56px;
+    background: var(--primary);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: var(--r-md);
+    letter-spacing: 0.08em;
+    transition: background 0.2s;
+  }
+  .cta a:hover { background: var(--accent); color: var(--bg); }
+  footer { padding: 32px 24px; text-align: center; }
+  footer small { color: var(--muted); font-size: 12px; letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <p class="eyebrow">COMPANY</p>
+  <!-- GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 -->
+  <h1>はじめまして。隣にいる人の<br>顔が見える会社です。</h1>
+  <!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+  <p>私たちの日常を、少しだけ覗いてみませんか。</p>
+</section>
+
+<section class="story">
+  <!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+  <h2>この会社で働くって、<br>どういうことか。</h2>
+  <p>入社した日のことを、みんなよく覚えています。知らないことばかりで、夕方になると頭が重くなって、でも誰かが隣で「わからなくて当然だよ」と言ってくれた。その一言が、ここでの時間の始まりでした。</p>
+  <p>〈会社名〉の仕事は、〈事業内容〉です。難しく感じるかもしれません。実際、最初はそうでした。けれど、先輩が横にいて、同僚がいて、困ったときには声をかけてくれる。だから少しずつ、できることが増えていく。</p>
+  <p>派手な実績を並べるよりも、<strong>毎朝「おはよう」と言える相手がいる</strong>ことのほうが、私たちにとっては大事なことだと思っています。仕事は一人では完結しないからです。</p>
+</section>
+
+<section class="voices">
+  <!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+  <h2>働く人の声</h2>
+  <div class="voice">
+    <p>〈確認: 入社当時に感じていた不安と、それがどう変わったかという実際の体験談を1つ〉</p>
+    <p class="who">— 〈社員の所属・年目〉</p>
+  </div>
+  <div class="voice">
+    <p>〈確認: チームの仲間に対して、嬉しかったことや感謝を感じた具体的な出来事を1つ〉</p>
+    <p class="who">— 〈社員の所属・年目〉</p>
+  </div>
+</section>
+
+<section class="values">
+  <!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+  <h2>大事にしていること</h2>
+  <p class="lead">〈会社名〉で日々の仕事を通じて大切にしていること。</p>
+  <div class="value-item">
+    <span class="marker"></span>
+    <div>
+      <h3>〈大事にしていること①〉</h3>
+      <p>〈確認: なぜそれを大切にしているのか、現場の感覚として〉</p>
+    </div>
+  </div>
+  <div class="value-item">
+    <span class="marker"></span>
+    <div>
+      <h3>〈大事にしていること②〉</h3>
+      <p>〈確認: なぜそれを大切にしているのか、現場の感覚として〉</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>少し、興味が湧いたら。</h2>
+  <p>まだ応募するか決めかねている方も、まずは話を聞きに来てください。</p>
+  <a href="#">話を聞いてみる</a>
+</section>
+
+<footer>
+  <small>© 〈会社名〉</small>
+</footer>
+
+</body>
+</html>

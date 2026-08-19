@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品のご案内</title>
+<style>
+  :root {
+    --base-text: 15px;
+    --lead-size: 17px;
+    --catch-size: 30px;
+    --color-base: #1a1d2e;
+    --color-accent: #c47b54;
+    --color-paper: #f5f1ea;
+    --color-muted: #6b6b6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--color-paper);
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--color-base);
+    line-height: 1.8;
+    padding: 16px;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .catch {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--catch-size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    margin-top: 96px;
+    margin-bottom: 32px;
+    color: var(--color-base);
+  }
+  .lead {
+    font-size: var(--lead-size);
+    line-height: 1.9;
+    margin-bottom: 64px;
+    color: #333;
+  }
+  .feature {
+    margin-bottom: 96px;
+  }
+  .feature h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--color-accent);
+  }
+  .feature p {
+    font-size: var(--base-text);
+    margin-bottom: 16px;
+  }
+  .spec {
+    margin-bottom: 96px;
+  }
+  .spec h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+  }
+  .spec ul {
+    list-style: none;
+    font-size: 14px;
+    line-height: 2.2;
+    color: var(--color-muted);
+  }
+  .closing {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1.9;
+    margin-bottom: 96px;
+    color: var(--color-base);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 class="catch">手にした瞬間、理由が消える。</h1>
+  <p class="lead">〈商品名〉は、無駄を削ぎ落とした洗練のデザインと、確かな質感で毎日を支えるアイテムです。使い続けるほどに手に馴染み、あなたの暮らしに自然と溶け込んでいきます。</p>
+
+  <section class="feature">
+    <h2>シンプルだから、長く愛せる</h2>
+    <p>流行に流されない端正なフォルムと、確かな素材選び。手持ちのアイテムとも合わせやすく、どんな場面でもすっと存在感を放ちます。季節を問わず、年単位で付き合える一品です。</p>
+  </section>
+
+  <section class="spec">
+    <h2>仕様・ご注意</h2>
+    <ul>
+      <li>素材・成分：〈素材〉</li>
+      <li>サイズ：〈サイズ〉</li>
+      <li>生産国：〈生産国〉</li>
+      <li>※お手入れ方法の詳細は〈取扱説明〉をご確認ください。</li>
+    </ul>
+  </section>
+
+  <p class="closing">毎日の小さな喜びを、〈商品名〉と共に。</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会のお知らせ</title>
+<style>
+  :root {
+    /* タイプスケール: 16px 基準 × 1.25 倍率 */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-md: 1.25rem;    /* 20px */
+    --text-lg: 1.5625rem;  /* 25px */
+    --text-xl: 1.953125rem;/* 31.25px */
+
+    /* 色 */
+    --ink: #2a2a2a;
+    --ink-light: #5c5c5c;
+    --bg: #faf9f5;
+    --accent: #b55a3b; /* 落ち着いた赤茶色 */
+    --border: #e0dbd4;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Yu Gothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--ink);
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px;
+  }
+
+  .letter {
+    max-width: 720px;
+    width: 100%;
+    background: #ffffff;
+    padding: 64px 56px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  /* 冒頭: 主張 */
+  .lead {
+    font-size: var(--text-lg);
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+
+  .lead-sub {
+    font-size: var(--text-sm);
+    color: var(--ink-light);
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+  }
+
+  h2 {
+    font-size: var(--text-md);
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+    padding-top: 8px;
+  }
+
+  .section {
+    margin-bottom: 64px;
+  }
+
+  .info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-bottom: 24px;
+  }
+
+  .info-item {
+    flex: 0 0 auto;
+    min-width: 120px;
+  }
+
+  .info-label {
+    font-size: var(--text-sm);
+    color: var(--ink-light);
+    letter-spacing: 0.03em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .info-value {
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
+
+  .info-placeholder {
+    color: var(--accent);
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .description {
+    margin-bottom: 24px;
+  }
+
+  .description p {
+    margin-bottom: 16px;
+  }
+
+  .rsvp-box {
+    background: var(--bg);
+    padding: 32px 32px 24px;
+    margin-bottom: 24px;
+  }
+
+  .rsvp-box h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .rsvp-box p {
+    font-size: var(--text-sm);
+    color: var(--ink-light);
+    margin-bottom: 8px;
+  }
+
+  .button-placeholder {
+    display: inline-block;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 12px 40px;
+    margin-top: 8px;
+    border-radius: 0;
+    text-decoration: none;
+  }
+
+  .closing {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    font-size: var(--text-sm);
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  .closing .name {
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 540px) {
+    .letter {
+      padding: 40px 24px;
+    }
+    .lead {
+      font-size: var(--text-md);
+    }
+    .info-grid {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .rsvp-box {
+      padding: 24px 20px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="letter">
+
+  <!-- 冒頭：最も特徴的な一点「気軽に来たくなる」を前面に -->
+  <p class="lead">「久しぶり！」<br>それだけでいい夜にしませんか</p>
+  <p class="lead-sub">肩書きも近況報告も、お互いの顔を見たらきっとどうでもよくなる。</p>
+
+  <!-- 開催概要 -->
+  <div class="section">
+    <h2>開催概要</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">日時</span>
+        <span class="info-value"><span class="info-placeholder">〈開催日〉</span> 19:00 〜 21:30</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">場所</span>
+        <span class="info-value"><span class="info-placeholder">〈会場名〉</span></span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">会費</span>
+        <span class="info-value"><span class="info-placeholder">〈金額〉</span> 程度（軽食・飲物込）</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- どんな会にしたいか -->
+  <div class="section">
+    <h2>何を話すかより、誰と居るか</h2>
+    <div class="description">
+      <p>
+        あの頃みたいに、仕事の話をしなくていい。自慢話も、気を遣う話題もいらない。
+        ただ「元気だった？」のひとことが聞きたくて、声をかけています。
+      </p>
+      <p>
+        参加のハードルを下げたくて、会費も時間もコンパクトにしました。
+        ちょっと顔を出すだけ、飲み物だけ手に取るだけ、それで十分です。
+        あの教室に戻ったような、ゆるい空気でお待ちしています。
+      </p>
+    </div>
+  </div>
+
+  <!-- 出欠連絡 -->
+  <div class="section">
+    <h2>出欠の連絡</h2>
+    <div class="rsvp-box">
+      <h3>気軽に「行くかも」でOK</h3>
+      <p>
+        〆切は <span class="info-placeholder">〈日付〉</span> まで。<br>
+        以下の連絡先へ、お名前と参加・不参加・未定のいずれかをお知らせください。
+      </p>
+      <p>
+        電話・メール・SNS、どの方法でも構いません。<br>
+        「行くかも」の連絡も大歓迎です。
+      </p>
+      <p style="margin-top: 16px;">
+        <span class="info-placeholder">〈幹事の連絡先〉</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 締め -->
+  <div class="closing">
+    <p>
+      あの頃と変わらない顔で会えるのを、楽しみにしています。<br>
+      ぜひ、気の置けない友だちにも声をかけてみてください。
+    </p>
+    <div class="name"><span class="info-placeholder">〈幹事名〉</span> より</div>
+  </div>
+
+</div>
+</body>
+</html>

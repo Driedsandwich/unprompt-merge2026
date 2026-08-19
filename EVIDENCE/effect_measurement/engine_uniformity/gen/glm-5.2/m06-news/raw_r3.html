@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巻頭あいさつ</title>
+<style>
+  :root {
+    --scale-body: 16px;
+    --scale-h1: calc(var(--scale-body) * 2.25);
+    --scale-h2: calc(var(--scale-body) * 1.25);
+    --ink: #1c2433;
+    --paper: #faf8f3;
+    --accent: #3d6a4d;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    background: #e6e3dc;
+    color: var(--ink);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .frame {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 48px;
+    background: var(--paper);
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+    font-size: var(--scale-h1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 56px;
+  }
+
+  .label {
+    display: block;
+    font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+    font-size: var(--scale-body);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: var(--scale-body);
+    line-height: 1.95;
+    letter-spacing: 0.01em;
+  }
+
+  section { margin-bottom: 56px; }
+  section:last-of-type { margin-bottom: 0; }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 80px 0 24px 0;
+  }
+
+  .sign {
+    font-size: var(--scale-h2);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  .role {
+    font-size: var(--scale-body);
+    font-weight: 400;
+    color: #6b7280;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <h1>
+      <span class="label">巻頭あいさつ</span>
+      こんにちは、<br>〈今月〉です。
+    </h1>
+
+    <section>
+      <p>毎月この原稿を書くたび、いちばん迷うのが「書き出し」です。きちんとしすぎると硬くなり、ふざけすぎると信頼が揺らぐ。そのあたりの塩梅を探りながら、今月もキーボードを叩いています。</p>
+    </section>
+
+    <section>
+      <p>先月は〈部署名〉の新しいプロジェクトが動き出し、関わったみなさんから「面白かった」「疲れた」両方の声を聞きました。いい仕事をした証拠だと、私は勝手に受け取っています。今月もまた、現場の小さな物語が積み重なっていくのでしょう。</p>
+    </section>
+
+    <section>
+      <p>今月の社内報では、その現場の空気をすくい取った特集をお届けします。読み終わったら、となりの席の人に「これ見た？」と声をかけてみてください。それが社内報の存在意義だと思っています。</p>
+    </section>
+
+    <div class="divider"></div>
+    <p class="sign">〈執筆者名〉</p>
+    <p class="role">〈役職〉</p>
+  </div>
+</body>
+</html>

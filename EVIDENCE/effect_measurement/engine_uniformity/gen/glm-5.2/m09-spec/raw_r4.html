@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+:root {
+  --scale-base: 15px;
+  --scale-h1: 30px;
+  --scale-h2: 18px;
+  --color-base: #2b2b2b;
+  --color-accent: #4a6b8a;
+  --color-bg: #f5f5f2;
+  --color-border: #d0d0c8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--color-bg);
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  color: var(--color-base);
+  line-height: 1.8;
+  padding: 48px 24px;
+}
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.lead {
+  font-family: "Yu Mincho", "Hiragino Mincho Pro", serif;
+  font-size: var(--scale-h1);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+.sublead {
+  font-size: var(--scale-base);
+  margin-bottom: 64px;
+}
+h2 {
+  font-family: "Yu Mincho", "Hiragino Mincho Pro", serif;
+  font-size: var(--scale-h2);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+section { margin-bottom: 64px; }
+p { font-size: var(--scale-base); }
+ul { list-style: none; }
+li {
+  font-size: var(--scale-base);
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 8px;
+}
+li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+.screen-desc {
+  font-size: var(--scale-base);
+  background: #fff;
+  padding: 32px;
+  border-left: 3px solid var(--color-accent);
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<p class="lead">「精算のためにレシートを見返す時間を、一分で終わらせる」</p>
+<p class="sublead">経費精算をラクにする小さなツールの仕様メモです。</p>
+
+<section>
+<h2>目的</h2>
+<p>月一度の経費精算で起きている「何にいくら使ったか思い出す手間」と「レシートと申請の突合作業」を減らす。申請者の手間を削りつつ、経理担当の確認負荷も下げることを狙う。</p>
+</section>
+
+<section>
+<h2>対象ユーザー</h2>
+<ul>
+<li>立替払いした〈会社名〉の全社員（申請者）</li>
+<li>申請内容を確認・承認する経理担当者</li>
+</ul>
+</section>
+
+<section>
+<h2>主要機能</h2>
+<ul>
+<li>レシートをスマートフォンで撮影すると、日付・金額・店舗名を自動で読み取り、下書きを作成する</li>
+<li>作成された下書きは科目の選択と一言メモの追記だけで申請できる</li>
+<li>未申請の立替分を一覧で把握し、まとめて申請できる</li>
+<li>経理担当者は申請一覧から承認・差戻しを行い、差戻し時にはコメントを残せる</li>
+</ul>
+</section>
+
+<section>
+<h2>画面イメージ</h2>
+<div class="screen-desc">申請者が開く画面は、上部に「未精算の立替」が3件ほど並び、各カードの右端に撮影ボタンがある。下部は今月の合計金額を一行で示す。経理側は承認待ちリストが縦に並び、各行を開くとレシート画像と読み取り結果が並ぶ。装飾は最小限で、一日の作業が終わるまで開きっぱなしにしても疲れない見た目とする。</div>
+</section>
+
+<section>
+<h2>使わないと決めたもの</h2>
+<ul>
+<li>部門別予算管理 — 本ツールの守備範囲外</li>
+<li>法人カード明細の自動取り込み — 対象は現金立替のみ</li>
+<li>複雑な承認ルート — 直属の上長＋経理の一回経路のみとする</li>
+</ul>
+</section>
+
+</div>
+</body>
+</html>

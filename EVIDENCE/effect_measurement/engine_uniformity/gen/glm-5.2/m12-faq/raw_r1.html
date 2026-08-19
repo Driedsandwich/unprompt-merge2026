@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品についてのよくある質問 | 〈ショップ名〉サポート</title>
+<style>
+/* タイプスケール: 本文16px基準、比率1.250 (Major Third) */
+:root {
+  --base: 16px;
+  --h1: 40px;
+  --h2: 26px;
+  --h3: 20px;
+  --body: 16px;
+  --small: 13px;
+
+  /* 基調: 深い墨緑 / アクセント: くすんだ蜜柑 */
+  --ink: #1f2a28;
+  --ink-soft: #4a5654;
+  --paper: #f7f6f3;
+  --accent: #c75d3c;
+  --line: #d9d6cf;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-size: var(--body);
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+/* 明朝見出し × ゴシック本文 の対 */
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- 冒頭 ---- */
+.hero {
+  padding: 96px 0 72px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero .eyebrow {
+  font-size: var(--small);
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: var(--h1);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  margin-bottom: 24px;
+}
+
+.hero p.lead {
+  font-size: 17px;
+  color: var(--ink-soft);
+  max-width: 560px;
+}
+
+/* ---- 安心の一言 ---- */
+.assurance {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.assurance-card {
+  border-left: 3px solid var(--accent);
+  padding: 8px 0 8px 32px;
+}
+
+.assurance-card .label {
+  font-size: var(--small);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.assurance-card p {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* ---- FAQ ---- */
+.faq {
+  padding: 80px 0;
+}
+
+.faq h2 {
+  font-size: var(--h2);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 48px;
+}
+
+.qa {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+}
+
+.qa:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.qa .q {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.qa .q .num {
+  font-size: var(--small);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.qa .q p {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.qa .a {
+  padding-left: 44px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+.qa .a ul {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.qa .a li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.qa .a li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* ---- 連絡導線 ---- */
+.contact {
+  padding: 80px 0 96px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.contact .wrap {
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: var(--h2);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.contact .sub {
+  color: rgba(247,246,243,0.7);
+  margin-bottom: 40px;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 20px 56px;
+  background: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.contact-note {
+  margin-top: 32px;
+  font-size: var(--small);
+  color: rgba(247,246,243,0.5);
+  line-height: 1.8;
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">SUPPORT / 返品・交換</div>
+    <h1 class="serif">届いてすぐ、<br>確認できること。</h1>
+    <p class="lead">返品まわりで寄せられるご質問を、よくある順にまとめました。まずはこのページでご確認ください。</p>
+  </div>
+</header>
+
+<section class="assurance">
+  <div class="wrap">
+    <div class="assurance-card">
+      <div class="label">安心の一言</div>
+      <p class="serif">商品に不具合があった場合、商品到着後〈日数〉以内のご連絡で返品・交換を承ります。ご安心ください。</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <h2 class="serif">よくある質問</h2>
+
+    <div class="qa">
+      <div class="q">
+        <span class="num">Q1</span>
+        <p>返品はどこから申し込めばよいですか。</p>
+      </div>
+      <div class="a">
+        <p>このページ下部の連絡先よりお問い合わせください。返品用の案内と発送先をご案内いたします。</p>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="q">
+        <span class="num">Q2</span>
+        <p>返品できる期間はいつまでですか。</p>
+      </div>
+      <div class="a">
+        <p>商品到着後〈日数〉以内にご連絡をいただいたものが対象です。期限を過ぎている場合はご相談ください。</p>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="q">
+        <span class="num">Q3</span>
+        <p>返品の送料はどうなりますか。</p>
+      </div>
+      <div class="a">
+        <p>当方の不具合・欠品による返品は着払いで承ります。お客様都合による返品の場合は、往復の送料をお客様にご負担いただいております。</p>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="q">
+        <span class="num">Q4</span>
+        <p>開封済みの商品も返品できますか。</p>
+      </div>
+      <div class="a">
+        <p>確認のために開封された程度であればご返品可能です。ご使用後の返品はお受けしかねます。</p>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="q">
+        <span class="num">Q5</span>
+        <p>交換ではなく返金を希望したいです。</p>
+      </div>
+      <div class="a">
+        <p>可能です。商品の返送を確認した後、ご指定の口座へ返金いたします。お届け時のご注文番号をご用意ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <h2 class="serif">解決しないときは</h2>
+    <p class="sub">お問い合わせフォームよりご連絡ください。</p>
+    <a href="#" class="contact-btn">お問い合わせする</a>
+    <p class="contact-note">ご返信には〈営業日〉程度かかります。<br>お急ぎの場合はメール件名に「返品」とお書きください。</p>
+  </div>
+</section>
+
+</body>
+</html>

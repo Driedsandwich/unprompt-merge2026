@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品についてのご案内 | 〈ショップ名〉サポート</title>
+<style>
+  /* タイプスケール: 本文 16px / 小見出し 1.25倍(20px) / 大見出し 1.5倍(24px) / ページ見出し 2倍(32px) */
+  :root {
+    --base: #1a1a1a;
+    --accent: #2b5f6e;
+    --accent-light: #e7f0f3;
+    --bg: #fafafa;
+    --border: #d9d9d9;
+    --white: #ffffff;
+    --text-muted: #5c5c5c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--base);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 24px 80px;
+  }
+  /* 冒頭 */
+  .hero {
+    margin-bottom: 80px;
+    text-align: center;
+  }
+  .hero__label {
+    display: inline-block;
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    padding: 4px 16px;
+    margin-bottom: 24px;
+  }
+  .hero__title {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .hero__lead {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+  .hero__lead strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  /* 安心の一言 */
+  .assurance {
+    background: var(--accent-light);
+    padding: 24px 32px;
+    margin-bottom: 72px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .assurance__text {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    color: var(--accent);
+  }
+  .assurance__text::before {
+    content: "⚫︎";
+    margin-right: 8px;
+    font-size: 14px;
+  }
+  /* FAQ */
+  .faq { margin-bottom: 80px; }
+  .faq__heading {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .faq__list { list-style: none; }
+  .faq__item {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .faq__item:first-child { border-top: 1px solid var(--border); }
+  .faq__q {
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .faq__q::before {
+    content: "Q";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .faq__a {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding-left: 0;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq__a::before {
+    content: "A";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--border);
+    color: var(--base);
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  /* 連絡導線 */
+  .contact {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .contact__heading {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
+  .contact__text {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .contact__btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 48px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .contact__btn:hover {
+    background: #1e4a56;
+  }
+  .contact__btn::after {
+    content: " →";
+    font-weight: 400;
+  }
+  .contact__sub {
+    display: block;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  @media (max-width: 480px) {
+    .page { padding: 56px 16px 64px; }
+    .hero { margin-bottom: 56px; }
+    .hero__title { font-size: 26px; }
+    .assurance { padding: 20px 16px; margin-bottom: 56px; }
+    .faq__heading { margin-bottom: 24px; }
+    .contact { padding: 32px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <span class="hero__label">Returns &amp; Exchanges</span>
+    <h1 class="hero__title">返品・交換について</h1>
+    <p class="hero__lead">
+      万が一お気に召さなかった場合も、<strong>ご注文日から30日以内</strong>であれば<br>
+      返品・交換を承ります。はじめての方もどうぞご安心ください。
+    </p>
+  </div>
+
+  <div class="assurance">
+    <p class="assurance__text">返品送料は当店負担。商品到着後30日間、何度でも無料でお受けします。</p>
+  </div>
+
+  <div class="faq">
+    <h2 class="faq__heading">よくあるご質問</h2>
+    <ul class="faq__list">
+      <li class="faq__item">
+        <div class="faq__q">返品・交換の条件を教えてください。</div>
+        <div class="faq__a">未使用・未開封の状態で、到着日から30日以内にご連絡いただいた商品が対象です。タグや付属品が揃っていることをご確認ください。一部のセール品・オーダーメイド品は対象外となる場合がございます。</div>
+      </li>
+      <li class="faq__item">
+        <div class="faq__q">返品の手順を教えてください。</div>
+        <div class="faq__a">マイページの注文履歴より「返品申請」をお進みいただくか、サポートまでご連絡ください。返送用ラベルをメールでお送りします。商品を梱包の上、指定の配送業者へお渡しいただくだけです。</div>
+      </li>
+      <li class="faq__item">
+        <div class="faq__q">送料や手数料はかかりますか？</div>
+        <div class="faq__a">いいえ、返品にかかる送料・手数料はすべて当店が負担します。お客様にお支払いいただく費用はありません。交換の場合は再配送料も無料です。</div>
+      </li>
+      <li class="faq__item">
+        <div class="faq__q">交換を希望する場合の注意点は？</div>
+        <div class="faq__a">在庫がある商品に限り、サイズ交換・色違い交換が可能です。交換ご希望の商品を明記のうえご連絡ください。在庫切れの場合は返金対応となります。</div>
+      </li>
+      <li class="faq__item">
+        <div class="faq__q">返金はいつ頃行われますか？</div>
+        <div class="faq__a">当店で商品を確認後、3営業日以内にご返金手続きをいたします。お支払い方法にもよりますが、通常1〜2週間程度でお客様のご指定口座またはクレジットカード会社への返金が完了します。</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="contact">
+    <h2 class="contact__heading">解決しない場合はお問い合わせください</h2>
+    <p class="contact__text">上記の内容で不明な点がある場合や、個別の状況についてご相談されたい場合は、サポート窓口までご連絡ください。</p>
+    <a href="#" class="contact__btn">お問い合わせフォーム</a>
+    <span class="contact__sub">受付時間 10:00〜18:00（土日祝を除く）</span>
+  </div>
+</div>
+</body>
+</html>

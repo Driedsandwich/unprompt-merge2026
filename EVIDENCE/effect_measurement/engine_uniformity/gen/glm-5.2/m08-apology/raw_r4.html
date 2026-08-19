@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫び</title>
+<style>
+  :root {
+    --bg: #f6f4f1;
+    --surface: #ffffff;
+    --ink: #2b2a28;
+    --muted: #6b6862;
+    --accent: #3a5a40;
+    --base-size: 15px;
+    --scale: 1.25;
+    --h1: calc(var(--base-size) * var(--scale) * var(--scale));
+    --h2: calc(var(--base-size) * var(--scale));
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    color: var(--ink);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    padding: 96px 24px;
+  }
+
+  .sheet {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--surface);
+    padding: 80px 72px;
+  }
+
+  .subject {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--h1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    color: var(--ink);
+    padding-bottom: 32px;
+    border-bottom: 1px solid #e3ded7;
+    margin-bottom: 56px;
+  }
+
+  .recipient {
+    font-size: var(--base-size);
+    color: var(--ink);
+    margin-bottom: 48px;
+  }
+
+  .recipient span {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .section h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--h2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .section p {
+    font-size: var(--base-size);
+    letter-spacing: 0.01em;
+  }
+
+  .lead {
+    font-size: calc(var(--base-size) * 1.07);
+    line-height: 1.8;
+  }
+
+  .lead .apology {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .closing {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid #e3ded7;
+  }
+
+  .closing p {
+    font-size: var(--base-size);
+    color: var(--muted);
+  }
+
+  .signature {
+    margin-top: 24px;
+    font-size: var(--base-size);
+    color: var(--ink);
+    text-align: right;
+    line-height: 1.9;
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <h1 class="subject">〈商品名〉の発送が遅れております</h1>
+
+    <div class="recipient">
+      〈お客様名〉 様
+      <span>ご注文番号：〈ご注文番号〉</span>
+    </div>
+
+    <section class="section">
+      <p class="lead"><span class="apology">この度は発送にお時間をいただき、誠に申し訳ございません。</span>ご注文いただきました〈商品名〉につきまして、通常はご注文から2営業日以内に発送しておりますが、現在遅延が生じております。</p>
+    </section>
+
+    <section class="section">
+      <h2>今後の対応</h2>
+      <p>現在、配送手配を最優先で進めており、〈新しいお届け予定〉には発送を完了できる見込みです。発送完了時には改めてメールにてご案内いたします。商品到着まで今しばらくお待ちいただけますと幸いです。</p>
+    </section>
+
+    <section class="section">
+      <h2>結び</h2>
+      <p>お待たせしてしまうこととなり、重ねてお詫び申し上げます。何かご不明な点がございましたら、このメールへのご返信にてお気軽にお問い合わせください。</p>
+    </section>
+
+    <div class="closing">
+      <p>何卒よろしくお願い申し上げます。</p>
+      <div class="signature">
+        〈会社名〉<br>
+        カスタマーサポート
+      </div>
+    </div>
+  </div>
+</body>
+</html>

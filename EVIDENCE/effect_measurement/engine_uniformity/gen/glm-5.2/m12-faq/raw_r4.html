@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品について | よくあるご質問</title>
+<style>
+  /* タイプスケール: 本文16px基準、比率1.25 */
+  :root {
+    --base: 16px;
+    --h1: 2.441rem;  /* 39px */
+    --h2: 1.953rem;  /* 31px */
+    --h3: 1.25rem;   /* 20px */
+    --body: 1rem;    /* 16px */
+    --small: 0.875rem;
+
+    --ink: #1a2332;
+    --ink-soft: #4a5568;
+    --paper: #f4f1ea;
+    --paper-warm: #ebe6db;
+    --accent: #2d5f4e;
+    --accent-soft: #5a8a78;
+    --line: #d4cfc0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: var(--body);
+    line-height: 1.75;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ヘッダー */
+  header {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    font-size: var(--small);
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 32px;
+  }
+
+  .lead {
+    font-size: 1.0625rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+
+  /* よくある質問セクション */
+  main { padding: 96px 0; }
+
+  .section-label {
+    font-size: var(--small);
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h2);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 56px;
+    line-height: 1.45;
+  }
+
+  /* 質問リスト */
+  .qa-list { list-style: none; }
+
+  .qa-item {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .qa-item:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .qa-item:last-child {
+    border-bottom: none;
+  }
+
+  .qa-q {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .qa-mark {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Hiragino Sans", sans-serif;
+    letter-spacing: 0;
+    margin-top: 2px;
+  }
+
+  .qa-q-text {
+    font-size: var(--h3);
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .qa-a {
+    padding-left: 44px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+
+  .qa-a strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .qa-a ul {
+    list-style: none;
+    margin: 16px 0;
+    padding: 0;
+  }
+
+  .qa-a li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .qa-a li::before {
+    content: "›";
+    position: absolute;
+    left: 4px;
+    color: var(--accent-soft);
+    font-weight: 700;
+  }
+
+  /* 連絡導線 */
+  .contact {
+    background: var(--paper-warm);
+    padding: 64px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .contact-inner { text-align: center; }
+
+  .contact h3 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h3);
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .contact p {
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: var(--small);
+  }
+
+  .btn:hover { background: #234a3e; }
+
+  .contact-note {
+    margin-top: 24px;
+    font-size: var(--small);
+    color: var(--ink-soft);
+  }
+
+  footer {
+    padding: 40px 0 64px;
+    text-align: center;
+    font-size: var(--small);
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 56px 0 40px; }
+    main { padding: 64px 0; }
+    .qa-item { padding: 32px 0; }
+    .qa-a { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">SUPPORT / 返品</p>
+    <h1>届いた商品に<br>もう一度、納得してほしい。</h1>
+    <p class="lead">
+      返品に関するご質問を集めました。お手元の商品と照らし合わせてご確認ください。不安なときはそのままご連絡いただいて構いません。担当者が一つひとつ確認いたします。
+    </p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="section-label">FAQ</p>
+    <h2>返品についてよくあるご質問</h2>
+
+    <ol class="qa-list">
+      <li class="qa-item">
+        <div class="qa-q">
+          <span class="qa-mark">Q</span>
+          <p class="qa-q-text">返品の条件を教えてください。</p>
+        </div>
+        <div class="qa-a">
+          <strong>商品到着後8日以内</strong>にご連絡をいただいたものが対象です。未使用・未開封の商品に限らせていただきます。食品など一部の商品は返品をお受けできない場合がございます。
+        </div>
+      </li>
+
+      <li class="qa-item">
+        <div class="qa-q">
+          <span class="qa-mark">Q</span>
+          <p class="qa-q-text">返品の送料は誰が負担しますか。</p>
+        </div>
+        <div class="qa-a">
+          理由によって異なります。
+          <ul>
+            <li><strong>商品不良・誤配送の場合:</strong>〈ショップ名〉が負担いたします。</li>
+            <li><strong>お客様都合の場合:</strong>お客様のご負担となります。</li>
+          </ul>
+          不良品の場合は着払いでお送りください。事前のご連絡時に具体的なお支払方法をご案内します。
+        </div>
+      </li>
+
+      <li class="qa-item">
+        <div class="qa-q">
+          <span class="qa-mark">Q</span>
+          <p class="qa-q-text">返金はいつ、どの方法で行われますか。</p>
+        </div>
+        <div class="qa-a">
+          商品の到着と確認が完了次第、<strong>5営業日以内</strong>にご返金手続きを行います。クレジットカード決済の場合はカード会社経由での返金、銀行振込の場合はご指定口座へのお振込となります。時期によりカード会社の反映に1〜2ヶ月かかることがございます。
+        </div>
+      </li>
+
+      <li class="qa-item">
+        <div class="qa-q">
+          <span class="qa-mark">Q</span>
+          <p class="qa-q-text">商品が破損して届きました。どうすればよいですか。</p>
+        </div>
+        <div class="qa-a">
+          まずは商品の状態が分かるお写真を添えてご連絡ください。梱包材や配送伝票も保管をお願いいたします。確認後、早急に代替品の手配または返金対応を進めさせていただきます。
+        </div>
+      </li>
+
+      <li class="qa-item">
+        <div class="qa-q">
+          <span class="qa-mark">Q</span>
+          <p class="qa-q-text">交換は可能ですか。</p>
+        </div>
+        <div class="qa-a">
+          可能です。サイズや色の変更をご希望の場合は、返品条件を満たす範囲で交換対応いたします。在庫状況によりご希望に添えない場合はご相談の上、返金にてご対応させていただきます。
+        </div>
+      </li>
+    </ol>
+  </div>
+</main>
+
+<section class="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <h3>このページで解決しなかったとき</h3>
+      <p>お手数をおかけしますが、お問い合わせフォームよりご連絡ください。</p>
+      <a href="#" class="btn">お問い合わせフォームへ</a>
+      <p class="contact-note">営業時間: 平日 10:00〜17:00 / 返信は2営業日以内にいたします</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 〈ショップ名〉</div>
+</footer>
+
+</body>
+</html>

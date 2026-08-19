@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈確認：サービス名〉 - 貴社の意思決定を支える信頼のサービス基盤</title>
+<style>
+/* GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け */
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+/* GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング */
+/* GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 */
+:root{
+  --c-ground:#0f1b2d;
+  --c-main:#1f3a5f;
+  --c-accent:#b8935a;
+  --c-muted:#8fa6b8;
+  --c-text:#f4f2ee;
+  --font-h:"Yu Mincho","Hiragino Mincho ProN","MS PMincho",serif;
+  --font-b:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+  /* type scale: base 16px, ratio 1.25 */
+  --t-sm:0.875rem; --t-base:1rem; --t-md:1.25rem; --t-lg:1.563rem; --t-xl:1.953rem; --t-2xl:2.441rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+ol,ul{list-style:none}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);font-size:var(--t-base);line-height:1.8;color:var(--c-text);background:var(--c-ground)}
+.container{width:min(1080px,92%);margin-inline:auto}
+section{padding-block:120px}
+h1,h2,h3{font-family:var(--font-h);font-weight:600;letter-spacing:.04em;line-height:1.4;color:var(--c-text)}
+h1{font-size:var(--t-2xl)}
+h2{font-size:var(--t-xl);margin-bottom:48px}
+h3{font-size:var(--t-lg);margin-bottom:16px}
+p{color:var(--c-muted);margin-bottom:16px}
+.btn{display:inline-block;padding:16px 40px;border:1px solid var(--c-accent);font-family:var(--font-h);font-size:var(--t-md);color:var(--c-accent);text-decoration:none}
+.btn:hover{background:var(--c-accent);color:var(--c-ground)}
+.hero{padding-block:176px 128px;border-bottom:1px solid var(--c-main)}
+.hero .kicker{font-size:var(--t-sm);letter-spacing:.2em;color:var(--c-accent);margin-bottom:24px}
+.hero h1{margin-bottom:32px}
+.hero p{max-width:640px;font-size:var(--t-md)}
+.value{background:var(--c-main)}
+.value h2,.features h2,.flow h2,.cta h2{text-align:center}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.card{padding:40px 32px;border-top:2px solid var(--c-accent)}
+.features .card{border:1px solid var(--c-main);border-top:2px solid var(--c-accent);text-align:center}
+.flow-item{position:relative;padding:40px 32px;border-left:2px solid var(--c-accent)}
+.flow-list{counter-reset:step}
+.flow-item::before{counter-increment:step;content:"0" counter(step);position:absolute;top:-16px;left:24px;font-family:var(--font-h);font-size:var(--t-xl);color:var(--c-accent)}
+.cta{text-align:center}
+.cta p{margin-bottom:40px}
+footer{padding-block:48px;text-align:center;font-size:var(--t-sm);color:var(--c-muted);border-top:1px solid var(--c-main)}
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="container" style="padding-block:24px"><span style="font-family:var(--font-h);color:var(--c-accent);letter-spacing:.15em">〈確認：サービス名〉</span></header>
+
+<!-- GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け -->
+<!-- GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 -->
+<section class="hero">
+<div class="container">
+<p class="kicker">FOR CORPORATE DECISION MAKERS</p>
+<h1>貴社の意思決定を支える、<br>信頼のサービス基盤。</h1>
+<p>〈確認：提供サービスの具体的な内容〉。私たちは、法人担当者が安心して選べる品質と、長く寄り添う体制を整えています。</p>
+</div>
+</section>
+
+<section class="value">
+<div class="container">
+<h2>選ばれる理由</h2>
+<div class="grid">
+<div class="card">
+<h3>01 〈確認：サービス品質を裏付ける具体的な要素〉</h3>
+<p>〈確認：品質や仕組みに関する具体的な事実〉を基に、安心して導入いただける環境を整えています。</p>
+</div>
+<div class="card">
+<h3>02 法人向けの対応体制</h3>
+<p>貴社の課題に耳を傾け、納期・品質・コミュニケーションの三つを最優先に運用いたします。</p>
+</div>
+<div class="card">
+<h3>03 実績に裏打ちされた信頼</h3>
+<p>〈確認：実績や導入事例、数値などの信頼性を示す素材〉。確かな実績が、次の信頼につながります。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 -->
+<section class="features">
+<div class="container">
+<h2>サービスの特長</h2>
+<div class="grid">
+<article class="card">
+<h3>構造的な安定</h3>
+<p>〈確認：技術や運用面での安定性に関する具体的な事実〉。変化の中でも、基盤は揺るぎません。</p>
+</article>
+<article class="card">
+<h3>迅速かつ丁寧な対応</h3>
+<p>〈確認：対応スピードやサポート体制に関する具体的な事実〉。法人の現場で求められる敏速さと丁寧さを両立します。</p>
+</article>
+<article class="card">
+<h3>セキュリティと誠実</h3>
+<p>〈確認：セキュリティやコンプライアンスに関する具体的な事実〉。データと信頼を、同じように守ります。</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 -->
+<section class="flow">
+<div class="container">
+<h2>利用の流れ</h2>
+<ol class="grid flow-list">
+<li class="flow-item">
+<h3>お問い合わせ</h3>
+<p>フォームまたはお電話から、まずは課題をお聞かせください。</p>
+</li>
+<li class="flow-item">
+<h3>課題の整理と提案</h3>
+<p>貴社の状況に合わせ、最適なプランと進め方をご提案いたします。</p>
+</li>
+<li class="flow-item">
+<h3>導入と伴走</h3>
+<p>スムーズな導入後も、継続的なサポートで成果を支えます。</p>
+</li>
+</ol>
+</div>
+</section>
+
+<!-- GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング -->
+<section class="cta">
+<div class="container">
+<h2>まずは、サービスの概要を知る。</h2>
+<p>〈確認：サービス名〉のことを、もう少し詳しくお話しさせてください。</p>
+<a class="btn" href="#contact">資料請求・お問い合わせ</a>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>&copy; 〈確認：会社名〉 All rights reserved.</p>
+</div>
+</footer>
+
+</body>
+</html>

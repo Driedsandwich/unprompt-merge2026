@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈商品名〉 - 新商品のご紹介</title>
+<style>
+:root {
+  /* type scale */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+
+  /* color */
+  --color-bg: #F7F7F5;
+  --color-text: #1C1C1C;
+  --color-accent: #3A6B68;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 24px 96px;
+}
+
+.catch {
+  font-family: "Noto Serif JP", "Yu Mincho", "YuMincho", serif;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.catch small {
+  display: block;
+  margin-bottom: 16px;
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+}
+
+.lead {
+  margin-top: 32px;
+  font-size: var(--text-lg);
+}
+
+section {
+  margin-top: 96px;
+}
+
+h2 {
+  margin-bottom: 32px;
+  font-family: "Noto Serif JP", "Yu Mincho", "YuMincho", serif;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 8px;
+  height: 2px;
+  background: var(--color-accent);
+}
+
+.spec,
+.caution {
+  font-size: var(--text-sm);
+}
+
+.spec {
+  opacity: 0.85;
+}
+
+.caution {
+  margin-top: 16px;
+  opacity: 0.7;
+}
+
+.close {
+  margin-top: 96px;
+  font-family: "Noto Serif JP", "Yu Mincho", "YuMincho", serif;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<main>
+  <h1 class="catch">
+    <small>〈商品名〉</small>
+    まだ手にしたことのない、<br>毎日の相棒。
+  </h1>
+
+  <p class="lead">
+    忙しい朝も、帰りの遅い夜も、そっと寄り添う一つ。〈商品名〉は、日常の些細な瞬間に静かに光を当てる〈商品カテゴリ〉です。手に取るたびに、自分らしさがひとつ増えるような、そんな心地よさを届けます。
+  </p>
+
+  <section>
+    <h2>特徴</h2>
+    <ul>
+      <li>余計なものを削ぎ落とした、無駄のない形状。置く場所を選ばず、どんな空間にもすっと馴染みます。</li>
+      <li>長く愛用できる、こだわりの素材と仕上げ。年月とともに増す味わいを楽しめます。</li>
+      <li>落ち着いた色味は、朝の忙しい時間も夜のくつろぎも、そっと彩ります。</li>
+      <li>使うほどに馴染む、あたたかい手応え。毎日の習慣が特別な瞬間に変わります。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>仕様・注意</h2>
+    <p class="spec">素材：〈素材〉／サイズ：〈サイズ〉／重さ：〈重さ〉／カラー：〈カラー〉</p>
+    <p class="caution">※使用環境やモニターの設定により、実際の色味や質感が異なる場合があります。</p>
+  </section>
+
+  <p class="close">
+    今日から始まる、<br>あなたの新しい定番に。
+  </p>
+</main>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会案内</title>
+<style>
+  :root {
+    --base-size: 16px;
+    --h1-size: 32px;
+    --h2-size: 20px;
+    --body-size: 16px;
+    --line-height: 1.85;
+    --bg: #fff4d6;
+    --main: #2e2e2e;
+    --accent: #ff7a1a;
+  }
+  /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--main);
+    font-family: "Hiragino Maru Gothic ProN", "M PLUS Rounded 1c", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: var(--body-size);
+    line-height: var(--line-height);
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+  /* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+  /* GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり */
+  .frame {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 40px;
+  }
+  h1 {
+    font-size: var(--h1-size);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .lead {
+    font-size: var(--h2-size);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 64px;
+  }
+  section { margin-bottom: 72px; }
+  h2 {
+    font-size: var(--h2-size);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  p { margin-bottom: 16px; }
+  .outline dt {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .outline dd { margin-bottom: 16px; }
+  .closing { margin-top: 72px; }
+  .closing p:last-child {
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .sign {
+    margin-top: 40px;
+    text-align: right;
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+<!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+<!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+<!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+<h1>みんな集合〜!</h1>
+<p class="lead">同窓会やるぞ。ノリだけ持って来て。</p>
+
+<!-- GYAKUMON-CHOICE: 気軽に来たながるの障壁対象 = 疎遠さへの配慮 -->
+<section>
+<p>あれから〈年数〉年以上。久しぶりすぎて連絡するのもためらってたやつ、いるんじゃない? 大丈夫、こっちも同じだ。部室でくだらない話してたあの頃のまま、なんてことない近況を話そう。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+<section>
+<h2>開催概要</h2>
+<dl class="outline">
+  <dt>日時</dt>
+  <dd>〈開催日〉</dd>
+  <dt>場所</dt>
+  <dd>〈会場〉</dd>
+</dl>
+<p>顔を見て、同じ空気を吸って飲む。それが今回のテーマ。</p>
+</section>
+
+<section>
+<p>形式ばったあいさつはなしだ。十年以上空いても、部室のノリは変わんないって、確かめに行こうぜ。来れる・来れない、どっちでもいいから一度返事ちょうだい。</p>
+</section>
+
+<section class="closing">
+<p>出欠の連絡は、〈締め切り〉までに〈確認: 幹事の連絡先〉まで。</p>
+<p>また会おう!</p>
+</section>
+
+<div class="sign">〈幹事名〉より</div>
+
+</div>
+</body>
+</html>

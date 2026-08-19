@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会の案内</title>
+<style>
+  /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+  /* GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 */
+  /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+  /* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+  /* GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり */
+
+  :root {
+    /* palette: #fff4d6, #ff7a1a, #2e2e2e */
+    --bg: #fff4d6;
+    --major: #ff7a1a;
+    --emphasis: #2e2e2e;
+    --text: #2e2e2e;
+    --light-text: #6b5b4a;
+    --white: #ffffff;
+    --card-bg: #fffcf0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    line-height: 1.75;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 16px;
+  }
+
+  .container {
+    max-width: 640px;
+    width: 100%;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 56px 40px 64px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  /* 冒頭 */
+  .hero {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 2px dashed var(--major);
+  }
+
+  .hero__title {
+    font-family: "Hiragino Sans", "Noto Sans JP", "Rounded Mplus 1c", sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.02em;
+    color: var(--major);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .hero__sub {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--light-text);
+    letter-spacing: 0.04em;
+  }
+
+  /* セクション */
+  section {
+    margin-bottom: 48px;
+  }
+
+  section:last-of-type {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-family: "Hiragino Sans", "Noto Sans JP", "Rounded Mplus 1c", sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: 0.04em;
+    color: var(--major);
+    margin-bottom: 16px;
+    display: inline-block;
+    border-bottom: 2px solid var(--major);
+    padding-bottom: 4px;
+  }
+
+  .section-body {
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.9;
+  }
+
+  .section-body p {
+    margin-bottom: 16px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* 概要ボックス */
+  .info-box {
+    background: var(--bg);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 8px;
+  }
+
+  .info-box dl {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px 16px;
+  }
+
+  .info-box dt {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--emphasis);
+  }
+
+  .info-box dd {
+    font-size: 0.9375rem;
+    color: var(--text);
+  }
+
+  /* 連絡ボタン風 */
+  .contact-block {
+    background: var(--major);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .contact-block .contact-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+    margin-bottom: 12px;
+  }
+
+  .contact-block .contact-value {
+    font-family: "Hiragino Sans", "Noto Sans JP", "Rounded Mplus 1c", sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .contact-block .contact-note {
+    font-size: 0.8125rem;
+    color: var(--white);
+    opacity: 0.7;
+    margin-top: 12px;
+  }
+
+  /* 締め */
+  .closing {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 2px dashed var(--major);
+  }
+
+  .closing p {
+    font-size: 1rem;
+    color: var(--emphasis);
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .closing .from {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--light-text);
+    margin-top: 16px;
+  }
+
+  /* レスポンシブ微調整 */
+  @media (max-width: 480px) {
+    .container {
+      padding: 32px 20px 48px;
+    }
+    .hero__title {
+      font-size: 1.6rem;
+    }
+    .info-box dl {
+      grid-template-columns: 1fr;
+      gap: 4px 0;
+    }
+    .info-box dd {
+      margin-bottom: 8px;
+    }
+    .contact-block {
+      padding: 20px 16px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 冒頭 -->
+  <div class="hero">
+    <div class="hero__title">サークルの部室、<br>また集まろう。</div>
+    <div class="hero__sub">あの頃のノリで一杯やろうぜ。</div>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+  <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+  <section>
+    <h2 class="section-title">久しぶりだね</h2>
+    <div class="section-body">
+      <p>気づけばあれから〈年数〉年。連絡するの、ちょっと勇気がいるよね。<br>
+      でもさ、あの合宿の夜話したり、下手くそだった演奏の話で盛り上がったり、<br>
+      そういう時間をまた作りたいんだ。</p>
+      <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+      <p>「最近連絡してないしな…」なんて気にしないで。<br>
+      久しぶりでも、ちょっとだけでも、顔出してほしい。<br>
+      あの頃と同じように、適当に集まって適当に笑うだけの会にしようと思ってる。</p>
+    </div>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+  <section>
+    <h2 class="section-title">開催概要</h2>
+    <div class="info-box">
+      <dl>
+        <dt>日時</dt>
+        <dd>〈開催日〉 開場 〈時間〉 / 開始 〈時間〉</dd>
+        <dt>場所</dt>
+        <dd>〈会場名〉（〈住所〉）<br>最寄り駅: 〈駅名〉から徒歩〈分数〉分</dd>
+        <dt>会費</dt>
+        <dd>〈金額〉円程度（当日集めます）</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">出欠のお願い</h2>
+    <div class="section-body">
+      <!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+      <p>「行けるかも」「まだわかんない」も大歓迎。<br>
+      〆切は〈日付〉まで。お手数だけど、下記の幹事まで連絡ください。</p>
+    </div>
+    <div class="contact-block">
+      <div class="contact-label">連絡先</div>
+      <div class="contact-value">〈幹事名〉</div>
+      <div class="contact-note">メール: 〈メールアドレス〉<br>電話 / SMS: 〈電話番号〉</div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>久しぶりに、顔を見せてよ。<br>待ってる。</p>
+    <div class="from">幹事 〈幹事名〉</div>
+  </div>
+
+</div>
+</body>
+</html>

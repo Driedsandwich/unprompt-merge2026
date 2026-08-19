@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+  :root {
+    --base-font-size: 16px;
+    --type-scale: 1.25;
+    --h3-size: calc(var(--base-font-size) * var(--type-scale));
+    --h2-size: calc(var(--h3-size) * var(--type-scale));
+    --h1-size: calc(var(--h2-size) * var(--type-scale));
+    --leading: 1.75;
+    --color-base: #1a1a1a;
+    --color-accent: #0066a1;
+    --color-muted: #4a4a4a;
+    --gap-unit: 8px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Segoe UI", sans-serif;
+    font-size: var(--base-font-size);
+    line-height: var(--leading);
+    color: var(--color-base);
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+
+  .document {
+    max-width: 720px;
+    width: 100%;
+    padding: 64px 32px;
+    background: #ffffff;
+    margin: 48px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  h1 {
+    font-family: "Noto Serif JP", "Times New Roman", "Hiragino Mincho ProN", serif;
+    font-size: var(--h1-size);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-base);
+    margin-bottom: 48px;
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-family: "Noto Serif JP", "Times New Roman", "Hiragino Mincho ProN", serif;
+    font-size: var(--h2-size);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-base);
+    margin-top: 64px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: var(--h3-size);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--color-accent);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--color-muted);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 24px;
+  }
+
+  ul li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    color: var(--color-muted);
+  }
+
+  ul li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 10px;
+    width: 8px;
+    height: 2px;
+    background: var(--color-accent);
+  }
+
+  .section-label {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .note {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 2px solid #e0e0e0;
+    font-size: 14px;
+    color: #6a6a6a;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="document">
+
+<h1>経費精算を楽にする<br>小さな社内ツールの仕様メモ</h1>
+
+<div class="section-label">目的</div>
+<p>従業員が日々の経費（交通費・備品購入・接待費など）を申請し、上長が承認する一連の流れを、社内の既存ルールを変えずにペーパーレス化する。手書きの領収書貼り付けや手計算をなくし、ひとりあたりの申請時間を半分以下に縮めることを目指す。システム導入の負荷を極力下げ、研修なしで使えることを第一の要件とする。</p>
+
+<div class="section-label">対象ユーザー</div>
+<p>全従業員（約〈従業員数〉名）とその承認権限を持つ上長・経理担当者。PC操作に不慣れなユーザーもいるため、直感的な操作と最小限の入力項目に絞る。申請者と承認者の2役のみを想定し、経理担当者はデータの確認・書き出しのみを行う。</p>
+
+<div class="section-label">主要機能</div>
+<ul>
+  <li>申請画面：日付・経費区分（交通費/物品費/接待費など）・金額・備考・領収書画像（最大3枚）を入力。プルダウンと数値入力のみで、自由記述は最小限。</li>
+  <li>領収書画像アップロード：スマートフォンで撮影した画像をそのまま添付可能。ファイルサイズ自動圧縮機能付き。</li>
+  <li>承認フロー：申請後、所属長へ通知。承認または差し戻しがボタンひとつで完了。差し戻し時は理由をコメント必須とする。</li>
+  <li>一覧表示：自分が申請した履歴、自分が承認すべき未処理の申請をタブ切り替えで表示。過去の申請も検索可能。</li>
+  <li>CSV書き出し：経理担当者が指定期間の全承認済みデータをCSVでダウンロード。会計ソフトに取り込める形式を標準とする。</li>
+</ul>
+
+<div class="section-label">画面イメージ</div>
+<p>アプリケーションはブラウザベースで動作する。最初の画面は「新規経費申請」ボタンと「自分の申請一覧」「承認待ち一覧」の3ブロックで構成。新規申請ボタンを押すと、日付（本日自動入力）、経費区分（プルダウン）、金額（数値のみ）、備考（任意）、領収書画像アップロード（ドラッグ＆ドロップ対応）が上から順に並ぶフォームが開く。下部に「下書き保存」「申請する」の2ボタン。承認画面では、申請内容がカード状に表示され、領収書画像はサムネイルクリックで拡大表示。承認・差し戻しボタンが画面下部に固定される。</p>
+
+<div class="section-label">使わないと決めたもの</div>
+<ul>
+  <li>スマートフォン専用アプリ（初版はレスポンシブWebとし、インストール不要とする）</li>
+  <li>AIによる領収書自動読み取り（開発コストと精度の問題で見送る。画像は人の目で確認）</li>
+  <li>複数人での同時承認や代理承認（フローは単純な直列1段階に限定）</li>
+  <li>社内システムとのリアルタイム連携（経費データはCSV書き出しで連携する）</li>
+  <li>ユーザー管理機能（ログインは既存の社内認証システムに委ねる）</li>
+</ul>
+
+<div class="note">
+  本仕様は発注内容に基づいて作成した初期案です。実際の開発にあたっては、〈会社名〉の社内ルール・システム環境に合わせて適宜調整してください。不明点は山括弧内の項目を確認の上、決定をお願いします。
+</div>
+
+</div>
+</body>
+</html>

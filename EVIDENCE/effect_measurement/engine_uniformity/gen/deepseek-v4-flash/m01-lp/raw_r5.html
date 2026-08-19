@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 – 信頼と風格の提案</title>
+<style>
+  :root {
+    /* タイプスケール: 16px 基準, 1.25 倍率 (Minor Third) */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-md: 1.25rem;    /* 20px */
+    --text-lg: 1.563rem;   /* 25px */
+    --text-xl: 1.953rem;   /* 31px */
+    --text-2xl: 2.441rem;  /* 39px */
+    --text-3xl: 3.052rem;  /* 49px */
+    --ratio: 1.25;
+
+    /* 色: 基調(濃紺) + アクセント(深紅) */
+    --primary: #1f2a44;
+    --primary-light: #2f3b5e;
+    --primary-dark: #0f1428;
+    --accent: #b33a3a;
+    --accent-soft: #d96c4a;
+    --bg: #f5f3f0;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #4b4b4b;
+    --border: #d0ccc6;
+
+    /* 8px グリッド */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-7: 56px;
+    --space-8: 64px;
+    --space-10: 80px;
+    --space-12: 96px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Georgia", "Times New Roman", "YuMincho", "游明朝", serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: var(--text-base);
+  }
+
+  /* 見出し: 明朝系 × 本文ゴシック（ただしここでは本文も明朝の系統で統一感を出すため、あえて混ぜない） */
+  h1, h2, h3, h4, .heading-serif {
+    font-family: "Georgia", "Times New Roman", "YuMincho", "游明朝", serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+
+  .sans {
+    font-family: "Helvetica Neue", "Arial", "Hiragino Sans", "YuGothic", "游ゴシック", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--space-3);
+  }
+
+  /* セクション余白 */
+  section {
+    padding: var(--space-12) 0;
+  }
+
+  /* ---- 冒頭 ヒーロー ---- */
+  .hero {
+    background: var(--primary-dark);
+    color: #f0ede8;
+    padding: var(--space-12) 0 var(--space-10);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 60%, transparent 100%);
+  }
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .hero-sub {
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-soft);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+  }
+  .hero h1 {
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: 1.2;
+    max-width: 14em;
+    color: #fff;
+  }
+  .hero-lead {
+    font-size: var(--text-md);
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+    font-weight: 300;
+    color: #cdc9c2;
+    max-width: 32em;
+    margin-top: var(--space-2);
+  }
+  .hero-cta {
+    margin-top: var(--space-5);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .btn {
+    display: inline-block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: var(--space-2) var(--space-5);
+    border: 2px solid transparent;
+    transition: 0.2s;
+    cursor: default;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .btn-outline {
+    background: transparent;
+    color: #f0ede8;
+    border-color: #f0ede8;
+  }
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ---- 価値提案 ---- */
+  .value-proposition {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .value-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6) var(--space-8);
+    align-items: center;
+  }
+  .value-visual {
+    background: var(--primary);
+    border-radius: 4px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: var(--text-lg);
+    position: relative;
+    overflow: hidden;
+  }
+  .value-visual svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.7;
+  }
+  .value-text h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-2);
+    color: var(--primary);
+  }
+  .value-text p {
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+    line-height: 1.8;
+  }
+
+  /* ---- 特徴3点 ---- */
+  .features {
+    background: var(--bg);
+  }
+  .features h2 {
+    text-align: center;
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-8);
+    color: var(--primary-dark);
+  }
+  .feature-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+  .feature-card {
+    background: var(--surface);
+    padding: var(--space-6) var(--space-4);
+    border-top: 5px solid var(--primary);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    transition: box-shadow 0.25s;
+  }
+  .feature-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-3);
+    color: var(--accent);
+  }
+  .feature-card h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-1);
+    color: var(--primary);
+    letter-spacing: 0.01em;
+  }
+  .feature-card p {
+    font-size: var(--text-sm);
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ---- 利用の流れ ---- */
+  .steps {
+    background: var(--surface);
+  }
+  .steps h2 {
+    text-align: center;
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-8);
+    color: var(--primary-dark);
+  }
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .step-item {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--primary);
+    color: #fff;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: "Georgia", serif;
+  }
+  .step-content h3 {
+    font-size: var(--text-md);
+    color: var(--primary);
+    margin-bottom: var(--space-1);
+  }
+  .step-content p {
+    font-size: var(--text-sm);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-muted);
+  }
+
+  /* ---- CTA ---- */
+  .cta-section {
+    background: var(--primary);
+    color: #fff;
+    text-align: center;
+    padding: var(--space-12) 0;
+  }
+  .cta-section h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-2);
+    color: #fff;
+  }
+  .cta-section p {
+    font-size: var(--text-md);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #d4d0c8;
+    margin-bottom: var(--space-6);
+    max-width: 28em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-section .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    font-size: var(--text-base);
+    padding: var(--space-3) var(--space-8);
+  }
+  .cta-section .btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  /* ---- フッター ---- */
+  footer {
+    background: var(--primary-dark);
+    color: #9c9890;
+    padding: var(--space-6) 0;
+    text-align: center;
+    font-size: var(--text-xs);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.04em;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer span {
+    color: #bbb6ac;
+  }
+
+  /* レスポンシブ */
+  @media (max-width: 800px) {
+    .value-grid { grid-template-columns: 1fr; gap: var(--space-4); }
+    .feature-cards { grid-template-columns: 1fr; gap: var(--space-4); }
+    .hero h1 { font-size: var(--text-2xl); }
+    .step-num { width: 40px; height: 40px; font-size: var(--text-md); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ヒーロー: 冒頭は最も特徴的な「かっこいいけど信頼感」を凝縮 -->
+<section class="hero">
+  <div class="container hero-grid">
+    <span class="hero-sub">— 確かな設計 —</span>
+    <h1>かっこいいだけじゃない。<br>信頼が土台にある。</h1>
+    <p class="hero-lead">
+      見た目の力強さと、裏切らない堅実さ。<br>
+      〈サービス名〉は、その両方をひとつの体験に込めました。
+    </p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">話を聞く</a>
+      <a href="#" class="btn btn-outline">資料を読む</a>
+    </div>
+  </div>
+</section>
+
+<!-- 価値提案: ビジュアル＋メッセージ -->
+<section class="value-proposition">
+  <div class="container value-grid">
+    <div class="value-visual">
+      <!-- インライン SVG: 抽象的な信頼のシンボル（盾＋チェック） -->
+      <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 10 L110 30 L110 60 C110 80 90 95 60 100 C30 95 10 80 10 60 L10 30 L60 10Z" fill="currentColor" opacity="0.25"/>
+        <path d="M40 55 L55 70 L80 40" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="value-text">
+      <h2>デザインの力と、<br>揺るがない信頼性。</h2>
+      <p>派手な装飾に頼らず、構造と素材で見せる。〈サービス名〉が提供するのは、一目で伝わる品格と、長期にわたって使い続けられる確かさです。私たちは「かっこいい」を一過性のものにしません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 特徴3点 -->
+<section class="features">
+  <div class="container">
+    <h2>3つの約束</h2>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <circle cx="24" cy="24" r="18" opacity="0.4"/>
+            <path d="M16 24 L22 30 L32 18"/>
+          </svg>
+        </div>
+        <h3>妥協のない品質</h3>
+        <p>素材・設計・細部の仕上げ。見えない部分まで基準を設け、〈サービス名〉の名に恥じない水準を維持します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="8" y="18" width="32" height="22" rx="2" opacity="0.4"/>
+            <path d="M18 40 L24 32 L30 40"/>
+            <circle cx="24" cy="30" r="4"/>
+          </svg>
+        </div>
+        <h3>長期の安定稼働</h3>
+        <p>変化の激しい環境でも、基盤が揺らがない。設計段階から拡張性と耐久性を織り込みます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 28 L24 12 L36 28" opacity="0.4"/>
+            <path d="M16 32 L24 20 L32 32"/>
+            <circle cx="24" cy="36" r="3"/>
+          </svg>
+        </div>
+        <h3>透明なプロセス</h3>
+        <p>進捗・判断根拠・費用。すべてをオープンにし、顧客と共に作り上げる関係を大切にします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 利用の流れ -->
+<section class="steps">
+  <div class="container">
+    <h2>始め方の流れ</h2>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>問い合わせ / ヒアリング</h3>
+          <p>まずは目的と課題を共有してください。オンライン30分で、方向性を明確にします。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>設計提案</h3>
+          <p>コンセプト・構造・スケジュールを文書化。お客様のフィードバックを反映しながら固めます。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>制作・実装</h3>
+          <p>デザインと機能を並行して開発。定期的な確認を挟み、ズレを早期に修正します。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>納品・サポート</h3>
+          <p>納品後も一定期間の運用サポート付き。引き継ぎや追加変更にも柔軟に対応します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>まずは一歩、話してみませんか</h2>
+    <p>かっこよさと信頼を、両立させたい方へ。〈サービス名〉はあなたのプロジェクトを全力で支えます。</p>
+    <a href="#" class="btn btn-primary">無料相談を予約する</a>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="container">
+    <span>© 〈会社名〉. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- 提出前にひとつ削る: ヒーローのグラデーション背景をやめ、単色＋下端アクセント線に変更。影も最小限に。
+     装飾を削り、構造とタイポグラフィで信頼感を残した。 -->
+</body>
+</html>

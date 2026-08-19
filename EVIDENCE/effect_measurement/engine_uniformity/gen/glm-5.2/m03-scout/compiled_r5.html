@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --scale-body: 15px;
+    --scale-lead: 24px;
+    --scale-heading: 13px;
+    --space-unit: 8px;
+    --c-base: #1a1a24;
+    --c-primary: #5b4fe8;
+    --c-accent: #3dffc0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--c-base);
+    color: #e8e8f0;
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: var(--scale-body);
+    line-height: 1.85;
+    letter-spacing: 0.01em;
+    padding: 64px 24px;
+  }
+
+  /* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+  /* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+  /* GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 */
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .subject {
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--c-accent);
+    margin-bottom: 48px;
+    line-height: 1.5;
+  }
+
+  .greeting {
+    font-size: 15px;
+    color: #c8c8d6;
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+
+  .lead {
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: var(--scale-lead);
+    font-weight: 700;
+    line-height: 1.65;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+    margin-bottom: 56px;
+  }
+
+  .lead .em {
+    color: var(--c-accent);
+  }
+
+  .body-text {
+    font-size: var(--scale-body);
+    line-height: 1.95;
+    color: #d4d4e2;
+    margin-bottom: 40px;
+  }
+
+  /* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 */
+  .body-text .em {
+    color: var(--c-accent);
+    font-weight: 700;
+  }
+
+  .cta-label {
+    font-size: var(--scale-heading);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-primary);
+    margin-bottom: 8px;
+  }
+
+  /* GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 */
+  .cta-text {
+    font-size: var(--scale-body);
+    color: #e8e8f0;
+    margin-bottom: 64px;
+    line-height: 1.85;
+  }
+
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--c-accent);
+    margin-bottom: 40px;
+    border-radius: 2px;
+  }
+
+  .signature {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #a8a8bc;
+  }
+
+  .signature .name {
+    color: #e8e8f0;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 4px;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 40px 20px; }
+    .lead { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+  <!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+  <p class="subject">件名：コード書く時間、誰にも縛らせません。——〈会社名〉からのお声がけ</p>
+
+  <!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+  <p class="greeting">〈候補者名〉さん、はじめまして。</p>
+
+  <p class="lead">実務2〜5年目、いま一番面白い時期にいるあなたへ。<br>次の裁量は、自分で選びたくないですか?</p>
+
+  <!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+  <p class="body-text">
+    経歴を見せていただいたとき、技術を自分のものにしている手応えが文章から伝わってきました。この時期のエンジニアって、与えられたタスクをこなすだけじゃなく、アーキテクチャの選択やライブラリの判断まで自分で握りたくなる頃だと思うんです。
+  </p>
+
+  <p class="body-text">
+    〈会社名〉では、その"<span class="em">自分で決める</span>"を最初から任せています。技術選定もコードレビューのフローも、現場のエンジニアが話し合って決める。〈確認: 現場でエンジニアが自分で決めた技術選定の具体的なエピソードを1つ〉。上から降りてくる指定はありません。
+  </p>
+
+  <!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+  <p class="body-text">
+    もちろんすべて自由じゃなく、チームで支え合う文化はあります。でも「こうしたい」に合わせて環境を整えるのは会社の役目で、あなたの裁量を狭めるものじゃありません。
+  </p>
+
+  <p class="cta-label">NEXT</p>
+  <p class="cta-text">
+    まずはカジュアルに話しませんか? 現場のエンジニアと30分ほど、自分がどんなコードを書きたいか、何に困っていて何を試したいか、ざっくばらんに。履歴書も不要です。このまま返信してください。
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="signature">
+    〈会社名〉 採用担当
+    <span class="name">〈担当者名〉</span>
+    〈メールアドレス〉
+  </div>
+
+</div>
+</body>
+</html>

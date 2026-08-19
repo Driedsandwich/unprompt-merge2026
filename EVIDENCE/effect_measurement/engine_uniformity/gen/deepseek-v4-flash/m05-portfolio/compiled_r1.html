@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 — デザインポートフォリオ</title>
+<style>
+  /* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+  /* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  /* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+  /* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+
+  /* タイプスケール: 16px 基準 / 1.25 倍率 */
+  /* 本文: 16px / 見出しh2: 20px / 見出しh1: 25px / キャッチ: 31px */
+  :root {
+    --bg: #f5f4f1;
+    --text: #1b1b1b;
+    --accent: #c7a96b;
+    --spacing-unit: 8px;
+    --max-width: 720px;
+    font-size: 16px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Hiragino Sans", "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* セクション余白: 96px 以上 */
+  section {
+    padding: 96px 0;
+  }
+
+  /* ヒーロー: 冒頭は主張 — 最初に作品を見せる */
+  .hero {
+    padding: 120px 0 64px;
+  }
+
+  .hero__label {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .hero__catch {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+    font-size: 1.9375rem; /* 31px */
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 32px;
+  }
+
+  .hero__name {
+    font-size: 1.5625rem; /* 25px */
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .hero__role {
+    font-size: 0.9375rem;
+    color: #555;
+  }
+
+  /* 見出し h2 — 明朝系 */
+  h2 {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+    font-size: 1.25rem; /* 20px */
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  h2::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+    margin-top: 12px;
+  }
+
+  /* 自己紹介 */
+  .about p {
+    margin-bottom: 24px;
+    max-width: 560px;
+  }
+
+  /* 作品3点 — プロセス思考解説中心 */
+  .works-list {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .work-item {
+    border-top: 1px solid #ddd;
+    padding-top: 40px;
+  }
+
+  .work-item__number {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .work-item__title {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  /* 作品サムネイル — インラインSVG */
+  .work-item__thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin-bottom: 24px;
+    background: #e8e5dd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .work-item__process {
+    font-size: 0.875rem;
+    line-height: 1.9;
+    color: #333;
+    margin-bottom: 16px;
+  }
+
+  .work-item__process strong {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .work-item__tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 12px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* スキル */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .skill-category h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+
+  .skill-category ul {
+    list-style: none;
+    font-size: 0.875rem;
+    line-height: 2;
+  }
+
+  .skill-category li::before {
+    content: '— ';
+    color: var(--accent);
+  }
+
+  /* 連絡先 */
+  .contact p {
+    font-size: 0.9375rem;
+    margin-bottom: 16px;
+  }
+
+  .contact__link {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .contact__link:hover {
+    opacity: 0.6;
+  }
+
+  /* フッター */
+  footer {
+    padding: 32px 0 64px;
+    font-size: 0.75rem;
+    color: #999;
+    border-top: 1px solid #e0ddd6;
+  }
+
+  /* 応答 */
+  @media (max-width: 600px) {
+    section {
+      padding: 64px 0;
+    }
+    .hero {
+      padding: 80px 0 48px;
+    }
+    .hero__catch {
+      font-size: 1.5rem;
+    }
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ヒーロー: 冒頭は作品の質で記憶させる -->
+  <!-- GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け -->
+  <header class="hero">
+    <p class="hero__label">Portfolio</p>
+    <p class="hero__catch">作品、削ぎ落として。<br>ポートフォリオは一枚の余白から始まる。</p>
+    <h1 class="hero__name">〈氏名〉</h1>
+    <p class="hero__role">デザイナー / 〈勤務地〉</p>
+  </header>
+
+  <!-- 自己紹介 -->
+  <!-- GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 -->
+  <section class="about">
+    <h2>About</h2>
+    <p>〈年数〉年にわたり、〈確認: 扱ってきた領域〉を中心にデザインの実務に携わってきました。一貫して大切にしているのは、ひとつの判断に「なぜ」があること。体裁を整えるのではなく、構造を問い直すことです。</p>
+    <p>このページでは、完成形だけでなく、そこに至るまでの思考の過程もあわせて公開しています。</p>
+  </section>
+
+  <!-- 作品3点 -->
+  <!-- GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 -->
+  <!-- GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる -->
+  <section class="works">
+    <h2>Selected Works</h2>
+    <div class="works-list">
+
+      <!-- Work 01 -->
+      <div class="work-item">
+        <p class="work-item__number">01</p>
+        <h3 class="work-item__title">〈作品タイトルA〉</h3>
+        <div class="work-item__thumb">
+          <svg width="60%" height="60%" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid meet">
+            <rect width="200" height="120" fill="#d9d4c9" rx="0"/>
+            <rect x="20" y="20" width="80" height="80" fill="#c7a96b" rx="0"/>
+            <rect x="110" y="20" width="70" height="50" fill="#1b1b1b" rx="0"/>
+            <circle cx="150" cy="95" r="18" fill="none" stroke="#1b1b1b" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="work-item__process">
+          <strong>課題:</strong> 〈確認: この制作で解決しようとした課題〉<br>
+          <strong>アプローチ:</strong> 最初に情報の優先順位を再定義。不要な装飾を削り、伝えるべき一文に絞った。<br>
+          <strong>判断のポイント:</strong> 〈確認: デザイン上の主要な判断とその根拠〉
+        </div>
+        <span class="work-item__tag">ブランディング</span>
+        <span class="work-item__tag">印刷物</span>
+      </div>
+
+      <!-- Work 02 -->
+      <div class="work-item">
+        <p class="work-item__number">02</p>
+        <h3 class="work-item__title">〈作品タイトルB〉</h3>
+        <div class="work-item__thumb">
+          <svg width="60%" height="60%" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid meet">
+            <rect width="200" height="120" fill="#e3e0d8" rx="0"/>
+            <circle cx="60" cy="60" r="40" fill="#1b1b1b" rx="0"/>
+            <rect x="110" y="30" width="70" height="70" fill="#c7a96b" rx="0"/>
+            <line x1="30" y1="100" x2="180" y2="100" stroke="#1b1b1b" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="work-item__process">
+          <strong>課題:</strong> 〈確認: この制作で解決しようとした課題〉<br>
+          <strong>アプローチ:</strong> ユーザーの行動フローを洗い直し、最短経路で目的を達成できる導線に再構成。<br>
+          <strong>判断のポイント:</strong> 〈確認: デザイン上の主要な判断とその根拠〉
+        </div>
+        <span class="work-item__tag">UI/UX</span>
+        <span class="work-item__tag">Web</span>
+      </div>
+
+      <!-- Work 03 -->
+      <div class="work-item">
+        <p class="work-item__number">03</p>
+        <h3 class="work-item__title">〈作品タイトルC〉</h3>
+        <div class="work-item__thumb">
+          <svg width="60%" height="60%" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid meet">
+            <rect width="200" height="120" fill="#d2cec3" rx="0"/>
+            <polygon points="100,10 170,90 30,90" fill="#c7a96b" rx="0"/>
+            <rect x="40" y="70" width="120" height="30" fill="#1b1b1b" rx="0"/>
+          </svg>
+        </div>
+        <div class="work-item__process">
+          <strong>課題:</strong> 〈確認: この制作で解決しようとした課題〉<br>
+          <strong>アプローチ:</strong> 素材の持つ質感を活かしながら、余白のリズムで視線を誘導。<br>
+          <strong>判断のポイント:</strong> 〈確認: デザイン上の主要な判断とその根拠〉
+        </div>
+        <span class="work-item__tag">エディトリアル</span>
+        <span class="work-item__tag">グラフィック</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- スキル -->
+  <!-- GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 -->
+  <section class="skills">
+    <h2>Skills & Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Design</h3>
+        <ul>
+          <li>UI / UX デザイン</li>
+          <li>ブランディング</li>
+          <li>エディトリアル</li>
+          <li>情報設計</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Tools</h3>
+        <ul>
+          <li>Figma / Sketch</li>
+          <li>Adobe Creative Suite</li>
+          <li>HTML / CSS</li>
+          <li>Prototyping</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 連絡先 -->
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>ご覧いただきありがとうございます。<br>ご連絡は以下よりお願いいたします。</p>
+    <p>
+      <a class="contact__link" href="mailto:〈メールアドレス〉">〈メールアドレス〉</a><br>
+      <a class="contact__link" href="〈確認: ポートフォリオURL〉">〈確認: ポートフォリオURL〉</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>© 〈氏名〉</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

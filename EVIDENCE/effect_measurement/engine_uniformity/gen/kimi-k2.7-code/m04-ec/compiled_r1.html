@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈商品名〉 商品説明</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+/* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 */
+/* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+/* GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+
+:root {
+  /* Type scale: base 16px, ratio ~1.4 */
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 40px;
+
+  /* Palette: ground / primary / accent */
+  --color-ground: #f4f1ea;
+  --color-primary: #3a3226;
+  --color-accent: #8c6a3f;
+
+  /* Fonts: serif headings × sans body */
+  --font-heading: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  --font-body: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+
+  /* 8px grid spacing */
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-ground);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.9;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-96) var(--space-24);
+}
+
+section {
+  margin-bottom: var(--space-64);
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  margin-bottom: var(--space-32);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.85;
+  margin-bottom: var(--space-48);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-32);
+}
+
+p {
+  margin-bottom: var(--space-24);
+}
+
+.features {
+  list-style: none;
+}
+
+.features li {
+  margin-bottom: var(--space-32);
+}
+
+.feature-title {
+  font-weight: 600;
+  margin-bottom: var(--space-8);
+}
+
+.accent {
+  color: var(--color-accent);
+}
+
+.spec-box {
+  border: 1px solid var(--color-primary);
+  padding: var(--space-24);
+}
+
+.note {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.closing {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  line-height: 1.5;
+  text-align: center;
+  margin-top: var(--space-96);
+}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+    <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+    <h1>はじめて触れる、<span class="accent">新しい毎日</span>の形。<br>〈商品名〉</h1>
+    <p class="lead">
+      〈確認：商品がもたらす主な体験や変化を一言〉。<br>
+      〈商品名〉は、忙しい日常のすき間に、静かに寄り添う新商品です。
+    </p>
+  </section>
+
+  <section class="features-section">
+    <!-- GYAKUMON-CHOICE: 文体・トーン = フォーマル -->
+    <h2>特長</h2>
+    <ul class="features">
+      <li>
+        <p class="feature-title">01. 手に取った瞬間の心地よさ</p>
+        <p>
+          〈確認：素材・質感・重さなど、手に取った際の具体的な印象〉。<br>
+          手に馴染む輪郭と控えめな重みが、まるで長く使い込んだ道具のような安心感をお届けいたします。
+        </p>
+      </li>
+      <li>
+        <p class="feature-title">02. 使うたびに深まる満足感</p>
+        <p>
+          〈確認：繰り返し使うことで実感できる効能や変化〉。<br>
+          毎日の小さな儀式へと変わり、暮らしに自然と溶け込んでまいります。
+        </p>
+      </li>
+      <li>
+        <p class="feature-title">03. 大切な人へ贈りたくなる佇まい</p>
+        <p>
+          〈確認：デザインやパッケージに込めた想い〉。<br>
+          どんな空間にも馴染む落ち着きのある佇まいは、贈り物としても喜ばれております。
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="specs-section">
+    <!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+    <h2>仕様・ご注意</h2>
+    <div class="spec-box">
+      <p><strong>商品名：</strong>〈商品名〉</p>
+      <p><strong>サイズ・内容量：</strong>〈サイズ／内容量〉</p>
+      <p><strong>素材・成分：</strong>〈素材・成分〉</p>
+      <p><strong>お手入れ方法：</strong>〈お手入れ方法〉</p>
+      <p class="note">
+        ※画面の色味やお使いの環境により、実物と若干異なる場合がございます。<br>
+        詳細は〈販売元〉までお気軽にお問い合わせください。
+      </p>
+    </div>
+  </section>
+
+  <section class="closing">
+    <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+    <p>〈商品名〉で、<br>明日からの暮らしに新しい余裕を。</p>
+  </section>
+</main>
+</body>
+</html>

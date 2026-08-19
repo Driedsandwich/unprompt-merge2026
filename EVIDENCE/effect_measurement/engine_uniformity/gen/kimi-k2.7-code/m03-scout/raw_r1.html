@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>スカウトメール</title>
+  <style>
+    :root {
+      --color-text: #1B1F23;
+      --color-accent: #0F5C66;
+      --color-bg: #F4F5F0;
+      --space-unit: 8px;
+      --font-body: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+      --font-heading: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+      --text-base: 1rem;
+      --text-subject: 1.75rem;
+      --text-small: 0.8125rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.85;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      letter-spacing: 0.02em;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 5);
+    }
+
+    .subject-section {
+      margin-bottom: calc(var(--space-unit) * 8);
+    }
+
+    .subject-label {
+      font-family: var(--font-body);
+      font-size: var(--text-small);
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: calc(var(--space-unit) * 2);
+      letter-spacing: 0.08em;
+    }
+
+    .subject-text {
+      font-family: var(--font-heading);
+      font-size: var(--text-subject);
+      line-height: 1.4;
+      font-weight: 600;
+      border-left: 3px solid var(--color-accent);
+      padding-left: calc(var(--space-unit) * 3);
+    }
+
+    .recipient {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      margin-bottom: calc(var(--space-unit) * 6);
+    }
+
+    .body-text p {
+      margin-bottom: calc(var(--space-unit) * 3);
+      text-align: justify;
+    }
+
+    .closing {
+      margin-top: calc(var(--space-unit) * 6);
+    }
+
+    .signature {
+      margin-top: calc(var(--space-unit) * 8);
+      line-height: 1.7;
+    }
+
+    .placeholder {
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="subject-section">
+      <p class="subject-label">件名</p>
+      <h1 class="subject-text">コードが社会に触れる瞬間を、一緒に作りませんか</h1>
+    </section>
+
+    <p class="recipient"><span class="placeholder">〈候補者名〉</span> 様</p>
+
+    <div class="body-text">
+      <p>はじめまして。<span class="placeholder">〈会社名〉</span> 採用担当の <span class="placeholder">〈送信者名〉</span> と申します。</p>
+
+      <p>技術ブログや OSS での活動を拝見し、あなたの「使う人の視点に立った実装」へのこだわりに強く共感しました。そこで、ぜひ一度お話を聞かせていただきたくご連絡しました。</p>
+
+      <p>私たちは <span class="placeholder">〈主要サービス〉</span> を通じて、<span class="placeholder">〈解決したい課題〉</span> に真正面から取り組むチームです。規模だけではない、一つの機能がユーザーの日常を変える実感を大切にしています。</p>
+
+      <p>また、若手のうちから設計・実装・リリース・改善の一連を担えます。先輩エンジニアと pair を組みながら、責任ある領域を少しずつ広げていける環境です。書いたコードがすぐに社会に触れ、フィードバックを受けられる——そこから得られる成長は、受け身の業務では味わえないものだと確信しています。</p>
+
+      <p>「もっと影響力のあるプロダクトを作りたい」「技術と課題の接点で主体的に動きたい」。そんな想いがある方に、ぜひ一度会って話をしたいです。</p>
+    </div>
+
+    <div class="closing">
+      <p>もしご興味があれば、15 分のオンラインで軽く話しませんか。日程はあなたに合わせます。</p>
+      <p>よろしくお願いいたします。</p>
+    </div>
+
+    <div class="signature">
+      <p><span class="placeholder">〈送信者名〉</span></p>
+      <p><span class="placeholder">〈会社名〉</span> 採用担当</p>
+      <p><span class="placeholder">〈メールアドレス〉</span></p>
+    </div>
+  </div>
+</body>
+</html>

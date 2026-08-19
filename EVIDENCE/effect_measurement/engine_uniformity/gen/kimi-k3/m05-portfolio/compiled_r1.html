@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 — Design Portfolio</title>
+<style>
+/* タイプスケール: 基準16px / 比率1.5 (16, 24, 36, 54) */
+/* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+:root{
+  --bg:#0d0d0d;
+  --ink:#f2f0eb;
+  --accent:#ff3b1f;
+  --ink-dim:rgba(242,240,235,.55);
+}
+/* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Helvetica Neue",Helvetica,Arial,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  font-size:16px;
+  line-height:2;
+  letter-spacing:.02em;
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 32px;}
+/* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+h1,h2,h3{
+  font-weight:700;
+  letter-spacing:.06em;
+  line-height:1.3;
+}
+h1{font-size:54px;}
+h2{font-size:24px;border-left:4px solid var(--accent);padding-left:16px;margin-bottom:48px;}
+h3{font-size:20px;margin-bottom:8px;}
+section{padding:96px 0;}
+/* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+.hero{padding:160px 0 128px;}
+.hero .kicker{color:var(--accent);font-size:14px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:24px;}
+.hero p.lead{margin-top:32px;max-width:560px;color:var(--ink-dim);font-size:18px;}
+.rule{width:64px;height:2px;background:var(--accent);margin-top:48px;}
+.about p{max-width:640px;color:var(--ink-dim);}
+/* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+.work{margin-bottom:96px;}
+.work:last-child{margin-bottom:0;}
+.work .num{color:var(--accent);font-size:14px;letter-spacing:.2em;margin-bottom:16px;}
+.work .thumb{
+  aspect-ratio:16/7;
+  background:linear-gradient(135deg,#1a1a1a 0%,#242424 60%,#2e2e2e 100%);
+  border:1px solid rgba(242,240,235,.12);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-dim);font-size:14px;letter-spacing:.2em;
+  margin:24px 0;
+}
+.work .meta{color:var(--ink-dim);font-size:14px;margin-bottom:16px;}
+.work .process{max-width:640px;}
+.work .process dt{color:var(--accent);font-size:14px;letter-spacing:.15em;margin-top:24px;}
+.work .process dd{color:var(--ink-dim);margin-top:8px;}
+.skills ul{list-style:none;display:flex;flex-wrap:wrap;gap:16px;}
+.skills li{
+  border:1px solid rgba(242,240,235,.25);
+  padding:8px 24px;font-size:14px;letter-spacing:.1em;
+}
+.contact p{color:var(--ink-dim);max-width:560px;}
+.contact a{
+  display:inline-block;margin-top:32px;
+  color:var(--bg);background:var(--accent);
+  padding:16px 48px;text-decoration:none;
+  font-weight:700;letter-spacing:.15em;font-size:14px;
+}
+footer{padding:48px 0;color:var(--ink-dim);font-size:12px;letter-spacing:.15em;text-align:center;border-top:1px solid rgba(242,240,235,.12);}
+@media(max-width:640px){h1{font-size:36px;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Design Portfolio</p>
+    <h1>〈氏名〉<br>デザイナー</h1>
+    <p class="lead">見た人の記憶に残る余白と一手。装飾を削ぎ、判断で語るポートフォリオです。</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<section class="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>〈確認: 自己紹介の核となる一文 — どんな課題を解いてきたデザイナーか〉。見た目の完成度だけでなく、「なぜその設計にしたか」の過程を言語化して伝えることを大事にしています。詳しい経歴は〈確認: 職務経歴書の要約またはリンク〉をご参照ください。</p>
+  </div>
+</section>
+
+<section class="works">
+  <div class="wrap">
+    <h2>Works</h2>
+
+    <article class="work">
+      <p class="num">01</p>
+      <h3>〈作品タイトル1〉</h3>
+      <div class="thumb">〈作品ビジュアル〉</div>
+      <p class="meta">〈担当範囲〉 / 〈制作期間〉 / 〈使用ツール〉</p>
+      <dl class="process">
+        <dt>課題</dt>
+        <dd>〈確認: この作品で解いた課題を1〜2文で〉</dd>
+        <dt>判断の過程</dt>
+        <dd>〈確認: なぜこの設計・表現に至ったか、検討した案と捨てた案〉</dd>
+        <dt>結果</dt>
+        <dd>〈確認: 公開後の反応や数値、関係者の言葉〉</dd>
+      </dl>
+    </article>
+
+    <article class="work">
+      <p class="num">02</p>
+      <h3>〈作品タイトル2〉</h3>
+      <div class="thumb">〈作品ビジュアル〉</div>
+      <p class="meta">〈担当範囲〉 / 〈制作期間〉 / 〈使用ツール〉</p>
+      <dl class="process">
+        <dt>課題</dt>
+        <dd>〈確認: この作品で解いた課題を1〜2文で〉</dd>
+        <dt>判断の過程</dt>
+        <dd>〈確認: なぜこの設計・表現に至ったか、検討した案と捨てた案〉</dd>
+        <dt>結果</dt>
+        <dd>〈確認: 公開後の反応や数値、関係者の言葉〉</dd>
+      </dl>
+    </article>
+
+    <article class="work">
+      <p class="num">03</p>
+      <h3>〈作品タイトル3〉</h3>
+      <div class="thumb">〈作品ビジュアル〉</div>
+      <p class="meta">〈担当範囲〉 / 〈制作期間〉 / 〈使用ツール〉</p>
+      <dl class="process">
+        <dt>課題</dt>
+        <dd>〈確認: この作品で解いた課題を1〜2文で〉</dd>
+        <dt>判断の過程</dt>
+        <dd>〈確認: なぜこの設計・表現に至ったか、検討した案と捨てた案〉</dd>
+        <dt>結果</dt>
+        <dd>〈確認: 公開後の反応や数値、関係者の言葉〉</dd>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section class="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <ul>
+      <li>〈スキル1〉</li>
+      <li>〈スキル2〉</li>
+      <li>〈スキル3〉</li>
+      <li>〈スキル4〉</li>
+      <li>〈スキル5〉</li>
+    </ul>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>ご覧いただきありがとうございます。制作の背景やプロセスについて、ぜひ直接お話しさせてください。</p>
+    <a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+  </div>
+</section>
+
+<footer>© 〈氏名〉 — Portfolio</footer>
+
+</body>
+</html>

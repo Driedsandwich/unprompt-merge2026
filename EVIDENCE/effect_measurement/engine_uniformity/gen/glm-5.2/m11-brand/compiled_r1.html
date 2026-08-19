@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉</title>
+<style>
+:root {
+  --bg: #1c1712;
+  --primary: #8a5a34;
+  --accent: #d9a15c;
+  /* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+  /* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 */
+  /* GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 */
+  /* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+  --air: 96px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  background: var(--bg);
+  color: #e8ddcc;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  /* GYAKUMON-CHOICE: 密度 = airy */
+}
+.serif {
+  font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+}
+/* GYAKUMON-CHOICE: 見出し書体 = serif */
+h1, h2, h3 { font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif; font-weight: 600; }
+section { padding: var(--air) 24px; max-width: 640px; margin: 0 auto; }
+/* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+.hero {
+  max-width: 100%;
+  padding: 120px 24px 96px;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--primary) 320%);
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.4rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+.hero p {
+  font-size: 0.92rem;
+  opacity: 0.85;
+  letter-spacing: 0.08em;
+}
+.story p, .craft p { margin-bottom: 24px; font-size: 0.95rem; }
+.story h2, .craft h2, .lineup h2 {
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 40px;
+  letter-spacing: 0.1em;
+}
+.lineup-item {
+  /* GYAKUMON-CHOICE: 角 = soft */
+  border-radius: 12px;
+  border: 1px solid rgba(217,161,92,0.2);
+  padding: 32px;
+  margin-bottom: 24px;
+}
+.lineup-item h3 {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.lineup-item p { font-size: 0.88rem; opacity: 0.8; }
+.cta {
+  text-align: center;
+  padding: 96px 24px 120px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--bg) 200%);
+}
+.cta p {
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+.cta a {
+  display: inline-block;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 16px 48px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  letter-spacing: 0.15em;
+  font-size: 0.95rem;
+}
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 想定読者 = ギフト検討者 -->
+<!-- GYAKUMON-CHOICE: トーン例 = 大切な人へ、コーヒー豆という贈りもの。 -->
+<header class="hero">
+<h1 class="serif">〈ブランド名〉</h1>
+<p class="serif">大切な人へ、コーヒー豆という贈りもの。</p>
+</header>
+
+<!-- GYAKUMON-CHOICE: トーン例 = 一杯の珈琲に、旅の記憶を。ある農園から始まった物語。 -->
+<!-- GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 -->
+<section class="story">
+<h2>物語のはじまり</h2>
+<p>一杯の珈琲に、旅の記憶を。ある農園から始まった物語。</p>
+<p>〈確認: ブランド創業の経緯・農園との出会いのエピソード〉。その出会いが、豆を贈るという行為に変わるとき、コーヒーはただの飲み物ではなくなります。</p>
+<p>〈確認: 現場で実際にあった失敗談を1つ〉——その経験が、いま焙煎に対する姿勢の根底にあります。</p>
+</section>
+
+<section class="craft">
+<h2>豆へのこだわり</h2>
+<p>土と焙煎の記憶。一粒の豆に、農園の風と光と雨が宿っています。</p>
+<p>〈確認: 産地・品種・焙煎の具体的な条件〉。条件の骨子は、〈確認: 実際の選別基準や温度帯〉を起点に、豆ごとの声を聴きながら整えます。</p>
+<p>気品のコーヒー、ロースターの矜持を一杯に。毎朝の杯に、その想いを届けます。</p>
+</section>
+
+<section class="lineup">
+<h2>ラインナップ</h2>
+<div class="lineup-item">
+<h3 class="serif">〈銘柄名A〉</h3>
+<p>〈確認: 味わいの特徴・焙煎度・推奨淹れ方〉</p>
+</div>
+<div class="lineup-item">
+<h3 class="serif">〈銘柄名B〉</h3>
+<p>〈確認: 味わいの特徴・焙煎度・推奨淹れ方〉</p>
+</div>
+<div class="lineup-item">
+<h3 class="serif">〈銘柄名C〉</h3>
+<p>〈確認: 味わいの特徴・焙煎度・推奨淹れ方〉</p>
+</div>
+</section>
+
+<!-- GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 -->
+<section class="cta">
+<p class="serif">大切なあの人へ、物語を贈りませんか。</p>
+<a href="#purchase">〈ブランド名〉の豆を見る</a>
+</section>
+
+</body>
+</html>

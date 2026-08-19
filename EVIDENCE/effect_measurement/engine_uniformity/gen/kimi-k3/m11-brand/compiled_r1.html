@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>〈ブランド名〉| コーヒー豆という贈りもの</title>
+<style>
+/* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+:root{
+  --bg:#151312; --panel:#2e2823; --gold:#b08d57;
+  --ink:#efe7dc; --ink-dim:#b9ac9c;
+  --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  --sans:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic",sans-serif;
+  /* type scale: base 16px ×1.5 → 24 / 36 / 54 */
+  --fs-base:1rem; --fs-h3:1.5rem; --fs-h2:2.25rem; --fs-hero:3.375rem;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:var(--fs-base);line-height:2}
+/* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+.wrap{max-width:640px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+h2{font-family:var(--serif);font-size:var(--fs-h2);font-weight:600;letter-spacing:.08em;margin-bottom:32px}
+h3{font-family:var(--serif);font-size:var(--fs-h3);font-weight:600;letter-spacing:.06em}
+.kicker{display:block;font-size:.75rem;letter-spacing:.4em;color:var(--gold);margin-bottom:16px}
+/* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 */
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:96px 0 64px}
+.hero h1{font-family:var(--serif);font-size:var(--fs-hero);line-height:1.4;font-weight:600;letter-spacing:.06em;margin-bottom:32px}
+.hero .sub{color:var(--ink-dim);margin-bottom:48px}
+.bean{width:64px;height:64px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--panel);border:1px solid var(--gold);position:relative;margin-bottom:48px}
+.bean::after{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:2px;background:var(--gold);transform:rotate(8deg)}
+.muted{color:var(--ink-dim)}
+.card{background:var(--panel);padding:48px 32px;border-radius:0;border-top:2px solid var(--gold);margin-bottom:32px}
+.card h3{margin-bottom:16px;color:var(--gold)}
+.list{display:flex;flex-direction:column;gap:32px}
+/* GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 */
+.cta{text-align:center;padding:96px 0 64px}
+.cta a{display:inline-block;padding:16px 64px;background:var(--gold);color:#151312;text-decoration:none;letter-spacing:.2em;font-size:.9rem}
+.cta .note{display:block;margin-top:24px;font-size:.8rem;color:var(--ink-dim)}
+footer{padding:48px 0;text-align:center;font-size:.75rem;color:var(--ink-dim);border-top:1px solid var(--panel)}
+</style>
+</head>
+<body>
+<!-- GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 -->
+<header class="hero wrap">
+  <span class="kicker">〈ブランド名〉</span>
+  <h1>大切な人へ、<br>コーヒー豆という贈りもの。</h1>
+  <div class="bean" aria-hidden="true"></div>
+  <p class="sub">気品のコーヒー、ロースターの矜持を一杯に。<br>〈ブランド名〉は、贈る人の想いがそのまま届くよう、一粒ずつ吟味した豆だけを届けるコーヒー豆ブランドです。</p>
+</header>
+<section class="wrap" id="story">
+  <span class="kicker">STORY</span>
+  <h2>ある一粒から、<br>物語は始まった。</h2>
+  <p class="muted">土と焙煎の記憶。〈ブランド名〉は、〈確認: ブランド誕生のきっかけとなった出来事や農園との出会い〉から生まれました。一杯の珈琲に、旅の記憶を。産地を訪ね、生産者と言葉を交わし、その畑でしか実らない一粒に出会う──その体験を、豆のままあなたのもとへ届けたい。それが私たちの出発点です。</p>
+</section>
+<section class="wrap" id="craft">
+  <span class="kicker">CRAFT</span>
+  <h2>豆へのこだわり</h2>
+  <div class="list">
+    <div class="card">
+      <h3>産地を、目で確かめる</h3>
+      <p class="muted">豆は〈確認: 取り扱う産地・品種の具体(国名・品種名など)〉から直接仕入れます。畑の標高や精製方法まで、生産者の話を聞いて選んだ豆だけです。</p>
+    </div>
+    <div class="card">
+      <h3>焙煎は、届ける直前に</h3>
+      <p class="muted">香りがいちばん開くのは焙煎から日の浅いうち。〈確認: 焙煎から発送までの運用(焙煎後何日以内に発送するか等)〉を徹底し、淹れた瞬間の香りを贈り先へ届けます。</p>
+    </div>
+    <div class="card">
+      <h3>贈るための佇まい</h3>
+      <p class="muted">黒と金を基調にした簡潔な装い。手提げや熨斗など、ギフトとしてそのまま渡せる体裁を整えています(〈確認: 包装・熨斗の対応範囲〉)。</p>
+    </div>
+  </div>
+</section>
+<section class="wrap" id="lineup">
+  <span class="kicker">LINEUP</span>
+  <h2>ラインナップ</h2>
+  <div class="list">
+    <div class="card"><h3>〈商品名1〉</h3><p class="muted">〈確認: 味わいの特徴(例: 深煎り・チョコレートのようなコク)〉。はじめての贈りものに。</p></div>
+    <div class="card"><h3>〈商品名2〉</h3><p class="muted">〈確認: 味わいの特徴〉。コーヒーに詳しい方へ。</p></div>
+    <div class="card"><h3>〈ギフトセット名〉</h3><p class="muted">〈確認: セット内容(豆の種類・量)〉。季節の贈答に。</p></div>
+  </div>
+</section>
+<section class="wrap cta" id="buy">
+  <span class="kicker">GIFT</span>
+  <h2>贈る、という一杯を。</h2>
+  <p class="muted" style="margin-bottom:48px">贈り先の住所へ直接お届けできます。ご注文はオンラインストアから。</p>
+  <a href="#">〈オンラインストアのURL〉へ</a>
+  <span class="note">※熨斗・メッセージカードの対応は〈確認: 対応可否〉です。</span>
+</section>
+<footer>© 〈ブランド名〉</footer>
+</body>
+</html>

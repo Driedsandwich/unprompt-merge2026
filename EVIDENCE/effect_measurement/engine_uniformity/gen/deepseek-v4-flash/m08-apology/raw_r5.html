@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+  /* タイポグラフィ設計
+     書体: 見出し — 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif (明朝系)
+           本文 — 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif (ゴシック系)
+     タイプスケール: 本文 16px / 1.75 基準
+                     h1: 28px (1.75倍) / h2: 22px (1.375倍)
+     ウェイト: 見出し 600 / letter-spacing: 0.02em
+              本文 400 / letter-spacing: 0.01em
+  */
+  :root {
+    --body-bg: #fafaf8;
+    --card-bg: #ffffff;
+    --base: #2b2b2b;
+    --accent: #9b6b4b;        /* テラコッタ系だが暖かみがあり、既定クラスタ回避 */
+    --accent-light: #c49a7c;
+    --border: #e8e0da;
+    --text-muted: #7a716a;
+    --space-unit: 8px;
+    --font-serif: 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif;
+    --font-sans: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--body-bg);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    color: var(--base);
+    line-height: 1.75;
+    padding: 40px 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* カード枠 */
+  .mail-wrapper {
+    max-width: 720px;
+    width: 100%;
+    background: var(--card-bg);
+    padding: 56px 48px 64px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  /* 余白は8pxグリッド */
+  .mail-wrapper > * + * {
+    margin-top: 24px; /* 3×8px */
+  }
+
+  /* 件名 */
+  .subject {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 12px;  /* 1.5×8px */
+    margin-bottom: 32px;   /* 4×8px */
+    text-transform: none;
+  }
+
+  /* 宛名 */
+  .greeting {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--base);
+    margin-bottom: 8px;    /* 1×8px */
+  }
+
+  /* 見出し */
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-top: 40px;      /* 5×8px */
+    margin-bottom: 16px;   /* 2×8px */
+    color: var(--base);
+  }
+
+  /* 本文段落 */
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;   /* 2×8px */
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* プレースホルダ用スタイル（山括弧はそのまま表示） */
+  .placeholder {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* 結びの余白 */
+  .closing {
+    margin-top: 40px;      /* 5×8px */
+    padding-top: 24px;     /* 3×8px */
+    border-top: 1px solid var(--border);
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .closing p {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .closing .signature {
+    margin-top: 16px;
+    font-weight: 500;
+    color: var(--base);
+  }
+
+  /* 応答性 */
+  @media (max-width: 600px) {
+    .mail-wrapper {
+      padding: 32px 20px 48px;
+    }
+    .subject {
+      font-size: 15px;
+      padding-bottom: 8px;
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 32px;
+    }
+    p {
+      font-size: 15px;
+    }
+  }
+
+  /* 削る装飾: 影・グラデーション・アイコン・枠線・アニメーションのうち、
+     無くても成立する「アイコン」を削除。カードの box-shadow も極小に抑えてほぼフラット。
+     残った装飾はすべて説明可能 */
+</style>
+</head>
+<body>
+<div class="mail-wrapper">
+
+  <!-- 件名 -->
+  <div class="subject">
+    【お詫び】〈商品名〉の発送が遅れております
+  </div>
+
+  <!-- 宛名 -->
+  <p class="greeting">
+    〈お客様名〉　さま
+  </p>
+
+  <!-- お詫びと状況説明 -->
+  <h2>発送遅延のお詫びとご連絡</h2>
+  <p>
+    このたびは〈商品名〉をご注文いただき、誠にありがとうございます。<br>
+    心より感謝申し上げます。
+  </p>
+  <p>
+    本来であれば、本日までにお届けのご連絡を差し上げるべきところ、<br>
+    製造工程における一部資材の調達遅延により、現在発送が遅れております。<br>
+    お客様にはご不便とご心配をおかけしており、深くお詫び申し上げます。
+  </p>
+
+  <!-- 今後の対応 -->
+  <h2>今後のスケジュールについて</h2>
+  <p>
+    現在、最優先で対応を進めており、<strong class="placeholder">〈新しいお届け予定〉</strong> までには<br>
+    確実にお届けできる見込みです。<br>
+    改めて発送完了時に追跡番号とともにお知らせいたします。
+  </p>
+  <p>
+    万が一、上記日程を過ぎてもご連絡がない場合や、<br>
+    ご都合に合わせてキャンセルをご希望の際は、<br>
+    お手数ですが本メールにご返信いただけますと幸いです。
+  </p>
+
+  <!-- 結び -->
+  <div class="closing">
+    <p>
+      お客様に安心してお待ちいただけるよう、<br>
+      状況の変化があれば随時ご連絡してまいります。
+    </p>
+    <p>
+      このたびはご迷惑をおかけし、大変申し訳ございません。<br>
+      どうぞよろしくお願いいたします。
+    </p>
+    <div class="signature">
+      〈会社名〉 カスタマーサポート
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

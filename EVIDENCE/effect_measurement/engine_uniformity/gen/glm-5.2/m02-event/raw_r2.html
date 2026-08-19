@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>秋の社内勉強会 2024</title>
+<style>
+:root{
+  --bg:#f4ede0;
+  --ink:#1c1a17;
+  --accent:#b8410e;
+  --scale:1.250;
+  --body:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:var(--body)}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Noto Sans JP",sans-serif;
+  line-height:1.7;
+  letter-spacing:.02em;
+  padding-bottom:80px;
+}
+header{
+  padding:96px 32px 64px;
+  max-width:720px;
+  margin:0 auto;
+}
+.eyebrow{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:15px;
+  color:var(--accent);
+  letter-spacing:.18em;
+  font-weight:400;
+  margin-bottom:24px;
+}
+h1{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:calc(var(--body) * 5.6);
+  line-height:1.04;
+  letter-spacing:-.02em;
+  font-weight:700;
+}
+h1 .em{
+  display:inline-block;
+  transform:translateY(.06em) rotate(-3deg);
+  color:var(--accent);
+  margin-left:.08em;
+}
+.lead{
+  max-width:36em;
+  margin-top:48px;
+  font-size:calc(var(--body) * 1.125);
+}
+section{
+  max-width:720px;
+  margin:0 auto;
+  padding:0 32px;
+}
+.block{margin-top:96px}
+h2{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:calc(var(--body) * 2.25);
+  font-weight:700;
+  letter-spacing:.04em;
+  display:flex;
+  align-items:baseline;
+  gap:16px;
+  margin-bottom:40px;
+}
+h2::before{
+  content:"";
+  display:block;
+  width:32px;height:2px;
+  background:var(--accent);
+  flex-shrink:0;
+  align-self:center;
+}
+p{margin-bottom:24px;font-size:var(--body)}
+.meta{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:8px 32px;
+  margin-bottom:8px;
+}
+.meta dt{
+  font-size:13px;
+  letter-spacing:.16em;
+  color:var(--accent);
+  padding-top:4px;
+  font-weight:600;
+}
+.meta dd{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:calc(var(--body) * 1.375);
+  font-weight:600;
+  line-height:1.45;
+}
+.meta dd small{
+  display:block;
+  font-family:"Hiragino Sans",sans-serif;
+  font-size:13px;
+  font-weight:400;
+  color:#6b655c;
+  margin-top:6px;
+  letter-spacing:.04em;
+}
+.highlights{list-style:none}
+.highlights li{
+  display:flex;
+  gap:16px;
+  padding:20px 0;
+  border-top:1px solid rgba(28,26,23,.14);
+}
+.highlights li:last-child{border-bottom:1px solid rgba(28,26,23,.14)}
+.highlights .num{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:calc(var(--body) * 1.5);
+  color:var(--accent);
+  font-weight:700;
+  flex-shrink:0;
+  width:32px;
+}
+.cta{
+  margin-top:64px;
+  padding:48px 32px;
+  border:2px solid var(--ink);
+}
+.cta h2{margin-bottom:24px}
+.cta p:last-child{margin-bottom:0}
+.btn{
+  display:inline-block;
+  margin-top:32px;
+  padding:16px 40px;
+  background:var(--ink);
+  color:var(--bg);
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:.08em;
+}
+.btn:hover{background:var(--accent);color:var(--bg)}
+.leaf{
+  position:fixed;
+  top:40px;right:48px;
+  width:56px;height:56px;
+  pointer-events:none;
+  opacity:.55;
+}
+@media(max-width:640px){
+  header{padding:64px 24px 48px}
+  section{padding:0 24px}
+  h1{font-size:calc(var(--body) * 3.5)}
+  .meta{grid-template-columns:1fr;gap:4px}
+  .meta dd{margin-bottom:16px}
+  .leaf{display:none}
+}
+</style>
+</head>
+<body>
+
+<svg class="leaf" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M30 6 C18 14 14 26 16 38 C18 48 26 54 30 54 C34 54 42 48 44 38 C46 26 42 14 30 6 Z" fill="#b8410e" opacity=".22"/>
+  <path d="M30 10 L30 50" stroke="#b8410e" stroke-width="1.4" opacity=".5"/>
+  <path d="M30 20 L22 26 M30 26 L20 32 M30 32 L22 38 M30 38 L24 42" stroke="#b8410e" stroke-width="1" opacity=".4"/>
+  <path d="M30 20 L38 26 M30 26 L40 32 M30 32 L38 38 M30 38 L36 42" stroke="#b8410e" stroke-width="1" opacity=".4"/>
+</svg>
+
+<header>
+  <div class="eyebrow">2024 AUTUMN — 社内勉強会</div>
+  <h1>秋<span class="em">、</span><br>学ぶ。</h1>
+  <p class="lead">夜が長くなる季節、いちど立ち止まって手を動かしてみませんか。秋の社内勉強会の案内です。</p>
+</header>
+
+<section class="block">
+  <h2>日時・場所</h2>
+  <dl class="meta">
+    <dt>DATE</dt>
+    <dd>〈開催日〉 19:00 — 20:30<small>受付開始は18:45を予定しています</small></dd>
+    <dt>PLACE</dt>
+    <dd>〈会場〉<small>リモート参加も受け付けています。詳細は申込後にご案内します</small></dd>
+    <dt>ENTRY</dt>
+    <dd>先着30名<small>定員に達し次第、受付を締め切ります</small></dd>
+  </dl>
+</section>
+
+<section class="block">
+  <h2>内容</h2>
+  <p>秋の勉強会は「自分の手で作って動かす」を主題にした2部構成です。第一部では、最近気になっている技術の話を持ち寄って五分間ずつ紹介し合います。第二部では、持ち寄ったテーマの中から一つを選び、全員で手元のコードを書きながら試します。</p>
+  <p>完成品を作ることが目的ではありません。「試してみた」「動かなかった」「ここが面白そうだった」という小さな発見を持ち帰る場です。普段の業務では触れない領域に、まず一歩踏み込むための時間です。</p>
+</section>
+
+<section class="block">
+  <h2>見どころ</h2>
+  <ul class="highlights">
+    <li><span class="num">01</span><span>5分ずつ持ち寄る「気になるあの技術」。発表は自由形式、スライド不要。口頭とコードだけで回します。</span></li>
+    <li><span class="num">02</span><span>全員でひとつのテーマに触れる実習時間。動かなくても途中で終わっても構いません。最後に気づきを言葉にして終わります。</span></li>
+    <li><span class="num">03</span><span>秋の夜のゆるい交流。終了後もしばらく残って雑談できる時間をとってあります。</span></li>
+  </ul>
+</section>
+
+<section class="cta">
+  <h2>参加方法</h2>
+  <p>下記のボタンからお申し込みください。参加にあたって「これを話したい」「これを試したい」というテーマがあれば、申込フォームの備考欄に書いてください。当日の実習テーマの参考にします。</p>
+  <p>締切は〈開催日〉の3日前、または定員に達した時点といたします。</p>
+  <a href="#" class="btn">申し込む →</a>
+</section>
+
+</body>
+</html>

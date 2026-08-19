@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会 — 全社員集合</title>
+<style>
+  :root {
+    --bg: #fff7e8;
+    --main: #ff8a3d;
+    --accent: #2ec4b6;
+    --ink: #3d2b1f;
+    --muted: #8a7a68;
+    --base-size: 16px;
+    --scale: 1.333;
+    --h1: calc(var(--base-size) * var(--scale) * var(--scale) * var(--scale) * var(--scale));
+    --h2: calc(var(--base-size) * var(--scale) * var(--scale) * var(--scale));
+    --h3: calc(var(--base-size) * var(--scale) * var(--scale));
+    /* GYAKUMON-CHOICE: 視覚トークン = palette #fff7e8/#ff8a3d/#2ec4b6, rounded, airy */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: var(--base-size);
+    line-height: 1.9;
+    padding: 0;
+  }
+  /* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* ヒーロー: グラデ禁止なので単色+図形で主張 */
+  header {
+    padding: 96px 24px 80px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    margin-bottom: 32px;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: clamp(34px, 7vw, 56px);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+  .lead {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  /* GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 */
+
+  section {
+    padding: 64px 0;
+  }
+  h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin-bottom: 32px;
+    padding-left: 16px;
+    border-left: 4px solid var(--main);
+  }
+  p { margin-bottom: 16px; }
+
+  .info-grid {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .info-grid dt {
+    font-weight: 700;
+    color: var(--main);
+    margin-bottom: 4px;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+  .info-grid dd {
+    margin-bottom: 24px;
+    font-size: 17px;
+  }
+  .info-grid dd:last-child { margin-bottom: 0; }
+
+  .highlights {
+    display: grid;
+    gap: 24px;
+  }
+  .highlight-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .highlight-card .emoji {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .highlight-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .highlight-card p { color: var(--muted); font-size: 15px; margin: 0; }
+
+  .cta {
+    text-align: center;
+    padding: 80px 24px 96px;
+  }
+  .cta-text {
+    font-size: 18px;
+    margin-bottom: 32px;
+    color: var(--muted);
+  }
+  /* GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ */
+  .cta-info {
+    display: inline-block;
+    background: #fff;
+    border-radius: 999px;
+    padding: 12px 32px;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .cta-info strong { color: var(--main); }
+
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <!-- GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け -->
+      <span class="hero-badge">AUTUMN STUDY SESSION</span>
+      <h1>秋の社内勉強会、<br>ゆるっと集合！</h1>
+      <p class="lead">お菓子片手に、気軽にのぞきに来ませんか。全社員向け、事前準備なしでOKです。</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>開催日時・場所</h2>
+      <dl class="info-grid">
+        <dt>日時</dt>
+        <dd>〈確認: 開催日時〉</dd>
+        <dt>場所・形式</dt>
+        <dd>〈確認: 会場名 または オンラインツール名〉</dd>
+        <dt>対象</dt>
+        <dd>全社員</dd>
+        <dt>参加費</dt>
+        <dd>無料</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>内容</h2>
+      <p>秋の社内勉強会は、みんなでおしゃべりしながら学ぶ場です。</p>
+      <p>〈確認: 登壇者名 と テーマ内容〉</p>
+      <p>専門的な話はほどほどに、現場で溜まった小さな知見や失敗談を気軽に持ち寄って、横のつながりを育てる回にしたいと思っています。質問・相談も大歓迎です。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>見どころ</h2>
+      <div class="highlights">
+        <div class="highlight-card">
+          <span class="emoji">🍂</span>
+          <h3>ふらっと参加できる</h3>
+          <p>事前準備や課題はありません。興味のあるテーマだけ聞いて帰っても大丈夫です。</p>
+        </div>
+        <div class="highlight-card">
+          <span class="emoji">💬</span>
+          <h3>質問歓迎・雑談歓迎</h3>
+          <p>もっとこうしたらいいのに、という疑問も歓迎。対話から次のアイデアが生まれるかも。</p>
+        </div>
+        <div class="highlight-card">
+          <span class="emoji">🍪</span>
+          <h3>お菓子あります</h3>
+          <p>〈確認: 用意するお菓子の有無・種類〉</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="wrap">
+      <p class="cta-text">当日ふらっと立ち寄るのも大歓迎。詳細は下記をご確認ください。</p>
+      <div class="cta-info">申込方法: 〈確認: 申込フォームURL または 申込先窓口〉</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">〈確認: 主催部門・担当窓口〉</div>
+  </footer>
+</body>
+</html>

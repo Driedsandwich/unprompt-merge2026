@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用ページ - 〈会社名〉</title>
+<style>
+:root{
+  /* GYAKUMON-CHOICE: 視覚トークン = #f4efe6,#b5673a,#3c6e52 */
+  --bg:#f4efe6;--main:#b5673a;--accent:#3c6e52;--text:#3e271b;--surface:#fffbf5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  /* GYAKUMON-CHOICE: 密度 = airy */
+  background:var(--bg);color:var(--text);font-family:'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;
+  font-size:16px;line-height:1.9;letter-spacing:.02em;
+}
+section{padding:104px 24px}
+.container{max-width:680px;margin:0 auto}
+/* GYAKUMON-CHOICE: 見出し書体 = rounded */
+h1,h2,h3{font-family:'Hiragino Maru Gothic ProN','Yu Gothic UI','Rounded Mplus 1c',sans-serif;font-weight:700;line-height:1.5;letter-spacing:.04em;color:var(--main)}
+h1{font-size:2.5rem;margin-bottom:24px}
+h2{font-size:1.75rem;margin-bottom:32px}
+.lead{font-size:1.125rem;color:var(--text)}
+/* GYAKUMON-CHOICE: 角 = soft */
+.card{background:var(--surface);border:1px solid rgba(181,103,58,.2);border-radius:16px;padding:32px;margin-bottom:24px}
+.quote{font-size:1.125rem;margin-bottom:16px;position:relative;padding-left:24px}
+.quote::before{content:'“';position:absolute;left:0;top:-8px;font-size:2.5rem;color:var(--main);font-family:serif;line-height:1}
+.name{font-size:.9rem;color:var(--accent)}
+.value-list{list-style:none}
+.value-list li{margin-bottom:24px;padding-left:24px;position:relative}
+.value-list li::before{content:'◆';position:absolute;left:0;color:var(--accent)}
+.value-list strong{color:var(--main)}
+.button{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:16px 40px;border-radius:999px;font-weight:700;margin-bottom:16px}
+.button:hover{background:#2f5a41}
+.sub-link{color:var(--accent);text-decoration:underline}
+footer{text-align:center;padding:40px 24px;font-size:.875rem;color:var(--main)}
+</style>
+</head>
+<body>
+<main>
+<!-- GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 -->
+<!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+<!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+<section class="hero">
+  <div class="container">
+    <p class="lead">はじめの一歩を、ここから。</p>
+    <h1>隣にいる人の顔が見える会社です</h1>
+    <p>私たち〈会社名〉は、採用の現場で未経験から成長できる日々をつくっています。大きな数字や肩書きより、同じチームで働く人の顔が見えること。そこに私たちの熱意があります。</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+<section class="intro">
+  <div class="container">
+    <h2>私たちのはじまりと、これから</h2>
+    <p>〈会社名〉は、〈事業内容〉を手がける会社です。仕事の形自体は〈確認: 具体的な事業の中身を1文で〉と説明できるのですが、私たちにとってそれは手段に過ぎません。</p>
+    <p>代表が〈確認: 創業のきっかけを簡潔に〉と語るように、〈会社名〉が大切にしてきたのは「一緒に働く人を、どう支えるか」ということです。</p>
+    <p>入社したばかりのころは、誰もが戸惑います。でも、その戸惑いをそのままにしない。隣の席の先輩が、ひとつずつ声をかけ、手を動かしながら教えてくれます。</p>
+    <p>私たちは、〈確認: 会社を象徴する具体的なチームの習慣や日課を1つ〉を毎日続けています。それは小さなことですが、そこから「あなたの背中を見ているよ」という熱意が伝わると信じています。</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+<section class="voice">
+  <div class="container">
+    <h2>「入社3年目、正直こう思ってます」</h2>
+    <div class="card">
+      <p class="quote">〈確認: 現場社員が仕事で本当に嬉しかった瞬間や、人とのつながりを語る生の言葉〉</p>
+      <p class="name">〈社員名・入社年次・職種〉</p>
+    </div>
+    <div class="card">
+      <p class="quote">〈確認: 未経験入社の社員が、先輩やチームに助けられた具体的なエピソード〉</p>
+      <p class="name">〈社員名・入社年次・職種〉</p>
+    </div>
+    <div class="card">
+      <p class="quote">〈確認: 現場で実際にあった失敗談を1つ〉。でもそのとき、先輩が一緒に〈確認: どう立て直したか〉を考えてくれたんです。</p>
+      <p class="name">〈社員名・入社年次・職種〉</p>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="container">
+    <h2>私たちが大事にしていること</h2>
+    <ul class="value-list">
+      <li><strong>人の顔を見る：</strong>メールやチャットだけで終わらず、目の前の人の様子を想像して行動すること。</li>
+      <li><strong>教え合う：</strong>知っていることは隠さず、分からないことは恥ずかしがらず聞くこと。</li>
+      <li><strong>小さく祝う：</strong>大きな成果だけでなく、初めてできたこと、助け合えた日を大切にすること。</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>まずは、私たちの日常を覗いてみませんか</h2>
+    <p>応募を決めなくても大丈夫です。〈募集職種〉のことや、〈会社名〉の雰囲気について、採用担当が誠実にお答えします。</p>
+    <a href="#entry" class="button">採用担当に話を聞いてみる</a>
+    <p><a href="#jobs" class="sub-link">募集ポジションを見る</a></p>
+  </div>
+</section>
+</main>
+<footer>
+  <p>&copy; 〈会社名〉</p>
+</footer>
+</body>
+</html>

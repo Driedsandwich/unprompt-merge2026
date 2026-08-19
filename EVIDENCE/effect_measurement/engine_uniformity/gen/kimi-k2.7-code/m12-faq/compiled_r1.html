@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品に関するよくあるご質問 | 〈ショップ名〉</title>
+<style>
+:root {
+  /* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+  /* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+  --base: #fbf4ee;
+  --main: #2b4a45;
+  --accent: #c97b4a;
+  --text: #2b2b2b;
+  --muted: #6b6b6b;
+
+  /* Type scale: base 16px, ratio 1.25 */
+  --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.25rem;   /* 20px */
+  --text-xl: 1.5rem;    /* 24px */
+  --text-2xl: 1.875rem; /* 30px */
+
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.8;
+  color: var(--text);
+  background-color: var(--base);
+}
+
+h1, h2, h3 {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  color: var(--main);
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero {
+  padding: 96px 0 64px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: var(--text-2xl);
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: var(--text-base);
+  color: var(--muted);
+}
+
+.reassurance {
+  background-color: #fff;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 24px;
+  margin-bottom: 64px;
+}
+
+.reassurance p {
+  font-size: var(--text-lg);
+  color: var(--main);
+  font-weight: 500;
+}
+
+.category {
+  margin-bottom: 64px;
+}
+
+.category-title {
+  font-size: var(--text-xl);
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--main);
+}
+
+.faq-item {
+  background-color: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.faq-item h3 {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.faq-item h3::before {
+  content: "Q. ";
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.faq-item p {
+  font-size: var(--text-base);
+  color: var(--text);
+}
+
+.faq-item p::before {
+  content: "A. ";
+  color: var(--main);
+  font-weight: 700;
+}
+
+.contact {
+  background-color: var(--main);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 48px 32px;
+  text-align: center;
+  margin-bottom: 96px;
+}
+
+.contact h2 {
+  color: #fff;
+  font-size: var(--text-xl);
+  margin-bottom: 16px;
+}
+
+.contact p {
+  font-size: var(--text-base);
+  margin-bottom: 24px;
+  opacity: 0.95;
+}
+
+.contact a {
+  display: inline-block;
+  background-color: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+}
+
+.contact a:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 64px 0 48px;
+  }
+  .reassurance {
+    margin-bottom: 48px;
+  }
+  .category {
+    margin-bottom: 48px;
+  }
+  .contact {
+    margin-bottom: 64px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 -->
+<section class="hero">
+  <div class="container">
+    <h1>返品のこと、<br>一緒に確認しましょう</h1>
+    <p>検討中の方も、手続き中の方も、<br>返品条件・流れ・送料を分かりやすく整理しています。</p>
+  </div>
+</section>
+
+<main class="container">
+
+  <!-- GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 -->
+  <div class="reassurance">
+    <p>返品条件は、このページですべて確認できます。対象・期限・送料まで、ひとつずつお答えします。</p>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 読者の状況 = 両方混在 -->
+  <!-- GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 -->
+  <section class="category">
+    <h2 class="category-title">まず確認したい — 返品できるかどうか</h2>
+
+    <article class="faq-item">
+      <h3>商品が届いてからどれくらいなら返品できますか？</h3>
+      <p>商品到着後〈返品可能期間〉以内であれば返品を受け付けています。対象外の商品がある場合もありますので、あらかじめ「返品対象外」の項目をご確認ください。</p>
+    </article>
+
+    <article class="faq-item">
+      <h3>箱を開けたり、試着したりした商品でも返品できますか？</h3>
+      <p>商品の確認のために開封・試着いただいた場合でも、未使用・未洗濯・タグ付きの状態であれば返品可能です。ただし、汚れ・損傷・付属品の欠品があった場合は対象外となります。</p>
+    </article>
+  </section>
+
+  <section class="category">
+    <h2 class="category-title">お手続きの流れ</h2>
+
+    <article class="faq-item">
+      <h3>返品の手続きはどうやって始めればいいですか？</h3>
+      <p>マイページの「注文履歴」から対象の注文を選び、「返品申請」ボタンよりお手続きください。申請内容を確認の上、〈確認作業にかかる日数〉営業日以内に返品方法をご案内いたします。</p>
+    </article>
+  </section>
+
+  <section class="category">
+    <h2 class="category-title">送料・返金について</h2>
+
+    <article class="faq-item">
+      <h3>返品の送料は誰が負担しますか？</h3>
+      <p>お客様都合の返品の場合、送料はお客様負担となります。商品に不良があった場合・誤配送の場合は〈ショップ名〉が負担いたします。</p>
+    </article>
+
+    <article class="faq-item">
+      <h3>返金はいつ届きますか？</h3>
+      <p>商品を確認させていただいてから〈返金処理にかかる日数〉営業日以内に、ご注文時のお支払い方法へ返金手続きを行います。クレジットカードの場合、カード会社の締め日により反映時期が異なります。</p>
+    </article>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+  <section class="contact">
+    <h2>それでも迷ったら、お気軽にどうぞ</h2>
+    <p>お困りの状況がここにない場合や、もう少し詳しく聞きたい場合は、お問い合わせフォームからご連絡ください。</p>
+    <a href="〈お問い合わせページURL〉">お問い合わせフォームへ</a>
+  </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Portfolio — 〈氏名〉</title>
+<!-- GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け -->
+<!-- GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる -->
+<!-- GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 -->
+<!-- GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 -->
+<!-- GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 -->
+<style>
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  :root {
+    --bg: #f5f4f1;
+    --main: #1b1b1b;
+    --accent: #c7a96b;
+    /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+    --base-size: 15px;
+    --h1-size: 42px;
+    --h2-size: 26px;
+    --h3-size: 17px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--main);
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    font-size: var(--base-size);
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  h1 { font-size: var(--h1-size); line-height: 1.3; letter-spacing: 0.06em; }
+  h2 { font-size: var(--h2-size); }
+  h3 { font-size: var(--h3-size); font-weight: 500; }
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  /* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  /* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+  .hero { padding: 128px 0 96px; border-bottom: 1px solid var(--main); }
+  .hero .label { font-size: 11px; letter-spacing: 0.2em; margin-bottom: 16px; color: var(--main); }
+  .hero h1 { margin-bottom: 32px; }
+  .hero .subtitle { font-size: 13px; color: var(--main); letter-spacing: 0.04em; }
+  /* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+  .section { padding: 96px 0; border-bottom: 1px solid var(--main); }
+  .section .num { font-size: 11px; letter-spacing: 0.2em; margin-bottom: 16px; }
+  .section h2 { margin-bottom: 48px; }
+  /* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+  .work { margin-bottom: 64px; }
+  .work:last-child { margin-bottom: 0; }
+  .work .thumb {
+    width: 100%; height: 180px; background: var(--main); margin-bottom: 24px;
+  }
+  .work h3 { margin-bottom: 8px; }
+  .work .meta { font-size: 12px; letter-spacing: 0.08em; margin-bottom: 20px; }
+  .work .process { font-size: 14px; line-height: 1.95; }
+  .skills { list-style: none; }
+  .skills li { padding: 12px 0; border-bottom: 1px solid rgba(27,27,27,0.12); font-size: 14px; display: flex; justify-content: space-between; }
+  .skills li:last-child { border-bottom: none; }
+  .skills li .cat { color: var(--main); opacity: 0.6; font-size: 12px; }
+  .contact a { color: var(--main); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+  .contact p { font-size: 14px; margin-bottom: 12px; }
+  footer { padding: 64px 0; text-align: center; font-size: 11px; letter-spacing: 0.15em; opacity: 0.5; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 -->
+  <header class="hero">
+    <p class="label">DESIGN PORTFOLIO</p>
+    <h1>見た人の記憶に残る、<br>余白と一手。</h1>
+    <p class="subtitle">〈氏名〉 — 〈職種〉</p>
+  </header>
+
+  <!-- GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 -->
+  <section class="section">
+    <p class="num">01 — ABOUT</p>
+    <h2>デザインは、削ぎ落とす仕事。</h2>
+    <p>余白をどう残すか。そこに何を置き、何を引くか。制作の重心は常にそこにあります。〈確認: 現場で実際にあった失敗談を1つ〉のような経験を経て、装飾でごまかさない判断を積み重ねてきました。〈確認: 大事にしている価値観を1文で〉。</p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる -->
+  <section class="section">
+    <p class="num">02 — WORKS</p>
+    <h2>一つひとつの制作物で語る仕事の質。</h2>
+
+    <div class="work">
+      <div class="thumb"></div>
+      <h3>〈作品タイトル1〉</h3>
+      <p class="meta">〈役割〉 / 〈時期〉</p>
+      <p class="process">〈確認: この作品で解決したかった課題と、なぜこの設計判断に至ったか〉。プロセスの記述に厚く書いていくのは、完成物だけでは伝わらない「なぜ」を残すためです。</p>
+    </div>
+
+    <div class="work">
+      <div class="thumb"></div>
+      <h3>〈作品タイトル2〉</h3>
+      <p class="meta">〈役割〉 / 〈時期〉</p>
+      <p class="process">〈確認: この作品で試したアプローチと、結果どう変化が起きたか〉。制作過程を残すことで、判断の筋を辿れます。</p>
+    </div>
+
+    <div class="work">
+      <div class="thumb"></div>
+      <h3>〈作品タイトル3〉</h3>
+      <p class="meta">〈役割〉 / 〈時期〉</p>
+      <p class="process">〈確認: この制作で特に悩んだ箇所と、最終的にどう判断したか〉。答えより、そこに至る道筋を記す。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="num">03 — SKILLS</p>
+    <h2>道具と、その扱い。</h2>
+    <ul class="skills">
+      <li><span>Figma</span><span class="cat">DESIGN TOOL</span></li>
+      <li><span>Adobe Illustrator</span><span class="cat">GRAPHIC</span></li>
+      <li><span>HTML / CSS</span><span class="cat">CODE</span></li>
+      <li><span>〈スキル4〉</span><span class="cat">〈カテゴリ〉</span></li>
+      <li><span>〈スキル5〉</span><span class="cat">〈カテゴリ〉</span></li>
+    </ul>
+  </section>
+
+  <section class="section contact">
+    <p class="num">04 — CONTACT</p>
+    <h2>お話ししましょう。</h2>
+    <p>〈確認: 希望する連絡手段と、選考段階で伝えておきたいこと〉</p>
+    <p><a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a></p>
+  </section>
+
+  <footer>© 〈氏名〉 PORTFOLIO</footer>
+</div>
+
+</body>
+</html>

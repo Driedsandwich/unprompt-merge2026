@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+  /* タイプスケール: 本文15px基準 / 見出しは1.6倍・1.33倍の比率で構成 */
+  :root{
+    --base: #1d2b3a;          /* 基調: 深い藍 */
+    --accent: #2e7d6e;        /* アクセント: 深緑 */
+    --ink: #26313d;
+    --paper: #f6f7f8;
+  }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:15px; line-height:1.9;
+  }
+  .doc{ max-width:720px; margin:0 auto; padding:96px 40px; }
+  h1{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:24px; font-weight:600; letter-spacing:.04em;
+    color:var(--base); margin:0 0 16px;
+  }
+  h2{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:20px; font-weight:600; letter-spacing:.06em;
+    color:var(--base); margin:64px 0 16px;
+    border-left:4px solid var(--accent); padding-left:16px;
+  }
+  p{ margin:0 0 16px; }
+  ul{ margin:0; padding-left:24px; }
+  li{ margin-bottom:8px; }
+  .lead{ font-size:17px; color:var(--base); }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <h1>経費精算をラクにする小さな社内ツール 仕様メモ</h1>
+  <p class="lead">領収書の写真を撮って送るだけで、精算書がほぼできている状態を目指します。</p>
+
+  <h2>目的</h2>
+  <p>月末にまとめて行う経費精算の負担を減らし、申請の忘れ・書き損じ・承認の滞留をなくすこと。入力はその場で済ませ、経理の確認作業も最小化します。</p>
+
+  <h2>対象ユーザー</h2>
+  <p>〈会社名〉の全従業員(申請者)と、承認を行う上長、最終確認を行う経理担当者。</p>
+
+  <h2>主要機能</h2>
+  <ul>
+    <li>領収書の写真アップロードと、日付・金額・支払先の自動読み取り</li>
+    <li>勘定科目の候補を自動提示し、ワンタップで修正できる申請フォーム</li>
+    <li>未申請・差戻しのリマインド通知</li>
+    <li>上長による一覧からの承認・差戻し(コメント付き)</li>
+    <li>承認済みデータのCSV出力(経理の会計ソフト連携用)</li>
+  </ul>
+
+  <h2>画面イメージ</h2>
+  <p>スマートフォンでの利用を前提とした1カラム構成。起動直後は「撮って申請」の大きなボタンひとつと、自分の申請履歴の一覧のみ。詳細な入力欄は読み取り結果の確認画面に畳み込み、迷う場所を作らない。承認者には件数バッジ付きの承認待ちリストを先頭に表示する。</p>
+
+  <h2>使わないと決めたもの</h2>
+  <p>チャット機能、汎用ワークフロー設定、多言語対応は今回の範囲外とする。小さく作り、まず領収書まわりの一本道に絞る。</p>
+
+</div>
+</body>
+</html>

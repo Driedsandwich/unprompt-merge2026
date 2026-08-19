@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会の案内</title>
+<style>
+  :root {
+    /* タイプスケール: 1.25 の増加率 */
+    --text-base: 16px;
+    --text-sm: 0.875rem;   /* 14px */
+    --text-lg: 1.25rem;    /* 20px */
+    --text-xl: 1.563rem;   /* 25px */
+    --text-2xl: 1.953rem;  /* 31.25px */
+    --font-serif: "Times New Roman", "YuMincho", "游明朝", serif;
+    --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    --color-bg: #f7f5f0;
+    --color-text: #2b2a27;
+    --color-accent: #b35c44;
+    --color-accent-light: #e5c8b7;
+    --gap-unit: 8px;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background: var(--color-bg);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.75;
+    color: var(--color-text);
+    padding: calc(var(--gap-unit) * 8) var(--gap-unit);
+  }
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    padding: calc(var(--gap-unit) * 12) calc(var(--gap-unit) * 6);
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  /* 冒頭 — 主張 */
+  .hero {
+    margin-bottom: calc(var(--gap-unit) * 12);
+  }
+  .hero-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--gap-unit);
+  }
+  .hero-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+  .hero-headline em {
+    font-style: normal;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+  /* 呼びかけ */
+  .greeting {
+    margin-bottom: calc(var(--gap-unit) * 8);
+  }
+  .greeting p {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+  /* 開催概要 — 箇条書き風 */
+  .details {
+    margin-bottom: calc(var(--gap-unit) * 12);
+    padding-left: 0;
+    list-style: none;
+  }
+  .details li {
+    display: flex;
+    align-items: baseline;
+    padding: calc(var(--gap-unit) * 1.5) 0;
+    border-bottom: 1px solid var(--color-accent-light);
+    gap: var(--gap-unit);
+  }
+  .details li:last-child {
+    border-bottom: none;
+  }
+  .details-label {
+    flex-shrink: 0;
+    width: 5em;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+  }
+  .details-value {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: 400;
+  }
+  /* どんな会にしたいか */
+  .description {
+    margin-bottom: calc(var(--gap-unit) * 12);
+  }
+  .description p {
+    margin-bottom: calc(var(--gap-unit) * 2);
+    font-size: var(--text-base);
+  }
+  .description strong {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  /* 出欠 */
+  .rsvp {
+    margin-bottom: calc(var(--gap-unit) * 8);
+    padding: calc(var(--gap-unit) * 4);
+    background: var(--color-bg);
+    border-radius: 4px;
+  }
+  .rsvp-heading {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: calc(var(--gap-unit) * 3);
+    color: var(--color-accent);
+  }
+  .rsvp p {
+    font-size: var(--text-base);
+    margin-bottom: var(--gap-unit);
+  }
+  .rsvp p:last-child {
+    margin-bottom: 0;
+  }
+  .rsvp .deadline {
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+  /* 締め */
+  .closing {
+    margin-top: calc(var(--gap-unit) * 6);
+    text-align: right;
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--color-text);
+    border-top: 1px solid var(--color-accent-light);
+    padding-top: calc(var(--gap-unit) * 4);
+  }
+  .closing .name {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+  /* リンクは装飾控えめに */
+  a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  @media (max-width: 600px) {
+    .wrapper {
+      padding: calc(var(--gap-unit) * 6) calc(var(--gap-unit) * 3);
+    }
+    .hero-headline {
+      font-size: var(--text-xl);
+    }
+    .details li {
+      flex-direction: column;
+      gap: 2px;
+      padding: calc(var(--gap-unit) * 2) 0;
+    }
+    .details-label {
+      width: auto;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="hero">
+    <div class="hero-label">同窓会</div>
+    <h1 class="hero-headline">
+      あの頃のままの<em>顔</em>で集まろう
+    </h1>
+  </div>
+
+  <div class="greeting">
+    <p>
+      おひさしぶりです。<br>
+      卒業してから、もう〈卒業からの年数〉年が経ちました。
+      連絡が途絶えていた人もいるかもしれません。
+      だからこそ、「今さら誘いづらい」なんて思わずに、気軽に顔を出してください。
+    </p>
+  </div>
+
+  <ul class="details">
+    <li>
+      <span class="details-label">日時</span>
+      <span class="details-value">〈開催日〉　開場 〈時間〉 ／ 開始 〈時間〉</span>
+    </li>
+    <li>
+      <span class="details-label">場所</span>
+      <span class="details-value">〈会場名〉（〈住所〉）</span>
+    </li>
+    <li>
+      <span class="details-label">会費</span>
+      <span class="details-value">〈金額〉円（当日集めます）</span>
+    </li>
+  </ul>
+
+  <div class="description">
+    <p>
+      会のテーマは「<strong>おしゃべりと笑顔</strong>」。
+      スピーチや出し物、気の張るプログラムは一切なし。
+      ただ久しぶりに顔を合わせて、昔話と近況をゆっくり話す時間にしたいと思っています。
+    </p>
+    <p>
+      子連れ歓迎、途中参加・途中退室も自由。
+      もちろん「まったく連絡してなかったから…」という人こそ大歓迎です。
+    </p>
+  </div>
+
+  <div class="rsvp">
+    <h2 class="rsvp-heading">出欠の連絡</h2>
+    <p>
+      お手数ですが、<strong class="deadline">〈締切日〉</strong>までに以下のいずれかの方法でお知らせください。
+    </p>
+    <p>
+      <strong>LINE</strong>：〈LINEグループ名またはURL〉<br>
+      <strong>メール</strong>：〈メールアドレス〉<br>
+      <strong>電話・SMS</strong>：〈電話番号〉
+    </p>
+    <p>
+      「行けるかどうかまだ分からない」という段階でも、一言連絡をもらえると助かります。
+    </p>
+  </div>
+
+  <div class="closing">
+    <p>
+      みんなの顔を見るのを楽しみにしています。
+    </p>
+    <p class="name">
+      幹事 〈幹事名〉
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

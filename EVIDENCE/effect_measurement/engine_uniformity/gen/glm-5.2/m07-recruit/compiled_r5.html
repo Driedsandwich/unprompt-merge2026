@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社紹介 - 〈会社名〉採用ページ</title>
+<style>
+/* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+/* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+:root{
+  --bg:#1c1a17; --main:#4a3a2b; --accent:#c98a3e; --text:#e8e0d4; --muted:#a89b88;
+  /* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+  /* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+  --base:17px; --h1:calc(var(--base)*2.6); --h2:calc(var(--base)*1.7); --small:calc(var(--base)*0.82);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px}
+body{background:var(--bg);color:var(--text);font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;line-height:1.85;letter-spacing:.01em}
+/* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+.serif{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif}
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+/* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+.rounded{font-family:"M PLUS Rounded Sans","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif}
+/* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+/* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+/* GYAKUMON-CHOICE: 密度 = airy */
+/* GYAKUMON-CHOICE: 角 = soft */
+section{padding:96px 0}
+h1{font-size:var(--h1);line-height:1.3;letter-spacing:-.01em;font-weight:400}
+h2{font-size:var(--h2);line-height:1.4;letter-spacing:.02em;font-weight:500;margin-bottom:32px}
+.lead{font-size:19px;color:var(--muted);margin-top:24px}
+.lead em{color:var(--accent);font-style:normal}
+.body p{margin-bottom:24px}
+.body p:last-child{margin-bottom:0}
+.voice{background:rgba(74,58,43,.35);border-radius:16px;padding:40px;margin-bottom:24px}
+.voice .quote{font-size:19px;line-height:1.7;color:var(--text)}
+.voice .attr{font-size:var(--small);color:var(--muted);margin-top:16px}
+.values{border-left:3px solid var(--accent);padding-left:32px}
+.values dt{color:var(--accent);margin-bottom:8px;font-size:15px}
+.values dd{margin-bottom:32px;font-size:16px;line-height:1.75;color:var(--text)}
+.values dd:last-child{margin-bottom:0}
+.closing{text-align:center;padding:120px 0 96px}
+.closing p{color:var(--muted);font-size:16px;margin-bottom:32px}
+.cta{display:inline-block;padding:16px 48px;background:var(--accent);color:var(--bg);text-decoration:none;font-size:17px;border-radius:999px;font-weight:600;transition:opacity .2s}
+.cta:hover{opacity:.85}
+.eyebrow{color:var(--accent);font-size:var(--small);letter-spacing:.12em;margin-bottom:16px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow rounded">会社紹介</p>
+    <h1 class="serif">はじめまして。<br>私たちの日常を、少しだけ覗いてみませんか。</h1>
+    <p class="lead">このページには完成された会社案内はありません。<em>あるのは、隣で働く人の顔と、その人たちが語る本音</em>だけです。</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap body">
+    <h2 class="rounded">会社紹介</h2>
+    <p>〈会社名〉が何をしている会社か、という話をします。とはいえ、的事業内容を並べるより、なぜこの会社があるのか、そこでどんな人たちが毎日を過ごしているのかの方が、きっと伝えたいことに近い。</p>
+    <p>採用担当者から現場のメンバーまで、社内を歩けば「あの人に聞けばなんとかなる」と思える人が必ず数人はいる。そんな空気を、飾らずに書き残しておきたいと思いました。</p>
+    <p>〈確認: 会社の事業内容・特徴を1〜2文で〉</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="rounded">働く人の声</h2>
+    <div class="voice">
+      <p class="quote serif">「入社してすぐは右も左も分からなくて。でも隣の席の先輩が、毎日少しずつ教えてくれました。〈確認: 入社直後の具体的なエピソードを1つ〉」</p>
+      <p class="attr">〈氏名〉・入社〈年数〉年目・〈職種〉</p>
+    </div>
+    <div class="voice">
+      <p class="quote serif">「失敗して落ち込んでいた時、上司が『次は俺も一緒にやろう』と言ってくれた。その一言で、ここで頑張ろうと思えたんです。」</p>
+      <p class="attr">〈氏名〉・入社〈年数〉年目・〈職種〉</p>
+    </div>
+    <div class="voice">
+      <p class="quote serif">「〈確認: 現場で実際にあった、チームの仲間に対する感謝や熱意が伝わるエピソードを1つ〉」</p>
+      <p class="attr">〈氏名〉・入社〈年数〉年目・〈職種〉</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="rounded">大事にしていること</h2>
+    <dl class="values">
+      <dt>ひとを、飾らない</dt>
+      <dd>肩書きや経歴よりも、その人がどんな顔をして働いているかを見ます。入社したばかりの人の言葉にも、同じ重さがあります。</dd>
+      <dt>困ったとき、手をあげる</dt>
+      <dd>分からないことを分からないと言える空気を大切にしています。質問は恥ではなく、次の一歩への入り口だと信じています。</dd>
+      <dt>〈大事にしていること〉</dt>
+      <dd>〈確認: 会社として大切にしている価値観をもう1つ〉</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <p>まだ応募を考えはじめたばかりでも、もう少し知りたいと思っているだけでも大丈夫。<br>まずは、私たちの話を聞きに来てください。</p>
+    <a href="#" class="cta">話を聞いてみる</a>
+  </div>
+</section>
+
+</body>
+</html>

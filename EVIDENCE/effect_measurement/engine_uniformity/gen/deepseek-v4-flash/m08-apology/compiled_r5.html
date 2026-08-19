@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+:root {
+    /* タイプスケール: 本文 15px を基準に 1.2 倍率 */
+    --text-base: 15px;
+    --text-sm: 0.867rem;
+    --text-body: 1rem;
+    --text-h3: 1.2rem;
+    --text-h2: 1.44rem;
+    --text-h1: 1.728rem;
+    /* 8px グリッド */
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
+}
+body {
+    margin: 0;
+    background: #f7f2ed;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-6) var(--space-2);
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+}
+.mail-frame {
+    max-width: 720px;
+    width: 100%;
+    background: #fff7f0;  /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け */
+    border-radius: 20px;  /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け (soft corner) */
+    padding: var(--space-8) var(--space-5);
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.02);
+}
+/* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け (heading_font: rounded) */
+h1, h2, h3 {
+    font-family: "Hiragino Maru Gothic Pro", "BIZ UDGothic", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+h1 {
+    font-size: var(--text-h1);
+    color: #e8825c;  /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け (palette main) */
+    line-height: 1.4;
+    margin-bottom: var(--space-2);
+}
+h2 {
+    font-size: var(--text-h2);
+    color: #5c3d2c;
+    line-height: 1.5;
+    margin-bottom: var(--space-3);
+}
+h3 {
+    font-size: var(--text-h3);
+    color: #5c3d2c;
+    line-height: 1.6;
+    margin-bottom: var(--space-2);
+}
+p {
+    font-size: var(--text-body);
+    line-height: 1.85;
+    color: #3d2b1f;
+    margin: 0 0 var(--space-3) 0;
+}
+.small-text {
+    font-size: var(--text-sm);
+    color: #8a7a6a;
+    line-height: 1.7;
+}
+.subject-line {
+    font-size: var(--text-sm);
+    color: #a08070;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid #f2b79a;  /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け (palette accent) */
+}
+.greeting {
+    margin-bottom: var(--space-4);
+}
+.section-spacer {
+    height: var(--space-6);
+}
+hr {
+    border: none;
+    border-top: 1px solid #f2b79a;
+    margin: var(--space-6) 0;
+}
+.footer-note {
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 1px solid #f2b79a;
+}
+/* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け (density: airy → ゆったり) */
+.mail-frame > * + * {
+    margin-top: var(--space-3);
+}
+/* レスポンシブ */
+@media (max-width: 600px) {
+    .mail-frame {
+        padding: var(--space-5) var(--space-3);
+        border-radius: 16px;
+    }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.25rem; }
+    p { font-size: 0.95rem; }
+}
+</style>
+</head>
+<body>
+<div class="mail-frame">
+
+    <!-- GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け -->
+    <!-- GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない -->
+    <!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+    <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+
+    <p class="subject-line">件名：【お詫び】〈商品名〉の発送が遅れております</p>
+
+    <div class="greeting">
+        <p>〈お客様名〉 様</p>
+    </div>
+
+    <h1>発送遅延のお詫び。<br>お荷物、もう少しだけお待ちください。</h1>
+
+    <p>
+        このたびは〈商品名〉をご注文いただき、ありがとうございます。<br>
+        楽しみにお待ちいただいているところ、大変申し訳ございません。<br>
+        発送のご連絡、遅れております。まずは一言、お詫びまで。
+    </p>
+
+    <div class="section-spacer"></div>
+
+    <h2>新しいお届けの見通し</h2>
+    <p>
+        現在、発送の準備を進めております。<br>
+        <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+        お届けは〈新しいお届け予定〉の週を見込んでおります。<br>
+        詳細が決まり次第、改めてご連絡いたします。
+    </p>
+
+    <div class="section-spacer"></div>
+
+    <h3>最後に</h3>
+    <p>
+        ご不便とご心配をおかけしていること、重ねてお詫び申し上げます。<br>
+        お荷物、もう少しだけお待ちください。心を込めてお届けいたします。
+    </p>
+
+    <div class="footer-note">
+        <p class="small-text">
+            〈会社名〉 カスタマーサポート<br>
+            ご不明な点がございましたら、お気軽にご連絡ください。
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

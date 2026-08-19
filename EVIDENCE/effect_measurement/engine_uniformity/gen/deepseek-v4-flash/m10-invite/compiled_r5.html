@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会のご案内</title>
+<style>
+  /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+  /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+  /* GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 */
+  /* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+  /* GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり */
+
+  :root {
+    --base: #fff4d6;        /* 地色 */
+    --main: #ff7a1a;        /* 主要色 */
+    --accent: #2e2e2e;      /* 強調色 */
+    --text: #2e2e2e;
+    --heading-family: "Rounded Mplus 1c", "Yu Gothic", "Hiragino Maru Gothic Pro", "Noto Sans JP", system-ui, sans-serif;
+    --body-family: "Helvetica Neue", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    --base-size: 16px;
+    --scale: 1.25;
+    --h2-size: calc(var(--base-size) * var(--scale) * var(--scale));
+    --h3-size: calc(var(--base-size) * var(--scale));
+    --gap-unit: 8px;
+    /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+    /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+    /* GYAKUMON-CHOICE: 密度: airy */
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--base);
+    color: var(--text);
+    font-family: var(--body-family);
+    font-size: var(--base-size);
+    line-height: 1.9;
+    padding: 40px 16px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fffdf3;
+    border-radius: 24px;
+    padding: 56px 40px 40px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+
+  /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+  .hero {
+    margin-bottom: 48px;
+    text-align: center;
+    border-bottom: 3px solid var(--main);
+    padding-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-family: var(--heading-family);
+    font-size: calc(var(--base-size) * var(--scale) * var(--scale) * var(--scale));
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--main);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .hero .sub {
+    font-size: calc(var(--base-size) * 1.1);
+    color: #5a5a5a;
+    font-weight: 500;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-family: var(--heading-family);
+    font-size: var(--h2-size);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--main);
+    display: inline-block;
+  }
+
+  h3 {
+    font-family: var(--heading-family);
+    font-size: var(--h3-size);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 12px 16px;
+    margin: 24px 0 32px;
+  }
+
+  .info-grid dt {
+    font-weight: 700;
+    color: var(--main);
+    font-size: 0.95em;
+  }
+
+  .info-grid dd {
+    margin: 0;
+  }
+
+  .note-box {
+    background: rgba(255, 122, 26, 0.08);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 24px 0;
+  }
+
+  .note-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--main);
+    color: #fff;
+    font-family: var(--heading-family);
+    font-weight: 700;
+    font-size: calc(var(--base-size) * 1.15);
+    padding: 16px 48px;
+    border-radius: 50px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s;
+    margin: 8px 0;
+  }
+
+  .cta-button:hover {
+    background: #e66a00;
+  }
+
+  .closing {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid #e0d8c8;
+    margin-top: 40px;
+  }
+
+  .closing p {
+    font-size: 0.95em;
+    color: #555;
+  }
+
+  .closing .name {
+    font-family: var(--heading-family);
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 520px) {
+    .container {
+      padding: 32px 20px;
+      border-radius: 16px;
+    }
+    .hero h1 {
+      font-size: calc(var(--base-size) * var(--scale) * var(--scale) * 1.6);
+    }
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 4px 0;
+    }
+    .info-grid dt {
+      margin-top: 8px;
+    }
+    .cta-button {
+      display: block;
+      padding: 14px 24px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+  <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+  <div class="hero">
+    <h1>あの部室、また集まろう。</h1>
+    <p class="sub">十年ぶりの同窓会、ノリだけ持って来て。</p>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+  <section>
+    <h2>久しぶり！</h2>
+    <p>
+      連絡するの、めっちゃ久しぶりだね。〈年数〉年も経つと、お互い「今さら連絡していいのかな」って思うかもしれないけど——そんなの気にしなくて大丈夫。あの頃のままで話せるから。
+    </p>
+    <p>
+      というわけで、同窓会を開くことにしました。日程と場所はこんな感じ。
+    </p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+  <section>
+    <h2>開催概要</h2>
+    <dl class="info-grid">
+      <dt>日時</dt>
+      <dd>〈開催日〉 受付開始 18:00 / 開始 18:30</dd>
+      <dt>場所</dt>
+      <dd>〈会場名・住所〉</dd>
+      <dt>会費</dt>
+      <dd>〈会費〉（当日集めます）</dd>
+      <dt>持ち物</dt>
+      <dd>身分証と、話したい思い出話だけ！</dd>
+    </dl>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+  <section>
+    <h2>久しぶりで大丈夫？</h2>
+    <div class="note-box">
+      <p>
+        「最近連絡取ってないし…」「みんなと話が合うかな…」そんな心配、全部いらないから。
+      </p>
+      <p>
+        来たときのノリがすべて。あの頃のバカ話から、今の仕事や家族の話まで。話し始めたら止まらないのが私たちでしょ。
+      </p>
+      <p>
+        「ちょっと顔出すだけ」でもOK。最後までいなくちゃダメなんてルールはなし。
+      </p>
+    </div>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+  <section>
+    <h2>出欠の連絡</h2>
+    <p>
+      出欠は以下のボタンからポチッとお願いします。
+    </p>
+    <p style="text-align: center;">
+      <a href="#" class="cta-button">出欠を連絡する</a>
+    </p>
+    <p style="font-size:0.9em; color:#777; text-align:center;">
+      締切: 〈締切日〉 までに連絡ください。<br>
+      もし連絡フォームが使えない場合は、幹事〈幹事名〉まで直接メッセージください。
+    </p>
+  </section>
+
+  <div class="closing">
+    <p>
+      久しぶりにみんなの顔を見るの、本当に楽しみにしています。<br>
+      あの頃みたいに、くだらない話で盛り上がろう。
+    </p>
+    <p class="name">幹事 〈幹事名〉</p>
+  </div>
+
+</div>
+</body>
+</html>

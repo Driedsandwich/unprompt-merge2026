@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用ページ – 会社紹介</title>
+<style>
+  /* ─── タイプスケール ───
+   * 本文 : 1rem (16px)
+   * 小見出し : 1.25rem (20px)
+   * 中見出し : 1.625rem (26px)
+   * 大見出し : 2.25rem (36px)
+   * セクション縦余白 : 96px (12×8)
+   * 8pxグリッド運用
+   */
+  :root {
+    --base: #1A1A1A;
+    --accent: #C75B39;   /* テラコッタ寄りの朱 – 熱を感じるがクリーム系ではない */
+    --bg: #F9F6F0;
+    --card-bg: #FFFFFF;
+    --text: #1F1F1F;
+    --text-light: #4B4B4B;
+    --border: #D6CFC5;
+    --fw-heading: 700;
+    --fw-body: 400;
+    --font-heading: 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+    --font-body: -apple-system, 'Helvetica Neue', 'Segoe UI', 'Arial', 'Noto Sans JP', sans-serif;
+    --space-unit: 8px;
+    --section-gap: calc(var(--space-unit) * 12); /* 96px */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: var(--fw-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── セクション共通 ─── */
+  section {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-of-type {
+    border-bottom: none;
+  }
+
+  /* ─── 見出し ─── */
+  h2 {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: var(--fw-heading);
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+    margin-bottom: 32px;
+    color: var(--base);
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: 1.625rem;
+    font-weight: var(--fw-heading);
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    color: var(--base);
+  }
+
+  .subhead {
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* ─── カード/グリッド ─── */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 32px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: 0;
+    padding: 32px 24px 40px;
+    box-shadow: none;
+    border: 1px solid var(--border);
+  }
+
+  .card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+
+  /* ─── 声ボックス ─── */
+  .voice {
+    display: flex;
+    gap: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 32px 24px;
+    align-items: flex-start;
+  }
+
+  .voice + .voice {
+    margin-top: 24px;
+  }
+
+  .voice-avatar {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--accent) 20%, #D98A6C);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    line-height: 1;
+  }
+
+  .voice-content {
+    flex: 1;
+  }
+
+  .voice-name {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--base);
+  }
+
+  .voice-role {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-left: 8px;
+  }
+
+  .voice-text {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  /* ─── 大事にしていること ─── */
+  .value-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+    align-items: flex-start;
+  }
+
+  .value-num {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent);
+    min-width: 56px;
+    letter-spacing: -0.02em;
+  }
+
+  .value-text h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+    color: var(--base);
+  }
+
+  .value-text p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+  }
+
+  /* ─── CTA ─── */
+  .cta-box {
+    background: var(--base);
+    color: #F9F6F0;
+    padding: 48px 40px;
+    text-align: center;
+    border: none;
+    margin-top: 16px;
+  }
+
+  .cta-box h3 {
+    font-family: var(--font-heading);
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #F9F6F0;
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+
+  .cta-box p {
+    color: rgba(249,246,240,0.8);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--accent);
+    color: #F9F6F0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    padding: 16px 48px;
+    text-decoration: none;
+    border: none;
+    transition: background 0.2s;
+    font-family: var(--font-body);
+  }
+
+  .cta-button:hover {
+    background: #A8482A;
+  }
+
+  /* ─── 冒頭 ─── */
+  .hero {
+    padding-top: calc(var(--section-gap) + 16px);
+    padding-bottom: var(--section-gap);
+  }
+
+  .hero .label {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2.75rem;
+    font-weight: var(--fw-heading);
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+    color: var(--base);
+    max-width: 720px;
+  }
+
+  .hero .lead {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-top: 24px;
+    max-width: 640px;
+    line-height: 1.8;
+  }
+
+  /* ─── 会社紹介 ─── */
+  .intro-text {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  .intro-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 48px;
+    margin-top: 24px;
+  }
+
+  .intro-detail dt {
+    font-weight: 600;
+    color: var(--base);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+
+  .intro-detail dd {
+    color: var(--text-light);
+    font-size: 0.95rem;
+  }
+
+  /* ─── レスポンシブ ─── */
+  @media (max-width: 680px) {
+    .grid-2col { grid-template-columns: 1fr; }
+    .intro-detail { grid-template-columns: 1fr; }
+    .voice { flex-direction: column; align-items: flex-start; }
+    .hero h1 { font-size: 2.1rem; }
+    .cta-box { padding: 40px 24px; }
+    .value-item { flex-direction: column; gap: 8px; }
+    .value-num { min-width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 冒頭 – 飾らない熱意を先に -->
+  <section class="hero">
+    <div class="label">採用ページ</div>
+    <h1>〈会社名〉は、<br>つくる現場の熱をそのまま届ける。</h1>
+    <p class="lead">
+      肩書きだけでは伝わらない、ものづくりの温度。<br>
+      社歴や規模よりも、一人ひとりが何を感じながら仕事をしているか。<br>
+      このページでは、飾らない言葉と空気をそのままお見せします。
+    </p>
+  </section>
+
+  <!-- 会社紹介 -->
+  <section>
+    <h2>会社のこと</h2>
+    <div class="intro-text">
+      〈会社名〉は〈設立年〉に〈創業者名〉が〈事業内容の概要〉を志して立ち上げた、〈従業員数〉名のスタジオです。<br>
+      受注の9割がリピート・紹介によるもので、広告や営業よりも「一緒に働いた人が次の現場に呼んでくれる」ことを大切にしてきました。
+    </div>
+    <dl class="intro-detail">
+      <dt>事業内容</dt>
+      <dd>〈主要なサービス／プロダクト領域〉を中心に、企画・設計・制作・運用まで一貫して行う。</dd>
+      <dt>所在地</dt>
+      <dd>〈所在地／拠点〉</dd>
+      <dt>社員数</dt>
+      <dd>〈従業員数〉名（〈契約形態の内訳〉）</dd>
+      <dt>平均年齢</dt>
+      <dd>〈平均年齢〉歳</dd>
+    </dl>
+  </section>
+
+  <!-- 働く人の声 -->
+  <section>
+    <h2>働く人の、飾らない声</h2>
+    <div class="voice">
+      <div class="voice-avatar">K</div>
+      <div class="voice-content">
+        <div>
+          <span class="voice-name">〈名前〉</span>
+          <span class="voice-role">〈役職／チーム〉</span>
+        </div>
+        <div class="voice-text">
+          「入社したときは不安もあったけど、〈具体的なエピソードの断片〉を任せてもらえて、『自分で決めていいんだ』と思えた。失敗も話し合える空気がある。」
+        </div>
+      </div>
+    </div>
+    <div class="voice">
+      <div class="voice-avatar">M</div>
+      <div class="voice-content">
+        <div>
+          <span class="voice-name">〈名前〉</span>
+          <span class="voice-role">〈役職／チーム〉</span>
+        </div>
+        <div class="voice-text">
+          「社歴や肩書きより『いま何が面白いか』を話す人が多い。自然と意見がぶつかるけど、それで質が上がると実感している。」
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 大事にしていること -->
+  <section>
+    <h2>私たちが大事にしていること</h2>
+    <div class="value-item">
+      <div class="value-num">01</div>
+      <div class="value-text">
+        <h4>現場の熱をそのまま形にする</h4>
+        <p>企画段階から制作の手触りを共有し、誰かが決めた“正解”ではなく、チームで納得できる解を探す。</p>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-num">02</div>
+      <div class="value-text">
+        <h4>余白を残すコミュニケーション</h4>
+        <p>詰め込みすぎないスケジュール、言いっぱなしにしない仕組み。お互いの考えを最後まで聞くことを習慣にしている。</p>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-num">03</div>
+      <div class="value-text">
+        <h4>「お願い」ではなく「任せる」</h4>
+        <p>役割を渡したら口を出しすぎない。挑戦と失敗のバランスを、個人の裁量に委ねる文化。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 応募への導線 -->
+  <section>
+    <div class="cta-box">
+      <h3>あなたの熱が、次の現場をつくる</h3>
+      <p>職種・経験・スキルだけでなく、どんなことを大事にしてきたか聞かせてください。まずはカジュアルな面談から。</p>
+      <a href="#" class="cta-button">エントリーする</a>
+      <!-- 無くても成立する装飾をひとつ削った: 影・グラデーション・アイコン類は追加していない -->
+    </div>
+  </section>
+
+</div><!-- /.container -->
+</body>
+</html>

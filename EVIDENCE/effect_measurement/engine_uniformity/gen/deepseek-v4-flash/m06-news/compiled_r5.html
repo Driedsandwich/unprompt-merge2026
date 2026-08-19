@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内報 巻頭あいさつ</title>
+<style>
+/* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+/* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+/* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+
+:root {
+  /* タイポグラフィ設計: 本文サイズ1remを基準に、見出しは1.5倍のrounded系、小見出しは1.2倍 */
+  --body-font: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  --heading-font: "Hiragino Maru Gothic ProN", "Rounded Mplus 1c", "Yu Gothic", sans-serif;
+  --body-size: 1rem;
+  --h2-size: 1.2rem;
+  --h1-size: 1.5rem;
+  --line-height-body: 1.85;
+  --line-height-heading: 1.4;
+
+  /* 色: decisionsのvisual_tokensから、地色・主要色・強調色 */
+  /* 第1決定(親しみ雑談調)のパレットをベースに、第2〜4決定の色味を統合 */
+  --bg: #fff6e8;
+  --main: #e8965a;
+  --accent: #c4472b;
+  --text: #2b2b2b;
+  --text-light: #5c5c5c;
+
+  /* 余白: 8pxグリッド */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-xxl: 96px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body-font);
+  font-size: var(--body-size);
+  line-height: var(--line-height-body);
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-sm);
+}
+
+.container {
+  max-width: 720px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 24px; /* GYAKUMON-CHOICE: corner = soft */
+  padding: var(--space-xxl) var(--space-xl);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* 冒頭の呼びかけ */
+.greeting {
+  font-family: var(--heading-font);
+  font-size: var(--h1-size);
+  font-weight: 700;
+  line-height: var(--line-height-heading);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-lg);
+  /* 冒頭は主張: 最も特徴的な一点として、親しみ雑談調のtone_sampleを冒頭に */
+}
+
+/* 近況ブロック */
+.section-label {
+  font-family: var(--heading-font);
+  font-size: var(--h2-size);
+  font-weight: 600;
+  color: var(--main);
+  letter-spacing: 0.04em;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--main);
+  display: inline-block;
+}
+
+/* 今月の話題 */
+.topic-box {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: var(--space-md) var(--space-lg);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-lg);
+  /* corner soft を反映 */
+  border-left: 4px solid var(--accent);
+}
+
+.topic-box p {
+  margin-bottom: var(--space-sm);
+}
+
+.topic-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* 締めの一言 */
+.closing {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(232, 150, 90, 0.3);
+  font-family: var(--heading-font);
+  font-weight: 500;
+  color: var(--text-light);
+  text-align: right;
+}
+
+/* リンク風プレースホルダのスタイル */
+.placeholder {
+  background: #f0e9df;
+  border-radius: 4px;
+  padding: 0 4px;
+  font-size: 0.9em;
+  color: var(--accent);
+  border-bottom: 1px dashed var(--accent);
+}
+
+/* 段落の基本余白 */
+p {
+  margin-bottom: var(--space-md);
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 600px) {
+  .container {
+    padding: var(--space-xl) var(--space-md);
+  }
+  :root {
+    --space-xxl: 64px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 -->
+<!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+<!-- GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 -->
+
+<!-- 呼びかけ（冒頭は主張: tone_sampleを反映） -->
+<div class="greeting">
+  おつかれさま、今月の社内報も気楽にどうぞ。
+</div>
+
+<!-- 近況 -->
+<div class="section-label">編集部の近況</div>
+<p>
+  こんにちは、編集担当の〈執筆者名〉です。気づけば8月も中旬、毎日ほんとに暑いですね。
+  先週、営業の〈氏名〉さんとすれ違いざまに「もう冷やし中華、何回食べたか分かんない」って話になって、
+  確かにうちの部署でもお昼のお弁当よりそうめん率が急上昇中です。
+</p>
+<p>
+  現場から一言、といっても大した話ではないんですが、
+  先日〈部署名〉の〈氏名〉さんが「この暑さだと外回りの合間にコンビニでアイス買っちゃう」
+  と教えてくれて、あるあるすぎて笑ってしまいました。
+</p>
+
+<!-- 今月の話題 -->
+<div class="section-label">今月の話題</div>
+
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+<div class="topic-box">
+  <p>
+    <strong>各部署、それぞれのペースでお疲れさまです。</strong>
+    今月は営業部が大型案件の対応でバタついている一方、開発チームは新しい〈プロジェクト名〉の
+    テスト段階に入ったと聞きました。製造現場では夏季シフトの調整中とのこと。
+    同じ会社でも、今どんな空気で動いているかがなかなか見えにくいですよね。
+  </p>
+  <p>
+    そこで今号では、各部署の〈確認: 直近で一番大変だったこと、またはホッとした瞬間を1つ〉を
+    ちょっとだけ教えてもらいました。ぜひ〈特集ページのタイトル〉をご覧ください。
+    自分と違う仕事の「あるある」を知ると、なんだか応援したくなります。
+  </p>
+</div>
+
+<p>
+  ちなみに編集部としては、全社員アンケートで「社内報で読みたいテーマ」を募集中です。
+  気になることがあれば、〈連絡先〉まで気軽にどうぞ。もちろん匿名でもOKです。
+</p>
+
+<!-- 締めの一言 -->
+<div class="closing">
+  <p>
+    それでは、今月もそれぞれの場所で無理せずやっていきましょう。
+    次号でまたお会いしましょう！
+  </p>
+  <p style="margin-top: var(--space-xs); color: var(--main); font-size: 0.9rem;">
+    〈会社名〉社内報編集部
+  </p>
+</div>
+
+</div>
+</body>
+</html>

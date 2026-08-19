@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+  :root {
+    --scale: 1.25;
+    --body-size: 15px;
+    --h1-size: calc(var(--body-size) * var(--scale) * var(--scale) * var(--scale));
+    --h2-size: calc(var(--body-size) * var(--scale));
+    --ink: #1a1a2e;
+    --paper: #f4f1ea;
+    --accent: #2d5016;
+    --rule: #c8c4ba;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: var(--body-size);
+    padding: 96px 24px;
+  }
+  .frame { max-width: 720px; margin: 0 auto; }
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+    font-size: var(--h1-size);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .lede {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: calc(var(--body-size) * 1.13);
+    color: #4a4a5e;
+    margin-bottom: 96px;
+    line-height: 1.85;
+  }
+  section { margin-bottom: 88px; }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h2-size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  p { margin-bottom: 16px; }
+  ul { list-style: none; padding-left: 0; }
+  li {
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+  li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .mock {
+    background: #fff;
+    padding: 40px;
+    border: 1px solid var(--rule);
+  }
+  .mock-line {
+    height: 12px;
+    background: #e8e5dc;
+    margin-bottom: 16px;
+  }
+  .mock-line.short { width: 40%; }
+  .mock-line.mid { width: 65%; }
+  .mock-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 8px 24px;
+    margin-top: 16px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+<h1>経費精算を、<br>週末の家計簿より楽に。</h1>
+<p class="lede">月末にExcelを開いて領収書の束と格闘する人を減らす。それだけのために作る、小さなツールの仕様メモ。</p>
+
+<section>
+<h2>目的</h2>
+<p>経費精算にかかる手間を、入力と集計の二段階から一段階に圧縮する。ユーザーは領収書を撮るだけ、管理者は確認して承認するだけ、という状態を作る。</p>
+</section>
+
+<section>
+<h2>対象ユーザー</h2>
+<p>〈会社名〉の全従業員。とくに、月に5件以上の経費発生があり、かつ現行の精算フローで紙の領収書を保持している人。</p>
+</section>
+
+<section>
+<h2>主要機能</h2>
+<ul>
+<li>領収書のスマホ撮影 → 日付・金額・科目をOCRで仮入力し、ユーザーが確認して確定</li>
+<li>月次サマリーの自動生成 → 確定済みの明細を科目別に集計し、承認用の1枚にまとめる</li>
+<li>承認フロー → 管理者がサマリーを一覧で確認し、ワンクリックで承認または差戻し</li>
+</ul>
+</section>
+
+<section>
+<h2>画面イメージ</h2>
+<p>起動直後はカメラが立つ。撮影後に仮入力された数値がカード形式で並び、タップして修正できる。月末には「今月の精算」ボタン一つで全明細がサマリーにまとまる。管理者側は承認待ちのサマリーが縦に並ぶだけの一枚画面。</p>
+<div class="mock">
+<div class="mock-line mid"></div>
+<div class="mock-line short"></div>
+<div class="mock-line"></div>
+<div class="mock-line mid"></div>
+<div class="mock-btn">今月の精算</div>
+</div>
+</section>
+
+<section>
+<h2>使わないと決めたもの</h2>
+<ul>
+<li>自由入力の備考欄 → 入力の躓きポイントになるため、科目と金額のみ</li>
+<li>外部会計ソフトとの連携 → まずは手作業のエクスポートで始める</li>
+<li>部署ごとの承認ルートの分岐 → 全件ひとつの窓口に集める</li>
+</ul>
+</section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会</title>
+<style>
+:root {
+  --bg: #f5f2ec;
+  --primary: #1a3c34;
+  --accent: #d5892a;
+  --text: #1a3c34;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 96px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 40px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: var(--text-base);
+  line-height: 1.8;
+}
+h1, h2, h3 {
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  color: var(--primary);
+}
+h1 { font-size: var(--text-2xl); }
+h2 { font-size: var(--text-xl); margin-bottom: var(--space-md); }
+h3 { font-size: var(--text-lg); margin-bottom: var(--space-xs); }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+.hero {
+  padding: var(--space-xl) 0 var(--space-lg);
+}
+.hero-tag {
+  display: inline-block;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-sm);
+}
+.hero-lead {
+  font-size: var(--text-lg);
+  color: rgba(26, 60, 52, 0.72);
+  margin-top: var(--space-md);
+}
+.leaf-visual {
+  width: 120px;
+  height: 80px;
+  margin-bottom: var(--space-md);
+}
+.leaf-visual svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+section {
+  padding: var(--space-lg) 0;
+}
+.info-list {
+  list-style: none;
+}
+.info-list li {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+}
+.info-label {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-weight: 700;
+  min-width: 4.5em;
+  color: var(--primary);
+}
+.highlight-cards {
+  display: grid;
+  gap: var(--space-md);
+}
+.card {
+  padding: var(--space-md);
+  border-left: 4px solid var(--accent);
+}
+.card h3 {
+  color: var(--accent);
+}
+.cta {
+  margin-top: var(--space-md);
+}
+.button {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--primary);
+  color: #fff;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+footer {
+  padding: var(--space-lg) 0 var(--space-xl);
+  text-align: center;
+  color: rgba(26, 60, 52, 0.6);
+  font-size: var(--text-sm);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <div class="leaf-visual" aria-hidden="true">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 75 C 20 55, 10 20, 60 5 C 110 20, 100 55, 60 75 Z" fill="#d5892a"/>
+        <path d="M60 75 C 60 55, 50 35, 30 25" stroke="#1a3c34" stroke-width="2" fill="none"/>
+        <path d="M60 75 C 60 55, 70 35, 90 25" stroke="#1a3c34" stroke-width="2" fill="none"/>
+        <path d="M60 75 C 60 50, 40 30, 20 20" stroke="#1a3c34" stroke-width="1.5" fill="none"/>
+        <path d="M60 75 C 60 50, 80 30, 100 20" stroke="#1a3c34" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <p class="hero-tag">INTERNAL STUDY SESSION</p>
+    <h1>秋の社内勉強会</h1>
+    <p class="hero-lead">業務のなかで見つけた小さな問いを、会社全体の知恵に。</p>
+  </header>
+  <main>
+    <section>
+      <h2>開催概要</h2>
+      <ul class="info-list">
+        <li><span class="info-label">日時</span><span>〈開催日〉　〈開始時刻〉〜〈終了時刻〉</span></li>
+        <li><span class="info-label">会場</span><span>〈会場〉</span></li>
+        <li><span class="info-label">対象</span><span>全社員</span></li>
+        <li><span class="info-label">定員</span><span>〈定員〉名</span></li>
+      </ul>
+    </section>
+    <section>
+      <h2>この勉強会について</h2>
+      <p>秋の社内勉強会は、部署や職種の垣根を越えて、日々の業務から生まれた気づきや課題を共有する場です。今回のテーマは「〈テーマ〉」。社内の誰かが実際に試した手法や、困っていること、面白いと思った視点を持ち寄り、対話を通じて学びを深めます。</p>
+    </section>
+    <section>
+      <h2>見どころ</h2>
+      <div class="highlight-cards">
+        <article class="card">
+          <h3>01　社内の実践知が聞ける</h3>
+          <p>書籍や記事では読めない、同じ職場の仲間が経験した試行錯誤や成果を直接聞けます。</p>
+        </article>
+        <article class="card">
+          <h3>02　分野を越えた対話</h3>
+          <p>普段話す機会のない部署の人ともテーブルを囲み、新しいつながりを作ります。</p>
+        </article>
+        <article class="card">
+          <h3>03　秋の夜長にゆっくり学ぶ</h3>
+          <p>暑さが落ち着いた季節に、集中して知見を吸収できる時間を確保します。</p>
+        </article>
+      </div>
+    </section>
+    <section>
+      <h2>参加方法</h2>
+      <p>社内申し込みフォームよりお申し込みください。申込期限は〈申込期限〉です。定員に達した場合は抽選とさせていただきます。不明点は〈担当部署〉までお問い合わせください。</p>
+      <div class="cta">
+        <a class="button" href="#">申し込みフォームへ</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>© 〈年度〉 社内イベント運営事務局</p>
+  </footer>
+</div>
+</body>
+</html>

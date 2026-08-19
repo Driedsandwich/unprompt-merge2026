@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 ポートフォリオ</title>
+<style>
+  /* タイプスケール: 本文 16px (1rem) / 比率 1.25 (メジャーセカンド)
+     h1: 2.441rem / h2: 1.953rem / h3: 1.563rem / 小見出し: 1.25rem */
+  :root {
+    --base: 1rem;
+    --h3: 1.563rem;
+    --h2: 1.953rem;
+    --h1: 2.441rem;
+    --leading: 1.7;
+    --space-8: 8px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-48: 48px;
+    --space-64: 64px;
+    --space-96: 96px;
+    --color-bg: #f6f3ef;        /* 生成りに近いが、違う基底 */
+    --color-text: #1e1b18;
+    --color-key: #2f5c4a;       /* 深いグリーン (基調) */
+    --color-accent: #c4513b;    /* くすんだ赤 (アクセント) */
+    --color-light: #e7e1d7;
+    --color-white: #fcfaf8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    font-size: var(--base);
+    line-height: var(--leading);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 見出し: 明朝系で格調 */
+  h1, h2, h3 {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+
+  h1 { font-size: var(--h1); margin-bottom: var(--space-16); }
+  h2 { font-size: var(--h2); margin-bottom: var(--space-24); }
+  h3 { font-size: var(--h3); margin-bottom: var(--space-16); }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-32) var(--space-24);
+  }
+
+  /* ----- HERO ----- */
+  .hero {
+    padding: var(--space-96) 0 var(--space-64);
+    border-bottom: 2px solid var(--color-key);
+    margin-bottom: var(--space-64);
+    position: relative;
+  }
+
+  .hero::after {
+    content: "◢";
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    font-size: 2rem;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .hero__name {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--h1);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__role {
+    font-size: 1.125rem;
+    color: var(--color-key);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-left: 4px solid var(--color-accent);
+    padding-left: var(--space-16);
+    margin-top: var(--space-8);
+  }
+
+  .hero__tagline {
+    margin-top: var(--space-24);
+    font-style: italic;
+    font-size: 1.125rem;
+    color: #3e3a36;
+    line-height: 1.6;
+    max-width: 70%;
+  }
+
+  /* ----- セクション共通 ----- */
+  section {
+    margin-bottom: var(--space-96);
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-key);
+    padding-bottom: var(--space-8);
+    margin-bottom: var(--space-32);
+  }
+
+  /* ----- 自己紹介 ----- */
+  .about p {
+    max-width: 660px;
+    margin-bottom: var(--space-16);
+  }
+
+  .about strong {
+    color: var(--color-key);
+    font-weight: 600;
+  }
+
+  /* ----- 作品3点 (シンプルカード) ----- */
+  .works-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
+  }
+
+  .work-item {
+    background: var(--color-white);
+    padding: var(--space-32) var(--space-24);
+    border-left: 6px solid var(--color-key);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.03);
+    transition: border-color 0.2s;
+  }
+
+  .work-item:hover {
+    border-left-color: var(--color-accent);
+  }
+
+  .work-item h3 {
+    margin-bottom: var(--space-8);
+  }
+
+  .work-item .work-role {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-16);
+    display: inline-block;
+  }
+
+  .work-item p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* 作品代替ビジュアル (SVG/絵文字) */
+  .work-visual {
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-key) 0%, #3d7a63 100%);
+    margin-bottom: var(--space-16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: white;
+    font-weight: 300;
+  }
+
+  .work-visual svg {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
+  }
+
+  /* ----- スキル ----- */
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16) var(--space-24);
+    list-style: none;
+    margin-top: var(--space-16);
+  }
+
+  .skill-list li {
+    background: var(--color-white);
+    padding: var(--space-8) var(--space-24);
+    font-weight: 500;
+    border-bottom: 2px solid var(--color-key);
+    font-size: 0.95rem;
+  }
+
+  .skill-list li::before {
+    content: "▹ ";
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  /* ----- 連絡先 ----- */
+  .contact-block {
+    background: var(--color-white);
+    padding: var(--space-32) var(--space-24);
+    border-top: 4px solid var(--color-accent);
+  }
+
+  .contact-block p {
+    margin-bottom: var(--space-8);
+  }
+
+  .contact-block a {
+    color: var(--color-key);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+
+  .contact-block a:hover {
+    border-bottom-color: var(--color-accent);
+  }
+
+  .contact-meta {
+    font-size: 0.85rem;
+    color: #5a554f;
+    margin-top: var(--space-16);
+  }
+
+  /* フッター */
+  footer {
+    margin-top: var(--space-64);
+    padding-top: var(--space-24);
+    border-top: 1px solid var(--color-light);
+    font-size: 0.8rem;
+    color: #7a756f;
+    text-align: center;
+  }
+
+  /* 調整 */
+  .mt-16 { margin-top: var(--space-16); }
+  .mb-8 { margin-bottom: var(--space-8); }
+
+  @media (max-width: 600px) {
+    .hero__tagline { max-width: 100%; }
+    .hero { padding: var(--space-64) 0 var(--space-48); }
+    :root { --h1: 1.8rem; --h2: 1.5rem; --h3: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO: 印象に残る冒頭 (主張) -->
+  <header class="hero">
+    <div class="hero__name">〈氏名〉</div>
+    <div class="hero__role">デザイン / フロントエンド</div>
+    <div class="hero__tagline">—— ことばと余白で、仕事を伝える。</div>
+  </header>
+
+  <!-- 自己紹介 -->
+  <section class="about">
+    <span class="section-label">about</span>
+    <p>システムから印刷物まで、〈領域〉を問わず形にしてきました。<br>
+    現在は小さなスタジオでデザインリードを務め、<strong>テンプレートではない</strong>アウトプットを心がけています。</p>
+    <p>転職を機に、自身の仕事を「シンプルだけど印象に残る」かたちでまとめました。<br>
+    このポートフォリオが、対話のきっかけになれば嬉しいです。</p>
+  </section>
+
+  <!-- 作品3点 -->
+  <section>
+    <span class="section-label">works</span>
+    <div class="works-grid">
+
+      <div class="work-item">
+        <div class="work-visual">
+          <svg viewBox="0 0 24 24" width="40" height="40"><rect x="2" y="3" width="20" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3>〈作品タイトル1〉</h3>
+        <span class="work-role">UIデザイン / 実装</span>
+        <p>ブランドのコアを可視化する管理画面。グリッドシステムと8pxベースの余白で、操作の迷いを減らした。</p>
+      </div>
+
+      <div class="work-item">
+        <div class="work-visual">
+          <svg viewBox="0 0 24 24" width="40" height="40"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor"/><path d="M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3>〈作品タイトル2〉</h3>
+        <span class="work-role">グラフィック / 印刷</span>
+        <p>紙の質感を活かした展示カタログ。2色印刷と余白のリズムで、見る人の視線を導く構成。</p>
+      </div>
+
+      <div class="work-item">
+        <div class="work-visual">
+          <svg viewBox="0 0 24 24" width="40" height="40"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M19.4 15a1.65 1.65 0 0 0 .33-1.82 8 8 0 0 0-14.46 0A1.65 1.65 0 0 0 4.6 15" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3>〈作品タイトル3〉</h3>
+        <span class="work-role">ブランド / ロゴ</span>
+        <p>一文字を核にしたロゴマーク。グリッド上で組み直し、小さなサイズでも存在感がある。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- スキル -->
+  <section>
+    <span class="section-label">skills</span>
+    <ul class="skill-list">
+      <li>設計 / 情報設計</li>
+      <li>Figma / XD</li>
+      <li>HTML / CSS</li>
+      <li>Typography</li>
+      <li>印刷・DTP</li>
+      <li>ブランディング</li>
+    </ul>
+  </section>
+
+  <!-- 連絡先 -->
+  <section>
+    <span class="section-label">contact</span>
+    <div class="contact-block">
+      <p>ご連絡はこちらから</p>
+      <p><a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a></p>
+      <p class="contact-meta">〈SNSアカウントなど任意〉</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 〈氏名〉 2025 — 1ページで伝える、私の仕事。
+  </footer>
+
+</div>
+</body>
+</html>

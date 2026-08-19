@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+  :root {
+    --body-size: 15px;
+    --subject-size: 24px;
+    --base: #1a1a24;
+    --primary: #5b4fe8;
+    --accent: #3dffc0;
+    --text: rgba(255,255,255,0.92);
+    --text-soft: rgba(255,255,255,0.62);
+    --line: rgba(255,255,255,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--base);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    color: var(--text);
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 56px;
+  }
+
+  .subject {
+    font-family: "Hiragino Maru Gothic ProN", "M PLUS Rounded Sansc", -apple-system, "Segoe UI", sans-serif;
+    /* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+    /* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+    font-size: var(--subject-size);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    color: var(--accent);
+    margin-bottom: 64px;
+  }
+
+  .recipient {
+    font-size: var(--body-size);
+    color: var(--text-soft);
+    margin-bottom: 48px;
+  }
+
+  .body p {
+    font-size: var(--body-size);
+    margin-bottom: 24px;
+  }
+
+  .body .lead {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .body .accent-text {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .cta {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+
+  .cta p {
+    font-size: var(--body-size);
+    margin-bottom: 24px;
+  }
+
+  .cta .accent-text {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .signature {
+    margin-top: 48px;
+    font-size: var(--body-size);
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+  <div class="subject">コード書く時間、誰にも縛らせない — 次の裁量を〈会社名〉で</div>
+
+  <div class="recipient">〈候補者名〉さん</div>
+
+  <div class="body">
+    <!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+    <p><span class="lead">実務2〜5年目って、一番おもしろい時期だと思うんです。</span>アーキテクチャの判断も自分で持てるし、まだ全部できなくてもいい、という手応えが見え始める頃。</p>
+
+    <!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+    <p>いまの環境で、技術選定の裁量、もらえてますか。「前例がない」の一言で却下される、レビュー待ちで待機する、仕様を下ろされるだけの実装を回す——そういう日々だと、書いていてつまらなくなる。知ってます。</p>
+
+    <p>うちでは、エンジニアが<span class="accent-text">技術選定から設計まで、自分の裁量で動ける</span>チームを作っています。もちろん全部好きにしていいわけじゃないですが、「なぜその選択にしたか」が説明できれば、技術スタックもアーキテクチャも任せます。</p>
+
+    <!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+    <p>〈会社名〉で〈確認: 現場で実際にあった失敗談や、裁量を持って技術判断をしたエピソードを1つ〉、こんな風に動いています。詳しい技術スタックやポジションのお話は、まずはカジュアルにお話しできればと。</p>
+  </div>
+
+  <div class="cta">
+    <p>オンラインでも、〈最寄り駅〉のカフェでも。30分くらい、<span class="accent-text">気軽にお話しませんか。</span></p>
+    <p>返信は一言だけでも大丈夫です。「話を聞いてみたい」とだけでも、こちらから日時候補をお送りします。</p>
+  </div>
+
+  <div class="signature">
+    〈会社名〉〈採用担当者名〉<br>
+    〈メールアドレス〉
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 — デザインポートフォリオ</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+/* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+/* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+/* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+/* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+
+:root {
+  --bg: #f5f4f1;
+  --text: #1b1b1b;
+  --accent: #c7a96b;
+  --muted: rgba(27,27,27,0.35);
+  --spacing-unit: 8px;
+  /* Type scale: base 16px → ratio 1.25 */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.563rem;
+  --text-xl: 1.953rem;
+  --text-2xl: 2.441rem;
+  --text-3xl: 3.052rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Noto Sans JP", "Segoe UI", sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+h1, h2, h3 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: var(--text-3xl);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+h3 {
+  font-size: var(--text-lg);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+p {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--muted);
+  transition: border-color 0.2s;
+}
+
+a:hover {
+  border-color: var(--accent);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 4);
+}
+
+/* Hero */
+.hero {
+  padding: calc(var(--spacing-unit) * 20) 0 calc(var(--spacing-unit) * 16);
+  border-bottom: 1px solid var(--muted);
+  margin-bottom: calc(var(--spacing-unit) * 16);
+}
+
+.hero__sub {
+  font-size: var(--text-md);
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  text-transform: uppercase;
+}
+
+.hero__title {
+  font-size: var(--text-3xl);
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+.hero__desc {
+  font-size: var(--text-md);
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* Section */
+.section {
+  margin-bottom: calc(var(--spacing-unit) * 20);
+}
+
+.section:last-of-type {
+  margin-bottom: 0;
+}
+
+/* About */
+.about-text {
+  max-width: 640px;
+}
+
+/* Works */
+.works-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--spacing-unit) * 12);
+}
+
+.work-item {
+  border-top: 1px solid var(--muted);
+  padding-top: calc(var(--spacing-unit) * 6);
+}
+
+.work-item__meta {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.work-item__title {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: var(--text-xl);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.work-item__desc {
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  max-width: 600px;
+}
+
+.work-item__process {
+  background: rgba(199, 169, 107, 0.08);
+  padding: calc(var(--spacing-unit) * 4);
+  border-left: 2px solid var(--accent);
+  font-size: var(--text-sm);
+  line-height: 1.9;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.work-item__process strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.work-item__visual {
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(135deg, #e8e4da 0%, #d4cebf 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+/* Skills */
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--spacing-unit) * 6);
+}
+
+@media (max-width: 540px) {
+  .skills-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-category {
+  border-top: 1px solid var(--muted);
+  padding-top: calc(var(--spacing-unit) * 3);
+}
+
+.skill-category__label {
+  font-size: var(--text-sm);
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.skill-category__items {
+  list-style: none;
+}
+
+.skill-category__items li {
+  padding: calc(var(--spacing-unit) * 1) 0;
+  position: relative;
+  padding-left: calc(var(--spacing-unit) * 3);
+}
+
+.skill-category__items li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--spacing-unit) * 2.5);
+  width: 12px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Contact */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing-unit) * 6);
+}
+
+.contact-links a {
+  font-size: var(--text-md);
+  border-bottom: none;
+  position: relative;
+  padding-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.contact-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.contact-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Footer */
+.footer {
+  margin-top: calc(var(--spacing-unit) * 12);
+  padding-top: calc(var(--spacing-unit) * 6);
+  border-top: 1px solid var(--muted);
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 -->
+<header class="hero">
+  <p class="hero__sub">Design Portfolio</p>
+  <h1 class="hero__title">作品、削ぎ落として。<br>余白から始める仕事の質。</h1>
+  <p class="hero__desc">〈氏名〉 — デザイナー。一つひとつの制作物で語る判断と過程を、ここに。</p>
+</header>
+
+<!-- GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 -->
+<section class="section" id="about">
+  <h2>About</h2>
+  <div class="about-text">
+    <p>私は、〈確認: あなたがこれまでに携わったプロジェクトのうち、最も判断に迷ったもの〉をきっかけに、デザインにおける「決断の跡」を可視化することの重要性に気づきました。完成形だけを並べるのではなく、なぜその形になったのか、何を削り、何を残したのか——その過程ごと見せることで、初めて作品の質が伝わると考えています。</p>
+    <p>現在は〈職種〉として、〈確認: あなたの専門領域（例: UI/UX / ブランディング / エディトリアル）〉を中心に活動。クライアントの〈大事にしていること〉を言葉にし、形にすることを大切にしています。</p>
+  </div>
+</section>
+
+<section class="section" id="works">
+  <h2>Works</h2>
+  <div class="works-grid">
+
+    <article class="work-item">
+      <p class="work-item__meta">Web Design / 2026</p>
+      <h3 class="work-item__title">〈作品タイトル1〉</h3>
+      <div class="work-item__visual">
+        <span>作品イメージ</span>
+      </div>
+      <p class="work-item__desc">〈確認: このプロジェクトの概要と、あなたが特にこだわった判断ポイント〉</p>
+      <!-- GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 -->
+      <div class="work-item__process">
+        <strong>思考の過程</strong><br>
+        この案件では、情報量を減らすことが目的ではなく、「本当に必要な情報は何か」を定義することから始めました。〈確認: 実際に検討した複数の方向性と、採用しなかった理由を1つ〉。結果として、余白率を60%から75%に引き上げ、ユーザーの視線の停留時間が〈数値〉向上しました。
+      </div>
+    </article>
+
+    <article class="work-item">
+      <p class="work-item__meta">Branding / 2025</p>
+      <h3 class="work-item__title">〈作品タイトル2〉</h3>
+      <div class="work-item__visual">
+        <span>作品イメージ</span>
+      </div>
+      <p class="work-item__desc">〈確認: ブランディング案件の概要と、あなたがリードした決断〉</p>
+      <div class="work-item__process">
+        <strong>思考の過程</strong><br>
+        ロゴの形状だけでなく、言葉の選び方、余白の取り方、色の面積比率まで一貫性を持たせるため、まずブランドの「核となる一文」を〈確認: クライアントと合意したコアメッセージ〉と設定。すべての要素をその一文に照らして採点し、〈数値〉%の要素を削る判断をしました。
+      </div>
+    </article>
+
+    <article class="work-item">
+      <p class="work-item__meta">Editorial / 2024</p>
+      <h3 class="work-item__title">〈作品タイトル3〉</h3>
+      <div class="work-item__visual">
+        <span>作品イメージ</span>
+      </div>
+      <p class="work-item__desc">〈確認: 紙媒体/エディトリアル案件の概要と、版面設計の判断〉</p>
+      <div class="work-item__process">
+        <strong>思考の過程</strong><br>
+        文字サイズと行間の比率を、可読性ではなく「読むリズム」を設計する視点で再定義しました。〈確認: 実際に調整した数値とその根拠〉。見開きで見たときの余白の配置が、内容の階層を自然に伝えるよう、4段階のタイトル階層をすべて組み直しています。
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <h2>Skills</h2>
+  <div class="skills-list">
+    <div class="skill-category">
+      <p class="skill-category__label">Design</p>
+      <ul class="skill-category__items">
+        <li>UI / UX デザイン</li>
+        <li>ブランディング</li>
+        <li>エディトリアルデザイン</li>
+        <li>情報設計 / ワイヤーフレーム</li>
+      </ul>
+    </div>
+    <div class="skill-category">
+      <p class="skill-category__label">Tool &amp; Code</p>
+      <ul class="skill-category__items">
+        <li>Figma / Sketch</li>
+        <li>Adobe Illustrator / InDesign</li>
+        <li>HTML / CSS (設計含む)</li>
+        <li>〈確認: 使用可能なその他のツール〉</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2>Contact</h2>
+  <p>ご連絡は以下よりお願いします。採用に関するご連絡も歓迎です。</p>
+  <div class="contact-links">
+    <a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+    <a href="#">〈確認: ポートフォリオURL〉</a>
+    <a href="#">〈確認: その他連絡手段〉</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>&copy; 〈氏名〉 — Design Portfolio</p>
+</footer>
+
+</div>
+</body>
+</html>

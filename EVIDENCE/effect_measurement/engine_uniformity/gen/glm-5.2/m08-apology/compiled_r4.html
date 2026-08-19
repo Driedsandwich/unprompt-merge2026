@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+  /* GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け */
+  /* GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない */
+  /* GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 */
+  /* GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す */
+
+  :root {
+    --bg: #fff7f0;
+    --primary: #5c5346;
+    --accent: #b08a5a;
+    --soft: #8a7a5c;
+    --base-size: 16px;
+    --h1-size: 20px;
+    --h2-size: 14px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--primary);
+    line-height: 1.95;
+    padding: 96px 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .document {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け */
+  .subject {
+    font-size: var(--h1-size);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 72px;
+    line-height: 1.5;
+    padding-bottom: 20px;
+  }
+
+  /* GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない */
+  /* GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 */
+  .greeting {
+    font-size: var(--base-size);
+    margin-bottom: 56px;
+    line-height: 1.9;
+  }
+
+  .body-text {
+    font-size: var(--base-size);
+    margin-bottom: 48px;
+    line-height: 1.95;
+  }
+
+  /* GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す */
+  .schedule {
+    font-size: var(--base-size);
+    margin-bottom: 64px;
+    line-height: 1.95;
+  }
+
+  .closing {
+    font-size: var(--base-size);
+    margin-bottom: 56px;
+    line-height: 1.9;
+  }
+
+  .signature {
+    font-size: var(--base-size);
+    line-height: 1.85;
+  }
+
+  /* GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け */
+  /* GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない */
+  /* GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 */
+  /* GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す */
+</style>
+</head>
+<body>
+
+<div class="document">
+
+  <p class="subject">件名:〈商品名〉お届けに関するお詫びとご案内</p>
+
+  <div class="greeting">
+    <!-- GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け -->
+    〈お客様名〉様<br><br>
+    いつもお世話になっております。〈会社名〉でございます。<br>
+    この度はご注文をいただき、誠にありがとうございます。
+  </div>
+
+  <div class="body-text">
+    <!-- GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない -->
+    <!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+    ご注文いただきました〈商品名〉につきまして、発送が遅れております。<br>
+    ご注文時にご案内しておりました納期にお届けできず、多大なるご迷惑をおかけしております。お客様にはご心配をおかけし、誠に申し訳ございません。
+  </div>
+
+  <div class="schedule">
+    <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+    発送につきましては、〈新しいお届け予定〉を目途に進めております。手配状況が固まり次第、改めて発送のご案内をお送りいたします。今しばらくお待ちくださいますようお願い申し上げます。
+  </div>
+
+  <div class="closing">
+    何かご不明な点やご心配なことがございましたら、本メールへのご返信にてお気軽にお問い合わせください。引き続き、よろしくお願いいたします。
+  </div>
+
+  <div class="signature">
+    〈会社名〉<br>
+    カスタマーサポート<br>
+    〈メールアドレス〉
+  </div>
+
+</div>
+
+</body>
+</html>

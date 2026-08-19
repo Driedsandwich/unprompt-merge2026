@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 | 珈琲豆の贈りもの</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 */
+/* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+/* GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 */
+/* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 */
+/* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+
+/* タイプスケール: base 16px → ratio 1.25 (major third) */
+/* h1: 2.441rem (39px), h2: 1.953rem (31px), h3: 1.563rem (25px) */
+:root {
+  --bg: #151312;
+  --primary: #2e2823;
+  --accent: #b08d57;
+  --text: #ede6dc;
+  --text-muted: #9c9187;
+  --heading: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --body: 'Inter', -apple-system, 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --base-size: 16px;
+  --ratio: 1.25;
+  --h1-size: 2.441rem;
+  --h2-size: 1.953rem;
+  --h3-size: 1.563rem;
+  --body-size: 1rem;
+  --small-size: 0.8rem;
+  --space-unit: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: var(--body-size);
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 8px グリッド：airy density のため余裕ある余白 */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 calc(4 * var(--space-unit));
+}
+
+section {
+  padding: calc(14 * var(--space-unit)) 0; /* 112px */
+}
+
+/* 角 sharp: border-radius:0 維持 */
+img, svg, .card, button, a {
+  border-radius: 0;
+}
+
+/* リンク / ボタン */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--body);
+  font-size: var(--body-size);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  padding: calc(2 * var(--space-unit)) calc(5 * var(--space-unit));
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* ===== ヒーロー ===== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: calc(18 * var(--space-unit)); /* 144px */
+  padding-bottom: calc(14 * var(--space-unit));
+  min-height: 80vh;
+  justify-content: center;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 120% 60% at 50% 20%, #3a3026 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-icon {
+  margin-bottom: calc(4 * var(--space-unit));
+}
+
+.hero h1 {
+  font-family: var(--heading);
+  font-size: var(--h1-size);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  margin-bottom: calc(3 * var(--space-unit));
+}
+
+.hero .sub {
+  font-size: calc(var(--body-size) * 1.125);
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.hero .lead {
+  font-size: var(--body-size);
+  color: var(--text-muted);
+  max-width: 400px;
+  margin: calc(5 * var(--space-unit)) auto 0;
+  line-height: 1.8;
+}
+
+/* ===== 物語 ===== */
+.story {
+  border-top: 1px solid rgba(176, 141, 87, 0.15);
+}
+
+.story h2 {
+  font-family: var(--heading);
+  font-size: var(--h2-size);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  margin-bottom: calc(5 * var(--space-unit));
+}
+
+.story p {
+  color: var(--text-muted);
+  margin-bottom: calc(3 * var(--space-unit));
+  max-width: 540px;
+}
+
+.story .quote {
+  font-family: var(--heading);
+  font-size: var(--h3-size);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 1.6;
+  padding: calc(3 * var(--space-unit)) 0;
+  border-top: 1px solid rgba(176, 141, 87, 0.2);
+  border-bottom: 1px solid rgba(176, 141, 87, 0.2);
+  margin: calc(5 * var(--space-unit)) 0;
+}
+
+/* ===== こだわり ===== */
+.craft {
+  background-color: var(--primary);
+}
+
+.craft h2 {
+  font-family: var(--heading);
+  font-size: var(--h2-size);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  margin-bottom: calc(6 * var(--space-unit));
+}
+
+.craft-grid {
+  display: flex;
+  flex-direction: column;
+  gap: calc(5 * var(--space-unit));
+}
+
+.craft-item {
+  border-left: 2px solid var(--accent);
+  padding-left: calc(3 * var(--space-unit));
+}
+
+.craft-item h3 {
+  font-family: var(--heading);
+  font-size: var(--h3-size);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  margin-bottom: calc(2 * var(--space-unit));
+}
+
+.craft-item p {
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ===== ラインナップ ===== */
+.linup h2 {
+  font-family: var(--heading);
+  font-size: var(--h2-size);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  margin-bottom: calc(6 * var(--space-unit));
+  text-align: center;
+}
+
+.linup-list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(4 * var(--space-unit));
+}
+
+.linup-item {
+  background: var(--primary);
+  padding: calc(4 * var(--space-unit));
+  display: flex;
+  gap: calc(3 * var(--space-unit));
+  align-items: flex-start;
+}
+
+.linup-item svg {
+  flex-shrink: 0;
+}
+
+.linup-item .info h3 {
+  font-family: var(--heading);
+  font-size: var(--h3-size);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  margin-bottom: calc(1 * var(--space-unit));
+}
+
+.linup-item .info p {
+  color: var(--text-muted);
+  font-size: var(--small-size);
+  line-height: 1.7;
+}
+
+.linup-item .info .tag {
+  display: inline-block;
+  color: var(--accent);
+  font-size: var(--small-size);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  margin-top: calc(2 * var(--space-unit));
+}
+
+/* ===== 購入導線 ===== */
+.cta {
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--primary) 100%);
+  border-top: 1px solid rgba(176, 141, 87, 0.15);
+}
+
+.cta h2 {
+  font-family: var(--heading);
+  font-size: var(--h2-size);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  margin-bottom: calc(3 * var(--space-unit));
+}
+
+.cta p {
+  color: var(--text-muted);
+  max-width: 400px;
+  margin: 0 auto calc(6 * var(--space-unit));
+  line-height: 1.8;
+}
+
+.cta .gift-note {
+  font-size: var(--small-size);
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-top: calc(4 * var(--space-unit));
+}
+
+footer {
+  padding: calc(4 * var(--space-unit)) 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--small-size);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+</style>
+</head>
+<body>
+
+<!-- ヒーロー -->
+<section class="hero container">
+  <!-- GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 -->
+  <div class="hero-icon">
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="18" width="40" height="28" rx="0" stroke="#b08d57" stroke-width="1.5"/>
+      <path d="M8 28h40" stroke="#b08d57" stroke-width="1.5"/>
+      <path d="M22 18c0-6 12-6 12 0" stroke="#b08d57" stroke-width="1.5" fill="none"/>
+      <circle cx="28" cy="34" r="3" fill="#b08d57"/>
+    </svg>
+  </div>
+  <p class="sub">Gift of Beans</p>
+  <h1>大切な人へ、<br>コーヒー豆という贈りもの。</h1>
+  <p class="lead">一杯の珈琲に、旅の記憶を。ある農園から始まった物語を、あなたのギフトに。</p>
+</section>
+
+<!-- 物語 -->
+<section class="story container">
+  <!-- GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 -->
+  <h2>土と焙煎の記憶。</h2>
+  <p>〈ブランド名〉は、〈確認: 焙煎所がある地域や国〉の小さなロースタリーから始まりました。焙煎士が一粒一粒の豆と向き合い、その個性を最大限に引き出す——それが私たちの原点です。</p>
+  <p>ギフトに選ぶなら、ただ美味しいだけではない、その背景にまで想いを馳せられるものを。〈ブランド名〉の豆は、生産者から焙煎士、そしてあなたの手元へ。一粒ごとに、誰かの誠実さが詰まっています。</p>
+  <!-- GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 -->
+  <div class="quote">
+    「気品のコーヒー、ロースターの矜持を一杯に。」
+  </div>
+  <p>〈確認: ロースターが焙煎で一番大事にしていること〉——その信念が、すべての焙煎プロセスに息づいています。</p>
+</section>
+
+<!-- こだわり -->
+<section class="craft">
+  <div class="container">
+    <!-- GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 -->
+    <h2>豆への、静かなこだわり。</h2>
+    <div class="craft-grid">
+      <div class="craft-item">
+        <h3>産地との対話</h3>
+        <p>〈確認: 生産地や農園名〉の契約農園から、年数回の直接買い付け。中間業者を介さないことで、品質と生産者の顔が見える関係を築いています。</p>
+      </div>
+      <div class="craft-item">
+        <h3>焙煎の設計図</h3>
+        <p>豆の種類ごとに焙煎曲線を一から設計。浅煎りから深煎りまで、それぞれの豆が最も輝くプロファイルを追求します。〈確認: 焙煎機の種類や特徴があれば〉。</p>
+      </div>
+      <div class="craft-item">
+        <h3>鮮度への執着</h3>
+        <p>焙煎後は〈確認: 出荷までの日数や保存方法〉以内に発送。袋には焙煎日を明記し、届いたその日が一番美味しいタイミングであることをお約束します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ラインナップ -->
+<section class="linup container">
+  <!-- GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 -->
+  <h2>ラインナップ</h2>
+  <div class="linup-list">
+    <div class="linup-item">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="16" stroke="#b08d57" stroke-width="1.2"/>
+        <circle cx="20" cy="20" r="6" fill="#b08d57" opacity="0.3"/>
+      </svg>
+      <div class="info">
+        <h3>〈ブレンド名A〉</h3>
+        <p>〈確認: ブレンドの味の特徴やおすすめの抽出方法〉。ギフトに最も選ばれる定番。</p>
+        <span class="tag">深煎り / チョコレート・ナッツ</span>
+      </div>
+    </div>
+    <div class="linup-item">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="16" stroke="#b08d57" stroke-width="1.2"/>
+        <circle cx="20" cy="20" r="6" fill="#b08d57" opacity="0.5"/>
+      </svg>
+      <div class="info">
+        <h3>〈ブレンド名B〉</h3>
+        <p>〈確認: もう一つのブレンドの特徴〉。華やかな香りが特別な朝を演出。</p>
+        <span class="tag">中煎り / フローラル・シトラス</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 購入導線 -->
+<section class="cta">
+  <div class="container">
+    <!-- GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 -->
+    <h2>あなたのギフトに、<br>一粒の物語を。</h2>
+    <p>ギフトボックスには、焙煎士からの手書きのメッセージカードを同封。あなたの想いを、言葉とともに届けます。</p>
+    <a href="#" class="btn">GIFT BOX を見る</a>
+    <p class="gift-note">— のし・ラッピング無料 —</p>
+  </div>
+</section>
+
+<footer class="container">
+  <p>© 〈ブランド名〉 All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --body-size: 16px;
+    --lead-size: 30px;
+    --label-size: 11px;
+    --base: #1f2933;
+    --accent: #2f7d6f;
+    --bg: #f5f1e8;
+    --soft: #d8d1c0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--base);
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: var(--body-size);
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    padding: 64px 24px;
+  }
+  .sheet {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .label {
+    font-size: var(--label-size);
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    font-weight: 600;
+  }
+  .lead {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--lead-size);
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+    margin-bottom: 64px;
+    color: var(--base);
+  }
+  .section {
+    margin-bottom: 56px;
+  }
+  .section:last-of-type {
+    margin-bottom: 0;
+  }
+  .heading {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--soft);
+  }
+  .body-text {
+    font-size: var(--body-size);
+    line-height: 1.95;
+    letter-spacing: 0.01em;
+  }
+  .sign {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--soft);
+    font-size: 14px;
+    color: var(--base);
+    text-align: right;
+    letter-spacing: 0.04em;
+  }
+  .sign span {
+    color: var(--accent);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="label">巻頭あいさつ</div>
+  <h1 class="lead">朝、お菓子の包みを開ける音が、少し頼もしく聞こえる季節になりました。</h1>
+
+  <section class="section">
+    <h2 class="heading">近況</h2>
+    <p class="body-text">〈会社名〉のみなさん、今月もお疲れさまです。新しいメンバーが入ったり、別の部署に移った人がいたりと、社内の空気が少しずつ動いているこの頃です。食堂で知らない顔と隣り合わせになったら、ぜひ一声かけてみてください。</p>
+  </section>
+
+  <section class="section">
+    <h2 class="heading">今月の話題</h2>
+    <p class="body-text">今月は、みんなが「最近、やってます」と口にする小さな習慣を集めてみます。休憩中に本を一冊持ち歩く人、机の上を五分で片付ける人、始業前にちょこっと伸びをする人——。たいしたことではないけれど、その日を整える自分なりの合図。そういうものが、案外長く続くものです。</p>
+  </section>
+
+  <section class="section">
+    <h2 class="heading">締めの一言</h2>
+    <p class="body-text">焦って大きな目標を立てる必要はありません。まずは自分に合う小さな一つを見つけて、それを来月まで続けてみてください。来月は、そんな小さな続けてきたことを、どこかで少し共有できればと思っています。それでは今月も、よろしくお願いします。</p>
+  </section>
+
+  <div class="sign">
+    <span>〈執筆者名〉</span>
+  </div>
+</div>
+</body>
+</html>

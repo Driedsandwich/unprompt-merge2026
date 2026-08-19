@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+  :root {
+    --body-size: 15px;
+    --subject-size: 18px;
+    --line-height: 1.85;
+    --base: #1f2937;
+    --muted: #6b7280;
+    --accent: #2d6a4f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f4f4f4;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    color: var(--base);
+    padding: 64px 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 56px 64px;
+    border-radius: 4px;
+  }
+
+  .subject {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", "Heisi Mincho", serif;
+    font-size: var(--subject-size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    color: var(--base);
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .subject-label {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .body-text {
+    font-size: var(--body-size);
+    line-height: var(--line-height);
+    letter-spacing: 0.012em;
+    color: var(--base);
+  }
+
+  .body-text + .body-text { margin-top: 20px; }
+
+  .greeting {
+    font-size: var(--body-size);
+    margin-bottom: 32px;
+    line-height: var(--line-height);
+    color: var(--base);
+  }
+
+  .closing { margin-top: 32px; }
+
+  .signature {
+    font-size: var(--body-size);
+    line-height: 1.75;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="subject">
+      <span class="subject-label">件名</span>
+      お届けが遅れています — 〈商品名〉ご注文のお詫び
+    </div>
+
+    <div class="greeting">〈お客様名〉 様</div>
+
+    <p class="body-text">いつもご利用いただき、ありがとうございます。ご注文いただいた〈商品名〉について、お届け予定日を過ぎているにもかかわらず、まだ発送が完了しておらず、多大なるご不便をおかけしております。誠に申し訳ございません。</p>
+
+    <p class="body-text">現在は〈遅延の理由〉の影響で入荷が遅れており、〈新しいお届け予定〉にはお手元にお届けできるめどを立てております。これ以上のお待たせを避けるため、到着までの間、状況をこちらで確認し、進捗があればお伝えします。</p>
+
+    <p class="body-text">商品をお待ちいただく間、ご注文のキャンセルや変更のご希望がございましたら、本メールへのご返信でそのままお受けいたします。ご負担をおかけする分、少しでも柔軟にご対応させていただきます。</p>
+
+    <div class="closing">
+      <p class="body-text">改めて、ご迷惑をおかけしたことをお詫び申し上げます。</p>
+      <div class="signature">
+        〈署名〉
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品説明文</title>
+<style>
+  :root {
+    /* タイプスケール: 本文16pxを基準に1.25倍のMajor Third */
+    --text-base: 1rem;
+    --text-sm: 0.875rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.563rem;
+    --text-2xl: 1.953rem;
+    --text-3xl: 2.441rem;
+    /* 書体: 見出しにジョージア系(明朝風)、本文にHelvetica系(ゴシック) */
+    --font-head: Georgia, "Times New Roman", serif;
+    --font-body: "Helvetica Neue", Helvetica, Arial, "游ゴシック", YuGothic, sans-serif;
+    /* 色: 基調は濃い藍、アクセントは落ち着いた朱 */
+    --color-base: #1a2a3a;
+    --color-accent: #c1553c;
+    --color-bg: #f9f7f5;
+    --color-text: #2c2c2c;
+    --color-muted: #6b6b6b;
+    --color-light: #e8e4de;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--color-text);
+    background: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+  }
+
+  .container {
+    max-width: 720px;
+    width: 100%;
+    background: #ffffff;
+    padding: 64px 48px;
+    margin: 48px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  /* セクション間の縦余白は8の倍数 */
+  section {
+    margin-bottom: 96px;
+  }
+  section:last-child {
+    margin-bottom: 0;
+  }
+
+  /* キャッチコピー */
+  .catch {
+    text-align: center;
+    margin-bottom: 96px;
+  }
+  .catch h1 {
+    font-family: var(--font-head);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--color-base);
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+  .catch .sub {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+
+  /* リード文 */
+  .lead {
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--color-base);
+    padding: 0 8px;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 24px;
+    margin-bottom: 96px;
+  }
+
+  /* 特徴 */
+  .features h2 {
+    font-family: var(--font-head);
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-base);
+    margin-bottom: 48px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-light);
+  }
+  .feature-item {
+    margin-bottom: 48px;
+    padding-left: 8px;
+  }
+  .feature-item:last-child {
+    margin-bottom: 0;
+  }
+  .feature-item h3 {
+    font-family: var(--font-head);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+  .feature-item p {
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+
+  /* 仕様・注意 */
+  .specs {
+    background: var(--color-bg);
+    padding: 40px 32px;
+    margin-bottom: 96px;
+  }
+  .specs h2 {
+    font-family: var(--font-head);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-base);
+    margin-bottom: 32px;
+  }
+  .specs dl {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px 24px;
+    font-size: var(--text-sm);
+  }
+  .specs dt {
+    font-weight: 600;
+    color: var(--color-base);
+  }
+  .specs dd {
+    color: var(--color-muted);
+    margin: 0;
+  }
+  .specs .note {
+    grid-column: 1 / -1;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-light);
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+
+  /* 締め */
+  .closing {
+    text-align: center;
+    padding: 0 16px;
+  }
+  .closing p {
+    font-family: var(--font-head);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--color-base);
+    line-height: 1.7;
+  }
+  .closing .cta {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 16px 48px;
+    background: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .closing .cta:hover {
+    background: #a33e2a;
+  }
+
+  @media (max-width: 560px) {
+    .container {
+      padding: 40px 24px;
+    }
+    .catch h1 {
+      font-size: var(--text-2xl);
+    }
+    .specs dl {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .specs dt {
+      margin-bottom: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- キャッチコピー -->
+  <section class="catch">
+    <p class="sub">新商品のご案内</p>
+    <h1>使うたびに、<br>今日が少しだけ新しい。</h1>
+  </section>
+
+  <!-- リード文 -->
+  <section class="lead">
+    <p>同じ毎日の中に、小さな発見をひとつ。忙しさに流されがちな自分を、そっと引き戻してくれるようなアイテムが、今日からあなたの手元に届きます。〈商品名〉は、日常の一瞬を「当たり前」から「ちょっと特別」へと変える、新しいスタンダードです。</p>
+  </section>
+
+  <!-- 特徴の説明 -->
+  <section class="features">
+    <h2>三つのこだわり</h2>
+
+    <div class="feature-item">
+      <h3>01. 見飽きない、佇まい</h3>
+      <p>余計な装飾を削ぎ落とし、素材そのものの表情を活かしました。使うほどに手に馴染み、経年変化を楽しめる設計。どこに置いても、その空間に自然と溶け込みます。</p>
+    </div>
+
+    <div class="feature-item">
+      <h3>02. 毎日使うから、扱いやすさを極める</h3>
+      <p>朝の忙しい時間でも、夜のリラックスタイムでも、ストレスなく使えるように。重さ、サイズ、手触りの一つひとつを何度も見直しました。直感的に使える、ちょうどよさを追求しています。</p>
+    </div>
+
+    <div class="feature-item">
+      <h3>03. 環境にも、自分にも優しい素材</h3>
+      <p>〈素材名〉を採用し、製造工程でも廃棄物を最小限に抑えています。長く愛着を持って使えるからこそ、結果的に地球にも優しい。そんなものづくりを心がけています。</p>
+    </div>
+  </section>
+
+  <!-- 仕様・注意 -->
+  <section class="specs">
+    <h2>仕様とご注意</h2>
+    <dl>
+      <dt>サイズ</dt>
+      <dd>約〈数値〉×〈数値〉×〈数値〉mm</dd>
+      <dt>重さ</dt>
+      <dd>約〈数値〉g</dd>
+      <dt>素材</dt>
+      <dd>〈素材名〉（本体）、〈素材名〉（付属品）</dd>
+      <dt>生産国</dt>
+      <dd>〈国名〉</dd>
+      <dd class="note">
+        ※ お使いのモニター環境により、実際の色味と若干異なる場合がございます。<br>
+        ※ 天然素材を使用しているため、一つひとつ個体差がございます。あらかじめご了承ください。
+      </dd>
+    </dl>
+  </section>
+
+  <!-- 締めの一言 -->
+  <section class="closing">
+    <p>今日を、少しだけ丁寧に。<br>その積み重ねが、きっとあなたらしい暮らしをつくります。</p>
+    <a href="#" class="cta">詳しく見る</a>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+:root {
+  --base: #1a1a1a;
+  --accent: #b87333;
+  --bg: #faf8f6;
+  --muted: #6b6b6b;
+  --light-line: #e5e0da;
+  --ratio: 1.25;
+  --body: 1rem;
+  --h2: calc(var(--body) * var(--ratio));
+  --h1: calc(var(--body) * var(--ratio) * var(--ratio));
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--bg);
+  color: var(--base);
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "MS PGothic", sans-serif;
+  font-size: var(--body);
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  padding: 32px 16px;
+}
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 64px 48px 56px;
+}
+h1 {
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: var(--h1);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.subject-line {
+  font-size: 0.875rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--light-line);
+  margin-bottom: 40px;
+}
+.subject-line strong {
+  font-weight: 400;
+  color: var(--base);
+}
+.lead {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.section-title {
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: var(--h2);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+  padding-top: 40px;
+}
+.body-text {
+  margin-bottom: 24px;
+}
+.placeholder {
+  background: transparent;
+  border-bottom: 1px dashed var(--accent);
+  padding: 0 2px;
+  white-space: nowrap;
+}
+.closing {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--light-line);
+  font-size: 0.95rem;
+}
+.closing .name {
+  margin-top: 24px;
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 32px 20px 40px;
+  }
+  h1 {
+    font-size: calc(var(--h1) * 0.9);
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <h1>お詫びとお知らせ</h1>
+  <div class="subject-line">
+    件名：<strong>〈商品名〉発送遅延のお詫びと新しいお届け予定について</strong>
+  </div>
+
+  <p class="lead">
+    〈お客様名〉 様<br>
+    いつもご愛顧いただき、誠にありがとうございます。
+  </p>
+
+  <div class="body-text">
+    このたびは、ご注文いただきました〈商品名〉の発送が、当初のご案内より遅れておりますことを深くお詫び申し上げます。<br>
+    楽しみにお待ちいただいていたところ、ご不便とご心配をおかけしておりますこと、心よりお詫びいたします。
+  </div>
+
+  <div class="body-text">
+    遅延の原因は、製造工程の一部に想定以上の時間を要したためでございます。<br>
+    現在、スタッフ一丸となって対応を進めており、新しいお届け予定は〈新しいお届け予定〉を見込んでおります。<br>
+    改めてご連絡差し上げますので、今しばらくお待ちいただけますと幸いです。
+  </div>
+
+  <div class="section-title">今後の対応</div>
+  <div class="body-text">
+    お届けが確定しましたら、改めてご案内のご連絡を差し上げます。<br>
+    万が一、〈新しいお届け予定〉を過ぎてもご連絡がない場合は、お手数ですが〈問い合わせ窓口〉までお知らせください。<br>
+    お客様にはご迷惑をおかけしておりますこと、重ねてお詫び申し上げます。
+  </div>
+
+  <div class="closing">
+    何卒ご理解賜りますようお願い申し上げます。<br>
+    引き続き変わらぬご愛顧のほど、よろしくお願いいたします。
+    <div class="name">〈会社名〉</div>
+  </div>
+</div>
+</body>
+</html>

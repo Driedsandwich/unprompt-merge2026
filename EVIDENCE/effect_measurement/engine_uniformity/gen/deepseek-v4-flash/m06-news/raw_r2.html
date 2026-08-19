@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巻頭あいさつ</title>
+<style>
+  :root {
+    /* タイプスケール: 本文 16px を基準に 1.2 倍の Minor Third */
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.2rem;
+    --text-xl: 1.44rem;
+    --text-2xl: 1.728rem;
+    --text-3xl: 2.074rem;
+    /* グリッド: 8px 単位 */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
+    /* 色: 基調は濃い藍色、アクセントは温かみのある赤錆色 */
+    --color-base: #1e2a3a;
+    --color-base-light: #3a4a5e;
+    --color-accent: #b85c3a;
+    --color-accent-light: #e07b54;
+    --color-bg: #f8f6f3;
+    --color-text: #2c2c2c;
+    --color-text-soft: #5a5a5a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--color-bg);
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    color: var(--color-text);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    padding: var(--space-4) var(--space-2);
+  }
+
+  .paper {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: var(--space-6) var(--space-4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  /* 冒頭の呼びかけ */
+  .greeting {
+    font-size: var(--text-xl);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--color-base);
+    margin-bottom: var(--space-1);
+    line-height: 1.4;
+  }
+
+  /* 見出し: 明朝系の系統で落ち着いた印象に */
+  .section-title {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+    line-height: 1.3;
+    border-bottom: 2px solid var(--color-accent-light);
+    padding-bottom: var(--space-1);
+  }
+
+  .section {
+    margin-top: var(--space-8);
+  }
+
+  .section:first-of-type {
+    margin-top: var(--space-6);
+  }
+
+  /* 本文 */
+  p {
+    font-size: var(--text-base);
+    line-height: 1.9;
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  p.soft {
+    color: var(--color-text-soft);
+  }
+
+  /* アクセント用の小さなマーク */
+  .accent-mark {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    margin-right: var(--space-1);
+    vertical-align: middle;
+  }
+
+  /* 締め */
+  .closing {
+    margin-top: var(--space-8);
+    padding-top: var(--space-4);
+    border-top: 1px solid #e0ddd8;
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .closing .name {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-base);
+  }
+
+  @media (max-width: 600px) {
+    .paper {
+      padding: var(--space-4) var(--space-2);
+    }
+    .section-title {
+      font-size: var(--text-xl);
+    }
+    .greeting {
+      font-size: var(--text-lg);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="greeting">
+    お疲れさまです。<br>
+    〈編集部〉の〈執筆者名〉です。
+  </div>
+
+  <div class="section">
+    <h2 class="section-title"><span class="accent-mark"></span>今月のひとこと</h2>
+    <p>
+      先月から続いていた新システムの移行作業、みなさんの協力でどうにか山を越えられました。
+      特に現場から上がった「ここがわかりにくい」という声を開発チームがすぐに反映してくれたおかげで、
+      想定よりスムーズに進んだんじゃないかと思います。改めて、ありがとうございます。
+    </p>
+    <p>
+      とはいえ、まだ細かい設定や引き継ぎ事項が残っている部署もあるはず。
+      「聞くは一時の恥」という言葉もあるので、気になることは先輩や担当にどんどん訊いてください。
+    </p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title"><span class="accent-mark"></span>今月の話題</h2>
+    <p>
+      先日、社内の共有スペースに〈プロジェクト名〉の進捗ボードが貼り出されました。
+      あれ、結構リアルタイムで更新されているので、通りすがりに眺めるだけでも「今、何が動いているか」が
+      なんとなく掴めるのがいいなと思います。自分と関係ないと思わずに、ぜひ一度見てみてください。
+    </p>
+    <p>
+      あと、今月末に予定されている〈部署名〉との合同ランチ会、参加者まだ募集中とか。
+      普段あまり話せないメンバーと顔を合わせるいい機会です。僕も行く予定なので、気軽に声をかけてください。
+    </p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title"><span class="accent-mark"></span>締めの一言</h2>
+    <p>
+      そろそろ気温の変化が大きくなる時期。体調を崩さないように、無理せずほどほどに。
+      今月もよろしくお願いします。
+    </p>
+  </div>
+
+  <div class="closing">
+    <div class="name">〈執筆者名〉</div>
+    〈会社名〉 社内報編集部
+  </div>
+
+</div>
+</body>
+</html>

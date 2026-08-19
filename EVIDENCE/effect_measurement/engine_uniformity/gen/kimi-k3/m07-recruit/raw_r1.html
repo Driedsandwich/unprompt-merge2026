@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用情報 | 〈会社名〉</title>
+<style>
+  :root{
+    /* タイプスケール: 本文16px 基準 / 比率 1.5 (16 → 24 → 36 → 54) */
+    --fs-body: 16px;
+    --fs-lead: 20px;
+    --fs-h2: 36px;
+    --fs-hero: 54px;
+    --ink: #1e2a38;        /* 基調色: 深い藍 */
+    --accent: #c25e1e;     /* アクセント: 柿色の濃い朱 */
+    --line: #d8dee4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    font-size:var(--fs-body); line-height:2;
+    color:var(--ink); background:#faf9f7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 32px;}
+  section{padding:96px 0;}
+
+  /* 冒頭: 大きな数字ではなく、一言の主張から始める */
+  .hero{padding:128px 0 96px;border-bottom:1px solid var(--line);}
+  .hero .kicker{font-size:14px;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:24px;}
+  .hero h1{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:var(--fs-hero);line-height:1.5;letter-spacing:.04em;font-weight:600;
+    margin-bottom:32px;
+  }
+  .hero p{font-size:var(--fs-lead);line-height:2;}
+
+  h2{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:var(--fs-h2);letter-spacing:.06em;font-weight:600;
+    margin-bottom:32px;line-height:1.6;
+  }
+  h2 .no{
+    display:block;font-family:sans-serif;font-size:14px;font-weight:700;
+    letter-spacing:.2em;color:var(--accent);margin-bottom:8px;
+  }
+  section p+p{margin-top:24px;}
+  section .lead{font-size:var(--fs-lead);margin-bottom:8px;}
+
+  /* 働く人の声 */
+  .voice blockquote{
+    border-left:3px solid var(--accent);
+    padding:8px 0 8px 24px;margin:40px 0;
+    font-style:normal;
+  }
+  .voice blockquote p{margin:0;}
+  .voice .who{font-size:14px;color:#5a6a78;margin-top:16px;letter-spacing:.05em;}
+
+  /* 大事にしていること */
+  .values ul{list-style:none;}
+  .values li{
+    display:flex;gap:24px;align-items:baseline;
+    padding:32px 0;border-top:1px solid var(--line);
+  }
+  .values li:last-child{border-bottom:1px solid var(--line);}
+  .values .num{font-weight:700;color:var(--accent);font-size:14px;letter-spacing:.1em;flex-shrink:0;}
+  .values dt{font-weight:700;font-size:18px;margin-bottom:8px;}
+  .values dd{color:#3c4c5a;}
+
+  /* 応募導線 */
+  .cta{text-align:center;padding:112px 0;}
+  .cta p{margin-bottom:40px;}
+  .cta a{
+    display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    font-weight:700;letter-spacing:.1em;font-size:18px;
+    padding:20px 64px;
+  }
+  .cta a:hover{background:var(--accent);}
+  footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-size:13px;color:#7a8894;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <p class="kicker">RECRUIT — 採用情報</p>
+    <h1>飾らない言葉で、<br>本気の話をします。</h1>
+    <p>〈会社名〉は、目の前の仕事にまっすぐ向き合う仲間を探しています。華やかな実績よりも、今日の一つひとつを丁寧に積み重ねること。それが私たちの仕事の、すべてです。</p>
+  </section>
+
+  <section class="about">
+    <h2><span class="no">01</span>〈会社名〉という会社</h2>
+    <p class="lead">私たちは〈事業内容〉を手がける会社です。</p>
+    <p>派手な打ち上げ花火のような仕事ではありません。日々の改善と、お客様との丁寧な対話の積み重ねが、少しずつ信頼のかたちになっていく。そう信じて、今日も仕事をしています。</p>
+    <p>社名や肩書きではなく、「この人と一緒に働きたい」と思ってもらえる人が集まる会社でありたい。それが私たちの原点です。</p>
+  </section>
+
+  <section class="voice">
+    <h2><span class="no">02</span>働く人の声</h2>
+    <blockquote>
+      <p>「入社して驚いたのは、雑談の中でさえ仕事への熱意がにじむこと。答えを教えてくれるのではなく、一緒に考えてくれる先輩ばかりでした。」</p>
+      <p class="who">〈入社年次〉年入社 / 〈職種名〉</p>
+    </blockquote>
+    <blockquote>
+      <p>「失敗を責める人はいません。ただ、次にどうするかは必ず聞かれます。その一言が、自分を育ててくれました。」</p>
+      <p class="who">〈入社年次〉年入社 / 〈職種名〉</p>
+    </blockquote>
+  </section>
+
+  <section class="values">
+    <h2><span class="no">03</span>大事にしていること</h2>
+    <ul>
+      <li>
+        <span class="num">VALUE 1</span>
+        <div>
+          <dt>言い訳をしない</dt>
+          <dd>うまくいかなかったことから目を逸らさない。正直に伝えることが、次の信頼をつくると考えています。</dd>
+        </div>
+      </li>
+      <li>
+        <span class="num">VALUE 2</span>
+        <div>
+          <dt>手を抜かない</dt>
+          <dd>誰も見ていない場所ほど、丁寧に。小さな仕事の積み重ねが、私たちの品質です。</dd>
+        </div>
+      </li>
+      <li>
+        <span class="num">VALUE 3</span>
+        <div>
+          <dt>人で選ぶ</dt>
+          <dd>スキルは入ってから伸ばせます。まっすぐで、人の話を聞ける方と一緒に働きたいと思っています。</dd>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="cta">
+    <p>ここまで読んでくださったあなたと、一度ゆっくり話したいです。<br>堅苦しい面接ではなく、お互いの本音を聞かせてください。</p>
+    <a href="#">採用エントリーはこちら</a>
+  </section>
+
+  <footer>〈会社名〉 採用ページ</footer>
+
+</div>
+</body>
+</html>

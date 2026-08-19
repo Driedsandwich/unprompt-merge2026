@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+  --bg: #f6f3ee;
+  --ink: #2a2a2a;
+  --accent: #d4533a;
+  --muted: #7a7670;
+  --base: 16px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  color: var(--ink);
+  line-height: 1.85;
+  font-size: var(--base);
+  -webkit-font-smoothing: antialiased;
+  padding: 64px 24px;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.lead {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+
+.lead .accent {
+  color: var(--accent);
+}
+
+.intro {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+.section {
+  padding-top: 80px;
+}
+
+.section + .section {
+  padding-top: 64px;
+}
+
+.label {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.outline dt {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-top: 20px;
+}
+
+.outline dt:first-child { margin-top: 0; }
+
+.outline dd {
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+.outline dd .ph {
+  color: var(--muted);
+}
+
+.body-text {
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+}
+
+.method {
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+}
+
+.method .ph {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.closing {
+  border-top: 1px solid #d8d2c8;
+  padding-top: 48px;
+  margin-top: 96px;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+}
+
+.closing .sign {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: 15px;
+  color: var(--ink);
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1 class="lead">久しぶり。<span class="accent">たまには顔見に行こか。</span></h1>
+    <p class="intro">幹事からのお知らせです。名前を聞くだけで当時の声が浮かぶ、そんな集まりにしたくて声をかけました。</p>
+  </header>
+
+  <section class="section">
+    <div class="label">開催概要</div>
+    <dl class="outline">
+      <dt>日時</dt>
+      <dd>〈開催日〉 〈開始時間〉〜</dd>
+      <dt>場所</dt>
+      <dd>〈会場〉</dd>
+    </dl>
+  </section>
+
+  <section class="section">
+    <div class="label">どんな会にしたいか</div>
+    <p class="body-text">肩書も立場もいったん置いて、昔の呼び方で呼び合う時間にしたいです。話題は当時のままでも、今のままでもどちらでもいい。元気にしているか顔を見せてくれるだけで、幹事としては十分です。ゆっくり飲んで、遅くまで長居せず、電車のある時間に帰れるくらいの軽さを想定しています。</p>
+  </section>
+
+  <section class="section">
+    <div class="label">出欠の連絡方法</div>
+    <p class="method">〈返信期限〉までに、〈返信方法〉へ「来る・見送る」だけお知らせください。数日後に声をかけそびれた人へ直接連絡が回るかもしれません。迷っている方も、まずは名前だけ送ってください。</p>
+  </section>
+
+  <footer class="closing">
+    来られる方の顔を想像して、会場を探しに行くところです。
+    <div class="sign">幹事〈幹事名〉より</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 — 焙煎以前の物語</title>
+<style>
+  :root {
+    --base: #14110d;
+    --paper: #1d1813;
+    --ink: #e8ddc8;
+    --ink-soft: rgba(232,221,200,0.6);
+    --accent: #c9692b;
+    --rule: rgba(232,221,200,0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--base);
+    color: var(--ink);
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  h1, h2, h3 {
+    font-family: "Hiragino Sans", "Helvetica Neue", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  section { padding: 96px 32px; }
+  .inner { max-width: 720px; margin: 0 auto; }
+  .hero { padding: 120px 32px 96px; }
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 8vw, 64px);
+    line-height: 1.15;
+    margin-bottom: 40px;
+    font-family: "Hiragino Mincho ProN", serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 460px;
+  }
+  .story p { margin-bottom: 24px; color: var(--ink-soft); }
+  .story p:first-child::first-letter {
+    font-size: 56px;
+    float: left;
+    line-height: 0.9;
+    margin-right: 12px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .commitment .tenet {
+    border-top: 1px solid var(--rule);
+    padding: 32px 0;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+  }
+  .tenet-num {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    padding-top: 4px;
+  }
+  .tenet-body h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+  }
+  .tenet-body p { font-size: 15px; color: var(--ink-soft); }
+  .lineup .beans {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 40px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .bean-mark {
+    width: 64px; height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 35% 30%, var(--accent), #6e3514 70%);
+    position: relative;
+  }
+  .bean-mark::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 12%; bottom: 12%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.4);
+    border-radius: 1px;
+  }
+  .bean-meta { font-size: 13px; color: var(--ink-soft); letter-spacing: 0.05em; }
+  .bean-meta strong {
+    display: block;
+    font-size: 22px;
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+    font-family: "Hiragino Mincho ProN", serif;
+  }
+  .cta { text-align: center; padding: 120px 32px; }
+  .cta a {
+    display: inline-block;
+    padding: 20px 56px;
+    background: var(--accent);
+    color: var(--base);
+    text-decoration: none;
+    font-family: "Hiragino Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    font-size: 14px;
+  }
+  footer {
+    padding: 48px 32px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="inner">
+    <div class="hero-label">SINGLE ORIGIN / JAPAN</div>
+    <h1>焙煎以前の物語を、<br>一杯に。</h1>
+    <p>〈ブランド名〉が扱うのは、農園主の顔と土の匂いが残っている豆だけ。焙煎の腕で誤魔化さないために、わたしたちは出会いに時間をかけます。</p>
+  </div>
+</section>
+
+<section class="story">
+  <div class="inner">
+    <p>豆を選ぶとき、わたしたちはカタログの数値をまず読みます。しかしそのあと必ず現地に赴き、農園主と同じ土の上に立つ。標高、日差しの角度、雨の降り方。数字にならないものが、最終的に杯の味を決めるからです。</p>
+    <p>〈ブランド名〉は、そうした現場の記憶を焙煎に持ち込むために始まりました。〈創業者名〉が最初に出会った一杯は、技術ではなく関係性で美味しかった。それを再現するには、関係性ごと豆を買うしかなかった。</p>
+  </div>
+</section>
+
+<section class="commitment">
+  <div class="inner">
+    <h2 style="font-size:28px;margin-bottom:48px;">豆へのこだわり</h2>
+    <div class="tenet">
+      <div class="tenet-num">01 / 産地</div>
+      <div class="tenet-body">
+        <h3>農園主と直接、年単位で</h3>
+        <p>仲買を挟まず、同じ農園と毎年契約。気候変動による味のブレを、関係の積み重ねで受け止めます。</p>
+      </div>
+    </div>
+    <div class="tenet">
+      <div class="tenet-num">02 / 焙煎</div>
+      <div class="tenet-body">
+        <h3>豆の個性を削らない浅〜中煎</h3>
+        <p>焙煎の強さで産地差を均すことを選びません。難しさが残っても、その豆本来の輪郭を優先します。</p>
+      </div>
+    </div>
+    <div class="tenet">
+      <div class="tenet-num">03 / 鮮度</div>
+      <div class="tenet-body">
+        <h3>焙煎日を逃さず届ける</h3>
+        <p>〈賞味期限〉ではなく焙煎日を前面に。最も風味が開く時期をお届け日に設定します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lineup">
+  <div class="inner">
+    <h2 style="font-size:28px;margin-bottom:24px;">ラインナップ</h2>
+    <div class="beans">
+      <div class="bean-mark"></div>
+      <div class="bean-meta">
+        <strong>〈銘柄A〉</strong>
+        〈産地名〉 / 浅煎り / ベリーのような酸と花の香り
+      </div>
+    </div>
+    <div class="beans">
+      <div class="bean-mark"></div>
+      <div class="bean-meta">
+        <strong>〈銘柄B〉</strong>
+        〈産地名〉 / 中煎り / ナッツ感とまろやかな甘み
+      </div>
+    </div>
+    <div class="beans">
+      <div class="bean-mark"></div>
+      <div class="bean-meta">
+        <strong>〈銘柄C〉</strong>
+        〈産地名〉 / 中深煎り / ダークチョコとスパイス
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="inner">
+    <p style="margin-bottom:40px;color:var(--ink-soft);font-size:15px;">焙煎したての一杯を、ご自宅へ。</p>
+    <a href="#">オンラインショップへ</a>
+  </div>
+</section>
+
+<footer>
+  © 〈ブランド名〉
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会</title>
+<style>
+:root {
+  --bg: #f4f1ea;
+  --ink: #1c1c1c;
+  --accent: #8b3a1a;
+  --rule: #c9c2b3;
+  --body: 16px;
+  --h3: 22px;
+  --h2: 40px;
+  --h1: 64px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--body);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+section { padding: 96px 0; }
+
+/* Hero */
+.hero { padding: 120px 0 96px; border-bottom: 1px solid var(--rule); }
+.hero .eyebrow {
+  font-size: 13px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 32px;
+}
+.hero h1 {
+  font-size: var(--h1); line-height: 1.12; margin-bottom: 40px;
+}
+.hero .lead { max-width: 560px; color: #444; }
+.hero .meta {
+  display: flex; gap: 48px; margin-top: 64px;
+  padding-top: 32px; border-top: 1px solid var(--rule);
+}
+.hero .meta dt {
+  font-size: 12px; letter-spacing: 0.2em; color: #888;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.hero .meta dd { font-weight: 600; }
+
+/* Sections */
+h2 {
+  font-size: var(--h2); line-height: 1.25; margin-bottom: 48px;
+}
+h3 {
+  font-size: var(--h3); margin-top: 40px; margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+h3:first-child { margin-top: 0; }
+p { margin-bottom: 16px; color: #333; }
+.about { border-bottom: 1px solid var(--rule); }
+
+/* Highlights */
+.highlights ul { list-style: none; }
+.highlights li {
+  display: flex; gap: 24px; padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.highlights li:first-child { padding-top: 0; }
+.highlights li:last-child { border-bottom: none; padding-bottom: 0; }
+.highlights .num {
+  font-size: 32px; color: var(--accent); min-width: 48px;
+  line-height: 1; padding-top: 4px;
+}
+.highlights h3 { margin: 0 0 8px; }
+
+/* CTA */
+.join { background: var(--ink); color: var(--bg); }
+.join h2 { color: var(--bg); }
+.join p { color: #bbb; }
+.join .step {
+  padding: 24px 0; border-bottom: 1px solid #3a3a3a;
+}
+.join .step:first-of-type { padding-top: 0; }
+.join .step:last-of-type { border-bottom: none; padding-bottom: 0; }
+.join .step dt {
+  font-size: 12px; letter-spacing: 0.2em; color: var(--accent);
+  margin-bottom: 8px;
+}
+.join .step dd { font-size: 17px; }
+.join .btn {
+  display: inline-block; margin-top: 48px; padding: 20px 48px;
+  background: var(--accent); color: #fff; text-decoration: none;
+  font-weight: 700; letter-spacing: 0.08em;
+  transition: opacity 0.2s;
+}
+.join .btn:hover { opacity: 0.85; }
+footer { padding: 48px 0; text-align: center; font-size: 12px; color: #888; }
+@media (max-width: 600px) {
+  :root { --h1: 44px; --h2: 30px; }
+  .hero .meta { flex-direction: column; gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">社内勉強会 / Autumn</p>
+    <h1 class="serif">秋の夜長に、<br>もう一段、踏み出す。</h1>
+    <p class="lead">涼しくなって少し頭が動く季節。いつもと違う領域に触れてみませんか。当日は〈開催日〉の夜、〈会場〉にて。</p>
+    <dl class="meta">
+      <div>
+        <dt>日程</dt>
+        <dd>〈開催日〉 19:00–21:00</dd>
+      </div>
+      <div>
+        <dt>会場</dt>
+        <dd>〈会場〉</dd>
+      </div>
+      <div>
+        <dt>参加費</dt>
+        <dd>無料</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<section class="about">
+  <div class="wrap">
+    <h2 class="serif">この勉強会で<br>やること</h2>
+    <h3>テーマ</h3>
+    <p>〈勉強会のメインテーマ〉を軸に、普段の業務では触れにくい領域を拾い上げ、参加者同士で考えを重ねます。発表者の一方的な話ではなく、手を動かしたり、意見を交わす時間を多めに取る構成です。</p>
+    <h3>対象</h3>
+    <p>〈対象者や前提知識〉。分野を問わず、新しい視点を得たい方は歓迎します。</p>
+  </div>
+</section>
+
+<section class="highlights">
+  <div class="wrap">
+    <h2 class="serif">見どころ</h2>
+    <ul>
+      <li>
+        <span class="num serif">01</span>
+        <div>
+          <h3 class="serif">〈見どころ1の見出し〉</h3>
+          <p>〈見どころ1の説明文〉</p>
+        </div>
+      </li>
+      <li>
+        <span class="num serif">02</span>
+        <div>
+          <h3 class="serif">〈見どころ2の見出し〉</h3>
+          <p>〈見どころ2の説明文〉</p>
+        </div>
+      </li>
+      <li>
+        <span class="num serif">03</span>
+        <div>
+          <h3 class="serif">〈見どころ3の見出し〉</h3>
+          <p>〈見どころ3の説明文〉</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="join">
+  <div class="wrap">
+    <h2 class="serif">参加方法</h2>
+    <p>事前申込制です。以下の流れでお願いします。</p>
+    <dl>
+      <div class="step">
+        <dt>STEP 1</dt>
+        <dd>〈参加申込フォーム〉より送信</dd>
+      </div>
+      <div class="step">
+        <dt>STEP 2</dt>
+        <dd>確認メール受信(〈申込締切〉まで)</dd>
+      </div>
+      <div class="step">
+        <dt>STEP 3</dt>
+        <dd>当日〈会場〉へ直接お越しください</dd>
+      </div>
+    </dl>
+    <a href="#" class="btn">申込フォームへ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">〈主催: 社内勉強会実行委員会〉</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉| コーヒー豆ブランド</title>
+<style>
+/* タイプスケール: 基準16px / 比率1.5 (16-24-36-54) */
+:root{
+  --ink:#1d2733;        /* 基調:深い藍鉄色 */
+  --ink-soft:#3a4756;
+  --paper:#f6f4ef;
+  --accent:#c98a2d;     /* アクセント:焙煎琥珀 */
+  --serif:"Hiragino Mincho ProN","Yu Mincho",serif;
+  --gothic:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--gothic);font-size:16px;line-height:1.9;color:var(--ink);background:var(--paper)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:.08em}
+section{padding:96px 24px}
+.wrap{max-width:720px;margin:0 auto}
+.label{font-size:12px;letter-spacing:.3em;color:var(--accent);margin-bottom:16px}
+h2{font-size:36px;margin-bottom:32px}
+p{margin-bottom:24px}
+/* ヒーロー */
+.hero{background:var(--ink);color:var(--paper);padding:128px 24px;text-align:left}
+.hero .wrap{max-width:720px}
+.hero h1{font-size:54px;line-height:1.4;margin:24px 0}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:#c8cdd4;max-width:520px}
+.bean{display:inline-block;width:64px;height:88px;border-radius:50%;background:linear-gradient(135deg,#7a4a1e,#3d2410);position:relative;transform:rotate(18deg)}
+.bean::after{content:"";position:absolute;left:50%;top:8%;bottom:8%;width:3px;background:var(--paper);opacity:.5;border-radius:3px;transform:translateX(-50%)}
+/* 物語 */
+.story p:first-of-type::first-letter{font-family:var(--serif);font-size:54px;float:left;line-height:1;padding:4px 8px 0 0;color:var(--accent)}
+/* こだわり */
+.craft{background:#ece8df}
+.craft li{list-style:none;padding:24px 0;border-top:1px solid #d5cfc2}
+.craft li:last-child{border-bottom:1px solid #d5cfc2}
+.craft h3{font-size:24px;margin-bottom:8px}
+.craft h3 span{color:var(--accent);margin-right:8px}
+/* ラインナップ */
+.lineup ul{list-style:none;display:grid;gap:24px}
+.lineup li{background:#fff;padding:32px;border-left:4px solid var(--accent)}
+.lineup h3{font-size:24px;margin-bottom:8px}
+.lineup .tag{font-size:12px;letter-spacing:.2em;color:var(--ink-soft)}
+/* 購入導線 */
+.cta{background:var(--ink);color:var(--paper);text-align:center}
+.cta h2{margin-bottom:16px}
+.cta p{color:#c8cdd4}
+.btn{display:inline-block;margin-top:32px;padding:16px 48px;background:var(--accent);color:var(--ink);text-decoration:none;font-weight:700;letter-spacing:.15em}
+footer{padding:32px;text-align:center;font-size:12px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="bean"></div>
+    <p class="label">COFFEE BEANS — 〈ブランド名〉</p>
+    <h1>豆が、<br><em>語りはじめる。</em></h1>
+    <p>〈ブランド名〉は、一杯の奥にある産地の空気と焙煎の手仕事をそのまま届けるために生まれたコーヒー豆ブランドです。飲む前に、豆から。世界観の入り口は、いつも一粒です。</p>
+  </div>
+</section>
+
+<section class="story">
+  <div class="wrap">
+    <p class="label">STORY</p>
+    <h2>ブランドの物語</h2>
+    <p>〈ブランド名〉は、「コーヒーを飲む時間そのものを、日常の中の小さな旅にしたい」という思いから始まりました。〈創業の経緯・きっかけをここに記載〉。</p>
+    <p>私たちが届けたいのは、単なる飲み物ではなく、産地の風土と焙煎士の判断が重なり合った「豆の個性」です。〈ブランドが大切にしている価値観をここに記載〉。</p>
+  </div>
+</section>
+
+<section class="craft">
+  <div class="wrap">
+    <p class="label">COMMITMENT</p>
+    <h2>豆へのこだわり</h2>
+    <ul>
+      <li><h3><span>01</span>産地と選別</h3><p>〈産地・農園の方針や選別基準をここに記載〉。納得できる豆だけを仕入れます。</p></li>
+      <li><h3><span>02</span>焙煎</h3><p>〈焙煎の方針(浅煎り/深煎り・鮮度管理など)をここに記載〉。豆ごとに火の入れ方を変えます。</p></li>
+      <li><h3><span>03</span>届け方</h3><p>〈焙煎後の発送タイミング・包装のこだわりをここに記載〉。香りが最も開く状態でお届けします。</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="lineup">
+  <div class="wrap">
+    <p class="label">LINEUP</p>
+    <h2>ラインナップ</h2>
+    <ul>
+      <li><span class="tag">LIGHT / 浅煎り</span><h3>〈商品名A〉</h3><p>〈味わいの特徴・おすすめの飲み方をここに記載〉</p></li>
+      <li><span class="tag">MEDIUM / 中煎り</span><h3>〈商品名B〉</h3><p>〈味わいの特徴・おすすめの飲み方をここに記載〉</p></li>
+      <li><span class="tag">DARK / 深煎り</span><h3>〈商品名C〉</h3><p>〈味わいの特徴・おすすめの飲み方をここに記載〉</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <p class="label">SHOP</p>
+    <h2>豆を、手に取る。</h2>
+    <p>〈購入方法・販売チャネル・価格帯をここに記載〉。まずは少量サイズから、豆との出会いをお楽しみください。</p>
+    <a class="btn" href="#">オンラインストアへ</a>
+  </div>
+</section>
+
+<footer>© 〈ブランド名〉 / 〈運営者名〉</footer>
+
+</body>
+</html>

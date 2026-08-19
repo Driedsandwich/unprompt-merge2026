@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品・交換についてのよくある質問 | 〈ショップ名〉</title>
+<style>
+  /* Type scale: 本文16px基準 / 1.333比率(見出し 21→28→37) */
+  :root{
+    --ink:#1e2b3a;
+    --base:#2f5d75;
+    --base-soft:#e7f1f5;
+    --accent:#c97a2b;
+    --paper:#fbfcfd;
+    --line:#d8e2e8;
+    --fs-body:16px; --fs-h3:21px; --fs-h2:28px; --fs-h1:37px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    font-size:var(--fs-body); line-height:1.9; color:var(--ink);
+    background:var(--paper); -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+
+  /* ヘッダー */
+  header{padding:96px 0 64px;border-bottom:1px solid var(--line)}
+  .label{display:inline-block;font-size:13px;letter-spacing:.12em;color:var(--base);
+    border:1px solid var(--base);border-radius:999px;padding:4px 16px;margin-bottom:24px}
+  h1{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:var(--fs-h1);font-weight:600;letter-spacing:.04em;line-height:1.5;
+    margin-bottom:24px;
+  }
+  .lead{color:#44525f}
+  .reassure{
+    margin-top:32px;padding:24px 32px;background:var(--base-soft);
+    border-radius:8px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .reassure .icon{
+    flex:0 0 40px;height:40px;border-radius:50%;background:var(--base);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .reassure p{font-size:15px}
+
+  /* FAQ */
+  section.faq{padding:96px 0}
+  h2{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:var(--fs-h2);font-weight:600;letter-spacing:.04em;
+    margin-bottom:48px;
+  }
+  details{border-top:1px solid var(--line)}
+  details:last-of-type{border-bottom:1px solid var(--line)}
+  summary{
+    list-style:none;cursor:pointer;display:flex;gap:16px;align-items:baseline;
+    padding:24px 8px;font-size:var(--fs-h3);font-weight:600;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary:hover{color:var(--base)}
+  summary .q{color:var(--accent);font-weight:700;flex:0 0 auto}
+  summary::after{
+    content:"＋";margin-left:auto;color:var(--base);font-size:21px;flex:0 0 auto;
+  }
+  details[open] summary::after{content:"－"}
+  .answer{padding:0 8px 32px 44px;color:#3c4a57}
+  .answer .tag{
+    display:inline-block;font-size:13px;background:var(--base);color:#fff;
+    border-radius:4px;padding:2px 8px;margin-bottom:8px;
+  }
+
+  /* 連絡導線 */
+  section.contact{padding:96px 0 128px;border-top:1px solid var(--line);text-align:center}
+  .contact p{margin-bottom:40px;color:#44525f}
+  .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-block;min-width:240px;padding:16px 32px;border-radius:8px;
+    text-decoration:none;font-weight:700;letter-spacing:.04em;
+  }
+  .btn.primary{background:var(--base);color:#fff}
+  .btn.ghost{border:2px solid var(--base);color:var(--base)}
+  .note{margin-top:24px;font-size:13px;color:#7b8792}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;
+    font-size:13px;color:#7b8792}
+
+  @media (max-width:560px){
+    :root{--fs-h1:28px;--fs-h2:24px;--fs-h3:18px}
+    header{padding:64px 0 48px}
+    section.faq,section.contact{padding:64px 0}
+    .answer{padding-left:36px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <span class="label">返品・交換サポート</span>
+  <h1>「届いたものと違う…」<br>そのときの、答えはここに。</h1>
+  <p class="lead">お問い合わせの多い返品・交換まわりのご質問を、よくある順にまとめました。まずは下の一覧から、いちばん近い質問をお探しください。</p>
+  <div class="reassure">
+    <span class="icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" fill="#fff" opacity=".95"/>
+        <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#2f5d75" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <p><strong>ご安心ください。</strong>届いた商品に問題があった場合は、〈ショップ名〉が責任をもって対応いたします。手続きは難しくありません。分からないことは、このページの一番下からそのままご相談いただけます。</p>
+  </div>
+</header>
+
+<section class="faq">
+  <h2>よくある質問</h2>
+
+  <details open>
+    <summary><span class="q">Q1</span>届いた商品を返品したいのですが、どうすればいいですか?</summary>
+    <div class="answer">
+      <span class="tag">A</span>
+      <p>まずは〈ショップ名〉のお問い合わせ窓口までご連絡ください。ご注文番号と商品の状態をお伺いしたうえで、返送先と手続きの流れをご案内します。ご連絡の前に商品をお送りいただく必要はありません。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="q">Q2</span>届いた商品が不良品・注文と違っていました。</summary>
+    <div class="answer">
+      <span class="tag">A</span>
+      <p>ご迷惑をおかけして申し訳ありません。不良品や誤配送の場合は、交換または返品・返金にて対応いたします。商品の状態が分かる写真をご用意いただくと、確認が早く進みます。送料は〈ショップ名〉が負担いたします。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="q">Q3</span>開封してしまった商品でも返品できますか?</summary>
+    <div class="answer">
+      <span class="tag">A</span>
+      <p>商品の性質や状態によってご対応が異なりますので、まずは現在の状態をお問い合わせ窓口までお知らせください。できるかぎり個別にご相談に応じます。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="q">Q4</span>返送の送料はどちらが負担しますか?</summary>
+    <div class="answer">
+      <span class="tag">A</span>
+      <p>不良品・誤配送など〈ショップ名〉側の理由による場合は、送料は当店が負担します。お客さまのご都合による返品の送料については、ご連絡いただいた際にあわせてご案内いたします。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="q">Q5</span>返金はいつ、どの方法で受け取れますか?</summary>
+    <div class="answer">
+      <span class="tag">A</span>
+      <p>返送いただいた商品の到着と状態の確認ができ次第、返金の手続きに入ります。返金方法はお支払いいただいた方法に応じてご案内いたします。確認が取れましたら、進捗をメールでお知らせします。</p>
+    </div>
+  </details>
+</section>
+
+<section class="contact">
+  <h2>解決しませんでしたか?</h2>
+  <p>ここに載っていないご質問や、個別のご事情についても、ひとつずつ確認してお答えします。どうぞ遠慮なくご連絡ください。</p>
+  <div class="btns">
+    <a class="btn primary" href="#">お問い合わせフォームへ</a>
+    <a class="btn ghost" href="#">ご利用ガイドを見る</a>
+  </div>
+  <p class="note">※ お問い合わせの際は、ご注文番号をお手元にご用意いただくとスムーズです。<br>※ 回答までの目安や受付時間については〈ショップ名〉のご案内をご確認ください。</p>
+</section>
+
+</div>
+
+<footer>〈ショップ名〉 カスタマーサポート</footer>
+
+</body>
+</html>

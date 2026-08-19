@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+:root {
+  --text-base-size: 16px;
+  --text-scale-ratio: 1.25;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.563rem;
+  --text-2xl: 1.953rem;
+  --color-base: #1a1a1a;
+  --color-accent: #3b5998;
+  --color-muted: #6b7280;
+  --color-bg: #ffffff;
+  --color-border: #e5e7eb;
+  --spacing-unit: 8px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.mail-wrapper {
+  width: 720px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--color-bg);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.mail-inner {
+  padding: 48px 48px 40px;
+}
+@media (max-width: 600px) {
+  .mail-inner {
+    padding: 32px 24px 24px;
+  }
+}
+.subject {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+.subject-label {
+  font-weight: 600;
+}
+.subject-text {
+  font-weight: 400;
+}
+.greeting {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.greeting-name {
+  font-weight: 600;
+}
+.lead {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--color-base);
+  margin-bottom: 32px;
+  padding: 16px 0 16px 20px;
+  border-left: 3px solid var(--color-accent);
+}
+.body-text {
+  font-size: var(--text-base);
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 24px;
+}
+.body-text strong {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.cta-section {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+.cta-text {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.cta-button {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--text-base);
+  padding: 12px 32px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+.cta-button:hover {
+  opacity: 0.9;
+}
+.signature {
+  margin-top: 48px;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+.signature-name {
+  font-weight: 600;
+  color: var(--color-base);
+}
+.signature-role {
+  margin-top: 2px;
+}
+</style>
+</head>
+<body>
+<div class="mail-wrapper">
+<div class="mail-inner">
+  <div class="subject">
+    <span class="subject-label">件名：</span>
+    <span class="subject-text">【スカウト】「まだ何者でもない」今だからこそ、本物の設計を学びませんか？</span>
+  </div>
+
+  <div class="greeting">
+    <span class="greeting-name">〈候補者名〉</span> 様
+  </div>
+
+  <div class="lead">
+    技術の「理由」を語れるエンジニアに。<br>
+    私たちは、若手のうちから本質的な設計判断に向き合える環境です。
+  </div>
+
+  <div class="body-text">
+    突然のご連絡、失礼いたします。〈会社名〉の採用担当・〈あなたの名前〉と申します。<br>
+    あなたの〈ポートフォリオ/GitHub/経歴〉を拝見し、「この方と話がしてみたい」と強く感じ、ご連絡しました。
+  </div>
+
+  <div class="body-text">
+    私たちが特に注目したのは、単に技術を追うだけでなく、<strong>「なぜそのアーキテクチャを選んだのか」「この設計で将来どうなるか」</strong>という視点を持って開発されている点です。多くの若手エンジニアが目の前のタスクをこなすことに集中するなか、本質を考えながら手を動かせる方は貴重です。
+  </div>
+
+  <div class="body-text">
+    弊社では、立ち上げ期のプロダクトから大規模サービスのリファクタリングまで、<strong>設計の「判断」を任される機会が豊富</strong>にあります。コードを書くだけでなく、チームの技術選定やアーキテクチャ検討にも、経験年数に関係なく参加できます。いわゆる「マニュアル通りの実装」ではなく、<strong>正解のない問いと向き合い、自分で答えを出す力</strong>を、若手のうちから身につけたい方にぴったりの環境です。
+  </div>
+
+  <div class="body-text">
+    まずはカジュアルな面談で、お互いの考えをざっくばらんに話してみませんか？ 技術の話からキャリア観まで、堅苦しさのない場にしたいと思っています。
+  </div>
+
+  <div class="cta-section">
+    <div class="cta-text">
+      ご興味があれば、以下のボタンからご連絡ください。あなたの今後の可能性について、一緒に考えさせてください。
+    </div>
+    <a href="#" class="cta-button">カジュアル面談を申し込む</a>
+  </div>
+
+  <div class="signature">
+    <div class="signature-name">〈あなたの名前〉</div>
+    <div class="signature-role">〈会社名〉 採用担当／エンジニアリングマネージャー</div>
+    <div style="margin-top:8px;">
+      〒〈郵便番号〉〈住所〉<br>
+      TEL: 〈電話番号〉 / Email: 〈メールアドレス〉
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

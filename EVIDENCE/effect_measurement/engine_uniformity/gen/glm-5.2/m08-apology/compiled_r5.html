@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+  /* GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け */
+  /* GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す */
+
+  :root {
+    --bg: #f3ede4;       /* 地色 */
+    --primary: #b08a5a;  /* 主要色 */
+    --accent: #7a5230;   /* 強調色 */
+    --text: #5c5346;     /* 本文色 */
+    --base-size: 15px;
+    --scale: 1.18;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text);
+    font-size: var(--base-size);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    padding: 64px 24px;
+  }
+
+  .document {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない */
+  /* GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 */
+
+  .subject {
+    font-size: calc(var(--base-size) * 1.25);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--accent);
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(176, 138, 90, 0.3);
+  }
+
+  .greeting {
+    margin-bottom: 32px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .body-text p {
+    margin-bottom: 24px;
+  }
+
+  .signature {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(176, 138, 90, 0.25);
+    line-height: 1.7;
+  }
+
+  .signature p {
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="document">
+    <p class="subject">ご注文いただいた商品のお届けが遅れております</p>
+
+    <p class="greeting">〈お客様名〉 様</p>
+
+    <div class="body-text">
+      <p>この度はご注文いただき、ありがとうございます。発送のご連絡が遅れており、申し訳ございません。</p>
+
+      <p>いただいたご注文につきまして、お届け予定時期をすぎても発送のご案内ができておりません。ご注文を楽しみにお待ちいただいておりましたところ、このような状況となってしまい、深くお詫び申し上げます。</p>
+
+      <p>現在は準備を進めており、発送は来週半ば頃を予定しております。手配が整い次第、追って発送のご案内をお送りします。</p>
+
+      <p>商品のお届けまで、もう少しだけお待たせしてしまいます。何卒ご容赦くださいますようお願いいたします。</p>
+    </div>
+
+    <div class="signature">
+      <p>〈店舗名〉</p>
+      <p>〈メールアドレス〉</p>
+    </div>
+  </div>
+</body>
+</html>

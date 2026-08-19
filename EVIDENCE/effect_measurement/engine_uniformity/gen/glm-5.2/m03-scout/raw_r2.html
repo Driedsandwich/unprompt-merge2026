@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+  :root {
+    --scale-body: 15px;
+    --scale-lead: 17px;
+    --scale-subject: 22px;
+    --scale-label: 11px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f3f1ee;
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    color: #1a1a1a;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    padding: 48px 24px;
+  }
+
+  .mail {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 64px 72px;
+  }
+
+  .label {
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-size: var(--scale-label);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8a8580;
+    margin-bottom: 8px;
+  }
+
+  .subject {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--scale-subject);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin-bottom: 56px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0ddd8;
+  }
+
+  .greeting {
+    font-size: var(--scale-body);
+    margin-bottom: 32px;
+  }
+
+  .body p {
+    font-size: var(--scale-body);
+    margin-bottom: 24px;
+  }
+
+  .body p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .accent {
+    color: #9a3324;
+    font-weight: 600;
+  }
+
+  .cta {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid #e0ddd8;
+  }
+
+  .cta p {
+    font-size: var(--scale-body);
+    margin-bottom: 8px;
+  }
+
+  .cta .highlight {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--scale-lead);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #1a1a1a;
+  }
+
+  .signature {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid #e0ddd8;
+    font-size: 13px;
+    line-height: 1.9;
+    color: #555;
+  }
+
+  .signature .name {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    .mail {
+      padding: 40px 28px;
+    }
+    .subject {
+      font-size: 18px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="mail">
+    <div class="label">件名</div>
+    <div class="subject">「設計」の判断を自分で握れる環境で、一緒に作りませんか</div>
+
+    <div class="greeting">〈候補者名〉さん</div>
+
+    <div class="body">
+      <p>初めてご連絡します。〈会社名〉でエンジニア採用を担当しております〈担当者名〉と申します。</p>
+
+      <p>〈候補者名〉さんの公開実績を拝見したとき、消費する側ではなく作る側に回ろうとしている若手特有の勢いを感じました。コードを書くこと自体は誰もが学べますが、「要件の前で立ち止まる力」を持っている人に出会うのは、実はあまりありません。</p>
+
+      <p>わたしたちは現在、プロダクトの中核を担うメンバーを探しています。アーキテクチャの選択からテスト戦略まで、現場の判断を若手にも預ける文化があります。「指示を待つ」のではなく「自分が設計する」という経験を、入社直後から積める環境です。</p>
+
+      <p>技術スタックの指定はありません。特定の言語経験より、〈候補者名〉さんがこれまで何に時間を注いできたか、その思想そのものに関心があります。</p>
+    </div>
+
+    <div class="cta">
+      <p>まずはカジュアルに、お話しませんか。</p>
+      <p class="highlight">30分のオンライン杂談でも構いません。</p>
+      <p>ご興味があれば、ご都合の良い日時を2〜3つ教えてください。</p>
+    </div>
+
+    <div class="signature">
+      〈会社名〉<br>
+      〈部署名〉 〈担当者名〉<br>
+      〈メールアドレス〉
+    </div>
+  </div>
+</body>
+</html>

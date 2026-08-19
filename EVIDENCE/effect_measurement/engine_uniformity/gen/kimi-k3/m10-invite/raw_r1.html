@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>同窓会のお知らせ</title>
+<style>
+  /* タイプスケール: 本文16px基準 / 見出し 1.75倍(28px) / リード 1.125倍(18px) */
+  :root{
+    --ink:#2b3a55;
+    --accent:#e2603f;
+    --paper:#fdfcf9;
+  }
+  body{
+    margin:0;
+    background:#eef0f3;
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+    color:var(--ink);
+    line-height:1.9;
+    font-size:16px;
+  }
+  .page{
+    max-width:720px;
+    margin:48px auto;
+    background:var(--paper);
+    padding:64px 56px;
+    box-sizing:border-box;
+  }
+  h1{
+    font-family:"Hiragino Mincho ProN","Hiragino Mincho Pro","Yu Mincho",serif;
+    font-size:28px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    line-height:1.6;
+    margin:0 0 16px;
+  }
+  .lead{
+    font-size:18px;
+    margin:0 0 48px;
+  }
+  h2{
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:0.12em;
+    color:var(--accent);
+    border-left:4px solid var(--accent);
+    padding-left:8px;
+    margin:0 0 16px;
+  }
+  section{ margin-bottom:48px; }
+  p{ margin:0 0 8px; }
+  dl{ margin:0; }
+  dt{
+    float:left;
+    font-weight:700;
+    width:4.5em;
+    clear:left;
+  }
+  dd{ margin:0 0 8px 4.5em; }
+  dl::after{ content:""; display:block; clear:both; }
+  .sign{
+    margin-top:64px;
+    text-align:right;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>制服は脱いだまま、あの頃のまま集まろう。</h1>
+  <p class="lead">卒業してから、ずいぶん経ちました。元気にしてますか?</p>
+
+  <section>
+    <h2>開催概要</h2>
+    <dl>
+      <dt>日時</dt><dd>〈開催日〉〈開始時刻〉〜</dd>
+      <dt>場所</dt><dd>〈会場〉(〈最寄り駅〉からすぐ)</dd>
+      <dt>会費</dt><dd>〈会費〉程度を予定しています</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>どんな会?</h2>
+    <p>堅い挨拶も名刺交換もなし。昔のあだ名で呼び合って、近況を笑い合う、ただそれだけの会にしたいと思っています。</p>
+    <p>久しぶりすぎて誰の顔も浮かばない…という人ほど、来てください。会えば一瞬であの頃に戻れます。途中参加・途中退出も大歓迎です。</p>
+  </section>
+
+  <section>
+    <h2>出欠の連絡</h2>
+    <p>〈締切日〉までに、〈幹事名〉まで〈連絡方法:LINE・メール等〉で一言ください。「行けるかも」くらいの返事で大丈夫です。</p>
+  </section>
+
+  <section>
+    <p>あの日の教室に、もう一度。みんなに会えるのを楽しみにしています。</p>
+    <p class="sign">幹事 〈幹事名〉</p>
+  </section>
+
+</div>
+</body>
+</html>

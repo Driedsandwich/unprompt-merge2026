@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内報 巻頭あいさつ</title>
+<style>
+  :root {
+    --base-font-size: 16px;
+    --ratio: 1.2;
+    --h2-size: calc(var(--base-font-size) * var(--ratio) * var(--ratio));
+    --h3-size: calc(var(--base-font-size) * var(--ratio));
+    --spacing-unit: 8px;
+    --color-base: #2d2d2d;
+    --color-accent: #3a6b8c;
+    --color-bg: #f9f7f5;
+    --color-muted: #6b6b6b;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: var(--color-bg);
+    color: var(--color-base);
+    font-size: var(--base-font-size);
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    padding: calc(var(--spacing-unit) * 6) var(--spacing-unit);
+  }
+
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 6);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  .greeting {
+    font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    font-size: var(--h2-size);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    line-height: 1.4;
+  }
+
+  .greeting::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--color-accent);
+    margin-top: calc(var(--spacing-unit) * 2);
+  }
+
+  .section-head {
+    font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    font-size: var(--h3-size);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-base);
+    margin-top: calc(var(--spacing-unit) * 6);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    padding-bottom: calc(var(--spacing-unit) * 1);
+    border-bottom: 1px solid #ddd;
+  }
+
+  p {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .closing {
+    margin-top: calc(var(--spacing-unit) * 8);
+    padding-top: calc(var(--spacing-unit) * 3);
+    border-top: 1px solid #e5e2de;
+    font-style: normal;
+    color: var(--color-muted);
+  }
+
+  .closing strong {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="greeting">みなさん、おはようございます。</div>
+
+  <p>先月は新年度ならではのバタつきがあったかと思います。新しいチーム編成、担当業務の引き継ぎ、社内システムの切り替え……「まだ慣れないな」という方も、逆に「去年よりスムーズに進められた」という方も、それぞれのペースでこの1ヶ月を過ごされたのではないでしょうか。</p>
+
+  <div class="section-head">今月の話題——「つながり」の見える化</div>
+
+  <p>さて、今月の社内報では、部署間の「つながり」をテーマにした特集を組んでいます。これまでも「横断プロジェクト」や「ランチ交流会」といった試みはありましたが、実際のところ「あの部署が何をしているのか、いまいちわからない」という声は根強いものです。</p>
+
+  <p>そこで編集部では、各部署の〈直近3ヶ月のホットトピック〉を1枚のシートにまとめる企画をスタートしました。紙とデジタル両方で共有する予定です。また、このシートをきっかけに「ちょっと話を聞いてみたい」と思ったら、気軽にメッセージを送り合える仕組みも併せて整えています。</p>
+
+  <p>「知らない」はもったいない。小さな一歩でも、顔が見える関係が増えれば、仕事の質も確かに変わっていく——そう信じて、今月号は構成しています。</p>
+
+  <div class="closing">
+    <p>とはいえ、まずは目の前の仕事をひとつずつ。無理なく、でもどこかでちょっとだけ、新しい接点を探してみてください。編集部としても、みなさんの「あ、これ知りたかった」を拾い集めていきます。</p>
+    <p>今月もよろしくお願いします。</p>
+    <p style="margin-top: calc(8px * 3); text-align: right;"><strong>〈執筆者名〉</strong></p>
+  </div>
+
+</div>
+</body>
+</html>

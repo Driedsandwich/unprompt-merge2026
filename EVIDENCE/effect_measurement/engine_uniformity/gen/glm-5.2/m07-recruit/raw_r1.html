@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社紹介 - 〈会社名〉採用ページ</title>
+<style>
+  :root {
+    --scale: 1.25;
+    --base-size: 16px;
+    --h1-size: calc(var(--base-size) * pow(var(--scale), 3)); /* ~31px */
+    --h2-size: calc(var(--base-size) * pow(var(--scale), 2));  /* ~25px */
+    --h3-size: calc(var(--base-size) * var(--scale));          /* ~20px */
+    --ink: #1a1a1a;
+    --paper: #faf8f4;
+    --accent: #2d5f4e;
+    --muted: #6b6b6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Sans", "Yugothic", "Yu Gothic", system-ui, sans-serif;
+    font-size: var(--base-size);
+    line-height: 1.8;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  .container { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+  /* ヒーロー */
+  .hero { padding: 96px 0 64px; }
+  .hero h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h1-size);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  .hero .lead {
+    font-size: var(--h3-size);
+    color: var(--accent);
+    font-weight: 600;
+    line-height: 1.6;
+  }
+  /* セクション共通 */
+  section { padding: 80px 0; }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h2-size);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+    line-height: 1.4;
+  }
+  h2 .num {
+    display: block;
+    font-size: var(--base-size);
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  p { margin-bottom: 16px; }
+  .divider { width: 32px; height: 2px; background: var(--accent); margin: 0 0 24px; }
+  /* 会社紹介 */
+  .intro p { font-size: 17px; }
+  /* 声 */
+  .voices { background: #fff; }
+  .voice {
+    padding: 32px 0;
+    border-bottom: 1px solid #e0ddd6;
+  }
+  .voice:last-child { border-bottom: none; }
+  .voice .role {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .voice blockquote {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .voice .name { font-size: 14px; color: var(--muted); }
+  /* 大事にしていること */
+  .values ol { list-style: none; counter-reset: val; }
+  .values li {
+    counter-increment: val;
+    padding: 24px 0 24px 56px;
+    position: relative;
+    border-bottom: 1px solid #e0ddd6;
+  }
+  .values li::before {
+    content: counter(val, decimal-leading-zero);
+    position: absolute; left: 0; top: 24px;
+    font-family: "Hiragino Mincho ProN", serif;
+    font-size: 28px;
+    color: var(--accent);
+    opacity: 0.4;
+  }
+  .values h3 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h3-size);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  /* 導線 */
+  .cta { text-align: center; padding: 96px 0; }
+  .cta p { margin-bottom: 32px; font-size: 17px; }
+  .cta-btn {
+    display: inline-block;
+    padding: 16px 48px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 17px;
+  }
+  .cta-note { font-size: 14px; color: var(--muted); margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="hero">
+    <h1>飾らない言葉で、<br>覚悟を書く。</h1>
+    <p class="lead">採用ページをつくるにあたり、きれいな言葉より言いにくいことを優先しました。</p>
+  </header>
+
+  <section class="intro">
+    <div class="divider"></div>
+    <h2><span class="num">01</span>会社の紹介</h2>
+    <p〉〈会社名〉は〈事業領域〉の会社です。設立以来、一貫して〈提供価値〉に向き合ってきました。</p>
+    <p>規模も実績も、ここでは声を大きくするために書きません。応募してくださる方が「自分の目で確かめる」という姿勢を大事にしたいからです。その上で、私たちが熱意を持ってやっていることは、このページに書かれた内容から伝わるはずです。</p>
+  </section>
+
+  <section class="voices">
+    <div class="divider"></div>
+    <h2><span class="num">02</span>働く人の声</h2>
+
+    <div class="voice">
+      <div class="role">〈職種〉・入社〈年数〉年</div>
+      <blockquote>「正解がない仕事にどう向き合うか。ここはそれを一人で抱え込まずに済む場所です。」</blockquote>
+      <div class="name">〈氏名〉</div>
+    </div>
+
+    <div class="voice">
+      <div class="role">〈職種〉・入社〈年数〉年</div>
+      <blockquote>「最初は不安もありました。でも、任せてもらえるまでが早い。結果として自分の成長を実感できます。」</blockquote>
+      <div class="name">〈氏名〉</div>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="divider"></div>
+    <h2><span class="num">03</span>大事にしていること</h2>
+    <ol>
+      <li>
+        <h3>言いにくいことを言える場</h3>
+        <p>困っていること、違和感を感じていること。それを声にできる空気を、会議以外の場でも保ち続けます。</p>
+      </li>
+      <li>
+        <h3>任せるところは大きく</h3>
+        <p>育てるというより、領域を渡す感覚に近いです。もちろんサポートはしますが、本人の裁量を狭めないようにしています。</p>
+      </li>
+      <li>
+        <h3>立ち止まることを恐れない</h3>
+        <p>早く進めることよりも、なぜやるかを見失わないことを優先します。その分、議論には時間をかけます。</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="cta">
+    <p>ここまで読んでいただきありがとうございます。<br>少しでも共感できるものがあれば、話を聞かせてください。</p>
+    <a href="#" class="cta-btn">応募する</a>
+    <p class="cta-note">まずはカジュアルにお話しすることも可能です。</p>
+  </section>
+
+</div>
+
+</body>
+</html>

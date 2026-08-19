@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Portfolio — 余白と一手</title>
+<style>
+:root {
+  --bg: #f5f4f1;
+  --ink: #1b1b1b;
+  --accent: #c7a96b;
+  --step-1: 0.875rem;
+  --step-2: 1rem;
+  --step-3: 1.5rem;
+  --step-4: 2.5rem;
+  --step-5: 4rem;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: var(--step-2);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+/* GYAKUMON-CHOICE: ミニマルな視覚表現 = sharp */
+section {
+  padding: 96px 0;
+  border-top: 1px solid rgba(27,27,27,0.12);
+}
+.hero {
+  border-top: none;
+  padding-top: 120px;
+  padding-bottom: 88px;
+}
+/* GYAKUMON-CHOICE: 作品の質で記憶させる = serif */
+.hero h1 {
+  font-size: var(--step-5);
+  margin-bottom: 32px;
+}
+.hero .lead {
+  font-size: var(--step-3);
+  max-width: 520px;
+}
+.hero .meta {
+  margin-top: 56px;
+  font-size: var(--step-1);
+  color: var(--ink);
+  opacity: 0.6;
+  letter-spacing: 0.04em;
+}
+.about p {
+  max-width: 560px;
+  font-size: var(--step-2);
+}
+.about h2 { font-size: var(--step-4); margin-bottom: 40px; }
+.works h2 { font-size: var(--step-4); margin-bottom: 56px; }
+.work-item { margin-bottom: 72px; }
+.work-item:last-child { margin-bottom: 0; }
+.work-item h3 { font-size: var(--step-3); margin-bottom: 8px; }
+.work-item .role {
+  font-size: var(--step-1);
+  color: var(--ink);
+  opacity: 0.55;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+.work-item .thumb {
+  height: 80px;
+  margin-bottom: 24px;
+  background: var(--ink);
+}
+.work-item:nth-child(3) .thumb { background: var(--accent); }
+.work-item p { max-width: 540px; font-size: var(--step-2); }
+.skills h2 { font-size: var(--step-4); margin-bottom: 40px; }
+.skills ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skills li {
+  border: 1px solid var(--ink);
+  padding: 8px 16px;
+  font-size: var(--step-1);
+  letter-spacing: 0.02em;
+}
+.contact {
+  padding-bottom: 120px;
+}
+.contact h2 { font-size: var(--step-4); margin-bottom: 32px; }
+.contact a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+.contact p { font-size: var(--step-2); }
+</style>
+</head>
+<body>
+<main>
+  <!-- GYAKUMON-CHOICE: 応募前の第一印象用 = airy -->
+  <section class="hero">
+    <h1>余白と、<br>一手。</h1>
+    <p class="lead">見た人の記憶に残るのは、装飾ではなく判断の跡です。なぜこれを削り、なぜこれを残したか――その過程を置くポートフォリオです。</p>
+    <div class="meta">〈氏名〉 / Designer</div>
+  </section>
+
+  <section class="about">
+    <h2>关于</h2>
+    <p>〈確認: 現場で実際に直面したデザイン上の葛藤と、どう解いたか〉を軸に、思考の過程そのものを作品として見せています。完成形の美しさだけでなく、削る判断をどう下したかを辿れる構成です。</p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: プロセス・思考解説中心 = normal -->
+  <section class="works">
+    <h2>作品</h2>
+    <div class="work-item">
+      <h3>〈作品タイトル〉</h3>
+      <p class="role">Brand / Visual — 〈期間〉</p>
+      <div class="thumb"></div>
+      <p>〈確認: 求められた課題と、最初に提案した方向がどう変わったか〉。削った要素と残した要素の根拠を辿れるように記録しています。</p>
+    </div>
+    <div class="work-item">
+      <h3>〈作品タイトル〉</h3>
+      <p class="role">UI / Interaction — 〈期間〉</p>
+      <div class="thumb"></div>
+      <p>〈確認: ユーザーテスト等で判明した手戻りと再設計の判断〉。完成物だけでは伝わらない思考の堆積を記述しています。</p>
+    </div>
+    <div class="work-item">
+      <h3>〈作品タイトル〉</h3>
+      <p class="role">Editorial / Print — 〈期間〉</p>
+      <div class="thumb"></div>
+      <p>〈確認: 紙面構成で迷った箇所と最終的な判断〉。余白の根拠を明示し、なぜ詰めなかったかを残しています。</p>
+    </div>
+  </section>
+
+  <section class="skills">
+    <h2>道具</h2>
+    <ul>
+      <li>Figma</li>
+      <li>Adobe Illustrator</li>
+      <li>Adobe Photoshop</li>
+      <li>HTML / CSS</li>
+      <li>〈追加ツール〉</li>
+    </ul>
+  </section>
+
+  <section class="contact">
+    <h2>連絡先</h2>
+    <p><a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a></p>
+  </section>
+</main>
+</body>
+</html>

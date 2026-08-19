@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+  :root {
+    --bg: #1a1d23;
+    --surface: #232830;
+    --text: #e8e6e1;
+    --text-dim: #9a9a90;
+    --accent: #c8a96a;
+    --base-size: 15px;
+    --scale-h1: 1.6;
+    --scale-h2: 1.2;
+    --scale-meta: 0.87;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    color: var(--text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    padding: 48px 24px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .subject {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: calc(var(--base-size) * var(--scale-h1));
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    line-height: 1.5;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #3a3f48;
+  }
+
+  .recipient {
+    font-size: var(--base-size);
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+  }
+
+  .body p {
+    font-size: var(--base-size);
+    margin-bottom: 24px;
+    letter-spacing: 0.015em;
+  }
+
+  .body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .accent-text {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .signature {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid #3a3f48;
+    font-size: calc(var(--base-size) * var(--scale-meta));
+    color: var(--text-dim);
+    line-height: 2;
+    letter-spacing: 0.02em;
+  }
+
+  .signature .name {
+    color: var(--text);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="subject">設計の判断を自分で握れる環境にいるエンジニアを探しています</div>
+
+    <div class="recipient">〈候補者名〉さん</div>
+
+    <div class="body">
+      <p>突然のご連絡失礼します。〈会社名〉で採用を担当している〈担当者名〉と申します。</p>
+
+      <p>〈候補者名〉さんの経歴を拝見し、若手でありながらアーキテクチャの選択や技術選定に自ら関わってこられた点に惹かれ、ぜひお話ししたいと考えご連絡いたしました。</p>
+
+      <p>私たちのチームは現在、少数のエンジニアでプロダクトの中核を支えています。上意下達でタスクを割る運用ではなく、仕様の段階からエンジニアが議論に加わり、技術的な意思決定を担う風土があります。 若手であっても「なぜこの設計にするか」を自分の言葉で説明し、実装に落とし込める人を求めています。</p>
+
+      <p>〈候補者名〉さんがこれまで向き合ってきた<span class="accent-text">設計と実装の隙間を埋める経験</span>は、私たちの環境でまっすぐ伸びると考えています。</p>
+
+      <p>カジュアルな雑談でも構いません。一度お話しできれば幸いです。</p>
+    </div>
+
+    <div class="signature">
+      〈会社名〉〈部署名〉<br>
+      〈担当者名〉<br>
+      〈メールアドレス〉
+    </div>
+  </div>
+</body>
+</html>

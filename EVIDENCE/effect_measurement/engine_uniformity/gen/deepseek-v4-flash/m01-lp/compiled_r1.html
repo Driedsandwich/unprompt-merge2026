@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 | 法人向けサービス基盤</title>
+<style>
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+/* GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け */
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+/* GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング */
+/* GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 */
+
+/* タイポグラフィ設計:
+   本文サイズ: 16px (1rem) を基準
+   比率: 1.25 (major third)
+   h1: 3.052rem (48.83px)
+   h2: 2.441rem (39.06px)
+   h3: 1.953rem (31.25px)
+   リード: 1.25rem
+   本文: 1rem
+   小文字: 0.875rem
+   見出し: serif (Georgia, "Times New Roman", serif)
+   本文: sans-serif ("Inter", "Helvetica Neue", Arial, sans-serif)
+*/
+
+:root {
+    --color-bg: #0b0d10;
+    --color-primary: #1c2126;
+    --color-accent: #b08d57;
+    --color-text: #e6e3dc;
+    --color-text-muted: #9a958c;
+    --color-border: #2a2f35;
+    --font-heading: Georgia, "Times New Roman", serif;
+    --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+    --spacing-unit: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* セクション縦余白: ゆったり */
+section {
+    padding: 104px 0;
+}
+
+/* ヘッダー */
+.header {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    font-weight: 400;
+}
+
+.header-cta {
+    display: inline-block;
+    padding: 12px 32px;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.header-cta:hover {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
+/* ヒーロー */
+.hero {
+    padding: 128px 0 104px;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 64px;
+    background: linear-gradient(to bottom, var(--color-accent), transparent);
+}
+
+.hero-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    border: 1px solid rgba(176, 141, 87, 0.3);
+    padding: 6px 20px;
+    margin-bottom: 48px;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: 3.052rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 32px;
+}
+
+.hero h1 span {
+    color: var(--color-accent);
+}
+
+.hero-lead {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    max-width: 680px;
+    margin: 0 auto 48px;
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 16px 48px;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.hero-cta:hover {
+    opacity: 0.9;
+}
+
+/* 価値提案 */
+.value-proposition {
+    background-color: var(--color-primary);
+}
+
+.value-proposition h2 {
+    font-family: var(--font-heading);
+    font-size: 2.441rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.value-sub {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    max-width: 640px;
+    margin: 0 auto 56px;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.value-block {
+    border-top: 1px solid var(--color-accent);
+    padding-top: 32px;
+}
+
+.value-block h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+}
+
+.value-block p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.8;
+}
+
+/* 特徴3点 */
+.features h2 {
+    font-family: var(--font-heading);
+    font-size: 2.441rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 72px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px 40px;
+}
+
+.feature-item {
+    text-align: center;
+}
+
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 24px;
+    border: 1px solid var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+}
+
+.feature-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+}
+
+.feature-item p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.8;
+}
+
+/* 利用の流れ */
+.steps {
+    background-color: var(--color-primary);
+}
+
+.steps h2 {
+    font-family: var(--font-heading);
+    font-size: 2.441rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 72px;
+}
+
+.steps-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    counter-reset: step;
+}
+
+.step-item {
+    counter-increment: step;
+    position: relative;
+    padding-top: 48px;
+}
+
+.step-item::before {
+    content: counter(step);
+    font-family: var(--font-heading);
+    font-size: 2.441rem;
+    color: var(--color-accent);
+    opacity: 0.25;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1;
+}
+
+.step-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+}
+
+.step-item p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.8;
+}
+
+/* CTA */
+.cta-section {
+    text-align: center;
+    padding: 112px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.cta-section h2 {
+    font-family: var(--font-heading);
+    font-size: 2.441rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+    margin-bottom: 24px;
+}
+
+.cta-section p {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    max-width: 520px;
+    margin: 0 auto 48px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 16px 56px;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+}
+
+.cta-sub {
+    margin-top: 24px;
+    color: var(--color-text-muted);
+    font-size: 0.8125rem;
+}
+
+/* フッター */
+.footer {
+    padding: 48px 0 40px;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer-logo {
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+}
+
+.footer-nav {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.footer-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+    color: var(--color-accent);
+}
+
+.footer-copy {
+    width: 100%;
+    text-align: center;
+    margin-top: 24px;
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+}
+
+/* レスポンシブ: PC優先だがタブレット以下に配慮 */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .value-grid,
+    .features-grid,
+    .steps-list {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-nav {
+        justify-content: center;
+        gap: 24px;
+    }
+    section {
+        padding: 72px 0;
+    }
+    .hero {
+        padding: 96px 0 72px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">〈サービス名〉</div>
+        <a href="#" class="header-cta">資料請求</a>
+    </div>
+</header>
+
+<!-- ヒーロー -->
+<!-- GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-label">法人向けサービス基盤</div>
+        <h1>意思決定の<br>中心に、<span>確かな基盤</span>を。</h1>
+        <p class="hero-lead">貴社の業務判断を支える、堅牢で洗練されたサービス基盤。<br>静かに、しかし確実に、組織の力を引き出します。</p>
+        <a href="#" class="hero-cta">サービスの詳細を見る</a>
+    </div>
+</section>
+
+<!-- 価値提案 -->
+<!-- GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け -->
+<!-- GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング -->
+<section class="value-proposition">
+    <div class="container">
+        <h2>信頼は、設計に宿る。</h2>
+        <p class="value-sub">派手な機能や短期的な成果ではなく、<br>日々の業務を支える基盤そのものにこそ、本当の価値があります。</p>
+        <div class="value-grid">
+            <div class="value-block">
+                <h3>継続性への責任</h3>
+                <p>システム更改や担当者交代があっても、一貫した運用を支える設計。〈確認: 御社のシステム更改頻度や運用体制〉に合わせた構造で、長期にわたる信頼を構築します。</p>
+            </div>
+            <div class="value-block">
+                <h3>判断の質を高める</h3>
+                <p>データとプロセスが整理された環境は、属人的判断からの脱却を促します。〈確認: 現在の意思決定における課題〉を踏まえた上で、組織全体の判断力を底上げします。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 特徴3点 -->
+<!-- GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 -->
+<section class="features">
+    <div class="container">
+        <h2>三つの基盤設計</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">01</div>
+                <h3>構造の透明性</h3>
+                <p>誰が見ても理解できる、クリアな情報設計。ブラックボックスを排除し、運用担当者が迷わない仕組みを標準とします。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">02</div>
+                <h3>拡張に耐える堅牢性</h3>
+                <p>将来の組織変更や業務拡大を見据えた、冗長性と柔軟性を両立するアーキテクチャ。〈年数〉年以上の運用を見据えて設計します。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">03</div>
+                <h3>運用負荷の最小化</h3>
+                <p>導入後の運用コストを徹底的に削減。定型業務の自動化と直感的なUIにより、現場の負担を軽減し、本質的な業務に集中できる環境を提供します。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 利用の流れ -->
+<section class="steps">
+    <div class="container">
+        <h2>導入の流れ</h2>
+        <div class="steps-list">
+            <div class="step-item">
+                <h3>ヒアリング・現状分析</h3>
+                <p>まずは御社の業務フローや課題を詳しく伺います。〈確認: 現状のシステム構成や運用課題〉を整理し、最適な基盤設計の土台を作ります。</p>
+            </div>
+            <div class="step-item">
+                <h3>基盤設計・提案</h3>
+                <p>ヒアリング内容をもとに、具体的なシステム構成と導入スケジュールをご提案。コストと効果のバランスを明確にし、ご判断いただきます。</p>
+            </div>
+            <div class="step-item">
+                <h3>構築・移行・運用</h3>
+                <p>設計に基づき構築を進め、段階的に移行。運用開始後も継続的にサポートし、安定稼働と改善を支援します。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h2>まずは、お話ししましょう。</h2>
+        <p>御社の課題に合わせた、<br>具体的な基盤設計のイメージをご提案します。</p>
+        <a href="#" class="cta-button">無料相談を申し込む</a>
+        <p class="cta-sub">所要時間は約30分。オンラインでのご相談も承ります。</p>
+    </div>
+</section>
+
+<!-- フッター -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-logo">〈サービス名〉</div>
+        <ul class="footer-nav">
+            <li><a href="#">サービス概要</a></li>
+            <li><a href="#">導入事例</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+        <div class="footer-copy">© 〈会社名〉 All Rights Reserved.</div>
+    </div>
+</footer>
+
+</body>
+</html>

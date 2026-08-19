@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社紹介 - 〈会社名〉採用ページ</title>
+<style>
+  /* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+  /* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+  /* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+  /* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+  /* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+
+  /* palette: [#1c1a17, #4a3a2b, #c98a3e] / heading: serif / density: airy / corner: soft */
+  :root {
+    --bg: #1c1a17;
+    --surface: #221f1b;
+    --primary: #4a3a2b;
+    --accent: #c98a3e;
+    --text: #ece5d8;
+    --text-dim: #a89c87;
+    --text-faint: #6b6356;
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Times New Roman", serif;
+    --sans: "Hiragino Sans", "Yu Gothic UI", Meiryo, system-ui, sans-serif;
+    --step-0: 15px;
+    --step-1: 18px;
+    --step-2: 24px;
+    --step-3: 34px;
+    --step-4: 52px;
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: var(--step-1);
+    line-height: 1.95;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* layout */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section {
+    padding: 104px 0;
+  }
+
+  /* hero */
+  .hero {
+    padding: 120px 0 96px;
+  }
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-size: var(--step-4);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.03em;
+    margin-bottom: 32px;
+  }
+  .hero-lead {
+    font-size: var(--step-2);
+    line-height: 1.8;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* section labels */
+  .sec-label {
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    margin-bottom: 24px;
+  }
+
+  /* heading */
+  h2 {
+    font-size: var(--step-3);
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    margin-bottom: 48px;
+  }
+
+  /* prose body */
+  .prose p {
+    margin-bottom: 32px;
+    font-size: var(--step-1);
+    line-height: 2.0;
+    color: var(--text);
+  }
+  .prose p:first-letter {
+    color: var(--accent);
+  }
+
+  /* voices */
+  .voice {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    margin-bottom: 32px;
+  }
+  .voice-mark {
+    font-size: 36px;
+    color: var(--accent);
+    font-family: var(--serif);
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .voice p {
+    font-size: var(--step-1);
+    line-height: 1.95;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  .voice-name {
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* values */
+  .value {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--primary);
+  }
+  .value:last-child { border-bottom: none; }
+  .value-num {
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .value h3 {
+    font-size: var(--step-2);
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+  .value p {
+    color: var(--text-dim);
+    line-height: 1.9;
+    font-size: var(--step-0);
+  }
+
+  /* CTA */
+  .cta {
+    text-align: center;
+    padding: 96px 0 120px;
+  }
+  .cta h2 {
+    font-size: var(--step-3);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .cta p {
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    font-size: var(--step-1);
+    line-height: 1.85;
+  }
+  .cta-button {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--sans);
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 20px 56px;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+
+  footer {
+    padding: 32px 0;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+<!-- GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 -->
+<section class="hero">
+  <div class="container">
+    <!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+    <p class="hero-eyebrow">〈会社名〉の会社紹介</p>
+    <h1>はじめまして。まずは、<br>私たちの日常を覗いてみませんか。</h1>
+    <p class="hero-lead">採用ページによくある、きれいな言葉を並べるつもりはありません。ここにあるのは、隣の席で働く人のこと、毎日繰り返される小さなやりとりのこと、そして〈確認: 会社として一番大事にしていること〉についての、飾らない話です。</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+<section>
+  <div class="container">
+    <p class="sec-label">会社の紹介</p>
+    <h2>きっかけは、隣の人の存在だった。</h2>
+    <div class="prose">
+      <p>〈会社名〉は、〈確認: 事業内容を1文で〉をしています。ただ、採用ページでいちばん伝えたいのは、何を作っているかよりも、それを誰と作っているかです。</p>
+      <p>入社して数年が経つ今でも思います。困ったときに声をかけてくれる人がいる。うまくいったときに一緒に喜んでくれる人がいる。それは、〈確認: 社内で実際にあった出来事を1エピソード〉という出来事があったからこそ、実感として残っています。</p>
+      <p>何かを始めるとき、最初はだれもが不安です。だからこそ、隣にいる人の顔が見えること。それを、採用ページの一番目に書きたいと思いました。</p>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+<section>
+  <div class="container">
+    <p class="sec-label">働く人の声</p>
+    <h2>「正直、こう思ってます」</h2>
+
+    <div class="voice">
+      <span class="voice-mark">「</span>
+      <p>〈確認: 入社2年目社員の実際の声――入社前の不安と、入社後に感じたギャップ〉</p>
+      <p class="voice-name">〈入社2年目・氏名〉</p>
+    </div>
+
+    <div class="voice">
+      <span class="voice-mark">「</span>
+      <p>〈確認: 中堅社員の実際の声――チームで働く中で印象に残っていること〉</p>
+      <p class="voice-name">〈入社〈年数〉年・氏名〉</p>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+<section>
+  <div class="container">
+    <p class="sec-label">大事にしていること</p>
+    <h2>人と人とのあいだに、熱意を置く。</h2>
+
+    <div class="value">
+      <p class="value-num">01</p>
+      <h3>声をあげるまで待つ</h3>
+      <p>〈確認: 「声を待つ」を実践している具体場面〉。答えを急がせず、言葉になるまで隣にいます。</p>
+    </div>
+
+    <div class="value">
+      <p class="value-num">02</p>
+      <h3>失敗を一人で抱えない</h3>
+      <p>〈確認: 失敗を共有した実際の出来事〉。困ったときほど、隣の席が頼りになります。</p>
+    </div>
+
+    <div class="value">
+      <p class="value-num">03</p>
+      <h3>小さな成長を名前で呼ぶ</h3>
+      <p>「よくやったね」を、役職ではなく名前で伝える。それが〈会社名〉の習慣です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+<section class="cta">
+  <div class="container">
+    <h2>まだ、応募しなくて大丈夫です。</h2>
+    <p>まずは読んで、少し知って、気が向いたら次のページへ。<br>〈会社名〉のことをもう少し知りたくなったら、声をかけてください。</p>
+    <a href="#" class="cta-button">もっと知る</a>
+  </div>
+</section>
+
+<footer>
+  © 〈会社名〉
+</footer>
+
+</body>
+</html>

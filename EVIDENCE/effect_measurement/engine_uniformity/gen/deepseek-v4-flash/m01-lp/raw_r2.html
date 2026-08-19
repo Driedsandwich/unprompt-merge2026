@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 | かっこよくて信頼できる</title>
+<style>
+  /* ===== タイポグラフィ設計 ===== */
+  /* ベース 16px → スケール 1.25 (Major Third) */
+  /* 本文: Hiragino Kaku Gothic ProN, system sans-serif */
+  /* 見出し: "Times New Roman", "YuMincho", 明朝系 serif */
+  :root {
+    --text-base: 1rem;
+    --text-sm: 0.875rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.563rem;
+    --text-2xl: 1.953rem;
+    --text-3xl: 2.441rem;
+    --text-4xl: 3.052rem;
+    --space-unit: 8px;
+    --color-base: #1a1a2e;
+    --color-accent: #c44536;
+    --color-bg: #faf9f6;
+    --color-surface: #ffffff;
+    --color-text: #1e1e24;
+    --color-muted: #5c5c6e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--color-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: "Times New Roman", "YuMincho", "Noto Serif JP", serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  h1 {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  h2 {
+    font-size: var(--text-3xl);
+    margin-bottom: calc(var(--space-unit) * 6);
+    letter-spacing: 0.06em;
+  }
+  h3 {
+    font-size: var(--text-xl);
+    margin-bottom: calc(var(--space-unit) * 2);
+  }
+  p { margin-bottom: calc(var(--space-unit) * 2); }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 calc(var(--space-unit) * 4);
+  }
+  /* 余白 8px grid 準拠 */
+  section { padding: calc(var(--space-unit) * 14) 0; }
+  @media (max-width: 640px) {
+    section { padding: calc(var(--space-unit) * 10) 0; }
+    h1 { font-size: var(--text-3xl); }
+    h2 { font-size: var(--text-2xl); }
+    .container { padding: 0 calc(var(--space-unit) * 2); }
+  }
+
+  /* ===== 色 ===== */
+  .bg-base { background: var(--color-base); color: #f0efe9; }
+  .bg-accent { background: var(--color-accent); color: #fff; }
+  .bg-light { background: var(--color-bg); }
+  .bg-surface { background: var(--color-surface); }
+  .text-accent { color: var(--color-accent); }
+  .text-muted { color: var(--color-muted); }
+
+  /* ===== ヒーロー ===== */
+  .hero {
+    display: flex;
+    align-items: center;
+    min-height: 90vh;
+    padding: calc(var(--space-unit) * 4) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 60%;
+    height: 140%;
+    background: radial-gradient(circle at 70% 30%, rgba(196,69,54,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: calc(var(--space-unit) * 1) calc(var(--space-unit) * 3);
+    margin-bottom: calc(var(--space-unit) * 4);
+    text-transform: uppercase;
+    background: transparent;
+  }
+  .hero p {
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+    margin-top: calc(var(--space-unit) * 3);
+    max-width: 580px;
+  }
+  .hero-cta {
+    display: inline-block;
+    margin-top: calc(var(--space-unit) * 5);
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: var(--text-base);
+    padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 10);
+    text-decoration: none;
+    border-radius: 0;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.04em;
+  }
+  .hero-cta:hover { background: #a6342a; transform: scale(1.02); }
+
+  /* ===== 価値提案 ===== */
+  .value-prop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--space-unit) * 10);
+    align-items: center;
+  }
+  .value-prop-visual {
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%;
+    background: linear-gradient(145deg, var(--color-base), #2d2d4a);
+    position: relative;
+    overflow: hidden;
+    /* インラインSVGで幾何学パターン */
+  }
+  .value-prop-visual svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: overlay;
+    opacity: 0.25;
+  }
+  .value-prop-text blockquote {
+    border-left: 4px solid var(--color-accent);
+    padding-left: calc(var(--space-unit) * 3);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    margin: calc(var(--space-unit) * 4) 0;
+  }
+  @media (max-width: 720px) {
+    .value-prop { grid-template-columns: 1fr; gap: calc(var(--space-unit) * 6); }
+  }
+
+  /* ===== 特徴3点 ===== */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--space-unit) * 8);
+    margin-top: calc(var(--space-unit) * 6);
+  }
+  .feature-card {
+    padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 4);
+    background: var(--color-surface);
+    border: 1px solid #eaeaea;
+    transition: box-shadow 0.2s;
+  }
+  .feature-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--color-accent);
+    margin-bottom: calc(var(--space-unit) * 4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .feature-card h3 { font-size: var(--text-lg); }
+  .feature-card p { font-size: var(--text-sm); color: var(--color-muted); }
+  @media (max-width: 720px) {
+    .features-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== 利用の流れ ===== */
+  .steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--space-unit) * 4);
+    justify-content: center;
+    counter-reset: step-counter;
+  }
+  .step-item {
+    flex: 1 1 220px;
+    max-width: 280px;
+    text-align: center;
+    position: relative;
+    counter-increment: step-counter;
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 2);
+  }
+  .step-item::before {
+    content: counter(step-counter);
+    display: block;
+    font-family: "Times New Roman", serif;
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: calc(var(--space-unit) * 2);
+    opacity: 0.3;
+  }
+  .step-item h4 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-bottom: calc(var(--space-unit) * 1);
+    letter-spacing: 0.04em;
+  }
+  .step-item p {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    margin-bottom: 0;
+  }
+  .step-connector {
+    display: none;
+  }
+  @media (min-width: 880px) {
+    .steps { gap: calc(var(--space-unit) * 2); }
+    .step-item { flex: 1 1 180px; }
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    text-align: center;
+    background: var(--color-base);
+    color: #f0efe9;
+  }
+  .cta-section h2 { color: #fff; }
+  .cta-button {
+    display: inline-block;
+    margin-top: calc(var(--space-unit) * 4);
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: var(--text-lg);
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 12);
+    text-decoration: none;
+    transition: background 0.2s;
+    letter-spacing: 0.06em;
+  }
+  .cta-button:hover { background: #a6342a; }
+
+  /* ===== フッター ===== */
+  footer {
+    padding: calc(var(--space-unit) * 6) 0;
+    border-top: 1px solid #e0dfda;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    text-align: center;
+  }
+  footer small { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ヒーロー -->
+<section class="hero bg-light">
+  <div class="container hero-content">
+    <span class="hero-badge">〈業界名〉向け</span>
+    <h1>決定を<br class="sp-only">加速させる。<br>信頼を積み重ねる。</h1>
+    <p>〈サービス名〉は、かっこよさと信頼を両立した<br class="sp-only">新しい〈領域〉プラットフォーム。<br>直感的な操作と堅牢な設計であなたのビジネスを支えます。</p>
+    <a href="#" class="hero-cta">無料で試す</a>
+  </div>
+</section>
+
+<!-- 価値提案 -->
+<section class="bg-surface">
+  <div class="container">
+    <div class="value-prop">
+      <div class="value-prop-visual">
+        <!-- 装飾SVG (幾何学パターン) -->
+        <svg viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice">
+          <rect x="10" y="10" width="40" height="40" fill="none" stroke="#c44536" stroke-width="1.5"/>
+          <rect x="70" y="30" width="60" height="60" fill="none" stroke="#c44536" stroke-width="1.2"/>
+          <circle cx="160" cy="40" r="20" fill="none" stroke="#c44536" stroke-width="1.2"/>
+          <path d="M20 100 L60 80 L90 110 L130 70 L170 100" fill="none" stroke="#c44536" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <circle cx="100" cy="120" r="8" fill="none" stroke="#fff" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="value-prop-text">
+        <h2>かっこよさは、<br>機能の裏返し。</h2>
+        <p>見た目の洗練は内部設計の確かさの証。〈サービス名〉はUI/UXの細部にまでこだわり、同時にエンタープライズグレードのセキュリティ基準を満たしています。</p>
+        <blockquote>「導入後、チームの判断速度が平均1.8倍に。それでいて監査にも完全対応できた。」 — 〈役職・業種〉</blockquote>
+        <p class="text-muted" style="margin-top: calc(var(--space-unit)*2);">* 実績値は参考例です。実際の効果は環境により異なります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 特徴3点 -->
+<section class="bg-light">
+  <div class="container">
+    <h2 style="text-align:center;">3つのコアバリュー</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>直感的な速度</h3>
+        <p>複雑な設定不要。主要な操作は3クリック以内で完了。学習コストを最小限に抑え、チームの生産性を即座に引き上げます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3>設計品質の信頼</h3>
+        <p>すべての通信は暗号化、アクセス制御はIAM準拠。ISO 27001相当のプロセスで運用され、外部監査にも耐える設計です。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>意思決定のデザイン</h3>
+        <p>ダッシュボードは「今なにを見るべきか」を優先。ノイズを削ぎ落としたインターフェースで、重要な指標に集中できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 利用の流れ -->
+<section class="bg-surface">
+  <div class="container" style="text-align:center;">
+    <h2>はじめ方</h2>
+    <div class="steps">
+      <div class="step-item">
+        <h4>アカウント作成</h4>
+        <p>メールアドレスとパスワードだけ。30秒で登録完了。</p>
+      </div>
+      <div class="step-item">
+        <h4>プロジェクト設定</h4>
+        <p>テンプレートから選ぶか、ゼロからカスタマイズ。</p>
+      </div>
+      <div class="step-item">
+        <h4>チーム招待</h4>
+        <p>URLを送るだけでメンバー追加。権限も細かく設定可能。</p>
+      </div>
+      <div class="step-item">
+        <h4>運用開始</h4>
+        <p>ダッシュボードで状況を把握。あとは回すだけ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>はじめの一歩を、<br>かっこよく。</h2>
+    <p style="color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto;">14日間の無料トライアル。クレジットカード不要。いつでもキャンセルできます。</p>
+    <a href="#" class="cta-button">無料で始める</a>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="container">
+    <small>© 2025 〈サービス名〉. All rights reserved.</small>
+    <small style="margin-top: calc(var(--space-unit)*1); color: var(--color-muted);">〈運営会社名〉 | 利用規約 | プライバシーポリシー</small>
+  </div>
+</footer>
+
+</body>
+</html>

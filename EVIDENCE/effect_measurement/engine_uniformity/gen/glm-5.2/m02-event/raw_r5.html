@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会</title>
+<style>
+  :root {
+    --ink: #1c1410;
+    --paper: #f5efe4;
+    --rust: #9c3a18;
+    --gold: #b8842c;
+    --muted: #6b5d4f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  /* hero */
+  .hero {
+    padding: 96px 32px 80px;
+    border-bottom: 1px solid var(--ink);
+    text-align: center;
+  }
+  .hero .season {
+    font-size: 13px;
+    letter-spacing: 0.5em;
+    color: var(--muted);
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .hero h1 .accent {
+    color: var(--rust);
+    font-style: italic;
+  }
+  .hero .lead {
+    max-width: 540px;
+    margin: 32px auto 0;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+  /* sections */
+  .sec {
+    padding: 88px 32px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .sec + .sec { border-top: 1px solid var(--ink); }
+  .sec-label {
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--rust);
+    font-family: "Hiragino Sans", sans-serif;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .sec h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 40px;
+  }
+  .sec p { font-size: 16px; margin-bottom: 16px; }
+  .sec p:last-child { margin-bottom: 0; }
+  /* detail block */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 24px 32px;
+    font-size: 15px;
+  }
+  .detail-grid dt {
+    font-family: "Hiragino Sans", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+  .detail-grid dd { line-height: 1.8; }
+  .detail-grid dd strong { font-weight: 700; }
+  /* highlights */
+  .hl-list { list-style: none; }
+  .hl-list li {
+    padding: 24px 0;
+    border-top: 1px solid rgba(28,20,16,0.15);
+    font-size: 16px;
+    line-height: 1.85;
+    display: flex;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .hl-list li:last-child { border-bottom: 1px solid rgba(28,20,16,0.15); }
+  .hl-list .num {
+    font-size: 13px;
+    color: var(--gold);
+    font-family: "Hiragino Sans", sans-serif;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    width: 24px;
+  }
+  .hl-list strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+  /* cta */
+  .cta-wrap {
+    padding: 96px 32px 80px;
+    text-align: center;
+    border-top: 1px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .cta-wrap .sec-label { color: var(--gold); }
+  .cta-wrap h2 { font-size: 28px; margin-bottom: 16px; }
+  .cta-wrap p {
+    max-width: 440px;
+    margin: 0 auto 40px;
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(245,239,228,0.75);
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 18px 56px;
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+    font-family: "Hiragino Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--gold); }
+  .cta-note {
+    margin-top: 24px;
+    font-size: 12px;
+    color: rgba(245,239,228,0.5);
+    letter-spacing: 0.1em;
+    font-family: "Hiragino Sans", sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="season">秋の社内勉強会</p>
+  <h1>食べるように<br><span class="accent">学ぶ</span>夜。</h1>
+  <p class="lead">新人も、十年目も、五十の手前も。ただ机を囲んで、互いの得意を一つずつ分け合う。短い季節の、二時間ばかり。</p>
+</header>
+
+<section class="sec">
+  <p class="sec-label">日時 / 場所</p>
+  <h2>秋の夜長、二時間</h2>
+  <dl class="detail-grid">
+    <dt>日付</dt><dd><strong>〈開催日〉</strong>（金曜）</dd>
+    <dt>時間</dt><dd>19:00 〜 21:00（開場 18:45）</dd>
+    <dt>会場</dt><dd>〈会場名〉（最寄り：〈最寄り駅〉）<br>リモート参加可。URLは申込時に送付します。</dd>
+    <dt>定員</dt><dd>対面 30名 / オンライン 50名</dd>
+  </dl>
+</section>
+
+<section class="sec">
+  <p class="sec-label">内容</p>
+  <h2>三人が、三十分ずつ</h2>
+  <p>今の仕事で一番「これは効くな」と感じていることを、それぞれ三十分で持ち寄ります。専門はバラバラ。設計、運用、企画。話す側も聞く側も、隣の畑を覗きに来るつもりで。</p>
+  <p>途中で質問を止めません。むしろ止まらないことを想定して、終了時刻は目安です。</p>
+</section>
+
+<section class="sec">
+  <p class="sec-label">見どころ</p>
+  <h2>三つの話</h2>
+  <ol class="hl-list">
+    <li><span class="num">01</span><div><strong>〈講師1〉の話</strong>日々の設計で、何を捨てて何を残すか。判断の裏側を、失敗も含めて。</div></li>
+    <li><span class="num">02</span><div><strong>〈講師2〉の話</strong>現場を回すために作った小さな道具と、その道具が壊れた話。</div></li>
+    <li><span class="num">03</span><div><strong>〈講師3〉の話</strong>顧客の言葉と、その裏にある本当の要望。聞き取る技術について。</div></li>
+  </ol>
+</section>
+
+<section class="cta-wrap">
+  <p class="sec-label">参加方法</p>
+  <h2>机を囲む人を</h2>
+  <p>参加には事前申込が必要です。所属と、今一番知りたいことを一言添えてください。</p>
+  <a href="#" class="cta-btn">申し込む</a>
+  <p class="cta-note">締切 〈締切日〉まで</p>
+</section>
+
+</body>
+</html>

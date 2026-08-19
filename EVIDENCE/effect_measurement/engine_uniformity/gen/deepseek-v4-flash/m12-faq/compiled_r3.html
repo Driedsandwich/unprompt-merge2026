@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品ガイド | よくある質問と手続き</title>
+<style>
+/* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+/* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+/* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+/* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+/* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+
+:root {
+  --bg: #f4f1ea;
+  --main: #2b4a45;
+  --accent: #b08d57;
+  --accent-soft: #c8a24a;
+  --text: #2b2b28;
+  --text-light: #5a5a55;
+  --white: #ffffff;
+  --border: #d9d4c9;
+  --radius: 6px;
+  --font-heading: 'Noto Serif JP', 'Source Han Serif JP', 'Yu Mincho', 'Georgia', serif;
+  --font-body: 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', 'Segoe UI', sans-serif;
+  --ratio: 1.25;
+  --base: 16px;
+  --h2: calc(var(--base) * var(--ratio) * var(--ratio));
+  --h3: calc(var(--base) * var(--ratio));
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--base);
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+/* ---- 冒頭（主張） ---- */
+.lead-block {
+  margin-bottom: 64px;
+  padding: 40px 32px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.lead-block__label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--accent-soft);
+  padding-bottom: 4px;
+  margin-bottom: 16px;
+}
+
+.lead-block__heading {
+  font-family: var(--font-heading);
+  font-size: calc(var(--base) * 1.8);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  color: var(--main);
+  margin-bottom: 12px;
+}
+
+.lead-block__sub {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+/* ---- カテゴリ見出し ---- */
+.category-section {
+  margin-bottom: 56px;
+}
+
+.category-section:last-of-type {
+  margin-bottom: 64px;
+}
+
+.category-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-soft);
+}
+
+.category-head__title {
+  font-family: var(--font-heading);
+  font-size: var(--h2);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--main);
+  line-height: 1.3;
+}
+
+.category-head__icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* ---- FAQアコーディオン ---- */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+details.faq-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+details.faq-item[open] {
+  border-color: var(--accent-soft);
+}
+
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  cursor: pointer;
+  list-style: none;
+  color: var(--main);
+  user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "＋";
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+  color: var(--accent-soft);
+  transition: transform 0.2s;
+}
+
+details.faq-item[open] summary::after {
+  content: "−";
+  transform: rotate(180deg);
+}
+
+.faq-item__answer {
+  padding: 0 20px 20px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.faq-item__answer p + p {
+  margin-top: 12px;
+}
+
+.faq-item__answer strong {
+  color: var(--main);
+}
+
+/* ---- 条件一覧（透明性演出） ---- */
+.conditions-box {
+  margin-top: 8px;
+  padding: 16px 20px;
+  background: var(--bg);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent-soft);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.conditions-box dt {
+  font-weight: 600;
+  color: var(--main);
+  margin-top: 8px;
+}
+
+.conditions-box dt:first-child {
+  margin-top: 0;
+}
+
+.conditions-box dd {
+  margin-left: 0;
+  padding-left: 8px;
+  color: var(--text-light);
+}
+
+/* ---- 連絡導線 ---- */
+.contact-section {
+  background: var(--main);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  text-align: center;
+  color: var(--white);
+}
+
+.contact-section__heading {
+  font-family: var(--font-heading);
+  font-size: var(--h2);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.contact-section__text {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn--primary {
+  background: var(--accent-soft);
+  color: var(--white);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--accent-soft);
+}
+
+.btn--outline:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* ---- フッター ---- */
+.footer-note {
+  margin-top: 24px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+/* ---- レスポンシブ微調整 ---- */
+@media (max-width: 540px) {
+  .page { padding: 32px 16px 64px; }
+  .lead-block { padding: 28px 20px; }
+  .lead-block__heading { font-size: calc(var(--base) * 1.5); }
+  .contact-section { padding: 32px 20px; }
+  .contact-buttons { flex-direction: column; align-items: center; }
+  .btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 冒頭：丁寧・寄り添い型 ＋ 両方混在を反映 -->
+  <div class="lead-block">
+    <span class="lead-block__label">RETURN GUIDE</span>
+    <h1 class="lead-block__heading">返品のこと、ゆっくり一緒に確認しましょう</h1>
+    <p class="lead-block__sub">
+      ご検討中の方も、お手続き中の方も、このページですべての条件と手順を明らかにします。<br>
+      迷ったら各項目を開いてご確認ください。
+    </p>
+  </div>
+
+  <!-- カテゴリ1：返品できる？できない？ -->
+  <!-- GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 -->
+  <section class="category-section">
+    <div class="category-head">
+      <span class="category-head__icon">📦</span>
+      <h2 class="category-head__title">返品できる？ できない？</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>商品を開封したけど返品できますか？</summary>
+        <div class="faq-item__answer">
+          <p>未使用品に限り、到着後〈日数〉以内であれば開封済みでもお受けしております。ただし一部の商品（衛生用品・ダウンロードコンテンツ等）は対象外です。詳しくは条件一覧をご確認ください。</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>イメージと違った場合も返品対象ですか？</summary>
+        <div class="faq-item__answer">
+          <p>はい、「お客様都合」による返品として承ります。その際の返送料はお客様ご負担となります。到着後〈日数〉以内にご連絡ください。</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>返品できない商品を教えてください</summary>
+        <div class="faq-item__answer">
+          <dl class="conditions-box">
+            <dt>返品不可の対象</dt>
+            <dd>・一度ご使用いただいた商品（衛生上・安全上の理由）</dd>
+            <dd>・お客様のもとでキズ・汚損が生じた商品</dd>
+            <dd>・〈確認: 具体的な商品カテゴリ例〉</dd>
+            <dt>お手元に届いた時点で不良・破損があった場合</dt>
+            <dd>上記にかかわらず交換・返品対応いたします。到着後〈日数〉以内にご連絡ください。</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- カテゴリ2：手続きの流れ -->
+  <!-- GYAKUMON-CHOICE: 読者の状況 = 両方混在 -->
+  <section class="category-section">
+    <div class="category-head">
+      <span class="category-head__icon">📋</span>
+      <h2 class="category-head__title">手続きの流れ・必要なもの</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>返品の手順を教えてください</summary>
+        <div class="faq-item__answer">
+          <p>以下の流れでお進みください。</p>
+          <ol style="padding-left: 20px; margin-top: 8px;">
+            <li>マイページまたはお問い合わせフォームから返品申請を行う</li>
+            <li>当店から返品受付番号と返送先をメールでお知らせ</li>
+            <li>商品を梱包し、指定された宛先へ発送</li>
+            <li>当店到着後、〈確認: 処理日数目安〉以内に返金手続き</li>
+          </ol>
+          <p style="margin-top: 8px;">返送時の送料は、不良品の場合は当店負担、お客様都合の場合はお客様負担です。</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>箱や説明書がないと返品できませんか？</summary>
+        <div class="faq-item__answer">
+          <p>可能な限り元の状態でお送りください。付属品が不足している場合、査定額が変動する可能性があります。箱がない場合でもお受けしますので、ご連絡ください。</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>返金はいつ・どのように行われますか？</summary>
+        <div class="faq-item__answer">
+          <p>当店で商品を確認後、〈日数〉営業日以内にご指定の口座へお振り込みいたします。クレジットカード決済の場合はカード会社を通した返金処理となります（反映時期はカード会社のサイクルによります）。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- カテゴリ3：送料・期間・その他条件（透明性の塊） -->
+  <!-- GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 -->
+  <section class="category-section">
+    <div class="category-head">
+      <span class="category-head__icon">📐</span>
+      <h2 class="category-head__title">送料・期限・条件をすべて明記</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>返品できる期間と送料負担を教えてください</summary>
+        <div class="faq-item__answer">
+          <dl class="conditions-box">
+            <dt>返品受付期限</dt>
+            <dd>商品到着日を含めて〈日数〉日以内</dd>
+            <dt>返送料の負担</dt>
+            <dd>不良品・誤配送 → 当店負担（着払い発送）</dd>
+            <dd>お客様都合（イメージ違い・サイズ間違い等） → お客様負担</dd>
+            <dt>交換の場合</dt>
+            <dd>在庫がある商品に限り交換対応可能。再送料は当店負担。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>セール品・予約商品も同じ条件ですか？</summary>
+        <div class="faq-item__answer">
+          <p>セール品も上記の条件が適用されます。ただし、最終セール等で「返品不可」と明記した商品は対象外です。予約商品はお届け後、一般商品と同じ条件でお受けします。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 連絡導線 -->
+  <!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+  <!-- GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 -->
+  <section class="contact-section">
+    <h2 class="contact-section__heading">それでも迷ったら、お気軽にどうぞ</h2>
+    <p class="contact-section__text">
+      こちらのFAQで解決しなかった場合も、お客様の状況に合わせてご案内します。<br>
+      お問い合わせの際は「ご注文番号」と「商品名」をお手元にご用意ください。
+    </p>
+    <div class="contact-buttons">
+      <a href="#" class="btn btn--primary">📧 お問い合わせフォーム</a>
+      <a href="#" class="btn btn--outline">📞 電話で相談する</a>
+    </div>
+    <p style="margin-top: 16px; font-size: 14px; opacity: 0.8;">
+      受付時間：平日 10:00–17:00（土日祝・年末年始を除く）
+    </p>
+  </section>
+
+  <div class="footer-note">
+    〈ショップ名〉 返品ガイドページ
+  </div>
+
+</div>
+</body>
+</html>

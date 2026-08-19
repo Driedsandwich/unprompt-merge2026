@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品のご案内</title>
+<style>
+  /* タイプスケール設計: 本文 16px 基準、比率 1.25 (メジャーセカンド) */
+  :root {
+    --base-font-size: 16px;
+    --scale-ratio: 1.25;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-md: 1.25rem;
+    --text-lg: 1.563rem;
+    --text-xl: 1.953rem;
+    --text-2xl: 2.441rem;
+    --text-3xl: 3.052rem;
+
+    --color-base: #2b2b2b;        /* 濃いチャコール — 基調1 */
+    --color-accent: #a6503c;       /* くすんだ赤茶 — アクセント1 */
+    --color-bg: #f9f7f4;           /* 微温かみのある白 */
+    --color-surface: #ffffff;
+    --color-muted: #6b6b6b;
+    --color-border: #e0dbd6;
+
+    --font-head: 'Times New Roman', 'YuMincho', '游明朝', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+
+    --space-unit: 8px;
+    --space-sm: calc(var(--space-unit) * 2);    /* 16px */
+    --space-md: calc(var(--space-unit) * 4);    /* 32px */
+    --space-lg: calc(var(--space-unit) * 6);    /* 48px */
+    --space-xl: calc(var(--space-unit) * 12);   /* 96px */
+    --space-2xl: calc(var(--space-unit) * 16);  /* 128px */
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--color-base);
+    padding: var(--space-xl) 16px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background-color: var(--color-surface);
+    padding: var(--space-xl) var(--space-lg);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  /* 見出し — 明朝系、基調色、letter-spacing 調整 */
+  .catch {
+    font-family: var(--font-head);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    color: var(--color-base);
+    margin-bottom: var(--space-md);
+    text-align: center;
+    padding-top: var(--space-sm);
+  }
+
+  .catch em {
+    font-style: normal;
+    color: var(--color-accent);
+  }
+
+  .lead {
+    font-size: var(--text-md);
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-lg);
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-base);
+    margin-bottom: var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 2px solid var(--color-accent);
+    display: inline-block;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .feature-list li {
+    position: relative;
+    padding-left: calc(var(--space-unit) * 4);
+    margin-bottom: var(--space-sm);
+    line-height: 1.7;
+  }
+
+  .feature-list li::before {
+    content: "—";
+    position: absolute;
+    left: var(--space-sm);
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .spec-box {
+    background-color: #f4f1ed;
+    padding: var(--space-md);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-lg);
+    border-left: 4px solid var(--color-accent);
+  }
+
+  .spec-box dt {
+    font-family: var(--font-head);
+    font-size: var(--text-sm);
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-top: var(--space-sm);
+  }
+
+  .spec-box dt:first-of-type {
+    margin-top: 0;
+  }
+
+  .spec-box dd {
+    margin-left: 0;
+    font-size: var(--text-sm);
+    color: var(--color-base);
+    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+  }
+
+  .closing {
+    text-align: center;
+    font-size: var(--text-md);
+    font-weight: 400;
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+  }
+
+  .closing strong {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* 提出前に影をひとつ削除（box-shadow を単一線に） */
+  /* アニメーション・グラデーションは使用なし */
+
+  /* 余白の微調整 */
+  @media (max-width: 560px) {
+    .container {
+      padding: var(--space-lg) var(--space-md);
+    }
+    .catch {
+      font-size: var(--text-2xl);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- キャッチコピー / 冒頭は最も特徴的な一点を選ぶ -->
+  <h1 class="catch">〈商品名〉の〈特徴的な機能名〉。<br><em>“触れた瞬間、違う。”</em></h1>
+
+  <!-- リード文 -->
+  <p class="lead">
+    毎日使うものだから、手に馴染む感覚を妥協したくない。<br>
+    〈商品名〉は、素材から製法まで見直し、<br>
+    使い始めたその日から「これだ」と思える質感を届けます。
+  </p>
+
+  <!-- 特徴の説明 -->
+  <h2 class="section-title">三つのこだわり</h2>
+  <ul class="feature-list">
+    <li><strong>1. 〈素材名〉のぬくもり。</strong> 表面の〈加工名〉加工が、経年変化を美しくし、使うほどに手になじみます。樹脂特有の冷たさがありません。</li>
+    <li><strong>2. 見えないところに機能を。</strong> 底面の〈構造名〉が滑りを抑え、デスク上でも安定。中身の出し入れもスムーズになる設計です。</li>
+    <li><strong>3. 余計な装飾を削る。</strong〉 ロゴは最小限に。本体のラインだけで美しさを成立させるため、金型の調整に通常の1.5倍の時間をかけています。</li>
+  </ul>
+
+  <!-- 仕様・注意 -->
+  <h2 class="section-title">仕様とお取り扱いについて</h2>
+  <dl class="spec-box">
+    <dt>サイズ</dt>
+    <dd>約 W〈数字〉× D〈数字〉× H〈数字〉 mm （本体のみ）</dd>
+    <dt>素材</dt>
+    <dd〉〈素材名〉（本体）、〈素材名〉（表面加工）</dd>
+    <dt>生産国</dt>
+    <dd〉〈生産国〉</dd>
+    <dt>ご注意</dt>
+    <dd〉直射日光の当たる場所や高温になる場所での保管は避けてください。〈素材名〉の特性上、強い衝撃で割れる可能性があります。お手入れは柔らかい布で乾拭きしてください。</dd>
+  </dl>
+
+  <!-- 締めの一言 -->
+  <p class="closing">
+    あなたの日常に、〈商品名〉が静かに寄り添います。<br>
+    まずは手に取って、その<strong>違い</strong>を確かめてみてください。
+  </p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Portfolio — 〈氏名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+/* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+/* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+/* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+/* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+/* パレット: 地色 #f4f2ee, 主要色 #1c1c1c, 強調色 #8a6a3c */
+/* heading_font: serif, density: airy, corner: sharp */
+
+:root {
+  --bg: #f4f2ee;
+  --text: #1c1c1c;
+  --accent: #8a6a3c;
+  --accent-light: rgba(138, 106, 60, 0.15);
+  --spacing-unit: 8px;
+  --section-gap: 104px;
+  /* Type scale: base 16px, ratio 1.25 */
+  --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.25rem;   /* 20px */
+  --text-xl: 1.563rem;  /* 25px */
+  --text-2xl: 1.953rem; /* 31px */
+  --text-3xl: 2.441rem; /* 39px */
+  --text-4xl: 3.052rem; /* 49px */
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: 40px;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 12px;
+}
+
+h3 {
+  font-size: var(--text-lg);
+  margin-bottom: 8px;
+}
+
+p { font-size: var(--text-base); }
+small { font-size: var(--text-sm); }
+
+a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); }
+a:hover { color: var(--accent); }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero */
+.hero {
+  padding: 120px 0 80px;
+  text-align: left;
+  border-bottom: 1px solid var(--accent-light);
+}
+
+.hero__name {
+  font-size: var(--text-4xl);
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero__title {
+  font-size: var(--text-xl);
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+.hero__note {
+  margin-top: 32px;
+  font-size: var(--text-sm);
+  color: rgba(28, 28, 28, 0.6);
+  max-width: 480px;
+}
+
+/* Section common */
+.section { padding: var(--section-gap) 0; }
+.section:last-of-type { padding-bottom: 80px; }
+
+/* About */
+.about__text {
+  max-width: 600px;
+}
+
+.about__text p + p {
+  margin-top: 16px;
+}
+
+.about__placeholder {
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* Works */
+.works-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+
+.work-item {
+  border-top: 1px solid var(--accent-light);
+  padding-top: 32px;
+}
+
+.work-item__header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.work-item__number {
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+  font-size: var(--text-sm);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.work-item__title {
+  font-size: var(--text-xl);
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+  font-weight: 600;
+}
+
+.work-item__category {
+  font-size: var(--text-sm);
+  color: rgba(28, 28, 28, 0.5);
+  margin-bottom: 16px;
+}
+
+.work-item__visual {
+  width: 100%;
+  height: 280px;
+  background: var(--accent-light);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.work-item__visual svg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.3;
+}
+
+.work-item__description {
+  max-width: 560px;
+}
+
+.work-item__process {
+  margin-top: 16px;
+  padding: 24px;
+  background: rgba(28, 28, 28, 0.02);
+  border-left: 2px solid var(--accent);
+}
+
+.work-item__process h4 {
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.work-item__process p {
+  font-size: var(--text-sm);
+  color: rgba(28, 28, 28, 0.7);
+}
+
+/* Skills */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.skill-group h3 {
+  margin-bottom: 16px;
+  font-size: var(--text-base);
+  letter-spacing: 0.04em;
+}
+
+.skill-group ul {
+  list-style: none;
+}
+
+.skill-group li {
+  font-size: var(--text-base);
+  padding: 4px 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.skill-group li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* Contact */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 48px;
+  margin-top: 24px;
+}
+
+.contact-links a {
+  font-size: var(--text-base);
+  border-bottom: none;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.contact-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.2s;
+}
+
+.contact-links a:hover::after {
+  width: 100%;
+}
+
+.contact-note {
+  margin-top: 40px;
+  font-size: var(--text-sm);
+  color: rgba(28, 28, 28, 0.5);
+}
+
+/* Footer */
+.footer {
+  padding: 24px 0 48px;
+  border-top: 1px solid var(--accent-light);
+  font-size: var(--text-xs);
+  color: rgba(28, 28, 28, 0.4);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1 class="hero__name">〈氏名〉</h1>
+    <p class="hero__title">Design Portfolio</p>
+    <p class="hero__note">作品、削ぎ落として。ポートフォリオは一枚の余白から始まる。</p>
+  </header>
+
+  <!-- About -->
+  <section class="section">
+    <h2>About</h2>
+    <div class="about__text">
+      <p>
+        デザインの仕事において、<em class="about__placeholder">〈確認: あなたがデザインで大事にしていること〉</em>を最も大切にしています。
+        形にする前のリサーチと、形にした後の検証——その往復を丁寧に繰り返すことで、
+        見る人の記憶に残る制作物を生み出してきました。
+      </p>
+      <p>
+        これまでに〈職種〉として〈年数〉年の経験を積み、
+        ブランディングからUI/UXまで、プロジェクトのフェーズに応じたアウトプットを手がけてきました。
+        このポートフォリオでは、完成形だけでなく、そこに至る判断の過程をご覧いただきます。
+      </p>
+    </div>
+  </section>
+
+  <!-- Works -->
+  <section class="section">
+    <h2>Works</h2>
+    <div class="works-grid">
+
+      <article class="work-item">
+        <div class="work-item__header">
+          <span class="work-item__number">01</span>
+          <h3 class="work-item__title">〈作品タイトルA〉</h3>
+        </div>
+        <p class="work-item__category">Branding / Identity</p>
+        <div class="work-item__visual">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="80" height="80" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="30" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+            <line x1="20" y1="50" x2="80" y2="50" stroke="var(--accent)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="work-item__description">
+          <p>〈確認: このプロジェクトの目的と成果の概要〉</p>
+        </div>
+        <div class="work-item__process">
+          <h4>Process</h4>
+          <p>〈確認: 制作時に最も迷った判断と、なぜその選択をしたか〉</p>
+        </div>
+      </article>
+
+      <article class="work-item">
+        <div class="work-item__header">
+          <span class="work-item__number">02</span>
+          <h3 class="work-item__title">〈作品タイトルB〉</h3>
+        </div>
+        <p class="work-item__category">Web / UI Design</p>
+        <div class="work-item__visual">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="20" width="70" height="60" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+            <line x1="15" y1="35" x2="85" y2="35" stroke="var(--accent)" stroke-width="1.5"/>
+            <circle cx="25" cy="27" r="3" fill="var(--accent)"/>
+            <rect x="30" y="45" width="40" height="4" fill="var(--accent)" opacity="0.4"/>
+            <rect x="30" y="55" width="30" height="4" fill="var(--accent)" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="work-item__description">
+          <p>〈確認: このプロジェクトの目的と成果の概要〉</p>
+        </div>
+        <div class="work-item__process">
+          <h4>Process</h4>
+          <p>〈確認: 制作時に最も迷った判断と、なぜその選択をしたか〉</p>
+        </div>
+      </article>
+
+      <article class="work-item">
+        <div class="work-item__header">
+          <span class="work-item__number">03</span>
+          <h3 class="work-item__title">〈作品タイトルC〉</h3>
+        </div>
+        <p class="work-item__category">Print / Editorial</p>
+        <div class="work-item__visual">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="15" width="70" height="70" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+            <line x1="15" y1="50" x2="85" y2="50" stroke="var(--accent)" stroke-width="1.5" opacity="0.5"/>
+            <line x1="50" y1="15" x2="50" y2="85" stroke="var(--accent)" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="35" cy="35" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+            <circle cx="65" cy="65" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="work-item__description">
+          <p>〈確認: このプロジェクトの目的と成果の概要〉</p>
+        </div>
+        <div class="work-item__process">
+          <h4>Process</h4>
+          <p>〈確認: 制作時に最も迷った判断と、なぜその選択をしたか〉</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Design</h3>
+        <ul>
+          <li>〈確認: 主なデザインソフト・ツール〉</li>
+          <li>〈確認: 得意なデザイン領域〉</li>
+          <li>〈確認: ワークフロー上の強み〉</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Development</h3>
+        <ul>
+          <li>HTML / CSS</li>
+          <li>〈確認: 使用可能なフレームワーク・言語〉</li>
+          <li>〈確認: 開発環境・ツール〉</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Research</h3>
+        <ul>
+          <li>〈確認: リサーチ手法〉</li>
+          <li>〈確認: ユーザーテストの経験〉</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Communication</h3>
+        <ul>
+          <li>〈確認: チームでの役割〉</li>
+          <li>〈確認: クライアントワークの経験〉</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <h2>Contact</h2>
+    <div class="contact-links">
+      <a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+      <a href="#">〈確認: ポートフォリオURL〉</a>
+      <a href="#">〈確認: SNSアカウント〉</a>
+    </div>
+    <p class="contact-note">
+      ご連絡はメール、または各SNSのDMからお願いいたします。
+      返信までに2〜3営業日いただく場合がございます。
+    </p>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <small>&copy; 〈氏名〉 — Design Portfolio</small>
+  </div>
+</footer>
+
+</body>
+</html>

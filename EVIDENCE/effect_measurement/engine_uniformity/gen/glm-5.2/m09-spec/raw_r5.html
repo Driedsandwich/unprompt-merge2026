@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+  /* タイプスケール: 本文15px / 小見出し13px / 大見出し22px */
+  :root {
+    --scale-body: 15px;
+    --scale-small: 13px;
+    --scale-head: 22px;
+    --base: #f5f4f0;
+    --ink: #1a1a1a;
+    --accent: #2d4a3e;
+    --line: #d0cec7;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--base);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: var(--scale-body);
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 56px 96px;
+  }
+
+  header { margin-bottom: 88px; }
+
+  .eyebrow {
+    font-family: "Georgia", "Yu Mincho", serif;
+    font-size: var(--scale-small);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 24px;
+  }
+
+  h1 {
+    font-family: "Georgia", "Yu Mincho", serif;
+    font-size: var(--scale-head);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0 0 24px;
+    line-height: 1.45;
+  }
+
+  .lead {
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.85;
+  }
+
+  section { margin-bottom: 80px; }
+
+  h2 {
+    font-family: "Georgia", "Yu Mincho", serif;
+    font-size: var(--scale-small);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0 0 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--accent);
+  }
+
+  p { margin: 0 0 16px; }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 12px;
+    line-height: 1.75;
+  }
+
+  li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .scene {
+    padding-left: 20px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .none { color: #555; }
+
+  footer {
+    margin-top: 96px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: var(--scale-small);
+    color: #888;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Spec Memo / Internal Tool</p>
+    <h1>領収書の写真を撮るだけで、残業ゼロで経費精算を終わらせる。</h1>
+    <p class="lead">月末の精算書作成で毎月数時間を失っている人に、小さな取り戻しを渡す。それがこのツールの目的である。</p>
+  </header>
+
+  <section>
+    <h2>目的</h2>
+    <p>経費精算を「月末に一括で行う作業」から「使ったその場で三十分で終わる作業」に変える。入力項目は最小限、手入力はゼロを目指す。</p>
+  </section>
+
+  <section>
+    <h2>対象ユーザー</h2>
+    <ul>
+      <li>立替払いした経費を毎月精算している社員</li>
+      <li>領収書を溜め込んで月末にまとめて処理する人</li>
+      <li>〈会社名〉の現行精算フローに不満を持つ人</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>主要機能</h2>
+    <ul>
+      <li>領収書の写真を撮ると金額・日付・店舗名を自動で読み取る</li>
+      <li>勘定科目は過去の履歴から推定して即入力する</li>
+      <li>月末に確認画面一枚で提出、上長承認へ即時送信</li>
+      <li>未提出の立替分を毎週月曜に一通でリマインドする</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>画面イメージ</h2>
+    <p class="scene">起動直後にカメラが開く。枠内に領収書を置くと自動撮影。三秒で結果が出る。下部に「これで提出」のボタンが一つだけ。履歴は縦一行のリストで日付と金額のみを並べる。設定やメニューは二階層以上にしない。</p>
+  </section>
+
+  <section>
+    <h2>使わないと決めたもの</h2>
+    <ul class="none">
+      <li>カテゴリの手動選択ドロップダウン</li>
+      <li>部門別の承認ルート分岐</li>
+      <li>CSVインポート機能</li>
+      <li>ダッシュボードと集計グラフ</li>
+    </ul>
+  </section>
+
+  <footer>
+    仕様メモ / 企画担当
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会 2026</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け */
+/* GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 */
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+/* GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 */
+/* GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ */
+
+/* タイプスケール: 本文 16px / 比率 1.25 */
+:root {
+  --body: 1rem;
+  --h4: 1.25rem;
+  --h3: 1.563rem;
+  --h2: 1.953rem;
+  --h1: 2.441rem;
+  --display: 3.052rem;
+  /* GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 → palette */
+  --bg: #fbf4e8;
+  --main: #c97b4a;
+  --accent: #3f6e5b;
+  --text: #2c241b;
+  --text-soft: #5f5243;
+  /* GYAKUMON-CHOICE: 文面のトーン = カジュアル → heading_font:rounded, density:airy, corner:soft */
+  --heading: 'Hiragino Maru Gothic Pro', 'Yu Gothic', 'Noto Sans JP', 'Rounded Mplus 1c', sans-serif;
+  --body-font: 'Helvetica Neue', 'Arial', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  --radius: 16px;
+  --space-unit: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--body);
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--text);
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* airy density: ゆったり余白 */
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 4) calc(var(--space-unit) * 16);
+}
+
+/* ---- 冒頭: 主張 ---- */
+/* GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 */
+.hero {
+  margin-bottom: calc(var(--space-unit) * 16);
+  padding-bottom: calc(var(--space-unit) * 8);
+  border-bottom: 2px solid var(--main);
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 40%;
+  height: 2px;
+  background: var(--accent);
+}
+
+.hero__label {
+  display: inline-block;
+  font-family: var(--heading);
+  font-size: var(--body);
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(63, 110, 91, 0.10);
+  padding: 2px 14px;
+  border-radius: 100px;
+  margin-bottom: calc(var(--space-unit) * 2);
+  letter-spacing: 0.02em;
+}
+
+.hero__title {
+  font-family: var(--heading);
+  font-size: var(--display);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: calc(var(--space-unit) * 2);
+}
+
+.hero__lead {
+  font-size: var(--h4);
+  color: var(--text-soft);
+  line-height: 1.6;
+  max-width: 32em;
+}
+
+/* ---- 各セクション ---- */
+section {
+  margin-bottom: calc(var(--space-unit) * 14);
+}
+
+.section-title {
+  font-family: var(--heading);
+  font-size: var(--h3);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: calc(var(--space-unit) * 2);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space-unit) * 1);
+}
+
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 1.2em;
+  background: var(--main);
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+/* 日時・場所 */
+.meta-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: calc(var(--space-unit) * 1) calc(var(--space-unit) * 3);
+  align-items: baseline;
+  background: rgba(201, 123, 74, 0.06);
+  padding: calc(var(--space-unit) * 4);
+  border-radius: var(--radius);
+}
+
+.meta-grid dt {
+  font-family: var(--heading);
+  font-weight: 700;
+  color: var(--main);
+  font-size: var(--body);
+  white-space: nowrap;
+}
+
+.meta-grid dd {
+  font-size: var(--body);
+  color: var(--text);
+}
+
+.meta-grid dd + dt {
+  margin-top: calc(var(--space-unit) * 2);
+}
+
+/* 内容の説明 */
+.content-block p {
+  margin-bottom: calc(var(--space-unit) * 2);
+  color: var(--text-soft);
+}
+
+.content-block p:last-child {
+  margin-bottom: 0;
+}
+
+.content-block .highlight {
+  background: rgba(63, 110, 91, 0.08);
+  border-left: 4px solid var(--accent);
+  padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: calc(var(--space-unit) * 3) 0;
+}
+
+/* 見どころ */
+.points {
+  display: grid;
+  gap: calc(var(--space-unit) * 4);
+}
+
+.point-card {
+  background: #fff;
+  padding: calc(var(--space-unit) * 4);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(44, 36, 27, 0.06);
+  border: 1px solid rgba(201, 123, 74, 0.12);
+}
+
+.point-card__num {
+  font-family: var(--heading);
+  font-size: var(--h2);
+  font-weight: 800;
+  color: var(--main);
+  line-height: 1;
+  margin-bottom: calc(var(--space-unit) * 1);
+}
+
+.point-card h3 {
+  font-family: var(--heading);
+  font-size: var(--h4);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  margin-bottom: calc(var(--space-unit) * 1);
+}
+
+.point-card p {
+  font-size: var(--body);
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+/* 参加方法 */
+.join-box {
+  background: var(--accent);
+  color: #fff;
+  padding: calc(var(--space-unit) * 6);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.join-box h2 {
+  font-family: var(--heading);
+  font-size: var(--h3);
+  font-weight: 700;
+  margin-bottom: calc(var(--space-unit) * 3);
+  letter-spacing: 0.02em;
+}
+
+.join-box p {
+  font-size: var(--body);
+  line-height: 1.8;
+  opacity: 0.92;
+}
+
+.join-box .join-detail {
+  display: inline-block;
+  margin-top: calc(var(--space-unit) * 4);
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: var(--body);
+  color: var(--bg);
+  background: rgba(255, 255, 255, 0.15);
+  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 5);
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* フッター */
+.footer {
+  margin-top: calc(var(--space-unit) * 12);
+  padding-top: calc(var(--space-unit) * 4);
+  border-top: 1px solid rgba(201, 123, 74, 0.2);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-soft);
+}
+
+/* ---- 提出前にひとつ削る: box-shadow の2段目を削除 ---- */
+
+/* soft corner: 全体に適用済み */
+
+@media (max-width: 540px) {
+  .page {
+    padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 2) calc(var(--space-unit) * 12);
+  }
+  .hero__title {
+    font-size: var(--h1);
+  }
+  .hero__lead {
+    font-size: var(--body);
+  }
+  .meta-grid {
+    grid-template-columns: 1fr;
+    gap: calc(var(--space-unit) * 1);
+  }
+  .meta-grid dt {
+    margin-top: calc(var(--space-unit) * 2);
+  }
+  .meta-grid dt:first-child {
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 冒頭: 気軽に参加歓迎 -->
+  <header class="hero">
+    <span class="hero__label">🍂 社内勉強会</span>
+    <h1 class="hero__title">秋の勉強会、<br>ゆるっと集合</h1>
+    <p class="hero__lead">お菓子片手に、気軽にどうぞ。全社員、だれでも。</p>
+  </header>
+
+  <!-- GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 -->
+  <!-- 日時・場所 -->
+  <section>
+    <h2 class="section-title">日時・場所</h2>
+    <dl class="meta-grid">
+      <dt>📅 日時</dt>
+      <dd>〈開催日〉〈開始時刻〉〜〈終了時刻〉（開場は15分前）</dd>
+      <dt>📍 場所</dt>
+      <dd>〈会場名〉〈フロア・部屋番号〉</dd>
+      <dt>🎯 対象</dt>
+      <dd>全社員（職種・部署不問）</dd>
+    </dl>
+  </section>
+
+  <!-- 内容の説明 -->
+  <section class="content-block">
+    <h2 class="section-title">どんな会？</h2>
+    <p>
+      各自が日頃の業務で「これ、ちょっと共有したいな」と思う知見や発見を持ち寄る、ゆるやかな情報共有の場です。<br>
+      テーマは自由。開発の裏話、業務効率化の小ワザ、新しいツールの試用レポート、失敗から学んだこと……なんでもOK。
+    </p>
+    <div class="highlight">
+      <p>
+        <strong>大事にしたいのは「話す／聞く」の循環。</strong><br>
+        一方的なプレゼンではなく、参加者同士の質問や雑談で広がる発見がこの勉強会の醍醐味です。
+      </p>
+    </div>
+    <p>
+      初めての方も大歓迎。見学だけの参加も、話を聞いて「自分も話したい」と思ったら当日の飛び入り登壇も可能です。
+    </p>
+  </section>
+
+  <!-- 見どころ -->
+  <section>
+    <h2 class="section-title">見どころ</h2>
+    <div class="points">
+      <!-- GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 -->
+      <div class="point-card">
+        <div class="point-card__num">01</div>
+        <h3>〈確認: 実際に現場で起きた失敗談を1つ〉</h3>
+        <p>
+          現場の生の声だからこそ響くリアルなエピソード。<br>
+          資料では得られない学びがここにあります。
+        </p>
+      </div>
+      <div class="point-card">
+        <div class="point-card__num">02</div>
+        <h3>部署の垣根を越えた交流</h3>
+        <p>
+          いつものチームだけじゃなく、違う部署の人の考え方や仕事のやり方を知るチャンス。<br>
+          同じ会社なのに知らなかった発見があるかも。
+        </p>
+      </div>
+      <div class="point-card">
+        <div class="point-card__num">03</div>
+        <h3>お菓子と飲み物付き</h3>
+        <p>
+          軽食とドリンクを用意しています。<br>
+          堅苦しさゼロ、おしゃべりしながらの参加で十分です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 参加方法 -->
+  <!-- GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ -->
+  <section>
+    <div class="join-box">
+      <h2>参加方法</h2>
+      <p>
+        事前申込は不要です。<br>
+        当日、直接会場へお越しください。<br>
+        （リモート参加を希望される方は〈確認: リモート参加の連絡先・方法〉までご連絡ください）
+      </p>
+      <span class="join-detail">参加費 無料</span>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>問い合わせ先: 〈確認: 勉強会運営窓口の連絡先（Slackチャンネル or メールアドレス）〉</p>
+  </footer>
+
+</div>
+</body>
+</html>

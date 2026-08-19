@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会のおしらせ</title>
+<style>
+  /* タイポグラフィ設計 */
+  /*
+    :root タイプスケール
+    base: 1rem (16px) … 本文
+    h2:   1.375rem (22px)
+    h1:   2rem (32px)
+    比率: 黄金比を緩やかに適用
+  */
+  :root {
+    --text-base: 1rem;
+    --text-h2: 1.375rem;
+    --text-h1: 2rem;
+    --leading-base: 1.8;
+    --leading-heading: 1.4;
+    --color-bg: #faf9f7;
+    --color-text: #2c2a28;
+    --color-accent: #b86b4b;  /* あたたかみのあるテラコッタ — ただし“無選択”のクリーム地テラコッタではない */
+    --color-muted: #8a7e74;
+    --space-unit: 8px;
+  }
+
+  /* リセット / ベース */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(var(--space-unit) * 10) calc(var(--space-unit) * 2);
+  }
+
+  /* 枠：720px 中央寄せ */
+  .paper {
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: calc(var(--space-unit) * 12) calc(var(--space-unit) * 8);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04); /* 削ろうと思ったが、紙の存在感として残す（影は最小限） */
+  }
+
+  /* 冒頭：主張 */
+  .hero {
+    margin-bottom: calc(var(--space-unit) * 12);
+    text-align: left;
+    border-left: 6px solid var(--color-accent);
+    padding-left: calc(var(--space-unit) * 4);
+  }
+
+  .hero__label {
+    display: inline-block;
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    margin-bottom: calc(var(--space-unit) * 1);
+    font-weight: 500;
+  }
+
+  .hero__headline {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+    font-size: var(--text-h1);
+    font-weight: 500;
+    line-height: var(--leading-heading);
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+  }
+
+  .hero__sub {
+    font-size: 1.05rem;
+    margin-top: calc(var(--space-unit) * 2);
+    color: var(--color-muted);
+  }
+
+  /* セクション */
+  .section {
+    margin-bottom: calc(var(--space-unit) * 14);
+  }
+
+  .section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .section__title {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+    font-size: var(--text-h2);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: var(--leading-heading);
+    margin-bottom: calc(var(--space-unit) * 3);
+    padding-bottom: calc(var(--space-unit) * 1.5);
+    border-bottom: 1px solid #e5dfd9;
+    color: var(--color-text);
+  }
+
+  .section__body {
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+  }
+
+  /* 概要リスト */
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 5em 1fr;
+    gap: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+    font-size: var(--text-base);
+  }
+
+  .info-list__term {
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+  }
+
+  .info-list__desc {
+    color: var(--color-text);
+  }
+
+  /* 連絡先ボックス */
+  .contact-box {
+    background: #f4f1ed;
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 5);
+    border-radius: 0;
+    margin-top: calc(var(--space-unit) * 4);
+    border-left: 4px solid var(--color-accent);
+  }
+
+  .contact-box p {
+    margin-bottom: calc(var(--space-unit) * 2);
+  }
+
+  .contact-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact-box strong {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  /* フッター */
+  .signoff {
+    margin-top: calc(var(--space-unit) * 12);
+    padding-top: calc(var(--space-unit) * 4);
+    border-top: 1px solid #e5dfd9;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: calc(var(--space-unit) * 1);
+    color: var(--color-muted);
+  }
+
+  .signoff__name {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  /* 小さな画面 */
+  @media (max-width: 540px) {
+    .paper {
+      padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 3);
+    }
+    .hero__headline {
+      font-size: 1.75rem;
+    }
+    .info-list {
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-unit) * 1.5);
+    }
+    .info-list__term {
+      margin-bottom: 0;
+    }
+  }
+
+  /* 仕上げにひとつ削る —— アイコンやグラデーションは使っていない。影も極小。よって削るものが無い……が、あえて「丸角」をすべて 0 に統一。それっぽさを排した */
+  /* 結果、すべての角は 0。装飾は最低限。 */
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <!-- 冒頭: 特徴的な一点「気軽に来たくなる」 -->
+  <div class="hero">
+    <span class="hero__label">同窓会</span>
+    <h1 class="hero__headline">気軽に、ちょっと<br>昔話しませんか</h1>
+    <p class="hero__sub">〈幹事名〉より、〈グループ名〉のみなさんへ</p>
+  </div>
+
+  <!-- 開催概要 -->
+  <section class="section">
+    <h2 class="section__title">開催概要</h2>
+    <div class="section__body">
+      <ul class="info-list">
+        <li class="info-list__term">日時</li>
+        <li class="info-list__desc">〈開催日〉　開場 18:30 / 開始 19:00</li>
+        <li class="info-list__term">場所</li>
+        <li class="info-list__desc">〈会場名〉〈住所〉<br>（最寄り駅から徒歩〈分数〉分）</li>
+        <li class="info-list__term">会費</li>
+        <li class="info-list__desc">〈金額〉円（当日払い、おつりのないように）</li>
+        <li class="info-list__term">持物</li>
+        <li class="info-list__desc">気軽な気持ちだけ。あとは何もいりません。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- どんな会にしたいか -->
+  <section class="section">
+    <h2 class="section__title">どんな会にしたいか</h2>
+    <div class="section__body">
+      <p>
+        堅苦しいスピーチも、準備してきた余興も、一切なし。久しぶりに顔を合わせて、あの頃みたいに笑えたらそれでじゅうぶんです。「仕事の話はほどほどに、昔のバカ話で盛り上がろう」—— そんなゆるい空気を目指しています。
+      </p>
+      <p style="margin-top: calc(8px * 3);">
+        参加・不参加にかかわらず、近況をちょっと聞かせてもらえるだけでも嬉しいです。返信はなるべく〈日付〉までにお願いします。
+      </p>
+    </div>
+  </section>
+
+  <!-- 出欠の連絡方法 -->
+  <section class="section">
+    <h2 class="section__title">出欠の連絡</h2>
+    <div class="section__body">
+      <div class="contact-box">
+        <p><strong>方法① LINE／メール</strong><br>
+        お手数ですが、下記の幹事あてに「出る」「欠席」「まだわからない」のいずれかを一言添えて送ってください。<br>
+        LINE: 〈幹事のLINE ID〉<br>
+        メール: 〈幹事のメールアドレス〉</p>
+        <p><strong>方法② 返信はがき</strong><br>
+        案内に同封したはがきを投函するだけ。切手は不要です。</p>
+        <p><strong>方法③ 友だち経由</strong><br>
+        「○○に伝えておいて」もOK。ただし、なるべく早めに回してもらえると助かります。</p>
+      </div>
+      <p style="margin-top: calc(8px * 3); font-size: 0.95rem; color: var(--color-muted);">
+        ※ どうしても連絡が遅れる場合は、当日の飛び入りも大丈夫。その分お酒の量だけ調整します。
+      </p>
+    </div>
+  </section>
+
+  <!-- 締め -->
+  <section class="section" style="margin-bottom: 0;">
+    <div class="signoff">
+      <p>それでは、〈開催日〉に会えるのを楽しみにしています。<br>
+      近況報告だけでも、ぜひ。</p>
+      <p class="signoff__name">幹事: 〈幹事名〉</p>
+      <p style="font-size: 0.85rem;">連絡先が変わった方は、上記アドレスまで一報ください。</p>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

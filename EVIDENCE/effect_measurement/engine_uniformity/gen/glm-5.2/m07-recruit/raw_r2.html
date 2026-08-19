@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社紹介 - 採用ページ</title>
+<style>
+  /* タイプスケール: 本文16px基準 / 比率 1.250 (Major Third) */
+  :root {
+    --base: 16px;
+    --h1: 2.44rem;   /* 39px */
+    --h2: 1.75rem;   /* 28px */
+    --h3: 1.25rem;   /* 20px */
+    --body: 1rem;    /* 16px */
+    --small: 0.875rem;
+    --ink: #1a1a1a;
+    --paper: #f4f1ec;
+    --accent: #b4451f;
+    --line: #d9d3c8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: var(--body);
+    letter-spacing: 0.01em;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ヒーロー: 飾らないが主張がある */
+  .hero {
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--h1);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
+    margin-bottom: 32px;
+  }
+
+  .hero .lead {
+    font-size: var(--body);
+    color: #4a4a4a;
+    max-width: 560px;
+  }
+
+  /* セクション共通 */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--h2);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+
+  .label {
+    font-size: var(--small);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  p { margin-bottom: 16px; color: #333; }
+
+  /* 会社紹介: 段落の先頭にアクセント */
+  .intro p:first-of-type::first-letter {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 2.2em;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin-right: 4px;
+  }
+
+  /* 働く人の声: 引用スタイル */
+  .voices {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .voice {
+    position: relative;
+    padding-left: 24px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .voice blockquote {
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    margin-bottom: 16px;
+    color: #2a2a2a;
+  }
+
+  .voice cite {
+    font-style: normal;
+    font-size: var(--small);
+    color: #6b6b6b;
+    letter-spacing: 0.05em;
+  }
+
+  /* 大事にしていること: 番号付きリスト */
+  .values ol {
+    list-style: none;
+    counter-reset: value;
+  }
+
+  .values li {
+    counter-increment: value;
+    padding: 24px 0 24px 56px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  .values li:last-child { border-bottom: none; }
+
+  .values li::before {
+    content: counter(value, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 24px;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .values h3 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--h3);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+  }
+
+  .values p {
+    font-size: var(--small);
+    color: #555;
+    margin-bottom: 0;
+  }
+
+  /* 応募導線 */
+  .cta {
+    text-align: center;
+    border-bottom: none;
+    padding: 96px 0;
+  }
+
+  .cta h2 {
+    margin-bottom: 24px;
+  }
+
+  .cta p {
+    margin-bottom: 40px;
+    color: #555;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 20px 56px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: var(--body);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: background 0.2s;
+  }
+
+  .btn:hover {
+    background: var(--accent);
+  }
+
+  .btn-note {
+    display: block;
+    margin-top: 16px;
+    font-size: var(--small);
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="label">会社紹介</div>
+    <h1>飾らない言葉で、<br>この場所で働く意味を書く。</h1>
+    <p class="lead">〈会社名〉は、派手なパンフレットよりも、ここで何をやり、何に悩み、何を少しずつ変えてきたかを正直に伝えたい。採用は、お互いの目を見て話す場所であってほしいと願っている。</p>
+  </header>
+
+  <section class="intro">
+    <div class="label">会社の紹介</div>
+    <h2>やってきたことを、そのまま書く。</h2>
+    <p>〈会社名〉は〈設立年〉に設立された。〈事業領域〉を中心に、〈顧客層〉に向けた事業を展開している。設立以来変わっていることと、頑なに変えていないこと、その両方を次に会う人に知ってほしい。</p>
+    <p>市場が急に動いても、安易に方向を変えない。小さな約束を守り続けた結果として、今の信頼がある。その積み重ねを、これから入る人にも担ってほしいと考えている。</p>
+  </section>
+
+  <section class="voices">
+    <div class="label">働く人の声</div>
+    <h2>ここで過ごす、それぞれの時間。</h2>
+
+    <div class="voice">
+      <blockquote>「正しいことを正しく続ける、という当たり前のことが一番難しい。でもこの会社は、それを諦めない人をちゃんと評価してくれる。」</blockquote>
+      <cite>〈氏名〉 — 入社〈年数〉年目</cite>
+    </div>
+
+    <div class="voice">
+      <blockquote>「最初は地味だと思った。でも同僚が丁寧に仕事をするのを見て、この地味さが信頼そのものだと気づいた。」</blockquote>
+      <cite>〈氏名〉 — 入社〈年数〉年目</cite>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="label">大事にしていること</div>
+    <h2>手放さない、いくつかのこと。</h2>
+    <ol>
+      <li>
+        <h3>約束は小さく、守り続ける。</h3>
+        <p>大きな宣言よりも、目の前の約束を確実に果たすこと。その積み重ねが社風そのもの。</p>
+      </li>
+      <li>
+        <h3>説明を省かない。</h3>
+        <p>なぜやるのか、なぜやらないのか。納得のいない判断で前に進めない。時間がかかっても、そこを通る。</p>
+      </li>
+      <li>
+        <h3>変わる人を支える。</h3>
+        <p>成長しようとする意思に、環境で応える。挑戦の結果がどうなっても、やり方を一緒に振り返る。</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="cta">
+    <div class="label">応募はこちら</div>
+    <h2>話してみませんか。</h2>
+    <p>履歴書の前に、少し話したいことがあれば歓迎する。</p>
+    <a href="#" class="btn">応募フォームへ</a>
+    <span class="btn-note">質問・相談のみでも構いません</span>
+  </section>
+
+</div>
+
+</body>
+</html>

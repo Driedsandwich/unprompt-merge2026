@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会案内</title>
+<style>
+  :root {
+    --base: #f5ede3;
+    --primary: #c97b4a;
+    --accent: #7a3b1e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--base);
+    color: #3a2418;
+    /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+    font-family: "Hiragino Maru Gothic ProN", "M PLUS Rounded 1c", "Rounded Mplus 1c", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 16px;
+    line-height: 1.95;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり */
+  .doc {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 72px 56px;
+  }
+  .lead {
+    margin: 0 0 8px;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+    line-height: 1.4;
+  }
+  .intro {
+    margin: 0 0 64px;
+    font-size: 16px;
+    color: #5a4030;
+  }
+  .block { margin-bottom: 56px; }
+  .block:last-child { margin-bottom: 0; }
+  .hd {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 8px 20px;
+    border-radius: 24px;
+    margin-bottom: 24px;
+  }
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .info-list li {
+    display: flex;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(122,59,30,0.22);
+    font-size: 15px;
+  }
+  .info-list li:last-child { border-bottom: none; }
+  .info-list .lbl {
+    flex: 0 0 96px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .info-list .val { flex: 1; }
+  .msg {
+    font-size: 16px;
+    margin: 0;
+  }
+  .rsvp {
+    background: rgba(201,123,74,0.10);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .rsvp .hd { margin-bottom: 20px; }
+  .rsvp p { margin: 0 0 12px; font-size: 15px; }
+  .rsvp p:last-child { margin-bottom: 0; }
+  .closing {
+    text-align: center;
+    font-size: 14px;
+    color: #8a6a52;
+    margin-top: 72px;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+  <p class="lead">みんな、久しぶり！</p>
+  <p class="intro">
+    <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+    〈年数〉ぶりに同窓会やることになった。幹事代表の〈幹事名〉です。<br>
+    久しぶりすぎて連絡するのもなんか照れるけど、気にしないで。
+  </p>
+
+  <div class="block">
+    <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+    <span class="hd">開催概要</span>
+    <ul class="info-list">
+      <li><span class="lbl">日　時</span><span class="val">〈開催日時〉</span></li>
+      <li><span class="lbl">場　所</span><span class="val">〈会場名・住所〉</span></li>
+      <li><span class="lbl">会　費</span><span class="val">〈確認: 会費の目安と支払い方法〉</span></li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+    <span class="hd">どんな会にしたいか</span>
+    <p class="msg">
+      坚苦しいのは一切なし。あの部室でだらだら話してた感じのまま、顔を見て、飲んで食べて、近況報告しよう。幹事席もないし、スピーチもなし。来たい人が来たいだけ来て、帰りたい時に帰ってOK。
+    </p>
+  </div>
+
+  <div class="block rsvp">
+    <span class="hd">出欠の連絡</span>
+    <p>〈開催日〉の〈締め切り〉までに、下の窓口へ「行く・行かない」だけ教えて。</p>
+    <p>連絡先：〈確認: 幹事の連絡先（メール・LINE・電話のいずれか）〉</p>
+  </div>
+
+  <p class="closing">みんなに会えるのを楽しみにしてる！</p>
+</div>
+</body>
+</html>

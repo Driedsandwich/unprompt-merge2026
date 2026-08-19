@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>〈サービス名〉 — 確かな技術で、本質を動かす</title>
+<style>
+  :root {
+    --ink: #0E1A24;
+    --ink-soft: #1C2A36;
+    --paper: #F5F2EC;
+    --paper-soft: #EAE5DB;
+    --line: #C9C2B5;
+    --accent: #B8723A;
+    --gold: #A98B4E;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+  }
+  .serif {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-feature-settings: "palt";
+  }
+  /* ヒーロー */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 144px 24px 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(184,114,58,0.35) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+  .eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: inline-block;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(169,139,78,0.4);
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    margin-bottom: 40px;
+    max-width: 16ch;
+  }
+  .hero h1 .gold { color: var(--gold); }
+  .hero .lead {
+    font-size: 1.0625rem;
+    max-width: 560px;
+    color: rgba(245,242,236,0.78);
+    margin-bottom: 56px;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 18px 40px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  .hero-cta:hover { background: #9E5F2C; }
+  /* 共通セクション */
+  .section { padding: 96px 24px; max-width: 1080px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+    margin-bottom: 56px;
+    max-width: 20ch;
+  }
+  /* 価値提案 */
+  .value {
+    background: var(--paper-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 48px;
+  }
+  .value-item {
+    padding: 8px 0;
+  }
+  .value-num {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .value-item h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .value-item p {
+    font-size: 0.9375rem;
+    color: rgba(14,26,36,0.72);
+  }
+  /* 利用の流れ */
+  .steps {
+    background: var(--paper);
+    counter-reset: step;
+  }
+  .step-list { display: grid; gap: 0; }
+  .step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-marker {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .step h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .step p {
+    font-size: 0.9375rem;
+    color: rgba(14,26,36,0.7);
+    max-width: 560px;
+  }
+  /* 最終CTA */
+  .final-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 120px 24px;
+    text-align: center;
+  }
+  .final-cta h2 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+  }
+  .final-cta p {
+    font-size: 1rem;
+    color: rgba(245,242,236,0.7);
+    margin-bottom: 48px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .final-cta .hero-cta { margin: 0 auto; }
+  /* フッター */
+  footer {
+    background: var(--ink-soft);
+    color: rgba(245,242,236,0.5);
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 0.8125rem;
+    letter-spacing: 0.05em;
+  }
+  @media (max-width: 640px) {
+    .step { grid-template-columns: 56px 1fr; gap: 16px; }
+    .step-marker { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">〈サービス名〉</span>
+    <h1 class="serif">裏付けられる<br><span class="gold">技術力</span>と<br>揺るがない信頼。</h1>
+    <p class="lead">かっこよさは見せかけで終わらない。設計の根拠が説明できること、約束を守り続けること。その両方が揃って初めて、信頼と呼べる。</p>
+    <a href="#cta" class="hero-cta">相談をはじめる →</a>
+  </div>
+</section>
+
+<section class="section value">
+  <div class="section-label">VALUE</div>
+  <h2 class="section-title serif">見た目の先にある、<br>確からしさ。</h2>
+  <div class="value-grid">
+    <div class="value-item">
+      <span class="value-num">01</span>
+      <h3>説明できる技術</h3>
+      <p>何を選び、何を捨てたか。設計の判断には常に理由があり、お客様にも同じ言葉で説明できる状態を保つ。</p>
+    </div>
+    <div class="value-item">
+      <span class="value-num">02</span>
+      <h3>約束を守る体制</h3>
+      <p>見積もりの内訳も、納期の根拠も、保守の範囲も曖昧にしない。保守的な約束を確実に果たすことを選ぶ。</p>
+    </div>
+    <div class="value-item">
+      <span class="value-num">03</span>
+      <h3>長く使える品質</h3>
+      <p>作って終わりではなく、運用し続ける前提で設計する。引き継ぎやすい構造を保ち、継ぎ足しで崩れない。</p>
+    </div>
+  </div>
+</section>
+
+<section class="section steps">
+  <div class="section-label">PROCESS</div>
+  <h2 class="section-title serif">4つの流れで、<br>着実に進める。</h2>
+  <div class="step-list">
+    <div class="step">
+      <div class="step-marker serif">壱</div>
+      <div>
+        <h3>ヒアリング</h3>
+        <p>目的と背景、今困っていることをお聞きする。提案のための前提を、先走らずに揃える。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker serif">弐</div>
+      <div>
+        <h3>設計と見積り</h3>
+        <p>選択肢と根拠を併記した提案書を提出する。内訳は透明に、根拠は言葉で示す。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker serif">参</div>
+      <div>
+        <h3>制作・実装</h3>
+        <p>進行は見える化する。着手前のすり合わせと、工程ごとのチェックポイントを挟む。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker serif">四</div>
+      <div>
+        <h3>引き渡し・運用</h3>
+        <p>納品後の運用を見据えた引き継ぎ資料と、保守対応の窓口を用意する。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="cta">
+  <h2 class="serif">まずは、<br>話を聞かせてください。</h2>
+  <p>お急ぎでなくても構いません。形式ばらないご相談からでも、必ずお返事します。</p>
+  <a href="#" class="hero-cta">相談をはじめる →</a>
+</section>
+
+<footer>
+  © 〈会社名〉 — 〈サービス名〉
+</footer>
+
+</body>
+</html>

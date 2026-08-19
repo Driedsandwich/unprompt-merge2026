@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 要件概要</title>
+<style>
+/* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+/* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+/* GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 */
+/* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+/* GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール */
+
+:root {
+  /* タイプスケール: 本文 16px を基準に 1.25 倍 */
+  --fs-body: 16px;
+  --fs-h3: 1.25rem;    /* 20px */
+  --fs-h2: 1.5625rem;  /* 25px */
+  --fs-h1: 1.9531rem;  /* ~31px */
+  --line-height-body: 1.7;
+  --line-height-heading: 1.2;
+  /* 色: 1st decision の palette を優先 */
+  --bg-page: #f7f6f3;
+  --text-main: #1f2a24;
+  --accent: #2f6b4f;
+  --gold: #c9a24b;
+  /* 余白 */
+  --space-unit: 8px;
+  --section-padding: 96px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  font-size: var(--fs-body);
+  line-height: var(--line-height-body);
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 4);
+}
+
+/* 冒頭ブロック */
+.hero {
+  margin-bottom: var(--section-padding);
+  padding-bottom: calc(var(--space-unit) * 8);
+  border-bottom: 2px solid var(--gold);
+}
+
+.hero__label {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: calc(var(--space-unit) * 2);
+}
+
+.hero__title {
+  font-family: "Times New Roman", "Noto Serif", Georgia, serif;
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-heading);
+  margin: 0 0 calc(var(--space-unit) * 3) 0;
+  color: var(--text-main);
+}
+
+.hero__sub {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #3a4552;
+}
+
+/* セクション共通 */
+.section {
+  margin-bottom: var(--section-padding);
+}
+
+.section__title {
+  font-family: "Times New Roman", "Noto Serif", Georgia, serif;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: var(--line-height-heading);
+  margin: 0 0 calc(var(--space-unit) * 4) 0;
+  padding-bottom: calc(var(--space-unit) * 2);
+  border-bottom: 1px solid var(--gold);
+  color: var(--text-main);
+}
+
+.section__title--sub {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+/* 機能箇条書き */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: calc(var(--space-unit) * 5);
+  margin-bottom: calc(var(--space-unit) * 3);
+  line-height: 1.6;
+}
+
+.feature-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 20px;
+  height: 2px;
+  background-color: var(--gold);
+}
+
+/* 画面説明 */
+.screen-desc {
+  background-color: #ffffff;
+  border-left: 4px solid var(--accent);
+  padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
+  margin: calc(var(--space-unit) * 4) 0;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.screen-desc strong {
+  color: var(--accent);
+}
+
+/* 使わないと決めたもの */
+.not-included {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--space-unit) * 2);
+  margin-top: calc(var(--space-unit) * 4);
+}
+
+@media (max-width: 600px) {
+  .not-included {
+    grid-template-columns: 1fr;
+  }
+}
+
+.not-included__item {
+  background: #ffffff;
+  padding: calc(var(--space-unit) * 3);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border: 1px solid #ddd;
+}
+
+.not-included__item-title {
+  font-weight: 600;
+  display: block;
+  margin-bottom: calc(var(--space-unit) * 1);
+  color: var(--text-main);
+}
+
+/* プレースホルダスタイル */
+.placeholder {
+  color: #8aa1b4;
+  font-style: italic;
+  border-bottom: 1px dashed #8aa1b4;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<div class="hero">
+  <span class="hero__label">社内ツール 要件概要</span>
+  <h1 class="hero__title">経費、自動で締まる。<br>月次の集計・経理処理を即完了</h1>
+  <p class="hero__sub">経理担当者が毎月繰り返す「各部署から届く経費申請を手作業で集計し、科目別に仕訳を組み、システムへ転記する」作業から、転記前の集計・分類・突合の負荷を外すためのツール仕様です。</p>
+</div>
+
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<section class="section">
+  <h2 class="section__title">目的</h2>
+  <p>経理担当者が月末・月初に集中する経費データの集計・分類・突合作業を、手作業から脱却させ、月次締め処理の時間を短縮する。ツールは経理課内で完結し、他システムへの接続を前提としない。</p>
+</section>
+
+<section class="section">
+  <h2 class="section__title">対象ユーザー</h2>
+  <p>経理担当者（<span class="placeholder">〈確認: 想定利用者数〉</span>名程度）。申請者（一般社員）はツールを直接操作しない。申請データは別途入手する既存の申請一覧（Excel 出力等）を入力材料とする。</p>
+</section>
+
+<section class="section">
+  <h2 class="section__title">主要機能</h2>
+  <!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+  <p>実装は Excel または Google スプレッドシート上で動作する単一のブックとする。マクロやスクリプトは使用せず、セル関数のみで処理を完結させる。</p>
+  <ul class="feature-list">
+    <li><strong>取込シート:</strong> 各部署から集まった経費申請データ（CSV または Excel 形式）を所定の列に貼り付ける。列名のマッピングは初回設定のみ。2回目以降は同じ書式であれば自動認識。</li>
+    <li><strong>自動分類・集計シート:</strong> 貼り付けられたデータを、<span class="placeholder">〈確認: 現在の科目マスタ〉</span>に基づき費目別・部署別に自動で振り分け集計する。集計結果は月次推移として蓄積可能。</li>
+    <li><strong>突合チェックシート:</strong> 入力された申請データと、経理が別途入手する<a href="#" onclick="return false;">銀行口座の引落日データ</a>または立替払い報告データを横に並べ、差異をハイライト表示する。突合が完了した行は自動でグレーアウト。</li>
+    <li><strong>仕訳プレビュー・出力シート:</strong> 集計・突合が完了したデータから、経理システムへ転記するための仕訳データ（日付・勘定科目・金額・部門）を一覧形式で出力する。出力は CSV または印刷用レイアウト。</li>
+    <li><strong>設定シート:</strong> 科目マスタ、部門コード、突合対象の銀行口座一覧を管理する。マスタの変更はここで行い、集計ロジックに自動反映。</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2 class="section__title">画面イメージの説明</h2>
+  <p>ツールは1つのブック内に5枚のシートで構成する。</p>
+
+  <div class="screen-desc">
+    <strong>1. 取込シート</strong><br>
+    最左列に「取込日付」「申請者名」「費目」「金額」「部門コード」「支払日」の6列が固定で並ぶ。データを貼り付けると、2行目以降の行に自動で書式設定が適用される。貼り付けエリアの上に「データをここに貼り付け」とグレーの案内表示がある。
+  </div>
+
+  <div class="screen-desc">
+    <strong>2. 自動分類・集計シート</strong><br>
+    左端に費目（旅費交通費・接待交際費・消耗品費等）の一覧、上部に部門コードが並ぶクロス集計表。各セルには SUMIFS 関数が入り、取込シートのデータを自動集計。最下行に月間合計、最右列に部門別合計が表示される。
+  </div>
+
+  <div class="screen-desc">
+    <strong>3. 突合チェックシート</strong><br>
+    取込シートのデータが上段、別途貼り付ける銀行引落データが下段に配置。両者の「金額」「支払日」を比較し、不一致行は赤色の塗りつぶしと「不一致」のコメントがセルに表示される。一致した行は緑色のチェックマークが自動で入る。
+  </div>
+
+  <div class="screen-desc">
+    <strong>4. 仕訳プレビュー・出力シート</strong><br>
+    集計・突合が完了したデータのみが転記され、列は「日付」「借方科目」「借方金額」「貸方科目」「貸方金額」「部門コード」「摘要」。出力ボタン（または CSV 保存用の別シート）は設けず、このシートをそのまま CSV 保存または印刷する運用とする。
+  </div>
+
+  <div class="screen-desc">
+    <strong>5. 設定シート</strong><br>
+    A列: 科目コード、B列: 科目名、C列: 部門コード、D列: 部門名。E列以降は突合用の銀行口座情報。このシートの内容を変更すると、全シートの分類ロジックが更新される。
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section__title">使わないと決めたもの</h2>
+  <!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+  <p>本ツールは単独完結型とし、以下の機能は対象外とする。</p>
+  <div class="not-included">
+    <div class="not-included__item">
+      <span class="not-included__item-title">申請入力機能</span>
+      一般社員が経費を申請する画面・フォームは含まない。申請データは既存の別システムから CSV 等で受け取る前提。
+    </div>
+    <div class="not-included__item">
+      <span class="not-included__item-title">経理システムとの自動連携</span>
+      仕訳データの転送は CSV 出力を介して手動で行う。API 連携やバッチ連携は実装しない。
+    </div>
+    <div class="not-included__item">
+      <span class="not-included__item-title">ワークフロー・承認機能</span>
+      申請の承認ルート管理、差し戻し、通知機能は含まない。承認済みデータのみが取込シートに貼り付けられることを前提とする。
+    </div>
+    <div class="not-included__item">
+      <span class="not-included__item-title">電子帳簿保存法対応</span>
+      出力データの証跡管理や改ざん防止機能は提供しない。保存要件は既存の経理システム側で対応する。
+    </div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

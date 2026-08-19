@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内報 巻頭あいさつ</title>
+<style>
+:root {
+  --base-bg: #fff6e8;
+  --main: #e8965a;
+  --accent: #c4472b;
+  --text: #2e2b28;
+  --text-muted: #6b6058;
+  --body-size: 1rem;
+  --h2-size: 1.333rem;
+  --h1-size: 1.777rem;
+  --ratio: 1.333;
+  --grid: 8px;
+  --radius: 12px;
+}
+/* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+/* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+/* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--base-bg);
+  color: var(--text);
+  font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--grid);
+}
+
+.wrapper {
+  max-width: 720px;
+  width: 100%;
+  background: #ffffffcc;
+  backdrop-filter: blur(4px);
+  border-radius: var(--radius);
+  padding: 56px 48px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+  margin: 32px auto;
+}
+
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+.callout {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  font-size: 0.888rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  padding: 0 0 8px 0;
+  border-bottom: 2px solid var(--main);
+  display: inline-block;
+}
+
+h1 {
+  font-family: 'Hiragino Maru Gothic ProN', 'Rounded Mplus 1c', 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: var(--h1-size);
+  letter-spacing: 0.08em;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 32px;
+}
+
+/* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+.greeting {
+  font-size: 1.111rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 24px;
+  padding-left: 16px;
+  border-left: 4px solid var(--main);
+}
+
+p {
+  font-size: var(--body-size);
+  line-height: 2;
+  margin-bottom: 24px;
+}
+
+/* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+.season-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--main);
+  color: #fff;
+  font-size: 0.777rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 14px 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+.season-tag::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+.signature {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--main);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.888rem;
+  color: var(--text-muted);
+}
+
+.signature span {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--main);
+  opacity: 0.3;
+  margin: 40px 0 8px;
+}
+
+.note {
+  font-size: 0.777rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 40px 24px;
+    margin: 16px 8px;
+  }
+  h1 {
+    font-size: 1.444rem;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<div class="callout">社内報　2026年8月号</div>
+
+<h1>知らない廊下、歩いてみた</h1>
+
+<div class="greeting">おつかれさま、今月も気楽にどうぞ。</div>
+
+<!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+<div class="season-tag">残暑</div>
+
+<!-- GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 -->
+<p>
+　まだまだ暑い日が続きますね。エアコンの効いた部屋と外の温度差で、毎朝「今日はどっち基準で服選べばいいんだ」と迷ってしまう今日このごろです。
+</p>
+
+<p>
+　先週、ちょっとした用事で普段あまり行かない〈フロア名〉のフロアを通りかかりました。あのフロアって実は小さな休憩コーナーがあるんですね。窓際のソファに座って5分ほど外を眺めていたら、同じ建物の中なのに「違う会社に来たみたい」な気分になりました。〈確認: そのフロアで実際に働く社員の方は、あのスペースをどんなふうに使っていますか？〉
+</p>
+
+<p>
+　同じ会社でも、フロアが変われば空気も動線も違う。自分の部署の常識が社内の常識とは限らない——そんな当たり前のことに、あらためて気づかされた一週間でした。来月は別のフロアにも足を伸ばしてみようと思います。
+</p>
+
+<!-- GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 -->
+<div class="signature">
+  編集部・〈執筆者名〉
+</div>
+
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+<hr>
+<p class="note">それぞれのペースで、今月もお疲れさまです。</p>
+
+</div>
+</body>
+</html>

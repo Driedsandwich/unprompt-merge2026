@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 | かっこよく、信頼される</title>
+<style>
+  /* タイプスケール: 本文 16px / 1.25 倍率 */
+  :root {
+    --base: 16px;
+    --sans: 'Inter', 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+    --serif: 'Times New Roman', 'Noto Serif JP', 'Yu Mincho', serif;
+    --c-primary: #1a2b3c;        /* 濃紺ベース */
+    --c-accent: #c7433e;         /* 落ち着いた赤 */
+    --c-bg: #f6f4f0;            /* わずかに温かみのある白 */
+    --c-text: #1e1e1e;
+    --c-light: #f0ede8;
+    --space-unit: 8px;
+    --space-lg: calc(var(--space-unit) * 12);  /* 96px */
+    --space-md: calc(var(--space-unit) * 6);   /* 48px */
+    --space-sm: calc(var(--space-unit) * 3);   /* 24px */
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    font-size: var(--base);
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--sans);
+    color: var(--c-text);
+    background: var(--c-bg);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+  }
+  h1 {
+    font-size: 2.8rem;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+  h2 {
+    font-size: 2.0rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid var(--c-accent);
+    display: inline-block;
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    font-family: var(--sans);
+    letter-spacing: 0.02em;
+  }
+  p {
+    font-size: 1rem;
+    max-width: 64ch;
+  }
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+  /* セクション余白 8px グリッド */
+  section {
+    padding: var(--space-lg) 0;
+  }
+  /* ヒーロー */
+  .hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #1a2b3c 0%, #2a4055 100%);
+    color: #f0ede8;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 50%;
+    height: 140%;
+    background: radial-gradient(circle at 70% 30%, rgba(199,67,62,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    align-items: center;
+  }
+  .hero h1 {
+    color: var(--c-light);
+    margin-bottom: var(--space-sm);
+  }
+  .hero .lead {
+    font-size: 1.15rem;
+    font-family: var(--sans);
+    color: rgba(240,237,232,0.85);
+    margin-bottom: var(--space-md);
+    max-width: 48ch;
+  }
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-visual svg {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: var(--sans);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    background: var(--c-accent);
+    color: #fff;
+    padding: 16px 48px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: 1px solid transparent;
+    font-size: 1rem;
+  }
+  .cta-btn:hover {
+    background: transparent;
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+  }
+  /* 価値提案 */
+  .value-prop {
+    background: #ffffff;
+  }
+  .value-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+  .value-item {
+    background: var(--c-bg);
+    padding: var(--space-md);
+    border-left: 4px solid var(--c-accent);
+  }
+  .value-item h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--c-primary);
+  }
+  /* 特徴3点 */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+  .feature-card {
+    background: #fff;
+    padding: var(--space-md);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    border-radius: 4px;
+    transition: box-shadow 0.2s;
+  }
+  .feature-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .feature-icon {
+    font-size: 2.4rem;
+    margin-bottom: var(--space-sm);
+    display: block;
+  }
+  .feature-card h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--c-primary);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-sm);
+  }
+  /* 利用の流れ */
+  .flow-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    counter-reset: step;
+    margin-top: var(--space-md);
+  }
+  .flow-step {
+    flex: 1 1 200px;
+    background: #fff;
+    padding: var(--space-md);
+    border-radius: 4px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .flow-step::before {
+    counter-increment: step;
+    content: "0" counter(step);
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--c-accent);
+    opacity: 0.3;
+    display: block;
+    margin-bottom: var(--space-sm);
+    line-height: 1;
+  }
+  .flow-step h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    margin-bottom: var(--space-sm);
+    color: var(--c-primary);
+  }
+  .flow-step p {
+    font-size: 0.95rem;
+    margin: 0 auto;
+  }
+  /* CTA */
+  .cta-section {
+    background: var(--c-primary);
+    color: var(--c-light);
+    text-align: center;
+  }
+  .cta-section h2 {
+    border-bottom: 2px solid var(--c-accent);
+    margin-bottom: var(--space-md);
+    color: var(--c-light);
+  }
+  .cta-section p {
+    margin: 0 auto var(--space-md);
+    max-width: 48ch;
+    color: rgba(240,237,232,0.85);
+  }
+  .cta-section .cta-btn {
+    background: var(--c-accent);
+    border-color: var(--c-accent);
+  }
+  .cta-section .cta-btn:hover {
+    background: transparent;
+    color: var(--c-accent);
+    border-color: var(--c-accent);
+  }
+  /* フッター */
+  footer {
+    background: #11181f;
+    color: rgba(240,237,232,0.5);
+    padding: var(--space-md) 0;
+    font-size: 0.85rem;
+    text-align: center;
+    border-top: 1px solid rgba(199,67,62,0.15);
+  }
+  footer a {
+    color: var(--c-accent);
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  /* レスポンシブ */
+  @media (max-width: 800px) {
+    h1 { font-size: 2.0rem; }
+    h2 { font-size: 1.6rem; }
+    .hero .container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-visual { order: -1; }
+    .hero-visual svg { max-width: 240px; }
+    .value-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .flow-steps { flex-direction: column; }
+    section { padding: var(--space-md) 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ヒーロー: かっこよさ＋信頼感 -->
+<section class="hero">
+  <div class="container">
+    <div>
+      <h1>決断を、<br>もう迷わせない。</h1>
+      <p class="lead">〈サービス名〉は、複雑なデータをひとつの視点に統合。経営の直感を裏打ちする、新しい判断基盤です。</p>
+      <a href="#" class="cta-btn">はじめる</a>
+    </div>
+    <div class="hero-visual">
+      <!-- インラインSVG: 抽象的な盾＋ネットワーク -->
+      <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M120 30 L200 70 L200 140 C200 180 160 210 120 220 C80 210 40 180 40 140 L40 70 Z" fill="#2a4055" stroke="#c7433e" stroke-width="3" opacity="0.8"/>
+        <circle cx="120" cy="130" r="36" fill="none" stroke="#f0ede8" stroke-width="2" opacity="0.5"/>
+        <circle cx="120" cy="130" r="14" fill="#c7433e" opacity="0.8"/>
+        <path d="M70 100 Q120 60 170 100" stroke="#f0ede8" stroke-width="2" fill="none" opacity="0.3"/>
+        <path d="M80 160 Q120 190 160 160" stroke="#f0ede8" stroke-width="2" fill="none" opacity="0.3"/>
+        <line x1="120" y1="94" x2="120" y2="56" stroke="#f0ede8" stroke-width="1.5" opacity="0.4"/>
+        <line x1="120" y1="166" x2="120" y2="200" stroke="#f0ede8" stroke-width="1.5" opacity="0.4"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 価値提案 -->
+<section class="value-prop">
+  <div class="container">
+    <h2>価値提案</h2>
+    <div class="value-grid">
+      <div class="value-item">
+        <h3>判断に、重みを。</h3>
+        <p>勘や経験だけに頼らない。蓄積されたデータと現場の感覚を結びつけ、再現性のある意思決定を可能にします。</p>
+      </div>
+      <div class="value-item">
+        <h3>チームに、揺るがない軸を。</h3>
+        <p>メンバー全員が同じ指標を見る。認識のズレを減らし、議論の質を高める共通言語を提供します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 特徴3点 -->
+<section style="background:#ffffff;">
+  <div class="container">
+    <h2>3つの特長</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">&#9312;</span>
+        <h3>統合ビュー</h3>
+        <p>バラバラのデータソースをひとつの画面に集約。関係性が一目でわかる。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">&#9313;</span>
+        <h3>未来予測シグナル</h3>
+        <p>過去の傾向から次の変化を推定。先回りのアクションを支援する。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">&#9314;</span>
+        <h3>チームアライメント</h3>
+        <p>指標に対する解釈を揃え、会議の生産性を高める仕組み。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 利用の流れ -->
+<section>
+  <div class="container">
+    <h2>はじめ方</h2>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <h3>接続</h3>
+        <p>既存のツールやデータベースと連携。数分でセットアップ完了。</p>
+      </div>
+      <div class="flow-step">
+        <h3>設定</h3>
+        <p>チームの目標に合わせて指標を選択。直感的なフィルター機能。</p>
+      </div>
+      <div class="flow-step">
+        <h3>活用</h3>
+        <p>毎日のミーティングやレポートに。判断の根拠が変わります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>さあ、はじめましょう</h2>
+    <p>かっこいいだけじゃない。信頼に足る数字と、チームの納得感を。<br>最初の一歩を、私たちがサポートします。</p>
+    <a href="#" class="cta-btn">無料で試す</a>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="container">
+    <p>&copy; 2025 〈会社名〉. All rights reserved. <a href="#">プライバシーポリシー</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

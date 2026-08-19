@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品説明文</title>
+<style>
+:root {
+  /* タイプスケール: 本文 16px を基準に黄金比 1.618 */
+  --text-base: 16px;
+  --text-scale: 1.618;
+  --text-h1: calc(var(--text-base) * var(--text-scale) * var(--text-scale));
+  --text-h2: calc(var(--text-base) * var(--text-scale));
+  --text-body: var(--text-base);
+  --text-small: calc(var(--text-base) / 1.2);
+  /* 余白: 8px グリッド */
+  --space-unit: 8px;
+  --space-sm: calc(var(--space-unit) * 2);   /* 16px */
+  --space-md: calc(var(--space-unit) * 4);   /* 32px */
+  --space-lg: calc(var(--space-unit) * 8);   /* 64px */
+  --space-xl: calc(var(--space-unit) * 12);  /* 96px */
+  /* 色: 深みのある藍を基調、アクセントは錆色(朱に近い茶) */
+  --color-primary: #1a2a3a;
+  --color-primary-light: #2c4055;
+  --color-accent: #b85c3a;
+  --color-bg: #f7f5f0;
+  --color-text: #1f1f1f;
+  --color-muted: #6b6b6b;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.8;
+  color: var(--color-text);
+}
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+h1 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-size: var(--text-h1);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-primary);
+}
+.lead {
+  font-size: calc(var(--text-body) * 1.1);
+  line-height: 1.9;
+  margin: 0 0 var(--space-lg) 0;
+  padding-left: var(--space-sm);
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-primary-light);
+}
+.features {
+  margin: 0 0 var(--space-lg) 0;
+}
+.features h2 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-size: var(--text-h2);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  margin: 0 0 var(--space-md) 0;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-accent);
+  color: var(--color-primary);
+}
+.feature-item {
+  margin-bottom: var(--space-md);
+}
+.feature-item h3 {
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--text-body);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-accent);
+}
+.feature-item p {
+  margin: 0;
+}
+.specs {
+  margin: 0 0 var(--space-lg) 0;
+  padding: var(--space-md);
+  background: #ffffff;
+  border: 1px solid #ddd;
+}
+.specs h2 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-size: var(--text-h2);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-primary);
+}
+.specs table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-small);
+}
+.specs th {
+  text-align: left;
+  padding: var(--space-sm) 0;
+  font-weight: 600;
+  color: var(--color-primary-light);
+  width: 30%;
+  vertical-align: top;
+}
+.specs td {
+  padding: var(--space-sm) 0;
+  vertical-align: top;
+}
+.specs tr + tr {
+  border-top: 1px solid #e0ddd8;
+}
+.note {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+  margin-top: var(--space-sm);
+  line-height: 1.7;
+}
+.closing {
+  text-align: center;
+  padding: var(--space-lg) 0 0 0;
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-size: calc(var(--text-body) * 1.1);
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<h1>〈商品名〉<br>毎朝の「迷わない」をつくる。</h1>
+
+<div class="lead">
+  忙しい朝、服を選ぶ時間すらもったいないと思ったことはありませんか。<br>
+  〈商品名〉は、あなたの「今日の一着」を、一瞬で決めてくれる新しいスタイルの提案です。
+</div>
+
+<div class="features">
+  <h2>なぜ、選ぶ手間がなくなるのか</h2>
+
+  <div class="feature-item">
+    <h3>01 — コーディネートの「軸」が決まる</h3>
+    <p>
+      トップスとボトムスの組み合わせを〈商品名〉が記憶し、天気や予定に合わせて最適な一案を提示します。朝の「なんとなく着て、なんとなく直す」を、ひとつの指針で終わらせます。
+    </p>
+  </div>
+
+  <div class="feature-item">
+    <h3>02 — クローゼットが「見える」化する</h3>
+    <p>
+      手持ちの服を登録するだけで、どんなアイテムがどれだけあるかが一目瞭然。買い足しの重複を防ぎ、本当に必要な一着と出会うきっかけにもなります。
+    </p>
+  </div>
+
+  <div class="feature-item">
+    <h3>03 — 季節の変わり目にも慌てない</h3>
+    <p>
+      気温の変化やイベントに応じて、コーディネートの提案が自動でアップデート。あなたの「持っている服」で、いつでもいちばんしっくりくる組み合わせを。
+    </p>
+  </div>
+</div>
+
+<div class="specs">
+  <h2>仕様・ご注意</h2>
+  <table>
+    <tr>
+      <th>対応環境</th>
+      <td>iOS 15.0 以上 / Android 12 以上 (各ストアよりダウンロード)</td>
+    </tr>
+    <tr>
+      <th>初期設定</th>
+      <td>お手持ちのアイテムを10点以上登録いただくことで、提案精度が安定します</td>
+    </tr>
+    <tr>
+      <th>データ管理</th>
+      <td>登録内容は端末内に保存。クラウド連携はオプション(別途案内)</td>
+    </tr>
+    <tr>
+      <th>ご注意</th>
+      <td>提案はあくまで参考です。最終的な選択はお客様自身の判断でお願いいたします</td>
+    </tr>
+  </table>
+  <div class="note">
+    ※ 記載の仕様は予告なく変更となる場合がございます。<br>
+    ※ 画像やブランド名の登録に関する権利は、お客様ご自身でご確認ください。
+  </div>
+</div>
+
+<div class="closing">
+  あなたの朝に、<br>
+  たったひとつの「決まった」を。
+</div>
+
+</div>
+</body>
+</html>

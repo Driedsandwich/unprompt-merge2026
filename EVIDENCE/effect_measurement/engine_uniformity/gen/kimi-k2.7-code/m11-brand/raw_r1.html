@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉｜世界観を味わうコーヒー豆</title>
+<style>
+:root{
+  --bg:#2A211B;
+  --surface:#3A3027;
+  --text:#F4F1EA;
+  --accent:#C49A6C;
+  --space-xs:8px;
+  --space-s:16px;
+  --space-m:24px;
+  --space-l:48px;
+  --space-xl:96px;
+  --text-base:16px;
+  --text-sm:14px;
+  --text-lg:20px;
+  --text-xl:28px;
+  --text-2xl:40px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Noto Sans JP','Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
+  font-size:var(--text-base);
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.8;
+}
+h1,h2,h3{
+  font-family:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho',serif;
+  font-weight:600;
+  letter-spacing:0.04em;
+  line-height:1.4;
+}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl);margin-bottom:var(--space-m)}
+h3{font-size:var(--text-lg);margin-bottom:var(--space-xs)}
+svg{display:block;max-width:100%}
+.container{width:min(720px,92vw);margin-inline:auto;padding-block:var(--space-xl)}
+.hero{text-align:center}
+.hero svg{margin-inline:auto;margin-bottom:var(--space-m);width:80px;height:80px;color:var(--accent)}
+.hero>p:first-of-type{color:var(--accent);font-size:var(--text-sm);letter-spacing:0.2em;margin-bottom:var(--space-s)}
+.lead{font-size:var(--text-lg);margin-top:var(--space-m)}
+.card{background:var(--surface);padding:var(--space-m);border-radius:4px}
+.beans,.items{display:grid;gap:var(--space-m)}
+.item{display:flex;gap:var(--space-m);align-items:flex-start}
+.item svg{flex:none;width:56px;height:56px;color:var(--accent)}
+.btn{display:inline-block;padding:var(--space-s) var(--space-l);background:var(--accent);color:var(--bg);font-weight:700;text-decoration:none;border-radius:999px;letter-spacing:0.05em}
+.note{font-size:var(--text-sm);color:rgba(244,241,234,.7);margin-top:var(--space-s)}
+.footer{text-align:center}
+</style>
+</head>
+<body>
+<header class="hero container">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true">
+    <ellipse cx="36" cy="50" rx="22" ry="30"/>
+    <path d="M58 28c18 0 22 12 22 22s-4 22-22 22"/>
+    <path d="M36 20v60" stroke-opacity=".3"/>
+  </svg>
+  <p>COFFEE BEANS</p>
+  <h1>〈ブランド名〉</h1>
+  <p class="lead">一杯に込めた、産地からの物語。</p>
+</header>
+<main>
+  <section class="container">
+    <h2>ブランドの物語</h2>
+    <p>〈ブランド名〉は、産地の風土と人の手仕事を大切にするコーヒー豆ブランドです。特定の農園や地域と向き合い、収穫から焙煎までの過程を見つめ直すことで、誰かの日常にそっと寄り添う一杯を届けたいと考えています。</p>
+  </section>
+  <section class="container">
+    <h2>豆へのこだわり</h2>
+    <div class="beans">
+      <div class="card">
+        <h3>産地の選定</h3>
+        <p>〈産地・農園名〉で大切に育てられたチェリーのみを取り扱います。標高や土壌、気候が生み出す個性を、ロットごとに記録しています。</p>
+      </div>
+      <div class="card">
+        <h3>焙煎の設計</h3>
+        <p>豆の個性を引き出す焙煎プロファイルは、少量ずつテストして決定。香りの立ち上がりと余韻のバランスを整えています。</p>
+      </div>
+      <div class="card">
+        <h3>鮮度の管理</h3>
+        <p>焙煎後は短期間でお届けし、風味のピークをできるだけ長く保てるよう梱包します。</p>
+      </div>
+    </div>
+  </section>
+  <section class="container">
+    <h2>ラインナップ</h2>
+    <div class="items">
+      <article class="item">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+          <circle cx="32" cy="32" r="24"/>
+          <path d="M20 32h24M32 20v24"/>
+        </svg>
+        <div>
+          <h3>〈定番ブレンド名〉</h3>
+          <p>毎日飲みたくなる安定感。ナッツとカラメルのような甘みが特長です。</p>
+        </div>
+      </article>
+      <article class="item">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+          <circle cx="32" cy="32" r="24"/>
+          <path d="M24 40c0-12 8-16 8-16s8 4 8 16"/>
+        </svg>
+        <div>
+          <h3>〈季節のシングルオリジン名〉</h3>
+          <p>旬の産地から届く限定豆。フルーティな香りとすっきりとした酸味を楽しめます。</p>
+        </div>
+      </article>
+      <article class="item">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+          <rect x="16" y="12" width="32" height="40" rx="4"/>
+          <path d="M24 24h16M24 34h16"/>
+        </svg>
+        <div>
+          <h3>〈ギフトセット名〉</h3>
+          <p>複数の豆を組み合わせたセット。大切な人への贈り物にどうぞ。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="container" style="text-align:center">
+    <h2>ご購入はこちら</h2>
+    <p style="margin-bottom:var(--space-m)">公式オンラインショップで〈ブランド名〉の豆をお求めいただけます。</p>
+    <a class="btn" href="〈ショップURL〉">オンラインショップを見る</a>
+    <p class="note">取扱店舗については、準備ができ次第お知らせいたします。</p>
+  </section>
+</main>
+<footer class="footer container">
+  <p class="note">© 〈ブランド名〉</p>
+</footer>
+</body>
+</html>

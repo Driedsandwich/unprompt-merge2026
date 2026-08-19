@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 — 確かな技術と誠実な約束</title>
+<style>
+:root {
+  --base: #0B1620;       /* 深い墨藍 */
+  --surface: #14202E;
+  --ink: #E8E4D9;       /* 紙白 */
+  --muted: #8B96A3;
+  --accent: #C8A25B;    /* 落着いた金 */
+  --fs-body: 16px;
+  --fs-lead: 18px;
+  --fs-h3: 22px;
+  --fs-h2: 36px;
+  --fs-h1: 52px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.75;
+  color: var(--ink);
+  background: var(--base);
+}
+h1, h2, h3 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+section { padding: 104px 24px; }
+.wrap { max-width: 1080px; margin: 0 auto; }
+
+/* HERO */
+.hero {
+  padding: 128px 24px 112px;
+  border-bottom: 1px solid rgba(200, 162, 91, 0.15);
+  background: linear-gradient(180deg, #0B1620 0%, #14202E 100%);
+}
+.hero .eyebrow {
+  font-family: "Hiragino Sans", sans-serif;
+  font-size: 13px; letter-spacing: 0.28em;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.hero h1 { font-size: var(--fs-h1); margin-bottom: 32px; }
+.hero h1 .line { display: block; }
+.hero h1 .gold { color: var(--accent); }
+.hero p.lead {
+  font-size: var(--fs-lead);
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* 価値提案 */
+.value { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.value h2 { font-size: var(--fs-h2); margin-bottom: 56px; }
+.value-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+.value-grid > div h3 { font-size: var(--fs-h3); margin-bottom: 16px; color: var(--ink); }
+.value-grid > div p { color: var(--muted); }
+
+/* 特徴 */
+.features { background: var(--surface); }
+.features h2 { font-size: var(--fs-h2); margin-bottom: 64px; }
+.feat-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.feat-item .num {
+  font-family: "Hiragino Mincho ProN", serif;
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 24px;
+}
+.feat-item h3 { font-size: var(--fs-h3); margin-bottom: 16px; }
+.feat-item p { font-size: 15px; color: var(--muted); }
+
+/* 流れ */
+.flow h2 { font-size: var(--fs-h2); margin-bottom: 72px; }
+.steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+.step {
+  padding: 0 32px;
+  border-left: 1px solid rgba(200, 162, 91, 0.25);
+}
+.step:first-child { padding-left: 0; }
+.step:last-child { padding-right: 0; }
+.step .tag {
+  font-size: 12px; letter-spacing: 0.24em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.step h3 { font-size: var(--fs-h3); margin-bottom: 16px; }
+.step p { color: var(--muted); font-size: 15px; }
+
+/* CTA */
+.cta {
+  text-align: center;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--base) 100%);
+  border-top: 1px solid rgba(200, 162, 91, 0.15);
+}
+.cta h2 { font-size: var(--fs-h2); margin-bottom: 24px; }
+.cta p { color: var(--muted); margin-bottom: 48px; }
+.cta a {
+  display: inline-block;
+  padding: 18px 56px;
+  font-size: var(--fs-lead);
+  font-weight: 600;
+  color: var(--base);
+  background: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: opacity 0.3s;
+}
+.cta a:hover { opacity: 0.85; }
+
+/* FOOTER */
+footer {
+  padding: 48px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+footer .copy { letter-spacing: 0.08em; }
+
+@media (max-width: 720px) {
+  .hero h1 { font-size: 36px; }
+  .value-grid, .feat-list, .steps { grid-template-columns: 1fr; gap: 48px; }
+  .step { border-left: none; padding: 0; }
+  .step:not(:last-child) { border-bottom: 1px solid rgba(200,162,91,0.15); padding-bottom: 48px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">〈サービス名〉</p>
+    <h1>
+      <span class="line">かっこよさは見せ方で、</span>
+      <span class="line gold">信頼は約束で証す。</span>
+    </h1>
+    <p class="lead">印象に残るデザインと、揺るがない約束。その両方を、〈サービス名〉は前提として備えています。</p>
+  </div>
+</header>
+
+<section class="value">
+  <div class="wrap">
+    <h2>強さと誠実は、対立しない</h2>
+    <div class="value-grid">
+      <div>
+        <h3>身震いするような見た目</h3>
+        <p>デザインは主張です。一瞬で目を引く力と、記憶に残る佇まいを設計します。</p>
+      </div>
+      <div>
+        <h3>外さない確かな対応</h3>
+        <p>宣言したことは守る。期日、品質、そして約束。安心は前提として添えています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <h2>三つの約束</h2>
+    <div class="feat-list">
+      <div class="feat-item">
+        <div class="num">一</div>
+        <h3>第一印象の設計</h3>
+        <p>来訪者が迷わない導線と、離れられない画面。視認性と余白は八の倍数で整えました。</p>
+      </div>
+      <div class="feat-item">
+        <div class="num">二</div>
+        <h3>約束の透明化</h3>
+        <p>何ができ、何を約束するか。不確かな言葉は使わず、〈事業内容〉を明示します。</p>
+      </div>
+      <div class="feat-item">
+        <div class="num">三</div>
+        <h3>関係の継続</h3>
+        <p>一度きりでなく、伴走する。〈提供形態〉にあわせて長く支え続ける体制です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap">
+    <h2>利用の流れ</h2>
+    <div class="steps">
+      <div class="step">
+        <p class="tag">STEP 01</p>
+        <h3>ご相談</h3>
+        <p>まずはお聞かせください。目的や状況をうかがい、適切な進め方を整えます。</p>
+      </div>
+      <div class="step">
+        <p class="tag">STEP 02</p>
+        <h3>ご提案</h3>
+        <p>方向性と約束内容を明確にお示しします。合意いただいた上で着手します。</p>
+      </div>
+      <div class="step">
+        <p class="tag">STEP 03</p>
+        <h3>お引き渡し</h3>
+        <p>期日と品質を守り、完成物をお届けします。その後も必要に応じて寄り添います。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>まずはお話を聞かせてください</h2>
+    <p>ご相談は無料です。フォームよりお気軽にご連絡ください。</p>
+    <a href="#contact">ご相談を始める</a>
+  </div>
+</section>
+
+<footer>
+  <p class="copy">© 〈会社名〉 — All rights reserved.</p>
+</footer>
+
+</body>
+</html>

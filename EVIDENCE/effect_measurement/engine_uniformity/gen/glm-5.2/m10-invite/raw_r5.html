@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --body-size: 15px;
+    --h1-size: 30px;
+    --h2-size: 13px;
+    --accent: #2f7d4f;
+    --base: #1a1a18;
+    --paper: #f4f1ea;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    color: var(--base);
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 40px 88px;
+  }
+
+  .lead {
+    margin-bottom: 80px;
+  }
+
+  .lead h1 {
+    font-family: "Yu Mincho", "Hiragino Mincho Pro", serif;
+    font-size: var(--h1-size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    margin-bottom: 32px;
+  }
+
+  .lead p {
+    font-size: var(--body-size);
+    letter-spacing: 0.01em;
+  }
+
+  .section {
+    margin-bottom: 88px;
+  }
+
+  .section h2 {
+    font-size: var(--h2-size);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .overview {
+    font-size: var(--body-size);
+    letter-spacing: 0.01em;
+  }
+
+  .overview dt {
+    font-weight: 700;
+    margin-top: 16px;
+  }
+
+  .overview dt:first-child { margin-top: 0; }
+
+  .overview dd {
+    margin-top: 4px;
+    margin-left: 0;
+  }
+
+  .vibe p {
+    font-size: var(--body-size);
+    letter-spacing: 0.01em;
+  }
+
+  .rsvp p {
+    font-size: var(--body-size);
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+  }
+
+  .rsvp a {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .closing {
+    margin-top: 88px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(26,26,24,0.12);
+  }
+
+  .closing p {
+    font-size: var(--body-size);
+    letter-spacing: 0.02em;
+  }
+
+  .signature {
+    margin-top: 32px;
+    font-size: 14px;
+    text-align: right;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+  <main class="sheet">
+
+    <section class="lead">
+      <h1>久しぶり。<br>顔を見よう。</h1>
+      <p>あの頃のメンバーで、たまには集まりませんか。特別なことは何もなし。ただいっしょにごはんを食べて、近況を話して、笑って帰る。それだけで十分な夜にしたくて、声をかけました。</p>
+    </section>
+
+    <section class="section">
+      <h2>開催概要</h2>
+      <dl class="overview">
+        <dt>日時</dt>
+        <dd>〈開催日〉 18:30 集合</dd>
+        <dt>場所</dt>
+        <dd>〈会場〉（〈最寄り駅〉から徒歩5分）</dd>
+      </dl>
+    </section>
+
+    <section class="section vibe">
+      <h2>どんな会にしたいか</h2>
+      <p>肩書も役職も、当日は置いてきてください。名前は当時の呼び方で。幹事の用意は「席と料理」だけなので、あとはみんなの声で進めます。幹事の独白が長くならないよう、気をつけます。</p>
+    </section>
+
+    <section class="section rsvp">
+      <h2>出欠の連絡方法</h2>
+      <p>〈締切日〉までに、〈幹事名〉まで返信をお願いします。人数が固まったら場所の詳細をお伝えします。来られるか怪しい人も、とりあえず一声かけてください。なんとかします。</p>
+    </section>
+
+    <section class="closing">
+      <p>ひとりでも多く会えることを、楽しみに待っています。</p>
+      <p class="signature">〈幹事名〉より</p>
+    </section>
+
+  </main>
+</body>
+</html>

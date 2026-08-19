@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 ポートフォリオ</title>
+<style>
+  /* タイプスケール設計
+     base: 16px / 1.6
+     scale: 1.25 (メジャー3rd)
+     h4: 1.0rem (16px)
+     h3: 1.25rem (20px)
+     h2: 1.563rem (25px)
+     h1: 1.953rem (31px)
+     -- 見出し: 'Georgia', 'Times New Roman', serif (明朝系)
+     -- 本文: 'Helvetica Neue', 'Arial', 'Hiragino Sans', sans-serif (ゴシック系)
+  */
+  :root {
+    --base: 16px;
+    --ratio: 1.25;
+    --h4: 1.0rem;
+    --h3: calc(var(--h4) * var(--ratio));
+    --h2: calc(var(--h3) * var(--ratio));
+    --h1: calc(var(--h2) * var(--ratio));
+    --color-bg: #fcfcf7;
+    --color-text: #1e1e1c;
+    --color-primary: #2c4a3e;    /* 深い杉色 */
+    --color-accent: #c45a3c;     /* 焼き赤 */
+    --color-muted: #7d7b77;
+    --space-unit: 8px;
+    --space-sm: calc(var(--space-unit) * 2);   /* 16px */
+    --space-md: calc(var(--space-unit) * 4);   /* 32px */
+    --space-lg: calc(var(--space-unit) * 8);   /* 64px */
+    --space-xl: calc(var(--space-unit) * 12);  /* 96px */
+    --max-width: 720px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Helvetica Neue', 'Arial', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    font-size: var(--base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  /* セクション間はゆったり */
+  section {
+    margin-top: var(--space-xl);
+  }
+  section:first-child {
+    margin-top: 0;
+  }
+
+  /* 見出し — 明朝系 */
+  h1, h2, h3, h4 {
+    font-family: 'Georgia', 'Times New Roman', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+
+  h1 {
+    font-size: var(--h1);
+    margin-bottom: var(--space-sm);
+  }
+  h2 {
+    font-size: var(--h2);
+    margin-bottom: var(--space-md);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--space-sm);
+    display: inline-block;
+  }
+  h3 {
+    font-size: var(--h3);
+    margin-bottom: var(--space-sm);
+  }
+  h4 {
+    font-size: var(--h4);
+    margin-bottom: var(--space-sm);
+    font-weight: 600;  /* 明朝でも少し強く */
+  }
+
+  /* リンク・テキスト */
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  a:hover {
+    border-color: var(--color-accent);
+  }
+
+  .text-muted {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  /* ----- ヒーロー（冒頭）----- */
+  .hero {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    position: relative;
+  }
+
+  .hero__label {
+    display: inline-block;
+    background: var(--color-primary);
+    color: var(--color-bg);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: calc(var(--h1) * 1.15);
+    margin-bottom: var(--space-sm);
+    letter-spacing: 0.04em;
+  }
+
+  .hero .sub {
+    font-size: 1.1rem;
+    color: var(--color-muted);
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-md);
+    margin-top: var(--space-sm);
+    max-width: 80%;
+  }
+
+  /* ----- 自己紹介 ----- */
+  .intro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+  .intro__avatar {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #8a9a8a, #2c4a3e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: #fcfcf7;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .intro__text {
+    flex: 1;
+    min-width: 200px;
+  }
+  .intro__text p + p {
+    margin-top: var(--space-sm);
+  }
+
+  /* ----- 作品3点（カードグリッド） ----- */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+  .work-card {
+    background: white;
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: box-shadow 0.25s;
+    padding: var(--space-md) var(--space-sm);
+    border: 1px solid #eae8e0;
+  }
+  .work-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .work-card__thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #eae8e0;
+    margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    /* グラデーションで視覚的なバリエーション */
+    background: linear-gradient(145deg, #dedbd0, #f0ede4);
+  }
+  .work-card:nth-child(2) .work-card__thumb {
+    background: linear-gradient(145deg, #d6d9ce, #e6e9dd);
+  }
+  .work-card:nth-child(3) .work-card__thumb {
+    background: linear-gradient(145deg, #d9d2cb, #e8e1d9);
+  }
+  .work-card__title {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+  .work-card__role {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ----- スキル（シンプルリスト） ----- */
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
+    padding: 0;
+    list-style: none;
+    margin-top: var(--space-sm);
+  }
+  .skill-list li {
+    background: transparent;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+  .skill-list li::before {
+    content: "▹";
+    color: var(--color-accent);
+    margin-right: 6px;
+    font-size: 0.8rem;
+  }
+
+  /* ----- 連絡先 ----- */
+  .contact-block {
+    background: white;
+    padding: var(--space-lg) var(--space-md);
+    border: 1px solid #eae8e0;
+    margin-top: var(--space-md);
+    text-align: center;
+  }
+  .contact-block p {
+    margin-bottom: var(--space-sm);
+  }
+  .contact-block .email {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 2px;
+  }
+
+  /* 装飾をひとつ削る: 影を全体的に控えめにした。加えて hr などの装飾線も最小限 */
+  hr {
+    border: 0;
+    border-top: 1px solid #eae8e0;
+    margin: var(--space-lg) 0;
+  }
+
+  /* フッター */
+  .footer {
+    margin-top: var(--space-xl);
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    text-align: center;
+    border-top: 1px solid #eae8e0;
+    padding-top: var(--space-md);
+  }
+
+  @media (max-width: 480px) {
+    .hero .sub {
+      max-width: 100%;
+    }
+    .works-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ヒーロー: 最初に「つくる責任」を打ち出す -->
+  <header class="hero">
+    <span class="hero__label">つくる責任</span>
+    <h1>〈氏名〉</h1>
+    <div class="sub">インタラクションと<br class="sp-only">タイポグラフィで伝えるデザイナー</div>
+    <p class="text-muted" style="margin-top:var(--space-md)">一貫性より、一点の確かさ。</p>
+  </header>
+
+  <!-- 自己紹介 -->
+  <section>
+    <h2>自己紹介</h2>
+    <div class="intro">
+      <div class="intro__avatar" aria-label="アバター"><span>◆</span></div>
+      <div class="intro__text">
+        <p>UI / グラフィックデザイナー。〈大学名／前職〉を経て独立。細部の〈素材／リズム〉にこだわり、クライアントの持つ固有の手触りをかたちにすることを大切にしています。</p>
+        <p>現在は小さなスタジオで、ブランドデザインからデジタルプロダクトの設計まで、領域を問わず手を動かしています。このサイトも、テンプレートではなくゼロから組んでいます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品3点 -->
+  <section>
+    <h2>作品</h2>
+    <div class="works-grid">
+      <article class="work-card">
+        <div class="work-card__thumb">
+          <span>〈サムネイル〉</span>
+        </div>
+        <h3 class="work-card__title">〈作品タイトル1〉</h3>
+        <div class="work-card__role">ブランド / 印刷物</div>
+        <p class="text-muted" style="margin-top:6px">限られた色数と活字だけで構成。紙の感触を活かしたアプローチ。</p>
+      </article>
+      <article class="work-card">
+        <div class="work-card__thumb">
+          <span>〈サムネイル〉</span>
+        </div>
+        <h3 class="work-card__title">〈作品タイトル2〉</h3>
+        <div class="work-card__role">Web / モーション</div>
+        <p class="text-muted" style="margin-top:6px">スクロールに合わせて変化する文字組。静と動のあいだを設計。</p>
+      </article>
+      <article class="work-card">
+        <div class="work-card__thumb">
+          <span>〈サムネイル〉</span>
+        </div>
+        <h3 class="work-card__title">〈作品タイトル3〉</h3>
+        <div class="work-card__role">空間 / サイン</div>
+        <p class="text-muted" style="margin-top:6px">建築の一部としての文字。見る角度で表情を変える実験。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- スキル -->
+  <section>
+    <h2>スキル</h2>
+    <ul class="skill-list">
+      <li>Typography / 書体設計</li>
+      <li>UI/UX プロトタイプ</li>
+      <li>ブランドディレクション</li>
+      <li>HTML / CSS 設計</li>
+      <li>印刷・DTP</li>
+      <li>モーショングラフィック</li>
+    </ul>
+    <p class="text-muted" style="margin-top:var(--space-sm)">上記は主要領域です。必要に応じて周辺領域もカバーします。</p>
+  </section>
+
+  <!-- 連絡先 -->
+  <section>
+    <h2>連絡先</h2>
+    <div class="contact-block">
+      <p>お仕事のご相談、気軽にお寄せください。</p>
+      <a href="mailto:hello@example.com" class="email">hello@〈ドメイン〉.com</a>
+      <p class="text-muted" style="margin-top:var(--space-md)">返信までに2–3営業日いただく場合があります。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 〈氏名〉 — 転職用ポートフォリオ</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --base: #1c2329;
+    --accent: #b8462e;
+    --paper: #faf7f0;
+    --muted: #6b7378;
+  }
+  body {
+    margin: 0;
+    padding: 48px 0 96px;
+    background: var(--paper);
+    color: var(--base);
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: 16px;
+    line-height: 1.95;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .lead {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .sub-lead {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin: 0 0 80px;
+  }
+  .label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .section {
+    margin-bottom: 72px;
+  }
+  .section:last-child {
+    margin-bottom: 0;
+  }
+  p {
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <p class="lead">朝、ちょっとだけ早く出た日。</p>
+    <p class="sub-lead">— そんな日に、いいアイデアが降りてくる気がする</p>
+
+    <div class="section">
+      <span class="label">近況</span>
+      <p>季節の変わり目です。社内でも、上着の重ね着がバラバラになってきました。そんな時期ですが、みなさんの机まわりはどうでしょう。私の周りでは、タスクの優先順位を書き直している人が目立ちます。年度の折り返しを意識し始める、この時期ならではの動きです。</p>
+    </div>
+
+    <div class="section">
+      <span class="label">今月の話題</span>
+      <p>〈会社名〉の現場を見直す機会が増えました。前回の社内報で集めた声をもとに、あちこち動いています。何が変わったか、来月は少しずつ見える形でお伝えしたいと思っています。待っていてください。</p>
+    </div>
+
+    <div class="section">
+      <span class="label">締めの一言</span>
+      <p>今月も、がんばりすぎない一月にしましょう。声をかける勇気、少し休む勇気、どちらも立派な仕事です。ではまた来月。</p>
+    </div>
+  </div>
+</body>
+</html>

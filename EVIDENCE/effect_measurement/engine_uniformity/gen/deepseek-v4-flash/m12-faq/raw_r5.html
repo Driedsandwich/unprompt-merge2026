@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品についてのFAQ | サポートサイト</title>
+<style>
+:root {
+  /* タイプスケール: 本文16px基準 1.25倍 */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.563rem;
+  --text-xl: 1.953rem;
+  --text-2xl: 2.441rem;
+  --leading-relaxed: 1.75;
+  --color-base: #1a1a1a;
+  --color-muted: #5a5a5a;
+  --color-bg: #fafaf8;
+  --color-accent: #2b6b5c;
+  --color-accent-light: #e8f3ef;
+  --color-border: #d4d4d0;
+  --space-unit: 8px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  color: var(--color-base);
+  background: var(--color-bg);
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+/* 冒頭 */
+.hero {
+  padding: 96px 0 64px;
+  text-align: center;
+}
+.hero__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-accent-light);
+  margin-bottom: 24px;
+}
+.hero__icon svg { width: 32px; height: 32px; stroke: var(--color-accent); fill: none; stroke-width: 1.8; }
+.hero__title {
+  font-size: var(--text-2xl);
+  margin-bottom: 16px;
+  color: var(--color-base);
+}
+.hero__lead {
+  font-size: var(--text-md);
+  color: var(--color-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+/* FAQ */
+.faq { padding: 0 0 80px; }
+.faq__item {
+  border-bottom: 1px solid var(--color-border);
+  padding: 32px 0;
+}
+.faq__item:first-of-type { border-top: 1px solid var(--color-border); }
+.faq__question {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  cursor: pointer;
+  user-select: none;
+}
+.faq__q-mark {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  line-height: 1;
+}
+.faq__q-text {
+  font-size: var(--text-base);
+  font-weight: 600;
+  padding-top: 4px;
+  color: var(--color-base);
+}
+.faq__answer {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  padding-left: 48px;
+}
+.faq__a-mark {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  line-height: 1;
+}
+.faq__a-text {
+  font-size: var(--text-base);
+  color: var(--color-base);
+  padding-top: 4px;
+}
+.faq__a-text a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* 連絡導線 */
+.contact {
+  background: var(--color-accent-light);
+  border-radius: 16px;
+  padding: 48px 40px;
+  margin-bottom: 96px;
+  text-align: center;
+}
+.contact__title {
+  font-size: var(--text-lg);
+  margin-bottom: 12px;
+  color: var(--color-base);
+}
+.contact__text {
+  font-size: var(--text-base);
+  color: var(--color-muted);
+  margin-bottom: 32px;
+}
+.contact__btn {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 16px 48px;
+  border-radius: 40px;
+  font-size: var(--text-base);
+  transition: opacity 0.2s;
+}
+.contact__btn:hover { opacity: 0.85; }
+.contact__note {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin-top: 20px;
+}
+/* フッター最小限 */
+.footer {
+  text-align: center;
+  padding: 0 0 48px;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+/* アクセシビリティ用 */
+@media (max-width: 600px) {
+  .hero { padding: 64px 0 48px; }
+  .hero__title { font-size: var(--text-xl); }
+  .contact { padding: 32px 24px; }
+  .faq__answer { padding-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 冒頭: 安心感のある探しやすさを最初に -->
+  <div class="hero">
+    <div class="hero__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+        <line x1="12" y1="22.08" x2="12" y2="12"/>
+      </svg>
+    </div>
+    <h1 class="hero__title">返品について</h1>
+    <p class="hero__lead">万が一のときも、手順がすぐわかるように。<br>よくある質問をまとめました。</p>
+  </div>
+
+  <!-- よくある質問 5問 -->
+  <div class="faq">
+
+    <div class="faq__item">
+      <div class="faq__question">
+        <span class="faq__q-mark" aria-hidden="true">Q</span>
+        <span class="faq__q-text">返品はいつまで可能ですか？</span>
+      </div>
+      <div class="faq__answer">
+        <span class="faq__a-mark" aria-hidden="true">A</span>
+        <div class="faq__a-text">商品到着日を含めて〈日数〉日以内であれば、未使用・未開封のものに限り返品をお受けしております。詳細はマイページの注文履歴からご確認ください。</div>
+      </div>
+    </div>
+
+    <div class="faq__item">
+      <div class="faq__question">
+        <span class="faq__q-mark" aria-hidden="true">Q</span>
+        <span class="faq__q-text">返品送料はどちらが負担しますか？</span>
+      </div>
+      <div class="faq__answer">
+        <span class="faq__a-mark" aria-hidden="true">A</span>
+        <div class="faq__a-text">お客様都合の返品の場合はお客様ご負担、商品に不良や誤配送があった場合は当店負担となります。詳しくは<a href="#">返品ポリシー</a>をご覧ください。</div>
+      </div>
+    </div>
+
+    <div class="faq__item">
+      <div class="faq__question">
+        <span class="faq__q-mark" aria-hidden="true">Q</span>
+        <span class="faq__q-text">箱やタグがないと返品できませんか？</span>
+      </div>
+      <div class="faq__answer">
+        <span class="faq__a-mark" aria-hidden="true">A</span>
+        <div class="faq__a-text">原則として商品到着時の状態でご返送ください。箱・タグがない場合は返品をお受けできない場合がございます。事前にサポートまでご相談ください。</div>
+      </div>
+    </div>
+
+    <div class="faq__item">
+      <div class="faq__question">
+        <span class="faq__q-mark" aria-hidden="true">Q</span>
+        <span class="faq__q-text">返金はいつ・どのように行われますか？</span>
+      </div>
+      <div class="faq__answer">
+        <span class="faq__a-mark" aria-hidden="true">A</span>
+        <div class="faq__a-text">返品商品が当店に到着し、内容を確認後、〈日数〉営業日以内にご指定の支払い方法へ返金いたします。返金完了のご連絡はメールにてお送りします。</div>
+      </div>
+    </div>
+
+    <div class="faq__item">
+      <div class="faq__question">
+        <span class="faq__q-mark" aria-hidden="true">Q</span>
+        <span class="faq__q-text">返品手続きの流れを教えてください</span>
+      </div>
+      <div class="faq__answer">
+        <span class="faq__a-mark" aria-hidden="true">A</span>
+        <div class="faq__a-text">マイページの注文履歴から「返品申請」ボタンを押し、必要事項を入力してください。その後、当店より返送先住所をご案内いたします。ご不明な点はお気軽にお問い合わせください。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 解決しないときの連絡導線 -->
+  <div class="contact">
+    <h2 class="contact__title">解決しないときは</h2>
+    <p class="contact__text">お探しの情報が見つからない、または個別の状況について確認したい場合は、サポートまでご連絡ください。</p>
+    <a href="#" class="contact__btn">お問い合わせフォームへ</a>
+    <p class="contact__note">受付時間: 平日 10:00–17:00（土日祝を除く）</p>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 〈ショップ名〉サポートサイト</p>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会の案内</title>
+<style>
+  /* タイポグラフィ設計 */
+  :root {
+    /* タイプスケール: 本文 16px / 小見出し 21px / 大見出し 30px (比率 1.3125) */
+    /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+    --font-heading: 'Hiragino Maru Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif; /* rounded */
+    --font-body: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif; /* 親しみやすいゴシック */
+    --font-weight-heading: 600;
+    --letter-spacing-heading: 0.02em;
+    --font-size-base: 16px;
+    --font-size-lg: 21px;
+    --font-size-xl: 30px;
+    --line-height-body: 1.8;
+    /* GYAKUMON-CHOICE: 視覚トークン palette = #fff4d6, #ff7a1a, #2e2e2e */
+    --color-bg: #fff4d6;
+    --color-main: #ff7a1a;
+    --color-accent: #2e2e2e;
+    --color-text: #2e2e2e;
+    --color-text-muted: #6b5b4b;
+    /* GYAKUMON-CHOICE: 視覚トークン density = airy */
+    --spacing-unit: 8px;
+    --spacing-section: 96px;
+    --spacing-paragraph: 32px;
+    --spacing-block: 24px;
+    /* GYAKUMON-CHOICE: 視覚トークン corner = soft */
+    --corner-soft: 12px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* 冒頭セクション (ヒーロー) */
+  .hero {
+    padding: var(--spacing-section) 0 56px 0;
+    text-align: center;
+  }
+  /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+  /* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+  .hero__call {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-heading);
+    letter-spacing: var(--letter-spacing-heading);
+    color: var(--color-main);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .hero__lead {
+    font-size: var(--font-size-lg);
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .hero__sub {
+    color: var(--color-text-muted);
+    font-size: calc(var(--font-size-base) - 1px);
+  }
+
+  /* セクション見出し */
+  .section-heading {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-heading);
+    letter-spacing: var(--letter-spacing-heading);
+    color: var(--color-main);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-main);
+  }
+
+  /* 各セクション */
+  .section {
+    padding-bottom: var(--spacing-section);
+  }
+  .section p {
+    margin-bottom: var(--spacing-paragraph);
+  }
+
+  /* 開催概要 */
+  .info-grid {
+    background-color: rgba(255, 122, 26, 0.06);
+    border-radius: var(--corner-soft);
+    padding: 24px 32px;
+    margin-bottom: var(--spacing-block);
+  }
+  .info-grid dt {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-main);
+    float: left;
+    clear: left;
+    width: 6em;
+    padding: 4px 0;
+  }
+  .info-grid dd {
+    padding: 4px 0 4px 6em;
+    margin-bottom: 4px;
+  }
+  .info-grid dd::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  /* リンク風ボタン */
+  .action-box {
+    background-color: var(--color-main);
+    color: #fff;
+    border-radius: var(--corner-soft);
+    padding: 24px 32px;
+    text-align: center;
+    margin: var(--spacing-block) 0;
+  }
+  .action-box p {
+    margin-bottom: 8px !important;
+    color: #fff;
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+  }
+  .action-box .small {
+    font-size: calc(var(--font-size-base) - 2px);
+    opacity: 0.85;
+    font-weight: 400;
+  }
+
+  /* 連絡先プレースホルダ */
+  .contact-placeholder {
+    background-color: rgba(46, 46, 46, 0.04);
+    border: 1px dashed var(--color-text-muted);
+    border-radius: var(--corner-soft);
+    padding: 16px 24px;
+    font-size: calc(var(--font-size-base) - 1px);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  /* フッター */
+  .footer {
+    padding: 32px 0 64px 0;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: calc(var(--font-size-base) - 2px);
+    border-top: 1px solid rgba(46, 46, 46, 0.1);
+  }
+
+  /* 装飾: 提出前にひとつ削る対象として、あえて影・グラデーションは使わない */
+  /* 残った要素: 色、余白、フォント、罫線、角丸のみで成立 */
+
+  @media (max-width: 640px) {
+    :root {
+      --spacing-section: 64px;
+      --font-size-xl: 24px;
+      --font-size-lg: 18px;
+    }
+    .info-grid {
+      padding: 16px 20px;
+    }
+    .info-grid dt {
+      float: none;
+      width: auto;
+      padding: 0 0 2px 0;
+    }
+    .info-grid dd {
+      padding: 0 0 12px 0;
+    }
+    .hero {
+      padding-top: 48px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 冒頭：ノリだけ持って来てのトーンで、10年ぶりの再会とサークル部室のイメージ -->
+  <!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+  <div class="hero">
+    <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+    <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+    <div class="hero__call">おーい、集まれ！</div>
+    <div class="hero__lead">あの部室、また貸し切り。</div>
+    <div class="hero__sub">〈年数〉ぶり？ そんなの関係ねえ。</div>
+  </div>
+
+  <!-- 開催概要 -->
+  <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+  <div class="section">
+    <h2 class="section-heading">開催概要</h2>
+    <dl class="info-grid">
+      <dt>日 時</dt>
+      <dd>〈開催日〉 開場 〈時間〉 ／ 開始 〈時間〉</dd>
+      <dt>場 所</dt>
+      <dd>〈会場名〉〈住所〉</dd>
+      <dt>会 費</dt>
+      <dd>〈金額〉円（当日集めます／事前振込あり）</dd>
+    </dl>
+  </div>
+
+  <!-- どんな会にしたいか：疎遠さへの配慮＋くだけたノリ -->
+  <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+  <div class="section">
+    <h2 class="section-heading">何しに来るかって？</h2>
+    <p>
+      久しぶりすぎて「覚えてる？」って言うのも気まずい？ 大丈夫。
+      〈確認: 幹事がサークル/部活でよくやっていたことや、象徴的なエピソードを1つ〉を思い出して、
+      その話を持ってきてくれれば、あの頃のノリで一瞬戻れる。
+    </p>
+    <p>
+      今回はちゃんとした会話より、「お前、変わってねえな」「いや痩せた？」くらいの軽さで。
+      連絡先が変わってなくてよかった。来られるかどうか、LINEかメールで一言くれるだけでいいから。
+    </p>
+  </div>
+
+  <!-- 出欠の連絡方法 -->
+  <div class="section">
+    <h2 class="section-heading">出欠、どうやって知らせる？</h2>
+    <!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+    <div class="action-box">
+      <p>「行く！」「まだわかんない」「行きたいけど…」</p>
+      <div class="small">どれでもOK。返事なしより100倍嬉しい。</div>
+    </div>
+    <div class="contact-placeholder">
+      【連絡先】〈幹事名〉〈確認: 連絡先（メールアドレス／電話番号／LINE ID）〉<br>
+      締切: 〈確認: 出欠の返事締切日〉
+    </div>
+  </div>
+
+  <!-- 締め -->
+  <div class="section">
+    <p>
+      とりあえず日程だけでも空けておいて。細かいことは追ってまた送る。
+      来る来ないは別として、とにかく元気でいることを知らせてほしい。
+      待ってる。
+    </p>
+  </div>
+
+  <div class="footer">
+    〈幹事名〉より<br>
+    同窓会幹事一同
+  </div>
+
+</div>
+</body>
+</html>

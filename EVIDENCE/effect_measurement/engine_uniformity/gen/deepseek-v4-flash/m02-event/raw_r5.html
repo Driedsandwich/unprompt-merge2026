@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会 参加者募集中</title>
+<style>
+  /* タイプスケール: 本文 16px → h4 18px → h3 22px → h2 28px → h1 38px (黄金比近似) */
+  :root {
+    --color-base: #1f2937;
+    --color-accent: #b45309;   /* 秋の琥珀色 */
+    --color-bg: #fefcf5;
+    --color-muted: #6b7280;
+    --color-light: #f5f0e8;
+    --gap-unit: 8px;
+    --gap-section: 96px;
+    font-size: 16px;
+  }
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: var(--color-bg);
+    color: var(--color-base);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+
+  /* 冒頭 ─ 秋の象徴を抽象化 */
+  .hero {
+    margin-bottom: var(--gap-section);
+    position: relative;
+    padding: 56px 0 48px;
+    border-bottom: 3px solid var(--color-accent);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96px;
+    height: 96px;
+    background: radial-gradient(circle at 30% 40%, #f59e0b 0%, transparent 60%);
+    opacity: 0.15;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: var(--color-accent);
+  }
+
+  .eyebrow {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Times New Roman", serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+    color: var(--color-base);
+    margin-bottom: 16px;
+  }
+
+  .lead {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--color-muted);
+    max-width: 600px;
+  }
+
+  /* セクション共通 */
+  section {
+    margin-bottom: var(--gap-section);
+  }
+
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-light);
+    color: var(--color-base);
+  }
+
+  h3 {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    color: var(--color-accent);
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  /* 日時・場所 カード */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    background: var(--color-light);
+    padding: 32px 40px;
+    border-radius: 4px;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-label {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .info-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-base);
+    line-height: 1.4;
+  }
+
+  .info-value small {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+
+  /* 内容説明 ─ 絵文字で秋を添える */
+  .desc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .desc-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e5e0d0;
+  }
+
+  .desc-icon {
+    flex-shrink: 0;
+    font-size: 28px;
+    line-height: 1;
+    width: 40px;
+    text-align: center;
+  }
+
+  .desc-text {
+    flex: 1;
+  }
+
+  .desc-text strong {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  /* 見どころ */
+  .highlights {
+    background: linear-gradient(135deg, #fefcf5 0%, #faf3e6 100%);
+    padding: 40px 40px 32px;
+    border-left: 6px solid var(--color-accent);
+    border-radius: 4px;
+  }
+
+  .highlights p {
+    font-size: 17px;
+  }
+
+  /* 参加方法 */
+  .cta-box {
+    background: var(--color-base);
+    color: #fff;
+    padding: 40px 40px 36px;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .cta-box h2 {
+    color: #fff;
+    border-bottom-color: rgba(255,255,255,0.15);
+  }
+
+  .cta-box p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 24px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    padding: 16px 56px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .cta-button:hover {
+    background: #92400e;
+  }
+
+  .cta-note {
+    margin-top: 16px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-light);
+    margin: var(--gap-section) 0;
+  }
+
+  .footer {
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 40px 16px; }
+    h1 { font-size: 28px; }
+    .info-grid { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+    .highlights { padding: 24px; }
+    .cta-box { padding: 32px 24px; }
+    .cta-button { padding: 14px 40px; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 冒頭：秋の実りと学びの機会を象徴 -->
+  <div class="hero">
+    <div class="eyebrow">— AUTUMN 2025 —</div>
+    <h1>実りの秋、<br>学びの種をまく</h1>
+    <p class="lead">普段の業務から少し離れ、新しい知識や視点に出会う社内勉強会を開催します。この機会に、自分自身の引き出しを増やしませんか。</p>
+  </div>
+
+  <!-- 日時・場所 -->
+  <section>
+    <h2>日時・場所</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">日時</span>
+        <span class="info-value">〈開催日〉<br><small>14:00 – 17:00（予定）</small></span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">場所</span>
+        <span class="info-value">〈会場〉<br><small>〈フロア・部屋名〉</small></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 内容の説明 -->
+  <section>
+    <h2>内容</h2>
+    <ul class="desc-list">
+      <li>
+        <span class="desc-icon">🍂</span>
+        <div class="desc-text">
+          <strong>テーマ別セッション</strong><br>
+          参加者の関心が高いトピックを3つピックアップ。各30分のショートセッションで、気軽に聞いて・話して・持ち帰れます。
+        </div>
+      </li>
+      <li>
+        <span class="desc-icon">🌰</span>
+        <div class="desc-text">
+          <strong>ライトニングトーク</strong><br>
+          希望者による5分間のミニプレゼン。「最近調べて面白かったこと」「現場で試した工夫」など、形式は自由。飛び入り歓迎。
+        </div>
+      </li>
+      <li>
+        <span class="desc-icon">🍁</span>
+        <div class="desc-text">
+          <strong>交流会（軽食・飲物あり）</strong><br>
+          セッション終了後、30分程度の立ち話タイム。部署を越えた意見交換や、気になる話題の深掘りにどうぞ。
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 見どころ -->
+  <section>
+    <h2>見どころ</h2>
+    <div class="highlights">
+      <p>🌾 <strong>「聞くだけ」で終わらせない</strong> — 各セッションには短い対話の時間を組み込み、参加者同士で考えを交換できます。受け身になりがちな勉強会を、能率的な学びの場に。</p>
+      <p style="margin-bottom:0;">🔥 <strong>普段話せない人と話すきっかけ</strong> — 同じ会社にいても接点の少ないメンバーと、自然に会話が生まれる設計。新しい協業やアイデアの種になるかもしれません。</p>
+    </div>
+  </section>
+
+  <!-- 参加方法 -->
+  <section>
+    <div class="cta-box">
+      <h2>参加方法</h2>
+      <p>事前申込制です。下のボタンからフォームに進んでください。<br>締切は〈締切日〉まで。定員に達し次第受付終了となります。</p>
+      <a href="#" class="cta-button">参加申し込み</a>
+      <p class="cta-note">※社内ネットワークからのみアクセス可能です。</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <div class="footer">
+    <p>主催：〈主催部署・チーム名〉／ 問合せ：〈連絡先〉</p>
+    <p style="color: var(--color-muted);">秋のひととき、共に学びましょう。</p>
+  </div>
+
+</div>
+</body>
+</html>

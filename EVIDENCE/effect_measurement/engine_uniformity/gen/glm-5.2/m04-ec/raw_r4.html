@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品のご案内</title>
+<style>
+  :root {
+    --bg: #1a1d24;
+    --surface: #232730;
+    --text: #e8e6e1;
+    --muted: #8a8b91;
+    --accent: #c9a96e;
+    --scale-body: 15px;
+    --scale-lead: 17px;
+    --scale-h2: 24px;
+    --scale-catch: 30px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    color: var(--text);
+    line-height: 1.85;
+    font-size: var(--scale-body);
+    letter-spacing: 0.02em;
+  }
+  .frame {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 40px;
+  }
+  .catch {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: var(--scale-catch);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    margin-bottom: 40px;
+  }
+  .catch .accent { color: var(--accent); }
+  .lead {
+    font-size: var(--scale-lead);
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 80px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #3a3d44;
+  }
+  h2 {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: var(--scale-h2);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+  }
+  h2 .num {
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 8px;
+    font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  }
+  .feature {
+    margin-bottom: 56px;
+  }
+  .feature p {
+    color: #c5c4bf;
+  }
+  .spec {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid #3a3d44;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2.1;
+  }
+  .spec-label {
+    display: inline-block;
+    width: 88px;
+    color: var(--accent);
+  }
+  .closing {
+    margin-top: 80px;
+    padding: 48px 32px;
+    background: var(--surface);
+    text-align: center;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: 17px;
+    letter-spacing: 0.1em;
+    line-height: 1.9;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+
+    <p class="catch">まだ誰も知らない<span class="accent">。</span><br>だからこそ手に入れたい。</p>
+
+    <p class="lead">発注内容に「新商品」としか書かれていない。だから正直にそう伝えます。詳細が届き次第、この場所で素材・手触り・こだわりをすべて語ります。今はただ、新しいものが生まれたこと、その事実だけをお伝えします。</p>
+
+    <div class="feature">
+      <h2><span class="num">01</span>新しさは、物語になる</h2>
+      <p>〈商品名〉は、これまでになかった発想から生まれました。スペックの羅列ではなく、そのものが手元に来たとき何が変わるのかを記述します。詳細確定後に更新いたします。</p>
+    </div>
+
+    <div class="feature">
+      <h2><span class="num">02</span>選ぶ理由を、言葉にする</h2>
+      <p>似たものはあるかもしれません。しかしこれはこれでしかありません。他と何が違うのか、何を捨てて何を残したのか。順次、説明文を整えてまいります。</p>
+    </div>
+
+    <div class="spec">
+      <p><span class="spec-label">商品名</span>〈商品名〉</p>
+      <p><span class="spec-label">仕様</span>〈仕様詳細〉</p>
+      <p><span class="spec-label">価格</span>〈価格〉</p>
+      <p><span class="spec-label">発売日</span>〈発売日〉</p>
+    </div>
+
+    <div class="closing">
+      新しいものと出会う瞬間は、<br>いつだって少しだけ胸が騒ぐ。<br>その騒ぎを、共有したい。
+    </div>
+
+  </div>
+</body>
+</html>

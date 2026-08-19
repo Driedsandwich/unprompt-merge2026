@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --body-size: 15px;
+    --subject-size: 22px;
+    --caption-size: 12px;
+    --base: #1a1a2e;
+    --accent: #e94560;
+    --paper: #faf8f5;
+    --rule: #d4d0c8;
+    --muted: #6b6757;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+    font-size: var(--body-size);
+    line-height: 1.85;
+    color: var(--base);
+    padding: 96px 0;
+  }
+  .doc {
+    width: 720px;
+    margin: 0 auto;
+    padding: 0 8px;
+  }
+  .subject {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+    font-size: var(--subject-size);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    color: var(--base);
+    padding-bottom: 24px;
+    margin-bottom: 48px;
+  }
+  .meta {
+    font-size: var(--caption-size);
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .addressee {
+    font-size: var(--body-size);
+    margin-bottom: 48px;
+  }
+  .body p {
+    margin-bottom: 24px;
+  }
+  .accent {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .step {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    padding-top: 16px;
+  }
+  .step::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 16px;
+  }
+  .signature {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-size: var(--caption-size);
+    line-height: 1.9;
+    color: var(--muted);
+  }
+  .signature strong {
+    color: var(--base);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="meta">件名</div>
+  <h1 class="subject">「3年目で設計から任される環境」って、見せてもらえますか</h1>
+
+  <div class="addressee">〈候補者名〉様</div>
+
+  <div class="body">
+    <p>
+      突然のご連絡失礼いたします。〈会社名〉の採用を担当しております〈担当者名〉です。
+    </p>
+    <p>
+      〈候補者名〉さんのGitHubアカウントを拝見し、コードの整え方やPRの記述に強く惹かれました。とくに〈該当リポジトリ名〉の実装では、自分自身が読みやすいかではなく「次に触る人が迷わないか」で判断を下されている点に、設計を担うエンジニアの姿勢を感じました。
+    </p>
+    <p>
+      わたしたちのチームでは、入社3年目前後のエンジニアがアーキテクチャの判断を担っています。レビューの土俵に上がるだけでなく、技術選定の議論に最初から1席あります。「上の人の決めた方針に従って実装する」フェーズを、もう過ぎていていい頃合いの方を探しています。
+    </p>
+    <p>
+      現在〈該当プロダクト・領域〉の拡張フェーズにあり、設計判断が開発速度そのものに直結する局面です。〈候補者名〉さんが持っている「使う人のことを書き始める前から考えている」感覚は、このフェーズで最も伸びる資質だと考えています。
+    </p>
+
+    <div class="step">次の一歩</div>
+    <p>
+      まずは1時間ほど、わたしたちが今抱えている設計課題をお見せしながら雑談しませんか。採用選考ではなく、エンジニア同士の情報交換のつもりでご案内しています。30分でも構いませんし、平日の夜でも大丈夫です。カジュアルに話せる日時を2〜3つ、教えていただけますと幸いです。
+    </p>
+  </div>
+
+  <div class="signature">
+    <strong>〈担当者名〉</strong><br>
+    〈会社名〉 採用担当<br>
+    〈メールアドレス〉
+  </div>
+
+</div>
+</body>
+</html>

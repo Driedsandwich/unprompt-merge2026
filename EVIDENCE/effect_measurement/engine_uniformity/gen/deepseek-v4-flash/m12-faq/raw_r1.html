@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品についてのよくあるご質問 | サポートサイト</title>
+<style>
+:root {
+  /* タイプスケール: 本文16px を基準に 1.25 倍率 */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-md: 1.25rem;    /* 20px */
+  --text-lg: 1.75rem;    /* 28px */
+  --text-xl: 2.25rem;    /* 36px */
+
+  /* カラー: 基調=深い藍色系, アクセント=暖かな赤銅色 */
+  --color-primary: #1e2b3c;
+  --color-primary-light: #2d4055;
+  --color-accent: #a64b2a;
+  --color-accent-light: #c96a45;
+  --color-bg: #f8f6f2;
+  --color-surface: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-soft: #4a4a4a;
+  --color-border: #d9d3cb;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.75;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+/* ========== 冒頭セクション ========== */
+.hero {
+  margin-bottom: 80px;
+  padding: 48px 32px;
+  background: var(--color-surface);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 4px 0 0 4px;
+}
+
+.hero-label {
+  font-family: "Noto Serif JP", "Times New Roman", serif;
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-family: "Noto Serif JP", "Times New Roman", serif;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.hero-lead {
+  font-size: var(--text-md);
+  color: var(--color-text-soft);
+  line-height: 1.6;
+}
+
+/* ========== FAQ ========== */
+.faq-section {
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-family: "Noto Serif JP", "Times New Roman", serif;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.faq-item {
+  background: var(--color-surface);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s;
+}
+
+.faq-item:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.faq-question {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px 24px 16px;
+  cursor: pointer;
+}
+
+.faq-q-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: "Noto Serif JP", serif;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.faq-q-text {
+  font-family: "Noto Serif JP", "Times New Roman", serif;
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.4;
+  padding-top: 3px;
+}
+
+.faq-answer {
+  padding: 0 24px 24px 64px;
+  color: var(--color-text-soft);
+  font-size: var(--text-base);
+  line-height: 1.75;
+}
+
+.faq-answer p + p {
+  margin-top: 12px;
+}
+
+.faq-answer a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ========== 解決しないとき ========== */
+.contact-section {
+  background: var(--color-primary);
+  border-radius: 4px;
+  padding: 40px 32px;
+  color: #fff;
+  text-align: center;
+}
+
+.contact-section .section-title {
+  color: #fff;
+  border-bottom-color: rgba(255,255,255,0.2);
+  margin-bottom: 24px;
+}
+
+.contact-text {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: var(--text-md);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.contact-button:hover {
+  background: var(--color-accent-light);
+}
+
+.contact-note {
+  margin-top: 16px;
+  font-size: var(--text-sm);
+  opacity: 0.7;
+}
+
+/* ========== レスポンシブ ========== */
+@media (max-width: 480px) {
+  .page { padding: 40px 16px 64px; }
+  .hero { padding: 32px 20px; }
+  .hero-title { font-size: 1.75rem; }
+  .faq-question { padding: 20px 20px 12px; }
+  .faq-answer { padding: 0 20px 20px 56px; }
+  .contact-section { padding: 32px 20px; }
+}
+
+/* 装飾をひとつ削る: 最初はfaq-itemに薄い影＋hover時浮き上がりがあったが、
+   hoverの影は残しつつ、常時表示の枠線は削除（なくても成立） */
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- 冒頭: 返品まわりで最も特徴的な「安心」を前面に -->
+  <div class="hero">
+    <p class="hero-label">RETURN &amp; REFUND</p>
+    <h1 class="hero-title">返品しても大丈夫。<br>その手順を、ひとつずつ。</h1>
+    <p class="hero-lead">サイズが合わなかった、イメージと違った――そんなときこそ、迷わずご連絡ください。お客様に納得いただける対応を約束します。</p>
+  </div>
+
+  <!-- FAQ: よくある質問5問 -->
+  <div class="faq-section">
+    <h2 class="section-title">よくあるご質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="faq-q-icon">Q</span>
+        <span class="faq-q-text">返品はいつまで可能ですか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>商品到着日を含めて<strong>8日以内</strong>であれば返品をお受けいたします。到着日から数えて8日目が土日祝の場合は、翌営業日まで延長されます。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="faq-q-icon">Q</span>
+        <span class="faq-q-text">返品の送料はどちらが負担しますか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>お客様都合による返品（サイズ違い・イメージ違いなど）の場合は<strong>お客様負担</strong>となります。商品に不良・誤配送があった場合は当店が全額負担いたします。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="faq-q-icon">Q</span>
+        <span class="faq-q-text">開封・試着した商品でも返品できますか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>未使用かつ商品の価値が損なわれていない状態であれば、開封後・試着後でも返品可能です。ただし、一度洗濯されたもの、明らかな使用痕があるものはお受けできませんのでご了承ください。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="faq-q-icon">Q</span>
+        <span class="faq-q-text">返金はいつ・どのように行われますか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>返品商品が当店に到着してから<strong>5営業日以内</strong>に、ご購入時と同じお支払い方法で返金いたします。クレジットカードの場合はご利用明細への反映時期によって前後することがあります。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="faq-q-icon">Q</span>
+        <span class="faq-q-text">返品するときの手順を教えてください</span>
+      </div>
+      <div class="faq-answer">
+        <p>マイページの注文履歴から「返品申請」ボタンを押し、必要事項を入力してください。申請後、返品先住所をメールでお送りします。商品を梱包し、<a href="#">返品受付票</a>を同封のうえご発送ください。</p>
+        <p>申請が難しい場合は、下記のお問い合わせフォームからご連絡いただくことも可能です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 解決しないときの連絡導線 -->
+  <div class="contact-section">
+    <h2 class="section-title">解決しないときは</h2>
+    <p class="contact-text">お探しの内容が見つからなかった場合や、<br>個別の状況についてご質問がある場合は、専用フォームからお気軽にお問い合わせください。</p>
+    <a href="#" class="contact-button">返品に関するお問い合わせ</a>
+    <p class="contact-note">受付時間 10:00–17:00（土日祝を除く）</p>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 — 水の音を飲む。</title>
+<style>
+/* ===== タイプスケール =====
+   本文 15px / 比率 1.250 (major third)
+   h1 3.6rem / h2 2.4rem / h3 1.5rem
+*/
+:root{
+  --ink:#1a1614;
+  --paper:#f3ede4;
+  --bean:#3a2418;
+  --accent:#c25a1f;
+  --gold:#b08d3e;
+  --ts:15px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Hiragino Sans","Yu Gothic","Helvetica Neue",Arial,sans-serif;
+  font-size:var(--ts);
+  line-height:1.75;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+}
+.lead{font-family:"Hiragino Mincho ProN","Yu Mincho",Georgia,serif}
+
+/* ===== 余白グリッド ===== */
+.section{padding:96px 24px;max-width:1040px;margin:0 auto}
+.section--narrow{max-width:720px}
+
+/* ===== ヒーロー ===== */
+.hero{
+  min-height:92vh;
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding:32px 32px 48px;
+  background:
+    radial-gradient(ellipse 480px 300px at 78% 32%, rgba(194,90,31,.12), transparent 70%),
+    radial-gradient(ellipse 600px 400px at 20% 80%, rgba(176,141,62,.10), transparent 70%),
+    var(--paper);
+  border-bottom:1px solid rgba(26,22,20,.08);
+}
+.hero__top{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bean);
+}
+.hero__main{display:flex;flex-direction:column;justify-content:center;padding:48px 0}
+.hero__eyebrow{
+  font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:32px;writing-mode:vertical-rl;position:absolute;left:24px;top:120px;
+}
+.hero__title{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:clamp(2.8rem,6.5vw,4.2rem);
+  font-weight:600;letter-spacing:.04em;line-height:1.15;color:var(--ink);
+  margin-bottom:24px;
+}
+.hero__title em{font-style:normal;color:var(--accent)}
+.hero__sub{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:1.15rem;font-weight:300;letter-spacing:.18em;color:var(--bean);
+  margin-bottom:48px;
+}
+.hero__meta{display:flex;gap:48px;flex-wrap:wrap;font-size:12px;letter-spacing:.1em;color:var(--bean)}
+.hero__meta span{display:block;color:var(--ink);font-family:serif;font-size:1.5rem;letter-spacing:.04em;margin-top:8px}
+.hero__foot{display:flex;justify-content:space-between;align-items:flex-end;font-size:11px;letter-spacing:.2em;color:var(--bean);text-transform:uppercase}
+
+/* ===== Story ===== */
+.story__label{font-size:11px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:24px}
+.story__h2{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:clamp(1.8rem,3.6vw,2.4rem);font-weight:500;letter-spacing:.06em;line-height:1.4;margin-bottom:40px;
+}
+.story__p{font-size:1.02rem;line-height:1.95;max-width:56ch}
+.story__p + .story__p{margin-top:24px}
+.story__quote{
+  margin-top:48px;padding-left:24px;border-left:2px solid var(--accent);
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:1.2rem;font-style:normal;line-height:1.7;color:var(--bean);
+}
+
+/* ===== Quality ===== */
+.quality{background:var(--bean);color:var(--paper)}
+.quality .section{max-width:1040px}
+.quality__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:56px}
+.quality__num{
+  font-family:"Hiragino Mincho ProN",serif;font-size:2.2rem;color:var(--gold);
+  display:block;margin-bottom:16px;letter-spacing:.04em;
+}
+.quality__h3{font-size:1.05rem;letter-spacing:.14em;margin-bottom:16px;color:var(--paper)}
+.quality__p{font-size:.92rem;line-height:1.8;color:rgba(243,237,228,.78)}
+.quality__h2{color:var(--paper)}
+
+/* ===== Lineup ===== */
+.lineup__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.bag{
+  border:1px solid rgba(26,22,20,.15);padding:40px 28px;background:var(--paper);
+  display:flex;flex-direction:column;gap:16px;transition:background .3s;
+}
+.bag:hover{background:#ebe3d6}
+.bag__mark{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.bag--a .bag__mark{background:radial-gradient(circle at 35% 30%,#6b4423,#2a1a10)}
+.bag--b .bag__mark{background:radial-gradient(circle at 35% 30%,#8a5a2b,#3a2418)}
+.bag--c .bag__mark{background:radial-gradient(circle at 35% 30%,#b07a3a,#4a2e18)}
+.bag__name{font-family:"Hiragino Mincho ProN",serif;font-size:1.4rem;letter-spacing:.08em;color:var(--ink)}
+.bag__roast{font-size:11px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+.bag__note{font-size:.9rem;line-height:1.75;color:var(--bean)}
+.bag__price{font-family:serif;font-size:1.15rem;margin-top:auto;padding-top:16px;border-top:1px solid rgba(26,22,20,.1);color:var(--ink)}
+
+/* ===== Purchase ===== */
+.purchase{padding:96px 24px;text-align:center;max-width:720px;margin:0 auto}
+.purchase__label{font-size:11px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:24px}
+.purchase__h2{font-family:"Hiragino Mincho ProN",serif;font-size:2rem;font-weight:500;letter-spacing:.06em;margin-bottom:24px;line-height:1.4}
+.purchase__p{margin-bottom:48px;color:var(--bean);line-height:1.9}
+.purchase__btn{
+  display:inline-block;padding:20px 56px;
+  background:var(--ink);color:var(--paper);text-decoration:none;
+  font-size:13px;letter-spacing:.3em;text-transform:uppercase;
+  border:1px solid var(--ink);transition:all .3s;
+}
+.purchase__btn:hover{background:var(--accent);border-color:var(--accent)}
+.purchase__note{margin-top:32px;font-size:11px;letter-spacing:.1em;color:var(--bean)}
+
+/* ===== footer ===== */
+.footer{padding:48px 24px;text-align:center;font-size:11px;letter-spacing:.2em;color:var(--bean);border-top:1px solid rgba(26,22,20,.08)}
+
+/* ===== responsive ===== */
+@media(max-width:720px){
+  .quality__grid,.lineup__grid{grid-template-columns:1fr}
+  .hero__eyebrow{display:none}
+  .section{padding:64px 20px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__top">
+    <span>〈ブランド名〉</span>
+    <span>COFFEE ROASTERS</span>
+  </div>
+  <div class="hero__main">
+    <p class="hero__eyebrow">SINCE 〈設立年〉</p>
+    <h1 class="hero__title">水の音を<em>飲む。</em></h1>
+    <p class="hero__sub">一杯の coffee に山の朝を煎れる。</p>
+    <div class="hero__meta">
+      <div>産地<span>〈原産地名〉</span></div>
+      <div>焙煎<span>自家焙煎</span></div>
+      <div>淹れる人<span>〈焙煎責任者〉</span></div>
+    </div>
+  </div>
+  <div class="hero__foot">
+    <span>— on the origin of flavor</span>
+    <span>SCROLL ↓</span>
+  </div>
+</header>
+
+<section class="section section--narrow story">
+  <p class="story__label">BRAND STORY</p>
+  <h2 class="story__h2">豆が話すまで、<br>静かに火を入れる。</h2>
+  <p class="story__p lead">〈ブランド名〉は、〈産地の風景や始まりのエピソード〉から始まった小さな焙煎所です。豆の履歴を一本ずつ手で確かめ、抽出ではなく煎り分けで香りを組み立てています。</p>
+  <p class="story__p">焙煎表は〈独自の基準〉に沿って書き換えており、豆ごとの臨界点を止めることに時間をかけます。温度を見る機械より、匂いが変わる瞬間を信じています。</p>
+  <blockquote class="story__quote">「煎りすぎない。豆が話し始める一歩手前で止める。」<br>— 〈焙煎責任者〉</blockquote>
+</section>
+
+<section class="quality">
+  <div class="section">
+    <p class="story__label">豆へのこだわり</p>
+    <h2 class="story__h2 quality__h2">三つの、およそ豆らしいこと。</h2>
+    <div class="quality__grid">
+      <div>
+        <span class="quality__num">壱</span>
+        <h3 class="quality__h3">焙煎の角度</h3>
+        <p class="quality__p">焙煎機〈機材名〉の排気温度と豆の表面色を、独自の区間で読み替えています。一煎ごとに記録を残し、次の焙煎へ繋げます。</p>
+      </div>
+      <div>
+        <span class="quality__num">弐</span>
+        <h3 class="quality__h3">豆の来歴</h3>
+        <p class="quality__p">〈仕入れの基準〉を満たす農園と直接向き合い、豆が摘まれた日と流通の道のりを一枚のカードに書き添えてお届けします。</p>
+      </div>
+      <div>
+        <span class="quality__num">参</span>
+        <h3 class="quality__h3">鮮度のしくみ</h3>
+        <p class="quality__p">受注から焙煎、消費期限までの時間を短く保つため、〈焙焼後の配送目安〉の範囲で焼き上げ、発送しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section lineup">
+  <p class="story__label">LINEUP</p>
+  <h2 class="story__h2">三つの焙き加減。</h2>
+  <div class="lineup__grid">
+    <article class="bag bag--a">
+      <span class="bag__mark" aria-hidden="true"></span>
+      <p class="bag__roast">Light Roast</p>
+      <h3 class="bag__name">〈銘柄A〉</h3>
+      <p class="bag__note">〈香り・味の特徴〉。産地の朝の空気を思わせる、透明感のある一杯。</p>
+      <p class="bag__price">¥〈価格〉 / 〈内容量〉g</p>
+    </article>
+    <article class="bag bag--b">
+      <span class="bag__mark" aria-hidden="true"></span>
+      <p class="bag__roast">Medium Roast</p>
+      <h3 class="bag__name">〈銘柄B〉</h3>
+      <p class="bag__note">〈香り・味の特徴〉。日々の朝に寄り添う、ほどよい深みと甘み。</p>
+      <p class="bag__price">¥〈価格〉 / 〈内容量〉g</p>
+    </article>
+    <article class="bag bag--c">
+      <span class="bag__mark" aria-hidden="true"></span>
+      <p class="bag__roast">Dark Roast</p>
+      <h3 class="bag__name">〈銘柄C〉</h3>
+      <p class="bag__note">〈香り・味の特徴〉。ゆっくり飲む夜のための、重ねた焦がし香。</p>
+      <p class="bag__price">¥〈価格〉 / 〈内容量〉g</p>
+    </article>
+  </div>
+</section>
+
+<section class="purchase">
+  <p class="purchase__label">PURCHASE</p>
+  <h2 class="purchase__h2">山の朝を、<br>おうちへ。</h2>
+  <p class="purchase__p lead">オンラインショップでは、各銘柄を200g・500gからお選びいただけます。焙煎後〈配送目安〉以内に発送いたします。</p>
+  <a href="#" class="purchase__btn">豆を買いにゆく</a>
+  <p class="purchase__note">初回購入には〈ブランド名〉のミニガイドを同封しております</p>
+</section>
+
+<footer class="footer">
+  © 〈ブランド名〉 — 〈所在地〉 · COFFEE ROASTERS
+</footer>
+
+</body>
+</html>

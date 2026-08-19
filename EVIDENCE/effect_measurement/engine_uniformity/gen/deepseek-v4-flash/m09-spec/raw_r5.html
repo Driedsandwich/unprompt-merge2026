@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+  :root {
+    /* タイプスケール: 本文 16px を基準に 1.25 の倍率 */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-md: 1.25rem;    /* 20px */
+    --text-lg: 1.75rem;    /* 28px */
+    --text-xl: 2.25rem;    /* 36px */
+    --leading-relaxed: 1.75;
+    --space-unit: 8px;
+    --color-base: #2a2a2a;
+    --color-muted: #6b6b6b;
+    --color-accent: #1a6b5c;
+    --color-bg: #f9f8f6;
+    --color-card: #ffffff;
+    --color-border: #e2e0dc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--color-bg);
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, "Noto Sans JP", sans-serif;
+    color: var(--color-base);
+    line-height: var(--leading-relaxed);
+    padding: var(--space-unit) 16px;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--color-card);
+    padding: 48px 40px 56px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    /* 装飾を最小限に: 影は必須か？ → 紙の質感のために残す */
+  }
+  h1 {
+    font-family: "Georgia", "Times New Roman", "Noto Serif JP", serif;
+    font-size: var(--text-xl);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    padding-bottom: 0;
+  }
+  .lead {
+    font-size: var(--text-base);
+    color: var(--color-muted);
+    margin-bottom: 48px;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 16px;
+    font-weight: 400;
+  }
+  h2 {
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, "Noto Sans JP", sans-serif;
+    font-size: var(--text-md);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-base);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  h3 {
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, "Noto Sans JP", sans-serif;
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+  ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: var(--text-base);
+  }
+  ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 400;
+  }
+  p {
+    margin-bottom: 16px;
+    font-size: var(--text-base);
+  }
+  .image-note {
+    background: var(--color-bg);
+    border-radius: 0;
+    padding: 24px 24px 16px;
+    margin: 24px 0 32px;
+    border-left: 4px solid var(--color-accent);
+    font-size: var(--text-sm);
+    color: var(--color-base);
+  }
+  .image-note p {
+    margin-bottom: 8px;
+    font-size: var(--text-sm);
+  }
+  .image-note strong {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+  .excluded {
+    background: transparent;
+    border: 1px dashed var(--color-border);
+    padding: 16px 20px;
+    margin-top: 40px;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .excluded p {
+    margin-bottom: 4px;
+  }
+  .excluded ul {
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+  .excluded ul li {
+    font-size: var(--text-sm);
+    margin-bottom: 4px;
+    padding-left: 16px;
+  }
+  .excluded ul li::before {
+    content: "×";
+    color: #a0a0a0;
+    font-weight: 300;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 48px 0 8px;
+  }
+  @media (max-width: 600px) {
+    .container { padding: 32px 20px 40px; }
+    h1 { font-size: 1.75rem; }
+    .lead { margin-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>経費精算ツール<br>仕様メモ</h1>
+  <p class="lead">申請側・承認側、どちらも「書く」「待つ」「確認する」を減らす。</p>
+
+  <h2>目的</h2>
+  <p>社内の経費精算を、申請者・承認者・経理の3者にとって「いまよりラク」にする。具体的には、領収書の一枚撮影・スマホからの入力・ルールベースの自動チェックで、精算にかかる手間と時間を削る。</p>
+
+  <h2>対象ユーザー</h2>
+  <p>全従業員（申請者）と各部門の承認者、経理担当者。スマートフォン・PCどちらからでも使えることを前提とする。ITリテラシーにばらつきがあるため、操作は「撮る・選ぶ・確認する」の3ステップに収める。</p>
+
+  <h2>主要機能</h2>
+  <ul>
+    <li>領収書をスマホで撮影 → AIが日付・金額・項目を読み取り、入力欄に自動でセットする。手入力は最小限。</li>
+    <li>交通費は路線検索と連携し、最安経路を候補として表示。申請者は選択するだけで距離・運賃が反映される。</li>
+    <li>経費科目の選択肢は、部署や役職に応じて絞り込んで表示。誤った科目を選びにくくする。</li>
+    <li>申請額が社内ルール（宿泊上限・日当規定など）を超えている場合、申請時にポップアップで注意喚起。ただしブロックはせず、理由を追記できる。</li>
+    <li>承認者は一覧画面で「未承認」の申請を確認し、ワンタップで承認・差し戻しができる。差し戻し時は定型コメント＋自由記入。</li>
+    <li>経理は月次・四半期の集計画面で、科目別・部署別の支出をグラフと表で確認。CSV出力も可能。</li>
+  </ul>
+
+  <h2>画面イメージ（言葉での説明）</h2>
+  <div class="image-note">
+    <p><strong>申請画面（スマホ）</strong><br>
+    上部に「撮影」ボタン。カメラロールからも選択可能。撮影後、日付・金額・店名がプレビューとして表示され、ユーザーがタップで訂正できる。下部には「交通費を追加」ボタンがあり、出発駅・到着駅を入力すると運賃が自動計算される。画面上部に現在の合計金額が常に表示される。</p>
+    <p><strong>承認画面（PC）</strong><br>
+    左側に申請者の一覧（写真・氏名・件数・合計額）。右側に選択した申請の明細が展開される。各明細の右端に「承認」「差し戻し」ボタン。差し戻し時はコメント入力エリアがスライドで現れる。一覧は未承認・承認済み・差し戻しのタブで切り替えられる。</p>
+    <p><strong>経理ダッシュボード（PC）</strong><br>
+    画面上部に月次推移の折れ線グラフ。中央に科目別円グラフ。下部にテーブル形式で明細一覧。各行に領収書画像へのリンク。フィルターで部署・期間・科目を絞り込める。</p>
+  </div>
+
+  <h2>使わないと決めたもの</h2>
+  <div class="excluded">
+    <p>今回のフェーズでは以下を対象外とする。</p>
+    <ul>
+      <li>領収書の仕分け・自動仕訳機能（OCRで読み取ったデータの会計ソフト連携は、後日検討）</li>
+      <li>電子マネー・クレジットカードとの自動連携（明細取込は手動CSVアップロードのみ）</li>
+      <li>出張申請・事前承認フロー（経費精算とは別のワークフローと判断）</li>
+      <li>モバイル端末での領収書PDF出力機能（PCからの印刷のみ対応）</li>
+      <li>チャットツール（Slackなど）への通知機能</li>
+    </ul>
+    <p style="margin-top:12px;">「使わない」と決めたことで、開発・運用の初期負荷を抑え、コア体験の完成度を高める。</p>
+  </div>
+
+  <hr>
+  <p style="font-size: var(--text-sm); color: var(--color-muted); margin-top: 24px;">
+    本仕様メモは発注内容に基づき、不足箇所は〈会社名〉などのプレースホルダで補っています。実際の設計・開発時には各項目の優先順位を再確認してください。
+  </p>
+
+</div>
+</body>
+</html>

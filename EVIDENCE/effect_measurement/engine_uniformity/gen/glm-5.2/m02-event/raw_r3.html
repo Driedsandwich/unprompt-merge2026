@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会</title>
+<style>
+:root {
+  --base: #1c1917;
+  --surface: #292524;
+  --text: #f5f0e6;
+  --muted: #a8a29e;
+  --accent: #e8a33d;
+  --accent-dim: #8a5f2a;
+  --font-head: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --r-step1: 1.5rem;
+  --r-step2: 1.25rem;
+  --r-step3: 1.0625rem;
+  --r-body: 0.9375rem;
+  --r-small: 0.8125rem;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--r-body);
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--base);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero */
+.hero {
+  padding: 96px 0 80px;
+  border-bottom: 1px solid #44403c;
+}
+
+.hero__label {
+  font-size: var(--r-small);
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero__label::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+  display: block;
+}
+
+.hero__title {
+  font-family: var(--font-head);
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero__lead {
+  font-size: var(--r-step3);
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* Section base */
+.section {
+  padding: 96px 0;
+  border-bottom: 1px solid #44403c;
+}
+
+.section__head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.section__num {
+  font-family: var(--font-head);
+  font-size: var(--r-step3);
+  font-style: italic;
+  color: var(--accent-dim);
+}
+
+.section__title {
+  font-family: var(--font-head);
+  font-size: var(--r-step1);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* Detail */
+.detail__row {
+  display: flex;
+  gap: 48px;
+  padding: 24px 0;
+  border-bottom: 1px solid #3f3a35;
+}
+
+.detail__row:last-child { border-bottom: none; }
+
+.detail__key {
+  flex: 0 0 96px;
+  font-size: var(--r-small);
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  padding-top: 4px;
+}
+
+.detail__val {
+  flex: 1;
+  font-size: var(--r-step3);
+  line-height: 1.75;
+}
+
+.detail__placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Highlights */
+.highlights {
+  list-style: none;
+  display: grid;
+  gap: 32px;
+}
+
+.highlights__item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.highlights__marker {
+  flex: 0 0 48px;
+  font-family: var(--font-head);
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+  padding-top: 4px;
+}
+
+.highlights__text {
+  flex: 1;
+  font-size: var(--r-body);
+  line-height: 1.85;
+  color: var(--text);
+}
+
+.highlights__text strong {
+  display: block;
+  font-size: var(--r-step3);
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+/* Entry */
+.entry__note {
+  font-size: var(--r-body);
+  line-height: 1.9;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.entry__steps {
+  list-style: none;
+  counter-reset: step;
+}
+
+.entry__steps li {
+  counter-increment: step;
+  padding: 24px 0 24px 56px;
+  border-bottom: 1px solid #3f3a35;
+  position: relative;
+  font-size: var(--r-step3);
+  line-height: 1.7;
+}
+
+.entry__steps li:last-child { border-bottom: none; }
+
+.entry__steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 24px;
+  font-family: var(--font-head);
+  font-size: var(--r-step3);
+  font-style: italic;
+  color: var(--accent);
+}
+
+.entry__cta {
+  display: inline-block;
+  margin-top: 48px;
+  padding: 16px 48px;
+  font-size: var(--r-step3);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--base);
+  background: var(--accent);
+  border: none;
+  text-decoration: none;
+}
+
+.entry__cta:hover {
+  background: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 48px 0 64px;
+  text-align: center;
+}
+
+.footer__text {
+  font-size: var(--r-small);
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 560px) {
+  .hero { padding: 64px 0 56px; }
+  .hero__title { font-size: 2.25rem; }
+  .section { padding: 64px 0; }
+  .detail__row { flex-direction: column; gap: 8px; }
+  .highlights__marker { font-size: 1.75rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <p class="hero__label">社内勉強会 / 告知</p>
+    <h1 class="hero__title">秋に、<em>学ぶ。</em><br>2025年の知を共有する夜。</h1>
+    <p class="hero__lead">日々の業務の先で、各自が掘り下げてきた技術と知見。それらを持ち寄り、社内で橋渡しする場を設けます。発表も傾聴も、どちらも歓迎です。</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">01</span>
+      <h2 class="section__title">日時と場所</h2>
+    </div>
+    <div class="detail__row">
+      <div class="detail__key">日　時</div>
+      <div class="detail__val">〈開催日：2025年10月〇日〉 18:30 〜 20:30</div>
+    </div>
+    <div class="detail__row">
+      <div class="detail__key">会　場</div>
+      <div class="detail__val">〈会場：本社 大会議室 / リモート参加可〉</div>
+    </div>
+    <div class="detail__row">
+      <div class="detail__key">定　員</div>
+      <div class="detail__val">現地 20名 / オンライン 制限なし</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">02</span>
+      <h2 class="section__title">内容について</h2>
+    </div>
+    <p style="font-size: var(--r-step3); line-height: 1.85; color: var(--text); max-width: 580px;">業務で得た知見、個人的に深掘りしている技術、あるいは最近読んだ論文や書籍の紹介など、テーマは自由です。難易度や専門領域を問わず、社内の多様な視点を交差させることを目的としています。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">03</span>
+      <h2 class="section__title">見どころ</h2>
+    </div>
+    <ul class="highlights">
+      <li class="highlights__item">
+        <span class="highlights__marker">壱</span>
+        <p class="highlights__text"><strong>各部署の知見が交差する</strong>普段接点の少ない他部署メンバーが、何に取り組んでいるか。直接の声で知れる機会です。</p>
+      </li>
+      <li class="highlights__item">
+        <span class="highlights__marker">弐</span>
+        <p class="highlights__text"><strong>発表の敷居を下げる</strong>短いライトニングトーク形式も併用。5分からでも歓迎します。完成した発表でなくて構いません。</p>
+      </li>
+      <li class="highlights__item">
+        <span class="highlights__marker">参</span>
+        <p class="highlights__text"><strong>対話を残す</strong>その場で終わらないよう、登壇内容は社内に共有し、事後の議論にも繋げます。</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">04</span>
+      <h2 class="section__title">参加方法</h2>
+    </div>
+    <p class="entry__note">聴講のみ、発表希望、いずれも下記のフォームからお申し込みください。発表希望者は、当日までに題目を〈〇月〇日〉までにお知らせください。</p>
+    <ol class="entry__steps">
+      <li>社内申し込みフォームから参加登録を行う。</li>
+      <li>発表を希望する場合は、題目と所要時間を記載のうえ送信。</li>
+      <li>開催3日前に詳細・タイムテーブルを社内チャットでお知らせします。</li>
+    </ol>
+    <a href="#" class="entry__cta">参加申し込みへ</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer__text">〈主催：社内勉強会実行委員〉</p>
+  </div>
+</footer>
+
+</body>
+</html>

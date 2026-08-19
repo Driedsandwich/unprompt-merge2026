@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉｜コーヒー豆ブランド</title>
+<style>
+:root{
+  /* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+  --bg:#151312;
+  --surface:#2e2823;
+  --accent:#b08d57;
+  --text:#f7f1ec;
+  --text-dim:#c8b8a8;
+  /* タイプスケール（本文1rem基準） */
+  --fs-sm:0.875rem;
+  --fs-base:1rem;
+  --fs-lg:1.125rem;
+  --fs-xl:1.5rem;
+  --fs-2xl:2rem;
+  --fs-3xl:2.5rem;
+}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+body{
+  /* 明朝見出し × 丸ゴシック本文 */
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:var(--fs-base);
+  line-height:1.9;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+}
+/* GYAKUMON-CHOICE: 見出し書体 = serif */
+h1,h2,h3{
+  font-family:"Times New Roman","Hiragino Mincho ProN","Yu Mincho",serif;
+  font-weight:500;
+  letter-spacing:0.06em;
+  line-height:1.35;
+}
+h1{font-size:var(--fs-3xl);}
+h2{font-size:var(--fs-2xl);margin-bottom:32px;}
+h3{font-size:var(--fs-xl);margin-bottom:8px;}
+p{margin-bottom:24px;}
+a{color:var(--accent);text-decoration:none;}
+.container{
+  width:min(92%,680px);
+  margin-inline:auto;
+  padding-inline:16px;
+}
+.section{padding:96px 0;}
+.hero{
+  padding:144px 0 112px;
+  text-align:center;
+}
+.hero-icon{
+  width:80px;
+  height:80px;
+  margin-bottom:40px;
+  stroke:var(--accent);
+  stroke-width:2;
+  fill:none;
+}
+.eyebrow{
+  color:var(--accent);
+  font-size:var(--fs-sm);
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.lead{
+  font-size:var(--fs-lg);
+  color:var(--text-dim);
+  margin-top:24px;
+  margin-bottom:0;
+}
+.story{background:var(--surface);}
+.cards,.products{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.card,.product{
+  background:var(--surface);
+  padding:32px;
+  border-radius:8px;
+}
+.product{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.card h3,.price{color:var(--accent);}
+.price{font-size:var(--fs-lg);}
+.purchase{text-align:center;}
+.btn{
+  display:inline-block;
+  padding:16px 40px;
+  border:1px solid var(--accent);
+  border-radius:8px;
+  color:var(--accent);
+  font-weight:700;
+  letter-spacing:0.05em;
+}
+.note{
+  display:block;
+  margin-top:24px;
+  color:var(--text-dim);
+  font-size:var(--fs-sm);
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <!-- GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 -->
+    <svg class="hero-icon" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M30,50 C30,25 70,25 70,50 C70,75 30,75 30,50 Z"/>
+      <path d="M35,50 C45,60 55,40 65,50 C55,65 45,55 35,50 Z"/>
+    </svg>
+    <p class="eyebrow">Specialty Coffee</p>
+    <h1>気品のコーヒー、<br>ロースターの矜持を一杯に。</h1>
+    <p class="lead">大切な人へ、コーヒー豆という贈りもの。</p>
+  </div>
+</header>
+
+<main>
+  <section class="section story">
+    <div class="container">
+      <!-- GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 -->
+      <h2>土と焙煎の記憶</h2>
+      <p>〈ブランド名〉の豆は、〈産地名〉の一軒の農園から始まりました。標高〈数値〉メートルの高地で、農園主が〈大事にしていること〉を守りながら育てた一粒です。</p>
+      <p>ロースターは〈年数〉年ぶりに再会したその風土を、丁寧な焙煎で閉じ込めています。カップの中に広がるのは、産地の記憶と、豆を仕上げる人の静かな誇りです。</p>
+    </div>
+  </section>
+
+  <section class="section commitment">
+    <div class="container">
+      <h2>豆へのこだわり</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>産地と選定</h3>
+          <p>〈産地名〉の〈農園名〉を中心に、収穫時期や精製方法まで吟味して仕入れています。</p>
+        </article>
+        <article class="card">
+          <h3>少量焙煎</h3>
+          <p>注文に応じた少量焙煎で、豆の個性と香りの頂点を届けます。</p>
+        </article>
+        <article class="card">
+          <h3>鮮度の管理</h3>
+          <p>焙煎後は脱酸素包装で保管し、開封した瞬間の香り立ちを大切にしています。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section lineup">
+    <div class="container">
+      <!-- GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 -->
+      <h2>ラインナップ</h2>
+      <p>ギフトにも、日々の一杯にも。</p>
+      <div class="products">
+        <article class="product">
+          <div>
+            <h3>〈銘柄A〉</h3>
+            <p>〈フレーバーA〉</p>
+          </div>
+          <span class="price">〈価格〉</span>
+        </article>
+        <article class="product">
+          <div>
+            <h3>〈銘柄B〉</h3>
+            <p>〈フレーバーB〉</p>
+          </div>
+          <span class="price">〈価格〉</span>
+        </article>
+        <article class="product">
+          <div>
+            <h3>ギフトセット</h3>
+            <p>〈銘柄A〉と〈銘柄B〉の詰め合わせ。</p>
+          </div>
+          <span class="price">〈価格〉</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section purchase">
+    <div class="container">
+      <!-- GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 -->
+      <h2>贈りものに、一杯の余韻を</h2>
+      <p>〈ブランド名〉は、特別な日の贈りものとしても、自分へのちょっとしたご褒美としても選ばれています。まずは、あなたのお気に入りの一杯に出会ってください。</p>
+      <a class="btn" href="〈販売URL〉">公式ショップで見る</a>
+      <small class="note">送料：〈送料〉・お届け：〈確認: 通常のお届け目安〉</small>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

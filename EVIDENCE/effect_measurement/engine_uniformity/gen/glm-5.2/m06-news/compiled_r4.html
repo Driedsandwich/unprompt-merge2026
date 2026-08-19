@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --base-size: 16px;
+    --h1-size: 28px;
+    --h2-size: 18px;
+    --bg: #fff6e8;
+    --primary: #e8965a;
+    --accent: #c4472b;
+    --text: #3a2e25;
+  }
+  /* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+  /* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Hiragino Maru Gothic Pro", "M PLUS Rounded Sansc", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: var(--base-size);
+    line-height: 1.9;
+  }
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 40px;
+  }
+  .greeting {
+    font-size: var(--h1-size);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin: 0 0 8px;
+  }
+  .greeting-sub {
+    font-size: var(--base-size);
+    font-weight: 400;
+    color: var(--primary);
+    margin: 0 0 64px;
+  }
+  .section {
+    margin-bottom: 56px;
+  }
+  .section:last-child {
+    margin-bottom: 0;
+  }
+  .lead {
+    font-size: 17px;
+    line-height: 1.85;
+    margin: 0 0 32px;
+    color: var(--text);
+  }
+  .section p {
+    margin: 0 0 24px;
+  }
+  .section p:last-child {
+    margin-bottom: 0;
+  }
+  .signature {
+    text-align: right;
+    margin-top: 64px;
+    font-size: 14px;
+    color: #8a7866;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+<p class="greeting">おつかれさまです、今月の社内報です。</p>
+<p class="greeting-sub">気楽に読んでください。</p>
+
+<div class="section">
+  <p class="lead">現場から一言。最近少し暑さが和らいできて、ようやく朝の空気が吸いやすくなりました。みなさん、体調のほうはいかがでしょうか。</p>
+</div>
+
+<div class="section">
+  <!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+  <p>この時期になると無性に食べたくなるのが冷やし中華で、最近は〈確認: 今月号で紹介したい話題・特集の有無〉に駆り出されています。ある部署では仕事の合間に冷やし中華を食べに行くのが日課だそうで、こういう小さな楽しみが続ける秘訣かもしれません。</p>
+  <p>営業も開発も、現場のペースはそれぞれだと思いますが、今月もそれぞれのやり方で無事に乗り切れたと思います。どうかご自身の体調を第一にお願いします。</p>
+</div>
+
+<div class="section">
+  <p>今月も社内報ならぬ小話をお届けしました。来月もまた、お茶でも淹れて気楽にどうぞ。</p>
+</div>
+
+<p class="signature">〈確認: 発行者名または役職名〉</p>
+
+</div>
+</body>
+</html>

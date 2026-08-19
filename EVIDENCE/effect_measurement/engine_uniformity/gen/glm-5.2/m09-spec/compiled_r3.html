@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 要件概要</title>
+<style>
+  /* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+  /* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+  /* GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 */
+  /* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+  /* GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール */
+  :root {
+    --scale-body: 15px;
+    --scale-h1: 22px;
+    --scale-h2: 15px;
+    --bg: #f7f6f3;
+    --main: #4a4842;
+    --accent: #8c8577;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: var(--scale-body);
+    line-height: 1.6;
+    color: var(--main);
+  }
+  /* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+  .doc {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 40px 96px;
+  }
+  h1 {
+    font-size: var(--scale-h1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0 0 8px;
+  }
+  .lead {
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin: 0 0 88px;
+  }
+  section { margin-bottom: 72px; }
+  h2 {
+    font-size: var(--scale-h2);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin: 0 0 16px;
+  }
+  ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+  }
+  li { margin-bottom: 8px; }
+  p { margin: 0; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<h1>経費精算ツール 要件概要</h1>
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<!-- GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル -->
+<p class="lead">目的とゴールだけを一枚で示す</p>
+
+<section>
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<h2>目的</h2>
+<p>毎月の経費精算で、経理担当者が手作業で行っている集計と仕訳の突合を自動化し、月次締めを即完了できるようにする。申請者の入力を楽にするものではなく、処理側の負担を減らすことを目的とする。</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<h2>対象ユーザー</h2>
+<p>経理担当者。〈確認: 現行の精算フローと帳票フォーマット〉に合わせて整形済みの入力シートを受け取り、本ツールで集計結果を得る。利用部署・社員数は〈確認: 対象規模〉を想定。</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+<h2>主要機能</h2>
+<ul>
+<li>入力シートから科目別・部署別の集計を自動生成する</li>
+<li>仕訳データと申請明細の突合を行い、差異を一覧で表示する</li>
+<li>月次締め処理をワンアクションで完了し、締め後の入力をロックする</li>
+<li>集計結果を会計ソフト向けの形式で書き出す</li>
+</ul>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+<h2>画面イメージ</h2>
+<p>スプレッドシート上で動作する。シートは入力と集計の2枚構成で、入力シートのセルに明細を記述すると集計シートに科目別の小計が即座に反映される。突合結果は差異がある行だけが色で示される。ボタン類は置かず、関数とメニュー操作のみで完結する。</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+<h2>使わないと決めたもの</h2>
+<ul>
+<li>会計・勤怠システム等の外部システムとの接続機能（本ツール単体で完結させる）</li>
+<li>申請者向けの入力画面・承認フロー（申請入力の改善は対象外）</li>
+<li>専用アプリ・サーバー環境（表計算ソフト上で稼働する）</li>
+</ul>
+</section>
+
+</div>
+</body>
+</html>

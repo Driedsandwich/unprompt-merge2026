@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>経費精算ツール仕様メモ</title>
+  <style>
+    :root {
+      /* Type scale: base 16px */
+      --text-base: 1rem;
+      --text-sm: 0.875rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.5rem;
+      --text-2xl: 2rem;
+
+      /* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+      /* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+      /* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+      /* Palette: [地色, 主要色, 強調色] */
+      --bg: #f7f6f3;
+      --primary: #2f4f3e;
+      --accent: #c9a24b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--primary);
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      font-size: var(--text-base);
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    h1 {
+      font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .lead {
+      font-size: var(--text-lg);
+      line-height: 1.6;
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    section {
+      margin-bottom: 56px;
+    }
+
+    h2 {
+      font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: var(--text-xl);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .placeholder {
+      color: var(--accent);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+    <h1>経費精算、自動で締まる。</h1>
+    <p class="lead">集計・経理処理を自動化し、月次締めを即完了できる状態にする。申請者の入力補助ではなく、経理担当者が受け取ったデータを仕訳・集計・検証する作業を削減する。</p>
+
+    <!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+    <section>
+      <h2>対象ユーザー</h2>
+      <p>経理担当者。専用アプリではなく、既存のExcel/スプレッドシート上で動作する。</p>
+    </section>
+
+    <!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+    <section>
+      <h2>主要機能</h2>
+      <ul>
+        <li>領収書データを定型フォーマットに貼り付けるだけで、自動で科目・税区分・金額を集計</li>
+        <li>月次仕訳データをワンクリックで出力</li>
+        <li>入力ミス・金額不整合を自動検知し、該当行を強調表示</li>
+        <li>締め日を指定すると対象期間のデータのみを抽出</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>画面イメージ</h2>
+      <p>シートの左側に未処理データを貼り付ける列、右側に自動集計結果が並ぶ。貼り付けた時点で処理済みのマークがつき、不整合があれば強調色で行全体が示される。下部に「今月の仕訳を出力」ボタンのセルがあり、押すと新しいシートに仕訳一覧が展開される。</p>
+    </section>
+
+    <!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+    <section>
+      <h2>使わないと決めたもの</h2>
+      <ul>
+        <li>スマホカメラでの領収書撮影機能</li>
+        <li>会計システム<span class="placeholder">〈既存会計システム名〉</span>との連携</li>
+        <li>承認フロー機能</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

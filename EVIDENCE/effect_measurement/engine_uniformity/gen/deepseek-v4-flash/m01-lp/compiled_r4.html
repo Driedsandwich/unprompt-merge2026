@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 | 法人向け信頼基盤サービス</title>
+<style>
+/* GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け */
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+/* GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング */
+/* GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 */
+
+:root {
+  /* palette: #0f1b2d (地色), #1f3a5f (主要色), #b8924a (強調色) */
+  --bg: #0f1b2d;
+  --primary: #1f3a5f;
+  --accent: #b8924a;
+  --text: #e4e9f0;
+  --text-secondary: #a4b3c9;
+  --white: #fafbfc;
+  /* typographic scale: base 18px, ratio 1.25 */
+  --font-body: 'Georgia', 'Times New Roman', serif;
+  --font-heading: 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
+  --scale-0: 0.75rem;   /* 12px */
+  --scale-1: 0.875rem;  /* 14px */
+  --scale-2: 1rem;      /* 16px / base */
+  --scale-3: 1.25rem;   /* 20px */
+  --scale-4: 1.563rem;  /* 25px */
+  --scale-5: 1.953rem;  /* 31px */
+  --scale-6: 2.441rem;  /* 39px */
+  --scale-7: 3.052rem;  /* 49px */
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+  --space-9: 128px;
+  --radius: 0px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 112.5%; } /* 18px base */
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* layout */
+.l-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+/* 冒頭: 静かな強さを強調 */
+.hero {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-9) 0 var(--space-8);
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse 60% 70% at 20% 40%, rgba(184, 146, 74, 0.04) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 60% at 80% 60%, rgba(31, 58, 95, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__tag {
+  font-family: var(--font-heading);
+  font-size: var(--scale-1);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  margin-bottom: var(--space-5);
+  text-transform: uppercase;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: var(--scale-7);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: var(--space-6);
+  max-width: 900px;
+}
+
+.hero__title span {
+  color: var(--accent);
+}
+
+.hero__lead {
+  font-size: var(--scale-3);
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin-bottom: var(--space-7);
+  line-height: 1.7;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-heading);
+  font-size: var(--scale-2);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: var(--space-3) var(--space-6);
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: opacity 0.2s;
+}
+
+.hero__cta:hover {
+  opacity: 0.85;
+}
+
+/* 価値提案 */
+.value {
+  padding: var(--space-9) 0 var(--space-8);
+  border-top: 1px solid rgba(184, 146, 74, 0.12);
+}
+
+.value__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8) var(--space-7);
+  align-items: center;
+}
+
+.value__text-block h2 {
+  font-family: var(--font-heading);
+  font-size: var(--scale-5);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: var(--space-4);
+  line-height: 1.3;
+}
+
+.value__text-block p {
+  color: var(--text-secondary);
+  font-size: var(--scale-2);
+  margin-bottom: var(--space-4);
+}
+
+.value__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 特徴3点 */
+.features {
+  padding: var(--space-9) 0;
+  background: rgba(31, 58, 95, 0.08);
+}
+
+.features__header {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
+
+.features__header h2 {
+  font-family: var(--font-heading);
+  font-size: var(--scale-5);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: var(--space-3);
+}
+
+.features__header p {
+  color: var(--text-secondary);
+  font-size: var(--scale-2);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.features__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.feature-card {
+  padding: var(--space-6) var(--space-5);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(184, 146, 74, 0.08);
+  border-radius: var(--radius);
+  transition: border-color 0.2s;
+}
+
+.feature-card:hover {
+  border-color: rgba(184, 146, 74, 0.25);
+}
+
+.feature-card__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-4);
+  color: var(--accent);
+}
+
+.feature-card h3 {
+  font-family: var(--font-heading);
+  font-size: var(--scale-3);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: var(--scale-1);
+  line-height: 1.7;
+}
+
+/* 利用の流れ */
+.steps {
+  padding: var(--space-9) 0 var(--space-8);
+}
+
+.steps__header {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
+
+.steps__header h2 {
+  font-family: var(--font-heading);
+  font-size: var(--scale-5);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: var(--space-3);
+}
+
+.steps__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  counter-reset: step-counter;
+}
+
+.step-item {
+  counter-increment: step-counter;
+  position: relative;
+  padding-top: var(--space-7);
+}
+
+.step-item::before {
+  content: "0" counter(step-counter);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-heading);
+  font-size: var(--scale-6);
+  font-weight: 700;
+  color: rgba(184, 146, 74, 0.15);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.step-item h3 {
+  font-family: var(--font-heading);
+  font-size: var(--scale-3);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.step-item p {
+  color: var(--text-secondary);
+  font-size: var(--scale-1);
+  line-height: 1.7;
+}
+
+/* CTA */
+.cta-section {
+  padding: var(--space-9) 0;
+  background: rgba(184, 146, 74, 0.04);
+  text-align: center;
+  border-top: 1px solid rgba(184, 146, 74, 0.08);
+}
+
+.cta-section h2 {
+  font-family: var(--font-heading);
+  font-size: var(--scale-5);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+}
+
+.cta-section p {
+  color: var(--text-secondary);
+  font-size: var(--scale-2);
+  max-width: 500px;
+  margin: 0 auto var(--space-6);
+}
+
+.cta-section .hero__cta {
+  font-size: var(--scale-3);
+  padding: var(--space-4) var(--space-7);
+}
+
+/* フッター */
+.footer {
+  padding: var(--space-6) 0 var(--space-5);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+.footer__logo {
+  font-family: var(--font-heading);
+  font-size: var(--scale-1);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  margin-bottom: var(--space-3);
+}
+
+.footer__copy {
+  font-size: var(--scale-0);
+  color: rgba(164, 179, 201, 0.5);
+}
+
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+/* 装飾を絞り、余白とタイポグラフィの端正さで信頼感を表現 */
+/* 提出前に影・アニメーションを削除 */
+
+@media (max-width: 768px) {
+  .hero__title { font-size: var(--scale-5); }
+  .value__grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .features__list { grid-template-columns: 1fr; }
+  .steps__list { grid-template-columns: 1fr; }
+  .value__visual { order: -1; }
+  .hero { min-height: auto; padding: var(--space-8) 0 var(--space-7); }
+}
+</style>
+</head>
+<body>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="l-container hero__inner">
+    <p class="hero__tag">法人向け基盤サービス</p>
+    <h1 class="hero__title">
+      貴社の意思決定を<br>
+      <span>支える、信頼</span>のサービス基盤。
+    </h1>
+    <p class="hero__lead">
+      実績で語るサービス。信頼は、静かに積み重ねる。<br>
+      余白が語る、サービスの品格。
+    </p>
+    <a href="#" class="hero__cta">資料を請求する →</a>
+  </div>
+</section>
+
+<!-- 価値提案 -->
+<!-- GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング -->
+<section class="value">
+  <div class="l-container">
+    <div class="value__grid">
+      <div class="value__text-block">
+        <h2>静かな強さを、<br>サービスの名に。</h2>
+        <p>
+          情報過多な時代だからこそ、一つひとつの判断に確かな裏付けが求められます。
+          〈サービス名〉は、法人の重要な意思決定を支えるため、〈確認: サービスの具体的な提供価値〉を核に設計された基盤です。
+        </p>
+        <p>
+          派手さではなく、<br class="pc-only">確実さで選ばれる。<br>
+          それが、私たちの目指す信頼の形です。
+        </p>
+      </div>
+      <div class="value__visual">
+        <!-- インラインSVG: 抽象的な盾+波線で信頼と静けさを表現 -->
+        <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M140 40L220 80V140C220 190 180 235 140 250C100 235 60 190 60 140V80L140 40Z" stroke="#b8924a" stroke-width="1.5" fill="none"/>
+          <path d="M140 70L200 100V145C200 180 170 210 140 220C110 210 80 180 80 145V100L140 70Z" stroke="#1f3a5f" stroke-width="1.5" fill="none"/>
+          <path d="M80 160C100 145 120 145 140 160C160 175 180 175 200 160" stroke="#b8924a" stroke-width="1.2" fill="none" opacity="0.4"/>
+          <path d="M90 180C110 165 130 165 150 180C170 195 190 195 210 180" stroke="#b8924a" stroke-width="1" fill="none" opacity="0.25"/>
+          <circle cx="140" cy="145" r="12" fill="#b8924a" fill-opacity="0.1" stroke="#b8924a" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 特徴3点 -->
+<section class="features">
+  <div class="l-container">
+    <div class="features__header">
+      <h2>信頼を形にする、<br class="pc-only">3つの特長</h2>
+      <p>設計の端正さが、日々の安心を生みます。</p>
+    </div>
+    <div class="features__list">
+      <article class="feature-card">
+        <div class="feature-card__icon">
+          <!-- インラインSVG: シンプルな幾何学 -->
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="32" height="32" rx="0" stroke="#b8924a" stroke-width="1.5" fill="none"/>
+            <circle cx="24" cy="24" r="8" stroke="#b8924a" stroke-width="1.5" fill="none"/>
+            <path d="M24 16V24L28 28" stroke="#b8924a" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>〈確認: 特長1のタイトル〉</h3>
+        <p>〈確認: 特長1の説明。具体的な機能や提供価値を1文で〉</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 38L24 10L38 38" stroke="#b8924a" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+            <circle cx="24" cy="38" r="4" stroke="#b8924a" stroke-width="1.5" fill="none"/>
+            <path d="M24 20V28" stroke="#b8924a" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>〈確認: 特長2のタイトル〉</h3>
+        <p>〈確認: 特長2の説明。導入後の運用や体制に触れる〉</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="36" height="36" rx="0" stroke="#b8924a" stroke-width="1.5" fill="none"/>
+            <line x1="24" y1="6" x2="24" y2="42" stroke="#b8924a" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <line x1="6" y1="24" x2="42" y2="24" stroke="#b8924a" stroke-width="1.5" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+        <h3>〈確認: 特長3のタイトル〉</h3>
+        <p>〈確認: 特長3の説明。他社との差別化や独自性を〉</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 利用の流れ -->
+<section class="steps">
+  <div class="l-container">
+    <div class="steps__header">
+      <h2>導入の流れ</h2>
+      <p>シンプルなステップで、すぐにご活用いただけます。</p>
+    </div>
+    <div class="steps__list">
+      <div class="step-item">
+        <h3>〈確認: ステップ1のタイトル〉</h3>
+        <p>〈確認: ステップ1で行うこと。初回打ち合わせや現状ヒアリングの内容〉</p>
+      </div>
+      <div class="step-item">
+        <h3>〈確認: ステップ2のタイトル〉</h3>
+        <p>〈確認: ステップ2で行うこと。設計や設定のプロセス〉</p>
+      </div>
+      <div class="step-item">
+        <h3>〈確認: ステップ3のタイトル〉</h3>
+        <p>〈確認: ステップ3で行うこと。運用開始後のサポート内容〉</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<!-- GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング -->
+<section class="cta-section">
+  <div class="l-container">
+    <h2>まずは、<br class="pc-only">お気軽にお問い合わせください。</h2>
+    <p>サービスの詳細をまとめた資料をご用意しております。</p>
+    <a href="#" class="hero__cta">資料を請求する →</a>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="footer">
+  <div class="l-container">
+    <p class="footer__logo">〈サービス名〉</p>
+    <p class="footer__copy">&copy; 〈会社名〉 All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

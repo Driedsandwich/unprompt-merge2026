@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈会社名〉の会社紹介</title>
+<style>
+/* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+:root{
+  --bg:#1c1a17;
+  --main:#4a3a2b;
+  --accent:#c98a3e;
+  --text:#f4efe6;
+  --text-soft:#c9bfae;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+  line-height:1.85;letter-spacing:.02em;
+}
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+h1,h2,h3{font-family:"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;font-weight:700;letter-spacing:.03em}
+
+.hero{padding:128px 24px 96px}
+.hero-inner{max-width:680px;margin:0 auto}
+.hero-eyebrow{
+  color:var(--accent);font-size:13px;letter-spacing:.18em;
+  margin-bottom:40px;text-transform:none;
+}
+.hero h1{font-size:40px;line-height:1.32;margin-bottom:40px}
+.hero p{font-size:17px;color:var(--text-soft)}
+
+/* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+.story{padding:96px 24px}
+.story-inner{max-width:620px;margin:0 auto}
+.story h2{
+  font-size:28px;margin-bottom:48px;
+  padding-bottom:16px;border-bottom:1px solid var(--main);
+}
+.story p{font-size:16px;margin-bottom:32px}
+.story em{font-style:normal;color:var(--accent);font-weight:600}
+
+.voices{padding:96px 24px;background:var(--main)}
+.voices-inner{max-width:620px;margin:0 auto}
+.voices h2{font-size:26px;margin-bottom:56px}
+.voice{margin-bottom:56px}
+.voice:last-child{margin-bottom:0}
+.voice-name{
+  font-size:14px;color:var(--accent);
+  margin-bottom:16px;letter-spacing:.06em;
+}
+.voice p{font-size:16px;line-height:1.9}
+
+/* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+.values{padding:96px 24px}
+.values-inner{max-width:620px;margin:0 auto}
+.values h2{font-size:26px;margin-bottom:48px}
+.value-item{margin-bottom:40px;padding-left:24px;border-left:3px solid var(--accent)}
+.value-item:last-child{margin-bottom:0}
+.value-item h3{font-size:18px;margin-bottom:12px}
+.value-item p{font-size:15px;color:var(--text-soft);line-height:1.8}
+
+/* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+.cta{padding:96px 24px 128px;text-align:center}
+.cta-inner{max-width:520px;margin:0 auto}
+.cta h2{font-size:24px;margin-bottom:32px}
+.cta p{font-size:16px;color:var(--text-soft);margin-bottom:48px}
+.cta-btn{
+  display:inline-block;padding:18px 48px;
+  background:var(--accent);color:var(--bg);
+  text-decoration:none;font-size:16px;font-weight:700;
+  border-radius:12px;letter-spacing:.05em;
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">会社紹介</div>
+    <h1>隣にいる人の顔が見える。<br>そんな場所で働きたいと思いませんか。</h1>
+    <p>はじめまして、〈会社名〉です。履歴書の前に、もう少しだけ私たちの日常を覗いていってください。</p>
+  </div>
+</section>
+
+<section class="story">
+  <div class="story-inner">
+    <h2>私たちが会社として大切にしていること</h2>
+    <p>〈会社名〉は〈事業内容〉をしている会社です。設立は〈設立時期〉。〈確認: 会社の歴史の中で意味のあった転換点や出来事を1つ〉、そこから今のかたちになりました。</p>
+    <p>何よりも大切にしているのは、<em>一緒に働く人たちとの関係</em>です。顧客の前に、まず隣の席の相手の顔が見える。困ったときに声をかけやすい空気がある。それが当たり前だと感じられる環境を作りたい、というのが原点にあります。</p>
+    <p>〈確認: 会社としてチーム・人への熱意を特に感じる具体的なエピソードを1つ〉。</p>
+    <p>専門的な知識がなくても、最初は誰もがそうでした。ここでは、隣の人が丁寧に教えてくれる。少しずつできることが増えていく。その積み重ねが、今のチームを作っています。</p>
+  </div>
+</section>
+
+<section class="voices">
+  <div class="voices-inner">
+    <h2>働く人の声</h2>
+
+    <div class="voice">
+      <div class="voice-name">〈入社3年目・氏名〉</div>
+      <p>〈確認: 入社してみて正直どうだったか、最初に戸惑ったことと今どう思っているか〉。先輩が「分からなくて当然だよ」と言ってくれたことが、いちばん助かったんです。</p>
+    </div>
+
+    <div class="voice">
+      <div class="voice-name">〈入社1年目・氏名〉</div>
+      <p>〈確認: 実際に働き始めて印象が変わったこと、チームの雰囲気について〉。何より、自分のペースで聞ける空気がありがたいです。</p>
+    </div>
+
+    <div class="voice">
+      <div class="voice-name">〈チームリーダー・氏名〉</div>
+      <p>〈確認: 人を育てる立場から見て、このチームの良さをどう感じているか〉。隣にいる人の顔が見える、という言葉にいちばん表れていると思います。</p>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="values-inner">
+    <h2>大事にしていること</h2>
+
+    <div class="value-item">
+      <h3>声をかける壁を低く</h3>
+      <p>質問しやすい、相談しやすい。それが当たり前の空気を保ち続けること。</p>
+    </div>
+
+    <div class="value-item">
+      <h3>未経験から育てる</h3>
+      <p>〈確認: 未経験者の育成で実際に工夫している具体的な手順や制度〉。</p>
+    </div>
+
+    <div class="value-item">
+      <h3>隣の人を知る</h3>
+      <p>仕事の前に、一緒に働く人がどんな人かを知る時間を大切にしています。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-inner">
+    <h2>少し気になったら、話を聞きに来てください。</h2>
+    <p>今すぐ応募しなくて大丈夫です。会社の雰囲気を感じてもらうだけでも構いません。</p>
+    <a href="#" class="cta-btn">話を聞いてみる</a>
+  </div>
+</section>
+
+</body>
+</html>

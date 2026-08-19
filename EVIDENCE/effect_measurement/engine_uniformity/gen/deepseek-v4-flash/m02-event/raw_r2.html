@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会 告知</title>
+<style>
+  /* タイプスケール: 本文 16px / 小見出し 20px / 中見出し 28px / 大見出し 40px / 特大 56px */
+  :root {
+    --base: #1e1e1e;
+    --accent: #c4452b;
+    --accent-light: #f0e2dd;
+    --bg: #faf8f5;
+    --text: #2a2a2a;
+    --muted: #6b6b6b;
+    --space-unit: 8px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: calc(var(--space-unit) * 16) calc(var(--space-unit) * 4);
+  }
+
+  /* 見出し用 明朝 */
+  .hero {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', serif;
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    color: var(--base);
+    margin-bottom: calc(var(--space-unit) * 2);
+  }
+
+  .hero-sub {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+    margin-bottom: calc(var(--space-unit) * 10);
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+    padding-bottom: calc(var(--space-unit) * 1);
+  }
+
+  .section {
+    margin-bottom: calc(var(--space-unit) * 14);
+  }
+
+  .section-title {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', serif;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--base);
+    margin-bottom: calc(var(--space-unit) * 4);
+    padding-bottom: calc(var(--space-unit) * 2);
+    border-bottom: 1px solid #ddd;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+    font-size: 16px;
+  }
+
+  .meta-grid dt {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .meta-grid dd {
+    margin: 0;
+  }
+
+  .desc {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: calc(var(--space-unit) * 4);
+  }
+
+  .highlight-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit) * 3);
+  }
+
+  .highlight-list li {
+    position: relative;
+    padding-left: calc(var(--space-unit) * 6);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .highlight-list li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 14px;
+    top: 0.1em;
+  }
+
+  .btn-area {
+    margin-top: calc(var(--space-unit) * 12);
+    padding-top: calc(var(--space-unit) * 6);
+    border-top: 1px solid #ddd;
+    text-align: center;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 12);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn:hover {
+    background: #a33620;
+  }
+
+  .btn-caption {
+    margin-top: calc(var(--space-unit) * 3);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .footer-note {
+    margin-top: calc(var(--space-unit) * 16);
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* 余白調整 */
+  .mt-8 { margin-top: calc(var(--space-unit) * 8); }
+  .mb-8 { margin-bottom: calc(var(--space-unit) * 8); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- 冒頭: 秋という季節感 + 勉強会の核 -->
+  <div class="hero-sub">Autumn Study Session</div>
+  <h1 class="hero">知る。深める。<br>つながる秋。</h1>
+  <p style="font-size: 18px; line-height: 1.8; color: var(--muted); margin-bottom: calc(var(--space-unit) * 12);">
+    実務の「？」を、みんなで「！」に変える。<br>
+    部署を越えて集まる、年に一度の学びの場。
+  </p>
+
+  <!-- 日時・場所 -->
+  <section class="section">
+    <h2 class="section-title">開催概要</h2>
+    <dl class="meta-grid">
+      <dt>日時</dt>
+      <dd>〈開催日〉 14:00 – 17:00（予定）</dd>
+      <dt>場所</dt>
+      <dd>〈会場〉 3F 多目的ホール</dd>
+      <dt>対象</dt>
+      <dd>全社員（参加自由・途中入退室OK）</dd>
+    </dl>
+  </section>
+
+  <!-- 内容の説明 -->
+  <section class="section">
+    <h2 class="section-title">どんな時間？</h2>
+    <p class="desc">
+      今年のテーマは「自分たちの仕事をもう一歩深く見る」。<br>
+      社内のメンバーが持ち寄った〈発表テーマ〉を軸に、少人数の対話と実践的なワークを交えて進めます。聞くだけじゃない、手を動かして考える勉強会です。
+    </p>
+    <p class="desc">
+      具体的には、〈事例紹介〉と〈グループディスカッション〉の2部構成。後半は参加者同士でテーマを選び、自由に意見交換できる時間も設けます。
+    </p>
+  </section>
+
+  <!-- 見どころ -->
+  <section class="section">
+    <h2 class="section-title">見どころ</h2>
+    <ul class="highlight-list">
+      <li>
+        <strong>現場のリアルな知恵。</strong><br>
+        各部署から〈具体的なプロジェクトの振り返り〉が共有されます。成功も失敗も、オープンに話すのがこの会のルール。
+      </li>
+      <li>
+        <strong>あえて「畑違い」のセッション。</strong><br>
+        普段関わらない分野の話を聞くと、自分の仕事に新しい視点が生まれます。今年は〈ゲストセッション〉も企画中。
+      </li>
+      <li>
+        <strong>秋らしい軽食とお茶。</strong><br>
+        休憩タイムには季節の飲み物と軽食をご用意。リラックスした雰囲気で交流してください。
+      </li>
+    </ul>
+  </section>
+
+  <!-- 参加方法 -->
+  <section class="section">
+    <h2 class="section-title">参加方法</h2>
+    <p class="desc">
+      事前申し込みは不要です。当日、会場へ直接お越しください。<br>
+      参加しやすい服装でOK。資料やPCは必要に応じてお持ちください（貸出用のメモ・筆記用具も会場にあります）。
+    </p>
+    <div class="btn-area">
+      <a href="#" class="btn">カレンダーに追加</a>
+      <p class="btn-caption">※ 社内カレンダーで〈イベント名〉を検索しても登録できます</p>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    問い合わせ: 〈担当者名〉 または 社内Slack #〈チャンネル名〉
+  </div>
+
+</div>
+</body>
+</html>

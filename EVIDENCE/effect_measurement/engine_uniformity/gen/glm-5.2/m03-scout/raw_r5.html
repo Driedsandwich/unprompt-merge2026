@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+:root {
+  --body-size: 15px;
+  --subject-size: 24px;
+  --meta-size: 12px;
+  --base-color: #1a1a2e;
+  --accent-color: #e94560;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  background: #f5f5f5;
+  color: var(--base-color);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mail-container {
+  max-width: 720px;
+  margin: 48px auto;
+  background: #ffffff;
+  padding: 64px 56px;
+}
+
+.subject-line {
+  font-size: var(--subject-size);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 40px;
+  line-height: 1.5;
+  color: var(--base-color);
+}
+
+.meta {
+  font-size: var(--meta-size);
+  color: #666;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.recipient {
+  font-size: var(--body-size);
+  margin-bottom: 32px;
+}
+
+.body-text p {
+  font-size: var(--body-size);
+  margin-bottom: 24px;
+  line-height: 1.85;
+}
+
+.body-text strong {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.closing {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.closing p {
+  font-size: var(--body-size);
+  margin-bottom: 16px;
+}
+
+.signature {
+  margin-top: 40px;
+  font-size: var(--meta-size);
+  line-height: 1.9;
+  color: #555;
+}
+
+.signature .name {
+  font-size: var(--body-size);
+  color: var(--base-color);
+  font-weight: 600;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+<div class="mail-container">
+
+<div class="subject-line">設計からリリースまで自分で決める。そんな環境でコードを書いてみませんか</div>
+
+<div class="meta">〈会社名〉 採用担当より</div>
+
+<div class="recipient">〈候補者名〉さん</div>
+
+<div class="body-text">
+
+<p>突然のご連絡失礼いたします。〈会社名〉の採用を担当しております。</p>
+
+<p>〈候補者名〉さんの公開されているコードと技術ノートを拝見し、設計の意図を言語化する力に惹かれました。「なぜこの構成にしたか」が README の段階で说明されている点、少数ですが深い経験を積んできた若手エンジニアに共通する姿勢だと感じました。</p>
+
+<p>いま弊社の開発チームでは、プロダクトの基本設計から技術選定、リリース判断までをエンジニア自身が担っています。PMが要件を降ろして実装を振る分業ではなく、仕様の曖昧さをエンジニアが解きほぐし、プロトタイプで仮説を検証する回し方をしています。若手であっても、判断の権限は役職ではなく判断の妥当性に委ねられています。</p>
+
+<p>一方で、コードレビューは週に二回、全員の前で行います。良くも悪くも見える状態にすることで、設計の筋をチームで揃えていく文化です。</p>
+
+<p>〈候補者名〉さんの「設計の意図を説明する力」は、この環境でさらに伸びると考えています。もし少しでも興味を持っていただけたなら、カジュアルに話を聞きにお越しいただけないでしょうか。</p>
+
+</div>
+
+<div class="closing">
+<p>オンラインで30分程度、〈候補者名〉さんのこれまでの開発経験や、弊社の開発体制についてお話しできればと思っています。技術的な質問も歓迎です。</p>
+<p>ご都合の良い日時を2〜3ピックアップしてお知らせいただけると幸いです。</p>
+</div>
+
+<div class="signature">
+〈会社名〉株式会社<br>
+採用担当 〈担当者名〉<br>
+Email: 〈メールアドレス〉<br>
+<div class="name">〈担当者名〉</div>
+</div>
+
+</div>
+</body>
+</html>

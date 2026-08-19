@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+  --base: #fff6e8;
+  --primary: #e8965a;
+  --accent: #c4472b;
+  --text: #3a2a1a;
+  --body-size: 15px;
+  --heading-size: 26px;
+  --caption-size: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--base);
+  font-family: "Hiragino Maru Gothic ProN", "M PLUS Rounded Sansc", "Yu Gothic", sans-serif;
+  color: var(--text);
+  line-height: 1.9;
+  padding: 32px 16px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+.greeting {
+  font-size: var(--caption-size);
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: 32px;
+  font-weight: 600;
+}
+
+/* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+h1 {
+  font-size: var(--heading-size);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 56px;
+  line-height: 1.5;
+}
+
+p {
+  font-size: var(--body-size);
+  margin-bottom: 48px;
+}
+
+/* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+.topic-label {
+  font-size: var(--caption-size);
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+
+/* GYAKUMON-CHOICE: 密度 = airy */
+.topic-body {
+  margin-bottom: 64px;
+}
+
+.closing {
+  font-size: var(--body-size);
+  text-align: right;
+  padding-top: 24px;
+  border-top: 1px solid rgba(232, 150, 90, 0.25);
+  color: var(--text);
+}
+
+.sign-name {
+  font-size: var(--caption-size);
+  color: var(--primary);
+  margin-top: 8px;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="greeting">各部署のみなさんへ、今月もそれぞれのペースでお疲れさまでした。</div>
+
+  <h1>今月も社内報、気楽にどうぞ。</h1>
+
+  <p>おつかれさまです。九月に入りましたが、まだまだ夏の余熱が残っていますね。現場のみなさん、熱中症対策しっかりやってますか。私は先日、〈確認: 今月号の特集・話題は何にするか〉という話題で〈執筆者名〉と少し雑談していました。部署が違っても、「最近どう？」「忙しい？」の一言から始まると、なんとなく空気が緩みます。今月もそんな調子で、肩の力抜いて読んでください。</p>
+
+  <div class="topic-body">
+    <div class="topic-label">今月の話題</div>
+    <p>今月は〈確認: 今月号で取り上げたい話題を1つ〉を中心に、各部署の動きを集めています。現場の視点で見ると、〈確認: 現場で最近感じている小さな変化や気づき〉が見えてくるかもしれません。自分の部署と違う仕事ぶりを知るだけで、ちょっと面白いですよ。</p>
+  </div>
+
+  <div class="closing">
+    来月も、現場から一言、お届けします。
+    <div class="sign-name">〈執筆者名〉</div>
+  </div>
+
+</div>
+</body>
+</html>

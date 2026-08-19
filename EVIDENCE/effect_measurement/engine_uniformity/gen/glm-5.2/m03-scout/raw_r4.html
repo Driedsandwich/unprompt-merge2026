@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+  :root {
+    --base-font: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    --heading-font: "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+    --bg-color: #f6f3ee;
+    --text-color: #1a1a1a;
+    --accent-color: #2c4a3e;
+    --body-size: 15px;
+    --subject-size: 22px;
+    --line-height: 1.85;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--base-font);
+    font-size: var(--body-size);
+    line-height: var(--line-height);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding: 48px 24px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .subject {
+    font-family: var(--heading-font);
+    font-size: var(--subject-size);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--accent-color);
+    line-height: 1.5;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(44, 74, 62, 0.25);
+  }
+
+  .recipient {
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .recipient p {
+    margin-bottom: 4px;
+  }
+
+  .body-text {
+    margin-bottom: 48px;
+  }
+
+  .body-text p {
+    margin-bottom: 24px;
+  }
+
+  .body-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .closing {
+    margin-bottom: 56px;
+    line-height: 1.9;
+  }
+
+  .closing p {
+    margin-bottom: 8px;
+  }
+
+  .signature {
+    border-top: 1px solid rgba(26, 26, 26, 0.12);
+    padding-top: 32px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .signature p {
+    margin-bottom: 2px;
+  }
+
+  .signature .company {
+    font-family: var(--heading-font);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="subject">コードを書く時間より、認識を合わせる時間が長い——その感覚、うちでこそ報われます</h1>
+
+    <div class="recipient">
+      <p>〈候補者名〉さん</p>
+    </div>
+
+    <div class="body-text">
+      <p>突然のご連絡失礼いたします。〈会社名〉でエンジニア採用を担当しております〈担当者名〉と申します。</p>
+
+      <p>〈候補者名〉さんの公開されているコードと技術ノートを拝見し、設計判断の根拠を言語化する姿勢に惹かれました。年次の割に「なぜこの選択をしたか」が丁寧で、将来の変更コストまで見ている点に、うちが求めている素地を感じました。</p>
+
+      <p>現在〈会社名〉は、〈プロダクトや課題の一句〉に取り組む少数チームです。技術選定は現場に委ねられ、設計レビューは「正解を出す場」ではなく「選択肢を広げる場」として運営されています。若手の声が方針を動かす環境を意図的に作っています。</p>
+
+      <p>「今の現場でも成長は実感できる。ただ、自分の設計がプロダクトの方向に届いている実感が薄い」——もしそう感じるなら、一度話してみませんか。スキルシートや職務経歴は不要です。〈候補者名〉さんが今一番作ってみたいものを聞かせてください。</p>
+    </div>
+
+    <div class="closing">
+      <p>ご関心あれば、お気軽にご返信いただけますと幸いです。</p>
+      <p>平日の稼働時間帯であれば、1時間程度でお話しさせていただければと思います。</p>
+    </div>
+
+    <div class="signature">
+      <p class="company">〈会社名〉</p>
+      <p>〈担当者名〉</p>
+      <p>〈メールアドレス〉</p>
+    </div>
+  </div>
+</body>
+</html>

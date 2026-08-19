@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会のご案内</title>
+<style>
+  :root {
+    /* タイプスケール: 本文 16px / 小見出し 22px / 大見出し 32px */
+    --body-size: 16px;
+    --subheading-size: 22px;
+    --heading-size: 32px;
+    --line-height: 1.8;
+    --color-base: #2e2e2e;
+    --color-accent: #b35c44;
+    --color-bg: #faf6f0;
+    --color-text: #3a3a3a;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: var(--body-size);
+    line-height: var(--line-height);
+    color: var(--color-text);
+    background: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    padding: 64px 16px;
+  }
+  .container {
+    max-width: 720px;
+    width: 100%;
+    background: #ffffff;
+    padding: 64px 48px 80px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  /* 冒頭 */
+  .lead {
+    margin-bottom: 56px;
+  }
+  .lead-title {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", "Times New Roman", serif;
+    font-size: var(--heading-size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .lead-sub {
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: #7a7a7a;
+  }
+  /* セクション */
+  .section {
+    margin-bottom: 64px;
+  }
+  .section:last-of-type {
+    margin-bottom: 0;
+  }
+  .section-title {
+    font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", "Times New Roman", serif;
+    font-size: var(--subheading-size);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-accent);
+    display: inline-block;
+  }
+  .section-body {
+    font-size: var(--body-size);
+  }
+  .section-body p {
+    margin-bottom: 16px;
+  }
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+  .detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .detail-list li {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #eae5dd;
+  }
+  .detail-list li:first-child {
+    padding-top: 0;
+  }
+  .detail-list .label {
+    width: 80px;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+  .detail-list .value {
+    flex: 1;
+  }
+  /* 強調 */
+  .highlight {
+    background: #fceee9;
+    padding: 2px 6px;
+    font-weight: 500;
+  }
+  /* ボタン */
+  .btn-area {
+    margin-top: 32px;
+    text-align: center;
+  }
+  .btn {
+    display: inline-block;
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    background: var(--color-accent);
+    padding: 14px 40px;
+    border-radius: 0;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn:hover {
+    background: #934b36;
+  }
+  .btn-small {
+    font-size: 14px;
+    padding: 10px 28px;
+  }
+  /* 締め */
+  .closing {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid #e0d8ce;
+    font-size: 14px;
+    color: #6a6a6a;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 600px) {
+    .container {
+      padding: 40px 24px 64px;
+    }
+    .lead-title {
+      font-size: 26px;
+    }
+    .detail-list li {
+      flex-direction: column;
+      padding: 10px 0;
+    }
+    .detail-list .label {
+      width: auto;
+      margin-bottom: 4px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 冒頭 -->
+  <div class="lead">
+    <div class="lead-title">あの頃みたいに、<br>ただ集まろう。</div>
+    <div class="lead-sub">—— 気の置けない同窓会のお知らせ</div>
+  </div>
+
+  <!-- 開催概要 -->
+  <div class="section">
+    <div class="section-title">日時・場所</div>
+    <div class="section-body">
+      <ul class="detail-list">
+        <li>
+          <span class="label">日時</span>
+          <span class="value">〈開催日〉 開場 18:00 / 開始 18:30</span>
+        </li>
+        <li>
+          <span class="label">会場</span>
+          <span class="value">〈会場名〉〈所在地〉</span>
+        </li>
+        <li>
+          <span class="label">会費</span>
+          <span class="value">〈会費金額〉（当日払い）</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- どんな会にしたいか -->
+  <div class="section">
+    <div class="section-title">気楽に、ゆるく。</div>
+    <div class="section-body">
+      <p>
+        久しぶりだからこそ、肩肘張らずに。スピーチも順番もなし。食べたいものを食べて、話したい人と話す。それだけの会にしたいと思っています。
+      </p>
+      <p>
+        集まるだけで、もう十分。あの頃の空気を、ちょっと思い出せたらそれでいい。
+      </p>
+    </div>
+  </div>
+
+  <!-- 出欠の連絡方法 -->
+  <div class="section">
+    <div class="section-title">出欠をお知らせください</div>
+    <div class="section-body">
+      <p>
+        準備の都合がありますので、お手数ですが<span class="highlight">〈返信期限〉</span>までに出欠をお知らせください。
+      </p>
+      <p>
+        連絡は以下までお願いします。
+      </p>
+      <ul class="detail-list" style="margin-bottom:8px;">
+        <li>
+          <span class="label">メール</span>
+          <span class="value">〈幹事メールアドレス〉</span>
+        </li>
+        <li>
+          <span class="label">電話・LINE</span>
+          <span class="value">〈幹事名〉〈電話番号またはLINE ID〉</span>
+        </li>
+      </ul>
+      <p style="font-size:14px; color:#7a7a7a;">
+        ※「行く」「行けない」「まだわからない」の三択で大丈夫です。迷ってる方も、ぜひ一言ください。
+      </p>
+    </div>
+  </div>
+
+  <!-- 締め -->
+  <div class="closing">
+    久しぶりに、あなたの顔を見られるのを楽しみにしています。<br>
+    幹事 〈幹事名〉
+  </div>
+
+</div>
+</body>
+</html>

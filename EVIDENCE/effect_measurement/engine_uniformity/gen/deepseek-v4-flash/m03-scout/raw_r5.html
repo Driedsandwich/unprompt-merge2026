@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+  :root {
+    --base-size: 16px;
+    --scale-ratio: 1.25;
+    --h3-size: calc(var(--base-size) * var(--scale-ratio));
+    --h2-size: calc(var(--h3-size) * var(--scale-ratio));
+    --h1-size: calc(var(--h2-size) * var(--scale-ratio));
+    --line-height-body: 1.75;
+    --color-primary: #1e2b3a;
+    --color-accent: #c44536;
+    --color-bg: #faf8f6;
+    --color-text: #2c2c2c;
+    --color-muted: #6b6b6b;
+    --font-heading: 'Georgia', 'Times New Roman', 'YuMincho', 'Hiragino Mincho ProN', serif;
+    --font-body: -apple-system, 'Helvetica Neue', 'Segoe UI', 'YuGothic', 'Hiragino Sans', 'Noto Sans CJK JP', sans-serif;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: var(--base-size);
+    line-height: var(--line-height-body);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 32px;
+  }
+  /* 件名 */
+  .subject {
+    font-family: var(--font-heading);
+    font-size: var(--h1-size);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .subject-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: calc(var(--base-size) * 0.75);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 24px;
+  }
+  /* 宛名 */
+  .salutation {
+    font-size: var(--base-size);
+    margin-bottom: 40px;
+    color: var(--color-primary);
+  }
+  .salutation strong {
+    font-weight: 600;
+  }
+  /* 本文段落 */
+  p {
+    margin-bottom: 24px;
+    font-size: var(--base-size);
+    line-height: var(--line-height-body);
+  }
+  p:last-of-type {
+    margin-bottom: 40px;
+  }
+  .highlight {
+    background: linear-gradient(to top, rgba(196, 69, 54, 0.12) 40%, transparent 40%);
+    font-weight: 500;
+  }
+  /* 結び */
+  .closing {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 2px solid var(--color-accent);
+  }
+  .closing p {
+    font-size: var(--base-size);
+    margin-bottom: 8px;
+  }
+  .cta {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: var(--h3-size);
+    font-weight: 400;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-accent);
+    padding-bottom: 2px;
+    margin-top: 16px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .cta:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  /* 署名 */
+  .signature {
+    margin-top: 64px;
+    font-size: calc(var(--base-size) * 0.875);
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+  .signature .name {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+  .signature .role {
+    display: block;
+    margin-top: 4px;
+  }
+  .signature .company {
+    display: block;
+    margin-top: 2px;
+  }
+  /* 小さな画面 */
+  @media (max-width: 600px) {
+    .container {
+      padding: 64px 20px;
+    }
+    .subject {
+      font-size: calc(var(--h1-size) * 0.9);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="subject-label">スカウト</div>
+  <h1 class="subject">「まだ経験が浅いから」と遠慮する前に&mdash;あなたの判断を、現場で試しませんか</h1>
+
+  <p class="salutation"><strong>〈候補者名〉 様</strong></p>
+
+  <p>
+    初めてご連絡いたします。〈会社名〉の採用担当・〈自分の名前〉と申します。<br>
+    あなたの〈ポートフォリオ／GitHub／登録情報〉を拝見し、ぜひ一度お話ししたいと思い、スカウトをお送りしました。
+  </p>
+
+  <p>
+    率直に書きます。私たちは「経験年数が少ない」ことを理由に、若手エンジニアの可能性を切り捨てる採用をしません。<br>
+    むしろ、<span class="highlight">まだ正解を知らないからこそ、自由に考え、試行錯誤できる</span>&mdash;そのフェーズの人にこそ、早い段階で本番の判断を任せたいと考えています。
+  </p>
+
+  <p>
+    現在〈会社名〉では、〈プロジェクトの概要、例：社内向けツールのリニューアル／新規サービスのバックエンド開発〉を進めており、チームに加わってくれる若手エンジニアを探しています。<br>
+    求めるスキルは〈例：TypeScript での開発経験・基本的なデータベース設計の理解〉ですが、<span class="highlight">「今はまだ十分でない」と感じる方こそ、歓迎します。</span>入社後の学習環境やメンター制度は整っており、ジョインから3ヶ月で戦力になれる設計です。
+  </p>
+
+  <p>
+    面談では、あなたのコードへの考え方や、これまで取り組んだ課題を聞かせてください。「完璧」でなくて構いません。今のあなたの視点が、私たちのチームに新しい風を吹き込むと確信しています。
+  </p>
+
+  <div class="closing">
+    <p>まずは30分、カジュアルな形でお話ししませんか。</p>
+    <p>ご都合の良い日時を教えていただければ、こちらからミーティングのご案内をお送りします。</p>
+    <a href="mailto:〈採用連絡用メールアドレス〉" class="cta">返信して面談を予約する →</a>
+  </div>
+
+  <div class="signature">
+    <span class="name">〈自分の名前〉</span>
+    <span class="role">〈会社名〉 採用担当／エンジニアリングマネージャー</span>
+    <span class="company">〈会社名〉</span>
+  </div>
+</div>
+</body>
+</html>

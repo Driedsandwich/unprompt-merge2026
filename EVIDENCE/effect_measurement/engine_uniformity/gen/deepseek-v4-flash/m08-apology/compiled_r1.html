@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫び</title>
+<style>
+  /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け */
+  /* GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない */
+  /* GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 */
+  /* GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す */
+
+  :root {
+    /* 視覚トークン palette: #fff7f0, #e8825c, #f2b79a */
+    --bg: #fff7f0;
+    --main: #e8825c;
+    --accent: #f2b79a;
+    --text: #3d2c24;
+    --text-muted: #7a6056;
+
+    /* タイプスケール: 本文16pxを基準に1.25倍率 */
+    --scale-ratio: 1.25;
+    --body: 16px;
+    --small: 14px;
+    --h3: calc(var(--body) * var(--scale-ratio));        /* 20px */
+    --h2: calc(var(--h3) * var(--scale-ratio));          /* 25px */
+    --h1: calc(var(--h2) * var(--scale-ratio));          /* 31.25px */
+    --hero: calc(var(--h1) * var(--scale-ratio));        /* 39.0625px */
+
+    /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け → heading_font: rounded */
+    /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け → density: airy */
+    /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け → corner: soft */
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #e8dfd7;
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: var(--body);
+    line-height: 1.85;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px;
+  }
+
+  .mail-wrapper {
+    max-width: 720px;
+    width: 100%;
+    background: var(--bg);
+    border-radius: 24px;        /* soft */
+    padding: 64px 56px 72px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    /* airy: 広めの余白 */
+  }
+
+  /* 件名 */
+  .subject {
+    font-size: var(--h2);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--main);
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--accent);
+    /* rounded 系: やや丸みを帯びた印象の書体に */
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+
+  /* 宛名 */
+  .greeting {
+    margin-top: 40px;
+    font-size: var(--body);
+    line-height: 1.8;
+  }
+
+  .greeting-name {
+    font-weight: 600;
+  }
+
+  /* 本文セクション */
+  .section {
+    margin-top: 40px;
+  }
+
+  .section p {
+    margin-bottom: 24px;
+  }
+
+  /* 今後の対応 */
+  .action-box {
+    margin-top: 48px;
+    padding: 32px 32px 24px;
+    background: rgba(242, 183, 154, 0.12);  /* accent 薄め */
+    border-radius: 20px;                    /* soft */
+    border-left: 4px solid var(--main);
+  }
+
+  .action-box p {
+    margin-bottom: 16px;
+  }
+
+  .action-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* 結び */
+  .closing {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--accent);
+    font-size: var(--small);
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .closing .store-name {
+    display: block;
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--text);
+    font-size: var(--body);
+  }
+
+  /* リンク的な扱い(プレースホルダは下線で視認性) */
+  .ph {
+    color: var(--main);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+  }
+
+  /* タブレット / モバイル調整 */
+  @media (max-width: 600px) {
+    .mail-wrapper {
+      padding: 40px 24px 56px;
+      border-radius: 16px;
+    }
+
+    .subject {
+      font-size: var(--h3);
+    }
+
+    .action-box {
+      padding: 24px 20px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="mail-wrapper">
+
+  <!-- 件名 -->
+  <div class="subject">
+    発送遅延のお詫び ― 〈お客様名〉さまのご注文について
+  </div>
+
+  <!-- 宛名 -->
+  <div class="greeting">
+    <span class="greeting-name">〈お客様名〉</span> さま<br>
+    いつもご愛顧いただき、ありがとうございます。
+  </div>
+
+  <!-- お詫びと状況説明 -->
+  <div class="section">
+    <p>
+      このたびは、ご注文いただいた〈商品名〉の発送が遅れており、心よりお詫び申し上げます。<br>
+      お待ちいただいているところへ、ご連絡が遅くなったことを重ねてお詫びいたします。
+    </p>
+    <p>
+      現在、発送の準備を進めておりますが、通常よりお時間をいただいております。<br>
+      ご不便をおかけしていること、深く受け止めております。
+    </p>
+  </div>
+
+  <!-- 今後の対応 -->
+  <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+  <div class="action-box">
+    <p>
+      新しいお届けの目安といたしましては、<span class="ph">〈新しいお届け予定〉</span>頃を見込んでおります。<br>
+      改めて、発送完了のご案内をメールにてお送りいたします。
+    </p>
+    <p>
+      お客様にはご心配とご迷惑をおかけしておりますこと、重ねてお詫び申し上げます。<br>
+      何卒、ご了承くださいますようお願いいたします。
+    </p>
+  </div>
+
+  <!-- 結び -->
+  <!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+  <div class="closing">
+    <p>
+      まずは、発送遅延のお詫びまで。お荷物、もう少しだけお待ちください。
+    </p>
+    <span class="store-name">〈店舗名 / 会社名〉</span>
+  </div>
+
+</div>
+</body>
+</html>

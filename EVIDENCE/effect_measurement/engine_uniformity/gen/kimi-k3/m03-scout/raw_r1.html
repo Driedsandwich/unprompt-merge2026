@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スカウトメール</title>
+<style>
+  /* タイプスケール: 本文 16px 基準 / 件名 1.5x / 署名 0.875x */
+  :root {
+    --ink: #1f2a33;
+    --accent: #0e6b5c;
+    --paper: #fbfcfd;
+  }
+  body {
+    margin: 0;
+    padding: 64px 16px 96px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  h1.subject {
+    font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    margin: 0 0 48px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--accent);
+  }
+  p { margin: 0 0 24px; }
+  .address { margin-bottom: 40px; }
+  .lead { color: var(--accent); font-weight: 700; letter-spacing: 0.02em; }
+  .close { margin-top: 40px; }
+  .sig {
+    margin-top: 48px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #4a5a64;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1 class="subject">【スカウト】〈候補者名〉さんの書くコードを、もっと大きな問いにぶつけてみませんか</h1>
+
+  <p class="address">〈候補者名〉様</p>
+
+  <p class="lead">突然のご連絡失礼いたします。〈会社名〉で採用を担当しております〈担当者名〉と申します。</p>
+
+  <p>〈候補者名〉さんの〈GitHub・技術ブログ等の公開活動〉を拝見し、ぜひお話ししたくご連絡いたしました。特に〈目を引いた制作物や記事〉に書かれていた視点が、私たちが今まさに取り組んでいる課題と重なっており、「この人と一緒に考えたい」と強く感じました。</p>
+
+  <p>〈会社名〉では、〈事業領域・プロダクトの領域〉の開発を進めています。若手のうちから設計の意思決定に関わり、自分の書いたコードがプロダクトの中でどう動くかまで責任を持てる環境です。経験年数ではなく、「なぜそう作るか」を言語化できる方に、早い段階から大きな仕事を任せたいと考えています。</p>
+
+  <p>技術スタックは〈使用言語・フレームワーク等〉を中心としており、〈候補者名〉さんがこれまで磨いてこられた〈得意技術領域〉を、そのまま武器にしていただけると考えています。</p>
+
+  <p>まずはカジュアルに、オンラインで30分ほどお話しできませんか。会社説明というより、互いの技術観を持ち寄る雑談のような時間にできればと思っています。ご都合のよい日時をいくつかお知らせいただけますと幸いです。</p>
+
+  <p class="close">お忙しいところ恐れ入りますが、ご一考いただけましたら幸いです。〈候補者名〉さんからのご返信を、心よりお待ちしております。</p>
+
+  <div class="sig">
+    ──────────────<br>
+    〈会社名〉 採用担当<br>
+    〈担当者名〉<br>
+    〈メールアドレス〉<br>
+    〈会社URL〉
+  </div>
+</main>
+</body>
+</html>

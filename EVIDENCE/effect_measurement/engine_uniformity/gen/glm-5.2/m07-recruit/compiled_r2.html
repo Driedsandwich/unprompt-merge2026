@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈会社名〉の採用ページ</title>
+<style>
+:root {
+  /* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+  /* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+  /* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+  /* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+  --bg: #1c1a17;
+  --primary: #4a3a2b;
+  --accent: #c98a3e;
+  --text: #f4efe6;
+  --muted: #9a8f80;
+  --serif: "Hiragino Mincho ProN", "Yu Mincho", YuMincho, serif;
+  --rounded: "Hiragino Maru Gothic ProN", "Yu Gothic", "M+ Rounded 1c", "Rounded Mplus 1c", sans-serif;
+  /* GYAKUMON-CHOICE: 密度 = airy */
+  --space-section: 120px;
+  --space-inner: 96px;
+  /* GYAKUMON-CHOICE: 角 = soft */
+  --radius: 18px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--rounded);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+.hero {
+  padding: 128px 48px var(--space-section);
+  max-width: 760px;
+  margin: 0 auto;
+}
+.hero h1 {
+  font-family: var(--rounded);
+  font-weight: 800;
+  font-size: 2.0rem;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  margin-bottom: 40px;
+}
+.hero p {
+  color: var(--muted);
+  font-size: 1.0rem;
+  line-height: 2.0;
+}
+section {
+  padding: 0 48px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.block { padding-bottom: var(--space-section); }
+h2 {
+  font-family: var(--rounded);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 48px;
+  line-height: 1.5;
+}
+.intro p {
+  margin-bottom: 1.9em;
+  font-size: 1.0rem;
+  line-height: 2.0;
+}
+.intro p:last-child { margin-bottom: 0; }
+.voices {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.voice {
+  background: var(--primary);
+  border-radius: var(--radius);
+  padding: 48px;
+  position: relative;
+}
+.voice p {
+  font-size: 1.0rem;
+  line-height: 2.0;
+  margin-bottom: 24px;
+}
+.voice .name {
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.values {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.value-item {
+  border-left: 3px solid var(--accent);
+  padding-left: 32px;
+}
+.value-item h3 {
+  font-family: var(--rounded);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+.value-item p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 2.0;
+}
+.cta {
+  padding-top: var(--space-section);
+  padding-bottom: 128px;
+  text-align: center;
+}
+.cta p {
+  color: var(--muted);
+  margin-bottom: 40px;
+  font-size: 1.0rem;
+  line-height: 2.0;
+}
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 20px 56px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.0rem;
+  letter-spacing: 0.08em;
+}
+.cta-button:hover { opacity: 0.85; }
+@media (max-width: 600px) {
+  .hero, section { padding-left: 24px; padding-right: 24px; }
+  .hero { padding-top: 80px; }
+  .hero h1 { font-size: 1.6rem; }
+  .voice { padding: 32px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+  <h1>はじめまして、採用担当です。<br>私たちの日常を覗いてみませんか。</h1>
+  <p>〈会社名〉で働く人たちが、日々何を考え、誰と向き合いながら仕事をしているのか。採用ページの一番上に、飾らない言葉を置きました。まだ応募を迷っている方にも、まずは読んでいただけたら嬉しいです。</p>
+</header>
+
+<!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+<section class="block intro">
+  <h2>〈会社名〉について</h2>
+  <p>ここは〈事業内容〉を〈どのような思いで〉続けている場所です。設立当時から変わらず大切にしているのは、隣にいる人の顔が見えること。数字が伸びたときも、思うようにいかないときも、まず立ち止まるのは同僚の表情です。</p>
+  <p>〈確認: 起業時や事業継続において実際にあった苦労や転機のエピソードを1つ〉。そうした道のりを経て、いま〈社員数〉人で〈事業の現在地〉を歩いています。派手な実績の羅列は書きません。知ってほしいのは、私たちが毎日どう働いているかという、当たり前の景色です。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+<!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+<section class="block">
+  <h2>働く人の声</h2>
+  <div class="voices">
+    <div class="voice">
+      <p>〈確認: 入社後に感じたチーム・人への実感を、飾らない言葉で1つ〉。入社して〈年数〉年、正直こう思っています。隣の先輩が困っているときに手を差し伸べられる空気が、ここの一番の財産です。</p>
+      <p class="name">〈社員の氏名・役職〉</p>
+    </div>
+    <div class="voice">
+      <p>〈確認: 失敗からチームに支えられた体験を1つ〉。失敗した夜に先輩が一緒に残ってくれたことが、いまの自分の土台になっています。</p>
+      <p class="name">〈社員の氏名・役職〉</p>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+<section class="block">
+  <h2>大事にしていること</h2>
+  <div class="values">
+    <div class="value-item">
+      <h3>隣の人の顔が見える</h3>
+      <p>大きな会議室での決定事項よりも、デスクのすぐ隣での小さなやりとりを大切にしています。〈確認: チーム内のコミュニケーションで実際にある具体的な光景を1つ〉。</p>
+    </div>
+    <div class="value-item">
+      <h3>未経験から育てる</h3>
+      <p>〈確認: 未経験者を育てる際の実際の教育方針や手順〉。入社時のスキルよりも、隣の人を気にかける素直さを重視しています。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <p>少しでもこの空気に触れてみたくなったら、次のページでお待ちしています。</p>
+  <a href="#" class="cta-button">もっと知る</a>
+</section>
+
+</body>
+</html>

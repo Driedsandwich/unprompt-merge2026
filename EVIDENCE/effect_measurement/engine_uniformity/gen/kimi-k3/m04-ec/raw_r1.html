@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>〈商品名〉| 商品紹介</title>
+<style>
+  /* タイプスケール: 本文16px基準 ×1.5 見出し24px / キャッチ32px */
+  :root{
+    --base:#1c2b33;
+    --accent:#0f7b6c;
+    --ink:#22333b;
+    --paper:#f6f4ef;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    font-size:16px;
+    line-height:1.9;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:96px 24px;}
+  .catch{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:32px;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:var(--base);
+    margin-bottom:32px;
+  }
+  .lead{margin-bottom:64px;}
+  h2{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:24px;
+    font-weight:600;
+    letter-spacing:.06em;
+    color:var(--accent);
+    margin:64px 0 16px;
+  }
+  .feature{margin-bottom:32px;}
+  .spec{
+    margin-top:64px;
+    padding:24px;
+    border:1px solid #d8d3c6;
+    font-size:14px;
+    line-height:2;
+  }
+  .spec dt{
+    font-weight:700;
+    color:var(--base);
+    float:left;
+    width:6em;
+    clear:left;
+  }
+  .spec dd{margin-left:6em;}
+  .close{
+    margin-top:96px;
+    text-align:center;
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:20px;
+    letter-spacing:.08em;
+    color:var(--base);
+  }
+  .note{font-size:13px;color:#7a7a72;margin-top:16px;}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <p class="catch">毎日の〈利用シーン〉に、<br>そっと寄り添う一つを。</p>
+
+  <p class="lead">
+    〈商品名〉は、〈商品の一言説明〉です。〈こんな悩みを持つ方〉の声から生まれ、
+    〈開発の経緯やこだわり〉を形にしました。使うほどに、暮らしの一部になる。
+    そんな商品を目指しました。
+  </p>
+
+  <section>
+    <h2>〈特徴1〉で、毎日が軽くなる</h2>
+    <p class="feature">
+      〈特徴1の具体的な説明〉。忙しい朝でも、疲れた夜でも、
+      〈利用メリット〉を実感していただけます。
+    </p>
+
+    <h2>〈特徴2〉へのこだわり</h2>
+    <p class="feature">
+      〈素材・製法・設計などの説明〉。細部まで妥協せず、
+      長く心地よく使える品質を追求しました。
+    </p>
+
+    <h2>贈り物にも、自分へのごほうびにも</h2>
+    <p class="feature">
+      〈パッケージやギフト対応の説明〉。大切な方への贈り物としても
+      お選びいただいています。
+    </p>
+  </section>
+
+  <dl class="spec">
+    <dt>商品名</dt><dd>〈商品名〉</dd>
+    <dt>内容量</dt><dd>〈内容量・サイズ〉</dd>
+    <dt>素材・成分</dt><dd>〈素材または成分〉</dd>
+    <dt>価格</dt><dd>〈価格〉(税込)</dd>
+    <dt>注意事項</dt><dd>〈使用上の注意・アレルギー表示等〉</dd>
+  </dl>
+  <p class="note">※画像はイメージです。仕様は予告なく変更になる場合があります。</p>
+
+  <p class="close">さあ、〈商品名〉のある毎日をはじめませんか。</p>
+
+</main>
+</body>
+</html>

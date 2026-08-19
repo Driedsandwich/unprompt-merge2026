@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社紹介 — 〈会社名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+/* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+/* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+/* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+/* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+
+:root {
+  /* palette: [#fff8ec, #ff9a3c, #1a1a1a] for first decision, but later decisions bring alternative palettes.
+     This brief has multiple palette sets per decision. We adopt the first decision's palette as base
+     because it anchors on "想定読み手の経験層 = 新卒・未経験" which is the most fundamental.
+     Then overlay "飾らない" = #f4efe6, #b5673a, #3c6e52 as accent shifts.
+     Actually, compiled brief says "書かれている決定はすべて実装". The palettes conflict.
+     Rule: "発注内容に色の方向が無い場合" — but here decisions define palettes explicitly.
+     However, the 5 decisions have 5 different palettes. We must choose one primary set.
+     The first decision (想定読み手の経験層) is most structurally determining.
+     We use its palette as base and incorporate the other palettes' tones minimally.
+     Final resolution: base = #fff8ec bg, #ff9a3c accent, #1a1a1a text.
+     We add a subtle second accent from decision2 (#3c6e52) for voices section. */
+  --color-bg: #fff8ec;
+  --color-primary: #ff9a3c;
+  --color-text: #1a1a1a;
+  --color-voice-accent: #3c6e52;
+  --color-muted: #7a6e5e;
+  --color-border: rgba(26, 26, 26, 0.08);
+  /* type scale: base 16px -> h1 2.5rem (40px), h2 1.75rem (28px), h3 1.125rem (18px) */
+  --font-heading: 'Hiragino Maru Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  --font-body: 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  --leading-heading: 1.3;
+  --leading-body: 1.8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+/* ----- section spacing (8px grid) ----- */
+section {
+  margin-top: 96px;
+}
+section:first-child {
+  margin-top: 0;
+}
+
+/* ----- typography ----- */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: var(--leading-heading);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: 32px;
+}
+
+h3 {
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+/* ----- hero / opening (冒頭は主張) ----- */
+.hero {
+  padding-top: 48px;
+  text-align: left;
+}
+
+.hero .label {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  padding: 4px 0;
+  border-bottom: 3px solid var(--color-primary);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.hero .lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #3a3a3a;
+  max-width: 560px;
+}
+
+/* ----- voice cards (社員の生の声) ----- */
+.voices {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.voice-card {
+  background: #ffffff;
+  border-radius: 24px; /* GYAKUMON-CHOICE: corner = soft */
+  padding: 40px 32px;
+  position: relative;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  /* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+}
+
+.voice-card::before {
+  content: '“';
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.25;
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+.voice-card .quote {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.voice-card .meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+}
+
+.voice-card .avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), #ffb76e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.voice-card .info {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.voice-card .info .name {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.voice-card .info .position {
+  color: var(--color-muted);
+}
+
+/* ----- values (大事にしていること) ----- */
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.value-item {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  border: 1px solid var(--color-border);
+  transition: box-shadow 0.2s;
+}
+
+.value-item .icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.value-item h3 {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.value-item p {
+  font-size: 0.9375rem;
+  color: #4a4a4a;
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+/* ----- cta (応募への導線) ----- */
+.cta-section {
+  text-align: center;
+  padding: 64px 0 0;
+}
+
+.cta-section h2 {
+  margin-bottom: 16px;
+}
+
+.cta-section p {
+  max-width: 480px;
+  margin: 0 auto 32px;
+  color: #4a4a4a;
+  font-size: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: #fff;
+  background: var(--color-primary);
+  padding: 16px 48px;
+  border-radius: 48px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.1s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #e0852a;
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ----- company intro (会社の紹介 ストーリー) ----- */
+.story {
+  position: relative;
+}
+
+.story p {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.story .highlight {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* ----- divider (提出前にひとつ削る → 装飾を1つ削る: グラデーション背景を削除、シンプルに) ----- */
+
+/* responsiveness */
+@media (max-width: 560px) {
+  .container {
+    padding: 40px 16px 64px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  .voice-card {
+    padding: 32px 24px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 冒頭: はじめの一歩を、ここから。 -->
+  <!-- GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 -->
+  <section class="hero">
+    <div class="label">はじめの一歩を、ここから。</div>
+    <h1>未経験から<br>採用の現場で育つ日々。</h1>
+    <p class="lead">
+      私たちの仕事は、誰かの「最初の一歩」に立ち会うこと。<br>
+      専門用語も経験もいりません。むしろ、何も知らないからこそ気づけることがあります。
+    </p>
+  </section>
+
+  <!-- 会社の紹介 (ストーリー形式) -->
+  <!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+  <section class="story">
+    <h2>会社のこと、少しだけ</h2>
+    <p>
+      〈会社名〉は、〈設立年数〉前に〈創業のきっかけ〉から生まれました。<br>
+      事業内容は〈事業内容〉。でも、それよりも大事にしているのは「人が人を迎える」という当たり前の営みです。
+    </p>
+    <p>
+      私たちのオフィスには、いわゆる「すごい経歴」を持った人はあまりいません。<br>
+      代わりにいるのは、〈確認: 入社の決め手になった具体的なエピソード〉を大事に話せる人たちです。
+    </p>
+    <p>
+      未経験で飛び込んだ先輩たちが、今では後輩に仕事を教える立場になっています。<br>
+      その過程で必ず通るのが「うまくいかない日々」。〈確認: 現場で実際にあった失敗談を1つ〉——そんな話を、ここでは飾らずに伝えたいと思っています。
+    </p>
+  </section>
+
+  <!-- 働く人の声 (社員の生の声中心) -->
+  <!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+  <!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+  <section>
+    <h2>働く人の、飾らない声</h2>
+    <div class="voices">
+
+      <div class="voice-card">
+        <div class="quote">
+          入社3年目、正直こう思ってます。最初は何をしていいか全然わからなくて、先輩に〈確認: 先輩から言われた印象的な言葉〉と言われたのを覚えています。でも、一緒に悩んでくれる人がいたから続けられました。
+        </div>
+        <div class="meta">
+          <div class="avatar">K</div>
+          <div class="info">
+            <div class="name">〈社員名〉さん</div>
+            <div class="position">〈職種〉・入社〈年数〉年目</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="quote">
+          この会社のいいところは、成果よりも「やってみよう」を評価してくれるところ。わたしは〈確認: 未経験で挑戦した具体的な仕事〉を任されて、今では自分が新しく入る人の面倒を見る立場になりました。チームの顔が見える、それが何よりの安心感です。
+        </div>
+        <div class="meta">
+          <div class="avatar">M</div>
+          <div class="info">
+            <div class="name">〈社員名〉さん</div>
+            <div class="position">〈職種〉・入社〈年数〉年目</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 大事にしていること -->
+  <section>
+    <h2>私たちが大事にしていること</h2>
+    <div class="values-grid">
+
+      <div class="value-item">
+        <span class="icon">🌱</span>
+        <h3>ゼロから育てる</h3>
+        <p>経験がなくても、ここから始められる。教える側も教わる側も、一緒に成長する文化です。</p>
+      </div>
+
+      <div class="value-item">
+        <span class="icon">🤝</span>
+        <h3>「隣の人の顔が見える」</h3>
+        <p>組織のサイズが大きくなっても、一人ひとりの名前と背景をお互いに知っている関係でありたい。</p>
+      </div>
+
+      <div class="value-item">
+        <span class="icon">🗣️</span>
+        <h3>本音で話せる</h3>
+        <p>困ったときは「困った」と言える。できなかったことを責めるのではなく、次にどうするかを一緒に考える。</p>
+      </div>
+
+      <div class="value-item">
+        <span class="icon">🎯</span>
+        <h3>正解より「やってみた」</h3>
+        <p>失敗は経験値。私たちは「やらない後悔」より「やった後悔」を選ぶチームです。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 応募への導線 (認知・興味喚起段階) -->
+  <!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+  <section class="cta-section">
+    <h2>もう少しだけ、私たちのことを知りませんか？</h2>
+    <p>
+      いきなり応募はハードルが高い——それ、よくわかります。<br>
+      まずは気軽に話を聞きに来てください。選考の前の「会社見学」だけでも大歓迎です。
+    </p>
+    <a href="#" class="btn">話を聞きに行く</a>
+    <p style="margin-top:24px; font-size:0.875rem; color:var(--color-muted);">
+      ※エントリーシートの提出は不要です。まずは雰囲気を知るところから。
+    </p>
+  </section>
+
+</div>
+
+</body>
+</html>

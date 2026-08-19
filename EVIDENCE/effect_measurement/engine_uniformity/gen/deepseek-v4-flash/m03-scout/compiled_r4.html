@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール — 裁量を任せる話</title>
+<style>
+  /* GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 */
+  /* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+  /* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+  /* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 */
+  /* GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 */
+
+  :root {
+    /* カスタムプロパティ宣言 */
+    --type-scale-ratio: 1.25;
+    --body-size: 16px;
+    --h3-size: calc(var(--body-size) * var(--type-scale-ratio));
+    --h2-size: calc(var(--body-size) * var(--type-scale-ratio) * var(--type-scale-ratio));
+    --h1-size: calc(var(--body-size) * var(--type-scale-ratio) * var(--type-scale-ratio) * var(--type-scale-ratio));
+    --spacing-unit: 8px;
+
+    /* パレット: decisions[0] visual_tokens */
+    --bg-color: #0b1e33;
+    --main-color: #1f5c6e;
+    --accent-color: #3fb8af;
+    --text-color: #e6edf2;
+    --card-bg: #11283f;
+    --border-color: #1f5c6e;
+
+    /* 書体 */
+    --heading-font: 'Inter', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+    --body-font: 'Inter', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    font-family: var(--body-font);
+    font-size: var(--body-size);
+    line-height: 1.7;
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  .mail-wrapper {
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* カード形状 — sharp corner, 余白は8の倍数 */
+  .mail-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0; /* sharp */
+    padding: 48px 40px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  /* 件名行 */
+  .subject-line {
+    font-family: var(--heading-font);
+    font-size: var(--h2-size);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--accent-color);
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--main-color);
+    margin-bottom: 32px;
+  }
+
+  /* 宛名 */
+  .salutation {
+    font-family: var(--heading-font);
+    font-size: var(--h3-size);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--accent-color);
+    margin-bottom: 24px;
+  }
+
+  /* 本文段落 */
+  .body-text p {
+    margin-bottom: 24px;
+    line-height: 1.8;
+  }
+
+  .body-text p:last-of-type {
+    margin-bottom: 32px;
+  }
+
+  /* 強調アクセント */
+  .highlight {
+    color: var(--accent-color);
+    font-weight: 500;
+  }
+
+  /* アクション部分 */
+  .next-step {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--main-color);
+  }
+
+  .next-step p {
+    margin-bottom: 16px;
+  }
+
+  .cta-link {
+    display: inline-block;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: var(--body-size);
+    letter-spacing: 0.02em;
+    color: var(--bg-color);
+    background: var(--accent-color);
+    padding: 12px 32px;
+    text-decoration: none;
+    border-radius: 0; /* sharp */
+    transition: background 0.2s ease;
+    margin-top: 8px;
+  }
+
+  .cta-link:hover {
+    background: #2ea69e;
+  }
+
+  /* 署名 */
+  .signature {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--main-color);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: #9bb3c7;
+  }
+
+  .signature .name {
+    font-weight: 600;
+    color: var(--text-color);
+  }
+
+  .signature .role {
+    margin-top: 4px;
+  }
+
+  /* リンク全般 */
+  a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  a:hover {
+    color: #6fd9d1;
+  }
+
+  /* レスポンシブ */
+  @media (max-width: 600px) {
+    .mail-card {
+      padding: 32px 20px;
+    }
+    .subject-line {
+      font-size: 1.25rem;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="mail-wrapper">
+  <div class="mail-card">
+    <!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+    <div class="subject-line">
+      件名：エンジニアの〈候補者名〉さんへ。次の裁量、うちで試しませんか
+    </div>
+
+    <!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+    <div class="salutation">
+      〈候補者名〉さん
+    </div>
+
+    <!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+    <!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+    <!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+    <div class="body-text">
+      <p>
+        はじめまして、〈会社名〉で採用を担当している〈あなたの名前〉です。
+        いきなりメールしてごめんなさい。でも、あなたのプロフィールを見て「この人に直接声をかけたい」と思ったので、連絡しました。
+      </p>
+
+      <p>
+        簡単にうちの話をすると、〈事業内容の概要〉をやっている会社です。
+        今、<span class="highlight">実務2〜5年目のエンジニアに、もっと自由にコードを書いてもらえる環境</span>をつくりたくて、仲間を探しています。
+      </p>
+
+      <p>
+        具体的に言うと、<span class="highlight">「どの技術を使うか」「どう設計するか」を現場の裁量で決められる</span>体制です。
+        上から「これ使え」と言われることはほとんどありません。もちろん、困ったときは〈チームの人数〉人くらいのエンジニアチームがサポートに入ります。
+      </p>
+
+      <p>
+        あなたがこれまで身につけてきた〈スキルや経験の例〉を、もっと自由に活かせるフェーズだと思います。
+        今の現場で「もっと自分で決めたい」「裁量が足りない」と感じているなら、一度話を聞いてもらえるとうれしいです。
+      </p>
+
+      <!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+      <p>
+        まずは30分、ざっくばらんに話すだけでも大丈夫。堅苦しい面接じゃないので、リラックスして来てください。
+      </p>
+    </div>
+
+    <div class="next-step">
+      <p>
+        もしちょっとでも興味が湧いたら、以下のリンクから日程を覗いてみてください。<br>
+        都合が合わなければ、別の日も調整します。
+      </p>
+      <a href="〈確認: カレンダー予約ページのURLを入れる〉" class="cta-link">
+        日程を見てみる（30分・オンライン）
+      </a>
+      <p style="margin-top: 16px; font-size: 0.9375rem; color: #9bb3c7;">
+        返信でも全然OKです。「話だけ聞いてみたい」でも、「まずは資料がほしい」でも、何でも教えてください。
+      </p>
+    </div>
+
+    <div class="signature">
+      <div class="name">〈あなたの名前〉</div>
+      <div class="role">〈会社名〉 採用担当 / 〈役職〉</div>
+      <div style="margin-top: 8px;">
+        メール: 〈あなたのメールアドレス〉<br>
+        Web: 〈会社の採用ページURL〉
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

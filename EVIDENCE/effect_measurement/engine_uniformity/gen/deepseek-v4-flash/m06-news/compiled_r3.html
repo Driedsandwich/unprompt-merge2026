@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内報 巻頭あいさつ</title>
+<style>
+  :root {
+    --ground: #fdf6ec;
+    --major: #f2a65a;
+    --accent: #5b8c5a;
+    --text-main: #3a3a3a;
+    --text-muted: #6b6b6b;
+    --body-size: 16px;
+    --scale-ratio: 1.25;
+    --h2-size: calc(var(--body-size) * var(--scale-ratio) * var(--scale-ratio));
+    --h3-size: calc(var(--body-size) * var(--scale-ratio));
+    --spacing-unit: 8px;
+    --sec-v-margin: calc(8 * var(--spacing-unit)); /* 64px */
+    --sec-inner-pad: calc(6 * var(--spacing-unit)); /* 48px */
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-color: var(--ground);
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Segoe UI", sans-serif;
+    color: var(--text-main);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--sec-inner-pad) calc(5 * var(--spacing-unit));
+    background-color: var(--ground);
+    min-height: 100vh;
+  }
+  /* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+  /* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+  .hero {
+    margin-bottom: var(--sec-v-margin);
+    padding-top: calc(4 * var(--spacing-unit));
+  }
+  .hero__label {
+    display: inline-block;
+    font-size: calc(var(--body-size) * 0.8);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 20px; /* soft */
+    padding: calc(1 * var(--spacing-unit)) calc(2.5 * var(--spacing-unit));
+    margin-bottom: calc(3 * var(--spacing-unit));
+    text-transform: uppercase;
+  }
+  /* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+  .hero__headline {
+    font-family: "Hiragino Maru Gothic ProN", "Noto Sans JP", "Yu Gothic", "Segoe UI", sans-serif;
+    font-size: var(--h2-size);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    color: var(--text-main);
+    margin-bottom: calc(2 * var(--spacing-unit));
+    border-bottom: 2px solid var(--major);
+    padding-bottom: calc(2 * var(--spacing-unit));
+  }
+  .hero__headline span {
+    color: var(--major);
+  }
+  .greeting {
+    font-size: var(--body-size);
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: calc(3 * var(--spacing-unit));
+    line-height: 1.9;
+  }
+  .greeting em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+  .section {
+    margin-bottom: var(--sec-v-margin);
+    padding: 0;
+  }
+  .section--intro {
+    margin-top: calc(2 * var(--spacing-unit));
+  }
+  .section__title {
+    font-family: "Hiragino Maru Gothic ProN", "Noto Sans JP", "Yu Gothic", "Segoe UI", sans-serif;
+    font-size: var(--h3-size);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--major);
+    margin-bottom: calc(2 * var(--spacing-unit));
+    position: relative;
+    padding-left: calc(1.5 * var(--spacing-unit));
+  }
+  .section__title::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 1.2em;
+    background: var(--accent);
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    top: 0.2em;
+  }
+  .section__body {
+    font-size: var(--body-size);
+    font-weight: 400;
+    color: var(--text-main);
+    margin-bottom: calc(2 * var(--spacing-unit));
+  }
+  .section__body p {
+    margin-bottom: calc(2 * var(--spacing-unit));
+  }
+  .section__body p:last-child {
+    margin-bottom: 0;
+  }
+  .section__body .highlight {
+    background: linear-gradient(transparent 60%, rgba(242, 166, 90, 0.25) 60%);
+    font-weight: 600;
+  }
+  .section__body .callout {
+    background: var(--ground);
+    border-left: 3px solid var(--accent);
+    padding: calc(2 * var(--spacing-unit)) calc(3 * var(--spacing-unit));
+    margin: calc(2 * var(--spacing-unit)) 0;
+    border-radius: 0 8px 8px 0;
+    color: var(--text-main);
+  }
+  .section__body .callout em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .section__closing {
+    margin-top: var(--sec-v-margin);
+    padding-top: calc(4 * var(--spacing-unit));
+    border-top: 1px dashed var(--major);
+  }
+  .section__closing p {
+    font-size: var(--body-size);
+    font-weight: 400;
+    color: var(--text-main);
+    text-align: left;
+  }
+  .section__closing .signoff {
+    display: block;
+    margin-top: calc(3 * var(--spacing-unit));
+    font-weight: 600;
+    color: var(--major);
+    letter-spacing: 0.04em;
+  }
+  .section__closing .signoff small {
+    font-weight: 400;
+    font-size: calc(var(--body-size) * 0.85);
+    color: var(--text-muted);
+  }
+  /* 提出前にひとつ削る：影・グラデーション・アニメーションは使用せず、装飾を最小限に */
+  @media (max-width: 480px) {
+    .page {
+      padding: calc(3 * var(--spacing-unit)) calc(2.5 * var(--spacing-unit));
+    }
+    :root {
+      --body-size: 15px;
+      --sec-v-margin: calc(6 * var(--spacing-unit));
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 -->
+  <!-- GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 -->
+  <!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+  <div class="hero">
+    <div class="hero__label">📬 社内報</div>
+    <h1 class="hero__headline">
+      「おつかれさま」<br>
+      から始まる <span>今月のひとこと</span>
+    </h1>
+    <p class="greeting">
+      <em>おつかれさまです</em>、編集部の〈執筆者名〉です。<br>
+      今月も社内報、気楽に読んでくださいね。
+    </p>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+  <div class="section section--intro">
+    <h2 class="section__title">ここ最近の話</h2>
+    <div class="section__body">
+      <p>
+        毎日暑いですね。私はこの夏、冷やし中華にハマってます。週に3回は食べてる気がする（笑）。
+        各部署、それぞれに忙しい時期だと思いますが、<span class="highlight">無理せず自分のペース</span>を大事にしてもらえたらと思います。
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">現場からひとつ</h2>
+    <div class="section__body">
+      <p>
+        先日、〈職種〉の〈人名〉さんと廊下でバッタリ会って、「最近どう？」と立ち話。
+        話を聞くと、〈部署名〉では今、こんな工夫をしているそうです。
+      </p>
+      <div class="callout">
+        <p>
+          <em>〈確認: 現場で実際にあった失敗談を1つ〉</em> — それをきっかけに、〈確認: どういう改善をしたか〉という取り組みが始まったそう。結構カッコよくないですか？ 小さなことでも、共有すると誰かの役に立つかもしれません。
+        </p>
+      </div>
+      <p>
+        そういう話を聞くたびに、<span class="highlight">「うちの会社、意外と面白いことやってるな」</span>って思います。
+        もし「こんな話あるよ」というのがあれば、編集部までこっそり教えてください。お茶くらいご馳走します。
+      </p>
+    </div>
+  </div>
+
+  <div class="section__closing">
+    <p>
+      部署が違うと、なかなか日々の取り組みや苦労って見えにくいものですよね。
+      この社内報が、<span class="highlight">「あの部署、こんなことやってるんだ」</span>と知るきっかけになったら嬉しいです。
+      読者のみなさん、今月もそれぞれの場所でお疲れさまでした。
+    </p>
+    <p class="signoff">
+      〈執筆者名〉 <small>／ 編集部より</small>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

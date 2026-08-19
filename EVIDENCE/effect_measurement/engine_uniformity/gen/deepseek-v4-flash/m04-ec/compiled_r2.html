@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品のご案内</title>
+<style>
+  /* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+  /* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 */
+  /* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+  /* GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ */
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+
+  :root {
+    /* タイプスケール: 本文 16px を基準に major second (1.125) で設計 */
+    --text-xs: 0.75rem;   /* 12px */
+    --text-sm: 0.875rem;  /* 14px */
+    --text-base: 1rem;    /* 16px */
+    --text-lg: 1.125rem;  /* 18px */
+    --text-xl: 1.5rem;    /* 24px */
+    --text-2xl: 2rem;     /* 32px */
+
+    /* 色: 発注内容のvisual_tokensから決定。最初のdecisionsにpaletteが3つあるが、
+       2番目のdecisionsのpalette (感情・体験訴求) を優先する (最終決定が後続で上書き)。
+       ただし最後のdecisionsのpaletteも考慮し、基調色とアクセントを選ぶ。
+       最終的に、地色: #f4f1ea, 主要色: #3a3226, 強調色: #8c6a3f で統一する。 */
+    --color-bg: #f4f1ea;
+    --color-text: #3a3226;
+    --color-accent: #8c6a3f;
+    --color-accent-light: rgba(140, 106, 63, 0.12);
+    --color-border: rgba(58, 50, 38, 0.15);
+    --color-muted: #6b5e4f;
+
+    /* 見出し書体: 最後のdecisionsでserifが指定されている */
+    --font-heading: 'Georgia', 'Times New Roman', serif;
+    /* 本文書体: フォーマルで読みやすいsans-serif */
+    --font-body: -apple-system, 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
+
+    /* 余白: 8pxグリッド。airy (密度は最初のdecisionsでairy, 最後もairy) */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-7: 56px;
+    --space-8: 64px;
+    --space-10: 80px;
+    --space-12: 96px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+  }
+
+  /* キャッチコピー */
+  .catch {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  /* リード文 */
+  .lead {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--color-muted);
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-2);
+    border-left: 3px solid var(--color-accent-light);
+  }
+
+  /* セクション */
+  .section {
+    margin-bottom: var(--space-8);
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section p {
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  /* 特徴リスト */
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .feature-list li {
+    position: relative;
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-3);
+    line-height: 1.8;
+  }
+
+  .feature-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 12px;
+    height: 2px;
+    background-color: var(--color-accent);
+  }
+
+  /* 仕様・注意 */
+  .specs {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--color-border);
+    border-radius: 4px; /* corner: sharp */
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .specs dt {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-1);
+    text-transform: uppercase;
+  }
+
+  .specs dd {
+    margin-bottom: var(--space-3);
+    padding-left: var(--space-1);
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+  }
+
+  .specs dd:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* 締め */
+  .closing {
+    text-align: center;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .closing p {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    color: var(--color-accent);
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+  }
+
+  .closing .shop-link {
+    display: inline-block;
+    margin-top: var(--space-3);
+    padding: var(--space-2) var(--space-5);
+    background-color: var(--color-accent);
+    color: #fff;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  .closing .shop-link:hover {
+    opacity: 0.85;
+  }
+
+  /* 注釈 */
+  .note {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    margin-top: var(--space-4);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      padding: var(--space-6) var(--space-3);
+    }
+    .catch {
+      font-size: var(--text-xl);
+    }
+    .lead {
+      font-size: var(--text-base);
+    }
+    .section-title {
+      font-size: var(--text-lg);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+  <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+  <div class="catch">
+    はじめて触れた瞬間の、<br>
+    その高揚を、そのまま。
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 文体・トーン = フォーマル -->
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+  <div class="lead">
+    新しく出会うものに、心がふるえる瞬間があります。<br>
+    〈商品名〉は、その感覚を届けるために生まれました。<br>
+    数値だけでは伝わらない、手にしたときの空気感。<br>
+    使いはじめた日の、少しだけ背筋の伸びるような心地よさ。<br>
+    そんな体験を、丁寧に紡ぐプロダクトです。
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+  <div class="section">
+    <h2 class="section-title">使い心地が、日常を変える</h2>
+    <p>
+      毎日使うものだからこそ、その手触りや佇まいが、暮らしの質を静かに左右します。
+      〈商品名〉は、〈確認: 素材や仕上げの具体的な特長を1つ〉を徹底的に追求しました。
+      何気ない動作のひとつひとつが、少しだけ豊かに感じられる——。
+      そんな設計思想が、随所に息づいています。
+    </p>
+    <ul class="feature-list">
+      <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+      <li>〈確認: 使う人の動作や気持ちの変化にまつわるエピソード〉——使うたびに発見がある、奥行きのある体験。</li>
+      <li>〈確認: 見た目や質感の具体的な特徴〉——視覚と触覚の両方で、品質の確かさを感じていただけます。</li>
+      <li>〈確認: 経年変化や使い込む楽しみに関する特長〉——時間とともに育つ風合いを、お楽しみください。</li>
+    </ul>
+    <p>
+      私たちは、〈会社名〉のものづくりにおいて、機能を満たすことはもちろん、<br>
+      それを使う人の感情に寄り添うことを、何より大切にしてきました。<br>
+      この〈商品名〉もまた、長く愛されるための、静かなこだわりが詰まっています。
+    </p>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+  <div class="section">
+    <h2 class="section-title">製品仕様とご注意</h2>
+    <dl class="specs">
+      <dt>品名</dt>
+      <dd>〈商品名〉</dd>
+      <dt>サイズ</dt>
+      <dd>〈確認: 幅・奥行き・高さの具体的な数値〉</dd>
+      <dt>素材</dt>
+      <dd>〈確認: 使用素材の具体的な名称〉</dd>
+      <dt>ご使用上の注意</dt>
+      <dd>
+        〈確認: 取り扱い上の具体的な注意点（水濡れ・直射日光・お手入れ方法など）〉。<br>
+        詳しくは同梱の取扱説明書をご参照ください。
+      </dd>
+      <dt>お届けについて</dt>
+      <dd>
+        ご注文から〈確認: 発送までの日数の目安〉前後でのお届けを予定しております。<br>
+        在庫状況により前後する場合がございます。あらかじめご了承ください。
+      </dd>
+    </dl>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+  <div class="closing">
+    <p>
+      日常に、そっと新しい風を。<br>
+      あなたの暮らしに、〈商品名〉が寄り添いますように。
+    </p>
+    <a href="#" class="shop-link">詳しく見る</a>
+    <div class="note">
+      ※ 商品画像はイメージです。実際の色味・質感は現品をご確認ください。<br>
+      ※ 価格・在庫状況は予告なく変更となる場合がございます。
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

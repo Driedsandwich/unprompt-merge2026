@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈新商品名〉 商品説明</title>
+<style>
+/* タイポグラフィ設計:
+   本文サイズ: 16px / 1.75行送り
+   スケール: 1.25 (16 / 20 / 25 / 31.25)
+   書体組合せ: 見出し=Georgia系明朝, 本文=游ゴシック+Helvetica系ゴシック
+*/
+:root {
+  --text-base: 16px;
+  --scale-ratio: 1.25;
+  --h3: calc(var(--text-base) * var(--scale-ratio));      /* 20px */
+  --h2: calc(var(--text-base) * var(--scale-ratio) * var(--scale-ratio)); /* 25px */
+  --h1: calc(var(--text-base) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio)); /* 31.25px */
+  --color-base: #2d2d2d;
+  --color-accent: #b85a2b;  /* 深めのテラコッタ — ただし既定クラスタ回避のため彩度を落とし、赤みを抑えた */
+  --color-bg: #f9f6f1;
+  --color-surface: #ffffff;
+  --color-muted: #6b6b6b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "游ゴシック", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.75;
+  color: var(--color-base);
+  background-color: var(--color-bg);
+  padding: 40px 16px;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  background-color: var(--color-surface);
+  padding: 64px 40px 56px;
+}
+
+/* 見出し: 明朝系セリフ体 */
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", "游明朝", "Yu Mincho", serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+h1 {
+  font-size: var(--h1);
+  margin-bottom: 8px;
+  color: var(--color-base);
+}
+
+/* キャッチコピー下の補助線 */
+.catch-line {
+  width: 56px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin: 16px 0 24px;
+}
+
+/* リード文 */
+.lead {
+  font-size: calc(var(--text-base) * 1.0625); /* 17px */
+  line-height: 1.8;
+  margin-bottom: 48px;
+  color: var(--color-muted);
+}
+
+/* 特徴セクション */
+.features {
+  margin-bottom: 56px;
+}
+
+.features h2 {
+  font-size: var(--h2);
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #dcd8d0;
+}
+
+.feature-item {
+  margin-bottom: 32px;
+}
+
+.feature-item h3 {
+  font-size: var(--h3);
+  margin-bottom: 8px;
+  color: var(--color-accent);
+}
+
+.feature-item p {
+  margin-bottom: 8px;
+}
+
+/* 仕様・注意 */
+.specs {
+  margin-bottom: 48px;
+  background-color: #f3efe9;
+  padding: 32px 28px;
+}
+
+.specs h2 {
+  font-size: var(--h2);
+  margin-bottom: 16px;
+}
+
+.specs ul {
+  list-style: none;
+  padding: 0;
+}
+
+.specs li {
+  padding: 6px 0 6px 20px;
+  position: relative;
+  font-size: calc(var(--text-base) * 0.9375); /* 15px */
+  line-height: 1.6;
+  color: #3d3d3d;
+}
+
+.specs li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+/* 締め */
+.closing {
+  text-align: center;
+  padding-top: 8px;
+}
+
+.closing p {
+  font-size: calc(var(--text-base) * 1.0625);
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.closing strong {
+  color: var(--color-base);
+  font-weight: 600;
+}
+
+/* レスポンシブ微調整 */
+@media (max-width: 480px) {
+  .container {
+    padding: 40px 20px 32px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .lead {
+    font-size: var(--text-base);
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>もう「合わない」を諦めない</h1>
+  <div class="catch-line"></div>
+
+  <p class="lead">
+    あなたの体型に、暮らしに、今日の気分に。<br>
+    〈商品名〉は、何度でも形を変えられる新しいスタンダードです。<br>
+    買ってから「やっぱり違った」を、終わりにしませんか。
+  </p>
+
+  <div class="features">
+    <h2>三つの約束</h2>
+
+    <div class="feature-item">
+      <h3>01｜自由自在なフィット</h3>
+      <p>
+        特許出願中の〈機構名〉により、身長・体型・好みに合わせて無段階で形状を調節できます。
+        一人ひとりの「ちょうどいい」を、たったひとつのアイテムが叶えます。
+      </p>
+    </div>
+
+    <div class="feature-item">
+      <h3>02｜時を経るほどに馴染む素材</h3>
+      <p>
+        肌あたりの良い天然素材を厳選。使い始めた日から、使うたびに少しずつ、あなたの動きを覚えていきます。
+        長く付き合うほどに愛着が湧く、そんな質感を目指しました。
+      </p>
+    </div>
+
+    <div class="feature-item">
+      <h3>03｜無駄を削ぎ落としたデザイン</h3>
+      <p>
+        余計な装飾を排し、機能を形に落とし込みました。どんな場所にも、どんな服装にもなじむ。
+        ミニマルな外見の奥に、徹底した使いやすさを隠しています。
+      </p>
+    </div>
+  </div>
+
+  <div class="specs">
+    <h2>仕様とお取り扱いについて</h2>
+    <ul>
+      <li>サイズ：〈サイズ〉（調節範囲：〈範囲〉）</li>
+      <li>素材：本体＝〈素材名〉、付属部＝〈素材名〉</li>
+      <li>重量：約〈重量〉</li>
+      <li>カラー：〈カラー名1〉／〈カラー名2〉／〈カラー名3〉</li>
+      <li>お手入れ：中性洗剤で手洗い、日陰干し。漂白剤・タンブラー乾燥不可。</li>
+      <li>ご注意：調節機構を無理に回すと破損の原因になります。強い衝撃を加えないでください。</li>
+    </ul>
+  </div>
+
+  <div class="closing">
+    <p>
+      私たちは、<strong>あなたに合うもの</strong>だけを届けたい。<br>
+      だから〈商品名〉は、届いたあとも、あなたと一緒に変わっていきます。<br>
+      まずは手に取って、その感覚を確かめてみてください。
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

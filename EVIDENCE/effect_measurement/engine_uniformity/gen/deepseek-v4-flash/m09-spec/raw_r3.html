@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>経費精算ラクナビ ─ 仕様メモ</title>
+  <style>
+    /* ─── タイポグラフィ設計 ─── */
+    /* スケール: 本文 1rem (16px) 基準, 比率 1.25 (Major Third) */
+    /* 見出し: 太めのゴシック (Noto Sans / Hiragino) × 本文: 明朝 (Noto Serif / Yu Mincho) */
+    :root {
+      --text-base: 1rem;              /* 16px */
+      --text-md: 1.25rem;             /* 20px */
+      --text-lg: 1.563rem;            /* 25px */
+      --text-xl: 1.953rem;            /* 31px */
+      --leading-body: 1.8;
+      --leading-heading: 1.3;
+      --heading-font: "Noto Sans JP", "Hiragino Sans", "Helvetica Neue", sans-serif;
+      --body-font: "Noto Serif JP", "Yu Mincho", "Georgia", serif;
+      --color-bg: #faf9f7;
+      --color-text: #2d2b28;
+      --color-primary: #3a5f56;       /* 深い苔緑: 基調 */
+      --color-accent: #d9734c;        /* 素焼きオレンジ: アクセント */
+      --color-border: #e0dbd3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      font-family: var(--body-font);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      color: var(--color-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .document {
+      max-width: 720px;
+      width: 100%;
+      margin: 96px 0 128px;          /* 8px グリッド: 12行・16行 */
+      background: white;
+      padding: 64px 56px;            /* 8*8, 8*7 */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      border-radius: 4px;
+    }
+
+    /* 冒頭 ─ 最も特徴的な一点を先に言う */
+    .lead {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: var(--text-xl);
+      line-height: var(--leading-heading);
+      letter-spacing: 0.02em;
+      color: var(--color-primary);
+      margin-bottom: 8px;            /* 8px グリッド */
+      border-left: 6px solid var(--color-accent);
+      padding-left: 24px;            /* 8*3 */
+    }
+
+    .lead-sub {
+      font-family: var(--body-font);
+      font-size: var(--text-md);
+      color: #5f5a55;
+      margin-bottom: 56px;           /* 8*7 */
+      padding-left: 30px;
+    }
+
+    h2 {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: var(--text-lg);
+      line-height: var(--leading-heading);
+      letter-spacing: 0.02em;
+      color: var(--color-primary);
+      margin-top: 56px;              /* 8*7 */
+      margin-bottom: 24px;           /* 8*3 */
+      padding-bottom: 8px;           /* 8*1 */
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    h3 {
+      font-family: var(--heading-font);
+      font-weight: 600;
+      font-size: var(--text-md);
+      line-height: var(--leading-heading);
+      color: var(--color-text);
+      margin-top: 32px;              /* 8*4 */
+      margin-bottom: 16px;           /* 8*2 */
+    }
+
+    p {
+      margin-bottom: 24px;           /* 8*3 */
+    }
+
+    ul, ol {
+      margin-bottom: 32px;           /* 8*4 */
+      padding-left: 24px;            /* 8*3 */
+    }
+
+    li {
+      margin-bottom: 12px;           /* 8*1.5 (12pxは8の倍数に近い実用値) */
+      line-height: var(--leading-body);
+    }
+
+    .feature-grid {
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 32px;                /* 8*3, 8*4 */
+      margin-bottom: 40px;           /* 8*5 */
+    }
+    .feature-grid li {
+      background: #f6f4f0;
+      padding: 20px 20px 20px 24px;  /* 8*2.5, 8*2.5, 8*2.5, 8*3 */
+      border-radius: 4px;
+      margin-bottom: 0;
+    }
+    .feature-grid li strong {
+      display: block;
+      font-family: var(--heading-font);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+    }
+
+    .screen-note {
+      background: #f4f1ec;
+      padding: 24px 28px;            /* 8*3, 8*3.5 */
+      border-radius: 4px;
+      margin-bottom: 40px;           /* 8*5 */
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .screen-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .placeholder {
+      color: #a09a93;
+      font-style: italic;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 48px 0 40px;           /* 8*6, 8*5 */
+    }
+
+    .meta-note {
+      font-size: 0.9rem;
+      color: #7b7570;
+      background: #f3f0eb;
+      padding: 16px 20px;            /* 8*2, 8*2.5 */
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+<div class="document">
+
+  <!-- 冒頭: 発注内容の核心「社内の経費精算をラクにする」を最初に言う -->
+  <div class="lead">経費精算の「あとで直す」をゼロにする</div>
+  <div class="lead-sub">レシート1枚から申請完了まで、迷わず30秒。社内ツール「経費ラクナビ」仕様メモ</div>
+
+  <!-- 目的 -->
+  <h2>目的</h2>
+  <p>経費精算で起きる「端数調整」「領収書の貼り忘れ」「申請書の記載漏れ」といった手戻りを、ツール側のルールガイドで未然に防ぐ。同時に、経理担当者が確認すべき項目を減らし、月次締め作業を半日から1時間に縮める。目指すのは「申請者と経理、両方が楽になる」精算体験。</p>
+
+  <!-- 対象ユーザー -->
+  <h2>対象ユーザー</h2>
+  <p>全社員（約〈人数〉名）および経理担当者（〈人数〉名）。社内ルールに詳しくない新人や、経費申請の頻度が低い社員でも迷わないことを最優先する。経理担当には承認・確認の効率化を提供する。</p>
+
+  <!-- 主要機能（箇条書き） -->
+  <h2>主要機能</h2>
+  <ul class="feature-grid">
+    <li><strong>スマホ撮影 → 自動仕分け</strong><br>
+    レシートを撮影すると日付・金額・品目を読み取り、経費科目を推定。ユーザーは確認して修正するだけ。</li>
+    <li><strong>リアルタイムルールチェック</strong><br>
+    申請中に「交通費なのに電車運賃の上限超過」「接待費なのに社外参加者なし」を検出し、その場で訂正を促す。</li>
+    <li><strong>1クリック申請 / 一括申請</strong><br>
+    最大10件の経費をまとめて申請。上司承認フローに自動ルーティング。経理への紙提出は原則廃止。</li>
+    <li><strong>経理ダッシュボード</strong><br>
+    未承認・未払い・申請漏れの一覧表示。条件指定でCSV出力。月次データの突合作業を半自動化。</li>
+  </ul>
+
+  <!-- 画面イメージの言葉での説明 -->
+  <h2>画面の流れ（言葉での説明）</h2>
+  <div class="screen-note">
+    <p><strong>1. ホーム画面</strong><br>
+    上部に「レシートを撮影」ボタン。その下に「未申請の仮保存一覧」がカード形式で並ぶ。仮保存のまま放置されたものは3日後にリマインド通知。経理担当の画面は左に「未承認一覧」、右に「月次サマリー」。</p>
+    <p><strong>2. 撮影・入力画面</strong><br>
+    カメラ起動後、四角いガイド枠にレシートを合わせると自動シャッター。認識結果を確認後、科目・プロジェクトコードをタップ選択（ドロップダウン＋最近使ったもの上位表示）。</p>
+    <p><strong>3. 申請確認画面</strong><br>
+    申請額・明細・添付画像を1画面で一覧。「ルールチェック通過」のマークが出たら「申請する」ボタンが有効化。ルール違反がある場合は赤いバナーで理由表示。</p>
+    <p><strong>4. 経理承認画面</strong><br>
+    申請1件ごとに「承認」「差し戻し」「コメント入力」の3アクション。差し戻し理由はテンプレート選択＋自由入力。一括承認ボタン（同一条件のものをまとめて）も用意。</p>
+  </div>
+
+  <!-- 使わないと決めたもの -->
+  <h2>あえて使わないもの</h2>
+  <ul>
+    <li><strong>OCRの自動訂正機能</strong> ─ 読み取りミスをツール側で勝手に直さない。ユーザーが確認して直す仕組みを徹底する（誤認識を学習させない方針）。</li>
+    <li><strong>チャット通知・Bot連携</strong> ─ 承認依頼はメールとツール内通知のみに限定。Slack/Teams連携は初期バージョンでは実装しない。</li>
+    <li><strong>精算額の自動計算（為替・割引）</strong> ─ 外貨レートやクーポン割引の自動換算は初回リリースでは対象外。ユーザーが入力した額をそのまま扱う。</li>
+  </ul>
+  <p>上記は「まずは最小限の形で動かす」ために意図的にスコープから外している。今後のフィードバック次第で再検討する。</p>
+
+  <!-- 補足: プレースホルダ情報 -->
+  <hr>
+  <div class="meta-note">
+    <span class="placeholder">〈会社名〉 社内ツール「経費ラクナビ」仕様メモ ver.0.1 ／ 作成日: 〈日付〉 ／ 担当: 〈氏名〉</span><br>
+    本仕様は発注内容に基づき設計しています。不明な点は山括弧内を実際の値で置き換えてください。
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品のご案内</title>
+<style>
+  :root {
+    --base-size: 16px;
+    --h1-size: 32px;
+    --h2-size: 20px;
+    --bg: #f4f1ea;
+    --main: #3a3226;
+    --accent: #8c6a3f;
+    --line: rgba(140, 106, 63, 0.25);
+  }
+
+  /* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+  /* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 */
+  /* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+  /* GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ */
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--main);
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "游明朝", serif;
+    font-size: var(--base-size);
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 32px;
+  }
+
+  .catch {
+    font-size: var(--h1-size);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin-bottom: 48px;
+    color: var(--main);
+  }
+
+  .lead {
+    font-size: 15px;
+    line-height: 2.0;
+    margin-bottom: 80px;
+    color: #5a5043;
+  }
+
+  h2 {
+    font-size: var(--h2-size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+    color: var(--main);
+  }
+
+  .section {
+    margin-bottom: 80px;
+  }
+
+  p {
+    margin-bottom: 24px;
+  }
+
+  .spec {
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+    font-size: 14px;
+    line-height: 2.1;
+    color: #5a5043;
+  }
+
+  .spec dl {
+    display: grid;
+    grid-template-columns: 8em 1fr;
+    gap: 8px 24px;
+  }
+
+  .spec dt {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .closing {
+    font-size: 15px;
+    line-height: 2.0;
+    margin-top: 80px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1 class="catch">はじめて触れる。<br>その瞬間のために。</h1>
+
+  <p class="lead">
+    〈商品名〉のご案内です。お手元に届いた箱を開け、手に取ったとき――その一瞬に、手間を注ぎました。素材の選定、仕立ての工程、仕上がりの肌触り。どれも一般的な説明では伝えきれない体験として、ご自身の目と手で確かめていただきたいと願っております。
+  </p>
+
+  <div class="section">
+    <h2>手にする喜びを、設計する</h2>
+    <p>
+      〈確認: この商品で最も伝えたい使用体験の瞬間を1つ〉。この感覚を多くの方に味わっていただくため、細部にわたり幾度も見直しを重ねました。特長は〈確認: 商品の具体的な特徴を2〜3項目〉に集約されています。
+    </p>
+    <p>
+      日常のなかでふと手に取るたび、なぜか落ち着く。そんな関係性を〈確認: 商品の素材や製法の具体〉から紡ぎ出しています。スペックの数字だけでは測れない、手触りと佇まいを大切にしております。
+    </p>
+  </div>
+
+  <div class="spec section">
+    <h2>仕様</h2>
+    <dl>
+      <dt>商品名</dt><dd>〈商品名〉</dd>
+      <dt>素材</dt><dd>〈素材〉</dd>
+      <dt>サイズ</dt><dd>〈サイズ〉</dd>
+      <dt>カラー</dt><dd>〈色展開〉</dd>
+      <dt>価格</dt><dd>〈価格〉</dd>
+    </dl>
+    <p style="margin-top: 24px; font-size: 13px;">
+      〈確認: 使用上の注意やお手入れ方法〉がございましたら、あわせてご案内いたします。
+    </p>
+  </div>
+
+  <div class="closing">
+    はじめましての方にも、もう一度出会う方にも。〈商品名〉が、あなたの毎日に静かに寄り添う存在となれば幸いです。
+  </div>
+
+</div>
+</body>
+</html>

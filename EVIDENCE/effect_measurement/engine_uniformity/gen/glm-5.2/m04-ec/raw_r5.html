@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品のご案内</title>
+<style>
+  :root {
+    --base-size: 15px;
+    --h1-size: 32px;
+    --h2-size: 19px;
+    --color-ink: #1a1a2e;
+    --color-accent: #2d8f6f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    background: #f4f4f0;
+    color: var(--color-ink);
+    font-size: var(--base-size);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .frame {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 40px;
+  }
+
+  .catch {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Hiragino Mincho Pro", serif;
+    font-size: var(--h1-size);
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+
+  .lead {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 96px;
+  }
+
+  .features {
+    margin-bottom: 96px;
+  }
+
+  .feature {
+    margin-bottom: 48px;
+  }
+
+  .feature:last-child {
+    margin-bottom: 0;
+  }
+
+  .feature-label {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Hiragino Mincho Pro", serif;
+    font-size: var(--h2-size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    margin-bottom: 12px;
+  }
+
+  .feature-body {
+    line-height: 1.85;
+  }
+
+  .spec {
+    margin-bottom: 80px;
+    padding-top: 32px;
+    border-top: 1px solid #c8c8c0;
+  }
+
+  .spec-list {
+    list-style: none;
+  }
+
+  .spec-list li {
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    display: flex;
+    gap: 16px;
+  }
+
+  .spec-list .label {
+    flex: 0 0 96px;
+    color: #888;
+  }
+
+  .closing {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Hiragino Mincho Pro", serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.75;
+    letter-spacing: 0.03em;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+
+    <h1 class="catch">毎日の支度が、少しだけ楽しくなる。</h1>
+
+    <p class="lead">
+      〈商品名〉は、なんでもない朝に、ささやかな違いを届けます。手に取ったときの感触、使い終わったあとの余韻。そうした小さな積み重ねが、毎日を上書きしていくと信じています。
+    </p>
+
+    <section class="features">
+
+      <div class="feature">
+        <h2 class="feature-label">手に馴染むかたち</h2>
+        <p class="feature-body">
+          何度も握り直して辿り着いた寸法です。持った瞬間に「これでいい」と思える、自然な収まり感をぜひ確かめてください。
+        </p>
+      </div>
+
+      <div class="feature">
+        <h2 class="feature-label">暮らしに溶ける色</h2>
+        <p class="feature-body">
+          どんな場所に置いても主張しすぎない、落ち着いた色合いを選びました。長く使ううちに味わいが増す素材で作っています。
+        </p>
+      </div>
+
+      <div class="feature">
+        <h2 class="feature-label">毎日使える強さ</h2>
+        <p class="feature-body">
+          丁寧に作ることと、丈夫であることは両立します。繰り返しの使用に耐えるよう、細部まで作り込んでいます。
+        </p>
+      </div>
+
+    </section>
+
+    <section class="spec">
+      <ul class="spec-list">
+        <li><span class="label">商品名</span><span>〈商品名〉</span></li>
+        <li><span class="label">素材</span><span>〈素材〉</span></li>
+        <li><span class="label">サイズ</span><span>〈縦×横×高さ〉</span></li>
+        <li><span class="label">生産地</span><span>〈生産地〉</span></li>
+        <li><span class="label">注意事項</span><span>お手入れ方法の詳細は同梱の説明書をご覧ください。</span></li>
+      </ul>
+    </section>
+
+    <p class="closing">
+      まずは一度、手に取ってみてください。きっと、明日も使いたくなります。
+    </p>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品・交換に関するよくある質問 | 〈ショップ名〉</title>
+<style>
+:root {
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 36px;
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-text: #1a1f2b;
+  --color-accent: #2a9d8f;
+  --color-muted: #6b7280;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Noto Sans JP", "Hiragino Sans", "Meiryo", sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.8;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.hero {
+  text-align: center;
+  padding: var(--space-2xl) 0;
+}
+
+.hero h1 {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  margin-bottom: var(--space-md);
+}
+
+.lead {
+  color: var(--color-muted);
+}
+
+.section {
+  padding-bottom: var(--space-2xl);
+}
+
+.section-title {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.section-title .icon {
+  font-size: var(--text-lg);
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.faq-item {
+  background: var(--color-surface);
+  border-radius: 4px;
+  padding: var(--space-lg);
+}
+
+.question {
+  font-weight: 700;
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.question .q-mark {
+  color: var(--color-accent);
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  font-size: var(--text-xl);
+  line-height: 1;
+}
+
+.answer {
+  padding-left: var(--space-lg);
+}
+
+.answer p + p {
+  margin-top: var(--space-sm);
+}
+
+.contact {
+  background: var(--color-surface);
+  border-radius: 4px;
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.contact-title {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.contact-text {
+  color: var(--color-muted);
+  margin-bottom: var(--space-md);
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.contact-links a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>返品・交換のこと、<br>ここでスッキリ解決。</h1>
+      <p class="lead">電話やメールでのお問い合わせの前に、まずはこちらをご確認ください。</p>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title"><span class="icon">🔍</span>よくある質問</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3 class="question"><span class="q-mark">Q.</span>商品を返品・交換したいです。</h3>
+          <div class="answer">
+            <p>マイページの注文履歴から返品・交換の申請をお願いします。受付後、〈ショップ名〉から返送方法をご案内いたします。</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <h3 class="question"><span class="q-mark">Q.</span>返品・交換の期限はありますか？</h3>
+          <div class="answer">
+            <p>商品到着後〈返品受付期間〉以内であれば承ります。期限内のお手続きをお願いいたします。</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <h3 class="question"><span class="q-mark">Q.</span>返品の送料は誰が負担しますか？</h3>
+          <div class="answer">
+            <p>お客様都合の返品・交換はお客様負担、商品不良や発送ミスなど当店原因の場合は〈ショップ名〉が負担いたします。</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <h3 class="question"><span class="q-mark">Q.</span>届いた商品が破損・不良品だったのですが。</h3>
+          <div class="answer">
+            <p>大変申し訳ございません。商品到着後〈日数〉以内にサポートまでご連絡ください。迅速に交換・返金のご対応をいたします。</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <h3 class="question"><span class="q-mark">Q.</span>返金はいつ頃届きますか？</h3>
+          <div class="answer">
+            <p>返送商品の到着確認後、〈日数〉程度で返金手続きを行います。お支払い方法や金融機関により反映まで日数が異なる場合があります。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="contact">
+        <h2 class="contact-title">解決しない場合はこちら</h2>
+        <p class="contact-text">該当する内容がない場合や、お急ぎの場合はサポートまでお問い合わせください。</p>
+        <div class="contact-links">
+          <a href="mailto:〈サポートメールアドレス〉">✉ 〈サポートメールアドレス〉</a>
+          <a href="tel:〈サポート電話番号〉">📞 〈サポート電話番号〉</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

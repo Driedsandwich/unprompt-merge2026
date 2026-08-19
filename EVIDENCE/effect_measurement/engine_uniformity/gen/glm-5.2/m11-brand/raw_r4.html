@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 — まだ熱い、という感覚。</title>
+<style>
+:root {
+  --ink: #1a1612;
+  --paper: #f3ede4;
+  --ember: #c3502a;
+  --scale-ratio: 1.333;
+  --t-body: 16px;
+  --t-lead: calc(var(--t-body) * var(--scale-ratio));
+  --t-h3: calc(var(--t-lead) * var(--scale-ratio));
+  --t-h2: calc(var(--t-h3) * var(--scale-ratio));
+  --t-h1: calc(var(--t-h2) * var(--scale-ratio));
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-size: var(--t-body);
+  line-height: 1.75;
+}
+.serif {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+}
+/* ヒーロー */
+.hero {
+  padding: 128px 24px 96px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.hero-eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: var(--ember);
+  margin-bottom: 32px;
+}
+.hero h1 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: clamp(32px, 6vw, var(--t-h1));
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  margin-bottom: 40px;
+}
+.hero h1 .accent { color: var(--ember); }
+.hero-lead {
+  font-size: var(--t-lead);
+  line-height: 1.7;
+  max-width: 560px;
+}
+/* 豆のイメージ */
+.bean-mark {
+  width: 56px;
+  height: 72px;
+  margin-bottom: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ember) 0%, var(--ink) 100%);
+  transform: rotate(18deg);
+  position: relative;
+}
+.bean-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  width: 1.5px;
+  height: 84%;
+  background: var(--paper);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+/* 共通 */
+section {
+  padding: 96px 24px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+h2 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: var(--t-h2);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  margin-bottom: 40px;
+  border-left: 4px solid var(--ember);
+  padding-left: 20px;
+}
+h3 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: var(--t-h3);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+p { margin-bottom: 24px; max-width: 560px; }
+/* 物語 */
+.story {
+  background: var(--ink);
+  color: var(--paper);
+}
+.story .inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.story h2 {
+  border-left-color: var(--ember);
+  color: var(--paper);
+}
+.story p {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: var(--t-lead);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+}
+/* こだわり */
+.commitments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-top: 56px;
+}
+.commitment h3 { color: var(--ember); }
+@media (max-width: 640px) {
+  .commitments { grid-template-columns: 1fr; gap: 48px; }
+}
+/* ラインナップ */
+.lineup { background: var(--paper); }
+.lineup-list {
+  display: grid;
+  gap: 24px;
+  margin-top: 48px;
+}
+.lineup-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 24px;
+  background: #ebe3d6;
+  border-radius: 4px;
+}
+.lineup-thumb {
+  width: 56px;
+  height: 72px;
+  border-radius: 50%;
+  transform: rotate(18deg);
+}
+.lineup-thumb.l1 { background: linear-gradient(135deg, #8b5a2b, var(--ink)); }
+.lineup-thumb.l2 { background: linear-gradient(135deg, #6b4226, var(--ink)); }
+.lineup-thumb.l3 { background: linear-gradient(135deg, var(--ember), #4a2818); }
+.lineup-thumb::after {
+  content: ""; display: block;
+}
+.lineup-name {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: var(--t-h3);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.lineup-desc {
+  font-size: 14px;
+  color: #5a5048;
+  margin-top: 4px;
+}
+.lineup-price {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+/* 購入導線 */
+.cta {
+  padding: 128px 24px;
+  text-align: center;
+  background: var(--ember);
+  color: var(--paper);
+}
+.cta-inner { max-width: 640px; margin: 0 auto; }
+.cta h2 {
+  border: none;
+  padding: 0;
+  color: var(--paper);
+  font-size: clamp(28px, 5vw, var(--t-h2));
+}
+.cta p {
+  margin: 24px auto 48px;
+  max-width: 480px;
+  font-size: var(--t-lead);
+  line-height: 1.7;
+}
+.cta-button {
+  display: inline-block;
+  padding: 20px 56px;
+  background: var(--paper);
+  color: var(--ember);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: var(--t-lead);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  border-radius: 2px;
+}
+footer {
+  padding: 48px 24px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: #8a7e72;
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="bean-mark"></div>
+  <p class="hero-eyebrow">SINGLE ORIGIN COFFEE</p>
+  <h1 class="serif">まだ熱い、<br>という<span class="accent">感覚。</span></h1>
+  <p class="hero-lead serif">淹れたての白磁のカップから、立ちのぼる湯気。一口目の熱さが、二口目で香りに変わる。その一瞬のために、〈ブランド名〉の豆はあります。</p>
+</header>
+
+<section class="story">
+  <div class="inner">
+    <h2 class="serif">一杯のcoffeeに、<br>時間を戻す。</h2>
+    <p>〈産地〉の標高〈数値〉m。朝霧が晴れる前に、赤く熟した果実だけを手で摘む。その豆が、いつ飲んだのとは違う一杯になる。</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="serif">豆へのこだわり</h2>
+  <p>焙煎は浅すぎず深すぎない中煎きに揃え、香りと酸の境界を残す。挽きたての粒度は、お湯の通り道を設計する設計図。</p>
+  <div class="commitments">
+    <div class="commitment">
+      <h3>産地</h3>
+      <p>〈産地名〉の小規模農園から直接買い付け。豆の履歴を一本ずつ記録し、袋に記す。</p>
+    </div>
+    <div class="commitment">
+      <h3>焙煎</h3>
+      <p>〈数値〉kgの小型ドラムで、豆の鳴る音を聞き分けながら火を通す。職人の手だけが頼り。</p>
+    </div>
+  </div>
+</section>
+
+<section class="lineup">
+  <h2 class="serif">ラインナップ</h2>
+  <div class="lineup-list">
+    <div class="lineup-item">
+      <div class="lineup-thumb l1"></div>
+      <div>
+        <div class="lineup-name serif">〈ブレンド名〉</div>
+        <div class="lineup-desc">明るい酸味と花のような香り。朝の最初の一杯に。</div>
+      </div>
+      <div class="lineup-price serif">¥1,400</div>
+    </div>
+    <div class="lineup-item">
+      <div class="lineup-thumb l2"></div>
+      <div>
+        <div class="lineup-name serif">〈ブレンド名〉</div>
+        <div class="lineup-desc">くるみとビターチョコの余韻。ミルクにも負けない。</div>
+      </div>
+      <div class="lineup-price serif">¥1,600</div>
+    </div>
+    <div class="lineup-item">
+      <div class="lineup-thumb l3"></div>
+      <div>
+        <div class="lineup-name serif">〈ブレンド名〉</div>
+        <div class="lineup-desc">煙とスパイス。ゆっくり飲みたい午後に。</div>
+      </div>
+      <div class="lineup-price serif">¥1,800</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-inner">
+    <h2 class="serif">まずは一杯、<br>淹れてみてください。</h2>
+    <p>初回限定で〈数値〉gのミニパックをお送りします。香りが立つまでの三十秒、待つ時間も含めて楽しんで。</p>
+    <a href="#" class="cta-button">オンラインショップへ</a>
+  </div>
+</section>
+
+<footer>
+  © 〈ブランド名〉 — SINGLE ORIGIN COFFEE
+</footer>
+
+</body>
+</html>

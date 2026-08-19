@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 要件概要メモ</title>
+<style>
+/* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+/* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+/* GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 */
+/* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+/* GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール */
+
+/* decisionsによって決まったデザイン:
+   想定利用者層決定のトークン(serif見出し)と、ツール実装形態決定のトークン(第2パレット)は異なる。
+   ここでは発注内容を最優先するルールに従い、最後に確定した3つの決定のうち
+   「経理担当者向け」のトークンはdense/serif、
+   「集計・経理処理の自動化」はdense/sans、
+   「Excel/スプレッドシート」はdense/sans。
+   2つがsans,1つがserif。仕様メモは経理担当者向けに書くのでserif見出しを優先する。
+   一方、実装の主語はExcelシートなのでパレットは第2パレット(#f1f5e9,#5c7a3e,#8fa85e)を地色+主要色とする。
+   「集計・経理処理の自動化」の金#c9a24bはアクセントとして使う。
+   ただし冒頭のtone_sampleは「経費、自動で締まる。集計・経理処理を自動化し月次を即完了。」を採用。
+*/
+
+:root {
+    --base: #f1f5e9;
+    --main: #5c7a3e;
+    --accent: #c9a24b;
+    --text: #1b2a22;
+    --text-light: #3d5a48;
+    --ratio: 1.25;
+    --body: 0.9375rem;
+    --h2: calc(var(--body) * var(--ratio));
+    --h1: calc(var(--h2) * var(--ratio));
+    --leading: 1.6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--base);
+    color: var(--text);
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+    font-size: var(--body);
+    line-height: var(--leading);
+    padding: 48px 24px;
+}
+
+.wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--base);
+}
+
+/* 冒頭: tone_sampleをそのまま活かす */
+.hero {
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--main);
+    padding-bottom: 40px;
+}
+
+.hero__catch {
+    font-family: 'Georgia', 'Times New Roman', 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: var(--h1);
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    color: var(--main);
+    margin-bottom: 16px;
+}
+
+.hero__sub {
+    font-size: var(--body);
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* セクション共通 */
+section {
+    margin-bottom: 64px;
+}
+
+section:last-child {
+    margin-bottom: 48px;
+}
+
+h2 {
+    font-family: 'Georgia', 'Times New Roman', 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: var(--h2);
+    letter-spacing: 0.01em;
+    color: var(--main);
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--accent);
+}
+
+h3 {
+    font-family: inherit;
+    font-weight: 600;
+    font-size: var(--body);
+    color: var(--text-light);
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+}
+
+p {
+    margin-bottom: 16px;
+    color: var(--text);
+}
+
+/* リスト */
+ul, ol {
+    margin-left: 24px;
+    margin-bottom: 24px;
+}
+
+li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* 使わないと決めたもの: グラデーション・影・丸角・アイコン */
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<div class="hero">
+    <div class="hero__catch">経費、自動で締まる。</div>
+    <div class="hero__sub">集計・経理処理を自動化し、月次を即完了。</div>
+</div>
+
+<!-- GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル -->
+<section>
+    <h2>目的</h2>
+    <p>このツールは、経理担当者が毎月の経費精算を集計し、仕訳データに落とし込むまでの作業時間を短縮するために作る。申請書の受付から「月次締め処理が完了した」と言える状態までを、現行よりも早く、属人性を減らして進めることがゴールである。</p>
+    <!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+    <p>会計システムや勤怠システムとの連携は持たない。このツール単体で、経理担当者が手元のExcelだけで完結できる設計とする。</p>
+</section>
+
+<section>
+    <h2>対象ユーザー</h2>
+    <p>経理担当者（〈部署名〉の〈人数〉名程度を想定）。申請者（社員）がこのツールを直接操作することは想定しない。申請者からの入力は、既存の申請書やメールなどの別経路で受け付ける。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+<section>
+    <h2>主要機能</h2>
+    <h3>シート構成（全3シート）</h3>
+    <ol>
+        <li><strong>入力シート「明細」</strong> — 経理担当者が各申請の内容を1行ずつ転記する。必要な列は、日付・申請者名・費目・金額・摘要・部門コード。プルダウンで費目と部門コードを選択式にする。</li>
+        <li><strong>集計シート「月次サマリ」</strong> — 「明細」シートのデータを部門コード・費目ごとに自動集計する。ピボットテーブルまたはSUMIFSで組み、当月分と前月分を横に並べる。</li>
+        <li><strong>仕訳シート「仕訳データ」</strong> — 「月次サマリ」の値を元に、借方・貸方の勘定科目と金額を自動で割り振る。科目マッピング表（別タブ）を参照し、費目と部門の組み合わせから貸方科目を決定する。</li>
+    </ol>
+    <h3>自動処理の範囲</h3>
+    <ul>
+        <li>「明細」シートにデータを貼り付けると、残りの2シートが自動更新される。</li>
+        <li>「月次サマリ」は当月締め日（〈毎月何日〉）を基準に期間を判定する。</li>
+        <li>「仕訳データ」は貸方科目の自動判定に加え、消費税区分（課税・非課税・対象外）を費目マスタから参照して出力する。</li>
+    </ul>
+    <h3>締め処理の補助</h3>
+    <ul>
+        <li>「明細」シートに未転記の申請がないか、当月の全申請者リストと突き合わせるチェック機能を持つ（VLOOKUPまたはXLOOKUPで未達を表示）。</li>
+        <li>締め処理が完了した月は、シートを保護して誤更新を防止する。</li>
+    </ul>
+</section>
+
+<section>
+    <h2>画面イメージ（言葉での説明）</h2>
+    <p>Excelファイルを開くと、3つのタブが並ぶ。左端の「明細」シートは、1行目が固定のヘッダ行、2行目以降にデータを入力する。ヘッダ行はフィルター設定済み。費目列はドロップダウンリスト、部門コード列も同様。摘要列は自由記述。</p>
+    <p>「月次サマリ」シートは、左上に集計月を指定するセル（手入力または日付ピッカー）があり、その月のデータだけがテーブルとして表示される。部門ごとに小計行が入り、最下行に総計。前月比の増減が右端の列にパーセンテージで出る。</p>
+    <p>「仕訳データ」シートは、A列から順に「日付」「部門」「借方科目」「借方金額」「貸方科目」「貸方金額」「摘要」が並ぶ。1行が1仕訳。最終行に貸借合計が表示され、一致していれば「一致」、不一致なら「不一致：差額〈金額〉」と赤文字で出る。</p>
+    <p>画面上にボタンやマクロ実行の指示はない。セルに値を入れると自動で反映される仕組みとする。</p>
+</section>
+
+<section>
+    <h2>使わないと決めたもの</h2>
+    <ul>
+        <li>会計システムとのAPI連携・CSVエクスポート以外の自動連携</li>
+        <li>申請者自身が入力するWebフォームやスマートフォンアプリ</li>
+        <li>画像（領収書）のOCR読取り</li>
+        <li>承認フロー機能（申請→承認のワークフローは対象外）</li>
+        <li>グラフやチャートによる可視化</li>
+        <li>マクロ以外のアドインや外部スクリプトへの依存</li>
+    </ul>
+    <p style="margin-top: 24px; color: var(--text-light); font-size: 0.875rem;">本メモは要件概要レベルであり、セル範囲やマクロの詳細コードは別途設計フェーズで定義する。</p>
+</section>
+
+</div>
+</body>
+</html>

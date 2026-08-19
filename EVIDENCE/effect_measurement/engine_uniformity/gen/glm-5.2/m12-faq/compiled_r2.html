@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品に関するよくあるご質問 | 〈ショップ名〉</title>
+<style>
+:root {
+  --bg: #fbf4ee;
+  --main: #8a5a3c;
+  --accent: #c98a6b;
+  --text: #3d2b1f;
+  --muted: #7a6b5d;
+  --card: #fffaf6;
+  --line: #e8ddd3;
+  --base: 16px;
+}
+/* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+/* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+/* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+/* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+/* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--base);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+header {
+  padding: 72px 0 64px;
+  border-bottom: 1px solid var(--line);
+}
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+h1 {
+  font-family: "Hiragino Maru Gothic", "Yu Gothic", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.reassure {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.85;
+}
+main { padding: 64px 0 96px; }
+.cat-label {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 8px;
+}
+.cat-label.before { background: var(--accent); color: #fff; }
+.cat-label.during { background: var(--main); color: #fff; }
+.qa { margin-bottom: 56px; }
+.qa-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.q-num {
+  font-family: "Hiragino Maru Gothic", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.q-text {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--main);
+}
+.a-body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text);
+  padding-left: 32px;
+}
+.a-body p + p { margin-top: 12px; }
+.conditions {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.conditions dt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--main);
+  margin-top: 12px;
+}
+.conditions dt:first-child { margin-top: 0; }
+.conditions dd { font-size: 14px; color: var(--text); margin-top: 4px; }
+.contact {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 40px 32px;
+  text-align: center;
+}
+.contact h2 {
+  font-family: "Hiragino Maru Gothic", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--main);
+  margin-bottom: 16px;
+}
+.contact p { font-size: 15px; color: var(--muted); margin-bottom: 24px; }
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--main);
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 9999px;
+}
+footer { padding: 32px 0; border-top: 1px solid var(--line); text-align: center; }
+footer p { font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <!-- GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 -->
+    <p class="eyebrow">返品サポート</p>
+    <h1>返品のこと、ゆっくり一緒に確認しましょう</h1>
+    <p class="reassure">返品できるか検討中の方も、すでにお手続き中の方も、このページで迷わず解決できるよう、条件をすべて明記しています。</p>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <!-- GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 -->
+    <section class="qa">
+      <span class="cat-label before">返品を検討中の方</span>
+      <div class="qa-head"><span class="q-num">Q1</span><span class="q-text">返品はできますか?</span></div>
+      <div class="a-body">
+        <p>商品到着から〈確認: 返品可能日数〉日以内であれば、返品をお受けいたします。ただし以下の条件をすべて満たす必要があります。</p>
+        <!-- GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 -->
+        <dl class="conditions">
+          <dt>対象商品</dt>
+          <dd>〈確認: 返品対象となる商品の条件〉</dd>
+          <dt>商品の状態</dt>
+          <dd>未使用・未開封であること</dd>
+          <dt>返品期限</dt>
+          <dd>商品到着後〈確認: 返品可能日数〉日以内</dd>
+          <dt>送料負担</dt>
+          <dd>〈確認: 送料の負担区分〉</dd>
+        </dl>
+        <p>上記に当てはまるかご不明な場合は、そのままご遠慮なくお問い合わせください。</p>
+      </div>
+    </section>
+    <section class="qa">
+      <span class="cat-label before">返品を検討中の方</span>
+      <div class="qa-head"><span class="q-num">Q2</span><span class="q-text">どのような手順で進めればよいですか?</span></div>
+      <div class="a-body">
+        <p>まずは〈確認: 問い合わせ窓口〉へ返品のご意向をご連絡ください。返品先の住所・必要書類をお伝えします。</p>
+        <p>商品の送付後、到着と状態確認をもって交換またはご返金となります。ご返金は〈確認: 返金方法と目安〉でのお手続きとなります。</p>
+      </div>
+    </section>
+    <section class="qa">
+      <span class="cat-label before">返品を検討中の方</span>
+      <div class="qa-head"><span class="q-num">Q3</span><span class="q-text">交換はできますか?</span></div>
+      <div class="a-body">
+        <p>交換をご希望の場合も、上記Q1の条件を満たす範囲で承ります。在庫状況によりご希望に添えない場合は、ご相談のうえ返金へ切り替えることも可能です。</p>
+      </div>
+    </section>
+    <!-- GYAKUMON-CHOICE: 読者の状況 = 両方混在 -->
+    <section class="qa">
+      <span class="cat-label during">お手続き中の方</span>
+      <div class="qa-head"><span class="q-num">Q4</span><span class="q-text">送料はどちらが負担しますか?</span></div>
+      <div class="a-body">
+        <p>送料の負担は、〈確認: 送料の負担区分〉となります。お客様都合による返品か、商品不良・欠品による返品かで扱いが異なります。ご自身がどちらに当たるか不明な場合は、お手続きの際にご確認ください。</p>
+      </div>
+    </section>
+    <section class="qa">
+      <span class="cat-label during">お手続き中の方</span>
+      <div class="qa-head"><span class="q-num">Q5</span><span class="q-text">返金時期はいつ頃になりますか?</span></div>
+      <div class="a-body">
+        <p>返送商品の到着・確認が完了次第、ご返金手続きへ進みます。〈確認: 返金方法と目安〉でお手続きいたします。</p>
+        <p>お手続き後のご反映には通常数日を要します。ご返金が確認できない場合は、お手元の控えをご用意のうえご連絡ください。</p>
+      </div>
+    </section>
+    <!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+    <div class="contact">
+      <h2>解決しないときは</h2>
+      <p>FAQでお探しの答えが見つからない場合は、直接お問い合わせください。</p>
+      <a href="#" class="btn">お問い合わせフォームへ</a>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap"><p>© 〈ショップ名〉</p></div>
+</footer>
+</body>
+</html>

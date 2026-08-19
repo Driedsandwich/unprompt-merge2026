@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+  --scale-body: 15px;
+  --scale-lead: 17px;
+  --scale-h2: 22px;
+  --scale-catch: 30px;
+  --color-base: #14274E;
+  --color-accent: #C56183;
+  --color-ink: #1A1A2E;
+  --color-paper: #FBF8F1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--color-paper);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  color: var(--color-ink);
+  line-height: 1.8;
+  font-size: var(--scale-body);
+  letter-spacing: 0.02em;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 40px;
+}
+
+.catch {
+  font-size: var(--scale-catch);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  color: var(--color-base);
+  margin-bottom: 24px;
+}
+
+.lead {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: var(--scale-lead);
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+  margin-bottom: 96px;
+}
+
+.lead .accent {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+h2 {
+  font-size: var(--scale-h2);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-base);
+  margin-bottom: 24px;
+  margin-top: 56px;
+}
+
+h2:first-of-type { margin-top: 0; }
+
+.feat p {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  margin-bottom: 16px;
+}
+
+.feat ul {
+  list-style: none;
+  margin-top: 8px;
+}
+
+.feat li {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.feat li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.spec {
+  margin-top: 96px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(20, 39, 78, 0.15);
+}
+
+.spec h2 {
+  margin-top: 0;
+}
+
+.spec p {
+  font-family: "Hagirino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(26, 26, 46, 0.75);
+}
+
+.closing {
+  margin-top: 96px;
+  text-align: center;
+  font-size: var(--scale-lead);
+  letter-spacing: 0.08em;
+  color: var(--color-base);
+  font-weight: 500;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="catch">まだ誰も知らない、〈商品名〉。</p>
+
+  <p class="lead">発注内容が「魅力的に」という一言で始まったので、まず正直に書きます。商品のスペックも素材も価格も、いただいておりません。だからこそ、ここで書けるのは<span class="accent">売り文句ではなく、手渡す理由</span>だけです。</p>
+
+  <div class="feat">
+    <h2>魅力とは何か</h2>
+    <p>魅力とは、相手が自分ごととして想像できること。〈商品名〉が誰の、どんな日常の、どの瞬間に寄り添うのか。それが分からなければ、どんなに美しい言葉を並べても届きません。</p>
+
+    <ul>
+      <li>素材、サイズ、重さ、価格</li>
+      <li>誰が、どんな想いで作ったのか</li>
+      <li>買ったあと、生活がどう変わるのか</li>
+    </ul>
+
+    <p>これらが揃ったとき、説明文は初めて商品の魅力を語る力を持ちます。今は土台だけをご用意しました。そこに商品の実像を注いでいただければ、必ず響く一文に鍛え直します。</p>
+  </div>
+
+  <div class="spec">
+    <h2>お伝えしたいこと</h2>
+    <p>商品の詳細（素材・仕様・サイズ・価格・おすすめ用途など）をお知らせください。いただいた情報をもとに、即座に書き直します。空白がある分、今は誠意だけを置いています。</p>
+  </div>
+
+  <p class="closing">魅力は作るのではなく、引き出すもの。</p>
+</div>
+</body>
+</html>

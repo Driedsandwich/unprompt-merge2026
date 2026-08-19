@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉| 一杯の珈琲に、旅の記憶を</title>
+<style>
+:root {
+  --bg: #1c1712;
+  --main: #8a5a34;
+  --accent: #d9a15c;
+  --text: #d9cfc4;
+  --muted: #8a8079;
+  /* GYAKUMON-CHOICE: 視覚トークン = 地色#1c1712 / 主要色#8a5a34 / 強調色#d9a15c / serif見出し / airy / soft */
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","游ゴシック",Meiryo,sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  /* GYAKUMON-CHOICE: 密度 = airy */
+}
+h1,h2,h3 {
+  font-family: "Hiragino Mincho ProN","Yu Mincho","游明朝",Georgia,serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  /* GYAKUMON-CHOICE: 見出し書体 = serif */
+}
+section { padding: 104px 24px; }
+.wrap { max-width: 560px; margin: 0 auto; }
+
+/* GYAKUMON-CHOICE: 角 = soft */
+.hero { text-align:center; padding:128px 24px 104px; }
+.hero h1 { font-size: 1.75rem; color: var(--accent); margin-bottom:24px; line-height:1.7; }
+.hero p { font-size:0.9375rem; color: var(--muted); max-width:400px; margin:0 auto; }
+.hero .deco {
+  width:56px; height:56px; margin:0 auto 40px;
+  background: radial-gradient(circle at 35% 35%, var(--accent), var(--main) 70%);
+  border-radius: 50%;
+}
+
+.story .label, .craft .label, .lineup .label {
+  font-size:0.6875rem; letter-spacing:0.28em; color: var(--accent);
+  margin-bottom:24px; text-transform:uppercase;
+}
+.story h2 { font-size:1.5rem; margin-bottom:32px; line-height:1.75; }
+.story p { margin-bottom:24px; }
+
+.craft { background: rgba(138,90,52,0.08); }
+.craft h2 { font-size:1.375rem; margin-bottom:40px; }
+.craft .item { margin-bottom:32px; }
+.craft .item h3 { font-size:1rem; color: var(--accent); margin-bottom:8px; }
+.craft .item p { font-size:0.9375rem; }
+
+.lineup .line { padding:32px 0; border-bottom:1px solid rgba(217,161,92,0.2); }
+.lineup .line:first-of-type { border-top:1px solid rgba(217,161,92,0.2); }
+.lineup .line h3 { font-size:1.125rem; margin-bottom:8px; }
+.lineup .line p { font-size:0.875rem; color: var(--muted); }
+
+.cta { text-align:center; padding:112px 24px; }
+.cta h2 { font-size:1.375rem; margin-bottom:40px; color: var(--accent); }
+.cta a {
+  display:inline-block; padding:20px 56px;
+  background: var(--accent); color: var(--bg);
+  text-decoration:none; font-size:0.9375rem;
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  letter-spacing:0.12em;
+  border-radius: 999px;
+  /* GYAKUMON-CHOICE: 角 = soft */
+}
+.cta .note { font-size:0.8125rem; color: var(--muted); margin-top:32px; }
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 -->
+<!-- GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 -->
+<section class="hero">
+  <div class="deco" aria-hidden="true"></div>
+  <h1>一杯の珈琲に、<br>旅の記憶を。</h1>
+  <p>ある農園から始まった物語。〈ブランド名〉が紡ぐ、土と焙煎の記憶。</p>
+</section>
+
+<section class="story">
+  <div class="wrap">
+    <!-- GYAKUMON-CHOICE: 想定読者 = ギフト検討者 -->
+    <div class="label">— Brand Story</div>
+    <h2>この豆に出会うまで、<br>私たちは遠回りをした。</h2>
+    <p>〈確認: このブランドを始めた経緯・出会いのエピソード〉。ふと立ち寄った先で出会った一杯が、その後の歩みを変えた。〈確認: 創業者が現場で味わった具体と、そこから芽生えた想い〉。</p>
+    <p>大切な人へ贈る一袋がある。それは単なる飲み物ではなく、誰かの朝をそっと支える、ささやかな約束だ。〈ブランド名〉は、そんな贈りものとして生まれた。</p>
+  </div>
+</section>
+
+<section class="craft">
+  <div class="wrap">
+    <div class="label">— Commitment</div>
+    <h2>豆へのこだわり</h2>
+    <div class="item">
+      <h3>焙煎</h3>
+      <p>〈確認: 焙煎の具体的な方法と、こだわっている工程〉。香りが立ち昇るその瞬間まで、手を止めない。</p>
+    </div>
+    <div class="item">
+      <h3>産地</h3>
+      <p>〈確認: 豆の産地・農園との関わり〉。土の記憶が、一杯のなかに宿る。</p>
+    </div>
+    <div class="item">
+      <h3>味わい</h3>
+      <p>〈確認: 飲んだときの具体的な味・香りの描写〉。口に含んだ第一印象から、余韻が消えるまで。</p>
+    </div>
+  </div>
+</section>
+
+<section class="lineup">
+  <div class="wrap">
+    <div class="label">— Lineup</div>
+    <div class="line">
+      <h3>〈ラインナップ1: ブレンド名〉</h3>
+      <p>〈確認: この豆の特徴・味わい・おすすめの淹れ方〉</p>
+    </div>
+    <div class="line">
+      <h3>〈ラインナップ2: ブレンド名〉</h3>
+      <p>〈確認: この豆の特徴・味わい・おすすめの淹れ方〉</p>
+    </div>
+    <div class="line">
+      <h3>〈ラインナップ3: ブレンド名〉</h3>
+      <p>〈確認: この豆の特徴・味わい・おすすめの淹れ方〉</p>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 -->
+<section class="cta">
+  <h2>大切な人へ、<br>コーヒー豆という贈りものを。</h2>
+  <a href="#purchase">豆を見に行く</a>
+  <p class="note">〈確認: 購入導線・販売先のURL〉</p>
+</section>
+
+</body>
+</html>

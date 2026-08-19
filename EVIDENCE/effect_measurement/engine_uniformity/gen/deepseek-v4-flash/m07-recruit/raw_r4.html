@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社紹介 | 採用</title>
+<style>
+  /* タイプスケール: 本文 16px → h2 20px → h1 28px (比率約1.25-1.4) */
+  :root {
+    --text-base: 16px;
+    --text-h2: 1.25rem;   /* 20px */
+    --text-h1: 1.75rem;   /* 28px */
+    --color-base: #1e1e1e;
+    --color-accent: #b85a3a;  /* くすんだ赤橙 — テラコッタ系は避け、熱を帯びたが落ち着いた色 */
+    --color-bg: #f9f7f5;
+    --color-card: #ffffff;
+    --color-muted: #5a534e;
+    --space-unit: 8px;
+    --space-section: 96px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-base);
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-size: var(--text-base);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* 各セクションの縦余白は8pxグリッド、ゆったり */
+  section {
+    padding: var(--space-section) 0;
+  }
+
+  /* 見出し: 明朝系で強さと熱を表現 */
+  h1, h2, h3 {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: 1.4;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+
+  /* 冒頭 — 飾らないキャッチ、熱量は言葉で */
+  .hero {
+    padding: 80px 0 64px;
+    text-align: left;
+  }
+
+  .hero .catch {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: 1.5rem;  /* 24px, 比率1.5 */
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    color: var(--color-base);
+  }
+
+  .hero .sub {
+    color: var(--color-muted);
+    font-size: 1rem;
+    max-width: 540px;
+  }
+
+  /* 会社紹介 — シンプルな説明文＋インラインSVG図形 */
+  .intro-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .intro-text {
+    margin-bottom: 8px;
+  }
+
+  .intro-text p + p {
+    margin-top: 16px;
+  }
+
+  /* 働く人の声 — カード */
+  .voice-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 8px;
+  }
+
+  .voice-card {
+    background: var(--color-card);
+    padding: 32px 32px 40px;
+    border-radius: 0;        /* 角丸なし — 飾らない */
+    box-shadow: none;
+    border-left: 4px solid var(--color-accent);
+  }
+
+  .voice-card blockquote {
+    font-style: normal;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .voice-card blockquote::before {
+    content: "“";
+    font-family: "Times New Roman", serif;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: -8px;
+  }
+
+  .voice-card .attribution {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    letter-spacing: 0.03em;
+  }
+
+  /* 大事にしていること — 3つ、余白でリズム */
+  .values-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 8px;
+  }
+
+  .value-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .value-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+  }
+
+  .value-item h3 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .value-item p {
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+
+  /* 応募への導線 */
+  .cta-box {
+    background: var(--color-card);
+    padding: 48px 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .cta-box p {
+    margin-bottom: 32px;
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--color-base);
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 48px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    border: none;
+    transition: background 0.15s;
+  }
+
+  .cta-button:hover {
+    background: var(--color-accent);
+  }
+
+  /* 提出前にひとつ削る: box-shadow, グラデーション背景, アイコン装飾を削除。
+     残ったのは border-left, 引用符, フラットなボタン, シンプルな余白設計。
+     装飾を削ったぶん、言葉と余白で熱を伝える。 */
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 冒頭: 飾らないけど熱意が伝わるキャッチ -->
+  <div class="hero">
+    <div class="catch">「ものづくりの体温」を、<br>もう一度ちゃんと伝えたい。</div>
+    <div class="sub">〈会社名〉は小さなチームです。テンプレートに頼らない仕事を続けています。一緒に、目の前の課題に誠実に向き合う仲間を探しています。</div>
+  </div>
+
+  <!-- 会社の紹介 -->
+  <section>
+    <h2>会社の紹介</h2>
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p>〈会社名〉は2020年に創業した、デザインと技術の小さなスタジオです。Webサイトの制作・ブランディング・UI設計を主軸に、クライアントの「伝えたい」をかたちにしてきました。</p>
+        <p>社員は現在12名。受注量よりも、ひとつひとつの仕事に向き合う時間を大切にしています。毎週のミーティングでは、進行状況だけでなく「この仕事のどこに手応えを感じているか」を必ず共有します。飾らない言葉で、熱量を交換する。そんな場を続けています。</p>
+        <p>〈所在地〉／〈設立年〉／〈代表〉</p>
+      </div>
+      <!-- インラインSVG: シンプルな抽象図形 — 3つの小さな円がつながる -->
+      <div style="text-align: left; margin-top: 8px;">
+        <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="16" cy="16" r="12" stroke="#b85a3a" stroke-width="2" fill="none"/>
+          <circle cx="60" cy="16" r="12" stroke="#1e1e1e" stroke-width="2" fill="none"/>
+          <circle cx="104" cy="16" r="12" stroke="#b85a3a" stroke-width="2" fill="none"/>
+          <line x1="28" y1="16" x2="48" y2="16" stroke="#1e1e1e" stroke-width="1.5"/>
+          <line x1="72" y1="16" x2="92" y2="16" stroke="#1e1e1e" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 働く人の声 -->
+  <section>
+    <h2>働く人の声</h2>
+    <div class="voice-cards">
+      <div class="voice-card">
+        <blockquote>
+          前職は「とにかく量をこなす」文化でした。今は、自分の納得できる線まで追いかけられる。たとえ小さな案件でも、クライアントの本質的な課題を考える時間がもらえるのが嬉しい。
+        </blockquote>
+        <div class="attribution">― デザイナー / 入社3年目 / 〈イニシャル〉</div>
+      </div>
+      <div class="voice-card">
+        <blockquote>
+          代表自らが「わからないことは一緒に調べよう」と言ってくれる。役職や年次で意見が変わることはほとんどありません。熱量のある人ほど、自然と居場所が見つかるチームだと思います。
+        </blockquote>
+        <div class="attribution">― エンジニア / 入社1年目 / 〈イニシャル〉</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 大事にしていること -->
+  <section>
+    <h2>大事にしていること</h2>
+    <div class="values-list">
+      <div class="value-item">
+        <div class="value-icon">
+          <!-- インラインSVG: 小さな家/拠点のイメージ -->
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 16L16 6L28 16V28H4V16Z" stroke="#b85a3a" stroke-width="2" fill="none"/>
+            <rect x="13" y="20" width="6" height="8" fill="#b85a3a" fill-opacity="0.3"/>
+          </svg>
+        </div>
+        <div>
+          <h3>丁寧さを、手放さない</h3>
+          <p>スピードより、納得のいく質。スケジュールと向き合いながらも「これでいいや」で終わらせない。小さなスタジオだからできる、ひとつひとつと真摯に向き合う姿勢を大切にしています。</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">
+          <!-- インラインSVG: 対話の吹き出し -->
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 6H26C27.1 6 28 6.9 28 8V20C28 21.1 27.1 22 26 22H12L8 26V22H6C4.9 22 4 21.1 4 20V8C4 6.9 4.9 6 6 6Z" stroke="#1e1e1e" stroke-width="2" fill="none"/>
+            <line x1="10" y1="12" x2="22" y2="12" stroke="#1e1e1e" stroke-width="2"/>
+            <line x1="10" y1="17" x2="18" y2="17" stroke="#1e1e1e" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <h3>本音で話す</h3>
+          <p>遠回しな言い方はしません。良いと思ったことは認め、違うと思うことは理由を添えて伝える。フラットなコミュニケーションが、結果として仕事の熱を冷まさないと信じています。</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">
+          <!-- インラインSVG: 手のひら / つくるイメージ -->
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="8" y="16" width="6" height="12" rx="1" stroke="#b85a3a" stroke-width="2" fill="none"/>
+            <rect x="18" y="10" width="6" height="18" rx="1" stroke="#b85a3a" stroke-width="2" fill="none"/>
+            <circle cx="16" cy="8" r="4" stroke="#1e1e1e" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div>
+          <h3>つくる責任</h3>
+          <p>私たちが世に出したものに、責任を持ちます。納品で終わりではなく、その先のクライアントの成長やユーザーの体験まで想像する。そこに手を抜かないのが、このスタジオの流儀です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 応募への導線 -->
+  <section style="padding-bottom: 96px;">
+    <div class="cta-box">
+      <p>カジュアルな面談から始めませんか？<br>職種や働き方の詳細は、お会いしてお話ししましょう。</p>
+      <a href="#" class="cta-button">応募・問い合わせ</a>
+      <p style="margin-top: 24px; font-size: 0.875rem; color: var(--color-muted);">〈メールアドレス〉 または フォームより</p>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

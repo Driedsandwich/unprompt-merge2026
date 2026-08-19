@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社紹介 | 〈会社名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 */
+/* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+/* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+/* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+/* GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 */
+
+/* タイポグラフィ設計
+   スケール比率: 1.25 (Major Third)
+   本文: 16px (1rem) / 行間 1.8
+   h2: 2.441rem (39.1px)
+   h3: 1.953rem (31.2px)
+   h4: 1.563rem (25.0px)
+   見出し: rounded 系 = system-ui, 'Segoe UI', Roboto, sans-serif
+   本文: serif 系 = Georgia, 'Times New Roman', serif
+   ※発注内容に書体指定なしのため、本憲章1に従い系統を変えて対にする
+*/
+:root {
+  --bg: #f4efe6;       /* 地色 */
+  --main: #b5673a;     /* 主要色 */
+  --accent: #3c6e52;   /* 強調色 */
+  --text: #2b2622;
+  --text-light: #5a4d40;
+  --white: #ffffff;
+  --radius: 16px;       /* soft */
+  --space-unit: 8px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 全体コンテナ: airy 密度 */
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 24px 128px;
+}
+
+/* 冒頭セクション */
+.hero {
+  text-align: center;
+  margin-bottom: 96px;
+}
+.hero__label {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 4px 16px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+}
+.hero__catch {
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 2.441rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+.hero__lead {
+  font-size: 1.125rem;
+  color: var(--text-light);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* 各セクション */
+section {
+  margin-bottom: 96px;
+}
+.section__title {
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.953rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 40px;
+  position: relative;
+  padding-bottom: 16px;
+}
+.section__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--main);
+  border-radius: 2px;
+}
+
+/* 社員の声カード */
+.voice-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.voice-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(43,38,34,0.06);
+}
+.voice-card__quote {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  margin-bottom: 24px;
+  position: relative;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent);
+}
+.voice-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.voice-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--main), #d48a5a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+.voice-card__name {
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+.voice-card__role {
+  font-size: 0.8125rem;
+  color: var(--text-light);
+}
+
+/* 大事にしていること */
+.value-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.value-item {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px 40px;
+  border: 1px solid rgba(181,103,58,0.15);
+}
+.value-item__heading {
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  color: var(--main);
+}
+.value-item__text {
+  font-size: 0.9375rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+/* ストーリー形式の長文 */
+.story {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--text-light);
+}
+.story p {
+  margin-bottom: 24px;
+}
+.story strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  padding: 64px 0 0;
+  border-top: 1px solid rgba(181,103,58,0.2);
+}
+.cta__text {
+  font-size: 1.125rem;
+  color: var(--text);
+  margin-bottom: 32px;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+}
+.cta__button {
+  display: inline-block;
+  background: var(--main);
+  color: var(--white);
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 16px 48px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.cta__button:hover {
+  background: #9a582d;
+}
+.cta__button:active {
+  transform: scale(0.98);
+}
+.cta__note {
+  margin-top: 16px;
+  font-size: 0.8125rem;
+  color: var(--text-light);
+}
+
+/* 応募先プレースホルダ */
+.contact-placeholder {
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 2px dashed var(--main);
+  font-size: 0.875rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 64px 16px 96px;
+  }
+  .hero__catch {
+    font-size: 1.8rem;
+  }
+  .section__title {
+    font-size: 1.5rem;
+  }
+  .voice-card {
+    padding: 24px;
+  }
+  .value-item {
+    padding: 24px;
+  }
+  .cta__button {
+    padding: 14px 32px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- 冒頭: 認知・興味喚起段階の語りかけ -->
+  <!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+  <div class="hero">
+    <div class="hero__label">はじめての一歩を応援します</div>
+    <h1 class="hero__catch">「私なんて」から、<br>「やってみたい」へ。</h1>
+    <p class="hero__lead">経験不問。ここでは、人と人の距離が近いからこそ、<br>自然と成長できる場所があります。</p>
+  </div>
+
+  <!-- 会社紹介: ストーリー形式の長文 -->
+  <!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+  <section>
+    <h2 class="section__title">〈会社名〉という場所</h2>
+    <div class="story">
+      <p>
+        新卒で入った〈年数〉年前、私は何もわからないままドアを叩きました。
+        パソコンの操作も、敬語の使い方も、社会人の常識すらおぼつかない。
+        そんな私に、先輩はひとこと。「一緒に覚えていこう」。
+      </p>
+      <p>
+        それから毎日、隣の席の〈役職〉が気づくと教えてくれる。
+        ミスをすれば「次はこうしよう」と一緒に考える。
+        怒鳴る声はなく、笑い声が絶えないオフィス。
+        気づけば自分も、誰かの「一緒に」になれる人になりたいと思っていました。
+      </p>
+      <p>
+        〈会社名〉は、事業規模の大きな話より、隣に座る人の顔が見える会社です。
+        未経験から始めた私たちだからこそ、わかる不安がある。
+        その不安を、「一人じゃない」に変えるのが、このチームのやり方です。
+      </p>
+    </div>
+  </section>
+
+  <!-- 社員の生の声中心 -->
+  <!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+  <!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+  <section>
+    <h2 class="section__title">働く人の、本音。</h2>
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="voice-card__quote">
+          「入社3年目、正直こう思ってます。仕事は難しいこともあるけれど、隣で助けてくれる人がいる。それだけで、続けられるんです。」
+        </div>
+        <div class="voice-card__meta">
+          <div class="voice-card__avatar">S</div>
+          <div>
+            <div class="voice-card__name">〈社員名〉</div>
+            <div class="voice-card__role">〈職種〉・入社3年目</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-card__quote">
+          「私が最初に教わったのは、業務知識じゃなくて、『わからないって言っていいんだよ』ということ。それだけで、肩の力が抜けました。」
+        </div>
+        <div class="voice-card__meta">
+          <div class="voice-card__avatar">K</div>
+          <div>
+            <div class="voice-card__name">〈社員名〉</div>
+            <div class="voice-card__role">〈職種〉・入社1年目</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-card__quote">
+          「〈確認: 現場で実際にあった失敗談を1つ〉。その時先輩がかけてくれた言葉が『大丈夫、次は一緒にやろう』でした。チームってそういうものだと初めて思えました。」
+        </div>
+        <div class="voice-card__meta">
+          <div class="voice-card__avatar">M</div>
+          <div>
+            <div class="voice-card__name">〈社員名〉</div>
+            <div class="voice-card__role">〈職種〉・入社2年目</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 大事にしていること -->
+  <section>
+    <h2 class="section__title">私たちが大事にしていること</h2>
+    <div class="value-list">
+      <div class="value-item">
+        <div class="value-item__heading">「わからない」を言える空気</div>
+        <div class="value-item__text">
+          知識やスキルよりも、「今わからない」と素直に言えることを評価します。それが出発点だからです。
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-item__heading">一人で抱え込まない</div>
+        <div class="value-item__text">
+          どんなに小さなことでも、チームで共有します。できないことを責めるのではなく、どうすればできるかを一緒に探します。
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-item__heading">隣の人の顔が見える距離</div>
+        <div class="value-item__text">
+          フルリモートではなく、対話が生まれるオフィス環境。困ったときにすぐ声をかけられる関係が、自然な成長を生みます。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 応募への導線 -->
+  <div class="cta">
+    <p class="cta__text">あなたの「はじめの一歩」を、<br>私たちが迎えます。</p>
+    <a href="#" class="cta__button">エントリーはこちら</a>
+    <p class="cta__note">未経験歓迎 / まずは話を聞いてみたい方もお気軽に</p>
+    <div class="contact-placeholder">
+      〈確認: 会社のメールアドレスまたは応募フォームURL〉
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

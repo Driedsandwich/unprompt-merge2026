@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ラクにするツール 仕様メモ</title>
+<style>
+:root {
+  /* タイプスケール: 本文16px 基準、比率 1.25 */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+  /* 色: 基調(濃紺)+アクセント(琥珀) */
+  --color-primary: #1a2a3a;
+  --color-primary-light: #2a4058;
+  --color-accent: #c8812a;
+  --color-accent-light: #e8a84a;
+  --color-bg: #f9f7f4;
+  --color-text: #2c2c2c;
+  --color-text-light: #6b6b6b;
+  --color-border: #d4cfc8;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  color: var(--color-text);
+  line-height: 1.8;
+}
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 24px 64px;
+}
+/* 見出し: 明朝系 */
+h1, h2, h3 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+}
+h1 {
+  font-size: var(--text-3xl);
+  line-height: 1.3;
+  margin: 0 0 16px;
+}
+h2 {
+  font-size: var(--text-xl);
+  line-height: 1.4;
+  margin: 80px 0 16px;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 8px;
+}
+h3 {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  margin: 40px 0 8px;
+}
+p {
+  font-size: var(--text-base);
+  margin: 0 0 24px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+}
+li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  font-size: var(--text-base);
+}
+li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+.lead {
+  font-size: var(--text-lg);
+  color: var(--color-primary-light);
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+.accent-box {
+  background: #fff;
+  border-left: 4px solid var(--color-accent);
+  padding: 16px 20px;
+  margin: 32px 0;
+  border-radius: 0 4px 4px 0;
+}
+.small-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+  margin-top: 64px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 24px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>経費精算、<br>「あれどこだっけ」を消す</h1>
+<p class="lead">領収書の写真と申請書がバラバラ。<br>
+経理から「番号が違う」と戻ってくる。<br>
+このツールは、それらを一つの流れにまとめるための仕様メモです。</p>
+
+<h2>目的</h2>
+<p>経費精算にかかる1件あたりの操作時間を短くする。特に、<br>
+・領収書を撮ってから申請するまでにファイルが散らかる<br>
+・精算書に手書きで転記する手間<br>
+・経理側の確認・修正のやりとり<br>
+の3点を減らすことを目的とする。</p>
+
+<h2>対象ユーザー</h2>
+<ul>
+  <li>申請者：経費を立て替えた社員（全社員を想定）</li>
+  <li>承認者：申請内容を確認する上長</li>
+  <li>経理担当：申請後に仕訳・支払いを処理するスタッフ</li>
+</ul>
+
+<h2>主要機能</h2>
+<ul>
+  <li><strong>スマホ撮影→即時紐づけ</strong>：アプリまたはWebカメラで領収書を撮ると、自動で日付・金額・項目を読み取り、同じ画面で精算書に反映する。撮った写真は申請までツール内に保持。</li>
+  <li><strong>申請書の自動生成</strong>：読み取ったデータをもとに精算申請書を組み立てる。ユーザーは分類（交通費・交際費など）と備考だけを追加する。</li>
+  <li><strong>申請〜承認〜経理連携</strong>：申請後は承認者に通知が飛び、経理が確認して「OK」「差戻し」を選べる。差戻し時は修正箇所が明確に示される。</li>
+  <li><strong>過去データの検索・再利用</strong>：過去の経費パターンから、同じ行き先や目的をワンタップで呼び出せる。</li>
+</ul>
+
+<h2>画面イメージ（言葉での説明）</h2>
+<p>トップ画面は「新規精算を始める」ボタンと「下書き一覧」「過去の精算」の3ブロック。新規精算を選ぶとカメラ起動画面に遷移し、領収書を枠に収めると自動シャッター。読み取り結果の確認画面で「日付」「金額」「項目（読み取り候補）」が表示され、ユーザーが修正・確定する。確定後は申請書プレビュー画面に移り、分類（プルダウン）と備考（自由記述）を入力、「申請する」で完了。承認者・経理の画面は一覧表形式で、ステータス（未確認・承認済・差戻し中）が色分け表示される。</p>
+
+<h2>使わないと決めたもの</h2>
+<ul>
+  <li>OCRの完全自動化（誤読が発生する前提で、必ず人の確認を入れる）</li>
+  <li>経費の自動仕訳（会計ソフトとの連携は別途検討）</li>
+  <li>交通費の経路検索・ルート自動入力（出張申請とは別ツールのため）</li>
+  <li>モバイルアプリのネイティブ開発（最初はWebアプリで対応）</li>
+</ul>
+
+<div class="accent-box">
+  <p><strong>補足</strong>：このツールは既存のグループウェアや会計システムと連携しない。まずは精算プロセスだけを独立して動かし、慣れてから連携を検討する。また、領収書の原本保管ルールは別途、社内規定に従う。</p>
+</div>
+
+<div class="small-meta">
+  仕様メモ v0.1 — 社内ツール企画担当 作成<br>
+  確定前の検討資料です。実際の開発にあたってはユーザーテストを実施し、詳細を詰める必要があります。
+</div>
+
+</div>
+</body>
+</html>

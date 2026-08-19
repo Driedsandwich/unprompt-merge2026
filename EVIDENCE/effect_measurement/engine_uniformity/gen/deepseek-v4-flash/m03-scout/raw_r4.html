@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+  :root {
+    --base-font-size: 16px;
+    --scale-ratio: 1.25;
+    --h3-size: calc(var(--base-font-size) * var(--scale-ratio));
+    --h2-size: calc(var(--h3-size) * var(--scale-ratio));
+    --body-size: var(--base-font-size);
+    --small-size: calc(var(--base-font-size) / var(--scale-ratio));
+    --color-base: #1a1a2e;
+    --color-accent: #c44536;
+    --color-bg: #f9f6f0;
+    --color-text: #2b2b2b;
+    --color-muted: #6b6b6b;
+    --grid-unit: 8px;
+    --max-width: 720px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: var(--body-size);
+    line-height: 1.8;
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .email-wrapper {
+    max-width: var(--max-width);
+    margin: calc(var(--grid-unit) * 12) auto;
+    padding: calc(var(--grid-unit) * 12) calc(var(--grid-unit) * 8);
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  /* 件名 */
+  .subject {
+    font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", "HGS明朝E", serif;
+    font-size: var(--h3-size);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    padding-bottom: calc(var(--grid-unit) * 2);
+    border-bottom: 1px solid #e0d8cc;
+    margin-bottom: calc(var(--grid-unit) * 6);
+  }
+
+  .subject-label {
+    display: inline-block;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: var(--small-size);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-right: calc(var(--grid-unit) * 2);
+  }
+
+  /* 宛名 */
+  .greeting {
+    font-size: var(--body-size);
+    font-weight: 600;
+    margin-bottom: calc(var(--grid-unit) * 4);
+    line-height: 1.6;
+  }
+
+  /* 段落 */
+  p {
+    margin-bottom: calc(var(--grid-unit) * 4);
+    text-align: justify;
+  }
+
+  /* 強調用 */
+  .highlight {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .accent-box {
+    background-color: var(--color-bg);
+    border-left: 3px solid var(--color-accent);
+    padding: calc(var(--grid-unit) * 4) calc(var(--grid-unit) * 5);
+    margin: calc(var(--grid-unit) * 6) 0;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .accent-box p {
+    margin-bottom: 0;
+    font-size: var(--body-size);
+  }
+
+  /* 次の一歩 */
+  .next-step {
+    margin-top: calc(var(--grid-unit) * 8);
+    padding-top: calc(var(--grid-unit) * 6);
+    border-top: 1px solid #e0d8cc;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: var(--body-size);
+    letter-spacing: 0.06em;
+    padding: calc(var(--grid-unit) * 3) calc(var(--grid-unit) * 8);
+    border-radius: 3px;
+    text-decoration: none;
+    margin-top: calc(var(--grid-unit) * 3);
+    transition: background-color 0.2s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #a8372a;
+  }
+
+  /* 署名 */
+  .signature {
+    margin-top: calc(var(--grid-unit) * 10);
+    font-size: var(--small-size);
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  .signature strong {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .company-name {
+    font-size: var(--body-size);
+    font-weight: 700;
+    color: var(--color-base);
+    margin-top: calc(var(--grid-unit) * 2);
+  }
+
+  @media (max-width: 600px) {
+    .email-wrapper {
+      padding: calc(var(--grid-unit) * 6) calc(var(--grid-unit) * 4);
+      margin: calc(var(--grid-unit) * 6) calc(var(--grid-unit) * 2);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="email-wrapper">
+
+  <div class="subject">
+    <span class="subject-label">件名</span>「失敗してもいい」環境で、3年後どうなりたいですか
+  </div>
+
+  <div class="greeting">
+    〈候補者名〉さん
+  </div>
+
+  <p>
+    初めまして。〈会社名〉の採用担当・佐藤です。
+    あなたのGitHubリポジトリと技術ブログを拝見し、「この人の手で、まだないものをつくってみたい」と強く感じ、ご連絡しました。
+  </p>
+
+  <p>
+    特に〈プロジェクト名・OSS名 or 技術領域〉における設計判断のセンスに、若さを感じさせない芯の強さがありました。これから経験を積めば、必ずチームに大きな価値をもたらす人材になると確信しています。
+  </p>
+
+  <div class="accent-box">
+    <p>
+      <span class="highlight">私たちが若手エンジニアに求めるのは、「完成度」より「挑戦回数」です。</span><br>
+      コードレビューでは「なぜそう書いたか」を必ず聞きます。失敗したらチームで原因を共有し、次に活かす文化があります。あなたの「まだ正解がわからない」という感覚を、私たちは武器だと考えています。
+    </p>
+  </div>
+
+  <p>
+    現在、〈会社名〉では新規プロダクトの立ち上げメンバーを募集しています。技術スタックは〈言語・フレームワーク名など〉が中心ですが、<span class="highlight">「自分はこれで勝負したい」という武器を持っている方ほど、短期間でグッと成長できる環境</span>です。技術顧問には〈有名人 or 分野の専門家〉も名を連ねており、困ったときに相談できる土壌が整っています。
+  </p>
+
+  <p>
+    あなたの「3年後、こんなエンジニアになっていたい」という像を、一度聞かせてもらえませんか。まずは20分のオンラインお茶会からで構いません。堅苦しい面接ではなく、お互いを知る時間にしたいと思っています。
+  </p>
+
+  <div class="next-step">
+    <p style="margin-bottom: 0;">
+      ご興味があれば、以下のボタンから希望日時を3つお知らせください。
+    </p>
+    <a href="#" class="cta-button">日程を選ぶ（所要20分）</a>
+    <p style="margin-top: calc(var(--grid-unit) * 3); font-size: var(--small-size); color: var(--color-muted);">
+      ※このメールに返信いただいても構いません。
+    </p>
+  </div>
+
+  <div class="signature">
+    <div class="company-name">〈会社名〉</div>
+    <strong>佐藤 健一</strong> ｜ 採用・エンジニアリングマネージャー<br>
+    〒〈郵便番号〉〈住所〉<br>
+    TEL: 〈電話番号〉 ｜ Email: 〈メールアドレス〉<br>
+    Web: 〈URL〉
+  </div>
+
+</div>
+</body>
+</html>

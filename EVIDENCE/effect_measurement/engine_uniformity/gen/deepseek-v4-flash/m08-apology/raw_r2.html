@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お詫びメール — 発送遅延</title>
+<style>
+  :root {
+    /* タイプスケール: 本文16pxを基準に major second (1.125) */
+    --text-sm: 0.875rem;      /* 14px */
+    --text-base: 1rem;       /* 16px */
+    --text-lg: 1.125rem;     /* 18px */
+    --text-xl: 1.25rem;      /* 20px */
+    --text-2xl: 1.5rem;      /* 24px */
+    --text-3xl: 1.875rem;    /* 30px */
+    --line-height-relaxed: 1.75;
+    --line-height-normal: 1.5;
+    --grid: 8px;
+    --max-w: 720px;
+    /* 色: 基調は落ち着いた藍鉄色、アクセントに深い朱(誠実さと穏やかさ) */
+    --color-base: #1b2a3f;
+    --color-accent: #b55a3b;
+    --color-bg: #faf9f7;
+    --color-border: #e2ddd6;
+    --color-text-soft: #4c4a47;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    font-family: "Yu Gothic", "游ゴシック", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-size: var(--text-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(var(--grid) * 8) var(--grid) calc(var(--grid) * 12);
+  }
+
+  .email-wrapper {
+    max-width: var(--max-w);
+    width: 100%;
+    background-color: #ffffff;
+    padding: calc(var(--grid) * 10) calc(var(--grid) * 8);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  /* 見出し: 明朝系 (游明朝) + ゴシック本文の対 */
+  h1 {
+    font-family: "Yu Mincho", "游明朝", "Noto Serif JP", serif;
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    margin-bottom: calc(var(--grid) * 2);
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-family: "Yu Mincho", "游明朝", "Noto Serif JP", serif;
+    font-size: var(--text-lg);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--color-base);
+    margin-top: calc(var(--grid) * 8);
+    margin-bottom: calc(var(--grid) * 3);
+    padding-bottom: calc(var(--grid) * 1);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .subject {
+    font-family: "Yu Gothic", "游ゴシック", "Hiragino Sans", sans-serif;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-text-soft);
+    background: #f1efe9;
+    display: inline-block;
+    padding: calc(var(--grid) * 1) calc(var(--grid) * 3);
+    border-radius: 0;
+    margin-bottom: calc(var(--grid) * 6);
+  }
+
+  .greeting {
+    font-size: var(--text-base);
+    margin-bottom: calc(var(--grid) * 4);
+  }
+
+  .greeting-name {
+    font-weight: 600;
+  }
+
+  p {
+    margin-bottom: calc(var(--grid) * 3);
+    max-width: 100%;
+  }
+
+  .text-soft {
+    color: var(--color-text-soft);
+    font-size: var(--text-sm);
+  }
+
+  .accent-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(181, 90, 59, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  .accent-link:hover {
+    border-bottom-color: var(--color-accent);
+  }
+
+  .signature {
+    margin-top: calc(var(--grid) * 8);
+    padding-top: calc(var(--grid) * 4);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-text-soft);
+  }
+
+  .signature strong {
+    font-weight: 600;
+    color: var(--color-base);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: calc(var(--grid) * 6) 0 calc(var(--grid) * 4);
+  }
+
+  /* 装飾は最小限。影・グラデーションなし、アイコンなし、角丸なし */
+  /* 提出前にひとつ削る: 何も足さない、何も引かない — もう削れるものはない */
+
+  @media (max-width: 540px) {
+    .email-wrapper {
+      padding: calc(var(--grid) * 6) calc(var(--grid) * 3);
+    }
+    h1 {
+      font-size: var(--text-xl);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="email-wrapper">
+
+  <!-- 件名 ラベル -->
+  <div class="subject">件名: 〈ご注文商品〉の発送についてお詫びとお知らせ</div>
+
+  <!-- 宛名 -->
+  <p class="greeting"><span class="greeting-name">〈お客様名〉</span> さま</p>
+
+  <!-- お詫びと状況説明: 冒頭は最も特徴的な一点(＝発送遅延の事実と率直なお詫び)から -->
+  <h1>お届けが遅れておりますこと、お詫びいたします。</h1>
+
+  <p>
+    このたびは〈商品名〉をご注文いただき、ありがとうございます。<br>
+    本来であればすでにお手元にお届けしているところ、在庫調整の遅れにより、発送が遅延しております。楽しみにお待ちいただいていたにもかかわらず、ご不便とご心配をおかけしていることを深くお詫び申し上げます。
+  </p>
+
+  <p>
+    現在、出荷準備を最優先で進めております。あらためてのご連絡となり恐れ入りますが、新しいお届け予定は〈新しいお届け予定〉を予定しております。万一、さらなる遅延が生じる場合は、改めてご連絡差し上げます。
+  </p>
+
+  <!-- 今後の対応 -->
+  <h2>今後の対応について</h2>
+  <p>
+    ・〈新しいお届け予定〉までに発送手続きを完了いたします。<br>
+    ・発送完了後、改めて配送状況をお知らせするメールをお送りします。<br>
+    ・ご都合に合わせてキャンセル・配送先変更をご希望の場合は、お手数ですが本メール末尾の窓口までご連絡ください。
+  </p>
+
+  <p>
+    私たちの手配不足が原因で、このような事態を招いてしまいました。いただいたご注文を軽んじるつもりは一切なく、心より責任を感じております。一日も早くお届けできるよう、スタッフ一同対応にあたってまいります。
+  </p>
+
+  <!-- 結び -->
+  <h2>重ねてのお詫びとお願い</h2>
+  <p>
+    お客様にはご迷惑をおかけして申し訳ございません。何かご不明な点がございましたら、下記連絡先までお気軽にお問い合わせください。
+  </p>
+
+  <hr>
+
+  <div class="signature">
+    〈会社名〉　カスタマーサポート<br>
+    〒〈郵便番号〉 〈住所〉<br>
+    TEL: 〈電話番号〉　受付時間: 平日 10:00–17:00<br>
+    メール: <a href="mailto:support@example.com" class="accent-link">support@example.com</a><br>
+    <br>
+    このメールは、ご注文いただいたお客様に自動送信しております。身に覚えのない場合はお手数ですが破棄くださいますようお願いいたします。
+  </div>
+
+</div>
+</body>
+</html>

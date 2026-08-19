@@ -58,8 +58,10 @@ class AiandRunner:
         # kimi-k2.7-code は high のみ対応。誤指定は HTTP 400 で全滅する)
         effort = {"moonshotai/kimi-k3": "low",
                   "moonshotai/kimi-k2.7-code": "high"}.get(model, "none")
+        # k2.7-code は high 固定の推論が出力枠を食う (8000 で打ち切り6件を実測) — 枠を拡げる
+        max_tok = 24000 if model == "moonshotai/kimi-k2.7-code" else 8000
         body = json.dumps({
-            "model": model, "reasoning_effort": effort, "max_tokens": 8000,
+            "model": model, "reasoning_effort": effort, "max_tokens": max_tok,
             "messages": [{"role": "system", "content": system_prompt},
                          {"role": "user", "content": user_prompt}],
         }).encode("utf-8")

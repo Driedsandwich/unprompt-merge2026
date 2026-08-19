@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>返品についてのよくある質問 | 〈ショップ名〉</title>
+<style>
+  /* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+  :root{
+    --bg:#f4f1eb; --main:#5b7b6f; --accent:#c97b4a;
+    --ink:#33383a; --card:#ffffff;
+    /* タイプスケール: 本文16px / 小見出し18px / 見出し24px / 大見出し32px (約1.25・1.5倍) */
+    --fs-body:16px; --fs-sub:18px; --fs-h:24px; --fs-hero:32px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:var(--fs-body); line-height:1.9;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  /* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+  header{padding:96px 0 64px}
+  .label{display:inline-block;background:var(--main);color:#fff;font-size:13px;letter-spacing:.12em;
+    padding:8px 16px;border-radius:24px;margin-bottom:24px}
+  h1{font-size:var(--fs-hero);font-weight:700;letter-spacing:.02em;line-height:1.5;margin-bottom:16px}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lead{color:#5a605f}
+  section{padding:64px 0}
+  h2{font-size:var(--fs-h);font-weight:700;letter-spacing:.03em;margin-bottom:32px;
+    padding-left:16px;border-left:6px solid var(--accent)}
+  /* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+  .cat{margin-bottom:40px}
+  .cat-title{font-size:var(--fs-sub);font-weight:700;color:var(--main);margin-bottom:16px;
+    display:flex;align-items:center;gap:8px}
+  .cat-title::before{content:"";width:24px;height:2px;background:var(--main)}
+  details{background:var(--card);border-radius:16px;margin-bottom:16px;overflow:hidden}
+  summary{list-style:none;cursor:pointer;padding:24px 24px;font-weight:600;
+    display:flex;justify-content:space-between;align-items:center;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--accent);font-size:20px;font-weight:700;flex-shrink:0}
+  details[open] summary::after{content:"−"}
+  .answer{padding:0 24px 24px;color:#4d5352}
+  .answer strong{color:var(--main)}
+  /* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+  .cond{background:var(--card);border-radius:16px;padding:32px}
+  .cond li{list-style:none;padding:16px 0;border-bottom:1px solid #e5e1d8}
+  .cond li:last-child{border-bottom:none}
+  .cond .k{font-weight:700;color:var(--main);margin-right:8px}
+  /* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+  .contact{background:var(--main);border-radius:24px;padding:48px 32px;text-align:center;color:#fff}
+  .contact h2{border:none;padding:0;color:#fff;margin-bottom:16px}
+  .contact p{margin-bottom:24px;opacity:.95}
+  .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    font-weight:700;padding:16px 40px;border-radius:32px;letter-spacing:.05em}
+  footer{padding:48px 0;text-align:center;font-size:13px;color:#8a908e}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="label">返品ガイド</span>
+    <h1>返品できるか知りたい方も、<br>お手続きの途中の方も。<em>ここで解決</em>できます。</h1>
+    <p class="lead">「これは返品できる?」という確認から、「手続きが止まってしまった」という段階まで。よくいただくご質問を目的別に整理し、条件もすべてこのページに明記しました。ゆっくり一緒に確認していきましょう。</p>
+  </header>
+
+  <section aria-label="返品条件">
+    <h2>まず、返品の基本条件</h2>
+    <ul class="cond">
+      <li><span class="k">対象</span>商品到着後〈返品可能日数〉日以内の、未使用・未開封の商品</li>
+      <li><span class="k">期限</span>到着日を含め〈返品可能日数〉日以内にご連絡ください</li>
+      <li><span class="k">送料</span>お客様都合の返品は〈確認: お客様都合時の送料負担の規定〉、初期不良・誤配送は当店負担</li>
+      <li><span class="k">対象外</span>〈確認: 返品不可商品の具体例(セール品・食品など)〉</li>
+    </ul>
+  </section>
+
+  <section aria-label="よくある質問">
+    <h2>よくある質問</h2>
+
+    <div class="cat">
+      <p class="cat-title">返品できるか知りたい</p>
+      <details>
+        <summary>開封してしまった商品は返品できますか?</summary>
+        <p class="answer">未使用であっても開封後の返品は〈確認: 開封後の取り扱い規定〉となります。商品ページの返品可否表示もあわせてご確認ください。迷われる場合は、開封前に一度お問い合わせいただくのが確実です。</p>
+      </details>
+      <details>
+        <summary>イメージと違った・サイズが合わなかった場合は?</summary>
+        <p class="answer">お客様都合の返品は、到着後〈返品可能日数〉日以内・未使用の場合に承ります。この場合の送料は〈確認: お客様都合時の送料負担の規定〉です。</p>
+      </details>
+      <details>
+        <summary>不良品・間違った商品が届きました</summary>
+        <p class="answer">ご迷惑をおかけし申し訳ありません。到着後〈初期不良の受付期間〉日以内にご連絡いただければ、<strong>送料は当店負担</strong>で交換または返金いたします。商品の状態が分かる写真を1枚ご用意いただくと、案内が早くなります。</p>
+      </details>
+    </div>
+
+    <div class="cat">
+      <p class="cat-title">手続きを進めたい</p>
+      <details>
+        <summary>返品の手続きはどう進めますか?</summary>
+        <p class="answer">① お問い合わせフォームから注文番号と返品理由をご連絡 → ② 当店から返送先と手順をメールでご案内 → ③ 案内から〈返送期限〉日以内にご返送 → ④ 商品確認後、〈返金までの目安日数〉日前後で返金、の流れです。</p>
+      </details>
+      <details>
+        <summary>返金はいつ・どの方法で受け取れますか?</summary>
+        <p class="answer">返送品の到着・確認後、お支払い方法と同じ経路で返金します。クレジットカードの場合、締め日の関係で反映に〈確認: カード返金の反映目安〉かかることがあります。</p>
+      </details>
+    </div>
+  </section>
+
+  <section aria-label="お問い合わせ">
+    <div class="contact">
+      <h2>読んでも解決しないときは</h2>
+      <p>条件に当てはまるか分からない、手続きが途中で止まってしまった——そんなときは、考え込まずにお聞かせください。注文番号を添えていただくと、より早くお答えできます。</p>
+      <a class="btn" href="mailto:〈問い合わせ先メールアドレス〉">お問い合わせはこちら</a>
+      <p style="margin-top:16px;font-size:14px;opacity:.85">受付時間:〈サポート受付時間〉 / 電話:〈電話番号〉</p>
+    </div>
+  </section>
+
+  <footer>© 〈ショップ名〉 返品についてのよくある質問</footer>
+</div>
+</body>
+</html>

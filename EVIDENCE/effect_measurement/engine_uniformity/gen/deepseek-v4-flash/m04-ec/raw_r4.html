@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈商品名〉 説明文</title>
+<style>
+/* タイプスケール: 本文 16px を基準に 1.25 倍のモジュラースケール */
+/* 見出し: 明朝系 (游明朝, YakuHanJP, ヒラギノ明朝), 本文: ゴシック系 (游ゴシック, ヒラギノ角ゴ) */
+:root {
+  --text-base: 1rem;
+  --text-small: 0.875rem;
+  --text-lead: 1.125rem;
+  --text-h3: 1.25rem;
+  --text-h2: 1.563rem;
+  --text-h1: 1.953rem;
+  --color-base: #2a2a2a;
+  --color-accent: #b85c3a;  /* 深みのある赤銅色 */
+  --color-bg: #faf8f5;
+  --color-muted: #6b6b6b;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xl: 64px;
+  --spacing-2xl: 96px;
+}
+body {
+  margin: 0;
+  padding: var(--spacing-xl) var(--spacing-md);
+  background: var(--color-bg);
+  color: var(--color-base);
+  font-family: "游ゴシック", "Yu Gothic", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+/* キャッチコピー（h1相当） */
+.catch {
+  font-family: "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: var(--text-h1);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  margin: 0 0 var(--spacing-sm) 0;
+  padding: 0;
+  color: var(--color-base);
+}
+.catch .accent {
+  color: var(--color-accent);
+}
+/* リード文 */
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.8;
+  margin: 0 0 var(--spacing-lg) 0;
+  padding: 0;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+/* 特徴セクション */
+.features {
+  margin-bottom: var(--spacing-xl);
+}
+.feature-item {
+  margin-bottom: var(--spacing-lg);
+}
+.feature-title {
+  font-family: "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: var(--text-h2);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+  margin: 0 0 var(--spacing-sm) 0;
+  padding: 0 0 var(--spacing-xs) 0;
+  border-bottom: 2px solid var(--color-accent);
+  display: inline-block;
+}
+.feature-desc {
+  margin: 0;
+  padding: 0;
+  font-size: var(--text-base);
+  line-height: 1.8;
+}
+/* 仕様・注意 */
+.specs {
+  margin-bottom: var(--spacing-xl);
+  background: #f0ece6;
+  padding: var(--spacing-md);
+  border-radius: 0;
+}
+.specs-title {
+  font-family: "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: var(--text-h3);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-base);
+}
+.specs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.specs-list li {
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1px solid #d6d0c8;
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+.specs-list li:last-child {
+  border-bottom: none;
+}
+.specs-list li::before {
+  content: "— ";
+  color: var(--color-accent);
+}
+/* 締め */
+.closing {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+.closing-text {
+  font-family: "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: var(--text-h3);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--color-base);
+}
+.closing-sub {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+  margin-top: var(--spacing-sm);
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- キャッチコピー -->
+  <h1 class="catch">
+    あなたの「いつもの」が<br>
+    <span class="accent">ほんの少し</span>、豊かになる。
+  </h1>
+
+  <!-- リード文 -->
+  <p class="lead">
+    新しい〈商品名〉は、日常に馴染みながらも、使うたびに心地よさを思い出させる——<br>
+    そんな存在を目指して作りました。素材の質感、手に伝わる重み、長く付き合える設計。<br>
+    何気ない一瞬を、丁寧な時間に変える道具です。
+  </p>
+
+  <!-- 特徴の説明 -->
+  <div class="features">
+    <div class="feature-item">
+      <h2 class="feature-title">手に馴染む、ということ</h2>
+      <p class="feature-desc">
+        形はシンプルに、しかし触れた瞬間に「これだ」と感じる手触りを追求しました。
+        角の丸み、表面の仕上げ、持ったときの重心——すべては使い手の自然な動作に寄り添うために調整されています。
+        使うほどに手に馴染み、自分だけの道具へと変わっていきます。
+      </p>
+    </div>
+    <div class="feature-item">
+      <h2 class="feature-title">見えないところに、丁寧さを</h2>
+      <p class="feature-desc">
+        パーツの接合部、素材の選び方、仕上げの均一さ——普段は目に留まらない部分にこそ、長く使える理由があります。
+        〈商品名〉は、作り手の「当たり前」の基準を上げることで、使い手の「当たり前」の満足度を高めます。
+        壊れにくさ、経年変化の美しさ、修理のしやすさ。そうした「見えない価値」を、あえて声に出して伝えたい。
+      </p>
+    </div>
+  </div>
+
+  <!-- 仕様・注意 -->
+  <div class="specs">
+    <h3 class="specs-title">仕様とお取り扱いについて</h3>
+    <ul class="specs-list">
+      <li>材質：〈素材名〉（本体）／〈素材名〉（付属品）</li>
+      <li>サイズ：約〈数字〉×〈数字〉×〈数字〉mm（本体）</li>
+      <li>重量：約〈数字〉g</li>
+      <li>付属品：専用ケース／取扱説明書</li>
+      <li>色展開：〈色1〉／〈色2〉／〈色3〉</li>
+      <li>ご注意：直射日光や高温多湿の場所での保管は避けてください。お手入れは柔らかい布で乾拭きしてください。</li>
+      <li>保証期間：お買い上げから〈期間〉（自然故障に限る）</li>
+    </ul>
+  </div>
+
+  <!-- 締めの一言 -->
+  <div class="closing">
+    <p class="closing-text">
+      何気ない毎日に、<br>
+      ほんの少しの「丁寧」を。
+    </p>
+    <p class="closing-sub">〈商品名〉——あなたの手に、届く日を楽しみにしています。</p>
+  </div>
+
+</div>
+</body>
+</html>

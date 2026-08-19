@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会 2026 — おしゃべりしながら学ぼう</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け */
+/* GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 */
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+/* GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 */
+/* GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ */
+
+:root {
+  /* タイプスケール: 本文 16px / h2 24px / h1 36px (比率 1.5 の等差数列) */
+  --fs-body: 16px;
+  --fs-h2: 24px;
+  --fs-h1: 36px;
+
+  /* パレット: [地色, 主要色, 強調色] */
+  /* GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 のパレットを採用(3色) */
+  --bg: #fbf4e8;
+  --main: #c97b4a;
+  --accent: #3f6e5b;
+
+  /* カジュアル + 気軽 = 丸み・空気感 */
+  --radius: 24px;
+  --spacing-unit: 8px;
+  --max-width: 640px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.75;
+  color: #2a2a28;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 2);
+}
+
+.page {
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+/* 冒頭: キャッチコピー + イラストSVG (円と点の組み合わせ) */
+/* GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 のため「ふらっとのぞきに来ませんか」のニュアンスを冒頭に */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 3);
+  margin-bottom: calc(var(--spacing-unit) * 14);
+  padding-top: calc(var(--spacing-unit) * 2);
+}
+
+.hero-illust {
+  width: 120px;
+  height: 120px;
+}
+
+.hero-text {
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: var(--fs-h1);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--main);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.hero-text .lead {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #3a3a38;
+}
+
+.hero-text .lead span {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 0 calc(var(--spacing-unit) * 1.5);
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* 各セクション */
+section {
+  margin-bottom: calc(var(--spacing-unit) * 14);
+}
+
+section h2 {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  padding-bottom: calc(var(--spacing-unit) * 1);
+  border-bottom: 3px solid var(--accent);
+  display: inline-block;
+}
+
+/* 日時・場所 — 表形式で密度を高く */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+  background: rgba(255,255,255,0.6);
+  padding: calc(var(--spacing-unit) * 4);
+  border-radius: var(--radius);
+  font-size: 15px;
+}
+
+.schedule-grid dt {
+  font-weight: 600;
+  color: var(--main);
+  white-space: nowrap;
+}
+
+.schedule-grid dd {
+  margin: 0;
+}
+
+/* 内容の説明 */
+.description p {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.description .highlight-box {
+  background: rgba(63, 110, 91, 0.08);
+  padding: calc(var(--spacing-unit) * 4);
+  border-radius: var(--radius);
+  border-left: 5px solid var(--accent);
+  margin: calc(var(--spacing-unit) * 3) 0;
+}
+
+.description .highlight-box p {
+  margin-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.description .highlight-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* 見どころ 3カラム (dense気味) */
+.merits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--spacing-unit) * 3);
+}
+
+@media (max-width: 520px) {
+  .merits {
+    grid-template-columns: 1fr;
+  }
+}
+
+.merit-item {
+  background: rgba(255,255,255,0.7);
+  border-radius: var(--radius);
+  padding: calc(var(--spacing-unit) * 3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.merit-item .emoji {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.merit-item h3 {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--main);
+  letter-spacing: 0.01em;
+}
+
+.merit-item p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 参加方法 */
+.cta-box {
+  background: rgba(255,255,255,0.6);
+  border-radius: var(--radius);
+  padding: calc(var(--spacing-unit) * 5);
+  text-align: center;
+  border: 2px dashed var(--accent);
+}
+
+.cta-box p {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.cta-box .method-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 1.5);
+  align-items: center;
+}
+
+.cta-box .method-list li {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--spacing-unit) * 1);
+  font-size: 15px;
+}
+
+.cta-box .method-list li::before {
+  content: "•";
+  color: var(--main);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  font-size: 13px;
+  color: #8a8578;
+  padding-top: calc(var(--spacing-unit) * 4);
+  border-top: 1px solid rgba(201, 123, 74, 0.25);
+  margin-top: calc(var(--spacing-unit) * 4);
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 冒頭: キャッチコピー + 図形 -->
+  <!-- GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 の「みんなでおしゃべりしながら学ぼう」を冒頭に -->
+  <div class="hero">
+    <svg class="hero-illust" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#c97b4a" stroke-width="2" opacity="0.3"/>
+      <circle cx="60" cy="60" r="36" fill="none" stroke="#3f6e5b" stroke-width="3" opacity="0.4"/>
+      <circle cx="38" cy="44" r="5" fill="#c97b4a"/>
+      <circle cx="78" cy="44" r="5" fill="#c97b4a"/>
+      <circle cx="60" cy="68" r="12" fill="none" stroke="#3f6e5b" stroke-width="2.5" opacity="0.6"/>
+      <circle cx="60" cy="68" r="4" fill="#3f6e5b" opacity="0.4"/>
+      <!-- 小さな点3つ（おしゃべりの泡） -->
+      <circle cx="88" cy="72" r="3" fill="#c97b4a" opacity="0.5"/>
+      <circle cx="92" cy="80" r="2.5" fill="#c97b4a" opacity="0.4"/>
+      <circle cx="86" cy="84" r="2" fill="#c97b4a" opacity="0.3"/>
+    </svg>
+    <div class="hero-text">
+      <h1>秋の社内勉強会</h1>
+      <p class="lead">おしゃべりしながら学ぼう。<br>誰でも <span>ふらっと</span> どうぞ。</p>
+    </div>
+  </div>
+
+  <!-- 日時・場所 -->
+  <section>
+    <h2>日時・場所</h2>
+    <dl class="schedule-grid">
+      <dt>日時</dt>
+      <dd>〈開催日〉 15:00 – 17:00（開場 14:45）</dd>
+      <dt>場所</dt>
+      <dd>〈会場〉（社内 <確認: 会議室名またはフロア>）</dd>
+      <dt>参加対象</dt>
+      <dd>全社員 — 所属・職種は問いません</dd>
+      <dt>参加費</dt>
+      <dd>無料（お菓子・飲み物を少し用意します）</dd>
+    </dl>
+  </section>
+
+  <!-- 内容の説明 -->
+  <section class="description">
+    <h2>内容の説明</h2>
+    <p>
+      この勉強会は「発表を聞いて終わり」ではなく、<strong>知見を共有して会話が広がる</strong>ことを大事にしています。
+      日頃の仕事で気づいたこと、試してみたツールの話、ちょっとした工夫 — そんな話題を<strong>気軽に持ち寄る場</strong>です。
+    </p>
+    <div class="highlight-box">
+      <p><strong>今回のテーマ例（〈確認: 実際のテーマ案を1つ〉）</strong></p>
+      <p>「あの時のあの判断、どうしてそうしたの？」をゆるっと話す時間を予定しています。</p>
+    </div>
+    <p>
+      専門知識は不要。聞くだけの参加も大歓迎です。<br>
+      部署やチームを越えた<strong>ゆるやかな横のつながり</strong>を作るきっかけにしてください。
+    </p>
+  </section>
+
+  <!-- 見どころ -->
+  <section>
+    <h2>見どころ</h2>
+    <div class="merits">
+      <!-- GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 の重点を反映 -->
+      <div class="merit-item">
+        <div class="emoji">💬</div>
+        <h3>ざっくばらん</h3>
+        <p>堅いプレゼンはなし。困りごとや小さな気づきをそのまま話せる空気感。</p>
+      </div>
+      <div class="merit-item">
+        <div class="emoji">🔗</div>
+        <h3>越境</h3>
+        <p>普段話さない人とも、同じテーブルでおしゃべり。新しい発見があるかも。</p>
+      </div>
+      <div class="merit-item">
+        <div class="emoji">🍪</div>
+        <h3>お菓子付き</h3>
+        <p>ちょっとした菓子と飲み物を用意。片手に気軽にどうぞ。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 参加方法 -->
+  <section>
+    <h2>参加方法</h2>
+    <!-- GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ のため申込フォームへの強誘導はしない -->
+    <div class="cta-box">
+      <p>参加希望の方は、以下の方法でお知らせください。</p>
+      <ul class="method-list">
+        <li>社内チャットツールの〈確認: チャンネル名またはグループ名〉に「参加します」と投稿</li>
+        <li>または、〈確認: 担当者のメールアドレスまたは連絡先〉まで一言連絡</li>
+      </ul>
+      <p style="margin-top: calc(var(--spacing-unit) * 2); font-size: 14px; color: #6a6a68;">
+        締切：〈確認: 締切日を設定する場合はここに記入〉<br>
+        飛び入り参加もOKですが、お菓子の準備の都合上、前日までに一言あると嬉しいです。
+      </p>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <p>社内勉強会 運営チーム</p>
+    <p>質問があれば〈確認: 連絡先〉までお気軽にどうぞ。</p>
+  </footer>
+
+</div>
+</body>
+</html>

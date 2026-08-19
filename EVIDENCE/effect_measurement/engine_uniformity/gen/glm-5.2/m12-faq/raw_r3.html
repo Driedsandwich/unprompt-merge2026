@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品についてのよくある質問 | 〈ショップ名〉サポート</title>
+<style>
+  /* タイプスケール: 本文16px基準 / 比率1.250 (Major Third) */
+  :root{
+    --base: 16px;
+    --h1: 2.441rem;   /* 39px */
+    --h2: 1.953rem;   /* 31px */
+    --q: 1.25rem;     /* 20px */
+    --space-s: 8px;
+    --space-m: 16px;
+    --space-l: 32px;
+    --space-xl: 64px;
+    --space-2xl: 96px;
+    /* 基調: 深い墨藍 / アクセント: 藤紫 — 安静と信頼を同時に担う */
+    --ink: #1f2937;
+    --ink-soft: #4b5563;
+    --bg: #f6f5f1;
+    --line: #d6d3cb;
+    --accent: #6b5b95;
+    --accent-soft: #ebe7f0;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    font-size: var(--base);
+    line-height: 1.75;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .container{ max-width: 760px; margin: 0 auto; padding: 0 var(--space-l); }
+
+  /* 冒頭 — 主張としての一言 */
+  header{ padding: var(--space-2xl) 0 var(--space-xl); }
+  .eyebrow{
+    font-size: 0.8125rem;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: var(--space-m);
+  }
+  h1{
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+    margin-bottom: var(--space-m);
+  }
+  .lead{ color: var(--ink-soft); font-size: 1.0625rem; max-width: 38em; }
+
+  /* 安心の一言 */
+  .reassure{
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: var(--space-l);
+    margin: var(--space-xl) 0 var(--space-2xl);
+  }
+  .reassure p{
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  /* セクション見出し */
+  h2{
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h2);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-l);
+    padding-bottom: var(--space-s);
+  }
+
+  /* FAQリスト */
+  .faq-item{
+    border-bottom: 1px solid var(--line);
+    padding: var(--space-l) 0;
+  }
+  .faq-item:first-of-type{ border-top: 1px solid var(--line); }
+  .faq-q{
+    display: flex;
+    gap: var(--space-m);
+    font-size: var(--q);
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: var(--space-s);
+  }
+  .faq-q .num{
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: "Hiragino Sans", system-ui, sans-serif;
+    margin-top: 2px;
+  }
+  .faq-a{ color: var(--ink-soft); padding-left: 44px; }
+
+  /* 連絡導線 */
+  .contact{
+    margin: var(--space-2xl) 0;
+    padding: var(--space-xl) var(--space-l);
+    background: #fff;
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+  .contact h2{ border: none; padding: 0; }
+  .contact p{ color: var(--ink-soft); margin-bottom: var(--space-l); }
+  .btn{
+    display: inline-block;
+    padding: var(--space-m) var(--space-xl);
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .btn:hover{ opacity: 0.85; }
+  .hours{ font-size: 0.875rem; color: var(--ink-soft); margin-top: var(--space-m); }
+
+  footer{ padding: var(--space-xl) 0; text-align: center; font-size: 0.8125rem; color: var(--ink-soft); }
+
+  @media (max-width: 600px){
+    :root{ --space-2xl: 72px; }
+    .faq-a{ padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <p class="eyebrow">サポート / 返品</p>
+    <h1>返品については、 商品が手元に届いてからの8日以内にご連絡ください。</h1>
+    <p class="lead">このページでは、お問い合わせが特に多い返品まわりのご質問を5つにまとめました。お届けした商品に合わせた内容ですので、まずはこちらをご確認ください。</p>
+  </div>
+</header>
+
+<div class="container">
+  <section class="reassure">
+    <p>ご注文いただいた商品が、期待通りに手元に届かなかったとき——そのご心残りを、なるべく早く、こちらで解消します。まずはこのページを読み進めてみてください。</p>
+  </section>
+
+  <section>
+    <h2>よくある5つの質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="num">1</span><span>商品に不具合や破損があった場合、返品できますか。</span></div>
+      <p class="faq-a">はい、返品可能です。お届け時点で破損や不具合があった場合は、商品到着から8日以内にご連絡ください。返品にかかる送料は〈ショップ名〉が負担いたします。商品到着後、確認のうえで交換またはご返金の手続きを進めさせていただきます。</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="num">2</span><span>お客様都合での返品はできますか。</span></div>
+      <p class="faq-a">サイズやご都合によるご返品も承ります。商品到着から8日以内にご連絡ください。ただし、この場合の往復送料はお客様ご負担となります。商品は未使用・未開封の状態でお願いいたします(商品到着後の開封確認はご返品の対象となります)。</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="num">3</span><span>返品の際の手順を教えてください。</span></div>
+      <p class="faq-a">お問い合わせフォームより「返品希望」の旨とご注文番号をお知らせください。折り返し返品用の宛先と手続きのご案内をメールでお送りします。商品の状態が確認でき次第、ご返金の手続きに進みます。特別なお手続き不要でご返送いただけます。</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="num">4</span><span>返金はどのようになりますか。</span></div>
+      <p class="faq-a">ご返金は、ご注文時の支払い方法へのお戻しとなります。クレジットカード決済の場合はクレジットカード会社を経由しての返金、銀行振込の場合は指定口座へのお振込となります。ご返金の時期は、返送商品の到着・確認後、通常5営業日以内です。</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="num">5</span><span>返品できないケースはありますか。</span></div>
+      <p class="faq-a">以下の場合は返品をお受けできかねます。あらかじめご了承ください。・お届けから8日以上経過した場合 ・商品をすでにご使用いただいた場合 ・お客様のもとで傷や汚れが生じた場合 ・一部商品(〈該当商品の例: セール品・食品〉)で事前に返品不可と明記している場合</p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>解決しないときは</h2>
+    <p>このページでお答えできなかった場合は、どうぞお気軽にお問い合わせください。担当者がお一人ずつ、状況に合わせてご案内いたします。</p>
+    <a href="#" class="btn">お問い合わせフォームを開く</a>
+    <p class="hours">受付時間 平日 10:00〜17:00(土日祝除く)</p>
+  </section>
+</div>
+
+<footer>© 〈ショップ名〉 サポート</footer>
+
+</body>
+</html>

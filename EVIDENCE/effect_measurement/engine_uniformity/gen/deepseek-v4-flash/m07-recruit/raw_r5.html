@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用情報 – 会社紹介</title>
+<style>
+  /* タイプスケール: 本文 16px → h3 20px → h2 28px → h1 36px (比率約1.25) */
+  :root {
+    --base: #1a1a1a;
+    --accent: #c44536;
+    --bg: #f7f5f2;
+    --card-bg: #ffffff;
+    --text-muted: #5c5c5c;
+    --border-light: #e0dbd5;
+    font-size: 16px;
+    line-height: 1.7;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    color: var(--base);
+    background: var(--bg);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 720px;
+    width: 100%;
+    padding: 80px 24px 64px;
+  }
+
+  /* ---- セクション余白 8px グリッド ---- */
+  section { margin-bottom: 96px; }
+  section:last-child { margin-bottom: 0; }
+
+  /* ---- 見出し ---- */
+  h1 {
+    font-size: 2.25rem;   /* 36px */
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-family: "Times New Roman", "Noto Serif JP", serif;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-size: 1.75rem;   /* 28px */
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    font-family: "Times New Roman", "Noto Serif JP", serif;
+    margin-bottom: 32px;
+    position: relative;
+    display: inline-block;
+  }
+  h2::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin-top: 12px;
+  }
+
+  h3 {
+    font-size: 1.25rem;   /* 20px */
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  /* ---- リード ---- */
+  .lead {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+
+  /* ---- カード系 ---- */
+  .card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: 0;
+    padding: 32px 32px 28px;
+    border-left: 4px solid var(--accent);
+  }
+
+  .card p {
+    margin-bottom: 8px;
+  }
+  .card p:last-child { margin-bottom: 0; }
+
+  .meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .voice-text {
+    font-style: normal;
+    position: relative;
+    padding-left: 24px;
+  }
+  .voice-text::before {
+    content: "“";
+    position: absolute;
+    left: 0;
+    top: -4px;
+    font-size: 2rem;
+    color: var(--accent);
+    font-family: "Times New Roman", serif;
+    line-height: 1;
+  }
+
+  /* ---- 大事にしていること ---- */
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+  }
+
+  .value-item {
+    border-top: 2px solid var(--border-light);
+    padding-top: 16px;
+  }
+  .value-item h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .value-item p {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+  }
+
+  /* ---- 導線 ---- */
+  .cta-box {
+    background: var(--base);
+    color: #fff;
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .cta-box h2 {
+    color: #fff;
+    margin-bottom: 16px;
+    font-family: "Times New Roman", "Noto Serif JP", serif;
+  }
+  .cta-box h2::after {
+    background: var(--accent);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-box p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+    font-size: 1rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-button {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    padding: 16px 48px;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .cta-button:hover {
+    background: #a83326;
+  }
+
+  /* ---- フッター ---- */
+  .footer-note {
+    margin-top: 64px;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+    padding-top: 32px;
+  }
+
+  /* ---- レスポンシブ ---- */
+  @media (max-width: 480px) {
+    .page { padding: 48px 16px 40px; }
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.375rem; }
+    .values-grid { grid-template-columns: 1fr; gap: 24px; }
+    .card { padding: 24px 20px 20px; }
+    .cta-box { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 冒頭: キャッチと会社紹介 -->
+  <section>
+    <h1>ものづくりの熱量を、<br>ひとつひとつの現場で。</h1>
+    <p class="lead">
+      わたしたち〈会社名〉は、クライアントの課題に真正面から向き合い、<br>
+      丁寧な設計と誠実な納品で信頼を積み重ねてきた小さなスタジオです。<br>
+      規模より質。派手さより、確かさ。
+    </p>
+    <p>
+      設立から〈年数〉年。これまで手がけたプロジェクトは、ウェブ・アプリ・ブランディングと多岐にわたりますが、共通しているのは「依頼主と同じ目線で考える」こと。<br>
+      自分たちが胸を張って納められるものだけを、つくり続けています。
+    </p>
+  </section>
+
+  <!-- 働く人の声 -->
+  <section>
+    <h2>働く人の声</h2>
+    <div class="card-grid">
+      <div class="card">
+        <span class="meta">デザイナー（入社〈年数〉年目）</span>
+        <p class="voice-text">
+          作りっぱなしで終わらないのがこのチームのいいところ。リリース後の改善まで一緒に考えられる環境です。
+        </p>
+      </div>
+      <div class="card">
+        <span class="meta">エンジニア（中途入社〈年数〉年目）</span>
+        <p class="voice-text">
+          自分の意見を聞いてもらえる文化があります。規模が大きくないからこそ、責任ある仕事を早くから任せてもらえます。
+        </p>
+      </div>
+      <div class="card">
+        <span class="meta">プロジェクトマネージャー（フリーランス経由で参画）</span>
+        <p class="voice-text">
+          無理な納期を押し付けない、冷静な関係性が好きです。お互いをリスペクトしながら仕事ができています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 大事にしていること -->
+  <section>
+    <h2>大事にしていること</h2>
+    <div class="values-grid">
+      <div class="value-item">
+        <h3>対話を最後まで</h3>
+        <p>打ち合わせの回数を惜しまない。認識のずれを小さくするために、最初のヒアリングから納品後まで密にコミュニケーションを取ります。</p>
+      </div>
+      <div class="value-item">
+        <h3>無理をしない設計</h3>
+        <p>スケジュールやコストを守れない提案はしません。持続可能な範囲で最高のアウトプットを目指します。</p>
+      </div>
+      <div class="value-item">
+        <h3>属人化しない</h3>
+        <p>誰か一人に依存しないチームづくり。ナレッジを共有し、休みたいときに休める文化を維持しています。</p>
+      </div>
+      <div class="value-item">
+        <h3>「終わり」を大切に</h3>
+        <p>プロジェクトの終わり方にもこだわります。引き継ぎ・振り返り・感謝をきちんと形にする。次の仕事につなげる丁寧さを忘れません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 応募への導線 -->
+  <section>
+    <div class="cta-box">
+      <h2>一緒に働きませんか</h2>
+      <p>飾らないけど、熱意のある方。自分たちの仕事に誇りを持って取り組める方と、じっくり向き合いたいと思っています。</p>
+      <a href="#" class="cta-button">エントリーする</a>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    〈会社名〉 ／ 〈所在地〉 ／ お問い合わせ: 〈メールアドレス〉
+  </div>
+
+</div>
+</body>
+</html>

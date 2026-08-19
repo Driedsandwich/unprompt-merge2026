@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 | 珈琲豆からの贈りもの</title>
+<style>
+/* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+/* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+/* GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 */
+/* GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 */
+/* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 */
+
+:root {
+  /* type scale: base 16px → h1 42px (2.625), h2 32px (2), h3 24px (1.5) */
+  --fs-base: 16px;
+  --fs-h1: 2.625rem;
+  --fs-h2: 2rem;
+  --fs-h3: 1.5rem;
+  --fs-large: 1.125rem;
+  
+  /* palette: [地色, 主要色, 強調色] 高級・洗練版を優先 */
+  --bg: #151312;
+  --main: #2e2823;
+  --accent: #b08d57;
+  
+  --text: #ece6dc;
+  --text-muted: #9c9287;
+  --border: rgba(176, 141, 87, 0.2);
+  
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "MS PMincho", serif;
+  font-size: var(--fs-base);
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 (corner: sharp) */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg);
+  padding: 0 24px;
+}
+
+/* headings: serif, letter-spacing tuned */
+h1, h2, h3, .serif-head {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "MS PMincho", serif;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+/* body text: sans-serif for contrast */
+p, .sans-body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 (airy density) */
+/* 8px grid, airy spacing */
+section {
+  margin: 96px 0;
+}
+
+/* ── hero ── */
+.hero {
+  margin-top: 56px;
+  margin-bottom: 0;
+  text-align: center;
+  position: relative;
+  padding-top: 40px;
+}
+
+.hero::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+  margin: 0 auto 32px;
+}
+
+.hero h1 {
+  font-size: var(--fs-h1);
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.hero .tagline {
+  font-size: var(--fs-large);
+  color: var(--text-muted);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+/* ── story ── */
+.story {
+  padding: 0 8px;
+}
+
+.story h2 {
+  font-size: var(--fs-h2);
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+
+.story p {
+  font-size: var(--fs-base);
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.story p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── commitment ── */
+.commitment {
+  padding: 0 8px;
+}
+
+.commitment h2 {
+  font-size: var(--fs-h2);
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+
+.commitment-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.commit-item {
+  border-left: 2px solid var(--accent);
+  padding-left: 20px;
+}
+
+.commit-item h3 {
+  font-size: var(--fs-h3);
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.commit-item p {
+  font-size: var(--fs-base);
+  color: var(--text);
+}
+
+/* ── lineup ── */
+.lineup {
+  padding: 0 8px;
+}
+
+.lineup h2 {
+  font-size: var(--fs-h2);
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+
+.lineup-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.card {
+  background: var(--main);
+  border-radius: 0; /* sharp per high-end */
+  padding: 32px 24px;
+  position: relative;
+}
+
+/* GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 */
+.card::before {
+  content: "GIFT";
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 2px 8px;
+  border-radius: 0;
+}
+
+.card h3 {
+  font-size: var(--fs-h3);
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.card .origin {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+
+.card p {
+  font-size: var(--fs-base);
+  color: var(--text);
+}
+
+/* ── cta ── */
+.cta {
+  text-align: center;
+  padding: 0 8px 80px;
+}
+
+.cta h2 {
+  font-size: var(--fs-h2);
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.cta p {
+  font-size: var(--fs-large);
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 16px 48px;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "MS PMincho", serif;
+  font-size: var(--fs-large);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: all 0.2s;
+  border-radius: 0; /* sharp */
+}
+
+.cta-button:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ── footer ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0 48px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+footer span {
+  display: block;
+  margin-top: 8px;
+  color: var(--accent);
+}
+
+/* removal: no shadow, no animation, no extra icons (rule #6) */
+</style>
+</head>
+<body>
+
+<!-- hero: 冒頭は最も特徴的な一点「ギフト」を先に言う -->
+<section class="hero">
+  <h1>〈ブランド名〉</h1>
+  <p class="tagline">大切な人へ、珈琲豆という贈りもの。</p>
+  <!-- GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 (tone_sample) -->
+</section>
+
+<!-- story: ブランドの物語 -->
+<section class="story">
+  <h2>一粒からはじまった、物語。</h2>
+  <p>
+    〈年数〉年前、〈地名〉の小さな農園で出会った一粒の珈琲豆。その味わいに衝撃を受けた〈創業者名〉は、焙煎の道へと足を踏み入れました。
+  </p>
+  <p>
+    〈確認: 農園の標高や品種など、具体的なエピソードを1つ〉。その記憶を、焙煎の度に呼び起こす。〈ブランド名〉は、そんな原点を決して忘れません。
+  </p>
+  <p>
+    土と気候と、人が織りなす一杯。そのすべてを、あなたの手元に届けるために。
+  </p>
+</section>
+
+<!-- commitment: 豆へのこだわり -->
+<section class="commitment">
+  <h2>ロースターの矜持。</h2>
+  <div class="commitment-grid">
+    <div class="commit-item">
+      <h3>選ぶ。</h3>
+      <p>毎年、〈産地〉の収穫期に訪れ、自らの舌で味を確かめます。〈確認: 選別の基準や具体的なチェック項目〉。合格した豆だけが、焙煎の工程へ進みます。</p>
+    </div>
+    <div class="commit-item">
+      <h3>焙く。</h3>
+      <p>小さなロースターで、一回の焙煎は〈数値〉グラムが限界。〈確認: 焙煎プロファイルの特徴や、温度・時間のこだわり〉。その豆の個性を最も引き出す曲線を、一本一本描くように。</p>
+    </div>
+    <div class="commit-item">
+      <h3>届ける。</h3>
+      <p>焙煎から〈期間〉以内に、お客様の手元へ。鮮度が命のコーヒーだからこそ、タイミングを逃しません。〈確認: 包装や配送の工夫〉。</p>
+    </div>
+  </div>
+</section>
+
+<!-- lineup: ラインナップ -->
+<section class="lineup">
+  <h2>ラインナップ。</h2>
+  <div class="lineup-cards">
+    <div class="card">
+      <h3>〈ブレンド名 A〉</h3>
+      <p class="origin">〈産地・焙煎度〉</p>
+      <p>〈味わいの特徴：チョコレートのような甘さと、クリーンな後味〉。ギフトに最も選ばれる定番。</p>
+    </div>
+    <div class="card">
+      <h3>〈シングルオリジン B〉</h3>
+      <p class="origin">〈産地・精選方法〉</p>
+      <p>〈味わいの特徴：華やかな酸味とフルーティーなアロマ〉。特別な日の一杯に。</p>
+    </div>
+    <div class="card">
+      <h3>〈ブレンド名 C〉</h3>
+      <p class="origin">深煎り</p>
+      <p>〈味わいの特徴：力強い苦味とコク、スモーキーな余韻〉。ミルクとの相性も格別。</p>
+    </div>
+  </div>
+</section>
+
+<!-- cta: 購入導線 -->
+<section class="cta">
+  <h2>贈りものとして。</h2>
+  <p>
+    大切なあの人に。あるいは、自分自身へのご褒美に。<br>
+    一杯の珈琲が、新しい景色を連れてくる。
+  </p>
+  <a href="#" class="cta-button">オンラインストアで見る</a>
+</section>
+
+<footer>
+  〈ブランド名〉
+  <span>— 珈琲豆からの贈りもの —</span>
+</footer>
+
+</body>
+</html>

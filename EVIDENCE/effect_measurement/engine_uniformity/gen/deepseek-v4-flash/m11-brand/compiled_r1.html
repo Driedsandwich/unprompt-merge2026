@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 | 珈琲豆の贈りもの</title>
+<style>
+/* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+/* GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 */
+/* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+/* GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 */
+/* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 */
+
+:root {
+  /* タイプスケール: 本文 16px / h3 20px / h2 28px / h1 40px (比率 1.25) */
+  --fs-body: 16px;
+  --fs-h3: 1.25rem;
+  --fs-h2: 1.75rem;
+  --fs-h1: 2.5rem;
+  --lh-body: 1.8;
+  --lh-heading: 1.3;
+  --ls-heading: 0.04em;
+  --fw-heading: 400;
+
+  /* パレット: 世界観の方向性 (高級・洗練) を優先し、基底にブランド共感醸成の地色を重ねる */
+  --bg: #f4ece1;
+  --surface: #ffffff;
+  --text-primary: #151312;
+  --text-secondary: #2e2823;
+  --accent: #b08d57;
+  --accent-light: #c98a4b;
+
+  /* 余白 */
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  --radius: 8px;
+  --max-width: 480px;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--fs-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-24);
+}
+
+/* ヒーロー */
+.hero {
+  padding: var(--space-96) 0 var(--space-64);
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-32);
+  background: radial-gradient(circle, var(--accent) 30%, transparent 70%),
+              radial-gradient(circle at 40% 40%, var(--accent-light) 10%, transparent 50%);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.hero__tagline {
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--text-primary);
+  margin-bottom: var(--space-24);
+}
+
+.hero__sub {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-48);
+}
+
+.hero__note {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: var(--space-8);
+  letter-spacing: 0.08em;
+}
+
+/* セクション共通 */
+.section {
+  padding: var(--space-96) 0;
+}
+
+.section--alt {
+  background: var(--surface);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.section__title {
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--text-primary);
+  margin-bottom: var(--space-32);
+}
+
+.section__title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  margin-top: var(--space-16);
+}
+
+/* ブランドの物語 */
+.story {
+  position: relative;
+}
+
+.story__visual {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #2e2823 0%, #5a3e2b 40%, #8a6b4b 100%);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.story__visual svg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.3;
+}
+
+.story__body {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-24);
+}
+
+.story__body p + p {
+  margin-top: var(--space-16);
+}
+
+.story__pullquote {
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.125rem;
+  color: var(--accent);
+  line-height: 1.6;
+  padding: var(--space-24) 0;
+  border-top: 1px solid rgba(176, 141, 87, 0.3);
+  border-bottom: 1px solid rgba(176, 141, 87, 0.3);
+  margin-top: var(--space-32);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* こだわり */
+.craft {
+  display: grid;
+  gap: var(--space-48);
+}
+
+.craft__item {
+  position: relative;
+  padding-left: var(--space-32);
+}
+
+.craft__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.craft__item-title {
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.craft__item-desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+/* ラインナップ */
+.lineup {
+  display: grid;
+  gap: var(--space-32);
+}
+
+.lineup__card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: var(--space-32);
+  text-align: center;
+}
+
+.lineup__card-visual {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--space-16);
+  background: radial-gradient(circle at 50% 60%, #6b4c32 0%, #3a281c 70%, #1c1712 100%);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lineup__card-visual::after {
+  content: "☕";
+  font-size: 2rem;
+  filter: grayscale(1) brightness(1.5);
+}
+
+.lineup__card-name {
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.lineup__card-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-16);
+}
+
+.lineup__card-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  padding: 2px 12px;
+  letter-spacing: 0.05em;
+}
+
+/* 購入導線 */
+.cta {
+  text-align: center;
+  padding: var(--space-64) 0 var(--space-96);
+}
+
+.cta__heading {
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  margin-bottom: var(--space-24);
+}
+
+.cta__text {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-32);
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta__button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  padding: var(--space-16) var(--space-48);
+  border-radius: 40px;
+  transition: background 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.cta__button:hover {
+  background: var(--accent-light);
+}
+
+.cta__note {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-16);
+  opacity: 0.7;
+}
+
+/* フッター */
+.footer {
+  text-align: center;
+  padding: var(--space-32) 0 var(--space-48);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --max-width: 640px;
+    --fs-h1: 3rem;
+    --fs-h2: 2rem;
+  }
+
+  .craft {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-64);
+  }
+
+  .lineup {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .story__visual {
+    height: 280px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- ヒーロー -->
+<!-- GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 -->
+<header class="hero">
+  <div class="hero__tagline">大切な人へ、<br>コーヒー豆という贈りもの。</div>
+  <p class="hero__sub">〈ブランド名〉</p>
+  <span class="hero__note">Specialty Coffee &mdash; 焙煎から届くまで</span>
+</header>
+
+<!-- ブランドの物語 -->
+<!-- GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 -->
+<!-- GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 -->
+<section class="section story">
+  <h2 class="section__title">一粒が、旅をする</h2>
+  <div class="story__visual">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="30" stroke="#b08d57" stroke-width="1.5" fill="none"/>
+      <path d="M25 45 Q40 25 55 45" stroke="#b08d57" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <circle cx="40" cy="40" r="8" fill="#b08d57" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="story__body">
+    <p>〈ブランド名〉のはじまりは、〈産地名〉の小さな農園との出会いでした。標高〈数値〉m、霧が立ち込める斜面で育った一粒のコーヒーチェリー。その甘い果肉の味を忘れられず、私たちは焙煎士としての道を歩み始めました。</p>
+    <p>農園を訪ねては〈年数〉年。土の匂い、収穫のタイミング、精選の工程。現地でしか得られない知恵を、そのまま焙煎の炎に映してきました。私たちが届けたいのは、産地の風景ごと味わえる一杯。ギフトに選ぶあなたの気持ちを、豆の一粒一粒に託します。</p>
+  </div>
+  <div class="story__pullquote">「〈確認: 現地農家の声や具体的なエピソードを1つ〉」</div>
+</section>
+
+<!-- 豆へのこだわり -->
+<section class="section section--alt">
+  <h2 class="section__title">豆に刻まれた、三つの約束</h2>
+  <div class="craft">
+    <!-- GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 -->
+    <div class="craft__item">
+      <h3 class="craft__item-title">選別の眼</h3>
+      <p class="craft__item-desc">生豆の段階で、欠点豆を一粒ずつ手作業で取り除きます。〈ブランド名〉が基準とするのは、SCA  Specialtyグレードのさらに上。納品前に再度ハンドピックを行い、品質を均一に保ちます。</p>
+    </div>
+    <div class="craft__item">
+      <h3 class="craft__item-title">焙煎の設計</h3>
+      <p class="craft__item-desc">産地ごとの特性に合わせたプロファイルを組み、小ロットで焙煎。浅煎りは豆の明るい酸を、深煎りはボディと甘さを引き出します。焙煎から〈日数〉日以内にお届けし、最も香りの立つタイミングを逃しません。</p>
+    </div>
+    <div class="craft__item">
+      <h3 class="craft__item-title">包装の静寂</h3>
+      <p class="craft__item-desc">豆が呼吸するバルブ付きの専用パウチ。外気を遮断し、焙煎したての香りを閉じ込めます。ギフトとしてお届けする際は、のしやメッセージカードにも対応。開封の瞬間まで、その静寂を保ちます。</p>
+    </div>
+    <div class="craft__item">
+      <h3 class="craft__item-title">届ける温度</h3>
+      <p class="craft__item-desc">注文を受けてから焙煎する受注生産制。在庫を置かず、あなたのギフトのタイミングに合わせて焼き上げます。豆の鮮度を最優先し、発送は焙煎から24時間以内。届いたその日が、ベストな飲みごろです。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ラインナップ -->
+<section class="section">
+  <h2 class="section__title">ラインナップ</h2>
+  <div class="lineup">
+    <div class="lineup__card">
+      <div class="lineup__card-visual"></div>
+      <h3 class="lineup__card-name">〈ブレンド名A〉</h3>
+      <p class="lineup__card-desc">〈産地1〉と〈産地2〉を絶妙に配合。贈りものに初めて選ぶ方へ。苦味と甘味のバランスがとれた、安心の一杯。</p>
+      <span class="lineup__card-tag">Medium Roast</span>
+    </div>
+    <div class="lineup__card">
+      <div class="lineup__card-visual"></div>
+      <h3 class="lineup__card-name">〈シングルオリジンB〉</h3>
+      <p class="lineup__card-desc">〈産地名〉の個性をそのまま。フローラルなアロマとクリアな後味。コーヒー好きなあの人への特別な贈りものに。</p>
+      <span class="lineup__card-tag">Light Roast</span>
+    </div>
+    <div class="lineup__card">
+      <div class="lineup__card-visual"></div>
+      <h3 class="lineup__card-name">〈深煎りブレンドC〉</h3>
+      <p class="lineup__card-desc">濃厚なコクとビターチョコレートのような余韻。ミルクとの相性が良く、カフェオレベースにもおすすめ。</p>
+      <span class="lineup__card-tag">Dark Roast</span>
+    </div>
+    <div class="lineup__card">
+      <div class="lineup__card-visual"></div>
+      <h3 class="lineup__card-name">〈デカフェD〉</h3>
+      <p class="lineup__card-desc">カフェインを気にする方へ。水を使った自然な抽出法で、風味を損なわず仕上げました。夜の時間にも。</p>
+      <span class="lineup__card-tag">Decaf</span>
+    </div>
+  </div>
+</section>
+
+<!-- 購入導線 -->
+<section class="cta">
+  <h2 class="cta__heading">あなたの想いを、<br>一杯の物語に。</h2>
+  <p class="cta__text">ギフト包装・のし・メッセージカードは無料。注文を受けてから焙煎し、届けます。</p>
+  <a href="#" class="cta__button">豆を選ぶ</a>
+  <p class="cta__note">初回限定 ギフトセット 〈価格〉（送料無料）</p>
+</section>
+
+<footer class="footer">
+  〈ブランド名〉 &mdash; Specialty Coffee Roaster
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内報 巻頭あいさつ</title>
+<style>
+/* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+/* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+/* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+
+:root {
+  --base: #fdf6ec;       /* 地色（palette[0]） */
+  --primary: #f2a65a;    /* 主要色（palette[1]） */
+  --accent: #5b8c5a;     /* 強調色（palette[2]） */
+  --text-body: #3a2f28;
+  --text-soft: #7a6b5c;
+
+  /* タイプスケール：本文16pxを基準に 1.25倍 */
+  --fs-body: 16px;
+  --fs-lead: 18px;
+  --fs-h2: 22px;
+  --fs-h3: 20px;
+
+  /* 書体：見出し rounded（丸ゴシック系） + 本文 sans */
+  /* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+  /* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+  --font-heading: 'Hiragino Maru Gothic ProN', 'Yu Gothic UI', 'Segoe UI', sans-serif;
+  --font-body: 'Hiragino Sans', 'Yu Gothic', 'Segoe UI', 'Noto Sans JP', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--base);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.85;
+  color: var(--text-body);
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.container {
+  max-width: 720px;
+  width: 100%;
+  background: var(--base);
+  /* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+  /* corner: soft */
+  border-radius: 24px;
+  padding: 64px 48px 72px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+}
+
+/* 冒頭：呼びかけ */
+/* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+.greeting {
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  color: var(--text-body);
+  margin-bottom: 48px;
+  letter-spacing: 0.02em;
+}
+
+.greeting span {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  padding: 2px 14px;
+  border-radius: 20px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* 見出し */
+/* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-body);
+  margin-bottom: 24px;
+  margin-top: 0;
+  line-height: 1.4;
+}
+
+/* リード文（近況・季節話題） */
+/* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+.lead {
+  font-size: var(--fs-body);
+  color: var(--text-soft);
+  line-height: 1.9;
+  margin-bottom: 48px;
+  padding-left: 8px;
+  border-left: 3px solid var(--primary);
+  padding-left: 20px;
+}
+
+/* 本文段落 */
+p {
+  margin-bottom: 24px;
+}
+
+p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* 強調・キーワード */
+strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* 装飾罫 */
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px;
+  margin: 48px 0 40px;
+}
+
+/* 締め */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+.closing {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid #e8dccf;
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+/* 署名 */
+.signature {
+  margin-top: 32px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--text-soft);
+}
+
+.signature strong {
+  color: var(--text-body);
+  font-weight: 600;
+}
+
+/* 画面幅対応 */
+@media (max-width: 600px) {
+  .container {
+    padding: 40px 20px 56px;
+  }
+  .greeting {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- 呼びかけ -->
+<!-- GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 -->
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+<p class="greeting">
+  <span>今月号</span>
+  おつかれさまです、編集部の〈執筆者名〉です。
+</p>
+
+<!-- 見出し -->
+<h2>暑さ、乗り切ってますか？</h2>
+
+<!-- 近況・季節雑談のリード -->
+<!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+<div class="lead">
+  連日うだるような暑さが続いていますね。社内でも「エアコンの効きが部署によって違う」「帰り道の日差しがもう無理」なんて声が聞こえてきます。<br>
+  編集部、実は先週こんなことがありました──
+</div>
+
+<!-- 本文：話題 -->
+<p>
+  お昼時に〈部署名〉の〈確認：部署メンバーの1人〉さんとばったり会って、冷やし中華の話で盛り上がったんです。〈その人の名前〉さんが「週に5日食べてる」と言うので思わず笑ってしまいましたが、よく考えたら自分も同じくらいハマっていることに気づきました。
+</p>
+
+<p>
+  こういう「どうでもいいけど共有するとちょっと嬉しい話」って、部署が違うとなかなか届かないんですよね。〈会社名〉にはいろんなフロアにいろんなチームがいて、それぞれのペースで仕事をしている。当たり前のようで、その“それぞれ”の日常を知る機会って実はそんなに多くないのかも、とふと思いました。
+</p>
+
+<!-- 装飾罫 -->
+<div class="divider"></div>
+
+<!-- 今月の話題 -->
+<!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+<p>
+  そこで今月の社内報では、各部署の「今、これにハマってます」を小さく集めてみました。〈確認：特集ページの有無や名称〉で読めますので、よかったら眺めてみてください。自分と意外に近い趣味を見つけるかもしれませんし、〈確認：他部署の社員の名前やエピソード〉のような“知らなかった一面”に出会えるかもしれません。
+</p>
+
+<p>
+  あ、ちなみに編集部の今のマイブームは〈確認：編集部員の実際のマイブーム1つ〉です。もし共感してくれる人がいたら、ぜひ教えてください。
+</p>
+
+<!-- 締めの一言 -->
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+<div class="closing">
+  今月もそれぞれの場所で、それぞれのペースで。どうぞ無理せず、暑い夏を乗り切っていきましょう。
+</div>
+
+<div class="signature">
+  <strong>〈会社名〉社内報編集部</strong><br>
+  今月の編集担当：〈執筆者名〉
+</div>
+
+</div>
+</body>
+</html>

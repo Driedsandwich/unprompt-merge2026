@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+/* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+:root {
+  --bg: #1a1a24;
+  --main: #5b4fe8;
+  --accent: #3dffc0;
+  --text: #e8e8f0;
+  --text-soft: #b0b0c8;
+  --scale-body: 16px;
+  --scale-subject: 24px;
+  --scale-h2: 13px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+  color: var(--text);
+  line-height: 1.75;
+  padding: 64px 24px;
+}
+
+.mail-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 */
+.subject-line {
+  font-size: var(--scale-subject);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  padding-bottom: 32px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(91, 79, 232, 0.35);
+}
+
+.recipient {
+  font-size: var(--scale-h2);
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+  margin-bottom: 48px;
+}
+
+.body-text {
+  font-size: var(--scale-body);
+  margin-bottom: 32px;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+}
+
+.body-text strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.closing {
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+
+.closing .body-text:last-child {
+  margin-bottom: 0;
+}
+
+.signature {
+  border-top: 1px solid rgba(91, 79, 232, 0.3);
+  padding-top: 32px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text-soft);
+}
+
+.signature strong {
+  color: var(--text);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+</style>
+</head>
+<body>
+<div class="mail-wrap">
+
+<p class="subject-line">コード書く時間、誰にも縛らせない話をしませんか</p>
+
+<p class="recipient">〈候補者名〉さん</p>
+
+<!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+<p class="body-text">はじめまして。〈会社名〉の〈送信者名〉と申します。〈候補者名〉さんのGitHubやQiitaを拝見して、一人のエンジニアとして「この人に話を聞いてみたい」と思ってご連絡しました。</p>
+
+<p class="body-text">いま〈会社名〉では、実務2〜5年目くらいのエンジニアに、次のステップとして<strong>裁量を大きく渡す</strong>というやり方でチームを作っています。アーキテクチャの選定から技術選定まで、現場のエンジニアに判断を任せる文化で動いていて、上から降りてくる仕様書をこなすだけの仕事じゃないと思っています。</p>
+
+<!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+<p class="body-text">〈候補者名〉さんの書いているコードや技術への向き合い方を見て、うちの環境なら自分の裁量で技術に向き合えるんじゃないかと思いました。扱っている技術スタックは〈確認: 募集ポジションの具体的な技術スタック〉あたりで、〈確認: 自社の事業内容を1〜2文で〉をやっています。</p>
+
+<div class="closing">
+<p class="body-text">まずはカジュアルに話しませんか？</p>
+<p class="body-text">募集の押し売りじゃなく、うちが何をやっていてどういう裁量の渡し方をしているか、〈候補者名〉さんの今の悩みややりたいことを聞かせてもらえれば嬉しいです。オンラインで30分くらい、お茶でも飲みながら。</p>
+</div>
+
+<div class="signature">
+<strong>〈送信者名〉</strong>
+〈会社名〉 / 〈部署・役職〉
+Email: 〈メールアドレス〉
+</div>
+
+</div>
+</body>
+</html>

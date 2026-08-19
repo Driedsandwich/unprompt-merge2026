@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+  /* デザインシステム
+     :root
+     --base-font-size: 16px
+     --scale-ratio: 1.25
+     --h2-size: calc(var(--base-font-size) * var(--scale-ratio)) /* 20px */
+     --body-line-height: 1.7
+     --heading-line-height: 1.4
+     --grid: 8px
+
+     書体対:
+     見出し: "Times New Roman", "游明朝", "Yu Mincho", serif (明朝系)
+     本文: "Helvetica Neue", "Arial", "Hiragino Sans", "Yu Gothic", sans-serif (ゴシック系)
+
+     色:
+     基調: #2c2c2c (チャコールグレー)
+     アクセント: #9a7b4f (温かみのあるゴールドブラウン)
+     背景: #fafaf8 (微温い白)
+     罫線: #e3ddd3
+   */
+
+  :root {
+    --base-font-size: 16px;
+    --scale-ratio: 1.25;
+    --h2-size: 1.25rem;
+    --body-line-height: 1.7;
+    --heading-line-height: 1.4;
+    --grid: 8px;
+    --color-base: #2c2c2c;
+    --color-accent: #9a7b4f;
+    --color-bg: #fafaf8;
+    --color-border: #e3ddd3;
+    --color-text-light: #5a5a5a;
+    --font-heading: "Times New Roman", "游明朝", "Yu Mincho", serif;
+    --font-body: "Helvetica Neue", "Arial", "Hiragino Sans", "Yu Gothic", sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--base-font-size);
+    line-height: var(--body-line-height);
+    color: var(--color-base);
+    background-color: #f2efe8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .email-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: calc(var(--grid) * 16) calc(var(--grid) * 6); /* 128px 上下 / 48px 左右 */
+    background-color: var(--color-bg);
+    min-height: 100vh;
+  }
+
+  /* セクション間のゆったり余白 */
+  .subject {
+    margin-bottom: calc(var(--grid) * 12); /* 96px */
+    padding-bottom: calc(var(--grid) * 4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .greeting {
+    margin-bottom: calc(var(--grid) * 10); /* 80px */
+  }
+
+  .apology-section {
+    margin-bottom: calc(var(--grid) * 12);
+  }
+
+  .action-section {
+    margin-bottom: calc(var(--grid) * 12);
+  }
+
+  .closing {
+    margin-top: calc(var(--grid) * 14);
+    padding-top: calc(var(--grid) * 4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* 件名 (冒頭の主張) */
+  .subject-text {
+    font-family: var(--font-heading);
+    font-size: calc(var(--base-font-size) * 1.125); /* 18px */
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-accent);
+    line-height: var(--heading-line-height);
+  }
+
+  .subject-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    margin-bottom: calc(var(--grid) * 1);
+  }
+
+  /* 宛名 */
+  .greeting-name {
+    font-family: var(--font-heading);
+    font-size: var(--h2-size);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: var(--heading-line-height);
+    color: var(--color-base);
+    margin-bottom: calc(var(--grid) * 2);
+  }
+
+  .greeting-text {
+    color: var(--color-text-light);
+    font-size: 0.9375rem;
+  }
+
+  /* 見出し */
+  h2 {
+    font-family: var(--font-heading);
+    font-size: var(--h2-size);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: var(--heading-line-height);
+    color: var(--color-base);
+    margin-bottom: calc(var(--grid) * 3); /* 24px */
+  }
+
+  /* 本文段落 */
+  p {
+    margin-bottom: calc(var(--grid) * 3);
+    font-size: var(--base-font-size);
+    color: var(--color-base);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .text-muted {
+    color: var(--color-text-light);
+    font-size: 0.9375rem;
+  }
+
+  .text-small {
+    font-size: 0.875rem;
+  }
+
+  /* プレースホルダ用スタイル */
+  .placeholder {
+    font-weight: 500;
+    color: var(--color-accent);
+    border-bottom: 1px dashed var(--color-border);
+    padding-bottom: 1px;
+  }
+
+  /* 今後の対応リスト */
+  .action-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 calc(var(--grid) * 4) 0;
+  }
+
+  .action-list li {
+    position: relative;
+    padding-left: calc(var(--grid) * 4); /* 32px */
+    margin-bottom: calc(var(--grid) * 2); /* 16px */
+    line-height: var(--body-line-height);
+    font-size: var(--base-font-size);
+  }
+
+  .action-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 300;
+  }
+
+  /* 結び */
+  .closing-text {
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+    line-height: var(--heading-line-height);
+    color: var(--color-base);
+    margin-bottom: calc(var(--grid) * 2);
+  }
+
+  .closing-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-base);
+  }
+
+  .closing-contact {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    margin-top: calc(var(--grid) * 1);
+  }
+
+  /* サインオフ */
+  .signoff {
+    margin-top: calc(var(--grid) * 6);
+    font-size: 0.9375rem;
+  }
+
+  /* ボーダー微調整 */
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: calc(var(--grid) * 8) 0;
+  }
+
+  /* 応急: アニメーション・影・グラデーション不使用 */
+  /* 提出前に影とグラデーションを削除済み */
+</style>
+</head>
+<body>
+<div class="email-wrapper">
+
+  <!-- 件名: 冒頭の主張 (遅延であること・お詫びであることを最初に) -->
+  <div class="subject">
+    <div class="subject-label">件名</div>
+    <div class="subject-text">
+      〈お客様名〉様 — ご注文の発送が遅れております。心よりお詫び申し上げます。
+    </div>
+  </div>
+
+  <!-- 宛名 + 挨拶 -->
+  <div class="greeting">
+    <div class="greeting-name">
+      〈お客様名〉 様
+    </div>
+    <div class="greeting-text">
+      いつもご愛顧いただき、誠にありがとうございます。
+    </div>
+  </div>
+
+  <!-- お詫びと状況説明 -->
+  <div class="apology-section">
+    <h2>お詫びと状況について</h2>
+    <p>
+      このたびは、〈商品名〉をご注文いただきながら、発送が予定より遅れておりますこと、深くお詫び申し上げます。楽しみにお待ちいただいているところ、ご不便とご心配をおかけしていることを重く受け止めております。
+    </p>
+    <p>
+      現在、出荷体制の一部に想定以上の遅れが生じており、すべてのご注文を通常通りお届けできていない状況です。原因の特定と改善を急ぎ、順次発送を再開しておりますが、現時点ではすべてのお客様に正確な到着日を個別にお伝えできておりません。
+    </p>
+    <p class="text-muted">
+      お手元に届くまで、あとしばらくお時間をいただく見込みです。新しいお届け予定が確定し次第、あらためてご連絡いたします。
+    </p>
+  </div>
+
+  <!-- 今後の対応 -->
+  <div class="action-section">
+    <h2>今後の対応について</h2>
+    <ul class="action-list">
+      <li>発送が完了したご注文から、順次〈新しいお届け予定〉をお知らせいたします。</li>
+      <li>お届け日時の変更やキャンセルをご希望の場合は、お手数ですがサポート窓口までご連絡ください。</li>
+      <li>状況の進展は、メールおよび公式サイトのお知らせで随時お伝えいたします。</li>
+    </ul>
+    <p class="text-small">
+      お客様にはご迷惑をおかけして申し訳ございません。一日も早くお手元にお届けできるよう、スタッフ一同尽力してまいります。
+    </p>
+  </div>
+
+  <!-- 結び -->
+  <div class="closing">
+    <div class="closing-text">
+      引き続きよろしくお願いいたします。
+    </div>
+    <div class="closing-name">
+      〈会社名〉 カスタマーサポート
+    </div>
+    <div class="closing-contact">
+      〒〈郵便番号〉 〈住所〉<br>
+      電話: 〈電話番号〉 ／ メール: 〈メールアドレス〉<br>
+      受付時間: 平日 9:00–18:00
+    </div>
+    <div class="signoff">
+      このメールはご注文いただいたお客様にお送りしています。
+    </div>
+  </div>
+
+  <!-- 提出前にひとつ削る: 装飾的な横罫線（hr）を削除。残った要素はすべて説明可能 -->
+  <!-- 削ったもの: セクション間にあった装飾 hr 1本。なくても構成は成立し、余白だけで区切れている。 -->
+
+</div>
+</body>
+</html>

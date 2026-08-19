@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会 参加者募集中</title>
+<style>
+  /* GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 */
+  /* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+  /* GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 */
+  /* GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け */
+  /* GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ */
+
+  :root {
+    /* 色パレット (GYAKUMON-CHOICE: 文面のトーン = カジュアル のパレットを採用) */
+    --bg: #fff7e8;
+    --main: #ff8a3d;
+    --accent: #2ec4b6;
+    --text: #3d2e1e;
+    --text-light: #7a6b5c;
+    --border: #f0dcc8;
+
+    /* タイプスケール (body 16px 基準) */
+    /* h1: 2.5rem (40px) / h2: 1.75rem (28px) / h3: 1.25rem (20px) / body: 1rem (16px) / small: 0.875rem (14px) */
+    --ratio: 1.25;
+    --fs-body: 1rem;
+    --fs-h3: calc(var(--fs-body) * var(--ratio)); /* 1.25rem */
+    --fs-h2: calc(var(--fs-h3) * var(--ratio));   /* 1.5625rem → 1.75rem */
+    --fs-h1: calc(var(--fs-h2) * var(--ratio));   /* 2.1875rem → 2.5rem */
+    --fs-small: 0.875rem;
+
+    /* 行間 */
+    --lh-body: 1.7;
+    --lh-heading: 1.2;
+
+    /* 8pxグリッド */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
+    --space-14: 112px;
+
+    /* 密度 dense → 余白はややコンパクト */
+    --section-py: var(--space-8);
+    --section-px: var(--space-4);
+    --gap: var(--space-3);
+
+    --radius: 16px; /* GYAKUMON-CHOICE: corner = soft */
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+    padding: var(--space-2);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(61, 46, 30, 0.06);
+  }
+
+  /* ---- hero ---- */
+  .hero {
+    background: linear-gradient(135deg, var(--main) 0%, #ffa05e 60%, var(--accent) 100%);
+    padding: var(--space-8) var(--space-4) var(--space-6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .hero-label {
+    font-size: var(--fs-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: var(--space-2);
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 14px;
+    border-radius: 999px;
+  }
+
+  .hero h1 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+    font-size: var(--fs-h1);
+    line-height: var(--lh-heading);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: var(--space-3);
+    max-width: 80%;
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    max-width: 70%;
+  }
+
+  /* ---- sections ---- */
+  section {
+    padding: var(--section-py) var(--section-px);
+  }
+
+  section + section {
+    border-top: 1px solid var(--border);
+  }
+
+  h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-heading);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 3px solid var(--main);
+    display: inline-block;
+  }
+
+  h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-heading);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-1);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: var(--space-2) var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .info-grid dt {
+    font-weight: 600;
+    color: var(--main);
+    font-size: var(--fs-small);
+    letter-spacing: 0.04em;
+  }
+
+  .info-grid dd {
+    color: var(--text);
+  }
+
+  .desc-list {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .desc-item {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+  }
+
+  .desc-item h3 {
+    color: var(--main);
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-1);
+  }
+
+  .desc-item p {
+    font-size: var(--fs-body);
+    color: var(--text);
+    line-height: var(--lh-body);
+  }
+
+  .highlight {
+    background: linear-gradient(135deg, rgba(46, 196, 182, 0.12), rgba(255, 138, 61, 0.08));
+    border-left: 4px solid var(--accent);
+    padding: var(--space-3);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: var(--space-4) 0;
+  }
+
+  .highlight h3 {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .method-box {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+
+  .method-box .emoji-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .method-box .method-text {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .method-box .method-text p {
+    font-size: var(--fs-body);
+    color: var(--text);
+  }
+
+  .method-box .method-text small {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--fs-small);
+    color: var(--text-light);
+  }
+
+  .footer-note {
+    background: var(--bg);
+    padding: var(--space-3) var(--space-4);
+    text-align: center;
+    font-size: var(--fs-small);
+    color: var(--text-light);
+    border-top: 1px solid var(--border);
+  }
+
+  /* 8pxグリッド補正 */
+  .mt-1 { margin-top: var(--space-1); }
+  .mt-2 { margin-top: var(--space-2); }
+  .mt-3 { margin-top: var(--space-3); }
+  .mb-2 { margin-bottom: var(--space-2); }
+
+  @media (max-width: 520px) {
+    :root {
+      --fs-h1: 1.75rem;
+      --fs-h2: 1.375rem;
+      --fs-h3: 1.125rem;
+      --section-py: var(--space-6);
+      --section-px: var(--space-3);
+    }
+    .hero p {
+      max-width: 100%;
+    }
+    .hero h1 {
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 -->
+  <!-- GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 -->
+  <header class="hero">
+    <span class="hero-label">🍂 秋の社内勉強会</span>
+    <h1>おしゃべりしながら<br>学び合う、秋の夜。</h1>
+    <p>全社員集合。知ってることをシェアして、新しい話を聞いて、いつもよりちょっと深くつながる夜にしませんか。</p>
+  </header>
+
+  <!-- GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け -->
+  <!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+  <section>
+    <h2>📅 開催概要</h2>
+    <dl class="info-grid">
+      <dt>日時</dt>
+      <dd>〈開催日〉 18:00 〜 20:00（開場 17:45）</dd>
+      <dt>場所</dt>
+      <dd>〈会場〉 / オンライン併用（参加者にURLを送付）</dd>
+      <dt>対象</dt>
+      <dd>全社員（部署・役職不問）</dd>
+      <dt>参加費</dt>
+      <dd>無料（軽食・お菓子あり🍪）</dd>
+    </dl>
+    <p style="font-size:var(--fs-small); color:var(--text-light);">※参加者数把握のため、お手数ですが事前登録をお願いします。</p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 -->
+  <section>
+    <h2>📖 この勉強会でやること</h2>
+    <div class="desc-list">
+      <div class="desc-item">
+        <h3>🗣️ ライトニングトーク（5分×4本）</h3>
+        <p>社員が「最近これ知った」「これやってみた」を短く話します。テーマは仕事のことから趣味のことまで。聞くだけ参加も大歓迎。発表者も募集中！</p>
+      </div>
+      <div class="desc-item">
+        <h3>💬 グループおしゃべりタイム</h3>
+        <p>4〜5人のグループに分かれて、「最近ハマっていること」「こんな方法どう？」をざっくばらんに話す時間。強制はなし、聞き専もありです。</p>
+      </div>
+      <div class="desc-item">
+        <h3>🍻 交流会（軽食付き）</h3>
+        <p>勉強会のあとは、立食形式でゆるっと交流。普段話さない人とも、お菓子片手に話すきっかけに。途中退出OK。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 -->
+  <section>
+    <h2>✨ 見どころ</h2>
+    <div class="highlight">
+      <h3>「知らなかった」が見つかる夜</h3>
+      <p>他の部署が何を考えているのか、あの人実はこんなことやってたんだ——。普段の業務では見えない「となり」の知見が、自然と耳に入ってくるのがこの勉強会のいいところ。堅苦しい発表じゃないから、気になったらその場で「それどうやるの？」って聞けます。</p>
+    </div>
+    <p style="margin-top:var(--space-3);">〈確認: 現場で実際にあった失敗談を1つ〉も飛び出すかも？ 詳しくは当日のお楽しみに。</p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ -->
+  <!-- GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 -->
+  <section>
+    <h2>✋ 参加方法</h2>
+    <div class="method-box">
+      <div class="emoji-icon">📩</div>
+      <div class="method-text">
+        <p>社内ポータル「〈ポータル名〉」のイベントページから申し込みフォームにアクセスしてください。</p>
+        <small>〆切: 〈申込締切日〉 まで<br>オンライン参加の方は、前日までに参加URLをお送りします。</small>
+      </div>
+    </div>
+    <p style="margin-top:var(--space-3); font-size:var(--fs-small); color:var(--text-light);">
+      「当日急に参加できそう！」という方も、事前に登録しておくとスムーズです。
+    </p>
+  </section>
+
+  <div class="footer-note">
+    🍂 ふらっと立ち寄る感覚で、ぜひ。<br>
+    主催: 〈社内イベント運営チーム〉 ｜ 問い合わせ: 〈メールアドレス〉
+  </div>
+
+</div>
+
+</body>
+</html>

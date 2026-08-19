@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品のご案内</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+/* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 */
+/* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+/* GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+
+/* タイプスケール: 本文16px / h2 24px / h1 32px / キャッチ 36px (比率 1:1.5:2:2.25) */
+:root {
+  --base-font-size: 16px;
+  --h2-size: 1.5rem;
+  --h1-size: 2rem;
+  --catch-size: 2.25rem;
+  /* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+  --bg: #f4f5f7;
+  /* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+  --main: #1f2a44;
+  /* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+  --accent: #3d5a80;
+  --text: #1b1f26;
+  --light-text: #f4f5f7;
+  --white: #ffffff;
+  --radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+  font-size: var(--base-font-size);
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 32px 80px;
+}
+
+/* キャッチコピー */
+.catch {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+  font-size: var(--catch-size);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  color: var(--main);
+  margin-bottom: 24px;
+}
+
+/* リード文 */
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: var(--text);
+  margin-bottom: 64px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid var(--accent);
+}
+
+/* 特徴セクション */
+.features {
+  margin-bottom: 80px;
+}
+
+.features h2 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+  font-size: var(--h2-size);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  color: var(--main);
+  margin-bottom: 40px;
+}
+
+.feature-item {
+  margin-bottom: 48px;
+}
+
+.feature-item:last-child {
+  margin-bottom: 0;
+}
+
+.feature-item h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.feature-item p {
+  line-height: 1.9;
+}
+
+/* 仕様・注意 */
+.specs {
+  margin-bottom: 72px;
+  padding: 40px 32px;
+  background: var(--white);
+  border-radius: var(--radius);
+}
+
+.specs h2 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+  font-size: var(--h2-size);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  color: var(--main);
+  margin-bottom: 24px;
+}
+
+.specs dl {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px 24px;
+  line-height: 1.7;
+}
+
+.specs dt {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.specs dd {
+  margin: 0;
+}
+
+.specs .note {
+  grid-column: 1 / -1;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #d0d5dd;
+  font-size: 0.9rem;
+  color: #5f6b7a;
+}
+
+/* 締めの一言 */
+.closing {
+  text-align: center;
+  padding-top: 32px;
+}
+
+.closing p {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: var(--main);
+}
+
+.closing .cta {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 14px 48px;
+  background: var(--main);
+  color: var(--light-text);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+}
+
+.closing .cta:hover {
+  background: var(--accent);
+}
+
+@media (max-width: 540px) {
+  .wrapper {
+    padding: 64px 20px 56px;
+  }
+  .catch {
+    font-size: 1.75rem;
+  }
+  .specs {
+    padding: 28px 20px;
+  }
+  .specs dl {
+    grid-template-columns: 1fr;
+    gap: 4px 0;
+  }
+  .specs dt {
+    margin-top: 12px;
+  }
+  .specs dt:first-of-type {
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+<p class="catch">はじめて手にしたときの、<br>小さな高揚がそこにある。</p>
+
+<!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+<p class="lead">
+この度、新しい〈商品名〉が誕生いたしました。日々の暮らしの中で、何気なく過ごしてしまいがちな一瞬を、少しだけ特別なものに変える。そんな体験を、あなたにお届けしたくて、〈年数〉の歳月をかけて開発を重ねてまいりました。スペックだけでは伝えきれない、触れたときの感触、使い込むほどに育まれる味わい——。まずはその世界に、足を踏み入れてみてください。
+</p>
+
+<!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+<!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+<section class="features">
+  <h2>── 使い手の日常に溶け込む、三つの約束</h2>
+
+  <div class="feature-item">
+    <h3>1. 触れるたびに、心がほどける</h3>
+    <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+    <p>表面の〈素材名〉は、指先に吸い付くような滑らかさを持ちます。使い始めの硬さが少しずつ手になじみ、やがて自分だけの風合いへと変わっていく。その変化を楽しむことこそ、この商品の本質です。〈確認: 素材に触れたときの具体的な印象や、使い込むうちに生まれる変化の例〉</p>
+  </div>
+
+  <div class="feature-item">
+    <h3>2. 静かな主張が、空間を整える</h3>
+    <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+    <p>主張しすぎない、それでいて確かに存在する。〈色名〉の落ち着いた色味と、柔らかな曲線は、置く場所を選びません。リビングのテーブルに、書斎の棚の上に。あなたの暮らしに自然と溶け込み、毎日をそっと引き締めてくれます。</p>
+  </div>
+
+  <div class="feature-item">
+    <h3>3. 使い手の工夫が、新たな価値を生む</h3>
+    <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+    <p>付属の〈アクセサリー名〉は、本体と組み合わせることで可能性が広がります。例えば、〈具体的な使い方の例1〉として。あるいは、〈具体的な使い方の例2〉として。あなた自身のアイデアで、この商品の新しい表情を見つけてください。〈確認: ユーザーが実際に工夫して使った事例や、想定外の使い方のアイデア〉</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+<!-- GYAKUMON-CHOICE: 文体・トーン = フォーマル -->
+<section class="specs">
+  <h2>商品仕様・ご注意</h2>
+  <dl>
+    <dt>商品名</dt>
+    <dd>〈商品名〉</dd>
+    <dt>サイズ</dt>
+    <dd>〈幅〉×〈奥行〉×〈高さ〉mm</dd>
+    <dt>重量</dt>
+    <dd>〈重量〉g</dd>
+    <dt>素材</dt>
+    <dd>〈素材名〉（本体）、〈素材名〉（付属品）</dd>
+    <dt>生産国</dt>
+    <dd>〈国名〉</dd>
+    <dt class="note">ご注意</dt>
+    <dd class="note">直射日光の当たる場所や高温多湿の場所でのご使用は避けてください。素材の性質上、経年変化により色味や風合いが変わることがございます。予めご了承ください。お手入れ方法の詳細は、同梱の取扱説明書をご参照ください。</dd>
+  </dl>
+</section>
+
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+<div class="closing">
+  <p>新しい相棒が、あなたの毎日を<br>少しだけ豊かにしてくれることを願って。</p>
+  <!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+  <a href="#" class="cta">詳しく見る</a>
+</div>
+
+</div>
+</body>
+</html>

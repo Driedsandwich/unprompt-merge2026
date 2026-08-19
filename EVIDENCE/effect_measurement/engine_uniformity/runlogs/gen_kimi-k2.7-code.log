@@ -1,0 +1,24 @@
+  [kimi-k2.7-code m01-lp raw r1] 7728B
+  [kimi-k2.7-code m01-lp compiled r1] 失敗: 成果物生成に2回失敗: attempt1: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 / attempt2: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 — スキップ(再実行可)
+  [kimi-k2.7-code m02-event raw r1] 4818B
+  [kimi-k2.7-code m02-event compiled r1] 3506B
+  [kimi-k2.7-code m03-scout raw r1] 3279B
+  [kimi-k2.7-code m03-scout compiled r1] 2873B
+  [kimi-k2.7-code m04-ec raw r1] 2792B
+  [kimi-k2.7-code m04-ec compiled r1] 3988B
+  [kimi-k2.7-code m05-portfolio raw r1] 4419B
+  [kimi-k2.7-code m05-portfolio compiled r1] 4461B
+  [kimi-k2.7-code m06-news raw r1] 2063B
+  [kimi-k2.7-code m06-news compiled r1] 失敗: 成果物生成に2回失敗: attempt1: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 / attempt2: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 — スキップ(再実行可)
+  [kimi-k2.7-code m07-recruit raw r1] 4534B
+  [kimi-k2.7-code m07-recruit compiled r1] 4124B
+  [kimi-k2.7-code m08-apology raw r1] 3181B
+  [kimi-k2.7-code m08-apology compiled r1] 失敗: 成果物生成に2回失敗: attempt1: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 / attempt2: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 — スキップ(再実行可)
+  [kimi-k2.7-code m09-spec raw r1] 2576B
+  [kimi-k2.7-code m09-spec compiled r1] 失敗: 成果物生成に2回失敗: attempt1: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 / attempt2: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 — スキップ(再実行可)
+  [kimi-k2.7-code m10-invite raw r1] 2352B
+  [kimi-k2.7-code m10-invite compiled r1] 2236B
+  [kimi-k2.7-code m11-brand raw r1] 4597B
+  [kimi-k2.7-code m11-brand compiled r1] 4921B
+  [kimi-k2.7-code m12-faq raw r1] 失敗: 成果物生成に2回失敗: attempt1: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 / attempt2: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 — スキップ(再実行可)
+  [kimi-k2.7-code m12-faq compiled r1] 失敗: 成果物生成に2回失敗: attempt1: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 / attempt2: 呼び出し失敗 出力打ち切り (max_tokens) / max_tokens を上げて再実行 — スキップ(再実行可)

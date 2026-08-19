@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+/* GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 */
+/* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 */
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+/* GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 */
+/* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+
+:root {
+  --base-size: 15px;
+  --h1-size: 1.6rem;   /* 本文に対する見出し比率 */
+  --h2-size: 1.13rem;
+  --label-size: 0.8rem;
+  /* palette: [地色, 主要色, 強調色] */
+  --c-bg: #1a1a24;
+  --c-primary: #5b4fe8;
+  --c-accent: #3dffc0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--c-bg);
+  color: #e4e4ea;
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  font-size: var(--base-size);
+  line-height: 1.95;
+  -webkit-font-smoothing: antialiased;
+  padding: 64px 24px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+/* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+.subject {
+  font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  font-size: var(--h1-size);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--c-accent);
+  margin-bottom: 48px;
+  line-height: 1.5;
+}
+
+.label {
+  font-size: var(--label-size);
+  letter-spacing: 0.18em;
+  color: var(--c-primary);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.addressee {
+  /* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+  font-size: var(--base-size);
+  color: #b0b0b8;
+  margin-bottom: 56px;
+  line-height: 1.7;
+}
+
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+.body p {
+  margin-bottom: 28px;
+}
+
+.body strong {
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 */
+.cta {
+  margin-top: 56px;
+  margin-bottom: 56px;
+  padding-left: 16px;
+  border-left: 3px solid var(--c-primary);
+}
+
+.cta p {
+  font-size: var(--h2-size);
+  color: #e4e4ea;
+  line-height: 1.7;
+}
+
+.signature {
+  border-top: 1px solid #2e2e38;
+  padding-top: 32px;
+  font-size: 0.87rem;
+  color: #90909a;
+  line-height: 1.85;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+<!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+<p class="label">件名</p>
+<h1 class="subject">コード書く時間、誰にも縛らせたくない？ — 〈候補者名〉さんへ</h1>
+
+<!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+<div class="addressee">
+〈候補者名〉さん<br>
+突然のメールごめんなさい。<br>
+〈会社名〉の〈送信者名〉と申します。
+</div>
+
+<div class="body">
+<!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+<p>〈候補者名〉さんのポートフォリオと公開コードを読ませてもらいました。実務を重ねてきた分だけ、「自分の判断で動ける場所」がそろそろ欲しくなってくる時期かなと感じています。</p>
+
+<!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+<p>うちは小さく動く組織で、設計から技術選定まで現場の裁量に任せています。承認のための会議よりコード書いてる時間を増やしたい、という人には居心地がいいはずです。〈確認: 現場でエンジニアが裁量を行使している具体例〉</p>
+
+<!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+<p>詳しい業務内容や〈確認: 技術スタックの具体的な内訳〉は、まずはカジュアルにお話しさせてもらえませんか。面接っぽい堅さはなしで。</p>
+</div>
+
+<!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+<div class="cta">
+<p>よければ、ライトな雑談から始めませんか？</p>
+</div>
+
+<!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+<div class="signature">
+〈会社名〉<br>
+〈部署名〉〈送信者名〉<br>
+〈メールアドレス〉
+</div>
+
+</div>
+</body>
+</html>

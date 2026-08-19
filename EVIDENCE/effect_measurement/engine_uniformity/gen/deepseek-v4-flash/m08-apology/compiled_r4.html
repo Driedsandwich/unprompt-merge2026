@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+  /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け */
+  /* GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない */
+  /* GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 */
+  /* GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す */
+
+  :root {
+    --scale-ratio: 1.25;
+    --body-size: 15px;
+    --h3-size: calc(var(--body-size) * var(--scale-ratio));       /* 18.75px */
+    --h2-size: calc(var(--body-size) * var(--scale-ratio) * var(--scale-ratio)); /* 23.44px */
+    --h1-size: calc(var(--body-size) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio)); /* 29.30px */
+    --small-size: 13px;
+
+    /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け */
+    --bg: #fff7f0;
+    --main: #e8825c;
+    --accent: #f2b79a;
+
+    --text: #3a2e2a;
+    --text-soft: #6b5b55;
+
+    --font-heading: 'Hiragino Maru Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+    --font-body: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #f2ece6;
+    font-family: var(--font-body);
+    font-size: var(--body-size);
+    line-height: 1.85;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--bg);
+    border-radius: 24px; /* GYAKUMON-CHOICE: 謝罪の宛先 = 個人客向け (corner: soft) */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    overflow: hidden;
+  }
+
+  .inner {
+    padding: 64px 56px 96px 56px;
+  }
+
+  /* ---- subject line (件名) ---- */
+  .subject {
+    font-family: var(--font-heading);
+    font-size: var(--h1-size);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--main);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .subject-small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--small-size);
+    font-weight: 400;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+    margin-top: 4px;
+  }
+
+  /* ---- hr 装飾 ---- */
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 32px 0 40px 0;
+  }
+
+  /* ---- 宛名 ---- */
+  .greeting {
+    margin-bottom: 32px;
+  }
+
+  .greeting p {
+    font-size: var(--body-size);
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .greeting .name-placeholder {
+    font-weight: 600;
+  }
+
+  /* ---- 本文セクション ---- */
+  .body-text p {
+    margin-bottom: 24px;
+    font-size: var(--body-size);
+    line-height: 1.85;
+    color: var(--text);
+  }
+
+  .body-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ---- 今後の対応 (日付目安) ---- */
+  .estimate-box {
+    background: rgba(232, 130, 92, 0.06);
+    border-left: 4px solid var(--main);
+    padding: 24px 28px;
+    margin: 32px 0 32px 0;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .estimate-box p {
+    font-size: var(--body-size);
+    line-height: 1.8;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .estimate-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .estimate-date {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: var(--h3-size);
+    font-weight: 700;
+    color: var(--main);
+    letter-spacing: 0.03em;
+    background: rgba(232, 130, 92, 0.08);
+    padding: 2px 12px;
+    border-radius: 6px;
+  }
+
+  /* ---- 結び ---- */
+  .closing {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(232, 130, 92, 0.2);
+  }
+
+  .closing p {
+    font-size: var(--body-size);
+    line-height: 1.8;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+  }
+
+  .closing .signature {
+    margin-top: 24px;
+    font-family: var(--font-heading);
+    font-size: var(--body-size);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .closing .contact-note {
+    font-size: var(--small-size);
+    color: var(--text-soft);
+    margin-top: 16px;
+  }
+
+  /* ---- レスポンシブ ---- */
+  @media (max-width: 560px) {
+    .inner {
+      padding: 40px 24px 64px 24px;
+    }
+    :root {
+      --body-size: 14px;
+      --h1-size: 22px;
+      --h3-size: 17px;
+    }
+    .estimate-box {
+      padding: 20px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="inner">
+
+    <!-- 件名 -->
+    <div class="subject">
+      発送遅延のお詫び
+      <span class="subject-small">お荷物、もう少しだけお待ちください</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 宛名 -->
+    <div class="greeting">
+      <p><span class="name-placeholder">〈お客様名〉</span> さま</p>
+    </div>
+
+    <!-- 本文 -->
+    <div class="body-text">
+
+      <p>
+        このたびは〈商品名〉をご注文いただき、誠にありがとうございます。
+        お届けを心待ちにされているところ、発送が遅れており深くお詫び申し上げます。
+      </p>
+
+      <p>
+        本来であればすでに商品をお手元にお届けできているところ、
+        現在もお待たせしている状況が続いております。
+        何よりお客さまにご不便とご心配をおかけしていることを、
+        重く受け止めております。
+      </p>
+
+    </div>
+
+    <!-- 今後の対応（目安のみ） -->
+    <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+    <div class="estimate-box">
+      <p>
+        現在、発送の準備を進めております。<br>
+        新たなお届けのめやすとして、
+        <span class="estimate-date">〈新しいお届け予定〉</span>
+        頃を見込んでおります。
+      </p>
+      <p>
+        確定した日程がわかり次第、改めてご連絡差し上げます。
+      </p>
+    </div>
+
+    <!-- 謝罪のみで完結（補償・代替措置の記載なし） -->
+    <!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+    <div class="body-text">
+      <p>
+        お待たせしていることへのお詫びの気持ちを、まずはこうして
+        お伝えさせてください。言葉が足りない部分もあるかと存じますが、
+        何卒ご了承いただけますようお願い申し上げます。
+      </p>
+    </div>
+
+    <!-- 結び -->
+    <div class="closing">
+      <p>
+        ご不明な点がございましたら、お手数ですが下記まで
+        お気軽にお問い合わせください。
+      </p>
+      <p class="signature">
+        〈会社名〉<br>
+        カスタマーサポート
+      </p>
+      <p class="contact-note">
+        〈問い合わせ先：メールアドレスまたは電話番号〉
+      </p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

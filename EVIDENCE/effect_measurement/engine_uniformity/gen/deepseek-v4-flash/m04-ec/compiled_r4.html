@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新商品のご案内</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+/* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 */
+/* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+/* GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+
+:root {
+  /* タイプスケール: 本文16pxを基準に 1.25 倍率 */
+  --fs-body: 1rem;           /* 16px */
+  --fs-lead: 1.125rem;       /* 18px */
+  --fs-h3: 1.25rem;          /* 20px */
+  --fs-h2: 1.563rem;         /* 25px */
+  --fs-h1: 1.953rem;         /* 31.25px */
+  --fs-hero: 2.441rem;       /* 39px */
+
+  /* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+  /* palette from visual_tokens[0] (新規見込み客) */
+  --color-bg: #0b1220;
+  --color-main: #2563eb;
+  --color-accent: #f97316;
+
+  /* heading_font: sans; density: airy; corner: soft */
+  --font-heading: 'Helvetica Neue', 'Arial', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --font-body: 'Georgia', 'Times New Roman', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+
+  /* 8px grid spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-body);
+  line-height: 1.8;
+  color: #d1d5db;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* airy density: 行間と余白を大きめに */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-md);
+}
+
+/* キャッチコピー */
+.hero {
+  margin-bottom: var(--space-2xl);
+}
+
+.hero__heading {
+  font-family: var(--font-heading);
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: var(--space-lg);
+}
+
+.hero__heading em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.hero__sub {
+  font-size: var(--fs-lead);
+  line-height: 1.7;
+  color: #9ca3af;
+  max-width: 580px;
+}
+
+/* リード文 */
+.lead {
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-lg) 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.lead__text {
+  font-size: var(--fs-body);
+  line-height: 1.9;
+  color: #d1d5db;
+}
+
+/* 特徴セクション */
+.features {
+  margin-bottom: var(--space-3xl);
+}
+
+.features__heading {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin-bottom: var(--space-xl);
+  line-height: 1.3;
+}
+
+.feature-item {
+  margin-bottom: var(--space-xl);
+}
+
+.feature-item:last-child {
+  margin-bottom: 0;
+}
+
+.feature-item__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-main);
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+.feature-item__desc {
+  font-size: var(--fs-body);
+  line-height: 1.9;
+  color: #d1d5db;
+}
+
+.feature-item__desc strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* 仕様・注意 */
+.specs {
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-lg);
+  border-radius: 12px; /* soft corner */
+  background-color: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.specs__heading {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  margin-bottom: var(--space-md);
+  line-height: 1.4;
+}
+
+.specs__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.specs__list li {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-sm);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: #9ca3af;
+}
+
+.specs__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  opacity: 0.7;
+}
+
+.specs__list li:last-child {
+  margin-bottom: 0;
+}
+
+.specs__list li strong {
+  color: #d1d5db;
+  font-weight: 600;
+}
+
+/* 締めの一言 */
+.closing {
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.closing__text {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.closing__sub {
+  font-size: var(--fs-body);
+  color: #9ca3af;
+  line-height: 1.7;
+}
+
+/* リンク代わりのスタイル(クリック想定) */
+.link-accent {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+  transition: border-color 0.2s;
+}
+
+.link-accent:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --fs-hero: 1.75rem;
+    --fs-h1: 1.6rem;
+    --fs-h2: 1.35rem;
+    --fs-h3: 1.125rem;
+    --fs-lead: 1rem;
+  }
+
+  .container {
+    padding: var(--space-xl) var(--space-sm);
+  }
+
+  .hero__heading {
+    letter-spacing: -0.01em;
+  }
+
+  .specs {
+    padding: var(--space-md);
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- キャッチコピー -->
+  <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+  <div class="hero">
+    <h1 class="hero__heading">
+      はじめて手にしたとき、<br>
+      もう<em>戻れない</em>と思った。
+    </h1>
+    <p class="hero__sub">
+      〈商品名〉は、あなたの〈用途・シーン〉に対する見方を、
+      静かに、しかし確かに変えます。日常の一片が、特別な体験へと変わる瞬間を、
+      ぜひお確かめください。
+    </p>
+  </div>
+
+  <!-- リード文 -->
+  <!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+  <!-- GYAKUMON-CHOICE: 文体・トーン = フォーマル -->
+  <div class="lead">
+    <p class="lead__text">
+      新しいものをお選びいただくとき、私たちはしばしば「これまでとの違い」に注目します。
+      しかし〈商品名〉がお届けするのは、違いそのものではなく、<strong>その違いがもたらす感情の変化</strong>です。
+      数値では測れない、手触り、香り、重み、そして使うたびに育まれる愛着──
+      そうした要素をひとつひとつ丁寧に設計しました。
+    </p>
+  </div>
+
+  <!-- 特徴の説明 -->
+  <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+  <!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+  <div class="features">
+    <h2 class="features__heading">体験を形にする、三つの設計</h2>
+
+    <div class="feature-item">
+      <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+      <h3 class="feature-item__title">「触れる」たびに気づく、質感の奥行き</h3>
+      <p class="feature-item__desc">
+        表面の仕上げには〈確認: 素材名または加工方法を1つ〉を採用。
+        見た目の美しさだけでなく、手に取った瞬間の<strong>しっとりとした吸い付き</strong>と、
+        使い込むほどに増す艶が、あなたの日常に静かな贅沢をもたらします。
+        初日と一週間後、そして一ヶ月後──同じ道具なのに、異なる表情を見せる感触を
+        お楽しみいただけます。
+      </p>
+    </div>
+
+    <div class="feature-item">
+      <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+      <h3 class="feature-item__title">「使う」たびに広がる、想像以上の静けさ</h3>
+      <p class="feature-item__desc">
+        動作音や振動を限界まで抑えた内部構造は、〈確認: 具体的な工夫のエピソードを1つ〉
+        をきっかけに開発されました。〈時間帯やシーン〉の使用でも周囲を気にせず、
+        あなただけの時間に没頭できます。<strong>「気づかない静かさ」</strong>が、
+        結果として集中とリラックスの両方を支えます。
+      </p>
+    </div>
+
+    <div class="feature-item">
+      <!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+      <h3 class="feature-item__title">「育てる」喜びを、あたらしく</h3>
+      <p class="feature-item__desc">
+        〈商品名〉は、お手入れを重ねるほどにあなたの一部になっていく道具です。
+        専用の〈メンテナンス用品名〉を用いたケア方法を、同梱のガイドで詳しくご紹介。
+        傷や色味の変化さえも<strong>物語として愛おしくなる</strong>──
+        そんな関係性を、私たちは提案いたします。
+      </p>
+    </div>
+  </div>
+
+  <!-- 仕様・注意 -->
+  <!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+  <div class="specs">
+    <h3 class="specs__heading">ご使用にあたって</h3>
+    <ul class="specs__list">
+      <li><strong>寸法：</strong>約〈幅〉×〈奥行〉×〈高さ〉mm（ハンドル・突起部含まず）</li>
+      <li><strong>重量：</strong>約〈重量〉g</li>
+      <li><strong>材質：</strong>本体／〈素材名〉、付属品／〈素材名〉</li>
+      <li><strong>生産国：</strong>〈国名〉</li>
+      <li><strong>ご注意：</strong>〈具体的な注意事項：直射日光を避ける、水洗い不可 等〉。
+          初めてご使用になる際は、付属の取扱説明書を必ずお読みください。</li>
+      <li><strong>保証期間：</strong>お買い上げから〈期間〉。詳しい条件は商品ページの「保証について」をご参照ください。</li>
+    </ul>
+  </div>
+
+  <!-- 締めの一言 -->
+  <!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+  <div class="closing">
+    <p class="closing__text">
+      この感触を、あなたの日常に。
+    </p>
+    <p class="closing__sub">
+      〈商品名〉は、ただの道具ではありません。<br>
+      あなたの〈時間／空間／習慣〉を、<a href="#" class="link-accent">ほんの少しだけ豊かにする</a>ための、
+      静かな提案です。
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>

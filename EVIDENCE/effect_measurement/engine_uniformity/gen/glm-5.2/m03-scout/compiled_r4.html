@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+:root {
+  --bg: #3b2a1e;
+  --primary: #ff7a45;
+  --accent: #ffd166;
+  --text: #f5ede4;
+  --text-muted: #c4b5a3;
+  --base-size: 15px;
+  --h1-size: 22px;
+  --h2-size: 18px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Maru Gothic ProN", "M PLUS Rounded Sansc", "rounded.jp", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: var(--base-size);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 48px;
+}
+
+.header {
+  margin-bottom: 64px;
+}
+
+.subject {
+  font-size: var(--h1-size);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 40px;
+}
+
+.recipient {
+  font-size: var(--base-size);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.body p {
+  margin-bottom: 32px;
+}
+
+.body p:last-child {
+  margin-bottom: 0;
+}
+
+.closing {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,122,69,0.25);
+}
+
+.closing p {
+  margin-bottom: 16px;
+}
+
+.closing p:last-child {
+  margin-bottom: 0;
+}
+
+.signature {
+  margin-top: 56px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+<!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+<!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+<div class="container">
+  <div class="header">
+    <!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+    <!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+    <div class="subject">その技術を、もっと自分の裁量で動かしてみませんか?</div>
+    <div class="recipient">〈候補者名〉さん</div>
+  </div>
+
+  <div class="body">
+    <!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+    <p>突然のご連絡、おどろかせたらごめんなさい。〈会社名〉でエンジニア採用を担当している者です。〈候補者名〉さんの公开情報を拝見して、実務を積んできた手の感覚が伝わってきて、これは是非お話ししたいと思いました。</p>
+
+    <!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+    <p>いま、実務2〜5年目で一通り戦えるようになった方に、次のステップとしてちょうどいい環境をお伝えしたいです。アーキテクチャの選定から技術選択まで、現場のエンジニアに舵を渡しています。〈確認: 現場で実際にエンジニアが裁量を持って決めた技術選定の具体例を1つ〉みたいな話も、お会いしたときにお伝えしたいです。</p>
+
+    <p>肩書や年限でなく、書いたコードと出した結果で評価される場所です。ミーティングより実装時間を優先できる文化で、コードを書く時間を誰にも縛られません。</p>
+
+    <p>まずはオンラインで30分、お互いのことをゆるく話しませんか? 押し売りはしないので、うちの雰囲気が合いそうか確かめるつもりでお越しください。</p>
+  </div>
+
+  <div class="closing">
+    <p>返信はいつでも大丈夫です。お忙しい時期なら、タイミングが合うときにお声がけいただけると嬉しいです。</p>
+    <p>少しだけ興味を持っていただけたら、お返事で教えていただけますか?</p>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+  <div class="signature">
+    〈会社名〉〈部署名〉<br>
+    〈送信者氏名〉<br>
+    〈メールアドレス〉
+  </div>
+</div>
+
+</body>
+</html>

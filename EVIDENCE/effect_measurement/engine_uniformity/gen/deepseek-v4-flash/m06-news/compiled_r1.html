@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内報 巻頭あいさつ</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+/* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+/* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+/* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+:root {
+  /* タイプスケール: 本文 16px → 小見出し 1.25 (20px) → 大見出し 1.6 (26px) → キャッチ 2.0 (32px) */
+  --text-base: 16px;
+  --text-catch: 2rem;    /* 32px */
+  --text-h1: 1.625rem;   /* 26px */
+  --text-h2: 1.25rem;    /* 20px */
+  --text-body: 1rem;     /* 16px */
+  --text-small: 0.875rem;/* 14px */
+  /* グリッド: 8px */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+  /* 色: 発注の決定パレット #fff6e8 #e8965a #c4472b を使用 */
+  --bg: #fff6e8;
+  --main: #e8965a;
+  --accent: #c4472b;
+  --text-body-color: #3d2b1f;
+  --text-muted: #7a5e4a;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "MS PGothic", sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.85;
+  color: var(--text-body-color);
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-6) var(--space-3);
+}
+.container {
+  max-width: 720px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: var(--space-8) var(--space-6);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  /* GYAKUMON-CHOICE: corner = soft */
+}
+/* GYAKUMON-CHOICE: heading_font = rounded */
+h1, h2, h3 {
+  font-family: "Hiragino Maru Gothic ProN", "Rounded Mplus 1c", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.catch {
+  font-size: var(--text-catch);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: var(--space-4);
+  line-height: 1.3;
+}
+.section-title {
+  font-size: var(--text-h1);
+  color: var(--main);
+  border-left: 4px solid var(--accent);
+  padding-left: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.body-text {
+  margin-bottom: var(--space-4);
+}
+.body-text p {
+  margin-bottom: var(--space-3);
+}
+.signature {
+  margin-top: var(--space-8);
+  text-align: right;
+  font-style: normal;
+  color: var(--text-muted);
+  font-size: var(--text-small);
+  border-top: 1px solid var(--bg);
+  padding-top: var(--space-3);
+}
+/* 装飾要素は必要最低限に。提出前に影とボーダーは削った。 */
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 -->
+  <!-- GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 -->
+  <div class="catch">
+    おつかれさまです、今月も気楽にどうぞ。
+  </div>
+
+  <!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+  <h2 class="section-title">まだまだ暑いですね</h2>
+
+  <div class="body-text">
+    <p>
+      編集部の〈執筆者名〉です。先週末、久しぶりに昼間に外を歩いたら、アスファルトの照り返しにやられました。皆さん、水分と塩分、ちゃんと摂れてますか？
+    </p>
+    <p>
+      そういえば先日、〈部署名〉の〈人名〉さんと廊下でばったり。「最近、冷蔵庫の麦茶が一瞬でなくなるんですよ」と笑ってました。確かに、うちのフロアも午後3時を過ぎると麦茶ポットが空っぽになる日が多い。暑さで体が欲してるんでしょうね。各フロアで〈確認: 飲み物の補充タイミングや場所に困っていることはありますか？〉。何かあれば編集部まで一声ください。
+    </p>
+    <!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+    <p>
+      同じ会社でも、エアコンの効き方はフロアによってぜんぜん違う。営業所によっては窓を開けて扇風機、というところもあると聞きました。「うちは寒すぎる」「こっちは暑いまま」——温度の感じ方も働き方も、部署ごとに違うのが当たり前。その違いを知るだけでも、ちょっとした気遣いにつながるんじゃないかなと思います。
+    </p>
+    <p>
+      今月の社内報の特集は〈特集テーマ〉。〈確認: 特集ページで取り上げたいエピソードがあれば、ぜひ編集部まで〉。現場の声が紙面を動かします。
+    </p>
+  </div>
+
+  <div class="signature">
+    それでは、今月もそれぞれのペースで。〈執筆者名〉
+  </div>
+
+</div>
+</body>
+</html>

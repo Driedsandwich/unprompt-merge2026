@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スカウトメール</title>
+  <style>
+    :root {
+      --text-size: 1rem;
+      --heading-scale: 1.4;
+      --spacing-unit: 8px;
+      --primary: #1E2B3A;
+      --accent: #C4554F;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Inter", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      font-size: var(--text-size);
+      line-height: 1.7;
+      color: var(--primary);
+      background: #F7F5F2;
+      display: flex;
+      justify-content: center;
+      padding: calc(var(--spacing-unit) * 12) var(--spacing-unit);
+    }
+    .email-frame {
+      max-width: 720px;
+      width: 100%;
+      background: #FFFFFF;
+      padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 6);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .subject {
+      font-size: calc(var(--text-size) * 0.85);
+      letter-spacing: 0.08em;
+      color: #6B7A8A;
+      margin-bottom: calc(var(--spacing-unit) * 5);
+      border-bottom: 1px solid #E4DFD9;
+      padding-bottom: calc(var(--spacing-unit) * 2);
+      font-weight: 500;
+    }
+    .salutation {
+      font-size: calc(var(--text-size) * 1.1);
+      font-weight: 600;
+      margin-bottom: calc(var(--spacing-unit) * 5);
+    }
+    .body-text {
+      margin-bottom: calc(var(--spacing-unit) * 4);
+    }
+    .body-text p {
+      margin-bottom: calc(var(--spacing-unit) * 3);
+    }
+    .highlight-box {
+      background: #F3EFEA;
+      padding: calc(var(--spacing-unit) * 4);
+      margin: calc(var(--spacing-unit) * 4) 0;
+      border-left: 4px solid var(--accent);
+    }
+    .highlight-box p {
+      margin-bottom: 0;
+    }
+    .cta {
+      margin-top: calc(var(--spacing-unit) * 6);
+      padding-top: calc(var(--spacing-unit) * 4);
+      border-top: 1px solid #E4DFD9;
+    }
+    .cta p {
+      margin-bottom: calc(var(--spacing-unit) * 2);
+    }
+    .signature {
+      margin-top: calc(var(--spacing-unit) * 8);
+      font-size: calc(var(--text-size) * 0.9);
+      color: #6B7A8A;
+    }
+    .signature .name {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    @media (max-width: 600px) {
+      .email-frame {
+        padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 3);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-frame">
+    <div class="subject">件名：〈候補者名〉さん、キャリアの「もっと面白い方」へ</div>
+    <div class="salutation">〈候補者名〉さん</div>
+
+    <div class="body-text">
+      <p>初めてご連絡します。〈会社名〉の採用担当です。</p>
+      <p>あなたのGitHubリポジトリ〈リポジトリ名〉を拝見しました。あの〈技術要素〉の使い方と、READMEに書かれた設計判断のメモ――「なぜこのアーキテクチャを選んだか」が整理されているところに、プロダクトを自分ごととして考えている姿勢を感じました。</p>
+      <p>同時に、こんなことを思いました。</p>
+    </div>
+
+    <div class="highlight-box">
+      <p>「この人が持っている『なぜ』の感度、いまの現場で眠らせてしまうのはもったいない」</p>
+    </div>
+
+    <div class="body-text">
+      <p>弊社〈会社名〉は、〈プロダクトのジャンル〉の開発に取り組む〈従業員規模の目安〉名のチームです。<br>
+      いま、フロントエンドからバックエンドまでを一人で抱え込むのではなく、領域を横断しながら「自分が意思決定できる範囲」を広げたいエンジニアを探しています。</p>
+      <p>具体的には、以下のようなフェーズです。</p>
+      <ul style="margin-left: calc(var(--spacing-unit) * 3); margin-bottom: calc(var(--spacing-unit) * 3);">
+        <li>まだ整っていない設計領域に、自分から「こうしませんか」と提案できる</li>
+        <li>技術選定のトレードオフをチームに説明できる</li>
+        <li>自分の担当範囲を「終わらせる」だけでなく、周囲の生産性を上げる仕組みを考えられる</li>
+      </ul>
+      <p>──こう書くと「求められる水準が高そう」と感じるかもしれません。でも、あなたが公開リポジトリであれだけの粒度で思考を残せているなら、その片鱗はもう見えています。</p>
+      <p>一度、カジュアルに話してみませんか。堅苦しい面接ではなく、互いの「いま考えていること」を30分だけ。あなたの〈技術スタックの例〉の知見を、ぜひ聞かせてください。</p>
+    </div>
+
+    <div class="cta">
+      <p>ご都合のよい日時をいくつか教えていただけますか？<br>
+      〈採用担当者名〉が調整します。</p>
+    </div>
+
+    <div class="signature">
+      <p class="name">〈採用担当者名〉</p>
+      <p>〈会社名〉 採用担当<br>
+      〈メールアドレス〉</p>
+    </div>
+  </div>
+</body>
+</html>

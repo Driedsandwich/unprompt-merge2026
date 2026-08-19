@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 | Design Portfolio</title>
+<style>
+/* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+/* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+/* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+/* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+/* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+
+/*
+  タイプスケール: 16px (body) → 20px (h3) → 28px (h2) → 40px (h1)
+  ratio: 1.25 / 1.4 / 1.428
+*/
+:root {
+  --color-bg: #f4f2ee;
+  --color-text: #1c1c1c;
+  --color-accent: #8a6a3c;
+  --color-muted: #8a8a86;
+  --font-heading: 'Helvetica Neue', 'Arial', 'Noto Sans JP', sans-serif;
+  --font-body: 'Georgia', 'Times New Roman', 'Noto Serif JP', serif;
+  --space-unit: 8px;
+  --space-section: 96px;
+  --space-block: 48px;
+  --space-item: 24px;
+  --space-tight: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  padding: 120px 0 var(--space-section);
+  border-bottom: 1px solid var(--color-accent);
+  margin-bottom: var(--space-section);
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: var(--space-tight);
+  color: var(--color-text);
+}
+
+.hero .role {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: var(--space-block);
+}
+
+.hero .catch {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* ---------- SECTION ---------- */
+section {
+  margin-bottom: var(--space-section);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: var(--space-block);
+  padding-bottom: var(--space-tight);
+  border-bottom: 1px solid var(--color-accent);
+  display: inline-block;
+}
+
+/* ---------- ABOUT ---------- */
+.about-text {
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.about-text p + p {
+  margin-top: var(--space-item);
+}
+
+.about-text strong {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ---------- WORKS ---------- */
+.works-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-block);
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-tight);
+  padding-bottom: var(--space-block);
+  border-bottom: 1px solid #ddd;
+}
+
+.work-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.work-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(145deg, #e8e4dc, #d6d0c5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.work-thumb svg {
+  width: 64px;
+  height: 64px;
+  opacity: 0.3;
+}
+
+.work-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-top: var(--space-tight);
+}
+
+.work-role {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.work-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.work-process {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-muted);
+  padding: var(--space-tight);
+  background: rgba(138, 106, 60, 0.06);
+  border-left: 2px solid var(--color-accent);
+  margin-top: var(--space-tight);
+}
+
+.work-process::before {
+  content: "思考の過程";
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 4px;
+}
+
+/* ---------- SKILLS ---------- */
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-item) var(--space-block);
+}
+
+.skill-category {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-tight);
+}
+
+.skill-items {
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.skill-items li {
+  position: relative;
+  padding-left: var(--space-tight);
+}
+
+.skill-items li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+/* ---------- CONTACT ---------- */
+.contact-block {
+  padding: var(--space-block) 0;
+  border-top: 1px solid var(--color-accent);
+  margin-top: var(--space-section);
+}
+
+.contact-block p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.contact-email {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.contact-email:hover {
+  opacity: 0.6;
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  padding: var(--space-item) 0 var(--space-block);
+  font-size: 12px;
+  color: var(--color-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (min-width: 600px) {
+  .work-item {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-item) var(--space-block);
+  }
+  .work-thumb {
+    grid-row: 1 / 4;
+  }
+  .work-title {
+    margin-top: 0;
+  }
+  .work-process {
+    grid-column: 1 / -1;
+  }
+  .skills-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<!-- GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 -->
+<header class="hero">
+  <h1>〈氏名〉</h1>
+  <p class="role">Designer</p>
+  <p class="catch">作品、削ぎ落として。ポートフォリオは一枚の余白から始まる。</p>
+</header>
+
+<!-- ABOUT -->
+<section>
+  <h2 class="section-title">About</h2>
+  <div class="about-text">
+    <p>
+      デザインの判断は、<strong>何を削るか</strong>で決まる。
+      〈年数〉年にわたり、プロダクト・ブランド・空間の領域で、余白と構造を手がかりにした設計を続けている。
+    </p>
+    <p>
+      一つの制作物に込めた思考の過程を、このポートフォリオでは丁寧に辿れるようにした。
+      〈確認: あなたが最も大切にしているデザインの判断基準は何ですか〉
+    </p>
+  </div>
+</section>
+
+<!-- WORKS -->
+<!-- GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる -->
+<!-- GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 -->
+<section>
+  <h2 class="section-title">Works</h2>
+  <div class="works-grid">
+
+    <article class="work-item">
+      <div class="work-thumb">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="48" height="48" stroke="#1c1c1c" stroke-width="1.5" fill="none"/>
+          <line x1="16" y1="24" x2="48" y2="24" stroke="#1c1c1c" stroke-width="1.5"/>
+          <line x1="16" y1="34" x2="40" y2="34" stroke="#1c1c1c" stroke-width="1.5"/>
+          <line x1="16" y1="44" x2="36" y2="44" stroke="#1c1c1c" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <p class="work-role">Brand / Web</p>
+      <h3 class="work-title">〈作品タイトルA〉</h3>
+      <p class="work-desc">
+        クライアントの持つ〈業種〉の価値を、削ぎ落とした言語とビジュアルで再構築。
+        ターゲットの行動変化を設計の起点に据えた。
+      </p>
+      <div class="work-process">
+        〈確認: この案件で最も判断に迷ったポイントと、その解決方法を具体的に教えてください〉
+      </div>
+    </article>
+
+    <article class="work-item">
+      <div class="work-thumb">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="20" stroke="#1c1c1c" stroke-width="1.5" fill="none"/>
+          <circle cx="32" cy="32" r="8" stroke="#1c1c1c" stroke-width="1.5" fill="none"/>
+          <line x1="32" y1="12" x2="32" y2="22" stroke="#1c1c1c" stroke-width="1.5"/>
+          <line x1="32" y1="42" x2="32" y2="52" stroke="#1c1c1c" stroke-width="1.5"/>
+          <line x1="12" y1="32" x2="22" y2="32" stroke="#1c1c1c" stroke-width="1.5"/>
+          <line x1="42" y1="32" x2="52" y2="32" stroke="#1c1c1c" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <p class="work-role">UI / Product</p>
+      <h3 class="work-title">〈作品タイトルB〉</h3>
+      <p class="work-desc">
+        ユーザーリサーチから導いたペルソナの〈行動パターン〉に基づき、
+        情報階層を再設計。操作の迷いを減らすために徹底的に削った結果、
+        タスク完了率が改善した。
+      </p>
+      <div class="work-process">
+        〈確認: リサーチ結果をデザインに落とし込む際、どのような判断プロセスを経ましたか〉
+      </div>
+    </article>
+
+    <article class="work-item">
+      <div class="work-thumb">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="32,12 52,44 12,44" stroke="#1c1c1c" stroke-width="1.5" fill="none"/>
+          <line x1="32" y1="28" x2="32" y2="38" stroke="#1c1c1c" stroke-width="1.5"/>
+          <circle cx="32" cy="22" r="3" fill="#1c1c1c"/>
+        </svg>
+      </div>
+      <p class="work-role">Space / Signage</p>
+      <h3 class="work-title">〈作品タイトルC〉</h3>
+      <p class="work-desc">
+        空間の動線と視線の流れを計測し、情報の優先順位を再配置。
+        サインの数を減らしながらも、迷子を減らすサイン計画を実現した。
+      </p>
+      <div class="work-process">
+        〈確認: 空間デザインにおいて「削る」判断をする際、何を基準に優先順位をつけましたか〉
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<!-- GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 -->
+<section>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-list">
+
+    <div>
+      <p class="skill-category">Design</p>
+      <ul class="skill-items">
+        <li>ブランドアイデンティティ</li>
+        <li>UI / 情報設計</li>
+        <li>エディトリアル</li>
+        <li>空間サイン計画</li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="skill-category">Research</p>
+      <ul class="skill-items">
+        <li>ユーザーインタビュー</li>
+        <li>行動観察分析</li>
+        <li>情報アーキテクチャ</li>
+        <li>A/B テスト設計</li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="skill-category">Tools</p>
+      <ul class="skill-items">
+        <li>Figma / Sketch</li>
+        <li>Illustrator / InDesign</li>
+        <li>HTML / CSS</li>
+        <li>Processing / p5.js</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-block">
+  <p>ご連絡はこちらまで</p>
+  <a href="mailto:〈メールアドレス〉" class="contact-email">〈メールアドレス〉</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 〈氏名〉 — Design Portfolio</p>
+</footer>
+
+</div><!-- /container -->
+
+</body>
+</html>

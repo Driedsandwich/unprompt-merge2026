@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉| 法人向けサービス</title>
+<style>
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+/* タイプスケール: base 16px / 1.5 ratio → 16, 24, 36, 54 */
+:root{
+  /* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+  --bg:#0b1c33; --panel:#12263f; --ink:#e8ecf1; --muted:#9fb0c2;
+  --main:#1f3a5f; --accent:#b8924a; --accent-soft:rgba(184,146,74,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font:16px/1.9 "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  letter-spacing:.02em;
+}
+h1,h2,h3{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-weight:600; letter-spacing:.08em; line-height:1.5;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 32px}
+section{padding:112px 0}
+label{display:block;color:var(--accent);font-size:12px;letter-spacing:.4em;margin-bottom:24px}
+h2{font-size:36px;margin-bottom:32px}
+p.lead{font-size:18px;color:var(--muted);max-width:640px}
+
+/* GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング */
+/* GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け */
+.hero{padding:160px 0 136px;border-bottom:1px solid rgba(184,146,74,.25)}
+.hero h1{font-size:54px;margin:0 0 40px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .sub{max-width:600px;color:var(--muted)}
+.hero .rule{width:64px;height:2px;background:var(--accent);margin:48px 0}
+
+/* GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:56px}
+.card{border-top:2px solid var(--accent-soft);padding-top:32px}
+.card h3{font-size:20px;margin-bottom:16px;color:var(--accent)}
+.card p{color:var(--muted);font-size:15px}
+
+.value{background:var(--panel)}
+.value p.lead{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:24px;line-height:2;color:var(--ink)}
+
+.steps ol{list-style:none;margin-top:48px;border-left:1px solid var(--accent-soft)}
+.steps li{padding:0 0 40px 32px;position:relative;color:var(--muted)}
+.steps li::before{content:"";position:absolute;left:-5px;top:10px;width:9px;height:9px;background:var(--accent)}
+.steps li strong{display:block;color:var(--ink);font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;margin-bottom:8px}
+
+.cta{text-align:center;border-top:1px solid rgba(184,146,74,.25)}
+.cta h2{font-size:40px}
+.btn{display:inline-block;margin-top:48px;padding:20px 72px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;letter-spacing:.3em;font-size:14px}
+.btn:hover{background:var(--accent);color:var(--bg)}
+
+footer{padding:64px 0;border-top:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:13px;display:flex;justify-content:space-between}
+@media(max-width:768px){.cols3{grid-template-columns:1fr}.hero h1{font-size:36px}}
+</style>
+</head>
+<body>
+
+<section class="hero"><div class="wrap">
+  <!-- GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け -->
+  <label>SERVICE STATEMENT</label>
+  <h1>貴社の意思決定を支える、<br><em>信頼のサービス基盤。</em></h1>
+  <div class="rule"></div>
+  <p class="sub">〈サービス名〉は、法人の皆様に向けたサービスです。派手な約束ではなく、積み重ねてきた姿勢と仕組みでお応えします。信頼は、静かに積み重ねるものだと私たちは考えています。</p>
+</div></section>
+
+<section class="value"><div class="wrap">
+  <!-- GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 -->
+  <label>OUR VALUE</label>
+  <h2>実績で語るサービス。</h2>
+  <p class="lead">〈確認: 貴社として法人顧客に届けたい価値を一文で(例: 導入の手間をゼロにする、等)〉</p>
+  <p class="lead" style="margin-top:32px">〈確認: 信頼の裏付けとなる実績・数値があればここに(例: 導入企業数・継続率)〉</p>
+</div></section>
+
+<section><div class="wrap">
+  <label>FEATURES</label>
+  <h2>選ばれる三つの理由</h2>
+  <div class="cols3">
+    <div class="card">
+      <h3>01 / 〈特徴の見出し〉</h3>
+      <p>〈確認: サービスの特徴1つ目。法人担当者が比較検討で見る点を具体的に〉</p>
+    </div>
+    <div class="card">
+      <h3>02 / 〈特徴の見出し〉</h3>
+      <p>〈確認: サービスの特徴2つ目。サポート体制や運用面の強みがあれば〉</p>
+    </div>
+    <div class="card">
+      <h3>03 / 〈特徴の見出し〉</h3>
+      <p>〈確認: サービスの特徴3つ目。セキュリティや契約面の安心材料があれば〉</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="steps" style="background:var(--panel)"><div class="wrap">
+  <label>FLOW</label>
+  <h2>ご利用の流れ</h2>
+  <ol>
+    <li><strong>1. お問い合わせ</strong>フォームよりご連絡ください。担当者より折り返しご案内します。</li>
+    <li><strong>2. ヒアリング</strong>貴社の課題とご要件を伺い、最適なご提案を作成します。</li>
+    <li><strong>3. ご契約・導入</strong>〈確認: 導入期間の目安(例: 最短〇営業日)〉でご利用開始。</li>
+    <li><strong>4. 運用サポート</strong>導入後も継続的にサポートします。</li>
+  </ol>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <!-- GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング -->
+  <label>CONTACT</label>
+  <h2>静かな強さを、<br>サービスの名に。</h2>
+  <p class="lead" style="margin:24px auto 0">まずはお気軽に、サービスの詳細をお問い合わせください。</p>
+  <a class="btn" href="#contact">お問い合わせ</a>
+</div></section>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%">
+  <span>〈サービス名〉</span>
+  <span>&copy; 〈会社名〉</span>
+</div></footer>
+
+</body>
+</html>

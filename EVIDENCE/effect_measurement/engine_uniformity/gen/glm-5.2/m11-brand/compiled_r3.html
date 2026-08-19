@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>コーヒー豆ブランド</title>
+<style>
+:root{
+  --bg:#1c1712; --primary:#8a5a34; --accent:#d9a15c;
+  --t1:2.75rem; --t2:1.875rem; --t3:1.25rem; --body:1rem; --small:0.8125rem;
+  /* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 */
+  /* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+  /* GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 */
+  /* GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 */
+  /* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);color:var(--accent);
+  font-family:Georgia,"Hiragino Mincho ProN","Noto Serif JP",serif;
+  line-height:1.9;letter-spacing:.02em;
+}
+h1,h2,h3{font-family:Georgia,"Hiragino Mincho ProN","Noto Serif JP",serif;font-weight:700;letter-spacing:.04em}
+section{padding:96px 24px}
+.hero{padding:128px 24px 112px;text-align:center}
+.hero-label{font-size:var(--small);letter-spacing:.32em;text-transform:uppercase;opacity:.7;margin-bottom:48px}
+.hero h1{font-size:var(--t1);color:#f0e6d6;margin-bottom:32px;line-height:1.5}
+.hero p{font-size:var(--t3);max-width:520px;margin:0 auto;opacity:.85;line-height:2}
+.story p{font-size:var(--body);max-width:560px;margin:0 auto;opacity:.9}
+.story .lead{font-size:var(--t3);color:#f0e6d6;margin-bottom:40px;max-width:520px}
+.story .next{margin-top:32px}
+.lineup{max-width:560px;margin:0 auto}
+.lineup h2{font-size:var(--t2);margin-bottom:48px;color:#f0e6d6;text-align:center}
+.item{padding:40px 0;border-top:1px solid rgba(217,161,92,.2)}
+.item:last-child{border-bottom:1px solid rgba(217,161,92,.2)}
+.item-num{font-size:var(--small);letter-spacing:.24em;opacity:.6;margin-bottom:12px}
+.item h3{font-size:var(--t3);color:#f0e6d6;margin-bottom:16px}
+.item p{font-size:var(--small);opacity:.8}
+.craft{max-width:560px;margin:0 auto}
+.craft h2{font-size:var(--t2);margin-bottom:48px;color:#f0e6d6;text-align:center}
+.craft-row{padding:32px 0;border-top:1px solid rgba(217,161,92,.2)}
+.craft-row:last-child{border-bottom:1px solid rgba(217,161,92,.2)}
+.craft-row h3{font-size:var(--t3);color:#f0e6d6;margin-bottom:12px}
+.craft-row p{font-size:var(--small);opacity:.85}
+.cta{text-align:center;padding:128px 24px}
+.cta p{font-size:var(--t3);color:#f0e6d6;margin-bottom:40px;line-height:1.8}
+.btn{display:inline-block;padding:20px 56px;background:var(--accent);color:var(--bg);text-decoration:none;font-family:inherit;font-size:var(--body);letter-spacing:.08em;font-weight:700}
+footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(217,161,92,.15)}
+footer p{font-size:var(--small);opacity:.5;letter-spacing:.08em}
+@media(max-width:600px){
+  .hero h1{font-size:2.125rem}
+  section{padding:72px 24px}
+  .hero{padding:96px 24px 88px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <!-- GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 -->
+  <p class="hero-label">COFFEE ROASTERY</p>
+  <h1>一杯の珈琲に、<br>旅の記憶を。</h1>
+  <p>ある農園から始まった物語。<br>土と焙煎の記憶を、あなたの大切な人へ。</p>
+</section>
+
+<section class="story">
+  <p class="lead">標高の高い畑で、芽吹きを待つ。<br>果実が赤く熟れる頃、摘まれる一粒。</p>
+  <p>その一粒には、土の匂いと、朝の冷気と、摘んだ手の温度が宿っています。〈確認: 産地で実際に見た風景や出会った人物のエピソードを1つ〉。私たちはその記憶を、焙煎という時間をかけて豆に移し、カップに注ぐ。</p>
+  <p class="next">〈確認: 現場で実際にあった失敗談を1つ〉——失敗を重ねて辿り着いた、この味わい。</p>
+</section>
+
+<section class="craft">
+  <h2>豆へのこだわり</h2>
+  <!-- GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 -->
+  <div class="craft-row">
+    <h3>栽培</h3>
+    <p>〈確認: 産地の栽培条件の実値（標高・品種・土壌など）〉。一棵一棵と向き合い、熟度を見極めて手摘みする。</p>
+  </div>
+  <div class="craft-row">
+    <h3>焙煎</h3>
+    <p>〈確認: 焙煎の具体的な温度・時間・段階など〉。豆の個性を引き立てる火加減を、目と香りで読み取る。</p>
+  </div>
+  <div class="craft-row">
+    <h3>お届け</h3>
+    <p>焙煎から〈確認: 賞味目安の期間〉以内にお届け。香りが立ち昇る朝の一杯を、贈る喜びとして。</p>
+  </div>
+</section>
+
+<section class="lineup">
+  <h2>ラインナップ</h2>
+  <div class="item">
+    <p class="item-num">01</p>
+    <h3>〈ブランド名〉 ブレンド</h3>
+    <p>〈確認: 味わいの特徴・産地・焙煎度など〉。日常の贈りものに。</p>
+  </div>
+  <div class="item">
+    <p class="item-num">02</p>
+    <h3>〈銘柄名〉 ストレート</h3>
+    <p>〈確認: 単一農園の味わい特徴〉。とっておきの日に。</p>
+  </div>
+</section>
+
+<section class="cta">
+  <!-- GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 -->
+  <p>大切な人へ、コーヒー豆という贈りもの。</p>
+  <a href="#" class="btn">〈ブランド名〉を贈る</a>
+</section>
+
+<footer>
+  <p>© 〈ブランド名〉</p>
+</footer>
+
+</body>
+</html>

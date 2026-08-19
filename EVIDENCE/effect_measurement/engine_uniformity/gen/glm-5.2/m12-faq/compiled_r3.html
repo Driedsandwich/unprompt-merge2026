@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品に関するよくあるご質問 | 〈ショップ名〉</title>
+<style>
+  /* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+  /* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+  /* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+  /* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+  /* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+  :root {
+    --base: #f4f1ea;
+    --main: #2b4a45;
+    --accent: #b08d57;
+    --text: #2b4a45;
+    --line: #d8d2c4;
+    --body-size: 15px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+    background: var(--base);
+    color: var(--text);
+    font-size: var(--body-size);
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  /* ヒーロー */
+  header {
+    padding: 96px 0 72px;
+  }
+  .eyebrow {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    color: var(--main);
+    margin-bottom: 32px;
+  }
+  .lead {
+    font-size: 15px;
+    line-height: 1.95;
+    color: #4a5a55;
+    max-width: 560px;
+  }
+  /* セクション */
+  section {
+    padding: 64px 0;
+    border-top: 1px solid var(--line);
+  }
+  .cat-label {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--main);
+    margin-bottom: 40px;
+  }
+  /* FAQ */
+  .qa {
+    margin-bottom: 40px;
+  }
+  .qa:last-child { margin-bottom: 0; }
+  .qa-q {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--main);
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    padding-left: 28px;
+    position: relative;
+  }
+  .qa-q::before {
+    content: "Q";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .qa-a {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #3d4540;
+    padding-left: 28px;
+    position: relative;
+  }
+  .qa-a::before {
+    content: "A";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--main);
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .qa-a strong {
+    color: var(--main);
+    font-weight: 600;
+  }
+  /* 連絡導線 */
+  .contact-box {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    padding: 48px 40px;
+    margin-top: 16px;
+  }
+  .contact-box h2 {
+    margin-bottom: 24px;
+  }
+  .contact-box p {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #4a5a55;
+    margin-bottom: 24px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--main);
+    color: #f4f1ea;
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 16px 40px;
+    text-decoration: none;
+  }
+  .contact-note {
+    font-size: 12px;
+    color: #8a8478;
+    margin-top: 16px;
+    line-height: 1.7;
+  }
+  footer {
+    padding: 48px 0 64px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  footer p {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 11px;
+    color: #8a8478;
+    letter-spacing: 0.15em;
+  }
+</style>
+</head>
+<body>
+<!-- GYAKUMON-CHOICE: 読者の状況 = 両方混在 -->
+<!-- GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 -->
+<header>
+  <div class="container">
+    <p class="eyebrow">返品についての案内</p>
+    <h1>返品のこと、<br>ゆっくり一緒に確認しましょう。</h1>
+    <p class="lead">条件や手続きについて、すべてこのページに明記しています。商品到着後の確認中の方も、すでにお手続きを進めている方も、目的の項目からご覧ください。</p>
+  </div>
+</header>
+
+<!-- GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 -->
+<!-- GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 -->
+<section>
+  <div class="container">
+    <p class="cat-label">返品を検討されている方へ</p>
+    <h2>条件・対象を先に確認する</h2>
+
+    <div class="qa">
+      <p class="qa-q">返品できる商品と、できない商品を教えてください。</p>
+      <p class="qa-a">商品到着後〈返品可能日数〉日以内で、未使用・未開封の商品が返品の対象となります。〈確認: 返品不可商品の具体カテゴリ〉に該当する商品は、返品をお受けできません。対象外の条件は個別にお問い合わせください。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">返品にかかる送料は誰が負担しますか。</p>
+      <p class="qa-a">お客様都合による返品の場合、送料はお客様のご負担となります。商品不良や〈確認: 当店起因の返品事由に該当する具体例〉など当店に起因する事由の場合は、着払いにてお受けいたします。事前にご相談のうえお送りください。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">商品到着後、どのくらいの日数が返品の期限ですか。</p>
+      <p class="qa-a">商品到着後〈返品可能日数〉日以内にご連絡をいただいたものを返品の対象としております。期限を過ぎた場合、返品をお受けできないことがございますので、お早めにご連絡ください。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="cat-label">お手続きを進めている方へ</p>
+    <h2>返品手続きの流れ</h2>
+
+    <div class="qa">
+      <p class="qa-q">返品の申し出はどこにすればよいですか。</p>
+      <p class="qa-a">このページ下部のお問い合わせ窓口より、ご注文番号と返品のご希望をお知らせください。担当者より返品手続きのご案内を差し上げます。手続き後〈確認: 返品先住所の案内タイミング〉に、返送先の住所をご案内いたします。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">返金はいつ、どの方法で行われますか。</p>
+      <p class="qa-a">返品商品の到着を確認した後、〈返金処理日数目安〉以内にご注文時のお支払い方法へ返金いたします。クレジットカードの場合はカード会社の処理時期により反映までお時間をいただくことがございます。銀行振込でのご注文分は、お届け先の口座へお振り込みいたします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+<section>
+  <div class="container">
+    <div class="contact-box">
+      <h2>解決しないときは</h2>
+      <p>このページに載っていないケースや、個別の事情がある場合は、そのままお問い合わせください。担当者がご注文の状況を確認したうえで、返品が可能かどうかをお答えいたします。</p>
+      <a href="〈問い合わせフォームURL〉" class="btn">お問い合わせする</a>
+      <p class="contact-note">受付時間: 〈受付時間〉 / 定休日: 〈定休日〉</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>〈ショップ名〉 · 返品に関するよくあるご質問</p>
+</footer>
+</body>
+</html>

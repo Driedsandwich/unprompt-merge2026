@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉ポートフォリオ</title>
+<style>
+  /* ── タイプスケール ──
+   * base: 1rem (16px)
+   * scale: 1.250 (major third)
+   * h6: 1rem
+   * h5: 1.25rem
+   * h4: 1.563rem
+   * h3: 1.953rem
+   * h2: 2.441rem
+   * h1: 3.052rem
+   */
+  :root {
+    --color-bg: #f8f7f2;
+    --color-fg: #1e1b18;
+    --color-accent: #b36b5e;
+    --color-accent-soft: #d9b4ab;
+    --color-mute: #7d7672;
+    --space-unit: 8px;
+    --space-2: calc(2 * var(--space-unit));
+    --space-3: calc(3 * var(--space-unit));
+    --space-4: calc(4 * var(--space-unit));
+    --space-6: calc(6 * var(--space-unit));
+    --space-8: calc(8 * var(--space-unit));
+    --space-12: calc(12 * var(--space-unit));
+    --space-16: calc(16 * var(--space-unit));
+    --space-20: calc(20 * var(--space-unit));
+    --w-regular: 380;
+    --w-medium: 520;
+    --w-bold: 700;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+    font-weight: var(--w-regular);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-fg);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+  }
+
+  /* ── セクション間 ゆったり余白 ── */
+  section {
+    padding: var(--space-16) 0;
+  }
+
+  section + section {
+    border-top: 1px solid var(--color-accent-soft);
+  }
+
+  /* ── 見出し ── */
+  h1, h2, h3, h4 {
+    font-family: "Georgia", "Times New Roman", "Yu Mincho", "Noto Serif CJK JP", serif;
+    font-weight: var(--w-bold);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: 3.052rem;
+    margin-bottom: var(--space-2);
+  }
+
+  h2 {
+    font-size: 2.441rem;
+    margin-bottom: var(--space-6);
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: var(--color-accent);
+    margin-top: var(--space-2);
+  }
+
+  h3 {
+    font-size: 1.563rem;
+    margin-bottom: var(--space-2);
+  }
+
+  /* ── ヒーロー ── */
+  .hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: var(--space-16) 0;
+    position: relative;
+  }
+
+  .hero-sub {
+    font-size: 1.25rem;
+    font-weight: var(--w-medium);
+    color: var(--color-mute);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+  }
+
+  .hero-name {
+    font-size: 3.8rem;
+    font-weight: var(--w-bold);
+    font-family: "Georgia", "Times New Roman", "Yu Mincho", "Noto Serif CJK JP", serif;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: var(--space-3);
+    color: var(--color-fg);
+  }
+
+  .hero-tagline {
+    font-size: 1.125rem;
+    max-width: 520px;
+    color: var(--color-mute);
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  /* 冒頭の主張 — デザインの「間」を描く人 */
+  .hero-badge {
+    display: inline-block;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: var(--w-bold);
+    letter-spacing: 0.12em;
+    padding: var(--space-1) var(--space-3);
+    border-radius: 0;
+    margin-bottom: var(--space-4);
+    text-transform: uppercase;
+  }
+
+  /* ── 自己紹介 ── */
+  .about-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    align-items: flex-start;
+  }
+
+  .about-visual {
+    flex: 0 0 140px;
+    height: 140px;
+    background: linear-gradient(145deg, var(--color-accent-soft), var(--color-accent));
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    color: #fff;
+  }
+
+  .about-text {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .about-text p {
+    margin-bottom: var(--space-3);
+    max-width: 580px;
+  }
+
+  .about-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── 作品 ── */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .work-item {
+    background: #fff;
+    border: 1px solid #e8e3da;
+    transition: box-shadow 0.2s;
+  }
+
+  .work-item:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  .work-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--color-accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    color: #fff;
+    opacity: 0.85;
+  }
+
+  .work-meta {
+    padding: var(--space-4);
+  }
+
+  .work-meta h4 {
+    font-family: "Georgia", "Times New Roman", "Yu Mincho", "Noto Serif CJK JP", serif;
+    font-weight: var(--w-bold);
+    font-size: 1.125rem;
+    margin-bottom: var(--space-1);
+  }
+
+  .work-meta p {
+    font-size: 0.875rem;
+    color: var(--color-mute);
+  }
+
+  .work-label {
+    display: inline-block;
+    background: var(--color-fg);
+    color: #fff;
+    font-size: 0.625rem;
+    font-weight: var(--w-bold);
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+  }
+
+  /* ── スキル ── */
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .skill-item {
+    background: #fff;
+    border: 1px solid #ddd8cf;
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.9375rem;
+    font-weight: var(--w-medium);
+    letter-spacing: 0.02em;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .skill-item:hover {
+    background: var(--color-accent-soft);
+    border-color: var(--color-accent);
+  }
+
+  /* ── 連絡先 ── */
+  .contact-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-6);
+    margin-top: var(--space-4);
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-fg);
+    text-decoration: none;
+    font-weight: var(--w-medium);
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.15s;
+    padding-bottom: 2px;
+  }
+
+  .contact-link:hover {
+    border-bottom-color: var(--color-accent);
+  }
+
+  .contact-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent-soft);
+    border-radius: 0;
+    color: var(--color-fg);
+    font-size: 0.75rem;
+    font-weight: var(--w-bold);
+  }
+
+  /* ── フッター ── */
+  footer {
+    padding: var(--space-8) 0 var(--space-6);
+    text-align: center;
+    color: var(--color-mute);
+    font-size: 0.8125rem;
+    border-top: 1px solid var(--color-accent-soft);
+    margin-top: var(--space-8);
+  }
+
+  /* ── ユーティリティ ── */
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .inline-svg-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .hero-name { font-size: 2.6rem; }
+    .about-visual { flex-basis: 100px; height: 100px; font-size: 2.2rem; }
+    .work-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ヒーロー: 冒頭で「デザインの間を描く」と打ち出す -->
+  <section class="hero">
+    <span class="hero-badge">間を描くデザイン</span>
+    <p class="hero-sub">Product &amp; identity designer</p>
+    <h1 class="hero-name">〈氏名〉</h1>
+    <div class="hero-tagline">
+      余白・リズム・質感 — ひとつひとつの選択に理由がある。<br>
+      テンプレートではない、あなただけの輪郭を。
+    </div>
+  </section>
+
+  <!-- 自己紹介 -->
+  <section>
+    <h2>自己紹介</h2>
+    <div class="about-wrap">
+      <div class="about-visual">
+        <!-- イニシャルSVG（簡易） -->
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="18" width="8" height="24" fill="white" opacity="0.9"/>
+          <rect x="22" y="10" width="8" height="40" fill="white" opacity="0.9"/>
+          <rect x="34" y="22" width="8" height="20" fill="white" opacity="0.9"/>
+          <rect x="46" y="14" width="8" height="36" fill="white" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="about-text">
+        <p>
+          〈氏名〉と申します。印刷物からデジタルプロダクトまで、<br>
+          「情報の構造」と「触れたときの空気感」を両立させるデザインを心がけています。
+        </p>
+        <p>
+          前職では〈会社名〉にてブランドアイデンティティの設計・Web制作に従事。<br>
+          現在はフリーランスとして、スタートアップのプロダクトUIや小規模ブランディングを中心に活動しています。
+        </p>
+        <p>
+          このサイトは、私が「余白で語る」ことを大事にしている理由を<br>
+          そのまま形にしたものです。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品3点 -->
+  <section>
+    <h2>作品</h2>
+    <div class="work-grid">
+
+      <!-- 作品1 -->
+      <div class="work-item">
+        <div class="work-thumb">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="4" width="40" height="40" stroke="white" stroke-width="2" fill="none"/>
+            <line x1="14" y1="14" x2="34" y2="34" stroke="white" stroke-width="2"/>
+            <line x1="34" y1="14" x2="14" y2="34" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="work-meta">
+          <span class="work-label">Identity</span>
+          <h4>〈作品タイトル1〉</h4>
+          <p>小さな出版社のコーポレートアイデンティティ。活字と余白のリズムを軸に。</p>
+        </div>
+      </div>
+
+      <!-- 作品2 -->
+      <div class="work-item">
+        <div class="work-thumb">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="18" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M16 24 L22 30 L32 18" stroke="white" stroke-width="3" fill="none"/>
+          </svg>
+        </div>
+        <div class="work-meta">
+          <span class="work-label">UI / UX</span>
+          <h4>〈作品タイトル2〉</h4>
+          <p>タスク管理ツールのリデザイン。情報の優先順位を読みやすさに変換。</p>
+        </div>
+      </div>
+
+      <!-- 作品3 -->
+      <div class="work-item">
+        <div class="work-thumb">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="6" y="10" width="36" height="28" stroke="white" stroke-width="2" fill="none"/>
+            <line x1="6" y1="20" x2="42" y2="20" stroke="white" stroke-width="2"/>
+            <line x1="18" y1="10" x2="18" y2="38" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="work-meta">
+          <span class="work-label">Print</span>
+          <h4>〈作品タイトル3〉</h4>
+          <p>アートイベントのポスターシリーズ。紙の質感と2色印刷の魅力を最大限に。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- スキル -->
+  <section>
+    <h2>スキル</h2>
+    <div class="skill-list">
+      <span class="skill-item">UIデザイン</span>
+      <span class="skill-item">ブランディング</span>
+      <span class="skill-item">タイポグラフィ</span>
+      <span class="skill-item">Figma</span>
+      <span class="skill-item">Illustrator</span>
+      <span class="skill-item">HTML / CSS</span>
+      <span class="skill-item">コンセプト設計</span>
+      <span class="skill-item">ディレクション</span>
+    </div>
+  </section>
+
+  <!-- 連絡先 -->
+  <section>
+    <h2>連絡先</h2>
+    <p style="margin-bottom: var(--space-4); color: var(--color-mute);">
+      ご相談・ご依頼はこちらから。まずは一言お気軽に。
+    </p>
+    <div class="contact-methods">
+      <a href="mailto:〈メールアドレス〉" class="contact-link">
+        <span class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 6l10 7 10-7"/>
+          </svg>
+        </span>
+        〈メールアドレス〉
+      </a>
+      <a href="#" class="contact-link">
+        <span class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.99h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.99C18.343 21.128 22 16.991 22 12z"/>
+          </svg>
+        </span>
+        @〈アカウント名〉
+      </a>
+      <a href="#" class="contact-link">
+        <span class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="21.5" y1="12" x2="16" y2="12"/>
+            <line x1="8" y1="12" x2="2.5" y2="12"/>
+          </svg>
+        </span>
+        〈サイト名〉
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 〈氏名〉 — このサイトは余白でできています</p>
+  </footer>
+
+</div>
+</body>
+</html>

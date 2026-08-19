@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+:root {
+  --scale-base: 15px;
+  --scale-h1: 1.73em;
+  --scale-h2: 1.2em;
+  --ink: #18222c;
+  --paper: #f4f1ea;
+  --accent: #2f5d50;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: var(--scale-base);
+  line-height: 1.75;
+  color: var(--ink);
+  background: var(--paper);
+  padding: 96px 24px;
+}
+
+.wrap { max-width: 720px; margin: 0 auto; }
+
+.masthead {
+  font-family: "Times New Roman", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: var(--scale-h1);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.kicker {
+  font-size: 0.73em;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 56px;
+  display: block;
+  font-family: "Hiragino Sans", sans-serif;
+}
+
+section { margin-bottom: 80px; }
+
+h2 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: var(--scale-h2);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink);
+}
+
+ul { list-style: none; padding-left: 0; }
+
+li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+p { margin-bottom: 16px; }
+
+.signoff {
+  margin-top: 64px;
+  font-size: 0.8em;
+  color: #5a6470;
+  border-top: 1px solid var(--ink);
+  padding-top: 24px;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="kicker">仕様メモ</span>
+<h1 class="masthead">経費精算を、月イチの重荷から単なる操作に変える。</h1>
+
+<section>
+<h2>目的</h2>
+<p>〈会社名〉の経費精算は毎月、領収書と交通系ICの明細を手で拾い、Excelに転記して提出する。この作業が月末に集中し、全社員の負担になっている。本ツールは精算の入力作業を最小化し、出張・会議・打ち合わせでかかった費用を都度記録し、月初にそのまま申請できる状態を作る。</p>
+</section>
+
+<section>
+<h2>対象ユーザー</h2>
+<p>全社員。特に月に5件以上の経費発生がある営業・企画部門を主な利用者として想定する。</p>
+</section>
+
+<section>
+<h2>主要機能</h2>
+<ul>
+<li>費用の都度登録：金額・日付・費目を入力。自由メモ欄あり。下書きとして保存できる。</li>
+<li>ICカード明細の取り込み：交通系ICのCSVをアップロードし、乗降履歴を費目「交通費」として一括取り込みする。</li>
+<li>領収書の添付：画像を1件につき1枚添付可能。スマートフォン撮影を想定。</li>
+<li>月次申請：月初に確定ボタンを押すだけで、未申請の記録をまとめて上長へ回付する。</li>
+</ul>
+</section>
+
+<section>
+<h2>画面イメージ</h2>
+<p>ログイン直後の画面は、今月の未申請分が時系列で並ぶ一覧のみ。各項目は一行に日付・費目・金額・添付の有無を示すアイコンを並べたシンプルな表。右上に「今月分を申請」ボタンを置く。新規登録は画面下部の入力欄に常時表示し、ページ遷移せずに入力を完結させる。費目はプルダウン選択で、過去の入力から自動補完する。</p>
+</section>
+
+<section>
+<h2>使わないと決めたもの</h2>
+<ul>
+<li>承認ルートのカスタマイズ機能 — 既存の上長承認フローに固定する。</li>
+<li>予算管理・分析ダッシュボード — 精算の入力負荷を下げる目的から外れるため。</li>
+<li>会計システムとの自動連携 — 第一�では対象外とし、CSV出力で対応する。</li>
+</ul>
+</section>
+
+<div class="signoff">
+企画担当：〈担当者名〉<br>
+対象：社内経費精算 運用改善
+</div>
+
+</div>
+</body>
+</html>

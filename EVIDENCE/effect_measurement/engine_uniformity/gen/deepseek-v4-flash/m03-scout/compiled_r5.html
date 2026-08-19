@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+:root {
+  --base: #0f0f10;
+  --major: #4b4f58;
+  --accent: #c9ff3e;
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-soft: #4a4a4a;
+  --scale-ratio: 1.25;
+  --body-size: 1rem;
+  --h2-size: calc(var(--body-size) * var(--scale-ratio));
+  --h3-size: calc(var(--body-size) * var(--scale-ratio) * 1.1);
+}
+
+/* GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 */
+/* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 */
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+/* GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 */
+/* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans JP", YuGothic, "Yu Gothic", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: var(--body-size);
+  letter-spacing: 0.02em;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.mail-wrapper {
+  width: 100%;
+  max-width: 720px;
+  padding: 48px 32px;
+  margin: 0 auto;
+}
+
+/* 件名 */
+.subject-line {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--major);
+  letter-spacing: 0.04em;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 32px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans JP", YuGothic, "Yu Gothic", sans-serif;
+}
+
+/* 宛名 */
+.greeting {
+  font-size: 1rem;
+  margin-bottom: 32px;
+  color: var(--text);
+}
+
+/* 見出し */
+h2 {
+  font-size: var(--h2-size);
+  font-weight: 600;
+  color: var(--base);
+  margin-top: 40px;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+h3 {
+  font-size: var(--h3-size);
+  font-weight: 600;
+  color: var(--base);
+  margin-top: 32px;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+/* 本文段落 */
+p {
+  margin-bottom: 16px;
+  color: var(--text-soft);
+}
+
+/* アクセントボックス */
+.highlight-box {
+  background: #f5f5f5;
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  margin: 24px 0 32px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.highlight-box p {
+  margin-bottom: 0;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* CTA */
+.cta-area {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.cta-text {
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+  margin-bottom: 8px;
+}
+
+.cta-link {
+  display: inline-block;
+  background: var(--base);
+  color: var(--accent);
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  letter-spacing: 0.03em;
+  margin-top: 8px;
+  transition: opacity 0.15s;
+}
+
+.cta-link:hover {
+  opacity: 0.85;
+}
+
+/* 署名 */
+.signature {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.875rem;
+  color: var(--major);
+  line-height: 1.6;
+}
+
+.signature .name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.signature .role {
+  margin-top: 2px;
+}
+
+.signature .contact {
+  margin-top: 4px;
+  font-size: 0.8125rem;
+}
+
+/* 削った装飾: 影・グラデーション・アイコンは無し。残った要素をすべて説明可能 */
+/* 削った装飾: 枠線(件名の下線以外)、アニメーション、丸角の過剰使用は削除 */
+</style>
+</head>
+<body>
+<div class="mail-wrapper">
+
+<!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+<div class="subject-line">
+件名：〈候補者名〉さんへ／実務2〜5年のエンジニアに、裁量のある環境の話を
+</div>
+
+<!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+<!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+<div class="greeting">
+〈候補者名〉さん<br>
+はじめまして。〈会社名〉の採用担当・〈採用担当名〉です。
+</div>
+
+<p>
+突然のご連絡に驚かれたかもしれません。でも、〈候補者名〉さんのGitHub／Qiita／ポートフォリオを拝見して、「この人にこそ伝えたい話がある」と思い、直接メールを書きました。
+</p>
+
+<!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+<h2>実務2〜5年。ちょうど「もっとやりたい」が溜まっている頃じゃないですか？</h2>
+
+<p>
+周りが見え始めて、自分なりの設計のこだわりも出てきた。でも、上長の承認待ちや属人的なタスク割り振りに、コードを書く時間より調整の時間が増えている——そんな感覚、ありませんか？
+</p>
+
+<p>
+〈会社名〉は、〈確認: どんな事業をしているのか〉を手がけるチームです。社員数は〈社員数〉名ほどで、まだまだ仕組みを自分たちで作っていけるフェーズです。
+</p>
+
+<!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+<h3>「任せる」ではなく「任せきる」を基準にしています。</h3>
+
+<div class="highlight-box">
+<p>
+例えば〈確認: 実際にある裁量の事例、例: 技術選定の自由／アーキテクチャの設計権／リリース判断の委譲範囲〉。<br>
+「これ、自分で決めていいんだ」という感覚を、入社後すぐに味わってもらう設計です。
+</p>
+</div>
+
+<p>
+もちろん、全部を一人で抱える必要はありません。〈確認: チームのサポート体制やメンター制度の有無〉もあります。裁量とサポートのバランスを、無理なく、でも確実に積める環境を整えています。
+</p>
+
+<h3>で、どんな技術に触れるんですか？</h3>
+<p>
+現在の主要スタックは〈確認: 実際の技術スタック、例: Go／TypeScript／React／AWS〉です。ただし「これしかやらない」という縛りはなく、〈確認: 今後取り組みたい技術領域、例: マイクロサービス化／ML基盤／新規事業の立ち上げ〉にも、メンバーの意思でアサインされる文化があります。
+</p>
+
+<p>
+給与レンジや勤務地などの条件はまだお伝えしきれていませんが、まずは「どんなチームか」「どんな裁量があるか」を、ざっくばらんに話す時間を取りませんか？
+</p>
+
+<!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+<div class="cta-area">
+<p class="cta-text">
+30分のオンラインお茶会でも、オフィス見学でも、お好きな形で大丈夫です。<br>
+「話だけ聞いてみようかな」くらいの軽い気持ちで、ぜひ。
+</p>
+<a href="mailto:〈確認: 採用窓口のメールアドレス〉?subject=【スカウト】〈候補者名〉／カジュアル面談希望" class="cta-link">
+カジュアル面談を希望する →
+</a>
+</div>
+
+<div class="signature">
+<div class="name">〈採用担当名〉</div>
+<div class="role">〈会社名〉 採用担当</div>
+<div class="contact">〈採用窓口のメールアドレス〉</div>
+</div>
+
+</div>
+</body>
+</html>

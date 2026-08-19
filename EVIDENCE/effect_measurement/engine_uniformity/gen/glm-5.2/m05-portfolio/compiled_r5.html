@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Portfolio — 〈氏名〉</title>
+<style>
+  /* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  /* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+  :root{
+    --bg:#f5f4f1; --ink:#1b1b1b; --accent:#c7a96b;
+    --base:16px; --scale:1.5;
+    --h1:calc(var(--base)*var(--scale)*var(--scale)*var(--scale));
+    --h2:calc(var(--base)*var(--scale)*var(--scale));
+    --h3:calc(var(--base)*var(--scale));
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    font-size:var(--base); line-height:1.8; -webkit-font-smoothing:antialiased;
+  }
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  /* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+  h1,h2,h3{
+    font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    font-weight:600; letter-spacing:0.04em; line-height:1.35;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px}
+  /* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  header.hero{padding:120px 0 96px}
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  .hero h1{font-size:var(--h1); margin-bottom:24px}
+  .hero .role{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:calc(var(--base)*1.25); color:var(--ink); opacity:0.7;
+    letter-spacing:0.12em;
+  }
+  /* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+  section{padding:80px 0}
+  h2{font-size:var(--h2); margin-bottom:40px; padding-bottom:16px}
+  .lead{font-size:calc(var(--base)*1.125); line-height:2; margin-bottom:8px}
+  /* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+  .rule{border:0; border-top:1px solid rgba(27,27,27,0.12); margin:0}
+  .work{padding:32px 0; border-bottom:1px solid rgba(27,27,27,0.08)}
+  .work:first-of-type{padding-top:0}
+  .work-num{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:calc(var(--base)*0.75); color:var(--accent);
+    letter-spacing:0.3em; margin-bottom:12px; display:block;
+  }
+  .work h3{font-size:var(--h3); margin-bottom:20px}
+  .work p{margin-bottom:12px}
+  .work .note{
+    font-size:calc(var(--base)*0.9); opacity:0.55;
+    font-style:italic; margin-top:16px;
+  }
+  .skills{display:flex; flex-wrap:wrap; gap:8px 32px; list-style:none}
+  .skills li{font-size:calc(var(--base)*0.95); letter-spacing:0.05em}
+  .contact{padding-bottom:96px}
+  .contact a{
+    color:var(--ink); text-decoration:none;
+    border-bottom:1px solid var(--accent); padding-bottom:2px;
+    font-size:calc(var(--base)*1.125);
+  }
+  .contact a:hover{opacity:0.6}
+  footer{padding:48px 0 64px; text-align:center}
+  footer small{
+    font-size:calc(var(--base)*0.8); opacity:0.4;
+    letter-spacing:0.1em; font-family:serif;
+  }
+  @media(max-width:600px){
+    header.hero{padding:80px 0 64px}
+    section{padding:56px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 -->
+<!-- GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け -->
+<header class="hero">
+  <div class="wrap">
+    <h1>余白から始まる。</h1>
+    <p class="role">Designer / 〈氏名〉</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 -->
+  <section id="about">
+    <h2>制作の姿勢</h2>
+    <p class="lead">
+      デザインは削ぎ落とす仕事だと考えています。何を残し、何を引くか。
+      その判断の過程を一つひとつの制作物に込めています。
+    </p>
+    <p class="lead" style="margin-top:16px">
+      〈確認: 現場で実際にあった失敗談を1つ〉——このエピソードが自己紹介の核になります。
+    </p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる -->
+  <section id="works">
+    <h2>作品</h2>
+
+    <article class="work">
+      <span class="work-num">01</span>
+      <h3>〈作品タイトル〉</h3>
+      <p>
+        〈確認: この案件で直面した具体的な課題〉。
+        まず制約を書き出し、削れる要素をすべて仮置きしてから、残すべき一つを決めました。
+        素材の選定から配置まで、〈確認: 判断の分岐点となった具体場面〉を起点に組み立てています。
+      </p>
+      <p class="note">〈確認: 制作期間と担当範囲〉</p>
+    </article>
+
+    <article class="work">
+      <span class="work-num">02</span>
+      <h3>〈作品タイトル〉</h3>
+      <p>
+        〈確認: クライアントが最初に抱えていた課題〉に対し、
+        装飾ではなく構造で解く道を選びました。
+        〈確認: 実際に検討した案のうち採用しなかった方向〉と比較しながら、
+        最終的なかたちに至る思考を記録しています。
+      </p>
+      <p class="note">〈確認: 使用ツールと役割〉</p>
+    </article>
+
+    <article class="work">
+      <span class="work-num">03</span>
+      <h3>〈作品タイトル〉</h3>
+      <p>
+        〈確認: この制作で最も重視したこと〉を軸に、
+        余白の比率と文字の大きさだけでの情報階層を試みました。
+        〈確認: 完成後に得た気づきや反響〉を含め、判断の経緯を併記しています。
+      </p>
+      <p class="note">〈確認: 制作時期と規模〉</p>
+    </article>
+  </section>
+
+  <hr class="rule">
+
+  <section id="skills">
+    <h2>道具と手</h2>
+    <ul class="skills">
+      <li>Figma</li>
+      <li>Adobe Illustrator</li>
+      <li>Adobe Photoshop</li>
+      <li>HTML / CSS</li>
+      <li>〈確認: その他得意なツールや領域〉</li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <section id="contact" class="contact">
+    <h2>連絡先</h2>
+    <p style="margin-bottom:24px">お話しできることを楽しみにしています。</p>
+    <a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+  </section>
+
+</div>
+
+<footer>
+  <small>Design Portfolio — 〈氏名〉</small>
+</footer>
+
+</body>
+</html>

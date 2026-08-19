@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+:root{
+  --bg:#1c1712;
+  --primary:#8a5a34;
+  --accent:#d9a15c;
+  --text:#f4ece1;
+  --muted:#a89886;
+  --step-base:16px;
+  --step-s:0.875rem;
+  --step-m:1.5rem;
+  --step-l:2.25rem;
+  --step-xl:3rem;
+  --serif:'Hiragino Mincho ProN','Yu Mincho','Songti SC',serif;
+  --sans:'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;
+}
+/* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+/* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 */
+/* GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:var(--step-base);
+  line-height:1.9;
+  letter-spacing:0.02em;
+  -webkit-font-smoothing:antialiased;
+}
+/* GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 */
+.wrap{max-width:560px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:0.04em}
+h2{font-size:var(--step-l);line-height:1.5;margin-bottom:32px}
+.serif-lead{font-family:var(--serif);letter-spacing:0.06em}
+.accent{color:var(--accent)}
+
+/* hero */
+.hero{padding:120px 0 104px;text-align:center;position:relative}
+.hero-tag{font-size:var(--step-s);color:var(--accent);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:32px}
+.hero h1{font-size:var(--step-xl);line-height:1.4;margin-bottom:40px}
+.hero p{color:var(--muted);max-width:28em;margin:0 auto}
+.hero-glow{
+  position:absolute;top:20%;left:50%;transform:translateX(-50%);
+  width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,161,92,0.1) 0%,transparent 70%);
+  z-index:-1;
+}
+/* divider */
+.rule{width:48px;height:1px;background:var(--accent);margin:0 auto;border:none;opacity:0.6}
+/* story */
+.story p{color:var(--muted);margin-bottom:32px}
+.story p:last-child{color:var(--text)}
+.story .serif-lead{color:var(--text);font-size:var(--step-m);line-height:1.8}
+/* commitment */
+.commit h2{margin-bottom:48px}
+.commit-item{margin-bottom:40px}
+.commit-item h3{font-size:var(--step-base);color:var(--accent);margin-bottom:12px;font-weight:500}
+.commit-item p{color:var(--muted);font-size:var(--step-s);line-height:1.85}
+/* lineup */
+.lineup h2{margin-bottom:48px}
+.lineup-item{padding:32px 0;border-top:1px solid rgba(244,236,225,0.12)}
+.lineup-item:last-child{border-bottom:1px solid rgba(244,236,225,0.12)}
+.lineup-item h3{font-size:var(--step-m);margin-bottom:8px}
+.lineup-item .meta{font-size:var(--step-s);color:var(--accent);letter-spacing:0.1em;margin-bottom:12px}
+.lineup-item p{color:var(--muted);font-size:var(--step-s)}
+/* cta */
+.cta{text-align:center;padding:112px 0}
+.cta .serif-lead{font-size:var(--step-m);margin-bottom:8px;line-height:1.7}
+.cta p{color:var(--muted);margin-bottom:40px;font-size:var(--step-s)}
+.btn{
+  display:inline-block;padding:18px 56px;
+  background:transparent;border:1px solid var(--accent);
+  color:var(--accent);text-decoration:none;
+  font-size:var(--step-s);letter-spacing:0.25em;
+  border-radius:2px;
+}
+footer{padding:48px 0;text-align:center;font-size:var(--step-s);color:var(--muted);letter-spacing:0.1em}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-tag">Coffee Roastery</div>
+    <!-- GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 -->
+    <h1>一杯の珈琲に、<br>旅の記憶を。</h1>
+    <hr class="rule">
+    <p style="margin-top:40px">ある農園から始まった物語。<br>〈ブランド名〉が贈る、気品の一杯。</p>
+  </div>
+</header>
+
+<section class="story">
+  <div class="wrap">
+    <h2>土と焙煎の記憶</h2>
+    <!-- GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 -->
+    <p class="serif-lead">一粒の豆が、 cups のなかに辿り着くまで。</p>
+    <p>〈ブランド名〉の物語は、〈確認: 物語の起点となる具体的な出来事〉から始まりました。〈確認: その時に何を感じ、どう決断したか〉──その想いが、いまも焙煎の火加減に宿っています。</p>
+    <p>〈確認: こだわりの産地について、農園との出会いや土地の風土を1エピソード〉。豆が育つ環境そのものが味の記憶になると信じて、〈確認: 挽き方や抽出温度など、飲み手に伝えたい手順の実値〉までを大切にしています。</p>
+    <p>大切な人へ贈る一杯は、ただの飲み物ではありません。日々の暮らしのなかで、そっと手渡される小さな豊かさ。</p>
+  </div>
+</section>
+
+<section class="commit">
+  <div class="wrap">
+    <h2>豆へのこだわり</h2>
+    <div class="commit-item">
+      <h3>— 産地</h3>
+      <p>〈確認: 豆の産地・農園名など実データ〉。土と空気の味が、そのまま cups に届きます。</p>
+    </div>
+    <div class="commit-item">
+      <h3>— 焙煎</h3>
+      <p>〈確認: 焙煎の具体的な手順や温度・時間の実値〉。ロースターの矜持が一杯に留まるとき、豆は記憶になります。</p>
+    </div>
+    <div class="commit-item">
+      <h3>— 鮮度</h3>
+      <p>焙煎から〈確認: 鮮度基準となる日数や手順の実値〉。香りが立ち昇る瞬間を、届け先の日常へ。</p>
+    </div>
+  </div>
+</section>
+
+<section class="lineup">
+  <div class="wrap">
+    <h2>ラインナップ</h2>
+    <div class="lineup-item">
+      <div class="meta">BLEND 01</div>
+      <h3>〈銘柄名〉</h3>
+      <p>〈確認: 味わいの特徴や香りの具体的な描写〉</p>
+    </div>
+    <div class="lineup-item">
+      <div class="meta">BLEND 02</div>
+      <h3>〈銘柄名〉</h3>
+      <p>〈確認: 味わいの特徴や香りの具体的な描写〉</p>
+    </div>
+    <div class="lineup-item">
+      <div class="meta">BLEND 03</div>
+      <h3>〈銘柄名〉</h3>
+      <p>〈確認: 味わいの特徴や香りの具体的な描写〉</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <p class="serif-lead">大切な人へ、<br>コーヒー豆という贈りもの。</p>
+    <p>特別な一杯を、特別な誰かへ。</p>
+    <a href="#shop" class="btn">ONLINE SHOP</a>
+  </div>
+</section>
+
+<footer>
+  〈ブランド名〉 · Coffee Roastery
+</footer>
+</body>
+</html>

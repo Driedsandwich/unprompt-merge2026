@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉| 法人向けサービス</title>
+<style>
+/* GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け */
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+/* GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング */
+/* GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 */
+
+/* タイプスケール: 本文 16px → h3 20px / h2 28px / h1 40px (比率1.25) */
+:root {
+  --color-bg: #0b0d10;
+  --color-main: #1c2126;
+  --color-accent: #b08d57;
+  --color-text: #e8e6e1;
+  --color-text-muted: #9a958b;
+  --font-heading: 'Georgia', 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --space-unit: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* コンテナ */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 calc(var(--space-unit) * 3);
+}
+
+/* ヘッダー／ヒーロー */
+.hero {
+  padding: calc(var(--space-unit) * 16) 0 calc(var(--space-unit) * 12);
+  border-bottom: 1px solid rgba(176, 141, 87, 0.2);
+}
+
+.hero__label {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: calc(var(--space-unit) * 2);
+  border-left: 3px solid var(--color-accent);
+  padding-left: calc(var(--space-unit) * 2);
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  margin-bottom: calc(var(--space-unit) * 4);
+  max-width: 14em;
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.hero__lead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 32em;
+  margin-bottom: calc(var(--space-unit) * 6);
+}
+
+.hero__lead strong {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.hero__meta {
+  display: flex;
+  gap: calc(var(--space-unit) * 4);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero__meta-item {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.hero__meta-item span {
+  color: var(--color-accent);
+}
+
+/* 装飾的なライン */
+.accent-line {
+  width: 64px;
+  height: 2px;
+  background: var(--color-accent);
+  margin: calc(var(--space-unit) * 6) 0;
+}
+
+/* 価値提案 */
+.value {
+  padding: calc(var(--space-unit) * 14) 0 calc(var(--space-unit) * 10);
+}
+
+.value__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--space-unit) * 8);
+  align-items: center;
+}
+
+.value__text {
+  max-width: 28em;
+}
+
+.section-label {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: calc(var(--space-unit) * 2);
+}
+
+.value__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.value__desc {
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+.value__visual {
+  background: var(--color-main);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.value__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, transparent 48%, rgba(176, 141, 87, 0.08) 48%, rgba(176, 141, 87, 0.08) 52%, transparent 52%);
+}
+
+.value__visual-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--color-accent);
+}
+
+/* 特徴3点 */
+.features {
+  padding: calc(var(--space-unit) * 10) 0 calc(var(--space-unit) * 12);
+  border-top: 1px solid rgba(176, 141, 87, 0.15);
+}
+
+.features__header {
+  margin-bottom: calc(var(--space-unit) * 8);
+  text-align: center;
+}
+
+.features__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  margin-bottom: calc(var(--space-unit) * 2);
+}
+
+.features__sub {
+  color: var(--color-text-muted);
+  max-width: 32em;
+  margin: 0 auto;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--space-unit) * 6);
+}
+
+.feature__card {
+  padding: calc(var(--space-unit) * 5);
+  background: var(--color-main);
+  position: relative;
+}
+
+.feature__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--color-accent);
+}
+
+.feature__number {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.feature__title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-bottom: calc(var(--space-unit) * 2);
+  line-height: 1.3;
+}
+
+.feature__desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* 利用の流れ */
+.steps {
+  padding: calc(var(--space-unit) * 12) 0;
+  border-top: 1px solid rgba(176, 141, 87, 0.15);
+}
+
+.steps__header {
+  margin-bottom: calc(var(--space-unit) * 8);
+}
+
+.steps__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  margin-bottom: calc(var(--space-unit) * 2);
+}
+
+.steps__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: calc(var(--space-unit) * 4);
+  counter-reset: step-counter;
+}
+
+.step__item {
+  counter-increment: step-counter;
+  padding: calc(var(--space-unit) * 5) calc(var(--space-unit) * 5) calc(var(--space-unit) * 6);
+  background: var(--color-main);
+  position: relative;
+}
+
+.step__item::before {
+  content: counter(step-counter, decimal-leading-zero);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.step__title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: calc(var(--space-unit) * 2);
+  line-height: 1.3;
+}
+
+.step__desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* CTA */
+.cta {
+  padding: calc(var(--space-unit) * 14) 0;
+  text-align: center;
+  border-top: 1px solid rgba(176, 141, 87, 0.15);
+  border-bottom: 1px solid rgba(176, 141, 87, 0.15);
+}
+
+.cta__inner {
+  max-width: 32em;
+  margin: 0 auto;
+}
+
+.cta__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.cta__text {
+  color: var(--color-text-muted);
+  margin-bottom: calc(var(--space-unit) * 6);
+  line-height: 1.8;
+}
+
+.cta__button {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  padding: calc(var(--space-unit) * 2.5) calc(var(--space-unit) * 7);
+  transition: background 0.2s ease;
+}
+
+.cta__button:hover {
+  background: #c8a46a;
+}
+
+.cta__footnote {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: calc(var(--space-unit) * 3);
+}
+
+/* フッター */
+.footer {
+  padding: calc(var(--space-unit) * 6) 0 calc(var(--space-unit) * 4);
+  text-align: center;
+}
+
+.footer__inner {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.footer__inner a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.footer__inner a:hover {
+  text-decoration: underline;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 calc(var(--space-unit) * 2);
+  }
+
+  .hero {
+    padding: calc(var(--space-unit) * 10) 0 calc(var(--space-unit) * 8);
+  }
+
+  .value__inner {
+    grid-template-columns: 1fr;
+    gap: calc(var(--space-unit) * 6);
+  }
+
+  .value__text {
+    order: 2;
+  }
+
+  .value__visual {
+    order: 1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr;
+    gap: calc(var(--space-unit) * 4);
+  }
+
+  .steps__list {
+    grid-template-columns: 1fr;
+    gap: calc(var(--space-unit) * 3);
+  }
+
+  .hero__meta {
+    flex-direction: column;
+    gap: calc(var(--space-unit) * 2);
+  }
+
+  .cta {
+    padding: calc(var(--space-unit) * 10) 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<main>
+  <!-- ヒーロー -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__label">法人向けサービス</div>
+      <h1 class="hero__title">意思決定の基盤を、<br><em>静かに</em>支える。</h1>
+      <p class="hero__lead">
+        〈サービス名〉は、<strong>貴社の事業判断に確かな軸</strong>をもたらす法人向けサービス基盤です。<br>
+        過剰な主張ではなく、機能の確かさと設計の端正さで信頼を積み重ねます。
+      </p>
+      <div class="accent-line"></div>
+      <div class="hero__meta">
+        <div class="hero__meta-item">稼働実績 <span>〈年数〉年</span></div>
+        <div class="hero__meta-item">導入社数 <span>〈導入社数〉社</span></div>
+        <div class="hero__meta-item">対応規模 <span>〈従業員規模〉名〜</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 価値提案 -->
+  <section class="value">
+    <div class="container">
+      <div class="value__inner">
+        <div class="value__text">
+          <div class="section-label">Value Proposition</div>
+          <h2 class="value__heading">静かな強さが、<br>組織の判断を変える。</h2>
+          <p class="value__desc">
+            情報過多の時代だからこそ、必要なデータと洞察を過不足なく届ける設計が重要です。〈サービス名〉は、担当者の皆さまが〈確認: 現場で実際にあった失敗談を1つ〉といった経験を踏まえて開発された、現場発のサービスです。
+          </p>
+          <p class="value__desc" style="margin-top: var(--space-unit) * 3;">
+            派手な機能ではなく、<strong>毎日の業務に自然に溶け込み、判断の質を高め続ける</strong>。それこそが、私たちが「信頼」と呼ぶものの形です。
+          </p>
+        </div>
+        <div class="value__visual">
+          <div class="value__visual-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="12" width="8" height="26" stroke="#b08d57" stroke-width="1.5" fill="none"/>
+              <rect x="16" y="6" width="8" height="32" stroke="#b08d57" stroke-width="1.5" fill="none"/>
+              <rect x="30" y="18" width="8" height="20" stroke="#b08d57" stroke-width="1.5" fill="none"/>
+              <line x1="2" y1="38" x2="38" y2="38" stroke="#b08d57" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特徴3点 -->
+  <section class="features">
+    <div class="container">
+      <div class="features__header">
+        <h2 class="features__heading">信頼を形にする、3つの特長</h2>
+        <p class="features__sub">どの企業にも通用する汎用機能ではなく、意思決定の現場に寄り添う設計。</p>
+      </div>
+      <div class="features__grid">
+        <div class="feature__card">
+          <div class="feature__number">01</div>
+          <h3 class="feature__title">過不足のない情報設計</h3>
+          <p class="feature__desc">必要なデータだけを、見やすい形で。ノイズを削ぎ落としたインターフェースが、素早い状況把握を可能にします。</p>
+        </div>
+        <div class="feature__card">
+          <div class="feature__number">02</div>
+          <h3 class="feature__title">組織に馴染む柔軟性</h3>
+          <p class="feature__desc">既存の業務フローを大きく変えずに導入可能。カスタマイズ範囲は〈設定可能項目数〉項目以上、貴社の運用に合わせて調整できます。</p>
+        </div>
+        <div class="feature__card">
+          <div class="feature__number">03</div>
+          <h3 class="feature__title">継続的な価値向上</h3>
+          <p class="feature__desc">導入で終わりではありません。定期的なアップデートと専任サポートで、サービスの価値を長期にわたって維持・向上させます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 利用の流れ -->
+  <section class="steps">
+    <div class="container">
+      <div class="steps__header">
+        <h2 class="steps__heading">導入の流れ</h2>
+      </div>
+      <div class="steps__list">
+        <div class="step__item">
+          <h3 class="step__title">要件ヒアリング</h3>
+          <p class="step__desc">貴社の業務内容や課題を丁寧に伺います。オンライン30分〜1時間程度。必要な機能とスケジュールを明確にします。</p>
+        </div>
+        <div class="step__item">
+          <h3 class="step__title">デモ・試用</h3>
+          <p class="step__desc">実際の画面をお見せしながら、操作感をご確認いただきます。〈試用期間〉日間の無料試用も可能。担当者の方の感触を最優先します。</p>
+        </div>
+        <div class="step__item">
+          <h3 class="step__title">導入・運用開始</h3>
+          <p class="step__desc">初期設定と担当者向けのレクチャーを実施。移行期間中のサポートも含めて、安心して使い始めていただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta__inner">
+        <h2 class="cta__heading">まずは、<br>対話から始めませんか。</h2>
+        <p class="cta__text">
+          資料請求やデモのご依頼など、お気軽にご連絡ください。<br>
+          貴社の状況に合わせたご提案を、<strong>一切の営業トーク抜きで</strong>お届けします。
+        </p>
+        <a href="#" class="cta__button">お問い合わせ</a>
+        <p class="cta__footnote">※ お問い合わせ後、〈営業時間内対応時間〉時間以内にご連絡いたします。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        &copy; 〈会社名〉. All rights reserved.<br>
+        <a href="#">プライバシーポリシー</a>／<a href="#">利用規約</a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+</body>
+</html>

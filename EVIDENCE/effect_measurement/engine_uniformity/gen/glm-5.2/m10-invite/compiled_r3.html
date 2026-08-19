@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会のご案内</title>
+<style>
+  :root {
+    --base: #2b2620;
+    --primary: #8a6a45;
+    --accent: #c9a24b;
+    --text: #f0ebe4;
+    --text-muted: #b5a896;
+    --bg-soft: #3a352e;
+  }
+
+  /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+  /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+  /* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+  /* GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり */
+  /* GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 */
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--base);
+    color: var(--text);
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+  }
+
+  .document {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 72px 56px;
+  }
+
+  .greeting {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 56px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  h1 .line2 {
+    display: block;
+    color: var(--text);
+  }
+
+  .lead {
+    margin: 0 0 88px;
+    font-size: 17px;
+    line-height: 2.0;
+  }
+
+  section {
+    margin-bottom: 64px;
+  }
+
+  h2 {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif;
+    font-size: 21px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    padding-left: 16px;
+    border-left: 3px solid var(--primary);
+    color: var(--text);
+    letter-spacing: 0.04em;
+  }
+
+  p {
+    margin: 0 0 16px;
+  }
+
+  .details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .details li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--bg-soft);
+    display: flex;
+    gap: 24px;
+  }
+
+  .details li:last-child {
+    border-bottom: none;
+  }
+
+  .details .label {
+    flex: 0 0 80px;
+    color: var(--text-muted);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .details .value {
+    flex: 1;
+  }
+
+  .rsvp p:last-child {
+    margin-bottom: 0;
+  }
+
+  .closing {
+    margin-top: 88px;
+    padding-top: 32px;
+    border-top: 1px solid var(--bg-soft);
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.85;
+  }
+
+  .sign {
+    margin-top: 24px;
+    text-align: right;
+    font-size: 15px;
+    color: var(--text);
+  }
+</style>
+</head>
+<body>
+<div class="document">
+
+  <p class="greeting">〈十年〉ぶり、かな。</p>
+
+  <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+  <h1>部室、もう一回<span class="line2">開けないか。</span></h1>
+
+  <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+  <!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+  <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+  <div class="lead">
+    <p>久しぶり。最後に顔を合わせたのがいつだったか、正直、うろ覚えだ。</p>
+    <p>連絡も途絶えたままだったりすると、「今さらどうかな」って思う気持ち、わかる。でもあの頃のノリは消えてないと思うんだ。顔を見れば、たぶん一発で戻る。</p>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+  <section>
+    <h2>あの日時・場所</h2>
+    <ul class="details">
+      <li><span class="label">日時</span><span class="value">〈開催日〉〈開始時刻〉</span></li>
+      <li><span class="label">場所</span><span class="value">〈会場〉〈地図URL〉</span></li>
+      <li><span class="label">会費</span><span class="value">〈確認: 想定会費額〉</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>どんな会にしたいか</h2>
+    <p>堅苦しいのはなしだ。幹事の挨拶も、スライドも、なし。集まって、飲んで、あの頃の話で笑って、近況をぽつりぽつり話す。それでいい。</p>
+    <p>欠席の人の話も出るだろうし、また会いたいって名前も出るだろう。そういう緩い会にしたい。</p>
+  </section>
+
+  <section class="rsvp">
+    <h2>来れる？</h2>
+    <p>〈締切日〉までに、〈幹事名〉まで返信ちょうだい。出席・欠席、どっちでもいい。一言添えてもらえれば、それだけでこっちは助かる。</p>
+    <p>連絡先：〈幹事の連絡先〉</p>
+  </section>
+
+  <div class="closing">
+    みんなの顔が見たい。それだけだ。
+  </div>
+
+  <p class="sign">〈幹事名〉</p>
+
+</div>
+</body>
+</html>

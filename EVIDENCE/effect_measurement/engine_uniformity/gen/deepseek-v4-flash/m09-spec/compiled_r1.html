@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算 集計自動化ツール 仕様メモ</title>
+<style>
+:root {
+  /* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+  /* GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 */
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --text-primary: #1b2a22;
+  --text-secondary: #4a4842;
+  --accent: #c9a24b;
+  --line: #d9d5cb;
+  --heading-font: 'Georgia', 'Times New Roman', serif;
+  --body-font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --base-size: 15px;
+  --ratio: 1.25;
+  --h2-size: calc(var(--base-size) * var(--ratio));
+  --h3-size: calc(var(--base-size) * var(--ratio) * var(--ratio));
+}
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--body-font);
+  font-size: var(--base-size);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+/* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+/* GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール */
+.header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 24px;
+  margin-bottom: 48px;
+}
+h1 {
+  font-family: var(--heading-font);
+  font-size: calc(var(--base-size) * var(--ratio) * var(--ratio) * 1.15);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+}
+.subhead {
+  color: var(--text-secondary);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+.tagline {
+  font-family: var(--heading-font);
+  font-size: var(--h3-size);
+  font-weight: 400;
+  color: var(--accent);
+  margin: 16px 0 0 0;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+.section {
+  margin-bottom: 56px;
+}
+.section:last-child {
+  margin-bottom: 0;
+}
+h2 {
+  font-family: var(--heading-font);
+  font-size: var(--h2-size);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text-primary);
+}
+p {
+  margin: 0 0 12px 0;
+  color: var(--text-secondary);
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+li:last-child {
+  margin-bottom: 0;
+}
+.desc-box {
+  background: var(--surface);
+  padding: 24px;
+  border: 1px solid var(--line);
+  margin-top: 16px;
+}
+.desc-box p {
+  margin: 0 0 8px 0;
+}
+.desc-box p:last-child {
+  margin-bottom: 0;
+}
+code {
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  font-size: 0.9em;
+  background: #ecebe6;
+  padding: 2px 6px;
+  border-radius: 2px;
+  color: var(--text-primary);
+}
+.small-note {
+  font-size: 13px;
+  color: #7a7568;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <h1>経費精算 集計自動化ツール<br>仕様メモ</h1>
+    <p class="subhead">要件概要 — 経理担当者向け / 完全独立ツール</p>
+    <!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+    <p class="tagline">経費、自動で締まる。集計・経理処理を自動化し月次を即完了。</p>
+  </div>
+
+  <div class="section">
+    <h2>目的</h2>
+    <!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+    <p>経理担当者が各部署から提出される経費精算書を月次で集計し、科目別に仕訳データへ落とし込む作業を、Excel / スプレッドシート上のツールで自動化する。申請入力の負荷を減らすのではなく、経理側の集計・仕訳突合作業を対象とする。本ツール単体で完結し、既存の会計システムや勤怠システムとの接続は行わない。</p>
+    <!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+  </div>
+
+  <div class="section">
+    <h2>対象ユーザー</h2>
+    <p>経理担当者（〈部署名・人数〉名程度）。各部門から届く申請書を一括処理する立場のユーザーが、本ツールを操作する。申請者側の画面や操作は想定しない。</p>
+  </div>
+
+  <div class="section">
+    <h2>主要機能</h2>
+    <ul>
+      <!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+      <li><strong>定型フォーマットへの取り込み</strong> — 各部署から回付される申請データ（紙・PDF・メール添付のExcel）を、ツール内の統一シートに転記するための入力補助。手入力でもセルに入力すれば即座に集計対象となる。</li>
+      <!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+      <li><strong>科目自動分類</strong> — 費目（旅費交通費・消耗品費・通信費など）と摘要欄のキーワードに基づき、会計科目を自動判定して該当セルにセットする。判定不能な行はフラグが立ち、担当者が手動選択できる。</li>
+      <li><strong>月次集計シート自動作成</strong> — 任意の月を指定すると、該当月の全データを科目別に集計したサマリーシートを生成する。小計・消費税区分・合計が自動計算される。</li>
+      <li><strong>仕訳データ書き出し</strong> — 集計結果を、経理システムに貼り付け可能な形式（タブ区切りテキスト）でクリップボードまたは別シートに出力する。出力項目：日付・科目コード・金額・部門コード・摘要。</li>
+      <li><strong>重複・異常値チェック</strong> — 同一日・同一申請者・同一金額の行を検出し、重複疑いとしてリスト表示する。金額が前月比で大きく乖離した行も警告する。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>画面イメージ（言葉での説明）</h2>
+    <div class="desc-box">
+      <p>ツールは1つのワークブック（Excelファイル / Googleスプレッドシート）として提供される。ブック内には以下のシートが存在する。</p>
+      <p><strong>① 入力シート「入力」</strong> — 1行＝1件の経費データ。左から「日付」「申請者」「費目」「摘要」「金額」「税区分」「部門コード」「科目（自動）」「状態フラグ」。最上行は固定ヘッダ行。データはこのシートに直接入力するか、他シートからコピー＆ペーストする。科目列は入力と同時に自動判定される。</p>
+      <p><strong>② 集計シート「月次サマリー」</strong> — 画面上部に「対象月」を入力するセル（YYYYMM形式）。それを変更すると、該当月のデータだけが科目別に集計され、表が再描画される。科目ごとに件数・合計金額・消費税額が表示され、最下行に総合計が出る。</p>
+      <p><strong>③ 仕訳出力シート「出力」</strong> — 「月次サマリー」のデータを元に、仕訳形式に整形された行が並ぶ。「出力形式でコピー」ボタン（マクロ／Google Apps Script）でクリップボードにコピーされる。</p>
+      <p><strong>④ チェックシート「確認」</strong> — 重複疑いの行と、金額異常値の行が一覧表示される。各項目にチェックボックスが付き、確認済みにできる。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>使わないと決めたもの</h2>
+    <ul>
+      <li>申請者向けの入力画面・Webフォーム</li>
+      <li>経費精算システムや会計ソフトとのリアルタイム連携（API・CSV自動取込）</li>
+      <li>電子帳簿保存法対応の証憑管理機能（領収書画像の保存・紐付け）</li>
+      <li>スマートフォン・タブレット対応（PC専用）</li>
+      <li>承認ワークフロー（申請→承認→経理処理のステータス管理）</li>
+    </ul>
+    <p class="small-note">本ツールは経理担当者の集計・仕訳作業のみに焦点を当てる。申請受付・承認・証憑管理は現行の運用を維持する。</p>
+  </div>
+</div>
+</body>
+</html>

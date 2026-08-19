@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>秋の社内勉強会 | 告知</title>
+<style>
+  /* Type scale: 本文16px基準 ×1.414 見出し h2=22.6px h1=32px ヒーロー=45px */
+  :root{
+    --ink:#1e2a45;        /* 基調:藍鉄 */
+    --ink-soft:#4a5878;
+    --accent:#c98a12;     /* アクセント:山吹 */
+    --paper:#ffffff;
+    --wash:#f4f6fa;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    color:var(--ink);background:var(--paper);
+    font-size:16px;line-height:1.9;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+
+  /* ── ヒーロー ── */
+  header{
+    background:linear-gradient(160deg,#1e2a45 0%,#2c3d63 70%,#3a4f7e 100%);
+    color:#fff;padding:96px 24px 88px;text-align:center;
+  }
+  header .season{
+    display:inline-block;font-size:13px;letter-spacing:.3em;
+    border:1px solid var(--accent);color:var(--accent);
+    padding:8px 24px;margin-bottom:32px;
+  }
+  header h1{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:45px;font-weight:600;letter-spacing:.08em;line-height:1.5;
+  }
+  header h1 em{font-style:normal;color:var(--accent)}
+  header p{margin-top:24px;font-size:15px;color:#c9d3e8;letter-spacing:.05em}
+
+  section{padding:96px 0}
+  section:nth-of-type(even){background:var(--wash)}
+
+  h2{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:22.6px;font-weight:600;letter-spacing:.12em;
+    display:flex;align-items:center;gap:16px;margin-bottom:48px;
+  }
+  h2::before{content:"";width:32px;height:2px;background:var(--accent)}
+
+  /* ── 日時・場所 ── */
+  .meta{list-style:none}
+  .meta li{
+    display:flex;gap:24px;padding:16px 0;
+    border-bottom:1px solid #e3e8f0;
+  }
+  .meta .label{
+    flex:0 0 96px;font-size:13px;font-weight:700;
+    color:var(--accent);letter-spacing:.15em;padding-top:4px;
+  }
+
+  /* ── 内容 ── */
+  .lead{font-size:18px;line-height:2.1;margin-bottom:32px}
+  .note{font-size:14px;color:var(--ink-soft)}
+
+  /* ── 見どころ ── */
+  .points{display:grid;gap:24px}
+  .point{
+    background:var(--paper);border-left:4px solid var(--accent);
+    padding:24px 32px;
+  }
+  section:nth-of-type(odd) .point{background:var(--wash)}
+  .point h3{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:17px;font-weight:600;letter-spacing:.06em;margin-bottom:8px;
+  }
+  .point p{font-size:14px;color:var(--ink-soft)}
+
+  /* ── 参加方法 ── */
+  .join{
+    border:1px solid #e3e8f0;padding:48px;text-align:center;background:var(--paper);
+  }
+  .join p{margin-bottom:32px}
+  .btn{
+    display:inline-block;background:var(--ink);color:#fff;
+    font-size:15px;letter-spacing:.15em;font-weight:700;
+    padding:16px 56px;text-decoration:none;
+  }
+  .btn small{display:block;font-weight:400;font-size:12px;color:#c9d3e8;margin-top:4px}
+
+  footer{padding:48px 24px;text-align:center;font-size:12px;color:var(--ink-soft);letter-spacing:.1em}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="season">AUTUMN STUDY SESSION</span>
+  <h1>実りの秋に、<br>知を<em>分かち合う</em>時間を。</h1>
+  <p>社内勉強会 〈テーマ〉 ― 現場で積み上げた知見を、持ち寄る一日</p>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>日時・場所</h2>
+    <ul class="meta">
+      <li><span class="label">日時</span><span>〈開催日〉〈開始時刻〉〜〈終了時刻〉</span></li>
+      <li><span class="label">場所</span><span>〈会場〉（オンライン参加可 / 〈配信ツール・URL〉）</span></li>
+      <li><span class="label">対象</span><span>全社員（職種・所属は問いません）</span></li>
+      <li><span class="label">参加費</span><span>無料・社内開催</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>内容の説明</h2>
+    <p class="lead">
+      日々の業務の中で各自が試し、学んできたことを持ち寄り、共有する勉強会です。
+      今回のテーマは〈テーマ〉。発表者が実践した〈内容の概要〉を軸に、
+      失敗談や試行錯誤の過程も含めてざっくばらんに語り合います。
+    </p>
+    <p class="note">
+      ※ 発表内容の詳細・タイムテーブルは追って社内ポータルに掲載します。
+      聴講のみの参加も歓迎です。
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>見どころ</h2>
+    <div class="points">
+      <div class="point">
+        <h3>01 — 現場発の実践知</h3>
+        <p>教科書的な話ではなく、〈発表者・チーム名〉が実際の案件で得た生の知見を聞けます。</p>
+      </div>
+      <div class="point">
+        <h3>02 — 質問歓迎のディスカッション</h3>
+        <p>各発表の後に質疑・雑談の時間を設けます。部門を越えた意見交換の場としてご活用ください。</p>
+      </div>
+      <div class="point">
+        <h3>03 — 明日から使える持ち帰り</h3>
+        <p>資料は後日共有予定。参加できなかった方への展開も想定した内容になっています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>参加方法</h2>
+    <div class="join">
+      <p>
+        〈申込方法〉からお申し込みください。<br>
+        申込締切：〈締切日〉｜ 途中入退室は自由です。
+      </p>
+      <a class="btn" href="#">
+        参加を申し込む
+        <small>〈申込フォームURL・連絡先〉</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  主催：〈主催部署・担当者名〉 ／ お問い合わせ：〈連絡先〉
+</footer>
+
+</body>
+</html>

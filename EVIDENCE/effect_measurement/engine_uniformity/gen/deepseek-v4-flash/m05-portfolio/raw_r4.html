@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 — ポートフォリオ</title>
+<style>
+/* ===== タイプスケール =====
+   :root 基準: 本文 1rem (16px)
+   h6: 1.000rem  / 1.0
+   h5: 1.125rem  / 1.2
+   h4: 1.250rem  / 1.3
+   h3: 1.500rem  / 1.4
+   h2: 2.000rem  / 1.3
+   h1: 2.750rem  / 1.2
+   — 見出し: 明朝系 (遊明朝 + 游明朝 + serif)
+   — 本文: ゴシック系 (游ゴシック + YuGothic + sans-serif)
+   太さ・字間は書体にあわせて調整
+*/
+:root {
+  --base: 1rem;
+  --ratio: 1.200;
+  --h6: 1.000rem;
+  --h5: 1.125rem;
+  --h4: 1.250rem;
+  --h3: 1.500rem;
+  --h2: 2.000rem;
+  --h1: 2.750rem;
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --color-key: #1a2a3a;       /* 深い藍 — 基調 */
+  --color-key-light: #2f4a5c;
+  --color-accent: #c05a3a;    /* くすんだ赤橙 — アクセント */
+  --color-accent-light: #d97b5c;
+  --color-bg: #f6f3ed;        /* ごく薄い生成り */
+  --color-text: #1a1a1e;
+  --color-mute: #5f5f66;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: "游ゴシック", YuGothic, "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  color: var(--color-key);
+}
+h1 { font-size: var(--h1); letter-spacing: 0.06em; }
+h2 { font-size: var(--h2); letter-spacing: 0.04em; margin-bottom: var(--space-32); }
+h3 { font-size: var(--h3); letter-spacing: 0.03em; margin-bottom: var(--space-16); }
+p { margin-bottom: var(--space-16); }
+a { color: var(--color-accent); text-decoration: none; transition: border-bottom 0.1s; }
+a:hover { border-bottom: 2px solid var(--color-accent); }
+
+/* 8px グリッド + ゆったり余白 */
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 var(--space-24);
+}
+
+/* ヒーロー — 主張は「型にはまらない仕事」 */
+.hero {
+  padding: var(--space-96) 0 var(--space-80);
+  border-bottom: 2px solid var(--color-key);
+  margin-bottom: var(--space-80);
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 64px;
+  height: 4px;
+  background: var(--color-accent);
+}
+.hero-name {
+  font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", serif;
+  font-size: var(--h1);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--color-key);
+  margin-bottom: var(--space-8);
+}
+.hero-tag {
+  font-size: var(--h4);
+  font-weight: 400;
+  color: var(--color-mute);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-32);
+}
+.hero-catch {
+  font-size: var(--h5);
+  font-weight: 400;
+  color: var(--color-accent);
+  border-left: 3px solid var(--color-accent);
+  padding-left: var(--space-16);
+  margin-top: var(--space-24);
+}
+.hero-catch strong {
+  font-weight: 500;
+  font-family: "游明朝", YuMincho, serif;
+}
+
+/* セクション共通 */
+section {
+  padding: var(--space-64) 0;
+}
+.section-label {
+  display: inline-block;
+  font-size: var(--h6);
+  font-family: "游ゴシック", YuGothic, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-accent-light);
+  padding-bottom: var(--space-8);
+  margin-bottom: var(--space-24);
+}
+
+/* 自己紹介 */
+.about-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-32);
+  align-items: flex-start;
+}
+.about-avatar {
+  flex: 0 0 120px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(var(--color-key-light) 0% 30%, var(--color-accent-light) 30% 70%, var(--color-key) 70% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #fff;
+  line-height: 1;
+}
+.about-text {
+  flex: 1;
+  min-width: 200px;
+}
+.about-text p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* 作品3点 — カードなし、シンプルな組み */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-32);
+}
+.work-item {
+  border-top: 3px solid var(--color-key);
+  padding-top: var(--space-16);
+}
+.work-item h3 {
+  font-size: var(--h4);
+  margin-bottom: var(--space-8);
+}
+.work-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--color-key-light);
+  margin-bottom: var(--space-16);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  background-image: 
+    linear-gradient(135deg, var(--color-key) 25%, transparent 25%),
+    linear-gradient(225deg, var(--color-key) 25%, transparent 25%),
+    linear-gradient(315deg, var(--color-key) 25%, transparent 25%),
+    linear-gradient(45deg, var(--color-key) 25%, transparent 25%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+}
+.work-item p {
+  font-size: 0.925rem;
+  color: var(--color-mute);
+}
+
+/* スキル */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16) var(--space-24);
+  list-style: none;
+}
+.skill-list li {
+  font-size: var(--h6);
+  padding: var(--space-8) var(--space-16);
+  background: #fff;
+  border: 1px solid var(--color-key-light);
+  color: var(--color-key);
+  letter-spacing: 0.04em;
+}
+
+/* 連絡先 */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-24);
+  margin-top: var(--space-16);
+}
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--h5);
+  font-family: "游明朝", YuMincho, serif;
+  font-weight: 400;
+  color: var(--color-key);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+.contact-links a:hover {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.contact-links .icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: var(--color-accent-light);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E") no-repeat center;
+  mask-size: contain;
+  background-color: var(--color-accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E") no-repeat center;
+  -webkit-mask-size: contain;
+}
+
+/* フッター */
+.footer-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-mute);
+  padding: var(--space-48) 0 var(--space-24);
+  border-top: 1px solid #ddd;
+  margin-top: var(--space-48);
+}
+
+/* ひとつ削る装飾: 影・グラデーション多用・アニメーションは最初から無い。
+   提出前に「.work-thumb の斜め線パターン」を削る候補にしたが、
+   これは作品プレースホルダの視覚的彩りとして必要と判断、残す。
+   代わりに各セクションの区切りに使っていた hr を削除 → セクションは余白で分ける。
+   さらに .hero::after のアクセント線は残す(主張の補強)。
+*/
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ヒーロー: 冒頭は「テンプレートで終わらない」という姿勢 -->
+  <header class="hero">
+    <div class="hero-name">〈氏名〉</div>
+    <div class="hero-tag">ディレクション / デザイン / 設計</div>
+    <div class="hero-catch">
+      <strong>テンプレートに流し込まない。</strong><br>
+      枠を疑うことから、仕事ははじまる。
+    </div>
+  </header>
+
+  <!-- 自己紹介 -->
+  <section id="about">
+    <span class="section-label">About</span>
+    <div class="about-wrap">
+      <div class="about-avatar">〈👤〉</div>
+      <div class="about-text">
+        <p>デザインと設計のあいだで、つくる側の意図と受け手の体験を結ぶ仕事をしています。小さなスタジオでグラフィック・UI・設計支援まで、領域を問わず手を動かしてきました。</p>
+        <p>現在は〈スタジオ名〉に所属。紙とスクリーンの境界を問わず、「型にはまった」で終わらないアウトプットを心がけています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品3点 -->
+  <section id="works">
+    <span class="section-label">Works</span>
+    <div class="works-grid">
+      <div class="work-item">
+        <div class="work-thumb" aria-label="作品サムネイル">〈作品タイトル1〉</div>
+        <h3>〈作品タイトル1〉</h3>
+        <p>リブランディングに伴う VI 設計とアプリケーション。既存の色・形を一度解体し、新しい文脈を再構築した。</p>
+      </div>
+      <div class="work-item">
+        <div class="work-thumb" aria-label="作品サムネイル">〈作品タイトル2〉</div>
+        <h3>〈作品タイトル2〉</h3>
+        <p>展示会の空間構成・サイン計画。壁・光・文字の密度をコントロールし、来場者の動線を設計。</p>
+      </div>
+      <div class="work-item">
+        <div class="work-thumb" aria-label="作品サムネイル">〈作品タイトル3〉</div>
+        <h3>〈作品タイトル3〉</h3>
+        <p>デジタルプロダクトの UI 設計。ユーザーリサーチからプロトタイプまで、開発チームと協働した。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- スキル -->
+  <section id="skills">
+    <span class="section-label">Skills</span>
+    <ul class="skill-list">
+      <li>設計 / 情報設計</li>
+      <li>グラフィックデザイン</li>
+      <li>UI / UX</li>
+      <li>タイポグラフィ</li>
+      <li>ディレクション</li>
+      <li>Figma / Illustrator</li>
+      <li>HTML / CSS</li>
+    </ul>
+  </section>
+
+  <!-- 連絡先 -->
+  <section id="contact">
+    <span class="section-label">Contact</span>
+    <div class="contact-links">
+      <a href="mailto:〈メールアドレス〉">
+        <span class="icon" style="display:inline-block; width:20px; height:20px; background:var(--color-accent); mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E&quot;) no-repeat center; mask-size: contain; -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E&quot;) no-repeat center; -webkit-mask-size: contain;"></span>
+        〈メールアドレス〉
+      </a>
+      <a href="#0">〈SNSアカウント〉</a>
+    </div>
+    <p style="margin-top:var(--space-24); font-size:0.9rem; color:var(--color-mute);">
+      お問い合わせはメールまたはSNSのDMへ。返信までに2–3日いただく場合があります。
+    </p>
+  </section>
+
+  <footer class="footer-note">
+    © 〈氏名〉 · ポートフォリオ
+  </footer>
+
+</div>
+<!-- 余白調整: セクション間は 64px 以上 (CSS で統一) 
+     装飾をひとつ削る: 影・過剰なグラデーションは最初から不使用。
+     提出前に hr 区切りを削除済み。hero::after のアクセント線は残す(主張の一部)。 -->
+</body>
+</html>

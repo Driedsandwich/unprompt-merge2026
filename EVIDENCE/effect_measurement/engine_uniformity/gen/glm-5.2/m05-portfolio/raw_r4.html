@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>〈氏名〉 — フロントエンドエンジニア</title>
+<style>
+  :root {
+    --ink: #1a1612;
+    --paper: #ede7dc;
+    --accent: #b5432a;
+    --muted: #6b6256;
+    --step-0: 15px;
+    --step-1: 18px;
+    --step-2: 24px;
+    --step-3: 32px;
+    --step-4: 56px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: var(--step-0);
+    letter-spacing: 0.01em;
+  }
+  /* 区切り線のみの装飾体系。影・角丸・グラデは使わない */
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  /* HERO */
+  header { padding: 128px 0 96px; border-bottom: 1px solid var(--ink); }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 32px;
+  }
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--step-4); font-weight: 400; line-height: 1.25;
+    letter-spacing: -0.01em; margin-bottom: 16px;
+  }
+  .lead { color: var(--muted); font-size: var(--step-1); max-width: 520px; }
+  /* SECTIONS */
+  section { padding: 96px 0; border-bottom: 1px solid var(--ink); }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--step-3); font-weight: 600;
+    letter-spacing: 0.04em; margin-bottom: 48px;
+  }
+  p { margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+  /* WORKS */
+  .work { padding: 32px 0; border-top: 1px solid rgba(26,22,18,0.2); }
+  .work:first-child { border-top: none; padding-top: 0; }
+  .work-num {
+    font-size: 11px; letter-spacing: 0.2em; color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .work-title {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--step-2); font-weight: 600;
+    letter-spacing: 0.02em; margin-bottom: 8px;
+  }
+  .work-desc { color: var(--muted); font-size: 14px; }
+  /* SKILLS */
+  .skills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill {
+    font-size: 13px; padding: 6px 14px;
+    border: 1px solid var(--ink); background: transparent;
+  }
+  /* CONTACT */
+  .contact-line {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--step-2); margin: 32px 0;
+    text-decoration: underline; text-underline-offset: 6px;
+    text-decoration-color: var(--accent);
+  }
+  footer {
+    padding: 32px 0; font-size: 12px; color: var(--muted);
+    text-align: center; border-bottom: none;
+  }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Portfolio · 2025</p>
+    <h1>〈氏名〉</h1>
+    <p class="lead">フロントエンドエンジニア。動線を整理し、読む人のための余白を残した画面を作っています。</p>
+  </div>
+</header>
+<section>
+  <div class="wrap">
+    <h2>自己紹介</h2>
+    <p>小さなチームでUI開発に携わってきました。仕様が固まる前から関わり、画面の密度と情報の優先順位を並走して詰めるのが得意です。</p>
+    <p>転職にあたり、チームの設計文化に貢献できる環境を探しています。〈希望の業務形態〉や〈勤務地〉の条件は応相談です。</p>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>作品</h2>
+    <div class="work">
+      <p class="work-num">01 — Web App</p>
+      <p class="work-title">〈作品タイトルA〉</p>
+      <p class="work-desc">フォーム入力の負荷を下げるため、入力ステップを分岐させる設計を提案・実装しました。</p>
+    </div>
+    <div class="work">
+      <p class="work-num">02 — LP</p>
+      <p class="work-title">〈作品タイトルB〉</p>
+      <p class="work-desc">訴求の強弱を整理し、1画面で完結する導線に組み直したリニューアル案件です。</p>
+    </div>
+    <div class="work">
+      <p class="work-num">03 — Design System</p>
+      <p class="work-title">〈作品タイトルC〉</p>
+      <p class="work-desc">コンポーネントの使い分けを示すドキュメントを整備し、実装の揺れを減らしました。</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>スキル</h2>
+    <div class="skills">
+      <span class="skill">HTML</span>
+      <span class="skill">CSS / Sass</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">TypeScript</span>
+      <span class="skill">React</span>
+      <span class="skill">Figma</span>
+      <span class="skill">Git</span>
+      <span class="skill">Accessibility</span>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>連絡先</h2>
+    <p>お話しできる機会をいただけますと幸いです。</p>
+    <a href="mailto:〈メールアドレス〉" class="contact-line">〈メールアドレス〉</a>
+  </div>
+</section>
+<footer>© 2025 〈氏名〉</footer>
+</body>
+</html>

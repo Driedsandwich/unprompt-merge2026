@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>〈サービス名〉 — 信頼を設計する</title>
+<style>
+:root{
+  --ink:#0a1520;      /* 深夜の墨藍 */
+  --ink-2:#162232;
+  --paper:#f4f1ea;   /* 暖白 */
+  --gold:#c9a24b;    /* 落着き金 */
+  --line:rgba(244,241,234,.16);
+  --step:1.250;
+  --base:16px;
+  --h1:calc(var(--base) * var(--step) * var(--step) * var(--step) * var(--step));
+  --h2:calc(var(--base) * var(--step) * var(--step) * var(--step));
+  --h3:calc(var(--base) * var(--step) * var(--step));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "YakuHanJP", "Noto Sans JP", sans-serif;
+  background:var(--paper);color:var(--ink);
+  line-height:1.75;font-size:var(--base);
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Hiragino Mincho ProN","Yu Mincho","Songti SC",serif}
+/* HERO */
+.hero{background:var(--ink);color:var(--paper);padding:128px 24px 96px}
+.hero__inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr .9fr;gap:64px;align-items:end}
+.hero__eyebrow{font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.hero__title{font-size:clamp(28px,var(--h1),56px);line-height:1.25;letter-spacing:.04em;font-weight:700}
+.hero__title em{font-style:italic;color:var(--gold)}
+.hero__lead{margin-top:32px;font-size:17px;color:rgba(244,241,234,.72);max-width:38em}
+.hero__meta{display:flex;flex-direction:column;gap:16px;font-size:13px;letter-spacing:.1em;color:rgba(244,241,234,.55)}
+.hero__meta div{border-left:2px solid var(--gold);padding-left:16px}
+/* VALUE */
+.value{padding:96px 24px}
+.value__inner{max-width:1080px;margin:0 auto}
+.value__label{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.value__head{font-size:clamp(24px,var(--h2),36px);letter-spacing:.06em;font-weight:600;line-height:1.45;margin-bottom:32px;max-width:26em}
+.value__body{font-size:17px;max-width:38em}
+/* FEATURES */
+.feat{padding:96px 24px;background:var(--ink-2);color:var(--paper)}
+.feat__inner{max-width:1080px;margin:0 auto}
+.feat__head{font-size:clamp(24px,var(--h2),36px);letter-spacing:.06em;margin-bottom:64px}
+.feat__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.feat__num{font-size:13px;letter-spacing:.2em;color:var(--gold);margin-bottom:24px}
+.feat__title{font-size:var(--h3);line-height:1.5;margin-bottom:16px;letter-spacing:.02em}
+.feat__desc{font-size:15px;color:rgba(244,241,234,.65);line-height:1.8}
+/* FLOW */
+.flow{padding:96px 24px}
+.flow__inner{max-width:1080px;margin:0 auto}
+.flow__head{font-size:clamp(24px,var(--h2),36px);letter-spacing:.06em;margin-bottom:64px}
+.flow__list{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.flow__step{border-top:2px solid var(--ink);padding-top:24px}
+.flow__idx{font-size:13px;color:var(--gold);letter-spacing:.2em;margin-bottom:16px}
+.flow__title{font-size:18px;font-weight:600;margin-bottom:8px}
+.flow__desc{font-size:14px;color:rgba(10,21,32,.6);line-height:1.7}
+/* CTA */
+.cta{padding:96px 24px;background:var(--ink);color:var(--paper);text-align:center}
+.cta__inner{max-width:720px;margin:0 auto}
+.cta__title{font-size:clamp(24px,var(--h2),36px);letter-spacing:.06em;margin-bottom:24px}
+.cta__desc{font-size:16px;color:rgba(244,241,234,.65);margin-bottom:48px}
+.cta__btn{display:inline-block;padding:20px 56px;background:var(--gold);color:var(--ink);text-decoration:none;font-weight:700;letter-spacing:.16em;font-size:15px}
+.cta__note{margin-top:24px;font-size:12px;color:rgba(244,241,234,.4);letter-spacing:.05em}
+/* FOOTER */
+footer{background:var(--ink-2);color:rgba(244,241,234,.5);padding:48px 24px;font-size:13px}
+footer .inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer a{color:rgba(244,241,234,.5);text-decoration:none}
+@media(max-width:768px){
+  .hero__inner,.feat__grid,.flow__list{grid-template-columns:1fr}
+  .hero,.value,.feat,.flow,.cta{padding:64px 20px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero__inner">
+    <div>
+      <div class="hero__eyebrow">Sharp × Reliable</div>
+      <h1 class="hero__title serif">かっこよさは、<br>約束を守る<em>かたち</em>。</h1>
+      <p class="hero__lead">〈サービス名〉は、見た目の切れ味と裏腹にならない信頼性を、設計の段階から組み込みます。印象に残り、かつ長く保たれる。その両立を納品物としてお渡しします。</p>
+    </div>
+    <div class="hero__meta">
+      <div>設計思想 　機能と余白の均衡</div>
+      <div>納品方針 　装飾は削れるだけ削る</div>
+      <div>対象 　〈対象層〉</div>
+    </div>
+  </div>
+</section>
+
+<section class="value">
+  <div class="value__inner">
+    <div class="value__label">Our Value</div>
+    <h2 class="value__head serif">「かっこいい」は主観ですが、「信頼できる」は設計で担保できる。</h2>
+    <p class="value__body">発注者のご要望はふたつの軸で要約されます —— 印象に残るかたち、と、裏付けの伴う確かさ。〈サービス名〉は後者を疎かにせず、前者に仕上げます。指名いただいた理由がそこにあると考えています。</p>
+  </div>
+</section>
+
+<section class="feat">
+  <div class="feat__inner">
+    <h2 class="feat__head serif">三つの約束</h2>
+    <div class="feat__grid">
+      <div>
+        <div class="feat__num">01 / Strength</div>
+        <h3 class="feat__title serif">強さの設計</h3>
+        <p class="feat__desc">骨格から組み立てるため、流行が過ぎても型崩れしない。見た目の強さを構造で支えます。</p>
+      </div>
+      <div>
+        <div class="feat__num">02 / Clarity</div>
+        <h3 class="feat__title serif">意思の明示</h3>
+        <p class="feat__desc">選ばれた色・書体・余白には理由があり、ご説明できる。装飾で誤魔化す作業は行いません。</p>
+      </div>
+      <div>
+        <div class="feat__num">03 / Honesty</div>
+        <h3 class="feat__title serif">誠実な納品</h3>
+        <p class="feat__desc">不足事項は山括弧で明示し、ご提示いただいた材料だけを根拠に構築してご提出します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="flow__inner">
+    <h2 class="flow__head serif">ご利用の流れ</h2>
+    <div class="flow__list">
+      <div class="flow__step">
+        <div class="flow__idx">STEP 01</div>
+        <div class="flow__title">ヒアリング</div>
+        <p class="flow__desc">かっこよさと信頼感、どの比重かを言語化します。</p>
+      </div>
+      <div class="flow__step">
+        <div class="flow__idx">STEP 02</div>
+        <div class="flow__title">方向提示</div>
+        <p class="flow__desc">色・書体・構成の方向を先に見せ、合意をとります。</p>
+      </div>
+      <div class="flow__step">
+        <div class="flow__idx">STEP 03</div>
+        <div class="flow__title">制作</div>
+        <p class="flow__desc">骨格→装飾の順で組むため、途中経過も確かです。</p>
+      </div>
+      <div class="flow__step">
+        <div class="flow__idx">STEP 04</div>
+        <div class="flow__title">納品</div>
+        <p class="flow__desc">残せる要素だけ残し、削れる装飾は削って納めます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta__inner">
+    <h2 class="cta__title serif">かっこよさを、信頼の形へ。</h2>
+    <p class="cta__desc">まずは方向のすり合わせから。简潔なご要望だけでも構いません。</p>
+    <a href="#contact" class="cta__btn">ご相談をはじめる</a>
+    <p class="cta__note">〈対応時間〉 · 〈連絡先〉</p>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div>〈サービス名〉 — 〈会社名〉</div>
+    <div><a href="#">ご利用規約</a> ｜ <a href="#">特定商取引</a> ｜ <a href="#">プライバシー</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

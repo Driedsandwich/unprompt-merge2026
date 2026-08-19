@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --body-size: 15px;
+    --subject-size: 19px;
+    --scale: 1.27;
+    --ink: #1c1f26;
+    --muted: #5b6270;
+    --accent: #1c1f26;
+    --line: #d8dbe1;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 48px 24px;
+    background: #efece6;
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    color: var(--ink);
+    line-height: 1.78;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fbfaf7;
+    padding: 56px 56px 48px;
+  }
+
+  .subject {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--subject-size);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin: 0 0 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .greeting {
+    font-size: var(--body-size);
+    margin: 0 0 8px;
+  }
+
+  .recipient {
+    font-size: var(--body-size);
+    margin: 0 0 40px;
+  }
+
+  .body p {
+    font-size: var(--body-size);
+    margin: 0 0 24px;
+  }
+
+  .body p:last-child { margin-bottom: 0; }
+
+  .action {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .action p {
+    font-size: var(--body-size);
+    margin: 0 0 24px;
+  }
+
+  .action p:last-child { margin-bottom: 0; }
+
+  .closing {
+    margin-top: 40px;
+  }
+
+  .signature {
+    font-size: var(--body-size);
+    line-height: 1.72;
+  }
+
+  .signature .company {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  .sig-line { display: block; }
+  .note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="subject">【発送遅延のお詫び】〈商品名〉のご注文につきまして</p>
+
+  <p class="greeting">〈お客様名〉 様</p>
+  <p class="recipient">いつもお世話になっております。〈会社名〉でございます。</p>
+
+  <div class="body">
+    <p>この度は〈商品名〉をご注文いただき、誠にありがとうございます。発送予定日にお届けできず、ご迷惑をおかけしておりますこと、心よりお詫び申し上げます。</p>
+
+    <p>誠に申し訳ございませんが、ご注文いただいた商品の発送に遅れが生じております。本来であれば速やかにお手元にお届けすべきところ、ご期待に沿えず大変恐縮でございます。</p>
+
+    <p>商品がお手元に届くまでの間、不安なお時間をお過ごしいただくこととなりましたこと、重く受け止めております。ご不便をおかけしますことを、改めてお詫びいたします。</p>
+  </div>
+
+  <div class="action">
+    <p>現在の状況につきまして、お届け予定は〈新しいお届け予定〉を想定しております。準備が整い次第、追って発送通知をお送りいたします。</p>
+
+    <p>ご不明な点やご要望がございましたら、本メールへのご返信にてお気軽にお申し付けください。お客様の状況に応じて対応させていただきます。</p>
+  </div>
+
+  <div class="closing">
+    <p class="signature">
+      <span class="sig-line company">〈会社名〉</span>
+      <span class="sig-line">カスタマーサポート</span>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

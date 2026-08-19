@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 要件概要</title>
+<style>
+  /* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+  /* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+  /* GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール */
+  :root {
+    --base: #f7f6f3;
+    --primary: #4a4842;
+    --accent: #8c8577;
+    --scale-body: 15px;
+    --scale-h1: 26px;
+    --scale-h2: 18px;
+    --line: #d9d6ce;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--base);
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--primary);
+    font-size: var(--scale-body);
+    line-height: 1.85;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 40px;
+  }
+  /* GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 */
+  /* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+  .lede {
+    font-size: 17px;
+    line-height: 1.75;
+    margin-bottom: 80px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .lede strong {
+    font-weight: 700;
+    color: var(--primary);
+  }
+  section { margin-bottom: 88px; }
+  h1 {
+    font-size: var(--scale-h1);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-size: var(--scale-h2);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-bottom: 20px;
+    color: var(--primary);
+  }
+  p { margin-bottom: 16px; }
+  ul { list-style: none; }
+  ul li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+  ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .excl {
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .excl p { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<h1>経費精算ツール 要件概要</h1>
+
+<p class="lede"><strong>経費、自動で締まる。</strong>月末の仕訳突合に割いていた時間を、このシート一本でなくす。対象は申請入力ではなく、経理側の集計作業である。</p>
+
+<section>
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<h2>対象ユーザー</h2>
+<p>月次の経費精算を締める経理担当者。申請者の入力支援ではなく、届いた精算データを集計し、仕訳に落とし、締めを完結させる工程を対象とする。</p>
+</section>
+
+<section>
+<h2>主要機能</h2>
+<ul>
+<!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+<li>セルに入力するだけで完結 — スプレッドシート上で動作し、追加アプリ不要</li>
+<li>科目ごとの自動集計 — 交通費・会議費・交際費などを自動で分類・合計</li>
+<li>仕訳データの自動生成 — 会計ソフトへ貼り付け可能な形式で出力</li>
+<!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+<li>ツール単体で完結 — 既存経理システムとの接続なし、他システムに依存しない</li>
+</ul>
+</section>
+
+<section>
+<h2>画面イメージ</h2>
+<p>一枚のシート上部に社員ごとの明細入力域、下部に科目別集計表が連動して並ぶ。明細に行を足すと集計側へ即時に反映され、月末に入力を終えた時点で締め処理が完了する。〈確認: 現行の精算フロー・帳票フォーマットを1つ〉</p>
+</section>
+
+<section class="excl">
+<h2>使わないと決めたもの</h2>
+<p>専用アプリ開発・既存システムとのAPI連携・申請者側の入力支援・承認ワークフロー機能 — これらは本ツールの範囲外とする。</p>
+</section>
+
+</div>
+</body>
+</html>

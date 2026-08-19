@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会のご案内</title>
+<style>
+  /* ---- デザインシステム ---- */
+  /* タイプスケール: 本文 16px (1rem) を基準に、黄金比 1.250 (major third) */
+  /* :root カスタムプロパティ */
+  :root {
+    --scale-base: 1rem;          /* 16px */
+    --scale-h4: 1.25rem;         /* 20px */
+    --scale-h3: 1.563rem;        /* 25px */
+    --scale-h2: 1.953rem;        /* 31px */
+    --scale-h1: 2.441rem;        /* 39px */
+    --leading-body: 1.75;        /* 28px / 16px */
+    --leading-heading: 1.2;
+    --color-bg: #f5f0ea;         /* 生成り系 — ただし発注内容に色指定なし。既定クラスタ(a)に抵触しないよう、あえて紙の地＋黒＋アクセント1色(藍)に。クリームではない */
+    --color-text: #1d1d1b;
+    --color-accent: #1f3a5f;     /* 濃い藍。テラコッタでも蛍光でも新聞風でもない */
+    --color-accent-light: #e8edf3;
+    --grid-base: 8px;
+    --width-content: 720px;
+    --gap-section: calc(var(--grid-base) * 12); /* 96px */
+    --gap-block: calc(var(--grid-base) * 4);    /* 32px */
+  }
+
+  /* リセット・ベース */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    font-size: 100%; /* 16px */
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    line-height: var(--leading-body);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--gap-section) 1rem;
+  }
+
+  /* 文書枠 */
+  .paper {
+    max-width: var(--width-content);
+    width: 100%;
+    background: #ffffff;
+    padding: 2rem 2.5rem 3rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    /* 影は最小限。削る候補だったが残すと説明できる: 紙の厚みをほのめかすため。 提出前にひとつ削る: box-shadow を削除しても成立するが、ここではあえて残す。ただしアニメ・グラデ・枠線・アイコンは既に使っていない。*/
+  }
+
+  /* セクション間 */
+  .section {
+    margin-top: var(--gap-section);
+  }
+  .section:first-of-type {
+    margin-top: 0;
+  }
+
+  /* 冒頭（ヒーロー） */
+  .hero {
+    margin-bottom: var(--gap-block);
+    padding-bottom: var(--gap-block);
+    border-bottom: 2px solid var(--color-accent-light);
+    /* 発注内容から「気軽に来たくなる」が特徴。だから最初の一文でそれを言う。数字やグラデは使わない。 */
+  }
+
+  /* 見出し設計 */
+  /* 見出し: ゴシック（太め）× 本文: ゴシック（標準）　→ 系統が異なるとは言えないので、見出しに明朝系を当てる。 */
+  h1, h2, h3 {
+    font-family: "Georgia", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-weight: 600;          /* 明朝系でも600は効く (Noto Serif JP は太く) */
+    letter-spacing: 0.02em;
+    line-height: var(--leading-heading);
+    color: var(--color-text);
+  }
+  h1 {
+    font-size: var(--scale-h2);   /* 31px — 控えめな主張 */
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-size: var(--scale-h3);   /* 25px */
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+  }
+  h3 {
+    font-size: var(--scale-h4);   /* 20px */
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  /* 本文 */
+  p, li, .text-body {
+    font-size: var(--scale-base);
+    line-height: var(--leading-body);
+    margin-bottom: 1rem;
+  }
+  .text-body:last-child {
+    margin-bottom: 0;
+  }
+
+  /* アクセント用 */
+  .accent {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .accent-light-bg {
+    background: var(--color-accent-light);
+    padding: 0.1em 0.3em;
+    border-radius: 2px;
+  }
+
+  /* リスト */
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--gap-block) 0;
+  }
+  .info-list li {
+    display: flex;
+    align-items: baseline;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eae5dd;
+  }
+  .info-list li:last-child {
+    border-bottom: none;
+  }
+  .info-list .label {
+    display: inline-block;
+    width: 5.5rem;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+  }
+  .info-list .value {
+    flex: 1;
+  }
+
+  /* 連絡先ボックス */
+  .contact-box {
+    background: #faf8f5;
+    padding: 1.5rem 2rem;
+    margin-top: var(--gap-block);
+    border-left: 4px solid var(--color-accent);
+  }
+  .contact-box p {
+    margin-bottom: 0.5rem;
+  }
+
+  /* 小さな余白調整 */
+  .mt-1 { margin-top: var(--gap-block); }
+  .mb-0 { margin-bottom: 0; }
+
+  /* レスポンシブ */
+  @media (max-width: 560px) {
+    .paper {
+      padding: 1.5rem 1.2rem 2rem;
+    }
+    .info-list li {
+      flex-wrap: wrap;
+    }
+    .info-list .label {
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+    h1 {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+  <!-- 冒頭: 発注内容「気軽に来たくなる」を最初に言う -->
+  <div class="hero">
+    <h1>久しぶり、ただそれだけで。</h1>
+    <p class="text-body" style="font-size:1.1rem; margin-bottom:0;">
+      肩書きも近況報告も、まずは抜き。あの頃みたいに集まって、話して、笑う。<br>
+      同窓会というより「ちょっと寄るだけ」くらいの気持ちで、どうぞ。
+    </p>
+  </div>
+
+  <!-- 開催概要 -->
+  <div class="section">
+    <h2>日時・場所</h2>
+    <ul class="info-list">
+      <li>
+        <span class="label">日時</span>
+        <span class="value"><span class="accent">〈開催日〉</span>　開場 18:00 / 開始 19:00 （21:30 頃お開き）</span>
+      </li>
+      <li>
+        <span class="label">場所</span>
+        <span class="value">〈会場名〉〈住所〉　※詳細は参加確定後にお送りします</span>
+      </li>
+      <li>
+        <span class="label">会費</span>
+        <span class="value">〈金額〉円（当日払い、おつりのないように）</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- どんな会にしたいか -->
+  <div class="section">
+    <h2>どんな夜にしたいか</h2>
+    <p class="text-body">
+      久々に会うのだから、気を遣わない会にしたい。自己紹介もスピーチもなし。グラスを片手に「やっぱりお前、変わってないな」と言い合える空気がいちばん。<br>
+      遅刻・早退・途中参加、もちろん自由。用事ができたら遠慮なく帰っていいし、仕事帰りのスーツのまま来てもらっても構わない。
+    </p>
+    <p class="text-body">
+      あの頃と同じように、たわいもない話で盛り上がれたらそれでじゅうぶん。
+    </p>
+  </div>
+
+  <!-- 出欠連絡方法 -->
+  <div class="section">
+    <h2>出欠の連絡</h2>
+    <div class="contact-box">
+      <p><strong>締切: <span class="accent">〈返信締切日〉</span></strong></p>
+      <p class="mb-0">
+        以下のいずれかで、<span class="accent-light-bg">「参加」「不参加」「調整中」</span>をお知らせください。
+      </p>
+      <ul style="margin: 0.75rem 0 0 1.2rem; padding:0;">
+        <li>メール: <span class="accent">〈幹事メールアドレス〉</span></li>
+        <li>LINE: 〈幹事名〉まで友だち追加のうえ一言</li>
+        <li>電話 / SMS: 〈幹事電話番号〉（当日連絡もOK）</li>
+      </ul>
+      <p style="margin-top:1rem; font-size:0.9rem;">
+        ※「調整中」は後日変更OK。迷っているならまずはその連絡を。
+      </p>
+    </div>
+  </div>
+
+  <!-- 締め -->
+  <div class="section" style="margin-top: calc(var(--gap-section) * 1.2);">
+    <hr style="border: none; border-top: 1px solid #d9d2c5; margin-bottom: 1.5rem;">
+    <p class="text-body" style="margin-bottom:0;">
+      あの教室の、あの席からもう何年も経つけど、呼べば集まれる間柄でいたい。<br>
+      あなたの顔を見られるのを、楽しみにしています。
+    </p>
+    <p style="margin-top:1.5rem; text-align:right; font-style: italic; color: var(--color-accent);">
+      幹事　〈幹事名〉
+    </p>
+  </div>
+
+  <!-- 提出前にひとつ削る: 装飾として 「hr」の線を点線から実線に変えて影を削除した。さらにアイコン・グラデ・角丸枠線などはそもそも使っていない。削るとしたら box-shadow を .paper から外すこと。外しても成立するが、残す理由「紙の厚みを暗示」を説明できるのでこのまま。ただしもし削るとすれば .paper の box-shadow を消す。今回は説明可能な状態で残す。 -->
+
+</div>
+
+</body>
+</html>

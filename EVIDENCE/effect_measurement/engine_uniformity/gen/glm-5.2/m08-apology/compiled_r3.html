@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送遅延のお詫びメール</title>
+<style>
+:root {
+  --type-scale: 1.250;
+  --base-size: 15px;
+  /* GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け */
+  /* GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない */
+  /* GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 */
+  /* GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す */
+  --c-bg: #f3ede4;
+  --c-main: #b08a5a;
+  --c-accent: #7a5230;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #dcd4c7;
+  font-family: -apple-system, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  color: #3a3225;
+  font-size: var(--base-size);
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  padding: 64px 24px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--c-bg);
+  border-radius: 8px;
+  padding: 72px 64px 80px;
+}
+
+.subject {
+  font-size: calc(var(--base-size) * 1.6);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--c-accent);
+  line-height: 1.5;
+  margin-bottom: 72px;
+}
+
+.greeting {
+  font-size: var(--base-size);
+  color: #4a4030;
+  margin-bottom: 56px;
+}
+
+.body-text {
+  font-size: var(--base-size);
+  color: #3a3225;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+}
+
+.body-text p { margin-bottom: 40px; }
+.body-text p:last-child { margin-bottom: 0; }
+
+.signature {
+  margin-top: 72px;
+  font-size: var(--base-size);
+  color: #4a4030;
+  line-height: 1.85;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="subject">発送遅延のお詫び</div>
+
+<!-- GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け -->
+<div class="greeting">〈お客様名〉さま</div>
+
+<div class="body-text">
+<!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+<p>この度は〈商品名〉をご注文いただき、誠にありがとうございます。発送のご案内をお約束しておりましたが、お荷物をお届けできておりません。ご迷惑をおかけしておりますこと、心よりお詫び申し上げます。</p>
+
+<!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+<p>現在発送の準備を進めており、〈新しいお届け予定〉頃にはお手元にお届けできる見込みでございます。お待たせする期間となってしまいますが、もう少しだけお待ちいただけますと幸いです。</p>
+
+<!-- GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない -->
+<p>ご不明な点がございましたら、ご注文番号〈注文番号〉と併せてご返信くださいませ。確認の上、改めてご案内いたします。</p>
+</div>
+
+<div class="signature">
+〈担当者名〉<br>
+〈会社名〉
+</div>
+
+</div>
+</body>
+</html>

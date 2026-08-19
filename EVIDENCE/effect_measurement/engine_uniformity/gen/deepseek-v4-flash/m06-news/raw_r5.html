@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内報 巻頭あいさつ</title>
+<style>
+  :root {
+    /* タイプスケール: 16px 基準 × 1.25 比率 */
+    --text-base: 16px;
+    --text-sm: 0.875rem;    /* 14px */
+    --text-body: 1rem;      /* 16px */
+    --text-lead: 1.125rem;  /* 18px */
+    --text-h3: 1.25rem;     /* 20px */
+    --text-h2: 1.5625rem;   /* 25px */
+    --text-h1: 1.953125rem; /* 31.25px */
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #fafaf8;
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+    font-size: var(--text-body);
+    line-height: 1.75;
+    color: #2a2a28;
+    display: flex;
+    justify-content: center;
+    padding: 64px 16px;
+  }
+
+  .paper {
+    max-width: 720px;
+    width: 100%;
+    background: #ffffff;
+    padding: 64px 48px 72px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  /* 呼びかけ */
+  .greeting {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+    font-size: var(--text-lead);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #3d6b4f;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #3d6b4f;
+  }
+
+  /* 近況 */
+  .section-label {
+    font-size: var(--text-sm);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8a8a82;
+    margin-bottom: 8px;
+  }
+
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section p {
+    margin-bottom: 16px;
+  }
+
+  /* 今月の話題 */
+  .topic-heading {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+    font-size: var(--text-h2);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #3d6b4f;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .topic-sub {
+    font-size: var(--text-sm);
+    color: #8a8a82;
+    margin-bottom: 16px;
+  }
+
+  /* 締め */
+  .closing {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #d6d6ce;
+    font-size: var(--text-sm);
+    color: #6a6a62;
+    text-align: right;
+    letter-spacing: 0.02em;
+  }
+
+  .closing-name {
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+    font-size: var(--text-lead);
+    color: #2a2a28;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .paper {
+      padding: 40px 24px 56px;
+    }
+    .greeting {
+      font-size: var(--text-body);
+      margin-bottom: 32px;
+    }
+    .topic-heading {
+      font-size: var(--text-h3);
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .closing {
+      margin-top: 48px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="greeting">
+    お疲れさまです、〈執筆者名〉です。
+  </div>
+
+  <div class="section">
+    <div class="section-label">近況</div>
+    <p>
+      先月は新メンバーが2名加わり、オフィスの空気が少し変わった気がします。昼休みに共有スペースで話している声のトーンが増えたというか。良い意味で「まだ知らない人がいる」感覚、久しぶりに味わっています。
+    </p>
+    <p>
+      僕個人はというと、年度末のバタバタを言い訳に溜めていた机の上の書類をようやく整理しました。見えていなかった机の天板が現れたときの清々しさ、ぜひ皆さんにも。
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">今月の話題</div>
+    <h2 class="topic-heading">「教えて！ 休日の過ごし方」<br>アンケート結果が出ました</h2>
+    <div class="topic-sub">集計協力ありがとうございました</div>
+    <p>
+      先週まで募集していた「休日の過ごし方アンケート」、〈会社名〉全体で〈◯〉名の回答が集まりました。一番多かったのは「家で映画・ドラマを観る」で約4割。次いで「料理・お菓子作り」「近所を散歩」と続きます。あれだけ「キャンプ行きたい」と言っている人が多い割に、実際の行動には腰が重いのが正直なところ……。
+    </p>
+    <p>
+      面白かったのは、回答を部署別にクロス集計すると傾向にちょっとした偏りが出たこと。詳細は今月の社内報特集ページに掲載しています。自分の部署の回答傾向を見て「やっぱりね」と笑えるか「意外だな」と驚くか、ぜひ確かめてみてください。
+    </p>
+  </div>
+
+  <div class="closing">
+    それでは、今月もどうぞよろしくお願いします。
+    <div class="closing-name">〈執筆者名〉</div>
+  </div>
+
+</div>
+</body>
+</html>

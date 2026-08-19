@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 | 法人向けサービス基盤</title>
+<style>
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+/* GYAKUMON-CHOICE: 信頼感優先 */
+/* 
+  Type scale: base 16px → h3 20px (1.25) → h2 28px (1.4) → h1 38px (1.357)
+  GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け
+  GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング
+  GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先
+*/
+:root {
+  --bg: #0b0e11;
+  --primary: #1c2530;
+  --accent: #b08d57;
+  --text: #e3ded7;
+  --text-muted: #9a948b;
+  --border: rgba(176, 141, 87, 0.15);
+  --heading-font: 'Georgia', 'Times New Roman', serif;
+  --body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --radius: 0px;
+  --space-unit: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--body-font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ヘッダー ─ 静かなブランドバー */
+.site-header {
+  padding: 24px 0 16px;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand {
+  font-family: var(--heading-font);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-weight: 400;
+}
+.header-inner nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  margin-left: 32px;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+.header-inner nav a:hover { color: var(--accent); }
+
+/* ヒーロー ─ 冒頭は最も特徴的な一点を */
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+.hero {
+  padding: 128px 0 104px;
+  text-align: center;
+}
+.hero-label {
+  display: inline-block;
+  font-family: var(--heading-font);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 8px;
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-family: var(--heading-font);
+  font-size: 38px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+.hero p {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 48px;
+  line-height: 1.8;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 16px 40px;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: opacity 0.2s;
+}
+.hero-cta:hover { opacity: 0.88; }
+.hero-cta svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* 価値提案 ─ 余白で品格を */
+.value {
+  padding: 96px 0;
+  border-top: 1px solid var(--border);
+}
+.value-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.value-visual {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--primary) 0%, #0f1b2d 100%);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.value-visual svg {
+  width: 60%;
+  height: auto;
+  opacity: 0.3;
+}
+.value-text h2 {
+  font-family: var(--heading-font);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+.value-text h2 span { color: var(--accent); }
+.value-text p {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+/* 特徴3点 ─ 端正なカード */
+.features {
+  padding: 96px 0;
+  border-top: 1px solid var(--border);
+}
+.features h2 {
+  font-family: var(--heading-font);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-bottom: 72px;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.feature-card {
+  border-top: 1px solid var(--accent);
+  padding-top: 24px;
+}
+.feature-card .num {
+  font-family: var(--heading-font);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: block;
+}
+.feature-card h3 {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.feature-card p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* 利用の流れ ─ 直線的なステップ */
+.flow {
+  padding: 96px 0;
+  border-top: 1px solid var(--border);
+}
+.flow h2 {
+  font-family: var(--heading-font);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-bottom: 72px;
+}
+.flow-steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+}
+.flow-steps::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--border);
+}
+.step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+.step-circle {
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-family: var(--heading-font);
+  font-size: 18px;
+  color: var(--accent);
+  background: var(--bg);
+  position: relative;
+  z-index: 1;
+}
+.step h3 {
+  font-family: var(--heading-font);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+.step p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* CTA ─ 静かに閉じる */
+.cta-section {
+  padding: 104px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.cta-section h2 {
+  font-family: var(--heading-font);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 16px;
+}
+.cta-section p {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 16px 48px;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background 0.2s, color 0.2s;
+}
+.cta-button:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+.cta-button svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* フッター */
+.site-footer {
+  padding: 40px 0 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.site-footer p {
+  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* レスポンシブ（PC優先、タブレット以下で調整） */
+@media (max-width: 900px) {
+  .value-grid { grid-template-columns: 1fr; gap: 48px; }
+  .feature-grid { grid-template-columns: 1fr; gap: 40px; }
+  .flow-steps { flex-direction: column; gap: 40px; }
+  .flow-steps::before { display: none; }
+  .hero h1 { font-size: 30px; }
+  .header-inner nav a { margin-left: 20px; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 80px 0 64px; }
+  .hero h1 { font-size: 26px; }
+  .value, .features, .flow, .cta-section { padding: 64px 0; }
+  .header-inner nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <span class="brand">〈サービス名〉</span>
+    <nav>
+      <a href="#value">特長</a>
+      <a href="#features">機能</a>
+      <a href="#flow">流れ</a>
+      <a href="#contact">問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-label">Enterprise Trust</span>
+    <h1>貴社の意思決定を支える、<br>信頼のサービス基盤。</h1>
+    <p>静かな強さで、日々の業務を支える。〈サービス名〉は、法人のお客様とともに積み重ねた〈年数〉年の実績に基づき、安心して任せられる環境を提供します。</p>
+    <a href="#" class="hero-cta">
+      資料をダウンロード
+      <svg viewBox="0 0 16 16"><path d="M8 1v10M4 7l4 4 4-4M2 13h12"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="value" id="value">
+  <div class="container value-grid">
+    <div class="value-visual">
+      <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="30" width="180" height="80" stroke="#b08d57" stroke-width="0.5"/>
+        <line x1="30" y1="50" x2="170" y2="50" stroke="#b08d57" stroke-width="0.3"/>
+        <line x1="30" y1="70" x2="170" y2="70" stroke="#b08d57" stroke-width="0.3"/>
+        <line x1="30" y1="90" x2="170" y2="90" stroke="#b08d57" stroke-width="0.3"/>
+        <circle cx="50" cy="50" r="4" fill="#b08d57" opacity="0.6"/>
+        <circle cx="80" cy="70" r="4" fill="#b08d57" opacity="0.6"/>
+        <circle cx="110" cy="50" r="4" fill="#b08d57" opacity="0.6"/>
+        <circle cx="140" cy="90" r="4" fill="#b08d57" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="value-text">
+      <h2>余白が語る、<span>サービスの品格</span></h2>
+      <p>〈サービス名〉は、無駄を削ぎ落とした設計で、本当に必要な機能だけを提供します。システムの複雑さに振り回されることなく、本質的な業務に集中できる環境を整えます。</p>
+      <p>導入後の運用負荷を最小限に抑える設計思想は、<〈確認: 導入企業の担当者から実際に寄せられた声の一例〉〉という評価につながっています。</p>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <h2>信頼を形にする、三つの柱</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="num">01</span>
+        <h3>堅牢なセキュリティ基盤</h3>
+        <p>データの暗号化、アクセス制御、監査ログの完全取得。業界標準に準拠したセキュリティ設計で、貴社の重要な情報資産を保護します。</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">02</span>
+        <h3>シンプルな操作性</h3>
+        <p>直感的なインターフェースと一貫した導線設計。研修コストを抑え、担当者が変わってもすぐに使いこなせる、持続可能な運用を実現します。</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">03</span>
+        <h3>柔軟なカスタマイズ</h3>
+        <p>貴社の業務フローに合わせて、機能の組み合わせや権限設定を自在に調整。既存システムとの連携も、専任のサポートが伴走します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow" id="flow">
+  <div class="container">
+    <h2>導入まで、この流れで</h2>
+    <div class="flow-steps">
+      <div class="step">
+        <div class="step-circle">1</div>
+        <h3>ヒアリング</h3>
+        <p>貴社の業務プロセスや課題を詳しく伺います。所要時間は約〈確認: ヒアリングの標準所要時間〉を想定。</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <h3>デモ環境のご提供</h3>
+        <p>実際の操作感を体感いただくため、貴社専用のデモ環境を構築。〈日数〉日間、自由にご評価いただけます。</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <h3>導入・運用開始</h3>
+        <p>専任のサポートが移行作業を支援。導入後も定期的なフォローアップで、安定運用を継続します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2>まずはお問い合わせください</h2>
+    <p>資料のご請求、デモのご依頼、ご質問など、お気軽にご連絡ください。<br>〈確認: 問い合わせ対応の標準時間や曜日〉</p>
+    <a href="#" class="cta-button">
+      問い合わせる
+      <svg viewBox="0 0 16 16"><path d="M1 3h14v10H1V3zm0 0l7 5 7-5"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 〈会社名〉. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

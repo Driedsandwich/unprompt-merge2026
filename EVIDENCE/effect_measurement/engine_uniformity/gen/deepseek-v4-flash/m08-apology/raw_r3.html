@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お詫びメール — 発送遅延</title>
+<style>
+  /* タイプスケール設計
+     :root 基準: 本文 16px (1rem)
+     見出し scale: 1.333 (perfect fourth)
+     小見出し: 1.250 (major third)
+     比率はあえて僅かに異なる系統でコントラストをつける
+  */
+  :root {
+    --base-size: 16px;
+    --ratio-heading: 1.333;
+    --ratio-sub: 1.250;
+    --h2-size: calc(var(--base-size) * var(--ratio-heading) * var(--ratio-heading)); /* ~28.4px */
+    --h3-size: calc(var(--base-size) * var(--ratio-heading)); /* ~21.3px */
+    --body-size: var(--base-size);
+    --small-size: calc(var(--base-size) / 1.125); /* ~14.2px */
+
+    /* 書体 */
+    --font-heading: 'Times New Roman', 'YuMincho', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+
+    /* 色  — 基調: 深いネイビーグレー / アクセント: 落ち着いた赤銅色（焦茶がかったレッド） */
+    --color-base: #2c2c34;
+    --color-accent: #9e5a4a;   /* 赤銅 — 誠実・重くなりすぎない暖かみ */
+    --color-bg: #faf8f5;       /* ほのかに温かみのある白 */
+    --color-muted: #6b6b73;
+    --color-line: #dedad3;
+    --color-white: #ffffff;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: var(--body-size);
+    line-height: 1.75;
+    color: var(--color-base);
+    padding: 40px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* メインコンテナ — 720px 中央寄せ 1カラム */
+  .mail-wrapper {
+    max-width: 720px;
+    width: 100%;
+    background-color: var(--color-white);
+    margin: 0 auto;
+    padding: 48px 56px;
+    border-radius: 0;          /* 角丸0 — 余計な装飾を削る（6. 提出前にひとつ削る: 影もグラデも使わない） */
+    box-shadow: none;          /* 影を削る — なくても成立 */
+  }
+
+  /* 冒頭の件名領域 — 主張: 件名そのものが最初の一文 */
+  .subject-line {
+    margin-bottom: 48px;       /* 8*6 = 48 */
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 16px;      /* 8*2 */
+  }
+
+  .subject-label {
+    font-size: var(--small-size);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    display: inline-block;
+    margin-right: 8px;
+    font-weight: 400;
+  }
+
+  .subject-text {
+    font-family: var(--font-heading);
+    font-size: var(--h2-size);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-base);
+    line-height: 1.35;
+    margin-top: 4px;
+  }
+
+  /* 宛名 */
+  .greeting {
+    margin-bottom: 40px;       /* 8*5 = 40 */
+    font-size: var(--body-size);
+    line-height: 1.6;
+    color: var(--color-base);
+  }
+
+  .greeting-name {
+    font-weight: 500;
+  }
+
+  /* お詫びと状況説明 */
+  .section {
+    margin-bottom: 48px;       /* 8*6 */
+  }
+
+  .section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .section-heading {
+    font-family: var(--font-heading);
+    font-size: var(--h3-size);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--color-base);
+    margin-bottom: 16px;       /* 8*2 */
+    line-height: 1.4;
+    position: relative;
+    display: inline-block;
+  }
+
+  /* アクセントの下線 — 装飾は最小限 */
+  .section-heading::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background-color: var(--color-accent);
+    margin-top: 8px;           /* 8*1 */
+  }
+
+  .body-text {
+    font-size: var(--body-size);
+    line-height: 1.8;
+    color: var(--color-base);
+    margin-bottom: 16px;       /* 8*2 */
+  }
+
+  .body-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .body-text strong {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  /* プレースホルダはそのまま山括弧で表示 */
+  .placeholder {
+    font-weight: 500;
+    color: var(--color-accent);
+    background-color: rgba(158, 90, 74, 0.06);
+    padding: 0 4px;
+    border-radius: 2px;
+    font-style: normal;
+  }
+
+  /* 今後の対応リスト */
+  .action-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 8px;        /* 8*3 / 8*1 */
+  }
+
+  .action-list li {
+    position: relative;
+    padding-left: 24px;        /* 8*3 */
+    margin-bottom: 16px;       /* 8*2 */
+    line-height: 1.7;
+  }
+
+  .action-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    opacity: 0.75;
+  }
+
+  /* 結び */
+  .closing {
+    margin-top: 48px;          /* 8*6 */
+    padding-top: 32px;         /* 8*4 */
+    border-top: 1px solid var(--color-line);
+    font-size: var(--body-size);
+    line-height: 1.7;
+    color: var(--color-base);
+  }
+
+  .closing-sign {
+    margin-top: 16px;
+    font-family: var(--font-heading);
+    font-size: var(--h3-size);
+    letter-spacing: 0.02em;
+    color: var(--color-base);
+  }
+
+  /* 余白の最終調整 — セクション間はゆったり */
+  .spacer-8 {
+    height: 8px;
+  }
+  .spacer-16 {
+    height: 16px;
+  }
+  .spacer-24 {
+    height: 24px;
+  }
+  .spacer-40 {
+    height: 40px;
+  }
+
+  /* モバイル微調整 */
+  @media (max-width: 600px) {
+    .mail-wrapper {
+      padding: 32px 24px;
+    }
+    .subject-text {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="mail-wrapper">
+
+  <!-- 件名（冒頭の主張） -->
+  <div class="subject-line">
+    <span class="subject-label">件名</span>
+    <div class="subject-text">ご注文商品〈商品名〉の発送遅延のお詫び</div>
+  </div>
+
+  <!-- 宛名 -->
+  <div class="greeting">
+    <span class="greeting-name">〈お客様名〉 様</span><br>
+    平素より格別のご愛顧を賜り、厚く御礼申し上げます。
+  </div>
+
+  <!-- お詫びと状況説明 -->
+  <div class="section">
+    <h2 class="section-heading">お詫びと状況のご説明</h2>
+    <p class="body-text">
+      このたびは、ご注文いただきました〈商品名〉の〈お届け予定日〉お届けを心待ちにされていたところ、<strong>発送スケジュールに遅延が生じてしまいました</strong>こと、深くお詫び申し上げます。
+    </p>
+    <p class="body-text">
+      本来であれば本日中に出荷のご連絡を差し上げるべきところ、弊社倉庫における在庫システムの切り替えに伴う一時的な連携ミスにより、ご注文分の確保ならびに発送手配が遅れております。ご不便とご心配をおかけする状況となり、誠に申し訳ございません。
+    </p>
+    <p class="body-text">
+      現在、優先的に出荷準備を進めております。<br>
+      あらためて〈新しいお届け予定〉を本メールの翌営業日中にご連絡いたします。何卒ご了承くださいますようお願い申し上げます。
+    </p>
+  </div>
+
+  <!-- 今後の対応 -->
+  <div class="section">
+    <h2 class="section-heading">今後の対応について</h2>
+    <ul class="action-list">
+      <li>本件の進捗状況を、追って〈会社名〉カスタマーサポートよりメールにてご報告いたします（<span class="placeholder">◯営業日以内</span>を予定）。</li>
+      <li>ご到着予定が大幅に変更となる場合は、お届け方法の変更やお客様のご都合に合わせた調整も承ります。ご希望がございましたら、本メールへの返信またはお問い合わせ窓口までお知らせください。</li>
+      <li>遅延の原因となったシステム連携は既に復旧しており、以降のご注文には影響ございません。</li>
+    </ul>
+    <p class="body-text" style="margin-top: 16px;">
+      お客様にはご迷惑をおかけしておりますこと、重ねてお詫び申し上げます。<br>
+      一日も早くお手元にお届けできるよう、スタッフ一同努めてまいります。
+    </p>
+  </div>
+
+  <!-- 結び -->
+  <div class="closing">
+    <p class="body-text">
+      何かご不明な点がございましたら、どうぞお気軽にご連絡ください。<br>
+      引き続き〈会社名〉をご愛顧賜りますよう、よろしくお願い申し上げます。
+    </p>
+    <div class="closing-sign">
+      〈会社名〉 カスタマーサポート
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

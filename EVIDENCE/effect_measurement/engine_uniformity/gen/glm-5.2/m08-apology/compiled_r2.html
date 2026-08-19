@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --base-font-size: 16px;
+    --h1-size: 1.375rem;   /* 22px / 16px = 1.375 */
+    --body-size: 1rem;     /* 16px */
+    --small-size: 0.8125rem; /* 13px */
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #f3ede4;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Segoe UI", Meiryo, sans-serif;
+    color: #5c5346;
+    font-size: var(--base-font-size);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け */
+  /* GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない */
+  /* GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 */
+  /* GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す */
+
+  .frame {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    min-height: 100vh;
+  }
+
+  .subject {
+    font-size: var(--small-size);
+    letter-spacing: 0.06em;
+    color: #8a7a5c;
+    margin-bottom: 96px;
+    line-height: 1.5;
+  }
+
+  .subject-label {
+    font-weight: 700;
+    margin-right: 8px;
+  }
+
+  .recipient {
+    margin-bottom: 64px;
+    line-height: 1.5;
+    color: #5c5346;
+  }
+
+  .body-text {
+    font-size: var(--body-size);
+    line-height: 1.85;
+    color: #5c5346;
+    margin: 0;
+  }
+
+  .body-text + .body-text {
+    margin-top: 24px;
+  }
+
+  .body-text strong {
+    color: #b08a5a;
+    font-weight: 600;
+  }
+
+  .section + .section {
+    margin-top: 96px;
+  }
+
+  .signature {
+    margin-top: 96px;
+    font-size: var(--body-size);
+    line-height: 1.5;
+    color: #5c5346;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+  <p class="subject">
+    <span class="subject-label">件名</span>〈商品名〉ご注文のお荷物について
+  </p>
+
+  <!-- GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け -->
+  <p class="recipient">
+    〈お客様名〉 様<br>
+    ご注文番号：〈ご注文番号〉
+  </p>
+
+  <section class="section">
+    <!-- GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない -->
+    <p class="body-text">
+      この度はご注文いただき、誠にありがとうございます。ご注文いただいた〈商品名〉につきまして、本来お約束しておりました発送の時期を過ぎてしまっているにもかかわらず、まだご連絡ができておらず、ご心配をおかけしております。深くお詫び申し上げます。
+    </p>
+  </section>
+
+  <section class="section">
+    <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+    <p class="body-text">
+      発送につきましては、現在<strong>〈新しいお届け予定〉</strong>頃をめどに準備を進めております。手配が整い次第、改めて発送のご案内を差し上げます。もし発送前のキャンストや変更のご希望がございましたら、本メールへのご返信でお気軽にお声がけください。柔軟にご対応いたします。
+    </p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+  <div class="signature">
+    どうぞよろしくお願い申し上げます。<br><br>
+    〈会社名〉 カスタマーサポート
+  </div>
+
+</div>
+</body>
+</html>

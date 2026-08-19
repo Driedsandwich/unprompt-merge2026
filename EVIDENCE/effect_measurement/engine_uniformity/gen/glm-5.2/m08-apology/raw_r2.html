@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --scale-body: 15px;
+    --scale-lead: 18px;
+    --scale-subject: 20px;
+    --base: #1c1f24;
+    --muted: #525860;
+    --accent: #2f5d8a;
+    --bg: #f3f3f1;
+    --line: #d8d8d2;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    color: var(--base);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    padding: 64px 24px;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 80px 72px;
+  }
+
+  .subject-line {
+    font-size: var(--scale-subject);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.55;
+    color: var(--base);
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 56px;
+  }
+
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .recipient {
+    margin-bottom: 56px;
+  }
+
+  .recipient p {
+    font-size: var(--scale-body);
+    line-height: 1.85;
+  }
+
+  .body-text {
+    font-size: var(--scale-body);
+    line-height: 1.95;
+    color: var(--base);
+  }
+
+  .body-text p + p {
+    margin-top: 24px;
+    text-indent: 1em;
+  }
+
+  .body-text .lead {
+    text-indent: 0;
+    font-size: var(--scale-lead);
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    margin-bottom: 32px;
+  }
+
+  .lead strong {
+    font-weight: 600;
+  }
+
+  .lead-marker {
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 12px;
+  }
+
+  .action {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+
+  .action .label {
+    margin-bottom: 16px;
+  }
+
+  .action p {
+    font-size: var(--scale-body);
+    line-height: 1.95;
+  }
+
+  .action .schedule {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .closing {
+    margin-top: 64px;
+    font-size: var(--scale-body);
+    line-height: 1.95;
+  }
+
+  .signature {
+    margin-top: 40px;
+    font-size: var(--scale-body);
+    line-height: 1.85;
+    color: var(--muted);
+  }
+
+  .ref-id {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="subject-line">〈商品名〉の発送が遅れております — お詫びと今後のめど</div>
+
+    <div class="recipient">
+      <div class="label">宛先</div>
+      <p>〈お客様名〉 様</p>
+    </div>
+
+    <div class="body-text">
+      <p class="lead"><span class="lead-marker"></span><strong>この度はご注文いただいた商品のお届けが遅れており、誠に申し訳ございません。</strong></p>
+
+      <p>〈商品名〉につきまして、本来お約束していた発送時期を過ぎてもまだお手元にお届けできておりません。原因は当方の確認不足であり、お客様にはご心配をおかけしております。</p>
+
+      <p>現在は手配を急いでおり、〈新しいお届け予定〉にはお手元に届く見込みでございます。ご迷惑をおかけした分、少しでも早くお届けできるよう進めてまいります。</p>
+
+      <p>ご注文時にご期待いただいたお届け日にお応えできなかったこと、重く受け止めております。この度はご不便とご迷惑をおかけしましたことを、改めてお詫び申し上げます。</p>
+    </div>
+
+    <div class="action">
+      <div class="label">今後の対応</div>
+      <p>商品は<span class="schedule">〈新しいお届け予定〉</span>にお届け予定です。手配の進捗やご不明な点がございましたら、いつでもご連絡ください。ご注文内容のキャンセルや変更につきましても承っております。</p>
+    </div>
+
+    <div class="closing">
+      <p>改めて、この度はご迷惑をおかけしましたことをお詫び申し上げます。</p>
+    </div>
+
+    <div class="signature">
+      〈担当者名〉<br>
+      〈窓口名〉
+    </div>
+
+    <div class="ref-id">ご注文番号　〈注文番号〉</div>
+  </div>
+</body>
+</html>

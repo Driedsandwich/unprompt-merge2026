@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+  :root {
+    --base-size: 15px;
+    --h1-size: 28px;
+    --h2-size: 18px;
+    --ratio: 1.25;
+    --ink: #1a2332;
+    --paper: #f4f1ea;
+    --accent: #b85c38;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 64px 24px;
+  }
+  .doc {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 24px;
+    margin-bottom: 72px;
+  }
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h1-size);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+  .lead {
+    font-size: var(--base-size);
+    margin-top: 16px;
+    color: #4a5568;
+  }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h2-size);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+  }
+  section {
+    margin-bottom: 64px;
+  }
+  p {
+    font-size: var(--base-size);
+    margin-bottom: 8px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  li {
+    font-size: var(--base-size);
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .screen-desc {
+    font-size: var(--base-size);
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+  }
+  .excluded p {
+    color: #6b7280;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header>
+<h1>経費精算を、週末の後回しから翌朝の五分へ</h1>
+<p class="lead">〈会社名〉向け 社内経費精算ツール 仕様メモ</p>
+</header>
+
+<section>
+<h2>目的</h2>
+<p>月末にレシートを束ねて手入力する負担をなくす。領収書を撮って送るだけで精算起票が完了する最小のツールを〈会社名〉内に置く。</p>
+</section>
+
+<section>
+<h2>対象ユーザー</h2>
+<p>〈会社名〉の全従業員。特に交通費や少額の立替払いが月に数回以上発生する営業・現場スタッフ。</p>
+</section>
+
+<section>
+<h2>主要機能</h2>
+<ul>
+<li>スマホで領收書を撮影し、日付・金額・科目を自動入力して起票する</li>
+<li>科目は〈会社名〉の既定費目から選択式。自由入力欄は用意しない</li>
+<li>起票した明細は月単位でまとまり、承認者へ一括送信できる</li>
+<li>承認者は一覧で内容を確認し、ワンクリックで承認・差戻しを行う</li>
+</ul>
+</section>
+
+<section>
+<h2>画面イメージ</h2>
+<p class="screen-desc">上部にカメラ起動ボタンがひとつ。撮影後、読み取った金額と日付が下段にカード形式で並ぶ。各カードをタップすると科目を選ぶプルダウンが開き、選ぶと薄い色に変わって確定を示す。月末に「まとめて送信」ボタンを押すだけで精算完了。余計な入力フォームは置かない。</p>
+</section>
+
+<section class="excluded">
+<h2>使わないと決めたもの</h2>
+<p>自由入力の科目欄。経路検索連携。PDF出力。部門別集計ダッシュボード。これらは運用が始まり要望が出てから判断する。</p>
+</section>
+
+</div>
+</body>
+</html>

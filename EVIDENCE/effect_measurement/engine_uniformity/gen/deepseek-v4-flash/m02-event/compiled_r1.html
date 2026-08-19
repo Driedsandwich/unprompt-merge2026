@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会 2026 — おしゃべりしながら、学ぼう</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け */
+/* GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 */
+/* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+/* GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 */
+/* GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ */
+
+:root {
+  /* palette: 地色=#fff7e8, 主要色=#ff8a3d, 強調色=#2ec4b6 */
+  --bg: #fff7e8;
+  --main: #ff8a3d;
+  --accent: #2ec4b6;
+  --text: #1a1a1a;
+  --text-light: #5a5a5a;
+  --white: #ffffff;
+
+  /* type scale: base=15px, ratio=1.25 */
+  --fs-base: 15px;
+  --fs-small: 0.8rem;      /* 12px */
+  --fs-body: 1rem;         /* 15px */
+  --fs-lead: 1.0667rem;    /* 16px */
+  --fs-h3: 1.333rem;       /* 20px */
+  --fs-h2: 1.667rem;       /* 25px */
+  --fs-h1: 2.083rem;       /* 31.25px */
+  --fs-hero: 2.604rem;     /* 39px */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Segoe UI", sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* page wrapper — dense: ゆったりではなく詰めて情報量を */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
+
+/* ---- hero ---- */
+.hero {
+  margin-bottom: 48px;
+  padding: 32px 0 24px;
+  border-bottom: 3px solid var(--main);
+}
+
+.hero__label {
+  display: inline-block;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding: 2px 10px;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+}
+
+.hero__title {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.hero__title .highlight {
+  color: var(--main);
+}
+
+.hero__sub {
+  font-size: var(--fs-lead);
+  color: var(--text-light);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* ---- section ---- */
+.section {
+  margin-bottom: 56px;
+}
+
+.section__title {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--main);
+  color: var(--text);
+}
+
+.section__title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 0.9em;
+  background: var(--accent);
+  border-radius: 3px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.section p {
+  margin-bottom: 12px;
+}
+
+/* ---- info grid ---- */
+.info-grid {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 12px 16px;
+  margin-bottom: 24px;
+}
+
+.info-grid__label {
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--main);
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+}
+
+.info-grid__value {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+/* ---- content cards ---- */
+.content-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 12px; /* soft */
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border-left: 4px solid var(--main);
+}
+
+.card__heading {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.card__text {
+  font-size: var(--fs-body);
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.card__icon {
+  font-size: 1.4rem;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+/* ---- cta area ---- */
+.cta-area {
+  margin-top: 48px;
+  padding: 32px 24px;
+  background: var(--white);
+  border-radius: 16px;
+  text-align: center;
+  border: 2px solid var(--main);
+}
+
+.cta-area__title {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.cta-area__text {
+  font-size: var(--fs-body);
+  color: var(--text-light);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.cta-area__info {
+  display: inline-block;
+  font-size: var(--fs-small);
+  color: var(--text-light);
+  padding: 8px 20px;
+  border: 1.5px dashed var(--accent);
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+/* ---- footer ---- */
+.footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid #ddd;
+  font-size: var(--fs-small);
+  color: var(--text-light);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* utility */
+.highlight-accent {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.emoji-lg {
+  font-size: 1.2rem;
+  margin-right: 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- hero -->
+  <header class="hero">
+    <span class="hero__label"><span class="emoji-lg">🍂</span>2026 Autumn</span>
+    <h1 class="hero__title">
+      おしゃべりしながら、<br>
+      <span class="highlight">学ぼう。</span>
+    </h1>
+    <p class="hero__sub">
+      部署も役職も関係なし。あの人に聞きたかったあの話、<br>
+      秋の社内勉強会で共有しませんか。
+    </p>
+  </header>
+
+  <!-- 日時・場所 -->
+  <!-- GYAKUMON-CHOICE: 想定読者の範囲 = 全社員向け -->
+  <section class="section">
+    <h2 class="section__title">開催概要</h2>
+    <div class="info-grid">
+      <span class="info-grid__label"><span class="emoji-lg">📅</span>日時</span>
+      <span class="info-grid__value">〈開催日〉 16:00 〜 18:00（開場 15:45）</span>
+      <span class="info-grid__label"><span class="emoji-lg">📍</span>場所</span>
+      <span class="info-grid__value">〈会場〉 ／ オンライン参加可（URLは参加者に別途連絡）</span>
+      <span class="info-grid__label"><span class="emoji-lg">👥</span>対象</span>
+      <span class="info-grid__value">全社員 — 新卒もベテランも、全員ウェルカム</span>
+      <span class="info-grid__label"><span class="emoji-lg">🎒</span>持ち物</span>
+      <span class="info-grid__value">特にありません。話を聞きたい気持ちだけ。</span>
+    </div>
+  </section>
+
+  <!-- 内容の説明 -->
+  <!-- GYAKUMON-CHOICE: 参加目的の性質 = 情報共有・交流系 -->
+  <section class="section">
+    <h2 class="section__title">どんな会？</h2>
+    <div class="content-cards">
+      <div class="card">
+        <div class="card__heading"><span class="card__icon">🗣️</span>知ってることを、誰かのために</div>
+        <p class="card__text">
+          日頃の業務で「これ、みんなに知ってほしいな」と思ったこと、ありませんか？<br>
+          今回の勉強会は、各チームから持ち寄った <strong>リアルな知見・ノウハウ・失敗談</strong> をざっくばらんに共有する場です。〈確認: 現場で実際にあった失敗談を1つ〉 のような生の声が飛び交う予定。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__heading"><span class="card__icon">🤝</span>部署の垣根を越えた繋がり</div>
+        <p class="card__text">
+          同じ会社なのに、隣のチームが何をしているか意外と知らないもの。<br>
+          この機会に、違う部署の人の考え方や仕事の流儀に触れてみませんか？ 情報共有を通じて、新しいコラボレーションの種が生まれるかもしれません。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 見どころ -->
+  <!-- GYAKUMON-CHOICE: 参加のハードル感の見せ方 = 気軽に参加歓迎 -->
+  <section class="section">
+    <h2 class="section__title">見どころ・雰囲気</h2>
+    <div class="content-cards">
+      <div class="card" style="border-left-color: var(--accent);">
+        <div class="card__heading"><span class="card__icon">🍪</span>お菓子と飲み物、ご用意してます</div>
+        <p class="card__text">
+          堅苦しい会議室じゃない、ゆるっとした雰囲気でお届けします。<br>
+          お菓子を片手に、気になるセッションを覗きに来てください。「話だけ聞いて帰る」も大歓迎。
+        </p>
+      </div>
+      <div class="card" style="border-left-color: var(--accent);">
+        <div class="card__heading"><span class="card__icon">🎤</span>ライトニングトーク枠アリ</div>
+        <p class="card__text">
+          当日飛び入りで「これだけは言いたい！」という方がいれば、5分だけお時間をいただきます。<br>
+          事前申込不要、その場のノリでどうぞ。聞く側も「へえ、そんなことやってたんだ」と新たな発見があるはず。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 参加方法 -->
+  <!-- GYAKUMON-CHOICE: 申込への訴求強度 = 情報提示のみ -->
+  <section class="cta-area">
+    <h2 class="cta-area__title">参加方法</h2>
+    <p class="cta-area__text">
+      参加には事前登録は不要です。当日会場にお越しいただくか、<br>
+      オンラインURLからご参加ください。
+    </p>
+    <div class="cta-area__info">
+      <span class="emoji-lg">📧</span> オンライン参加URLは開催前日に全社メールでお知らせします
+    </div>
+    <p style="margin-top: 16px; font-size: var(--fs-small); color: var(--text-light);">
+      途中入退場自由。予定が合わない時間帯だけの参加もOKです。
+    </p>
+  </section>
+
+  <!-- footer -->
+  <footer class="footer">
+    <p>秋の社内勉強会 運営チーム</p>
+    <p>何か質問があれば〈連絡先〉までお気軽にどうぞ</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

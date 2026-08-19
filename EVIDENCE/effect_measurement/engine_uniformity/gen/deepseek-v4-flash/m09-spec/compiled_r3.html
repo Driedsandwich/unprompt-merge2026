@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算ツール 仕様メモ</title>
+<style>
+/* GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 */
+/* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+/* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+/* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+/* GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール */
+
+:root {
+    --text: #1b2a22;
+    --bg: #f1f5e9;
+    --accent: #5c7a3e;
+    --highlight: #8fa85e;
+    --base: #ffffff;
+    --muted: #3a4552;
+    --line: #d0d8c0;
+
+    /* type scale: base 15px, ratio 1.25 */
+    --fs-body: 15px;
+    --fs-small: 13px;
+    --fs-h3: 1.25rem;
+    --fs-h2: 1.563rem;
+    --fs-h1: 1.953rem;
+
+    --lh-body: 1.7;
+    --lh-heading: 1.2;
+    --ls-heading: -0.01em;
+
+    --space-unit: 8px;
+    --space-sm: calc(var(--space-unit) * 2);
+    --space-md: calc(var(--space-unit) * 4);
+    --space-lg: calc(var(--space-unit) * 6);
+    --space-xl: calc(var(--space-unit) * 12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    padding: var(--space-xl) 16px;
+}
+
+.wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--base);
+    padding: var(--space-lg) var(--space-md);
+    border: 1px solid var(--line);
+}
+
+/* ===== 見出し ===== */
+h1 {
+    font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: var(--fs-h1);
+    font-weight: 700;
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+}
+
+h2 {
+    font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-size: var(--fs-h2);
+    font-weight: 700;
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--highlight);
+}
+
+h3 {
+    font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    line-height: var(--lh-heading);
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+}
+
+/* ===== 段落・リスト ===== */
+p, li {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    margin-bottom: var(--space-sm);
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    padding-left: 1.4em;
+    position: relative;
+    margin-bottom: var(--space-sm);
+}
+
+ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0.2em;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ===== リード ===== */
+.lead {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    line-height: var(--lh-heading);
+    color: var(--accent);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-sm) 0;
+    border-top: 1px solid var(--highlight);
+    border-bottom: 1px solid var(--highlight);
+}
+
+/* ===== セクション ===== */
+.section {
+    margin-bottom: var(--space-xl);
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== 画面イメージ記述 ===== */
+.scene-box {
+    background: var(--bg);
+    border-left: 4px solid var(--highlight);
+    padding: var(--space-md) var(--space-sm);
+    margin-top: var(--space-sm);
+    font-size: var(--fs-small);
+    line-height: 1.6;
+}
+
+.scene-box strong {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ===== 装飾削除前の最終チェック: 影・グラデ・アイコン・アニメは使わない ===== */
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- 目的 -->
+<h1>経費、自動で締まる。</h1>
+<div class="lead">
+    集計・経理処理を自動化し、月次の締め処理を即完了する。
+</div>
+<p>
+    このツールは、経理担当者が月末に手作業で行っている経費データの集計・仕訳振り分け・部門別集約を、Excel／スプレッドシート上で自動化する。申請者側の入力フォームは変更せず、経理側の後処理だけを対象とする。既存の会計システムには接続せず、シート単体で完結する。
+</p>
+
+<!-- 対象ユーザー -->
+<div class="section">
+<h2>対象ユーザー</h2>
+<p>
+    経理担当者（<会社名> 経理部・経営管理部の月次経費担当）。申請者（従業員）は操作対象としない。経理担当者が月末に立ち上がる「申請データの取りまとめ→勘定科目ごとの集計→部門別振り分け」の一連の作業を、ツールの操作対象とする。
+</p>
+</div>
+
+<!-- 主要機能 -->
+<div class="section">
+<h2>主要機能</h2>
+<ul>
+    <li><strong>CSV／TSV一括取込</strong> — 申請システムから出力された経費データ（CSV・TSV形式）をシートに貼り付けるだけで、フォーマットの差異を自動判別し取り込む。</li>
+    <li><strong>科目自動判定</strong> — 取込んだ各行の摘要・費目コード・部門コードをもとに、<会社名>の勘定科目マッピング表に沿って仕訳候補を自動生成する。マッピングはシート内の設定テーブルで自由に編集できる。</li>
+    <li><strong>部門別サマリー</strong> — 取り込んだ全データを部門（部署コード）ごとに集計し、部門別経費一覧と合計額を自動計算する。集計結果はシート上で即時に更新される。</li>
+    <li><strong>仕訳一覧出力</strong> — 科目判定後のデータを、会計システムへの入力用に整形した仕訳一覧として出力する。出力形式はタブ区切りテキスト（またはCSV）で、システムごとに必要な列構成に変更可能。</li>
+    <li><strong>エラーチェック</strong> — 取込時に日付の欠損・金額の不整合・マッピング未定義の費目コードを検出し、該当行を色付きでハイライト表示する。エラー行は修正後に再チェックできる。</li>
+</ul>
+</div>
+
+<!-- 画面イメージの言葉での説明 -->
+<div class="section">
+<h2>画面イメージ</h2>
+<p>ツールは1つのワークブック（.xlsx／Googleスプレッドシート）として配布する。以下の4枚のシートで構成する。</p>
+
+<div class="scene-box">
+<strong>① 取込シート</strong><br>
+    左上に「データ貼り付けエリア」（A1〜Z1000程度）を設ける。ここにCSVまたはTSVの内容をそのまま貼り付ける。貼り付け後、上部の「取込実行」ボタン（マクロ／スクリプト）を押すと、下段の整形済みテーブルにデータが展開される。エラーがある行は行全体が薄い赤色で塗られ、右端のセルにエラー内容（例：「費目コード #E001 は未定義」）が表示される。
+</div>
+
+<div class="scene-box">
+<strong>② 科目マッピングシート</strong><br>
+    A列に費目コード、B列に費目名、C列に自動判定する勘定科目名、D列に部門コード（任意）を記入する設定テーブル。初期状態で<会社名>の標準マッピングを50行程度プリセットする。経理担当者が自由に行の追加・編集・削除を行える。
+</div>
+
+<div class="scene-box">
+<strong>③ 部門サマリーシート</strong><br>
+    取込シートの整形済みデータをもとに、部門コード別に集計された一覧が自動生成される。A列に部門コード、B列に部門名、C列以降に費目別の小計と合計額が並ぶ。月末の部門別経費報告にそのまま使える形式。
+</div>
+
+<div class="scene-box">
+<strong>④ 仕訳一覧シート</strong><br>
+    科目マッピングシートの判定結果に従い、各行を「日付, 部門コード, 勘定科目, 金額, 摘要」の列で整形した一覧を出力する。右上に「出力形式切替」ボタン（CSV／タブ区切り）を設ける。出力前に任意の行をフィルターで除外できる。
+</div>
+</div>
+
+<!-- 使わないと決めたもの -->
+<div class="section">
+<h2>使わないと決めたもの</h2>
+<ul>
+    <li><strong>申請者向け入力フォーム</strong> — 従業員が経費を申請するための画面・フォームは作らない。既存の申請システムをそのまま使い続ける。</li>
+    <li><strong>会計システムとのリアルタイム連携</strong> — API連携・直接転送は行わない。出力した仕訳一覧を経理担当者が会計システムに手動で取り込む運用とする。</li>
+    <li><strong>承認フロー機能</strong> — 申請の承認・却下・差し戻しのワークフローは含めない。既存の承認プロセスは変更しない。</li>
+    <li><strong>モバイル対応・Webアプリ化</strong> — ツールはデスクトップ版Excel／Googleスプレッドシートでの動作を前提とし、スマートフォン・タブレットでの操作は想定しない。</li>
+    <li><strong>領収書OCR・画像認識</strong> — 紙領収書の読み取り・画像からのデータ抽出機能は実装しない。データは申請システムからのCSV出力を唯一の入力源とする。</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -34,10 +34,12 @@ REP_MODELS = {"deepseek-ai/deepseek-v4-flash": 5, "zai-org/glm-5.2": 5}
 VER_MODELS = {"moonshotai/kimi-k2.7-code": 1, "moonshotai/kimi-k3": 1}
 
 
-def gen_all():
+def gen_all(only=None):
     en.COSTS = COSTS  # 実費記録をU1側のファイルへ束ねる
     runner = en.AiandRunner()
     plan = {**REP_MODELS, **VER_MODELS}
+    if only:
+        plan = {m: r for m, r in plan.items() if m.split("/")[-1] in only}
     for model, reps in plan.items():
         short = model.split("/")[-1]
         for bid in IDS:
@@ -184,10 +186,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--generate", action="store_true")
     ap.add_argument("--metrics", action="store_true")
+    ap.add_argument("--models", default=None, help="カンマ区切りの短名で絞る (並列実行用)")
     a = ap.parse_args()
     OUT.mkdir(exist_ok=True)
     if a.generate:
-        gen_all()
+        gen_all(a.models.split(",") if a.models else None)
     if a.metrics:
         metrics()
     if not (a.generate or a.metrics):

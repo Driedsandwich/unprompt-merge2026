@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 — Portfolio</title>
+<style>
+  :root{
+    --bg:#0e1414;
+    --fg:#e8e4d8;
+    --muted:#7a8079;
+    --accent:#c9b25a; /* 鈍った金 */
+    --line:#1f2625;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--fg);
+    font-family:"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:15px;line-height:1.7;letter-spacing:.02em;
+  }
+  /* タイプスケール: 本文15 / h2 36 / h1 72 */
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  section{padding:96px 0}
+  h1,h2{font-family:"Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;font-weight:400}
+  h1{font-size:72px;line-height:1.05;letter-spacing:-.02em}
+  h2{font-size:36px;letter-spacing:-.01em;margin-bottom:24px}
+  .idx{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:40px}
+  /* ヒーロー */
+  #hero{padding:128px 0 96px;border-bottom:1px solid var(--line)}
+  #hero .role{color:var(--accent);font-size:13px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:24px}
+  #hero .intro{margin-top:32px;max-width:480px;color:var(--muted)}
+  /* 自己紹介 */
+  #about p{margin-bottom:16px}
+  /* 作品 */
+  .work{padding:32px 0;border-bottom:1px solid var(--line)}
+  .work:last-child{border-bottom:none}
+  .work-head{display:flex;align-items:baseline;gap:16px;margin-bottom:12px}
+  .work-no{color:var(--accent);font-family:"Times New Roman",serif;font-size:14px}
+  .work h3{font-family:"Helvetica Neue",sans-serif;font-size:20px;font-weight:500;letter-spacing:.01em}
+  .work-tag{font-size:12px;color:var(--muted);letter-spacing:.1em}
+  .work-desc{color:var(--muted)}
+  /* スキル */
+  .skills{display:grid;grid-template-columns:140px 1fr;gap:8px 24px;font-size:14px}
+  .skills dt{color:var(--muted);letter-spacing:.1em;font-size:12px;padding-top:2px}
+  /* 連絡先 */
+  #contact a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(201,178,90,.3);padding-bottom:2px}
+  #contact p{color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:40px 0;font-size:12px;color:var(--muted);letter-spacing:.1em}
+  @media(max-width:600px){
+    h1{font-size:48px}
+    h2{font-size:28px}
+    .skills{grid-template-columns:1fr;gap:4px 0}
+    dt{margin-top:16px}
+  }
+</style>
+</head>
+<body>
+
+<section id="hero">
+  <div class="wrap">
+    <div class="role">〈肩書き〉</div>
+    <h1>〈氏名〉</h1>
+    <p class="intro">〈ここに一文で自分の強み・方向性を記す。〉</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="idx"><span>About</span><span>01</span></div>
+    <h2>について</h2>
+    <p>〈これまでの経歴と、いま何に向かおうとしているかを、固有の文脈で3〜4行で記す。〉</p>
+    <p>〈得意としている領域と、逆に意識的に勉強を続けていることなど。〉</p>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <div class="idx"><span>Works</span><span>02</span></div>
+    <h2>つくったもの</h2>
+
+    <div class="work">
+      <div class="work-head">
+        <span class="work-no">01</span>
+        <h3>〈作品タイトルA〉</h3>
+        <span class="work-tag">〈カテゴリ・年〉</span>
+      </div>
+      <p class="work-desc">〈作品の背景・目的・自分の役割と、工夫した点を2行で。〉</p>
+    </div>
+
+    <div class="work">
+      <div class="work-head">
+        <span class="work-no">02</span>
+        <h3>〈作品タイトルB〉</h3>
+        <span class="work-tag">〈カテゴリ・年〉</span>
+      </div>
+      <p class="work-desc">〈作品の背景・目的・自分の役割と、工夫した点を2行で。〉</p>
+    </div>
+
+    <div class="work">
+      <div class="work-head">
+        <span class="work-no">03</span>
+        <h3>〈作品タイトルC〉</h3>
+        <span class="work-tag">〈カテゴリ・年〉</span>
+      </div>
+      <p class="work-desc">〈作品の背景・目的・自分の役割と、工夫した点を2行で。〉</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="idx"><span>Skills</span><span>03</span></div>
+    <h2>できること</h2>
+    <dl class="skills">
+      <dt>言語</dt><dd>〈言語群を列挙〉</dd>
+      <dt>フレームワーク</dt><dd>〈主要FWと用途〉</dd>
+      <dt>ツール</dt><dd>〈日常的に使うツール〉</dd>
+      <dt>その他</dt><dd>〈資格・チーム運営・語学など〉</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="idx"><span>Contact</span><span>04</span></div>
+    <h2>連絡先</h2>
+    <p>お話しできる機会をいただけますと幸いです。</p>
+    <p style="margin-top:16px">Email: <a href="mailto:〈email@example.com〉">〈email@example.com〉</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 〈氏名〉 — Portfolio</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 | 大切な人へ、コーヒー豆という贈りもの。</title>
+<style>
+/* GYAKUMON-CHOICE: 想定読者の層 = ギフト検討者 */
+/* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 */
+/* GYAKUMON-CHOICE: ページの主目的 = ブランド共感醸成 */
+/* GYAKUMON-CHOICE: 構成の重心 = ストーリー中心 */
+/* GYAKUMON-CHOICE: 閲覧時の想定接点 = スマホ前提 */
+
+/* タイプスケール: 基準16px → h6:20 / h5:24 / h4:28 / h3:34 / h2:41 / h1:49 (1.2倍律) */
+:root {
+  --bg: #151312;
+  --primary: #2e2823;
+  --accent: #b08d57;
+  --text: #f4ece1;
+  --text-dim: #a39789;
+  --spacing-unit: 8px;
+  font-size: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", "Georgia", serif;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+
+h1 { font-size: clamp(2rem, 6vw, 3.0625rem); } /* 49px / 32px */
+h2 { font-size: clamp(1.625rem, 4.5vw, 2.5625rem); } /* 41px / 26px */
+h3 { font-size: clamp(1.375rem, 3.5vw, 2.125rem); } /* 34px / 22px */
+h4 { font-size: 1.75rem; } /* 28px */
+h5 { font-size: 1.5rem; } /* 24px */
+h6 { font-size: 1.25rem; } /* 20px */
+
+.wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 calc(var(--spacing-unit) * 3);
+}
+
+/* ===== ヒーロー ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 3);
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 30%, rgba(176, 141, 87, 0.08), transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 80%, rgba(46, 40, 35, 0.4), transparent);
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: clamp(2.25rem, 7vw, 3.5rem);
+  letter-spacing: 0.1em;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.hero .sub {
+  font-size: 1.125rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+.hero .catch {
+  font-size: 0.9375rem;
+  color: var(--text-dim);
+  max-width: 360px;
+  line-height: 2;
+}
+
+/* SVG 装飾（ロゴ代わり） */
+.hero-symbol {
+  margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+/* ===== セクション ===== */
+section {
+  padding: calc(var(--spacing-unit) * 16) 0;
+}
+
+section + section {
+  border-top: 1px solid rgba(176, 141, 87, 0.15);
+}
+
+.section-title {
+  margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+.section-title span {
+  display: block;
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  text-transform: uppercase;
+}
+
+.body-text {
+  color: var(--text-dim);
+  line-height: 2.1;
+  font-size: 0.9375rem;
+}
+
+.body-text + .body-text {
+  margin-top: calc(var(--spacing-unit) * 4);
+}
+
+/* ===== 物語セクション ===== */
+.story-block {
+  position: relative;
+  padding-left: calc(var(--spacing-unit) * 2);
+}
+
+.story-block::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.story-marker {
+  display: inline-block;
+  color: var(--accent);
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.15em;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* ===== こだわりカード ===== */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 6);
+}
+
+.card {
+  background: var(--primary);
+  border-radius: 12px; /* GYAKUMON-CHOICE: 世界観の方向性 = 高級・洗練 → sharp → だが「贈りもの」のsoft感を優先しソフト角に */
+  padding: calc(var(--spacing-unit) * 6);
+}
+
+.card h3 {
+  font-size: 1.375rem;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  color: var(--accent);
+}
+
+/* ===== ラインナップ ===== */
+.linelist {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 5);
+}
+
+.linelist-item {
+  display: flex;
+  gap: calc(var(--spacing-unit) * 4);
+  align-items: flex-start;
+}
+
+.linelist-visual {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #3d352f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+
+.linelist-info h4 {
+  font-size: 1.125rem;
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  margin-bottom: calc(var(--spacing-unit) * 1);
+}
+
+.linelist-info p {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.linelist-tag {
+  display: inline-block;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-top: calc(var(--spacing-unit) * 1);
+}
+
+/* ===== CTA ===== */
+.cta-section {
+  text-align: center;
+  padding: calc(var(--spacing-unit) * 16) 0 calc(var(--spacing-unit) * 12);
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 12);
+  border-radius: 40px;
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 1.0625rem;
+  letter-spacing: 0.12em;
+  transition: opacity 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  opacity: 0.85;
+}
+
+.cta-annotation {
+  margin-top: calc(var(--spacing-unit) * 3);
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+}
+
+/* ===== フッター ===== */
+footer {
+  padding: calc(var(--spacing-unit) * 6) 0;
+  text-align: center;
+  border-top: 1px solid rgba(176, 141, 87, 0.1);
+  font-size: 0.75rem;
+  color: rgba(163, 151, 137, 0.5);
+  letter-spacing: 0.1em;
+}
+
+/* airy: 余白大きく行間広く */
+.body-text {
+  line-height: 2.2;
+}
+
+.card, .linelist-item {
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+/* 削ったもの: セクション間の装飾グラデーション */
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-symbol">
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="28" cy="28" r="26" stroke="#b08d57" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="28" cy="28" r="18" stroke="#b08d57" stroke-width="0.6" opacity="0.3"/>
+      <circle cx="28" cy="28" r="8" fill="#b08d57" opacity="0.25"/>
+      <line x1="28" y1="8" x2="28" y2="48" stroke="#b08d57" stroke-width="0.4" opacity="0.2"/>
+      <line x1="8" y1="28" x2="48" y2="28" stroke="#b08d57" stroke-width="0.4" opacity="0.2"/>
+    </svg>
+  </div>
+  <h1>〈ブランド名〉</h1>
+  <p class="sub">FROM SEED TO CUP</p>
+  <p class="catch">大切な人へ、コーヒー豆という贈りもの。<br>
+  一粒の豆がつなぐ、静かな豊かさを。</p>
+</header>
+
+<!-- ===== 物語 ===== -->
+<section>
+  <div class="section-title">
+    <span>Story</span>
+    <h2>ある農園から<br>始まった物語</h2>
+  </div>
+  <div class="story-block">
+    <span class="story-marker">—— 旅のはじまり</span>
+    <p class="body-text">
+      〈年数〉年前、〈地域〉の小さな農園で出会った一粒の豆が、すべての始まりでした。<br>
+      焙煎機の前で〈確認: 焙煎士が最初に感じたこと〉を胸に、〈ブランド名〉は生まれました。
+    </p>
+    <p class="body-text">
+      届けたいのは、ただの飲み物ではありません。土と気候と、その年の太陽を映し出す、かけがえのない時間。コーヒー豆というかたちで、〈確認: ブランドが大切にしている価値観〉を伝えたい——そんな思いから、このブランドは静かに動き始めました。
+    </p>
+  </div>
+</section>
+
+<!-- ===== こだわり ===== -->
+<section>
+  <div class="section-title">
+    <span>Craft</span>
+    <h2>豆へのこだわり</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <h3>選別の目利き</h3>
+      <p class="body-text">産地ごとに異なる特性を見極め、〈確認: 具体的な選別基準や工程〉に合格した豆だけを仕入れます。目視と cupping による二重のチェックを、焙煎の直前に再度行います。</p>
+    </div>
+    <div class="card">
+      <h3>焙煎の設計</h3>
+      <p class="body-text">プロファイルは豆ごとに〈確認: 焙煎曲線の特徴や時間の目安〉を設定。浅煎りから深煎りまで、それぞれの豆が最も輝くポイントを追求しています。仕上がりは毎回カラーメーターと味覚で確認します。</p>
+    </div>
+    <div class="card">
+      <h3>鮮度の約束</h3>
+      <p class="body-text">ご注文を受けてから焙煎し、〈確認: 焙煎から発送までの具体的な日数〉以内にお届けします。袋には焙煎日を明記。開封後は〈確認: 推奨保存期間〉を目安にお楽しみください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ラインナップ ===== -->
+<section>
+  <div class="section-title">
+    <span>Selection</span>
+    <h2>ラインナップ</h2>
+  </div>
+  <div class="linelist">
+    <div class="linelist-item">
+      <div class="linelist-visual">☕</div>
+      <div class="linelist-info">
+        <h4>〈ブレンド名A〉</h4>
+        <p>〈味の特徴やおすすめシーンを簡潔に〉</p>
+        <span class="linelist-tag">深煎り</span>
+      </div>
+    </div>
+    <div class="linelist-item">
+      <div class="linelist-visual">🌱</div>
+      <div class="linelist-info">
+        <h4>〈ブレンド名B〉</h4>
+        <p>〈味の特徴やおすすめシーンを簡潔に〉</p>
+        <span class="linelist-tag">中煎り</span>
+      </div>
+    </div>
+    <div class="linelist-item">
+      <div class="linelist-visual">🍊</div>
+      <div class="linelist-info">
+        <h4>〈ブレンド名C〉</h4>
+        <p>〈味の特徴やおすすめシーンを簡潔に〉</p>
+        <span class="linelist-tag">浅煎り</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<div class="cta-section">
+  <a href="#" class="cta-button">詳しく見る</a>
+  <p class="cta-annotation">オンラインストアでラインナップを公開中<br>
+  〈確認: ギフト包装の有無や配送に関する条件〉</p>
+</div>
+
+</div><!-- /wrapper -->
+
+<footer>
+  © 〈ブランド名〉 | Coffee from seed to gift.
+</footer>
+
+</body>
+</html>

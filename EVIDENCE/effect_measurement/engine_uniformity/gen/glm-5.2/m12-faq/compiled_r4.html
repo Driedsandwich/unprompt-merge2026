@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品についてのよくあるご質問 | 〈ショップ名〉サポート</title>
+<style>
+  /* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+  /* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+  /* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+  /* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+  /* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+  :root {
+    --bg: #fbf4ee;
+    --main: #c98a6b;
+    --accent: #8a5a3c;
+    --text: #5a4030;
+    --muted: #8a7560;
+    --line: #e8d5c4;
+    --scale-body: 16px;
+    --scale-h1: 32px;
+    --scale-h2: 22px;
+    --scale-h3: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: var(--scale-body);
+    letter-spacing: 0.01em;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 64px 0 48px; }
+  .label {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: var(--scale-h1);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .lead {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+  section { padding: 48px 0; }
+  h2 {
+    font-size: var(--scale-h2);
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.03em;
+  }
+  .section-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .qa { margin-bottom: 40px; }
+  .qa-category {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    font-weight: 600;
+    padding: 4px 12px;
+    background: rgba(201,138,107,0.12);
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    font-size: var(--scale-h3);
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+  .qa-body {
+    font-size: 15px;
+    line-height: 1.85;
+    padding-left: 16px;
+    border-left: 3px solid var(--line);
+  }
+  .qa-body strong { color: var(--accent); font-weight: 600; }
+  .qa-body ul { list-style: none; margin-top: 12px; }
+  .qa-body li { padding-left: 20px; position: relative; margin-bottom: 8px; }
+  .qa-body li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 11px;
+    width: 6px; height: 6px;
+    background: var(--main);
+    border-radius: 50%;
+  }
+  .contact {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin-top: 16px;
+  }
+  .contact h2 { text-align: center; }
+  .contact p {
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .contact-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 14px 40px;
+    background: var(--main);
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+  }
+  .contact-hours {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+  footer { padding: 48px 0 64px; text-align: center; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="label">SUPPORT / 返品FAQ</div>
+    <!-- GYAKUMON-CHOICE: 読者の状況 = 両方混在 -->
+    <!-- GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 -->
+    <h1>返品のこと、<br>ゆっくり一緒に確認しましょう。</h1>
+    <p class="lead">返品できるか検討中の方も、すでにお手続き中の方も、このページで迷わず解決できます。条件から手続きの流れまで、すべて明記しています。</p>
+  </header>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 -->
+    <h2>よくあるご質問</h2>
+    <p class="section-note">目的別に分類しています。気になる項目からご覧ください。</p>
+
+    <div class="qa">
+      <span class="qa-category">返品の条件</span>
+      <!-- GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 -->
+      <h3>Q. どんな場合に返品できますか？</h3>
+      <div class="qa-body">
+        <p>商品到着後<strong>〈返品可能日数〉日以内</strong>で、未使用・未開封の商品に限り返品をお受けしております。以下の条件をすべて満たす必要があります。</p>
+        <ul>
+          <li>商品到着から〈返品可能日数〉日以内であること</li>
+          <li>未使用・未開封であること（タグ・付属品を含む）</li>
+          <li>返品申し込みフォームまたはお問い合わせより事前のご連絡をいただいていること</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="qa">
+      <span class="qa-category">返品の条件</span>
+      <h3>Q. 返品の期限はいつまでですか？</h3>
+      <div class="qa-body">
+        <p>商品お受け取り日の翌日を1日目として<strong>〈返品可能日数〉日以内</strong>となります。期限を過ぎた場合、返品をお受けできないことがございますのでご注意ください。</p>
+      </div>
+    </div>
+
+    <div class="qa">
+      <span class="qa-category">送料・費用</span>
+      <h3>Q. 返品送料はどちらが負担しますか？</h3>
+      <div class="qa-body">
+        <p>理由により負担区分が異なります。</p>
+        <ul>
+          <li><strong>初期不良・誤配送の場合：</strong>〈ショップ名〉が全額負担いたします</li>
+          <li><strong>お客様都合の場合：</strong>往復の送料をお客様ご負担となります</li>
+        </ul>
+        <p style="margin-top:12px;">送料の金額については、事前のご連絡時に具体的な金額をお伝えします。</p>
+      </div>
+    </div>
+
+    <div class="qa">
+      <span class="qa-category">手続きの流れ</span>
+      <h3>Q. 返品の手続きはどう進めればいいですか？</h3>
+      <div class="qa-body">
+        <p>以下のステップで進めてください。</p>
+        <ul>
+          <li>お問い合わせフォームより返品旨をご連絡（注文番号・商品名・理由）</li>
+          <li>返品受付のご案内メールを受信</li>
+          <li>指定住所へ商品を発送</li>
+          <li>商品到着・確認後、返金手続き（〈返金所要日数〉営業日以内）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="qa">
+      <span class="qa-category">返金</span>
+      <h3>Q. 返金はどう行われますか？</h3>
+      <div class="qa-body">
+        <p>原則として<strong>ご注文時の支払い方法へのご返金</strong>となります。クレジットカード決済の場合はカード会社経由で、銀行振込の場合は指定口座へお振り込みいたします。返金時期は決済機関により〈返金反映時期〉程度かかる場合がございます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+    <div class="contact">
+      <h2>解決しないときは</h2>
+      <p>このページで解決しなかった場合も、どうぞお気軽にご連絡ください。</p>
+      <a href="#" class="contact-btn">お問い合わせフォームへ</a>
+      <p class="contact-hours">受付時間 〈受付時間〉／返信まで〈返信目安〉</p>
+    </div>
+  </section>
+
+  <footer>
+    〈ショップ名〉 サポートセンター
+  </footer>
+</div>
+</body>
+</html>

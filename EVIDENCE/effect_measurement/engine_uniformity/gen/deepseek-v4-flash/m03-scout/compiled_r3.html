@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+  /* GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 */
+  /* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+  /* GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 */
+  /* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 */
+  /* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+
+  :root {
+    /* palette: #0f0f10, #4b4f58, #c9ff3e */
+    --bg: #0f0f10;
+    --card-bg: #18181a;
+    --text: #eaeaea;
+    --text-muted: #a0a4ab;
+    --accent: #c9ff3e;
+    --border: #2a2a2e;
+
+    /* タイポグラフィ */
+    /* 見出し: system-ui (sans, 太字) / 本文: system-ui (sans, 標準) */
+    --heading-font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --body-font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    /* タイプスケール: 本文16pxを基準に1.25倍 */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.25rem;    /* 20px */
+    --text-xl: 1.563rem;   /* 25px */
+
+    /* 8pxグリッド */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-7: 56px;
+    --space-8: 64px;
+    --space-9: 72px;
+    --space-10: 80px;
+    --space-12: 96px;
+
+    /* 角 sharp */
+    --radius: 2px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body-font);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-8) var(--space-2);
+    min-height: 100vh;
+  }
+
+  .email-wrapper {
+    max-width: 720px;
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-8) var(--space-6);
+    /* GYAKUMON-CHOICE: 文面のトーン = カジュアル → 密度 normal (デフォルト) */
+    /* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 → airy だが、他決定と調和しnormalベース */
+    /* 余白は8pxグリッドでゆったり */
+  }
+
+  /* 件名行 */
+  .subject {
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .subject-label {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: var(--space-1);
+  }
+
+  .subject-text {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    font-family: var(--heading-font);
+    letter-spacing: -0.01em;
+    color: var(--accent);
+  }
+
+  /* 宛名 */
+  .greeting {
+    margin-bottom: var(--space-5);
+  }
+
+  .greeting-name {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    font-family: var(--heading-font);
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .greeting-sub {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-top: var(--space-1);
+  }
+
+  /* 本文段落 */
+  .body-text {
+    margin-bottom: var(--space-4);
+    max-width: 620px;
+  }
+
+  .body-text p {
+    margin-bottom: var(--space-4);
+    line-height: 1.75;
+  }
+
+  .body-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* 強調箇所 (アクセント) */
+  .highlight {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* リンク風 */
+  .action-link {
+    display: inline-block;
+    color: var(--bg);
+    background: var(--accent);
+    padding: var(--space-2) var(--space-4);
+    font-weight: 700;
+    font-size: var(--text-base);
+    border-radius: var(--radius);
+    text-decoration: none;
+    margin-top: var(--space-2);
+    transition: opacity 0.15s;
+    /* 角 sharp のまま */
+  }
+
+  .action-link:hover {
+    opacity: 0.85;
+  }
+
+  /* 署名 */
+  .signature {
+    margin-top: var(--space-8);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .signature-name {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .signature-role {
+    display: block;
+    margin-top: var(--space-1);
+  }
+
+  /* 余白調整 */
+  .mt-6 { margin-top: var(--space-6); }
+
+  /* レスポンシブ */
+  @media (max-width: 640px) {
+    .email-wrapper {
+      padding: var(--space-5) var(--space-3);
+    }
+    .greeting-name {
+      font-size: var(--text-lg);
+    }
+    .subject-text {
+      font-size: var(--text-base);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="email-wrapper">
+
+  <!-- 件名 -->
+  <div class="subject">
+    <span class="subject-label">件名</span>
+    <div class="subject-text">コード書く時間、<span class="highlight">自分で決めませんか</span></div>
+  </div>
+
+  <!-- 宛名 -->
+  <div class="greeting">
+    <div class="greeting-name">〈候補者名〉 さん</div>
+    <span class="greeting-sub">初めてご連絡します。〈会社名〉の採用担当・〈採用担当名〉です。</span>
+  </div>
+
+  <!-- 本文 -->
+  <div class="body-text">
+    <!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+    <!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+    <!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+    <!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+
+    <p>
+      いきなりですが、聞いてください。<br>
+      いまの現場、<span class="highlight">コードを書く時間、自分の意志で配分できてますか？</span>
+    </p>
+
+    <p>
+      実務2〜5年目、技術もだいぶつかめてきて「もっと自分で決めたい」と思い始めた頃だと思います。
+      仕様を上から降ってくるまま実装する日々に、ちょっとモヤモヤしていませんか？
+    </p>
+
+    <p>
+      〈会社名〉は違います。<br>
+      チーム内での技術選定、アーキテクチャの方向性、使う言語やツール。<br>
+      それらを <span class="highlight">現場のエンジニアが主体的に決める</span> 文化があります。
+      ベテランも若手もなく、「いいと思った意見」が通る。そんな場です。
+    </p>
+
+    <p>
+      もちろん裁量には責任が伴います。でも、それを楽しめるフェーズだと思うんです。<br>
+      〈確認: 実際にあなたが「自分で決めてよかった」と思った直近のエピソードを1つ教えてください。そこから、もっと裁量を広げられる仕事を具体的に提案します〉
+    </p>
+
+    <p>
+      まずは <span class="highlight">30分だけ雑談しませんか？</span><br>
+      堅苦しい面接じゃないので、「話を聞いてみようかな」くらいの温度で大丈夫です。
+    </p>
+
+    <!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+    <p>
+      このメールにそのまま返信してもらえれば、日程調整します。
+      技術の話も、キャリアの話も、ざっくばらんに。
+    </p>
+  </div>
+
+  <!-- 結びと次の一歩 -->
+  <div class="mt-6">
+    <a href="mailto:〈返信用メールアドレス〉?subject=Re: コード書く時間、自分で決めませんか" class="action-link">
+      返信して日程を決める →
+    </a>
+    <p style="margin-top: var(--space-3); font-size: var(--text-sm); color: var(--text-muted);">
+      もちろん、いますぐ転職を考えていなくても大丈夫。<br>
+      「どんな会社か知りたい」だけでも歓迎です。
+    </p>
+  </div>
+
+  <!-- 署名 -->
+  <div class="signature">
+    <div class="signature-name">〈採用担当名〉</div>
+    <span class="signature-role">〈会社名〉 採用チーム</span>
+    <span class="signature-role" style="margin-top: var(--space-1);">
+      ── <br>
+      このメールは〈候補者名〉さんに個別にお送りしています。<br>
+      心当たりのない方はお手数ですが破棄ください。
+    </span>
+  </div>
+
+</div>
+
+<!-- 提出前にひとつ削る: 装飾の影を削除（元から入れていない） -->
+<!-- 残った要素はすべて説明可能：件名で裁量を最初に打ち出し、親近感のあるカジュアルな語り口で本文を構成。palette 3色（#0f0f10 bg, #4b4f58 muted, #c9ff3e accent）を厳守。sharp corner。density normal。システムフォント2種（見出し太字、本文標準）。 -->
+
+</body>
+</html>

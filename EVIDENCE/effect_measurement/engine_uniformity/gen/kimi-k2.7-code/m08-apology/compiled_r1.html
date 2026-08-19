@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>発送遅延のお詫び</title>
+<style>
+:root {
+  /* type scale */
+  --body-size: 16px;
+  --subject-size: 24px;
+
+  /* palette: [地色, 主要色, 強調色] */
+  --bg: #fff7f0;
+  --main: #e8825c;
+  --accent: #f2b79a;
+  --text: #5a4a42;
+
+  /* spacing: 8px grid */
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 96px;
+
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: var(--body-size);
+  line-height: 1.9;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.subject {
+  font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: var(--subject-size);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--main);
+  margin-bottom: var(--space-lg);
+}
+
+.salutation {
+  margin-bottom: var(--space-md);
+}
+
+.section {
+  margin-bottom: var(--space-lg);
+}
+
+.emphasis {
+  color: var(--main);
+  font-weight: 600;
+}
+
+.shop-name {
+  color: var(--main);
+}
+
+.closing {
+  margin-top: var(--space-xl);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け -->
+  <h1 class="subject">発送遅延のお詫び。お荷物、もう少しだけお待ちください。</h1>
+
+  <p class="salutation">〈お客様名〉 様</p>
+
+  <!-- GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない -->
+  <div class="section">
+    <p>いつも<span class="shop-name">〈ショップ名〉</span>をご利用いただき、ありがとうございます。</p>
+    <p>このたび、ご注文いただいた〈商品名〉（注文番号：〈注文番号〉）の発送が遅れており、大変申し訳ございません。お待ちいただいているお客様には心苦しいお知らせとなりますことを、深くお詫び申し上げます。</p>
+  </div>
+
+  <!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+  <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+  <div class="section">
+    <p>誠に恐れ入りますが、発送予定は<span class="emphasis">〈新しいお届け予定〉頃</span>を見込んでおります。確定次第、改めてご連絡を差し上げます。</p>
+  </div>
+
+  <div class="section closing">
+    <p>何かご不明な点がございましたら、お気軽にお問い合わせください。</p>
+    <p>今後とも<span class="shop-name">〈ショップ名〉</span>をよろしくお願い申し上げます。</p>
+  </div>
+</div>
+</body>
+</html>

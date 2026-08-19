@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉 | 信頼を刻む一枚</title>
+<style>
+:root{
+  --base:#0b0f14; --primary:#1c2938; --accent:#8fa6b8;
+  --text-soft:rgba(255,255,255,.7); --text-line:rgba(255,255,255,.12);
+  --font-serif:"Hiragino Mincho ProN","Yu Mincho","MS Mincho",serif;
+  --font-sans:"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--base);color:#e8e8e8;font-family:var(--font-sans);
+  font-size:15px;line-height:1.9;letter-spacing:.02em;
+  border-top:2px solid var(--accent)}
+.wrap{max-width:960px;margin:0 auto;padding:0 32px}
+.serif{font-family:var(--font-serif);letter-spacing:.04em}
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+.section{padding:112px 0}
+.eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:32px}
+/* GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 */
+.hero{padding:140px 0 120px}
+.hero h1{font-family:var(--font-serif);font-size:48px;line-height:1.5;
+  letter-spacing:.08em;font-weight:500;margin-bottom:48px;color:#f0f0f0}
+.hero p{font-size:15px;line-height:2;color:var(--text-soft);max-width:520px}
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+/* GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け */
+.section h2{font-family:var(--font-serif);font-size:30px;font-weight:500;
+  letter-spacing:.06em;margin-bottom:40px;color:#f0f0f0}
+.section h2::after{content:"";display:block;width:32px;height:1px;
+  background:var(--accent);margin-top:24px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.feature h3{font-family:var(--font-serif);font-size:19px;font-weight:500;
+  letter-spacing:.05em;margin-bottom:16px;padding-bottom:16px;
+  border-bottom:1px solid var(--text-line);color:#e8e8e8}
+.feature p{font-size:13px;line-height:1.9;color:var(--text-soft)}
+.steps{counter-reset:s}
+.step{display:flex;gap:32px;padding:32px 0;border-top:1px solid var(--text-line)}
+.step:last-child{border-bottom:1px solid var(--text-line)}
+.step-num{font-family:var(--font-serif);font-size:28px;color:var(--accent);
+  min-width:48px;counter-increment:s}
+.step-num::before{content:counter(s,decimal-leading-zero)}
+.step h3{font-family:var(--font-serif);font-size:18px;font-weight:500;
+  letter-spacing:.05em;margin-bottom:12px;color:#e8e8e8}
+.step p{font-size:14px;color:var(--text-soft);max-width:560px}
+.cta{text-align:center;padding:128px 0;
+  border-top:1px solid var(--text-line);border-bottom:1px solid var(--text-line)}
+.cta h2{font-size:30px;margin-bottom:24px}
+.cta h2::after{margin-left:auto;margin-right:auto}
+.cta p{color:var(--text-soft);margin-bottom:48px}
+.cta a{display:inline-block;padding:18px 64px;font-family:var(--font-sans);
+  font-size:13px;letter-spacing:.25em;text-decoration:none;
+  color:var(--base);background:var(--accent);
+  border:1px solid var(--accent);transition:background .3s,color .3s}
+.cta a:hover{background:transparent;color:#e8e8e8}
+footer{padding:64px 0 48px;text-align:center}
+footer p{font-size:11px;letter-spacing:.2em;color:var(--text-soft)}
+@media(max-width:680px){
+  .features{grid-template-columns:1fr;gap:40px}
+  .hero h1,.section h2,.cta h2{font-size:26px}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="wrap">
+<!-- GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング -->
+<p class="eyebrow serif">〈サービス名〉</p>
+<h1 class="serif">余白が語る、サービスの品格。</h1>
+<p>貴社の意思決定を支える、信頼のサービス基盤。飾らず、確かなものだけを残す。その静けさこそが、長く信頼される理由です。</p>
+</div>
+</header>
+
+<section class="section">
+<div class="wrap">
+<p class="eyebrow serif">VALUE</p>
+<h2 class="serif">端正さに宿る、信頼のかたち。</h2>
+<p>〈サービス内容の詳細情報〉を核に、法人担当者にとって本当に必要なものだけを研ぎ澄ませました。見せる技術ではなく、見えることそのものが信頼の証となる設計です。</p>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<p class="eyebrow serif">FEATURES</p>
+<h2 class="serif">三つの約束</h2>
+<div class="features">
+<div class="feature"><h3>確かさ</h3><p>揺るぎない基盤の上に成り立つ仕事。日々の判断の根拠となる安定を、形にして提供します。〈確認: 貴社が基盤選びで最も重視している条件〉</p></div>
+<div class="feature"><h3>静かさ</h3><p>主張しすぎない設計。機能そのものが語る 余白を残すことで、業務の本質に目を向けられます。</p></div>
+<div class="feature"><h3>続くこと</h3><p>導入後にこそ価値を発揮する、長い視点での設計。一度選んだものが、年を重ねても信頼のまま。〈確認: 長期利用に関わる実績やエピソードを1つ〉</p></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<p class="eyebrow serif">FLOW</p>
+<h2 class="serif">利用の流れ</h2>
+<div class="step"><div class="step-num serif"></div><div><h3 class="serif">お問い合わせ</h3><p>まずは画面下部よりご連絡ください。担当者より貴社の課題を伺う場を設けます。</p></div></div>
+<div class="step"><div class="step-num serif"></div><div><h3 class="serif">要件の整理</h3><p>お話しいただいた内容を踏まえ、貴社にとって何が本当に必要かを共に検討します。</p></div></div>
+<div class="step"><div class="step-num serif"></div><div><h3 class="serif">ご提案</h3><p>整理した要件に基づき、具体的な進め方をご提示します。〈確認: 導入までの具体的な期間〉</p></div></div>
+<div class="step"><div class="step-num serif"></div><div><h3 class="serif">導入と伴走</h3><p>導入後も継続してご支援します。形にして終わりではなく、ともに歩みを続けます。</p></div></div>
+</div>
+</section>
+
+<section class="cta">
+<div class="wrap">
+<p class="eyebrow serif">CONTACT</p>
+<h2 class="serif">静かな強さを、サービスの名に。</h2>
+<p>まずは、お話ししてみませんか。</p>
+<a href="#" class="serif">お問い合わせ</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap"><p class="serif">© 〈会社名〉 All rights reserved.</p></div>
+</footer>
+</body>
+</html>

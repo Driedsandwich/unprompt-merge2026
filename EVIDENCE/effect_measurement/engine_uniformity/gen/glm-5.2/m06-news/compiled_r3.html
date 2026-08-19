@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今月のあいさつ</title>
+<style>
+  /* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+  /* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+  /* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+
+  :root {
+    --bg: #fff6e8;
+    --main: #e8965a;
+    --accent: #c4472b;
+    --text: #3a2a1e;
+    --text-soft: #6b5b4f;
+    --base-size: 16px;
+    --h1-size: 28px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: "Hiragino Maru Gothic ProN", "M PLUS Rounded Sansc", "Rounded Mplus 1c", "Yu Gothic", sans-serif;
+    color: var(--text);
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 88px 48px 96px;
+  }
+
+  .greeting {
+    font-size: var(--base-size);
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: var(--h1-size);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    margin-bottom: 64px;
+    line-height: 1.45;
+  }
+
+  .lead {
+    font-size: var(--base-size);
+    margin-bottom: 48px;
+  }
+
+  .body-text {
+    font-size: var(--base-size);
+    margin-bottom: 48px;
+  }
+
+  .closing {
+    font-size: var(--base-size);
+    border-top: 2px solid var(--main);
+    padding-top: 40px;
+    color: var(--text);
+  }
+
+  .sig {
+    margin-top: 24px;
+    text-align: right;
+    font-size: 14px;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 -->
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+  <p class="greeting">おつかれさまです、今月の社内報も気楽にどうぞ。</p>
+
+  <!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+  <!-- GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 -->
+  <h1>夏ばて対策、<br>きいてみました</h1>
+
+  <p class="lead">
+    こんにちは。〈執筆者名〉です。今月もあっという間、各部署のみなさんそれぞれのペースで駆け抜けていかれたことと思います。お疲れさまでした。
+  </p>
+
+  <p class="body-text">
+    最近毎日こうしていると、冷蔵庫の麦茶が飲み頃を過ぎてぬるくなる速度が気になり始めました。現場のみなさんはどうだろう、と思って〈確認: 今月号の特集や話題があれば〉をきっかけに声をかけてみたら、意外と「炭酸水に梅干し」派が多くて驚きました。みなさんそれぞれ、この時期を乗り切るルーティンがあるみたいです。
+  </p>
+
+  <p class="closing">
+    今月も現場の空気をそのままお届けできればと思っています。夜分遅くまで作業されている方もいるかと思いますが、無理せず、少しでも心地よい風を感じる時間を作ってくださいね。それでは今月も、お付き合いよろしくお願いします。
+  </p>
+
+  <p class="sig">〈会社名〉〈執筆者名〉</p>
+
+</div>
+</body>
+</html>

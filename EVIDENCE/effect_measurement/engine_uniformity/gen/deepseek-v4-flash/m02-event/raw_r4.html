@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋の社内勉強会 告知</title>
+<style>
+/* タイポグラフィ設計
+ * スケール: 本文 1rem (16px) 基準
+ * h1: 2.5rem / h2: 1.75rem / h3: 1.25rem
+ * 見出し: 游明朝+Georgia (セリフ系統)
+ * 本文: -apple-system, Segoe UI (ゴシック系統)
+ */
+:root {
+  --base: #1e2b3c;
+  --accent: #c75a3a;
+  --accent-light: #e88b6a;
+  --bg: #f6f3ed;
+  --white: #ffffff;
+  --gray: #6b7b8a;
+  --light-gray: #e2ddd5;
+  --font-head: "游明朝", "Yu Mincho", Georgia, "Times New Roman", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --space-unit: 8px;
+  --space-sm: calc(var(--space-unit) * 2);
+  --space-md: calc(var(--space-unit) * 4);
+  --space-lg: calc(var(--space-unit) * 8);
+  --space-xl: calc(var(--space-unit) * 14);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--base);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+}
+/* ---- ヒーロー ---- */
+.hero {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--accent);
+}
+.hero-tag {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 4px 14px;
+  margin-bottom: var(--space-md);
+}
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  margin-bottom: var(--space-sm);
+}
+.hero .lead {
+  font-size: 1.125rem;
+  color: var(--gray);
+  max-width: 560px;
+}
+/* ---- セクション共通 ---- */
+section {
+  margin-bottom: var(--space-xl);
+}
+section h2 {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--light-gray);
+}
+section h3 {
+  font-family: var(--font-head);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-sm);
+}
+section p {
+  margin-bottom: var(--space-md);
+  color: var(--base);
+}
+.meta-list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-sm);
+}
+.meta-list li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  font-size: 1rem;
+}
+.meta-list .label {
+  font-family: var(--font-head);
+  font-weight: 600;
+  min-width: 80px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+.meta-list .value {
+  font-weight: 500;
+}
+/* ---- 見どころ ---- */
+.highlights {
+  display: grid;
+  gap: var(--space-md);
+}
+.highlight-item {
+  background: var(--white);
+  padding: var(--space-md);
+  border-left: 4px solid var(--accent);
+}
+.highlight-item h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.highlight-item h3::before {
+  content: "◆";
+  font-size: 0.7rem;
+  color: var(--accent);
+  display: inline-block;
+}
+/* ---- 参加方法 ---- */
+.cta-box {
+  background: var(--base);
+  color: var(--white);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+}
+.cta-box h2 {
+  border-bottom-color: rgba(255,255,255,0.2);
+  color: var(--white);
+}
+.cta-box p {
+  color: rgba(255,255,255,0.85);
+  max-width: 480px;
+  margin: 0 auto var(--space-md);
+}
+.cta-btn {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  background: var(--accent);
+  color: var(--white);
+  padding: 12px 40px;
+  text-decoration: none;
+  border: none;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.cta-btn:hover {
+  background: var(--accent-light);
+}
+.footer-note {
+  margin-top: var(--space-lg);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--gray);
+  border-top: 1px solid var(--light-gray);
+  padding-top: var(--space-md);
+}
+/* レスポンシブ調整 */
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.75rem; }
+  .meta-list li { flex-direction: column; gap: 2px; }
+  .meta-list .label { min-width: auto; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="hero">
+    <span class="hero-tag">Autumn 2025</span>
+    <h1>知識を実りに<br>秋の社内勉強会</h1>
+    <p class="lead">日々の業務を離れ、仲間と学びを深めるひととき。現場の知恵を持ち寄り、実践に活かす——それがこの勉強会の原点です。</p>
+  </header>
+
+  <section>
+    <h2>日時・場所</h2>
+    <ul class="meta-list">
+      <li><span class="label">日時</span><span class="value">〈開催日〉 18:30 〜 20:30（開場 18:00）</span></li>
+      <li><span class="label">会場</span><span class="value">〈会場〉 3F 大会議室 / オンライン併用</span></li>
+      <li><span class="label">対象</span><span class="value">全社員（職種不問）</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>内容の説明</h2>
+    <p>今回のテーマは「現場で役立つ実践知」。各部署から持ち寄ったナレッジや工夫を、参加者同士で共有・議論します。</p>
+    <p>テーマ例：業務効率化の小さな工夫／データの読み方・伝え方／チームコミュニケーションの改善——いずれも明日から試せる内容です。特定の専門知識は必要ありません。</p>
+  </section>
+
+  <section>
+    <h2>見どころ</h2>
+    <div class="highlights">
+      <div class="highlight-item">
+        <h3>部署を超えた学び合い</h3>
+        <p>普段接点のないメンバーの視点に触れられる。それが新たな気づきの種になります。</p>
+      </div>
+      <div class="highlight-item">
+        <h3>実践ファーストの内容</h3>
+        <p>理論より「やってみた」を重視。その場でメモを取り、翌日から試せる具体例が中心です。</p>
+      </div>
+      <div class="highlight-item">
+        <h3>気軽な雰囲気</h3>
+        <p>発表者も参加者も肩ひじ張らないスタイル。質問・発言は自由、聞くだけの参加も歓迎です。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-box">
+    <h2>参加方法</h2>
+    <p>参加申し込みは社内ポータルより受け付けています。当日参加も可能ですが、資料準備のため事前登録をおすすめします。</p>
+    <a href="#" class="cta-btn">申し込みページへ</a>
+    <p style="margin-top: var(--space-sm); font-size: 0.9rem; color: rgba(255,255,255,0.6);">締切: 〈申込締切日〉</p>
+  </section>
+
+  <footer class="footer-note">
+    <p>不明な点は〈問い合わせ先〉までお気軽にどうぞ。</p>
+  </footer>
+
+</div>
+</body>
+</html>

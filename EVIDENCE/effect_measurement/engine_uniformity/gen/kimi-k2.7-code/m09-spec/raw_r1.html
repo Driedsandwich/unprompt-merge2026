@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>経費精算ツール仕様メモ</title>
+  <style>
+    :root {
+      --base-size: 16px;
+      --scale-sm: 0.875rem;
+      --scale-md: 1rem;
+      --scale-lg: 1.5rem;
+      --scale-xl: 2.25rem;
+      --bg: #F7F7F5;
+      --text: #1A1A1A;
+      --muted: #444444;
+      --accent: #00695C;
+      --accent-light: #E0F2F1;
+    }
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+      font-size: var(--base-size);
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg);
+    }
+    h1, h2 {
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    h1 {
+      font-size: var(--scale-xl);
+      margin: 0 0 16px;
+    }
+    h2 {
+      font-size: var(--scale-lg);
+      color: var(--accent);
+      margin: 64px 0 16px;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    header {
+      padding: 80px 0 32px;
+    }
+    .lead {
+      font-size: var(--scale-md);
+      color: var(--muted);
+      margin: 0;
+    }
+    ul {
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .not-use {
+      background: var(--accent-light);
+      padding: 24px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>レシートを撮るだけで精算を進める</h1>
+      <p class="lead">経費精算ツール仕様メモ</p>
+    </header>
+
+    <section>
+      <h2>目的</h2>
+      <p>社員の経費精算で発生する手入力の手間と領収書の紛失を減らし、会計担当の月次集計を効率化する。</p>
+    </section>
+
+    <section>
+      <h2>対象ユーザー</h2>
+      <p>出張・打ち合わせなどで経費を発生させる全社員と、支払いを確認する会計担当者。</p>
+    </section>
+
+    <section>
+      <h2>主要機能</h2>
+      <ul>
+        <li>領収書の写真をアップロードし、日付・金額・店名を自動読み取り、手動で修正できる。</li>
+        <li>経費科目とプロジェクトタグを選択し、利用目的を短くメモできる。</li>
+        <li>申請一覧で未申請・承認待ち・差戻しを色分けし、合計金額をリアルタイムで表示する。</li>
+        <li>月次締めに必要なCSVを出力する。</li>
+        <li>会計担当が承認・差戻しのステータスを更新し、差戻し理由を入力できる。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>画面イメージ</h2>
+      <p>トップは日付順のカード一覧。右上に当月の合計金額を表示し、右下の＋ボタンでカメラ撮影またはアップロードを起動する。詳細画面では、領収書画像のプレビューと入力欄を並べ、PCでは左右配置、スマホでは縦に積む。</p>
+    </section>
+
+    <section class="not-use">
+      <h2>使わないと決めたもの</h2>
+      <ul>
+        <li>多階層の承認ワークフローエンジン</li>
+        <li>クレジットカードや会計システムとのAPI連携</li>
+        <li>外貨や複数通貨の換算機能</li>
+        <li>ネイティブアプリとしての開発</li>
+        <li>紙帳票の印刷機能</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

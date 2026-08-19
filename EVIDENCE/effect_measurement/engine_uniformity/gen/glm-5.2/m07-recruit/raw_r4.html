@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社紹介 — 採用ページ</title>
+<style>
+  :root {
+    --bg: #f6f5f2;
+    --ink: #1c1b19;
+    --muted: #5a5854;
+    --accent: #9c5427;
+    --line: #d9d7d2;
+    /* type scale */
+    --s-base: 16px;
+    --s-lg: 26px;
+    --s-xl: 44px;
+    --s-xxl: 64px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: var(--s-base);
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── ヒーロー ── */
+  .hero {
+    padding: 112px 0 96px;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 32px;
+    font-weight: 600;
+  }
+  .hero h1 {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--s-xxl);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 40px;
+  }
+  .hero-lead {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 600px;
+  }
+
+  /* ── 会社紹介 ── */
+  .intro {
+    padding: 96px 0;
+  }
+  .intro h2 {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--s-xl);
+    font-weight: 700;
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+  .intro p + p {
+    margin-top: 24px;
+  }
+  .intro-mark {
+    width: 56px;
+    height: 56px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-bottom: 32px;
+  }
+
+  /* ── 大事にしていること ── */
+  .values {
+    padding: 96px 0;
+    border-top: 1px solid var(--line);
+  }
+  .values h2 {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--s-xl);
+    font-weight: 700;
+    margin-bottom: 56px;
+    letter-spacing: 0.02em;
+  }
+  .value-item {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .value-num {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .value-item h3 {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--s-lg);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .value-item p {
+    color: var(--muted);
+  }
+
+  /* ── 声 ── */
+  .voices {
+    padding: 96px 0;
+    border-top: 1px solid var(--line);
+  }
+  .voices h2 {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: var(--s-xl);
+    font-weight: 700;
+    margin-bottom: 56px;
+    letter-spacing: 0.02em;
+  }
+  .voice {
+    padding: 32px 0;
+  }
+  .voice blockquote {
+    font-size: 18px;
+    font-style: normal;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .voice cite {
+    display: block;
+    font-style: normal;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 16px;
+    padding-left: 16px;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    padding: 112px 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .cta p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: var(--muted);
+  }
+  .cta a {
+    display: inline-block;
+    padding: 20px 56px;
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 16px;
+  }
+  .cta a:hover {
+    background: var(--accent);
+  }
+  .cta-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 24px;
+  }
+
+  @media (max-width: 600px) {
+    :root { --s-xxl: 40px; --s-xl: 30px; }
+    .hero { padding: 80px 0 64px; }
+    .intro, .values, .voices { padding: 72px 0; }
+    .cta { padding: 80px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">採用 / 会社紹介</p>
+    <h1>飾らない言葉で、<br>ここで働くことを伝える。</h1>
+    <p class="hero-lead">
+      採用ページに並びがちな誇張を、いったん全部置いてみました。残ったのは、毎日ここで働いている人たちの、わりと地味な仕事風景です。
+    </p>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="intro-mark" aria-hidden="true"></div>
+    <h2〉〈会社名〉の紹介</h2>
+    <p>
+      〈事業内容を一文で〉。設立は〈設立年〉、〈所在地〉で〈従業員数〉名が働いています。
+    </p>
+    <p>
+      採用において見せやすい数字を並べるより、何を当たり前だと考えて仕事をしているのかを伝えたい。このページはそのためのものです。
+    </p>
+    <p>
+      派手な福利厚生や急成長の物語は用意していません。代わりに、長く働ける環境を整え、判断の基準を共有し続けることを選んできました。
+    </p>
+  </div>
+</section>
+
+<section class="values">
+  <div class="wrap">
+    <h2>大事にしていること</h2>
+
+    <article class="value-item">
+      <p class="value-num">01</p>
+      <h3>説明する残業より、しない残業</h3>
+      <p>働き方をアピールするより、そもそも残業が発生しない仕事の進め方を見直す。時間を守ることは最初の品質だと考えています。</p>
+    </article>
+
+    <article class="value-item">
+      <p class="value-num">02</p>
+      <h3>誰がやっても同じ結果になる仕組み</h3>
+      <p>属人性を減らし、引き継ぎと振り返りを当たり前にする。人に依存しないことで、かえって個人の裁量が増えると信じています。</p>
+    </article>
+
+    <article class="value-item">
+      <p class="value-num">03</p>
+      <h3>ゆっくりでも、最後までやり切る</h3>
+      <p>途中で投げない。納得のいく形に着地するまで、時間をかけることを惜しみません。その姿勢が信頼を育ててきました。</p>
+    </article>
+  </div>
+</section>
+
+<section class="voices">
+  <div class="wrap">
+    <h2>働く人の声</h2>
+
+    <div class="voice">
+      <blockquote>
+        「最初は地味だと思ったけど、三年働いて分かった。無理がないことが、結局一番大きい。」
+      </blockquote>
+      <cite>〈氏名〉 / 入社3年目</cite>
+    </div>
+
+    <div class="voice">
+      <blockquote>
+        「言ったことが本当に通る職場だと思いました。上の意向より、現場の判断が優先される場面が多いです。」
+      </blockquote>
+      <cite>〈氏名〉 / 入社7年目</cite>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <p>話を聞いてみたい、と思ったら。</p>
+    <a href="#">話を聞きに行く</a>
+    <p class="cta-note">応募にかぎらず、カジュアルな面談も歓迎です。</p>
+  </div>
+</section>
+
+</body>
+</html>

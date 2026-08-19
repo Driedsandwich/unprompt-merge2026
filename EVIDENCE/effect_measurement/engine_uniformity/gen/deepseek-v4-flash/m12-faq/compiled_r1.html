@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品に関するご案内 | 〈ショップ名〉サポート</title>
+<style>
+/* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+/* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+/* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+/* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+/* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+/* タイプスケール: 本文16px → 小見出し20px → 大見出し32px → ヒーロー見出し44px, 比率 1.25 */
+:root {
+  --bg: #fbf4ee;
+  --text: #2b2a28;
+  --primary: #c98a6b;
+  --primary-dark: #8a5a3c;
+  --accent: #2b4a45;
+  --accent-light: #5b7b6f;
+  --border: #d6c9be;
+  --white: #ffffff;
+  --radius: 16px;
+  --radius-sm: 8px;
+  font-size: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  padding: 0 16px;
+}
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 80px 0 96px;
+}
+/* ヒーロー */
+.hero {
+  margin-bottom: 80px;
+  text-align: left;
+}
+.hero__label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  background: rgba(43, 74, 69, 0.08);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-size: 2.75rem; /* 44px */
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.hero p {
+  font-size: 1.125rem;
+  color: #55524e;
+  line-height: 1.8;
+  max-width: 600px;
+}
+/* カテゴリ分類 */
+.category {
+  margin-bottom: 72px;
+}
+.category__title {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 32px;
+  position: relative;
+}
+.category__title::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--primary-dark);
+}
+/* FAQ アイテム */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+}
+.faq-item:first-child {
+  border-top: 1px solid var(--border);
+}
+.faq-item__q {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+.faq-item__q-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 2px;
+}
+.faq-item__q-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.6;
+  padding-top: 4px;
+}
+.faq-item__a {
+  margin-top: 16px;
+  padding-left: 48px;
+  font-size: 0.9375rem;
+  color: #3d3a36;
+  line-height: 1.9;
+}
+.faq-item__a ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 8px;
+}
+.faq-item__a ul li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 6px;
+}
+.faq-item__a ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+.conditions-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px 24px 20px;
+  margin: 16px 0 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.conditions-box__title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+}
+.conditions-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  font-size: 0.875rem;
+}
+.conditions-grid dt {
+  font-weight: 600;
+  color: var(--primary-dark);
+  white-space: nowrap;
+}
+.conditions-grid dd {
+  color: #3d3a36;
+}
+/* 連絡導線 */
+.contact {
+  margin-top: 88px;
+  padding: 40px 32px;
+  background: var(--accent);
+  border-radius: var(--radius);
+  color: var(--white);
+  text-align: center;
+}
+.contact h2 {
+  font-family: "Hiragino Mincho ProN", "Noto Serif JP", "Yu Mincho", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+.contact p {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+.contact__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+.contact__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+}
+.contact__btn:hover {
+  background: #f0ede8;
+  transform: translateY(-1px);
+}
+.contact__btn--outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.contact__btn--outline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--white);
+}
+.contact__note {
+  margin-top: 24px;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+/* レスポンシブ */
+@media (max-width: 480px) {
+  .container { padding: 48px 0 72px; }
+  .hero h1 { font-size: 2rem; }
+  .hero { margin-bottom: 48px; }
+  .category { margin-bottom: 48px; }
+  .faq-item__a { padding-left: 0; }
+  .contact { padding: 32px 16px; }
+  .contact__buttons { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ヒーロー：冒頭は最も特徴的な一点「返品条件の透明性」を最初に -->
+  <div class="hero">
+    <div class="hero__label">RETURN &amp; EXCHANGE</div>
+    <h1>返品条件、すべて明記します。</h1>
+    <p>対象・期限・送料まで一覧で確認できるから、検討中の方もお手続き中の方も迷わず解決。</p>
+  </div>
+
+  <!-- カテゴリ①：返品できる？できない？ -->
+  <div class="category">
+    <h2 class="category__title">返品できる？できない？</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-item__q" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-item__q-icon">Q</div>
+          <div class="faq-item__q-text">どんな商品が返品対象になりますか？</div>
+        </div>
+        <div class="faq-item__a" style="display: block;">
+          <p>未使用・未開封の状態で、商品到着日から〈日数〉日以内にご連絡いただいた商品が対象です。<br>返品条件をまとめました。</p>
+          <div class="conditions-box">
+            <div class="conditions-box__title">▼ 返品条件</div>
+            <dl class="conditions-grid">
+              <dt>対象商品</dt>
+              <dd>未使用・未開封のもの（タグ・パッケージ含む）</dd>
+              <dt>受付期限</dt>
+              <dd>商品到着日から〈日数〉日以内</dd>
+              <dt>送料</dt>
+              <dd>お客様都合の返品はお客様ご負担／商品不良の場合は当店負担</dd>
+              <dt>返金方法</dt>
+              <dd>ご購入時の決済方法に合わせて返金（振込手数料は当店負担）</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-item__q" tabindex="0" role="button" aria-expanded="true">
+          <div class="faq-item__q-icon">Q</div>
+          <div class="faq-item__q-text">返品できないものはありますか？</div>
+        </div>
+        <div class="faq-item__a" style="display: block;">
+          <p>以下の商品は、衛生上・性質上の理由から返品をお受けできません。</p>
+          <ul>
+            <li>一度ご使用いただいた商品（試着程度を除く）</li>
+            <li>お客様のもとでキズ・汚れが生じた商品</li>
+            <li>〈商品カテゴリ名〉（タグを外したもの）</li>
+            <li>セール品・アウトレット品の一部（商品ページに記載）</li>
+          </ul>
+          <p style="margin-top:8px;">不明な点はお気軽にお問い合わせください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- カテゴリ②：手続きの方法 -->
+  <div class="category">
+    <h2 class="category__title">返品の手続きは？</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-item__q" tabindex="0" role="button" aria-expanded="true">
+          <div class="faq-item__q-icon">Q</div>
+          <div class="faq-item__q-text">返品の手順を教えてください。</div>
+        </div>
+        <div class="faq-item__a" style="display: block;">
+          <p>以下の流れでお進みください。</p>
+          <ul>
+            <li>マイページまたはお問い合わせフォームから「返品希望」とご連絡ください。</li>
+            <li>当店より返品受付番号と送り先をお知らせします。</li>
+            <li>商品を梱包し、〈配送会社名〉で着払い（不良品の場合）または元払い（お客様都合の場合）でご発送ください。</li>
+            <li>当店到着後、〈日数〉営業日以内に確認・返金手続きをいたします。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-item__q" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-item__q-icon">Q</div>
+          <div class="faq-item__q-text">連絡せずに商品を送ってもいいですか？</div>
+        </div>
+        <div class="faq-item__a" style="display: none;">
+          <p>必ず事前にご連絡ください。受付番号がない場合、返品処理にお時間をいただくことがあります。まずはお問い合わせフォームまたはお電話でご連絡をお願いします。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-item__q" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-item__q-icon">Q</div>
+          <div class="faq-item__q-text">返金までどのくらいかかりますか？</div>
+        </div>
+        <div class="faq-item__a" style="display: none;">
+          <p>商品到着後、〈日数〉営業日以内に確認・返金手続きを完了いたします。決済方法によって反映時期が異なる場合がございます（クレジットカードはご利用明細、銀行振込は入金まで〈日数〉営業日程度）。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- カテゴリ③：送料・交換 -->
+  <div class="category">
+    <h2 class="category__title">送料と交換について</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-item__q" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-item__q-icon">Q</div>
+          <div class="faq-item__q-text">返品時の送料はどちらが負担しますか？</div>
+        </div>
+        <div class="faq-item__a" style="display: none;">
+          <p><strong>商品に不良や誤配送があった場合</strong> → 当店が着払いで送料を負担します。<br>
+          <strong>お客様都合（サイズ違い・イメージ違いなど）</strong> → お客様に元払いでご送付いただき、送料はお客様のご負担となります。恐れ入りますがご了承ください。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-item__q" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-item__q-icon">Q</div>
+          <div class="faq-item__q-text">交換はできますか？</div>
+        </div>
+        <div class="faq-item__a" style="display: none;">
+          <p>在庫がある商品に限り、交換も承ります。まずは返品手続きと同じくご連絡ください。交換の場合は一度返品いただき、改めてご注文をいただく形となります（在庫状況によりお待たせする場合がございます）。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 連絡導線：FAQで解決しないとき -->
+  <div class="contact">
+    <h2>それでも迷ったら、お気軽に</h2>
+    <p>FAQで解決しない場合や、お客様の状況に合わせたご案内をご希望の方は、<br>以下のいずれかの方法でお問い合わせください。</p>
+    <div class="contact__buttons">
+      <a href="〈お問い合わせフォームのURL〉" class="contact__btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        お問い合わせフォーム
+      </a>
+      <a href="tel:〈電話番号〉" class="contact__btn contact__btn--outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        お電話：〈電話番号〉
+      </a>
+    </div>
+    <p class="contact__note">受付時間：平日 10:00–17:00（土日祝・年末年始を除く）<br>メールでのお問い合わせは24時間受付、返信は翌営業日以降となります。</p>
+  </div>
+</div>
+
+<script>
+// タブ／アコーディオン動作（シンプルに各質問をクリックで開閉）
+document.querySelectorAll('.faq-item__q').forEach(function(q) {
+  q.addEventListener('click', function(e) {
+    var item = this.closest('.faq-item');
+    var answer = item.querySelector('.faq-item__a');
+    var expanded = this.getAttribute('aria-expanded') === 'true';
+    if (expanded) {
+      answer.style.display = 'none';
+      this.setAttribute('aria-expanded', 'false');
+    } else {
+      answer.style.display = 'block';
+      this.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

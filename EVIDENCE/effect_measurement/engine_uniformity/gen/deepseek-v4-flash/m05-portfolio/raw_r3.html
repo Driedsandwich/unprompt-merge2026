@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>転職ポートフォリオ | 〈氏名〉</title>
+<style>
+  /* ===== タイプスケール (ratio: 1.25) ===== */
+  :root {
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;       /* 本文 16px */
+    --text-lg: 1.25rem;
+    --text-xl: 1.563rem;
+    --text-2xl: 1.953rem;
+    --text-3xl: 2.441rem;
+    --text-4xl: 3.052rem;
+
+    --font-serif: 'Times New Roman', 'YuMincho', 'Yu Mincho', serif;
+    --font-sans: 'Inter', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+
+    --color-bg: #f6f4f0;
+    --color-text: #1f1e1b;
+    --color-accent: #a54c3b;
+    --color-accent-dim: #8b3e2f;
+    --color-border: #d6d0c6;
+    --color-card-bg: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== セクション余白 (8px grid) ===== */
+  section { padding: 96px 0; }
+  section + section { padding-top: 0; }
+
+  h1, h2, h3 { font-weight: 400; letter-spacing: 0.02em; }
+
+  /* ---- ヒーロー (冒頭 主張) ---- */
+  .hero {
+    padding: 120px 0 96px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .hero__label {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 4px;
+  }
+  .hero__name {
+    font-family: var(--font-serif);
+    font-size: var(--text-4xl);
+    line-height: 1.15;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .hero__role {
+    font-family: var(--font-sans);
+    font-size: var(--text-xl);
+    font-weight: 300;
+    color: #5b564e;
+    letter-spacing: 0.06em;
+  }
+  .hero__tagline {
+    margin-top: 40px;
+    font-size: var(--text-lg);
+    max-width: 600px;
+    line-height: 1.6;
+    color: #3b3833;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 20px;
+  }
+
+  /* ---- 自己紹介 ---- */
+  .about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 48px;
+    align-items: flex-start;
+  }
+  .about__avatar {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d9cdbc, #b3a18b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #4b3f33;
+    box-shadow: 0 0 0 1px var(--color-border);
+    margin-top: 4px;
+  }
+  .about__text {
+    flex: 1;
+    min-width: 240px;
+  }
+  .about__text h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    margin-bottom: 16px;
+  }
+  .about__text p + p {
+    margin-top: 16px;
+  }
+
+  /* ---- 作品 ---- */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .work-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    padding: 24px 20px 32px;
+    transition: box-shadow 0.2s;
+  }
+  .work-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .work-card__thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #e6dfd4;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #887a69;
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+  .work-card__thumb svg {
+    width: 60%;
+    height: 60%;
+    fill: none;
+    stroke: #a9957e;
+    stroke-width: 1.5;
+  }
+  .work-card h3 {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    margin-bottom: 4px;
+  }
+  .work-card .role {
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .work-card p {
+    font-size: var(--text-sm);
+    color: #4b4740;
+    line-height: 1.6;
+  }
+
+  /* ---- スキル ---- */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 12px;
+    margin-top: 32px;
+    list-style: none;
+  }
+  .skills-list li {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    padding: 8px 20px;
+    font-size: var(--text-sm);
+    letter-spacing: 0.03em;
+    border-radius: 0;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .skills-list li:hover {
+    border-color: var(--color-accent);
+    background: #f1ede7;
+  }
+  .skills-caption {
+    margin-top: 24px;
+    font-size: var(--text-sm);
+    color: #5b564e;
+    border-top: 1px solid var(--color-border);
+    padding-top: 20px;
+  }
+
+  /* ---- 連絡先 ---- */
+  .contact-block {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    padding: 40px 32px;
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+    align-items: center;
+  }
+  .contact-block__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: var(--text-base);
+  }
+  .contact-block__item span {
+    font-size: 1.3rem;
+  }
+  .contact-block__item a {
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .contact-block__item a:hover {
+    border-bottom-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 0;
+  }
+
+  /* 装飾をひとつ削る → box-shadow は hero 以外で使用せず、hoverのみ残す */
+  /* アニメーションは一切なし */
+
+  @media (max-width: 540px) {
+    .hero { padding: 80px 0 64px; }
+    .hero__name { font-size: var(--text-3xl); }
+    section { padding: 64px 0; }
+    .about { flex-direction: column; }
+    .about__avatar { width: 100px; height: 100px; font-size: 36px; }
+    .works-grid { grid-template-columns: 1fr; }
+    .contact-block { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ヒーロー -->
+  <header class="hero">
+    <div class="hero__label">Portfolio / 転職</div>
+    <h1 class="hero__name">〈氏名〉</h1>
+    <div class="hero__role">UI/UX デザイナー & フロントエンド実装</div>
+    <div class="hero__tagline">
+      画面の奥にいる人に届く、余白と順路を設計します。<br>
+      シンプルさは削減ではなく、選択の結果です。
+    </div>
+  </header>
+
+  <!-- 自己紹介 -->
+  <section>
+    <div class="about">
+      <div class="about__avatar">〈人〉</div>
+      <div class="about__text">
+        <h2>自己紹介</h2>
+        <p>
+          デジタルプロダクトの設計・実装に8年。小さなスタジオからスタートし、現在はフリーランスとして
+          エンドユーザーと事業の接点をつくる仕事をしています。
+        </p>
+        <p>
+          得意は「情報の優先順位を視覚化する」こと。テンプレートに頼らない、そのプロジェクトだけの
+          デザインシステムを一から組むスタイルです。転職先ではプロダクトの核心を
+          届けるチームの一員として、設計とコードの両面で貢献したいと考えています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品 3点 -->
+  <section>
+    <h2 style="font-family:var(--font-serif); font-size:var(--text-2xl); margin-bottom:8px;">制作物</h2>
+    <p style="color:#5b564e; margin-bottom:8px;">直近のプロジェクトから3件。</p>
+    <div class="works-grid">
+
+      <article class="work-card">
+        <div class="work-card__thumb">
+          <svg viewBox="0 0 100 75" preserveAspectRatio="xMidYMid meet">
+            <rect x="8" y="8" width="84" height="59" rx="2" stroke="currentColor" fill="none"/>
+            <line x1="20" y1="32" x2="50" y2="32" stroke="currentColor"/>
+            <line x1="20" y1="42" x2="60" y2="42" stroke="currentColor"/>
+            <line x1="20" y1="52" x2="44" y2="52" stroke="currentColor"/>
+            <circle cx="72" cy="44" r="10" stroke="currentColor" fill="none"/>
+          </svg>
+        </div>
+        <h3>〈作品タイトルA〉</h3>
+        <div class="role">設計 / コーディング</div>
+        <p>タスク管理SaaSの管理画面リデザイン。情報階層を見直し、操作時間を約30%短縮。</p>
+      </article>
+
+      <article class="work-card">
+        <div class="work-card__thumb">
+          <svg viewBox="0 0 100 75" preserveAspectRatio="xMidYMid meet">
+            <path d="M20 55 L50 20 L80 55" stroke="currentColor" fill="none"/>
+            <circle cx="50" cy="55" r="6" stroke="currentColor" fill="none"/>
+            <rect x="30" y="42" width="40" height="4" rx="1" stroke="currentColor" fill="none"/>
+          </svg>
+        </div>
+        <h3>〈作品タイトルB〉</h3>
+        <div class="role">UXリサーチ / プロトタイプ</div>
+        <p>会員向け予約システムの導線改善。離脱率が半分になり、問い合わせが減少。</p>
+      </article>
+
+      <article class="work-card">
+        <div class="work-card__thumb">
+          <svg viewBox="0 0 100 75" preserveAspectRatio="xMidYMid meet">
+            <rect x="15" y="10" width="70" height="55" rx="3" stroke="currentColor" fill="none"/>
+            <line x1="28" y1="28" x2="72" y2="28" stroke="currentColor"/>
+            <circle cx="50" cy="44" r="10" stroke="currentColor" fill="none"/>
+            <circle cx="50" cy="44" r="3" stroke="currentColor" fill="none"/>
+          </svg>
+        </div>
+        <h3>〈作品タイトルC〉</h3>
+        <div class="role">デザインシステム / フロントエンド</div>
+        <p>スタートアップ向けコンポーネントライブラリ。一貫性と実装速度を両立。</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- スキル -->
+  <section>
+    <h2 style="font-family:var(--font-serif); font-size:var(--text-2xl);">スキル</h2>
+    <ul class="skills-list">
+      <li>Figma / XD</li>
+      <li>HTML / CSS / JS</li>
+      <li>React / Vue</li>
+      <li>デザインシステム</li>
+      <li>ユーザビリティテスト</li>
+      <li>情報設計</li>
+      <li>プロトタイピング</li>
+      <li>Git / 共同作業</li>
+    </ul>
+    <div class="skills-caption">
+      設計から実装まで一気通貫。とくにCSSの設計とタイポグラフィに強い関心があります。
+    </div>
+  </section>
+
+  <!-- 連絡先 -->
+  <section>
+    <h2 style="font-family:var(--font-serif); font-size:var(--text-2xl);">連絡先</h2>
+    <div class="contact-block">
+      <div class="contact-block__item">
+        <span>✉</span>
+        <a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+      </div>
+      <div class="contact-block__item">
+        <span>☏</span>
+        <a href="tel:〈電話番号〉">〈電話番号〉</a>
+      </div>
+      <div class="contact-block__item">
+        <span>◉</span>
+        <a href="#">〈ポートフォリオURL〉</a>
+      </div>
+    </div>
+    <p style="margin-top:32px; font-size:var(--text-sm); color:#5b564e;">
+      お気軽にご連絡ください。面談・カジュアルな相談も歓迎します。
+    </p>
+  </section>
+
+  <hr>
+  <footer style="padding: 32px 0 48px; text-align:center; font-size:var(--text-sm); color:#7a7368;">
+    © 〈氏名〉 2025 — 転職用ポートフォリオ
+  </footer>
+
+</div>
+</body>
+</html>

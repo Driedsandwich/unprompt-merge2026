@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+  --base: #fff6e8;
+  --main: #e8965a;
+  --accent: #c4472b;
+  --text: #3a2a1a;
+  --soft: #8a6a4a;
+  --fs-body: 16px;
+  --fs-h1: 32px;
+  --fs-h2: 20px;
+  --lh-body: 1.85;
+  --space-s: 8px;
+  --space-m: 24px;
+  --space-l: 48px;
+  --space-xl: 96px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--base);
+  color: var(--text);
+  font-family: "Hiragino Maru Gothic ProN", "M PLUS Rounded Sansc", "Yu Gothic", sans-serif;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-m);
+}
+
+/* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+/* GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 */
+/* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 */
+
+.lede {
+  font-size: 17px;
+  line-height: 1.75;
+  margin-bottom: var(--space-xl);
+}
+
+.lede p + p { margin-top: 1em; }
+
+.greet {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.sig {
+  margin-top: var(--space-l);
+  text-align: right;
+  font-size: 15px;
+  color: var(--soft);
+}
+
+.section {
+  margin-bottom: var(--space-xl);
+}
+
+.section h2 {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin-bottom: var(--space-m);
+}
+
+.section p + p { margin-top: 1em; }
+
+.ph {
+  color: var(--soft);
+  font-style: normal;
+}
+
+hr.rule {
+  border: none;
+  border-top: 1px solid var(--main);
+  opacity: 0.3;
+  margin: 0 0 var(--space-xl) 0;
+}
+
+@media (max-width: 600px) {
+  .wrap { padding: var(--space-l) var(--space-m); }
+  :root { --space-xl: 64px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+<!-- GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 -->
+<div class="lede">
+<p><span class="greet">おつかれさまです。</span>各部署のみなさん、今月もそれぞれのペースで動いてくださってありがとうございます。社内報、今月号も気楽にどうぞ。</p>
+</div>
+
+<hr class="rule">
+
+<!-- GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 -->
+<!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+<div class="section">
+<p>最近またムッとする日が続いていますね。〈確認: 発行者の所属や名前〉の窓際に置いた観葉植物が、なんだか元気を取り戻している気配があります。先日おとといくらいですが、別のフロアの人とエレベーターでばったり会って、久しぶりに雑談しました。そういう何気ないやりとりが、案外大事だなと感じた次第です。</p>
+<p>現場にいると、自分の周りのことで手いっぱしになりがちですよね。でも他の部署では他の部署のペースで、別の熱量で仕事が進んでいる。その温度差を社内報で少しでも届けられたらと思います。</p>
+</div>
+
+<div class="section">
+<h2>今月の社内報</h2>
+<p>今月は〈確認: 今月号の特集や話題を1つ〉を拾っています。現場の声を中心にまとめましたので、ふと息抜きしたときにでも目を通してもらえると嬉しいです。</p>
+</div>
+
+<div class="sig">
+<p>〈確認: 発行者名または役職名〉</p>
+</div>
+
+</div>
+</body>
+</html>

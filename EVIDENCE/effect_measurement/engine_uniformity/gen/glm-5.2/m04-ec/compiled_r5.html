@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+  /* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 */
+  /* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+  /* GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ */
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+
+  :root {
+    --bg: #f4f1ea;
+    --main: #3a3226;
+    --accent: #8c6a3f;
+    --body-size: 15px;
+    --h1-size: 28px;
+    --h2-size: 18px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--main);
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "BIZ UDPMincho", serif;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 40px;
+  }
+
+  /* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+  /* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h1-size);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    color: var(--main);
+  }
+
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: var(--h2-size);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+    color: var(--accent);
+  }
+
+  p {
+    font-size: var(--body-size);
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+
+  .catch {
+    font-size: var(--h1-size);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    margin-bottom: 40px;
+  }
+
+  .lead {
+    font-size: 16px;
+    line-height: 2;
+    margin-bottom: 80px;
+  }
+
+  section {
+    margin-bottom: 88px;
+  }
+
+  .spec {
+    border-top: 1px solid var(--accent);
+    padding-top: 32px;
+  }
+
+  .spec dt {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .spec dd {
+    font-size: var(--body-size);
+    margin-bottom: 24px;
+    margin-left: 0;
+  }
+
+  .closing {
+    margin-top: 96px;
+    padding-top: 48px;
+    border-top: 1px solid var(--accent);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+  <h1 class="catch">〈商品名〉。手にした瞬間、予感が変わります。</h1>
+
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+  <p class="lead">初めてご覧いただく方へ。よいものには、触れた途端に確信が宿ります。〈商品名〉は、その体験をぜひあなたにお届けしたいと願って仕立てた一品です。</p>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+    <h2>ただちに分かる、存在のよろこび</h2>
+    <p>説明書はいらない。目で見て、指先で触れて、その質が伝わる。〈商品名〉は、素材の声を丹念に聴きながら磨き上げました。〈確認: 使用体験を印象付ける具体的な手触りや質感の描写〉。手元に置くだけで、暮らしの風景が静かに整っていく。そんな余韻を残します。</p>
+  </section>
+
+  <section>
+    <h2>日々のなかで、自然に愛される</h2>
+    <p>華やかに主張するものは、やがて疲れます。〈商品名〉は、使うたびに手に馴染み、長く伴うほどに味わいを増す。〈確認: 経年変化や使用を重ねることで生まれる変化についての具体〉。暮らしのなかに溶け込み、あるべき場所に収まる。上質と呼べるのは、そうした静かな説得力を持つものだけだと、私たちは考えます。</p>
+  </section>
+
+  <section class="spec">
+    <h2>仕様</h2>
+    <dl>
+      <!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+      <dt>名称</dt>
+      <dd>〈商品名〉</dd>
+      <dt>素材・成分</dt>
+      <dd>〈確認: 素材や成分の具体的記載〉</dd>
+      <dt>サイズ</dt>
+      <dd>〈確認: サイズ実値〉</dd>
+      <dt>価格</dt>
+      <dd>〈価格〉（税込）</dd>
+    </dl>
+    <p>ご使用前に必ず付属の取扱説明をお読みください。〈確認: 取り扱い上の注意事項があれば記載〉。</p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+  <section class="closing">
+    <p>あながた暮らしに迎え入れたいと感じたなら、ぜひその手にとって確かめてください。〈商品名〉が、あなたの暮らしに寄り添う存在となることを願っております。</p>
+  </section>
+
+</div>
+</body>
+</html>

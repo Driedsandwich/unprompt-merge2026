@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉 | 静かな焙煎所</title>
+<style>
+:root {
+  --body-size: 16px;
+  --scale-ratio: 1.25;
+  --h3-size: calc(var(--body-size) * var(--scale-ratio));
+  --h2-size: calc(var(--h3-size) * var(--scale-ratio));
+  --h1-size: calc(var(--h2-size) * var(--scale-ratio));
+  --base: #2B2B2B;
+  --accent: #9C6E4B;
+  --bg: #F7F4F0;
+  --light-bg: #EDE8E2;
+  --white: #FFFFFF;
+  --text: #1E1E1E;
+  --muted: #6B6B6B;
+  --space-unit: 8px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Helvetica Neue', 'Arial', 'Yu Gothic', 'Hiragino Sans', sans-serif;
+  font-size: var(--body-size);
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+}
+h1, h2, h3 {
+  font-family: 'Times New Roman', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+h1 { font-size: var(--h1-size); }
+h2 { font-size: var(--h2-size); }
+h3 { font-size: var(--h3-size); }
+.section {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: calc(var(--space-unit) * 14) calc(var(--space-unit) * 4);
+}
+.section--tight { padding-top: calc(var(--space-unit) * 8); padding-bottom: calc(var(--space-unit) * 8); }
+/* ヒーロー */
+.hero {
+  background: var(--base);
+  color: var(--white);
+  padding: calc(var(--space-unit) * 20) calc(var(--space-unit) * 4);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(ellipse at 30% 40%, rgba(156,110,75,0.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 70%, rgba(43,43,43,0.8) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero__inner { position: relative; z-index: 1; }
+.hero__sub {
+  font-size: calc(var(--body-size) * 0.8);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: calc(var(--space-unit) * 3);
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+.hero__name {
+  font-family: 'Times New Roman', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: calc(var(--h1-size) * 1.15);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  margin-bottom: calc(var(--space-unit) * 4);
+}
+.hero__tagline {
+  font-size: var(--body-size);
+  color: rgba(255,255,255,0.8);
+  max-width: 480px;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 1.8;
+}
+/* 物語 */
+.story { background: var(--white); }
+.story__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--space-unit) * 8);
+  align-items: center;
+}
+.story__visual {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, var(--light-bg) 30%, var(--accent) 130%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: rgba(255,255,255,0.7);
+}
+.story__body h2 {
+  margin-bottom: calc(var(--space-unit) * 3);
+  color: var(--base);
+}
+.story__body p {
+  color: var(--text);
+  margin-bottom: calc(var(--space-unit) * 4);
+}
+.story__body p:last-child { margin-bottom: 0; }
+.story__highlight {
+  display: inline-block;
+  border-left: 3px solid var(--accent);
+  padding-left: calc(var(--space-unit) * 2);
+  font-style: italic;
+  color: var(--muted);
+}
+/* こだわり */
+.craft { background: var(--light-bg); }
+.craft__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--space-unit) * 6);
+  margin-top: calc(var(--space-unit) * 6);
+}
+.craft__item {
+  background: var(--white);
+  padding: calc(var(--space-unit) * 5);
+  border-radius: 4px;
+  text-align: center;
+}
+.craft__icon {
+  font-size: 2.4rem;
+  margin-bottom: calc(var(--space-unit) * 2);
+  display: block;
+}
+.craft__item h3 {
+  margin-bottom: calc(var(--space-unit) * 2);
+  font-size: var(--h3-size);
+}
+.craft__item p { font-size: calc(var(--body-size) * 0.95); color: var(--muted); }
+/* ラインナップ */
+.lineup { background: var(--white); }
+.lineup__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--space-unit) * 6);
+  margin-top: calc(var(--space-unit) * 6);
+}
+.lineup__card {
+  background: var(--bg);
+  border-radius: 4px;
+  padding: calc(var(--space-unit) * 4);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+.lineup__card:hover { transform: translateY(-4px); }
+.lineup__bean {
+  width: 72px;
+  height: 96px;
+  margin: 0 auto calc(var(--space-unit) * 3);
+  background: linear-gradient(135deg, #5A3D2B, #3A2518);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+}
+.lineup__bean::after {
+  content: '';
+  position: absolute;
+  top: 30%; left: 35%;
+  width: 30%; height: 20%;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+.lineup__card h3 { font-size: calc(var(--h3-size) * 0.95); margin-bottom: calc(var(--space-unit) * 1); }
+.lineup__card .origin {
+  font-size: calc(var(--body-size) * 0.85);
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-bottom: calc(var(--space-unit) * 2);
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+.lineup__card p { font-size: calc(var(--body-size) * 0.9); color: var(--muted); }
+/* 購入導線 */
+.cta {
+  background: var(--base);
+  color: var(--white);
+  text-align: center;
+  padding: calc(var(--space-unit) * 16) calc(var(--space-unit) * 4);
+}
+.cta h2 { margin-bottom: calc(var(--space-unit) * 3); }
+.cta p {
+  max-width: 480px;
+  margin: 0 auto calc(var(--space-unit) * 6);
+  color: rgba(255,255,255,0.75);
+  font-weight: 300;
+}
+.cta__button {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  text-decoration: none;
+  padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 10);
+  border-radius: 4px;
+  font-size: calc(var(--body-size) * 0.95);
+  letter-spacing: 0.08em;
+  transition: background 0.25s ease;
+}
+.cta__button:hover { background: #835E3F; }
+.cta__note {
+  margin-top: calc(var(--space-unit) * 4);
+  font-size: calc(var(--body-size) * 0.8);
+  color: rgba(255,255,255,0.5);
+}
+@media (max-width: 720px) {
+  .story__grid { grid-template-columns: 1fr; }
+  .craft__list { grid-template-columns: 1fr; }
+  .lineup__grid { grid-template-columns: 1fr; }
+  .hero__name { font-size: var(--h1-size); }
+}
+</style>
+</head>
+<body>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="hero__inner">
+    <p class="hero__sub">— Roastery &amp; Select —</p>
+    <h1 class="hero__name">〈ブランド名〉</h1>
+    <p class="hero__tagline">焙く、という行為の一瞬に、<br>すべての味わいが決まる。</p>
+  </div>
+</section>
+
+<!-- 物語 -->
+<section class="section story">
+  <div class="story__grid">
+    <div class="story__visual">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <div class="story__body">
+      <h2>焙煎所のはじまり</h2>
+      <p>このブランドは、〈地名〉の小さな工房から生まれました。〈焙煎士の名前〉が一貫して大切にしてきたのは、「豆の声を聴く」こと。温度、風量、時間——すべての数字に意味があり、その掛け合わせが唯一の味を生み出します。</p>
+      <p class="story__highlight">「焙煎とは、豆が最も輝く一瞬を引き出すこと」</p>
+    </div>
+  </div>
+</section>
+
+<!-- こだわり -->
+<section class="section craft">
+  <h2 style="text-align:center;">豆へのこだわり</h2>
+  <div class="craft__list">
+    <div class="craft__item">
+      <span class="craft__icon">🌱</span>
+      <h3>産地選び</h3>
+      <p>農園との直接のつながりを大切に。〈国名〉や〈地域名〉から、その年のベストロットだけを仕入れます。</p>
+    </div>
+    <div class="craft__item">
+      <span class="craft__icon">🔥</span>
+      <h3>浅煎り〜中煎り</h3>
+      <p>焦がさず、引き出しすぎず。豆本来の甘みと酸味を最大限に活かす焙煎度にこだわります。</p>
+    </div>
+    <div class="craft__item">
+      <span class="craft__icon">⚖️</span>
+      <h3>小ロット焙煎</h3>
+      <p>一度に多くても〈◯kg〉まで。目を離さず、耳を傾け、その日の気温や湿度に合わせて調整します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ラインナップ -->
+<section class="section lineup">
+  <h2 style="text-align:center;">ラインナップ</h2>
+  <div class="lineup__grid">
+    <div class="lineup__card">
+      <div class="lineup__bean"></div>
+      <h3>〈ブレンド名A〉</h3>
+      <p class="origin">〈産地〉 · 中煎り</p>
+      <p>穏やかな甘さとクリーンな後味。朝の一杯に。</p>
+    </div>
+    <div class="lineup__card">
+      <div class="lineup__bean"></div>
+      <h3>〈シングル名B〉</h3>
+      <p class="origin">〈産地〉 · 浅煎り</p>
+      <p>フローラルなアロマとシトラスのような明るい酸。</p>
+    </div>
+    <div class="lineup__card">
+      <div class="lineup__bean"></div>
+      <h3>〈ブレンド名C〉</h3>
+      <p class="origin">〈産地〉 · 中深煎り</p>
+      <p>深いコクとチョコレートのような余韻。ミルクにも。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 購入導線 -->
+<section class="cta">
+  <h2>あなたの一杯に、この豆を。</h2>
+  <p>焙きたての豆を、ご注文いただいてから丁寧に焙煎してお届けします。</p>
+  <a href="#" class="cta__button">オンラインストアで見る</a>
+  <p class="cta__note">現在は不定期販売。次回入荷の案内を受け取るには、メールマガジンへご登録ください。</p>
+</section>
+
+</body>
+</html>

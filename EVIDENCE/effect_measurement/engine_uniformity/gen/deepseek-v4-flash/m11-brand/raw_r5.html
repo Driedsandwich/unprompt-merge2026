@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈ブランド名〉</title>
+<style>
+  :root {
+    /* タイプスケール: 本文 1rem(16px) を基準に 1.25 倍比 */
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.563rem;
+    --text-2xl: 1.953rem;
+    --text-3xl: 2.441rem;
+    --text-4xl: 3.052rem;
+
+    /* 色: 基調 濃茶 + アクセント あかね */
+    --brown-900: #2c1810;
+    --brown-700: #4a3228;
+    --brown-500: #7a5c4a;
+    --brown-300: #b89a82;
+    --brown-100: #e8d5c4;
+    --brown-50: #f7f0ea;
+    --accent: #c0392b;
+    --accent-light: #e74c3c;
+    --white: #ffffff;
+
+    /* 8px グリッド基準 */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
+    --space-16: 128px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman", serif;
+    background: var(--brown-50);
+    color: var(--brown-900);
+    line-height: 1.8;
+  }
+
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 var(--space-3);
+  }
+
+  /* ===== セクション間余白 ===== */
+  section { padding: var(--space-12) 0; }
+  section + section { border-top: 1px solid var(--brown-300); }
+
+  /* ===== タイポグラフィ ===== */
+  h1, h2, h3 {
+    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  h1 {
+    font-size: var(--text-4xl);
+    line-height: 1.2;
+    margin-bottom: var(--space-2);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+
+  p {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-3);
+  }
+
+  .text-sm { font-size: var(--text-sm); }
+
+  .accent-text { color: var(--accent); }
+
+  /* ===== ヒーロー ===== */
+  .hero {
+    text-align: center;
+    padding: var(--space-16) 0 var(--space-12);
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, var(--brown-100) 0%, var(--brown-50) 60%, var(--brown-100) 100%);
+    z-index: -1;
+  }
+
+  .hero-sub {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    font-size: var(--text-sm);
+    color: var(--brown-500);
+    margin-bottom: var(--space-1);
+  }
+
+  .hero-line {
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin: var(--space-3) auto var(--space-4);
+  }
+
+  /* ===== SVG 豆飾り ===== */
+  .bean-icon {
+    display: inline-block;
+    width: 24px;
+    height: 32px;
+    vertical-align: middle;
+    margin: 0 var(--space-1);
+  }
+
+  /* ===== こだわりカード ===== */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .card {
+    background: var(--white);
+    padding: var(--space-4);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(44,24,16,0.06);
+  }
+
+  .card h3 { margin-bottom: var(--space-1); }
+
+  .card p { margin-bottom: 0; }
+
+  /* ===== ラインナップ ===== */
+  .lineup-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .lineup-item {
+    text-align: center;
+    background: var(--white);
+    padding: var(--space-4) var(--space-2);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(44,24,16,0.06);
+  }
+
+  .lineup-item .bean-icon {
+    display: block;
+    margin: 0 auto var(--space-2);
+  }
+
+  .lineup-item h3 {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-1);
+  }
+
+  .lineup-item .text-sm {
+    color: var(--brown-500);
+  }
+
+  /* ===== 購入導線 ===== */
+  .cta-box {
+    text-align: center;
+    padding: var(--space-8) 0;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-weight: 700;
+    font-size: var(--text-lg);
+    letter-spacing: 0.08em;
+    color: var(--white);
+    background: var(--accent);
+    padding: var(--space-2) var(--space-6);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn:hover { background: var(--accent-light); }
+
+  .cta-note {
+    margin-top: var(--space-3);
+    color: var(--brown-500);
+  }
+
+  /* ===== フッター ===== */
+  footer {
+    padding: var(--space-6) 0;
+    text-align: center;
+    color: var(--brown-500);
+    font-size: var(--text-sm);
+    border-top: 1px solid var(--brown-300);
+  }
+
+  @media (max-width: 600px) {
+    .grid-2col { grid-template-columns: 1fr; }
+    .lineup-grid { grid-template-columns: 1fr; }
+    h1 { font-size: var(--text-3xl); }
+    .hero { padding: var(--space-8) 0; }
+    section { padding: var(--space-8) 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="wrapper">
+    <p class="hero-sub">ROASTERY</p>
+    <h1>〈ブランド名〉</h1>
+    <div class="hero-line"></div>
+    <p style="max-width:480px;margin:0 auto;">
+      焙く。その一瞬に、<br>
+      すべての〈こだわり〉を注ぐ。
+    </p>
+  </div>
+</section>
+
+<!-- ブランドの物語 -->
+<section>
+  <div class="wrapper">
+    <h2>静岡の小さな焙煎所から</h2>
+    <p>
+      製粉所の裏手にあった小さな倉庫。そこで焙煎機と向き合い続けた〈焙煎士〉が立ち上げたのが、このブランドです。
+    </p>
+    <p>
+      大量生産・一律焙煎ではなく、<span class="accent-text">ロットごとに火力曲線を変える</span>―
+      生豆の個性を引き出すための、愚直な手間。その一杯が、飲み手の日常に静かな余白を生むことを願っています。
+    </p>
+    <p>
+      原料は〈契約農園〉から届くスペシャルティグレードのみ。
+      透明性のある取引を心がけ、農園の顔が見えるコーヒーを届けています。
+    </p>
+  </div>
+</section>
+
+<!-- 豆へのこだわり -->
+<section>
+  <div class="wrapper">
+    <h2>焙煎の設計図</h2>
+    <div class="grid-2col">
+      <div class="card">
+        <h3>
+          <svg class="bean-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="12" cy="16" rx="10" ry="14" fill="#4a3228"/>
+            <path d="M12 4c-4 4-4 12 0 20" stroke="#7a5c4a" stroke-width="1.5" fill="none"/>
+            <path d="M12 4c4 4 4 12 0 20" stroke="#7a5c4a" stroke-width="1.5" fill="none"/>
+          </svg>
+          低深度・長時間
+        </h3>
+        <p>
+          芯まで熱を通すため、1ハゼから2ハゼまでじっくり時間をかけます。
+          酸味と甘みのバランスを徹底的に追い込む焙煎曲線。
+        </p>
+      </div>
+      <div class="card">
+        <h3>
+          <svg class="bean-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="12" cy="16" rx="10" ry="14" fill="#4a3228"/>
+            <path d="M8 8c2 2 6 2 8 0" stroke="#b89a82" stroke-width="1.5" fill="none"/>
+            <path d="M8 24c2-2 6-2 8 0" stroke="#b89a82" stroke-width="1.5" fill="none"/>
+          </svg>
+          カッピング調整
+        </th>
+        <p>
+          毎ロット、焙煎から24時間後にカッピング。フレーバーが想定と異なる場合は
+          翌ロットで即座にプロファイルを修正します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ラインナップ -->
+<section>
+  <div class="wrapper">
+    <h2>ラインナップ</h2>
+    <div class="lineup-grid">
+      <div class="lineup-item">
+        <svg class="bean-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:40px;">
+          <ellipse cx="12" cy="16" rx="10" ry="14" fill="#7a5c4a"/>
+          <path d="M12 6c-2 4-2 12 0 20" stroke="#b89a82" stroke-width="1.5" fill="none"/>
+        </svg>
+        <h3>〈ブレンド名A〉</h3>
+        <p class="text-sm">深煎り／チョコレート・ナッツ</p>
+        <p class="text-sm">苦味と甘味の調和</p>
+      </div>
+      <div class="lineup-item">
+        <svg class="bean-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:40px;">
+          <ellipse cx="12" cy="16" rx="10" ry="14" fill="#b89a82"/>
+          <path d="M12 6c2 4 2 12 0 20" stroke="#7a5c4a" stroke-width="1.5" fill="none"/>
+        </svg>
+        <h3>〈ブレンド名B〉</h3>
+        <p class="text-sm">中煎り／シトラス・フローラル</p>
+        <p class="text-sm">明るい酸味とクリーンな後味</p>
+      </div>
+      <div class="lineup-item">
+        <svg class="bean-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:40px;">
+          <ellipse cx="12" cy="16" rx="10" ry="14" fill="#4a3228"/>
+          <path d="M6 10c4 0 8 2 12 6" stroke="#b89a82" stroke-width="1.5" fill="none"/>
+          <path d="M6 22c4 0 8-2 12-6" stroke="#b89a82" stroke-width="1.5" fill="none"/>
+        </svg>
+        <h3>〈シングルオリジン〉</h3>
+        <p class="text-sm">浅煎り／季節限定</p>
+        <p class="text-sm">産地の個性をそのままに</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 購入導線 -->
+<section>
+  <div class="wrapper cta-box">
+    <h2 style="margin-bottom:var(--space-5);">まずは一杯、試してみませんか</h2>
+    <a href="#" class="btn">オンラインストアで購入</a>
+    <p class="cta-note text-sm">
+      ［初回限定］送料無料 &amp; 試飲サイズ付き<br>
+      ご注文後、焙煎日を指定して発送します。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrapper">
+    <p>© 〈ブランド名〉 All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

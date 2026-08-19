@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会案内</title>
+<style>
+  /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+  /* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+  /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+  :root {
+    --bg: #fff4d6;
+    --main: #2e2e2e;
+    --accent: #ff7a1a;
+    --base-size: 16px;
+    --h1-size: 30px;
+    --h2-size: 19px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    font-family: 'Hiragino Maru Gothic ProN', 'M PLUS Rounded 1c', 'Yu Gothic', sans-serif;
+    color: var(--main);
+    line-height: 1.85;
+    padding: 80px 24px;
+  }
+  .doc {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .greeting {
+    font-size: var(--h1-size);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
+    margin-bottom: 56px;
+  }
+  .lead {
+    font-size: var(--base-size);
+    margin-bottom: 72px;
+  }
+  .section {
+    margin-bottom: 64px;
+  }
+  .label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--base-size);
+  }
+  .info-table th, .info-table td {
+    text-align: left;
+    padding: 8px 0;
+    vertical-align: top;
+  }
+  .info-table th {
+    width: 96px;
+    font-weight: 600;
+    color: var(--accent);
+    padding-right: 24px;
+  }
+  .body-text {
+    font-size: var(--base-size);
+  }
+  .rsvp {
+    background: rgba(255,122,26,0.10);
+    border-radius: 16px;
+    padding: 32px 40px;
+    margin-bottom: 64px;
+  }
+  .rsvp .label { color: var(--main); }
+  .rsvp .body-text { margin-top: 8px; }
+  .closing {
+    font-size: var(--base-size);
+    font-weight: 700;
+    margin-top: 8px;
+  }
+  footer {
+    font-size: 13px;
+    opacity: 0.65;
+    border-top: 1px solid rgba(46,46,46,0.15);
+    padding-top: 24px;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <p class="greeting">みんな集合〜！十年以上ぶりに、また集まろう。</p>
+
+  <p class="lead">あの部室の空気、まだ覚えてる？久しぶりでも、顔を合わせたらすぐあの頃に戻れるって、幹事は信じてる。疎遠になってた人こそ、ぜひ。</p>
+
+  <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+  <section class="section">
+    <div class="label">開催概要</div>
+    <table class="info-table">
+      <tr><th>日時</th><td>〈開催日時〉</td></tr>
+      <tr><th>場所</th><td>〈会場名・住所〉</td></tr>
+      <tr><th>会費</th><td>〈確認: 会費の目安〉</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="label">どんな会にしたいか</div>
+    <p class="body-text">顔を見て、あの頃みたいにわいわい話すだけ。お酒が好きな人は一杯やりながら、苦手な人はソフトドリンクで。気軽にノリだけ持ってきて。</p>
+  </section>
+
+  <div class="rsvp">
+    <div class="label">出欠の連絡</div>
+    <p class="body-text">〈開催日〉までに、〈幹事の連絡先〉へ返信ちょうだい。「行ける」「微妙」どっちでもOK。迷ってる人も、とりあえず連絡くれたら助かる。</p>
+  </div>
+
+  <p class="closing">また会えるのを楽しみにしてる。</p>
+
+  <footer>
+    幹事 〈幹事名〉
+  </footer>
+
+</div>
+</body>
+</html>

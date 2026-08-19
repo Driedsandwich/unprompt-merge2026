@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 — ポートフォリオ</title>
+<style>
+:root{
+  --base:#F4EFE6; --ink:#1A1A1A; --accent:#7A2E1F;
+  --step-0:15px; --step-1:21px; --step-2:32px; --step-3:48px; --step-4:72px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--base); color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  font-size:var(--step-0); line-height:1.75;
+  letter-spacing:0.01em;
+}
+header,section,footer{padding:96px 8.5vw}
+.hero{
+  min-height:92vh; display:flex; flex-direction:column; justify-content:flex-end;
+  border-bottom:1px solid rgba(26,26,26,0.12);
+}
+.hero h1{
+  font-family:"YuMincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+  font-size:var(--step-4); font-weight:600; letter-spacing:-0.025em;
+  line-height:1.04; margin-bottom:16px;
+}
+.hero .role{font-size:var(--step-1); letter-spacing:0.02em; color:var(--accent)}
+.hero .lead{margin-top:32px; max-width:32em; font-size:var(--step-1)}
+.meta{
+  display:flex; gap:8px 40px; flex-wrap:wrap; margin-top:48px;
+  font-size:13px; letter-spacing:0.04em; opacity:0.65;
+}
+.meta span::before{content:"— "; color:var(--accent); opacity:0.7}
+section h2{
+  font-family:"YuMincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+  font-size:var(--step-3); font-weight:500; letter-spacing:0.015em;
+  margin-bottom:48px;
+}
+.about p{max-width:36em; font-size:var(--step-1); line-height:1.85}
+.about p+p{margin-top:24px}
+.works{border-top:1px solid rgba(26,26,26,0.12)}
+.work-list{display:flex; flex-direction:column; gap:64px}
+.work{display:grid; grid-template-columns:1fr 1.15fr; gap:48px; align-items:start}
+.work .visual{aspect-ratio:4/3; overflow:hidden}
+.work .thumb{
+  width:100%; height:100%; transition:transform 0.5s ease;
+}
+.work:hover .thumb{transform:scale(1.02)}
+.work .num{
+  font-family:"YuMincho",serif; font-size:64px; color:var(--accent);
+  line-height:1; margin-bottom:16px; font-weight:500;
+}
+.work h3{
+  font-family:"YuMincho",serif; font-size:var(--step-2);
+  font-weight:500; margin-bottom:8px; letter-spacing:0.01em;
+}
+.work .tags{font-size:13px; opacity:0.6; margin-bottom:24px; letter-spacing:0.04em}
+.work p{line-height:1.85}
+.work a{
+  display:inline-block; margin-top:16px; color:var(--accent);
+  text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px;
+}
+.skills{border-top:1px solid rgba(26,26,26,0.12)}
+.skill-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px 64px}
+.skill h4{
+  font-family:"YuMincho",serif; font-size:var(--step-1);
+  font-weight:500; margin-bottom:16px;
+  border-left:3px solid var(--accent); padding-left:12px;
+}
+.skill ul{list-style:none}
+.skill li{
+  padding:8px 0; border-bottom:1px solid rgba(26,26,26,0.08);
+  display:flex; justify-content:space-between; font-size:var(--step-0);
+}
+.skill li span{opacity:0.5; font-size:13px}
+.contact{border-top:1px solid rgba(26,26,26,0.12); text-align:center}
+.contact p{margin-bottom:32px; font-size:var(--step-1)}
+.contact a{
+  font-family:"YuMincho",serif; font-size:var(--step-2);
+  color:var(--ink); text-decoration:none;
+  border-bottom:1px solid var(--ink); padding-bottom:4px;
+}
+footer{padding:48px 8.5vw; border-top:1px solid rgba(26,26,26,0.12); text-align:center}
+footer small{font-size:13px; opacity:0.5; letter-spacing:0.05em}
+@media (max-width:760px){
+  .work{grid-template-columns:1fr}
+  .skill-grid{grid-template-columns:1fr}
+  .hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>余白を問う。<br>画面を編む。</h1>
+  <p class="role">フロントエンドエンジニア / 〈氏名〉</p>
+  <p class="lead">コードは言葉、インターフェースは文章だと考えています。ユーザーが迷わず止まらず、読み終えられる画面を作るのが仕事です。</p>
+  <div class="meta">
+    <span>東京 在住</span><span>転職活動中</span><span>即日〜応相談</span>
+  </div>
+</header>
+<section class="about">
+  <h2>about</h2>
+  <p>〈直近の勤務先〉で〈担当プロダクト〉のフロントエンド開発に携わってきました。コンポーネント設計、アクセシビリティ担保、パフォーマンス改善を一通り経験しています。</p>
+  <p>制作の起点は「ここに何が要るか」を書き出すノートです。装飾が先に立つと失敗するので、構造と文章を整えてから手を動かす習慣を持っています。</p>
+</section>
+<section class="works">
+  <h2>works</h2>
+  <div class="work-list">
+    <article class="work">
+      <div class="visual"><div class="thumb" style="background:linear-gradient(135deg,#7A2E1F 0%,#B85C44 100%)"></div></div>
+      <div>
+        <p class="num">01</p><h3>〈作品タイトル〉</h3>
+        <p class="tags">React / TypeScript / Figma</p>
+        <p>〈プロダクト概要〉の管理画面リプレイス。既存の jQuery 実装から移行し、初回描画の改善とフォームの入力補助を強化しました。</p>
+        <a href="#">詳細を見る</a>
+      </div>
+    </article>
+    <article class="work">
+      <div class="visual"><div class="thumb" style="background:linear-gradient(135deg,#1A1A1A 0%,#4A4A4A 100%)"></div></div>
+      <div>
+        <p class="num">02</p><h3>〈作品タイトル〉</h3>
+        <p class="tags">Next.js / Tailwind / Vercel</p>
+        <p>〈対象サービス〉の LP 制作。表示速度の最適化と、CMS による運用フローを整備し、編集チームが自走できる構成にしました。</p>
+        <a href="#">詳細を見る</a>
+      </div>
+    </article>
+    <article class="work">
+      <div class="visual"><div class="thumb" style="background:linear-gradient(135deg,#F4EFE6 0%,#D4C9B5 100%)"></div></div>
+      <div>
+        <p class="num">03</p><h3>〈作品タイトル〉</h3>
+        <p class="tags">Vue.js / SCSS / Storybook</p>
+        <p>〈社内ツール〉の UI コンポーネントライブラリ構築。デザイナーとエンジニアの間にある認識のズレを、Storybook 上のドキュメントで埋める取り組みです。</p>
+        <a href="#">詳細を見る</a>
+      </div>
+    </article>
+  </div>
+</section>
+<section class="skills">
+  <h2>skills</h2>
+  <div class="skill-grid">
+    <div class="skill">
+      <h4>code</h4>
+      <ul>
+        <li>HTML / CSS<span>5年</span></li>
+        <li>JavaScript / TypeScript<span>4年</span></li>
+        <li>React / Next.js<span>3年</span></li>
+        <li>Vue.js / Nuxt<span>2年</span></li>
+      </ul>
+    </div>
+    <div class="skill">
+      <h4>tool / design</h4>
+      <ul>
+        <li>Figma<span>設計・連携</span></li>
+        <li>Storybook<span>運用経験</span></li>
+        <li>Git / GitHub<span>チーム運用</span></li>
+        <li>アクセシビリティ監査<span>WCAG 準拠</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="contact">
+  <h2>contact</h2>
+  <p>お話しできる機会をいただけると嬉しいです。</p>
+  <a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+</section>
+<footer>
+  <small>© 〈氏名〉 — Portfolio</small>
+</footer>
+</body>
+</html>

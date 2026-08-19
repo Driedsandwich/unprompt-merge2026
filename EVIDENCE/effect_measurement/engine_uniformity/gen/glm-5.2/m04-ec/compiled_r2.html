@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+  --base-size: 16px;
+  --h1-size: 28px;
+  --h2-size: 20px;
+  --bg: #f4f1ea;
+  --main: #3a3226;
+  --accent: #8c6a3f;
+}
+/* GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 */
+/* GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 */
+/* GYAKUMON-CHOICE: 文体・トーン = フォーマル */
+/* GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ */
+/* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: var(--base-size);
+  color: var(--main);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 40px;
+}
+
+/* GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 */
+h1, h2 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: var(--h1-size);
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+h2 {
+  font-size: var(--h2-size);
+  font-weight: 500;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+}
+
+.section { margin-bottom: 96px; }
+
+.lead {
+  font-size: 15px;
+  line-height: 2.0;
+  letter-spacing: 0.02em;
+}
+
+.body-text {
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+}
+
+.spec-list {
+  list-style: none;
+  font-size: 14px;
+  line-height: 2.1;
+  letter-spacing: 0.01em;
+}
+
+.closing {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+<!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+<h1>はじめて触れる。その瞬間を、〈商品名〉へ。</h1>
+
+<!-- GYAKUMON-CHOICE: 文体・トーン = フォーマル -->
+<p class="lead">
+初めてご覧いただき、ありがとうございます。これまでになかった手触りと、手にしたときの静かな高揚。〈商品名〉は、その体験をあなたにお届けするために生まれました。
+</p>
+
+<div class="section">
+<!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+<h2>ご案内</h2>
+<p class="body-text">
+特別な日に寄り添う一品として、素材の選定から仕立てまでを丁寧に行っております。〈確認: 商品の具体的な素材・製法の特徴〉。手に取った瞬間、その存在感が感じられることと存じます。
+</p>
+</div>
+
+<div class="section">
+<!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+<h2>仕様・ご留意点</h2>
+<ul class="spec-list">
+<li>商品名：〈商品名〉</li>
+<li>サイズ：〈サイズ〉</li>
+<li>素材：〈素材〉</li>
+<li>生産国：〈生産国〉</li>
+<li>価格：〈価格〉</li>
+</ul>
+</div>
+
+<div class="section">
+<p class="closing">
+あなたの日々に、新しい物語を一つ。
+</p>
+</div>
+
+</div>
+</body>
+</html>

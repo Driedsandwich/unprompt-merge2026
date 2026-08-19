@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Portfolio — 〈氏名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+/* GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる */
+:root{
+  --bg:#1b1b1e;
+  --main:#4a4e69;
+  --accent:#c9a66b;
+  --text:#f5f4f1;
+  --muted:#9a9a9a;
+  --step-1:0.875rem;
+  --step-0:1rem;
+  --step-1-up:1.25rem;
+  --step-2:1.75rem;
+  --step-3:2.5rem;
+  --step-4:3.5rem;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  font-size:var(--step-0);
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  font-weight:600;
+  letter-spacing:.02em;
+  line-height:1.4;
+}
+section{padding:104px 24px}
+.wrap{max-width:760px;margin:0 auto}
+a{color:inherit}
+.lead{color:var(--muted);font-size:var(--step-1-up);line-height:2}
+/* GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け */
+/* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:104px 24px 88px;
+  border-bottom:1px solid var(--main);
+}
+.hero .meta{
+  font-size:var(--step-1);
+  color:var(--muted);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:32px;
+}
+.hero h1{
+  font-size:var(--step-4);
+  margin-bottom:8px;
+}
+.hero .role{
+  font-size:var(--step-2);
+  color:var(--main);
+  margin-bottom:40px;
+}
+.hero .statement{
+  font-size:var(--step-1-up);
+  line-height:2;
+  max-width:560px;
+  color:var(--text);
+  opacity:.92;
+}
+.hero .statement em{color:var(--accent);font-style:normal}
+.work-item{margin-bottom:96px}
+.work-item:last-child{margin-bottom:0}
+.work-num{
+  font-size:var(--step-1);
+  color:var(--accent);
+  letter-spacing:.2em;
+  margin-bottom:16px;
+  display:block;
+}
+.work-title{
+  font-size:var(--step-3);
+  margin-bottom:24px;
+}
+.work-thumb{
+  height:200px;
+  background:linear-gradient(135deg,var(--main) 0%,var(--accent) 220%);
+  margin-bottom:32px;
+}
+.work-process{
+  border-left:2px solid var(--accent);
+  padding:0 0 0 24px;
+  margin-bottom:24px;
+}
+.work-process p{
+  margin-bottom:16px;
+  font-size:var(--step-0);
+  line-height:2;
+}
+.work-process .label{
+  font-size:var(--step-1);
+  color:var(--accent);
+  letter-spacing:.08em;
+  display:block;
+  margin-bottom:4px;
+}
+.skill-list{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.skill-list li{
+  font-size:var(--step-1);
+  border:1px solid var(--main);
+  padding:8px 20px;
+  line-height:1;
+}
+.contact-block{
+  border-top:1px solid var(--main);
+}
+.contact-block a{
+  font-family:"Hiragino Mincho ProN",serif;
+  font-size:var(--step-2);
+  text-decoration:none;
+  border-bottom:1px solid var(--accent);
+  padding-bottom:2px;
+}
+.contact-block a:hover{color:var(--accent)}
+footer{
+  padding:48px 24px;
+  text-align:center;
+  font-size:var(--step-1);
+  color:var(--muted);
+  border-top:1px solid var(--main);
+}
+</style>
+</head>
+<body>
+<!-- GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 -->
+<header class="hero">
+  <div class="wrap">
+    <p class="meta">Design Portfolio</p>
+    <!-- GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け -->
+    <h1>〈氏名〉</h1>
+    <p class="role">Product Designer</p>
+    <p class="statement">なぜこの設計にしたか、判断の過程を辿るポートフォリオ。<em>作品の質で記憶に残す</em>仕事をしています。</p>
+  </div>
+</header>
+
+<!-- GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 -->
+<section id="about">
+  <div class="wrap">
+    <h2 style="font-size:var(--step-2);margin-bottom:40px">About</h2>
+    <p class="lead">〈確認: デザイナーとして大切にしていること、仕事の進め方〉を軸に、設計の判断根拠を言語化してきました。完成物の見栄えだけでなく、なぜその選択に至ったかを語れる制作を心がけています。〈確認: 前職・現職の職種と得意領域〉で培った経験を活かし、ユーザー体験と事業目標の両立を図るデザインに関わりたいと考えています。</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる -->
+<section id="works">
+  <div class="wrap">
+    <h2 style="font-size:var(--step-2);margin-bottom:64px">Works</h2>
+
+    <article class="work-item">
+      <span class="work-num">01</span>
+      <h3 class="work-title">〈作品タイトルA〉</h3>
+      <div class="work-thumb"></div>
+      <div class="work-process">
+        <span class="label">課題</span>
+        <p>〈確認: 対象プロダクトの課題と背景を1文で〉</p>
+        <span class="label">思考と判断</span>
+        <p>〈確認: なぜこの設計判断に至ったか、検討過程を2〜3文で〉</p>
+        <span class="label">成果</span>
+        <p>〈確認: 制作結果として何が変わったか、定性的な変化〉</p>
+      </div>
+    </article>
+
+    <article class="work-item">
+      <span class="work-num">02</span>
+      <h3 class="work-title">〈作品タイトルB〉</h3>
+      <div class="work-thumb"></div>
+      <div class="work-process">
+        <span class="label">課題</span>
+        <p>〈確認: 対象プロダクトの課題と背景を1文で〉</p>
+        <span class="label">思考と判断</span>
+        <p>〈確認: なぜこの設計判断に至ったか、検討過程を2〜3文で〉</p>
+        <span class="label">成果</span>
+        <p>〈確認: 制作結果として何が変わったか、定性的な変化〉</p>
+      </div>
+    </article>
+
+    <article class="work-item">
+      <span class="work-num">03</span>
+      <h3 class="work-title">〈作品タイトルC〉</h3>
+      <div class="work-thumb"></div>
+      <div class="work-process">
+        <span class="label">課題</span>
+        <p>〈確認: 対象プロダクトの課題と背景を1文で〉</p>
+        <span class="label">思考と判断</span>
+        <p>〈確認: なぜこの設計判断に至ったか、検討過程を2〜3文で〉</p>
+        <span class="label">成果</span>
+        <p>〈確認: 制作結果として何が変わったか、定性的な変化〉</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 style="font-size:var(--step-2);margin-bottom:40px">Skills</h2>
+    <ul class="skill-list">
+      <li>Figma</li>
+      <li>Sketch</li>
+      <li>Adobe XD</li>
+      <li>Photoshop</li>
+      <li>Illustrator</li>
+      <li>HTML / CSS</li>
+      <li>プロトタイイピング</li>
+      <li>デザインシステム</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="contact-block">
+  <div class="wrap">
+    <h2 style="font-size:var(--step-2);margin-bottom:40px">Contact</h2>
+    <a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+  </div>
+</section>
+
+<footer>© 〈氏名〉 — Design Portfolio</footer>
+</body>
+</html>

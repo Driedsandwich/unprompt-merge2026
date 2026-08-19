@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経費精算 自動締めツール 要件概要</title>
+<style>
+  /* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+  :root {
+    --base: #f7f6f3;
+    --main: #4a4842;
+    --accent: #8c8577;
+    --scale-body: 15px;
+    --scale-h1: 26px;
+    --scale-h2: 18px;
+  }
+  /* GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 */
+  /* GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート */
+  /* GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け */
+  /* GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--base);
+    color: var(--main);
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: var(--scale-body);
+    line-height: 1.85;
+    font-feature-settings: "palt";
+    letter-spacing: 0.01em;
+    padding: 64px 24px;
+  }
+  .sheet {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  header {
+    margin-bottom: 96px;
+  }
+  .doc-label {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: var(--scale-h1);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0 0 24px;
+    line-height: 1.4;
+  }
+  .lead {
+    margin: 0;
+    font-size: 15px;
+  }
+  section {
+    margin-bottom: 96px;
+  }
+  h2 {
+    font-size: var(--scale-h2);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin: 0 0 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--accent);
+  }
+  p { margin: 0 0 16px; }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .screen-desc {
+    background: #fff;
+    padding: 24px;
+    border: 1px solid var(--accent);
+  }
+  .screen-desc p:last-child { margin-bottom: 0; }
+  .placeholder {
+    color: var(--accent);
+    font-style: normal;
+  }
+  footer {
+    margin-top: 96px;
+    padding-top: 24px;
+    border-top: 1px solid var(--accent);
+  }
+  footer p {
+    font-size: 13px;
+    color: var(--accent);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <div class="doc-label">要件概要</div>
+  <h1>経費精算、自動で締まる。</h1>
+  <p class="lead">経理担当者が月末に繰り返す手作業の集計・仕訳入力を止める。スプレッドシートひとつで月次を即完了させる小さな社内ツールの仕様メモ。</p>
+</header>
+
+<section>
+  <h2>目的</h2>
+  <!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+  <p>月末の経費精算で経理担当者が行っている「科目ごとの集計」と「仕訳データの作成」を自動化する。申請者側の入力ではなく、処理側の負担を減らす。</p>
+</section>
+
+<section>
+  <!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+  <h2>対象ユーザー</h2>
+  <p>〈会社名〉の経理担当者。各部署から上がってくる経費精算データを受け取り、科目ごとに集計した上で仕訳を起こすまでの一連を毎月担当する人。</p>
+</section>
+
+<section>
+  <!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+  <h2>主要機能</h2>
+  <ul>
+    <li>部署別に入力された経費明細を取り込み、科目ごとに自動で合計する。</li>
+    <li>勘定科目のマッピングを内蔵し、集計結果から仕訳データを生成する。</li>
+    <li>月次で締め切り日を設定し、期日を過ぎたら自動で集計を確定させる。</li>
+    <li>集計結果を科目別サマリーと仕訳 CSV として出力する。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>画面イメージ</h2>
+  <div class="screen-desc">
+    <p>シートは単票ではなく、ひとつのブックに三枚のタブを持つ。</p>
+    <p>一枚目は「入力」タブ。A列に日付、B列に部署、C列に勘定科目、D列に金額が並ぶ。経理担当者はここに各部署から受け取った明細を行で追記していくだけでよい。</p>
+    <p>二枚目は「集計」タブ。入力タブの内容が自動で読み込まれ、科目ごと・部署ごとに合計が表示される。月末になればこの画面上部の「締める」ボタンを押すだけで集計が確定する。</p>
+    <p>三枚目は「出力」タブ。確定された集計結果が会計システムに読み込ませる仕訳形式の表として展開される。ここから CSV をダウンロードすれば、経理担当者の月次作業は完了する。</p>
+  </div>
+</section>
+
+<section>
+  <!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+  <h2>使わないと決めたもの</h2>
+  <ul>
+    <li>既存の会計システム・勤怠システムとの直接接続。このツールは他システムと連携せず、CSV 出力で完結させる。</li>
+    <li>申請者用の入力画面。セルへの直接入力のみとし、専用フォームは作らない。</li>
+    <li>承認ワークフロー。本ツールの対象は経理側の集計・仕訳処理のみとし、申請承認は既存の経路をそのまま残す。</li>
+  </ul>
+</section>
+
+<footer>
+  <p>〈確認: 現行の経費精算フローと帳票フォーマット〉〈確認: 対象社員数と利用部署の範囲〉の把握後に詳細設計へ進む。</p>
+</footer>
+
+</div>
+</body>
+</html>

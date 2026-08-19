@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同窓会のお知らせ</title>
+<style>
+  /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+  /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+  :root{
+    --bg:#fff4d6;
+    --ink:#2e2e2e;
+    --accent:#ff7a1a;
+    /* タイプスケール: 本文16px基準、見出しは1.5倍(24px) */
+    --fs-body:16px;
+    --fs-head:24px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Hiragino Maru Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+    line-height:1.9;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:48px 32px 64px;
+  }
+  h1{
+    font-size:var(--fs-head);
+    font-weight:700;
+    letter-spacing:0.05em;
+    color:var(--accent);
+    margin-bottom:24px;
+  }
+  h2{
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    color:var(--accent);
+    margin:32px 0 8px;
+  }
+  p{font-size:var(--fs-body);margin-bottom:16px;}
+  .box{
+    background:#ffffff;
+    border-radius:16px;
+    padding:24px;
+    margin-bottom:16px;
+  }
+  .box p{margin-bottom:8px;}
+  .label{font-weight:700;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+  <h1>みんな、元気にしてる?</h1>
+  <p>卒業してからもうずいぶん経つけど、あの頃サークルで一緒にバカやってた仲間、また集まらない? 何年ぶりの人も、全然連絡取ってなかった人も、大歓迎。まずは顔を見せに来てよ。</p>
+
+  <h2>日時・場所</h2>
+  <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+  <div class="box">
+    <p><span class="label">日時:</span>〈開催日時〉</p>
+    <p><span class="label">場所:</span>〈会場〉(対面で集まります)</p>
+    <p><span class="label">会費:</span>〈会費〉</p>
+  </div>
+
+  <h2>どんな会にする?</h2>
+  <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+  <p>堅苦しい挨拶も名刺交換もなし。あの頃のノリで飲んで食べて、昔話に花を咲かせるだけの会です。「久しぶりすぎて、今さら顔出しづらい…」って気持ち、めっちゃ分かる。でも大丈夫、会えば五分であの頃に戻れるから。ノリだけ持って来て。</p>
+
+  <h2>出欠の連絡</h2>
+  <p>参加できる人は〈締切日〉までに、〈幹事名〉(〈連絡先〉)までひとこと連絡ください。迷ってる人も「まだ分かんないけど行きたい」でOK。当日の予定が立てやすいように、早めに教えてもらえると助かります。</p>
+
+  <p>みんなに会えるの、ほんと楽しみにしてます。会場で待ってるよ!</p>
+
+</div>
+</body>
+</html>

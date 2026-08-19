@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>同窓会の案内</title>
+  <style>
+    /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 */
+    /* GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 */
+    /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ */
+    /* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+    /* GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり */
+
+    :root {
+      /* パレット: decisions の visual_tokens から最頻出の3色を抽出。
+         各判断の visual_tokens.palette を横断し、出現頻度の高い色を採用:
+         #fff4d6 (地色 / 3回出現), #ff7a1a (主要色 / 2回出現), #2e2e2e (強調色 / 2回出現)
+         決定「文面のトーン = くだけたノリ」のパレットを基調とする */
+      --bg: #fff4d6;
+      --primary: #ff7a1a;
+      --accent: #2e2e2e;
+      /* タイプスケール: 本文 16px を基準に 1.25 倍のメジャーセカンド */
+      --text-base: 16px;
+      --text-scale-ratio: 1.25;
+      --text-sm: calc(var(--text-base) / var(--text-scale-ratio)); /* ~12.8px */
+      --text-body: var(--text-base);
+      --text-h3: calc(var(--text-base) * var(--text-scale-ratio)); /* 20px */
+      --text-h2: calc(var(--text-h3) * var(--text-scale-ratio)); /* 25px */
+      --text-h1: calc(var(--text-h2) * var(--text-scale-ratio)); /* ~31.25px */
+      /* 余白: 8px グリッド */
+      --space-8: 8px;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-96: 96px;
+      /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ → heading_font: rounded */
+      /* GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 → heading_font: sans */
+      /* 二つの判断で heading_font に異なる指定があるが、直近かつ文面全体のトーンを決定づける
+         「文面のトーン = くだけたノリ」の rounded を優先する */
+      --heading-font: 'Rounded Mplus 1c', 'Yu Gothic UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      --body-font: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', 'Meiryo', sans-serif;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: var(--body-font);
+      font-size: var(--text-body);
+      line-height: 1.75;
+      color: var(--accent);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--space-48) var(--space-24);
+      /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ → density: airy → 行間・余白大きめ */
+      /* 余白はゆったり取るが、dense 指定は無いため通常の airy */
+    }
+    /* GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 → corner: soft */
+    /* GYAKUMON-CHOICE: 文面のトーン = くだけたノリ → corner: soft */
+    /* 全体に角丸を適用し、柔らかい印象に */
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: var(--space-48) var(--space-32);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    /* 冒頭: くだけたノリのキャッチコピー */
+    .hero {
+      margin-bottom: var(--space-48);
+      text-align: left;
+    }
+    .hero__catch {
+      font-family: var(--heading-font);
+      font-size: var(--text-h1);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      color: var(--primary);
+      margin-bottom: var(--space-16);
+    }
+    .hero__sub {
+      font-size: var(--text-body);
+      color: var(--accent);
+      opacity: 0.75;
+      line-height: 1.6;
+    }
+    /* セクション */
+    .section {
+      margin-bottom: var(--space-48);
+    }
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    .section__title {
+      font-family: var(--heading-font);
+      font-size: var(--text-h2);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      color: var(--primary);
+      margin-bottom: var(--space-16);
+      position: relative;
+      padding-left: var(--space-16);
+    }
+    .section__title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.1em;
+      width: 4px;
+      height: 1.1em;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    .section__body {
+      font-size: var(--text-body);
+      line-height: 1.75;
+      color: var(--accent);
+    }
+    .section__body p {
+      margin-bottom: var(--space-16);
+    }
+    .section__body p:last-child {
+      margin-bottom: 0;
+    }
+    /* 概要リスト */
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .info-list li {
+      display: flex;
+      align-items: baseline;
+      padding: var(--space-8) 0;
+      border-bottom: 1px dashed rgba(46,46,46,0.12);
+    }
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+    .info-list__label {
+      flex: 0 0 80px;
+      font-weight: 700;
+      font-size: var(--text-sm);
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .info-list__value {
+      flex: 1;
+      font-size: var(--text-body);
+    }
+    /* CTA */
+    .cta-box {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: var(--space-24) var(--space-32);
+      text-align: center;
+      margin-top: var(--space-16);
+    }
+    .cta-box p {
+      font-size: var(--text-body);
+      margin-bottom: var(--space-8);
+    }
+    .cta-box .note {
+      font-size: var(--text-sm);
+      opacity: 0.7;
+    }
+    /* 締め */
+    .closing {
+      margin-top: var(--space-48);
+      text-align: right;
+    }
+    .closing p {
+      font-family: var(--heading-font);
+      font-size: var(--text-h3);
+      font-weight: 700;
+      color: var(--primary);
+    }
+    /* 装飾をひとつ削る: 影の強さを弱め、アイコンは不使用 */
+    /* 結果として無駄な装飾は無い */
+    @media (max-width: 540px) {
+      .wrapper {
+        padding: var(--space-24) var(--space-16);
+      }
+      .card {
+        padding: var(--space-32) var(--space-24);
+      }
+      .hero__catch {
+        font-size: calc(var(--text-h1) * 0.85);
+      }
+      .info-list li {
+        flex-direction: column;
+        padding: var(--space-12) 0;
+      }
+      .info-list__label {
+        flex: none;
+        margin-bottom: var(--space-4);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="card">
+    <!-- 冒頭: くだけたノリのキャッチ、サークル仲間を想起させる -->
+    <!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+    <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+    <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+    <div class="hero">
+      <div class="hero__catch">
+        サークルの部室、<br>また集まろう。
+      </div>
+      <div class="hero__sub">
+        十年ぶり？ それでも大丈夫。あの頃のノリで、一杯やろうぜ。
+      </div>
+    </div>
+
+    <!-- 開催概要 -->
+    <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+    <div class="section">
+      <h2 class="section__title">日時・場所</h2>
+      <div class="section__body">
+        <ul class="info-list">
+          <li>
+            <span class="info-list__label">日時</span>
+            <span class="info-list__value">〈開催日〉 19:00 開場 / 19:30 スタート</span>
+          </li>
+          <li>
+            <span class="info-list__label">場所</span>
+            <span class="info-list__value">〈会場名・住所〉</span>
+          </li>
+          <li>
+            <span class="info-list__label">会費</span>
+            <span class="info-list__value">〈金額〉円程度（当日集めます）</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- どんな会にしたいか / 疎遠さへの配慮を前面に -->
+    <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+    <div class="section">
+      <h2 class="section__title">どんな会にしたいか</h2>
+      <div class="section__body">
+        <p>
+          久しぶりすぎて「覚えてるかな…」って思うよね。でも大丈夫。<br>
+          来た瞬間に、あの頃のノリが戻るようにしたい。話したい人とだけ話して、飲みたいだけ飲んで、帰りたくなったら帰る。そんなゆるい集まり。
+        </p>
+        <p>
+          あの日の部室みたいに、誰かがギター持ってくるかもしれないし、<br>
+          昔話に花が咲いて朝までコースになるかもしれない。何も計画はしない。来て、喋って、笑う。それだけで十分。
+        </p>
+        <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+        <p>
+          〈確認: 最後に会ったのは何年前だっけ？〉 そんな距離なんて、すぐに縮まる。
+        </p>
+      </div>
+    </div>
+
+    <!-- 出欠の連絡方法 -->
+    <div class="section">
+      <h2 class="section__title">出欠の連絡</h2>
+      <div class="section__body">
+        <div class="cta-box">
+          <p><strong>出欠期限：〈締切日〉</strong></p>
+          <p>
+            幹事〈幹事名〉まで、LINEまたはメールで「行く」「行けないけどまた誘って」を送ってください。
+          </p>
+          <p class="note">
+            連絡先が分からない人は、〈確認: 連絡先の伝達方法〉を見てね。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 締め -->
+    <div class="closing">
+      <p>また会おう。</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

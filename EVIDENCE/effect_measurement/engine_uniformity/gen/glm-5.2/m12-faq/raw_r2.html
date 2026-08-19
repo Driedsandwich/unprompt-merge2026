@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>返品についてのよくある質問 | 〈ショップ名〉サポート</title>
+<style>
+  :root {
+    /* タイプスケール: 本文16px基準 */
+    --fs-body: 16px;
+    --fs-lead: 18px;
+    --fs-h1: 40px;
+    --fs-h2: 22px;
+    --fs-q: 17px;
+    --fs-label: 12px;
+    /* 基調色: 深い緑 / アクセント: 生成り */
+    --ink: #1f3d36;
+    --ink-soft: #2e554b;
+    --paper: #f4f0e8;
+    --paper-card: #ffffff;
+    --line: #d9d2c4;
+    --muted: #6b6357;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.75;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ヘッダー帯 */
+  .topbar {
+    background: var(--ink);
+    padding: 12px 0;
+  }
+  .topbar-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .topbar-logo {
+    color: var(--paper);
+    font-size: var(--fs-label);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ヒーロー — 冒頭で主張 */
+  .hero {
+    padding: 96px 0 64px;
+  }
+  .hero h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--fs-h1);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .hero p {
+    font-size: var(--fs-lead);
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  /* セクション見出し */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .section-head h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .section-head span {
+    font-size: var(--fs-label);
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* FAQ リスト */
+  .faq-list {
+    margin-bottom: 96px;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-item:first-child {
+    border-top: 1px solid var(--line);
+  }
+  details {
+    padding: 32px 0;
+  }
+  summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary .num {
+    flex-shrink: 0;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--fs-label);
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+    padding-top: 4px;
+    min-width: 24px;
+  }
+  summary .q-text {
+    font-size: var(--fs-q);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.6;
+    flex: 1;
+  }
+  summary .toggle {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    margin-top: 2px;
+  }
+  summary .toggle::before,
+  summary .toggle::after {
+    content: "";
+    position: absolute;
+    background: var(--ink-soft);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  summary .toggle::before { width: 12px; height: 1.5px; }
+  summary .toggle::after { width: 1.5px; height: 12px; transition: transform 0.2s; }
+  details[open] summary .toggle::after { transform: translate(-50%, -50%) scaleY(0); }
+
+  .answer {
+    padding: 8px 0 0 44px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .answer p + p { margin-top: 12px; }
+
+  /* 連絡導線 */
+  .contact {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 40px;
+    margin-bottom: 96px;
+  }
+  .contact h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+  .contact p {
+    color: rgba(244,240,232,0.75);
+    margin-bottom: 32px;
+  }
+  .contact-btn {
+    display: inline-block;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 16px 32px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px 48px;
+    color: var(--muted);
+    font-size: var(--fs-label);
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="topbar-logo">〈ショップ名〉サポート</span>
+  </div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <h1>届いたものが、思いと違っていたら。<br>まずはこのページを。</h1>
+    <p>返品まわりでいただくご質問を、5つにまとめました。該当する項目をタップしてご確認ください。</p>
+  </section>
+
+  <section class="faq">
+    <div class="section-head">
+      <h2>よくある質問</h2>
+      <span>FAQ</span>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <details>
+          <summary>
+            <span class="num">01</span>
+            <span class="q-text">返品はどんな場合でもできますか？</span>
+            <span class="toggle"></span>
+          </summary>
+          <div class="answer">
+            <p>商品の不良・破損・お届け間違いの場合は返品をお受けします。お客様都合による返品につきましては、商品到着後〈日数〉日以内かつ未使用のものに限り承ります。詳しい条件は各商品の返品ポリシーをご確認ください。</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>
+            <span class="num">02</span>
+            <span class="q-text">返品の期限はいつまでですか？</span>
+            <span class="toggle"></span>
+          </summary>
+          <div class="answer">
+            <p>商品が到着してから〈日数〉日以内にお申し出ください。期限を過ぎてしまうとお受けできない場合がございますので、ご注意ください。</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>
+            <span class="num">03</span>
+            <span class="q-text">返送料は誰が負担しますか？</span>
+            <span class="toggle"></span>
+          </summary>
+          <div class="answer">
+            <p>不良・破損・お届け間違いに起因する返品は、当店にて返送料を負担いたします。お客様都合による返品の送料は、お客様ご負担となりますのでご了承ください。</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>
+            <span class="num">04</span>
+            <span class="q-text">返品の手続きはどう進めればよいですか？</span>
+            <span class="toggle"></span>
+          </summary>
+          <div class="answer">
+            <p>まずはページ末尾の窓口までお問い合わせください。ご注文番号と返品のご理由をお伝えいただきますと、折り返し返送先や手順をご案内いたします。商品がお手元にある状態でご連絡をお願いします。</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>
+            <span class="num">05</span>
+            <span class="q-text">返金はいつ、どのように行われますか？</span>
+            <span class="toggle"></span>
+          </summary>
+          <div class="answer">
+            <p>返送品の到着・確認後、〈日数〉日以内にご注文時の支払い方法へご返金いたします。クレジットカード決済の場合はカード会社の締め日によって反映時期がずれることがございます。</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>それでも解決しないとき</h2>
+    <p>該当しなかった・手続き中に不安があるなど、お気軽にご連絡ください。</p>
+    <a href="#" class="contact-btn">お問い合わせフォームへ</a>
+  </section>
+
+</main>
+
+<footer>
+  © 〈ショップ名〉 — Support
+</footer>
+
+</body>
+</html>

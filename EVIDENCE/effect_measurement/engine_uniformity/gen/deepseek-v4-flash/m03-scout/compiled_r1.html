@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スカウトメール</title>
+<style>
+  /* GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 */
+  /* GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 */
+  /* GYAKUMON-CHOICE: 文面のトーン = カジュアル */
+  /* GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 */
+  /* GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 */
+
+  :root {
+    --bg: #1a1a24;
+    --main: #5b4fe8;
+    --accent: #3dffc0;
+    --text-primary: #eaeaea;
+    --text-secondary: #b0b0b8;
+    --font-heading: 'Hiragino Maru Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+    --base-size: 16px;
+    --h2-size: 1.25rem;
+    --h3-size: 1.05rem;
+    --body-line-height: 1.8;
+    --spacing-unit: 8px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: var(--font-body);
+    font-size: var(--base-size);
+    line-height: var(--body-line-height);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    padding: 64px 16px;
+    min-height: 100vh;
+  }
+
+  .mail-wrapper {
+    max-width: 720px;
+    width: 100%;
+    background: #22222e;
+    border-radius: 0;
+    padding: 48px 56px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  /* 件名 */
+  .subject-line {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .subject-label {
+    display: inline-block;
+    background: var(--accent);
+    color: #1a1a24;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    margin-right: 10px;
+    vertical-align: middle;
+    border-radius: 2px;
+  }
+
+  /* 宛名 */
+  .greeting {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+  }
+
+  .greeting span {
+    color: var(--accent);
+  }
+
+  /* 段落 */
+  p {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+  }
+
+  .highlight-box {
+    background: rgba(93, 79, 232, 0.12);
+    border-left: 3px solid var(--main);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    border-radius: 0;
+  }
+
+  .highlight-box p {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #d4d0ff;
+  }
+
+  .highlight-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .accent-text {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* CTA */
+  .cta-block {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: left;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--main);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 12px 32px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+    margin-bottom: 16px;
+  }
+
+  .cta-button:hover {
+    background: #4b3fd6;
+  }
+
+  .cta-note {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* 署名 */
+  .signature {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .signature strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    .mail-wrapper {
+      padding: 32px 20px;
+    }
+
+    body {
+      padding: 32px 8px;
+    }
+
+    .highlight-box {
+      padding: 12px 16px;
+    }
+
+    .cta-button {
+      display: block;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="mail-wrapper">
+
+  <!-- 件名 -->
+  <!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+  <div class="subject-line">
+    <span class="subject-label">スカウト</span>
+    〈候補者名〉さんへ——コードを書く時間、裁量ごと任せたい話
+  </div>
+
+  <!-- 宛名 -->
+  <!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+  <div class="greeting">
+    〈候補者名〉さん<br>
+    こんにちは、<span>〈会社名〉</span>の採用担当です。
+  </div>
+
+  <!-- 本文 -->
+  <!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+  <!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+  <!-- GYAKUMON-CHOICE: 文面のトーン = カジュアル -->
+
+  <p>
+    あなたのGitHubのアウトプットや技術ブログを拝見し、「この人のコードの書き方、筋がいいな」と勝手にピンときて、直接ご連絡しました。
+  </p>
+
+  <p>
+    突然ですが、今の現場でこんなこと、感じたことはありませんか？
+  </p>
+
+  <div class="highlight-box">
+    <p>「もっと技術的に深い判断をしたいのに、上の承認待ちで止まってしまう」</p>
+    <p>「やっと慣れてきたけど、〈年数〉目になって〈確認: 現在の担当範囲と実際に裁量を持てている領域〉」</p>
+    <p>「次に挑戦したい技術スタックがあるけど、今のチームだと選べない」</p>
+  </div>
+
+  <p>
+    私たち〈会社名〉は、実務2〜5年目のエンジニアにこそ、<span class="accent-text">設計判断と実装のフルオーナーシップ</span>を持ってほしいと考えています。あなたが自分で「こうしたい」と思ったアーキテクチャを、そのままコードに落とせる——そんな環境です。
+  </p>
+
+  <p>
+    具体的には、〈確認: 募集ポジションの技術スタックと、任せたい最初のプロジェクト〉を想定しています。技術選定からスプリント計画まで、チームリーダーと対等に話せる裁量を、入社後すぐに渡します。
+  </p>
+
+  <p>
+    いわゆる「上長のゴーサイン待ち」の時間は、極力ゼロにしたい。その代わり、あなたの技術判断にはしっかり責任を持ってほしい——そんな、少し大人な関係を築きたいと思っています。
+  </p>
+
+  <!-- 結びと次の一歩 -->
+  <div class="cta-block">
+    <a href="#" class="cta-button">まずは30分、ざっくばらんに話しませんか？</a>
+    <div class="cta-note">
+      ※ カジュアル面談形式です。スーツ不要、経歴書もざっくりで大丈夫。<br>
+      面談日程調整用のフォームは〈確認: 実際のカレンダー予約リンク〉からどうぞ。
+    </div>
+  </div>
+
+  <!-- 署名 -->
+  <!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+  <div class="signature">
+    <strong>〈会社名〉 採用担当 〈採用担当者名〉</strong><br>
+    〈確認: 担当者のメールアドレス・電話番号〉<br>
+    〈確認: 会社の採用ページやカルチャーサイトのURL〉
+  </div>
+
+</div>
+</body>
+</html>
