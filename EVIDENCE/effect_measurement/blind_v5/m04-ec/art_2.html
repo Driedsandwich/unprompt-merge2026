@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈商品名〉のご案内</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客
+  GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求
+  GYAKUMON-CHOICE: 文体・トーン = フォーマル
+  GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ
+  GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感
+
+  タイプスケール(本文16pxを基準に1.333倍で階層化)
+  --step-0: 16px  本文
+  --step-1: 21px  リード
+  --step-2: 28px  小見出し
+  --step-3: 37px  キャッチコピー
+*/
+:root{
+  --step-0: 16px;
+  --step-1: 21px;
+  --step-2: 28px;
+  --step-3: 37px;
+  --bg: #f4f1ea;
+  --ink: #3a3226;
+  --accent: #8c6a3f;
+}
+*{ box-sizing: border-box; }
+html,body{
+  margin:0;
+  padding:0;
+  background: var(--bg);
+  color: var(--ink);
+}
+body{
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  line-height: 1.9;
+}
+.sheet{
+  width: 720px;
+  max-width: 92vw;
+  margin: 96px auto;
+  padding: 0 16px;
+}
+section + section{
+  margin-top: 96px;
+}
+.catch{
+  font-size: var(--step-3);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  margin: 0;
+  border-left: 2px solid var(--accent);
+  padding-left: 24px;
+}
+.lead{
+  font-size: var(--step-1);
+  font-weight: 400;
+  margin: 32px 0 0;
+  letter-spacing: 0.02em;
+}
+.feature h2{
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: var(--step-2);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0 0 24px;
+  color: var(--accent);
+}
+.feature p{
+  font-size: var(--step-0);
+  margin: 0;
+}
+.spec{
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 14px;
+  border-top: 1px solid var(--accent);
+  padding-top: 32px;
+}
+.spec dl{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  row-gap: 16px;
+  margin: 0;
+}
+.spec dt{ color: var(--accent); }
+.spec dd{ margin: 0; }
+.spec .note{
+  margin-top: 24px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+.closing{
+  font-size: var(--step-1);
+  text-align: right;
+  letter-spacing: 0.03em;
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<!-- GYAKUMON-CHOICE: 訴求の軸 = 感情・体験訴求 -->
+<section class="hero">
+  <p class="catch">〈商品名〉、箱を開けた瞬間から、暮らしが少し変わります。</p>
+  <!-- GYAKUMON-CHOICE: 読み手が誰か = 新規見込み客 -->
+  <!-- GYAKUMON-CHOICE: 文体・トーン = フォーマル -->
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 敬意ある距離感 -->
+  <p class="lead">はじめまして。日々の〈用途・シーン〉に寄り添うため、〈商品名〉をお届けいたします。初めて手に取られる方にこそ、その違いを感じていただきたい一品でございます。</p>
+</section>
+
+<section class="feature">
+  <h2>手にした瞬間の、確かな心地</h2>
+  <p>〈素材・仕立ての特徴〉が、指先から伝わってまいります。使うたびに整っていく感覚、その静かな高揚こそが〈商品名〉の魅力です。忙しい毎日のなかで、ふと心が落ち着く時間を、この一品がお届けいたします。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 掲載媒体・文章の長さ = ECサイト商品ページ -->
+<section class="spec">
+  <dl>
+    <dt>サイズ</dt><dd>〈サイズ〉</dd>
+    <dt>素材</dt><dd>〈素材〉</dd>
+    <dt>お手入れ</dt><dd>〈お手入れ方法〉</dd>
+    <dt>ご注意</dt><dd>〈使用上の注意〉</dd>
+  </dl>
+  <p class="note">※ 詳細な仕様は今後の情報更新により確定してまいります。ご不明点はお問い合わせくださいませ。</p>
+</section>
+
+<section>
+  <p class="closing">その手触りを、どうぞ一度お確かめください。</p>
+</section>
+
+</div>
+</body>
+</html>

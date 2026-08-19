@@ -1,0 +1,179 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談",
+     "why_not_derivable": "依頼文および手渡しJSONには面談時間の指定はなく、裁量・自由度訴求やカジュアルトーンから必然的に30分と決まるわけではないため、導出できない具体的事実である。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "〈会社名〉では、技術選定・設計・進め方の裁量をエンジニア本人に渡す働き方を大事にしていて、<strong>「やり方まで決められる」</strong> 環境を用意しています。",
+     "why_not_derivable": "依頼文と手渡しJSONには自社の事業内容や文化に関する情報は一切含まれておらず、この具体的な働き方の主張は導出できない。"
+    },
+    {
+     "fact": "オンラインで30分ほど",
+     "why_not_derivable": "依頼文や手渡しJSONには面談の時間に関する指示がなく、30分という具体的な数値は導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "日々の中で見過ごしていた小さな不便を、無理のないかたちで解消する一本です",
+     "why_not_derivable": "「一本」は長細い形状を暗示する具体的事実（数詞＋助数詞）だが、依頼文と手渡しJSONには商品の形状や種類に関する情報が一切なく、導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月も後半だというのに",
+     "why_not_derivable": "手渡しJSONのcompiled_atは2026-08-10であり、8月であることは導出できるが「後半」は導出できない（8月10日は後半ではない）。また依頼文や他の判断からも「後半」を導出する根拠はない。"
+    },
+    {
+     "fact": "冷たい麺類で乗り切ってます",
+     "why_not_derivable": "手渡しJSONのtone_sampleに「冷やし中華の話です」とあるが、これは文体の例示であり具体的な事実として要求されておらず、成果物の内容を拘束しない。依頼文にも他の資料にも「冷たい麺類」を話題にすべき指示はない。"
+    },
+    {
+     "fact": "日々の作業の中で「あ、これ地味に助かってるな」ということを取り上げてもらえたのが正直うれしかったです",
+     "why_not_derivable": "この引用は特集内容に関する具体的な談話であるが、手渡しJSONのmissing_materialsに「今月号の特集・話題」が含まれており、特集テーマは与えられていない。依頼文からも導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される",
+     "why_not_derivable": "手渡しJSONは実装形態を「Excel/スプレッドシート」と決定しており、スマホ撮影機能はそこから導出できない。"
+    },
+    {
+     "fact": "日常的に経費が発生する〈対象部署〉のメンバーと、その申請を確認する〈承認者役職〉",
+     "why_not_derivable": "手渡しJSONは想定利用者を「経理担当者向け」と決定しており、申請者と承認者を対象とすることは導出できない。"
+    },
+    {
+     "fact": "領収書を溜めて月末にまとめて入力する作業をなくす",
+     "why_not_derivable": "手渡しJSONは目的を「集計・経理処理の自動化」と決定しており、申請者の月末一括入力をなくすことは導出できない。"
+    },
+    {
+     "fact": "金額・日付・店舗名は撮影画像から自動で読み取り",
+     "why_not_derivable": "手渡しJSONに画像認識や自動読み取りの記述はなく、Excel/スプレッドシートという実装形態からも導出できない。"
+    },
+    {
+     "fact": "承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる",
+     "why_not_derivable": "手渡しJSONは承認フローの詳細を一切指定しておらず、この表示・操作方式は導出できない。"
+    },
+    {
+     "fact": "差し戻し理由は定型文から選ぶ形にし、文章を書かせない",
+     "why_not_derivable": "手渡しJSONに差し戻し方法の記述はなく、定型文選択方式は導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ }
+}

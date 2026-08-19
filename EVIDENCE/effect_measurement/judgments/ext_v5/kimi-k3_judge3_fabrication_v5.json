@@ -1,0 +1,156 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "事前準備は不要です。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも事前準備の要否に関する情報はなく、『気軽に参加歓迎』のトーン指定からもこの運営事実は直接導出できない。"
+    },
+    {
+     "fact": "途中参加・途中退室も自由です。",
+     "why_not_derivable": "途中参加・退室の可否という具体的な参加ルールは依頼文・参考資料のいずれにも記載がなく、トーンや訴求強度の決定事項からも導出できない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談から始めませんか",
+     "why_not_derivable": "依頼文にも手渡しJSONにも面談時間の指定はなく、「30分」という具体的な数値はどこからも導出できない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "オンラインで30分ほど、〈日程調整リンク〉から都合の良い時間を選んでください",
+     "why_not_derivable": "面談時間「30分」という具体的な所要時間は依頼文にも手渡しJSONにも記載がなく、導出できない数値"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月も後半だというのに相変わらず蒸し暑くて",
+     "why_not_derivable": "手渡しJSONのcompiled_atは2026-08-10(8月上旬)であり、「8月も後半」という時期の主張は依頼文・JSONのいずれからも導出できない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "「入社したときは〈職種〉の知識もほとんどなくて……誰かしら手を止めて教えてくれる」ほか3件の社員談話風引用",
+     "why_not_derivable": "依頼文・手渡しJSONにあるのは「社員の生の声中心」という構成方針とサンプル調だけで、実際の社員談話・入社時の不安・先輩が教えた等のエピソード素材は missing_materials にも挙げられており導出できない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "月次を止めていたのは入力ではなく、突合と締めの手作業だった。",
+     "why_not_derivable": "現行業務で月次締めが遅れている原因が突合・締めの手作業であるという現状事実の主張だが、依頼文にも手渡しJSONにも現行フローの記述はなく、むしろJSONのmissing_materialsに「現行の経費精算フロー・帳票フォーマット」が不足情報として挙げられている。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ }
+}

@@ -1,0 +1,189 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "途中参加・途中退室も自由です。",
+     "why_not_derivable": "「気軽に参加歓迎」は参加ハードルの低さを示すが、途中参加・途中退室が自由という具体的なイベント運営ルールは依頼文にもJSONにも記載がない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談",
+     "why_not_derivable": "依頼文および参考資料には面談の時間枠（30分）に関する記述がなく、直接導出できない数値（期間）であるため。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "オンラインで30分ほど",
+     "why_not_derivable": "面談時間として「30分」という具体的な期間（数値）が依頼文にも手渡しJSONにも記載されておらず導出できない"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "無理のないかたちで解消する一本です。",
+     "why_not_derivable": "商品の形状・形態が棒状や瓶状など「一本」と数えられるものであるという事実は、依頼文にもJSONにも記載がなく導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月も後半だというのに",
+     "why_not_derivable": "手渡しJSONのcompiled_atは「2026-08-10」であり、8月上旬に過ぎない。「後半」という時期の主張は導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "撮った瞬間に申請が終わっている状態を目指す",
+     "why_not_derivable": "JSONでは対象工程を「集計・経理処理の自動化」としており、申請入力の自動化については導出できない"
+    },
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される",
+     "why_not_derivable": "スマホ撮影機能についての記述がなく、JSONでは実装形態を「Excel/スプレッドシート」としている"
+    },
+    {
+     "fact": "金額・日付・店舗名は撮影画像から自動で読み取り",
+     "why_not_derivable": "画像からのOCR読み取り機能についての記述がなく、Excel/スプレッドシートという実装形態からも導出できない"
+    },
+    {
+     "fact": "承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる",
+     "why_not_derivable": "承認フローや承認者画面の仕様についての記述がなく、JSONの想定利用者は「経理担当者向け」である"
+    },
+    {
+     "fact": "差し戻し理由は定型文から選ぶ形にし、文章を書かせない",
+     "why_not_derivable": "差し戻し理由の定型文選択機能についての記述はない"
+    },
+    {
+     "fact": "スマホ撮影のみに絞り、二重の入力経路を作らない",
+     "why_not_derivable": "入力経路をスマホ撮影に限定する仕様は依頼文やJSONから導出できない"
+    },
+    {
+     "fact": "金額によらず承認者は一人とし、差し戻し理由の自由記述も持たせない",
+     "why_not_derivable": "承認者数や差し戻し理由の自由記述制限についての記述はない"
+    },
+    {
+     "fact": "集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "JSONでは「完全独立ツール」で「他システム接続なし」としているが、既存の会計システムに集計を任せるとしており矛盾する"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "取り扱いや発売時期は現時点で未定。",
+     "why_not_derivable": "依頼文やJSONには「新しいコーヒー豆ブランドの紹介ページ」を作成するという要件しかなく、発売時期や取り扱い状況が未定であるというビジネス上の事実は記載されていない。"
+    },
+    {
+     "fact": "まだ名前しかない、コーヒー豆ブランドの話。／これから豆を選び、焙煎の方針を決め、味の輪郭を描いていくところから始まる。",
+     "why_not_derivable": "ブランドの開発段階（名前しか決まっていない、豆の選定や焙煎方針がこれから決まる等）という具体的な事実は、依頼文の「新しいコーヒー豆ブランド」という記述からは導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ }
+}

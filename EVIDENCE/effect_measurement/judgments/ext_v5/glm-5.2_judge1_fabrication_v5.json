@@ -1,0 +1,175 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "オンラインで30分ほど",
+     "why_not_derivable": "面談の形式(オンライン)や所要時間(30分)は依頼文にも手渡しJSONにも指定がなく、導出できない具体的事実である。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "無理のないかたちで解消する一本です。",
+     "why_not_derivable": "商品の形状・種類は手渡しJSONにも依頼文にも指定がなく、「一本」という助詞で製品形状を限定する具体的事実は導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月も後半だというのに",
+     "why_not_derivable": "JSONのcompiled_atは2026-08-10だが、これはメタデータであり社内報の発行時期を示すものではない。仮に発行時期の根拠としたとしても、8月10日は「後半」とは言えない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "8月に入り",
+     "why_not_derivable": "手渡しJSONのcompiled_atは2026-08-10だが、これは生成日時であり社内報の発行月や執筆時期を示すものではない。依頼文にも月次社内報の何月号かの指定はない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される",
+     "why_not_derivable": "JSONは実装形態をExcel/スプレッドシートと確定しており、スマホ撮影やカード作成機能はどこにも存在しない。"
+    },
+    {
+     "fact": "金額・日付・店舗名は撮影画像から自動で読み取り、申請者は科目だけ選べばよい",
+     "why_not_derivable": "OCRによる画像読み取り機能は依頼文・JSONのいずれにも記載がなく、Excel/スプレッドシート前提とも矛盾する。"
+    },
+    {
+     "fact": "承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる",
+     "why_not_derivable": "承認フロー機能は依頼文・JSONに存在せず、JSONは対象工程を集計・経理処理の自動化（経理側）と確定している。"
+    },
+    {
+     "fact": "差し戻し理由は定型文から選ぶ形にし、文章を書かせない",
+     "why_not_derivable": "差し戻し機能自体がJSONに記載されていない。"
+    },
+    {
+     "fact": "集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "JSONは完全独立ツール（他システム接続なし）と明記しており、既存会計システムへの集計委譲は矛盾する。"
+    },
+    {
+     "fact": "PC向けの入力フォーム — スマホ撮影のみに絞り、二重の入力経路を作らない",
+     "why_not_derivable": "JSONはExcel/スプレッドシート実装を確定しており、スマホ撮影のみとする制約は導出できない。"
+    },
+    {
+     "fact": "金額によらず承認者は一人とし",
+     "why_not_derivable": "承認者を一人とする仕様は依頼文・JSONのいずれにも記載がない。"
+    },
+    {
+     "fact": "経費精算の負担は「入力」よりも「溜め込み」から生まれる",
+     "why_not_derivable": "JSONは対象工程を集計・経理処理の自動化（経理担当者側）と確定しており、申請者の溜め込み問題を起点とする主張は導出できない。"
+    }
+   ],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "zai-org/GLM-5.2-FP8"
+  }
+ }
+}

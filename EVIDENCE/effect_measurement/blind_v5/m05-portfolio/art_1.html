@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>〈氏名〉 | ポートフォリオ</title>
+<style>
+  /* ---- Type scale (base 16px, ratio 1.5) ----
+     12 / 16 / 24 / 36 / 54
+  */
+  :root{
+    --ink:#1c2b2a;
+    --ink-soft:#3c4e4c;
+    --paper:#eef0e8;
+    --accent:#c15a2e;
+    --line:rgba(28,43,42,0.18);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hiragino Sans","Yu Gothic","Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.8;
+  }
+  h1,h2,h3{
+    font-family:"Hiragino Mincho ProN","Yu Mincho","Times New Roman",serif;
+    font-weight:700;
+    margin:0;
+  }
+  section{
+    max-width:720px;
+    margin:0 auto;
+    padding:96px 24px;
+  }
+  section + section{border-top:1px solid var(--line);}
+
+  /* ---- Hero ---- */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:120px 24px 96px;
+  }
+  .hero-inner{max-width:720px;margin:0 auto;}
+  .hero .lead{
+    font-size:1.5rem;
+    letter-spacing:0.02em;
+    margin:0 0 40px;
+    max-width:20ch;
+  }
+  .hero h1{
+    font-size:3.375rem;
+    letter-spacing:0.04em;
+    line-height:1.25;
+    margin-bottom:16px;
+  }
+  .hero .role{
+    font-size:1rem;
+    color:var(--accent);
+    letter-spacing:0.12em;
+    font-weight:600;
+  }
+  .mark{
+    display:inline-block;
+    width:56px;height:8px;
+    background:var(--accent);
+    margin-bottom:32px;
+  }
+
+  h2{
+    font-size:1.5rem;
+    letter-spacing:0.06em;
+    color:var(--ink);
+    margin-bottom:40px;
+    position:relative;
+    padding-left:20px;
+  }
+  h2::before{
+    content:"";
+    position:absolute;left:0;top:0.35em;
+    width:8px;height:8px;
+    background:var(--accent);
+  }
+
+  .about p{margin:0 0 16px;max-width:56ch;}
+
+  .works{display:flex;flex-direction:column;gap:32px;}
+  .work{
+    border:1px solid var(--line);
+    padding:32px;
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:24px;
+    align-items:start;
+  }
+  .work .num{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:2.25rem;
+    color:var(--accent);
+    line-height:1;
+  }
+  .work h3{font-size:1.25rem;margin-bottom:8px;letter-spacing:0.02em;}
+  .work p{margin:0;color:var(--ink-soft);font-size:0.95rem;}
+
+  .skills{display:flex;flex-wrap:wrap;gap:12px;}
+  .skill{
+    padding:8px 16px;
+    border:1px solid var(--ink);
+    font-size:0.875rem;
+    letter-spacing:0.04em;
+  }
+  .skill.strong{
+    background:var(--ink);
+    color:var(--paper);
+  }
+
+  .contact{background:var(--ink);color:var(--paper);}
+  .contact h2{color:var(--paper);}
+  .contact h2::before{background:var(--accent);}
+  .contact ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;}
+  .contact li{font-size:1.05rem;}
+  .contact .label{
+    display:inline-block;
+    width:96px;
+    color:var(--accent);
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+    vertical-align:middle;
+  }
+  footer{
+    text-align:center;
+    padding:32px 24px;
+    font-size:0.75rem;
+    color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="mark"></span>
+    <div class="role">簡潔さは、削り切る意志である</div>
+    <h1>〈氏名〉</h1>
+    <p class="lead">〈肩書き〉として、要らないものを見極める仕事をしてきました。</p>
+  </div>
+</section>
+
+<section class="about">
+  <h2>自己紹介</h2>
+  <p>装飾を足すより、要素を削って輪郭を立たせることに関心があります。〈経験年数〉年ほど〈職種領域〉の実務に携わり、〈得意分野〉を軸に手を動かしてきました。</p>
+  <p>詳しい経歴や実績の数値は面談にてご説明します。ここでは、仕事に対する姿勢と代表的な取り組みだけを簡潔にまとめています。</p>
+</section>
+
+<section class="works">
+  <h2>作品</h2>
+  <div class="works">
+    <div class="work">
+      <div class="num">01</div>
+      <div>
+        <h3>〈作品タイトル1〉</h3>
+        <p>〈概要・使用技術・自分の役割を記載〉</p>
+      </div>
+    </div>
+    <div class="work">
+      <div class="num">02</div>
+      <div>
+        <h3>〈作品タイトル2〉</h3>
+        <p>〈概要・使用技術・自分の役割を記載〉</p>
+      </div>
+    </div>
+    <div class="work">
+      <div class="num">03</div>
+      <div>
+        <h3>〈作品タイトル3〉</h3>
+        <p>〈概要・使用技術・自分の役割を記載〉</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills-section">
+  <h2>スキル</h2>
+  <div class="skills">
+    <span class="skill strong">〈主要スキル1〉</span>
+    <span class="skill strong">〈主要スキル2〉</span>
+    <span class="skill">〈スキル3〉</span>
+    <span class="skill">〈スキル4〉</span>
+    <span class="skill">〈スキル5〉</span>
+    <span class="skill">〈スキル6〉</span>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>連絡先</h2>
+  <ul>
+    <li><span class="label">MAIL</span>〈メールアドレス〉</li>
+    <li><span class="label">TEL</span>〈電話番号〉</li>
+    <li><span class="label">LINK</span>〈LinkedIn / GitHub 等のURL〉</li>
+  </ul>
+</section>
+
+<footer>&copy; 〈氏名〉</footer>
+
+</body>
+</html>

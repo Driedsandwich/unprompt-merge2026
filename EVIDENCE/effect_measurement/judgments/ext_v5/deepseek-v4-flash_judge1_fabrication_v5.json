@@ -1,0 +1,210 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月も後半だというのに",
+     "why_not_derivable": "依頼文には月の指定がなく、手渡しJSONの決定事項にも月に関する記述はない。JSONのcompiled_atは生成日時であり、社内報の掲載月を特定する根拠にはならないため、8月という月を具体的に記述することは導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "「経費精算の負担は『入力』よりも『溜め込み』から生まれる」",
+     "why_not_derivable": "依頼文は「経費精算をラクにする小さなツールの仕様メモ」とだけ指示しており、負担の原因分析（溜め込み vs 入力）はどこにも書かれていない。手渡しJSONのdecisionsやvisual_tokensにもこの主張は含まれない。"
+    },
+    {
+     "fact": "「本ツールは申請者が領収書を受け取った直後に処理を終えられるようにし、月末の一括入力と差し戻し対応をなくすことを目的とする」",
+     "why_not_derivable": "依頼文・手渡しJSONのいずれにも「撮った瞬間に申請が終わる」や「月末の一括入力をなくす」といった目的や要件は記載されていない。仕様メモとしての目的設定は依頼文から自由だが、この具体的な目的記述は独自創作である。"
+    },
+    {
+     "fact": "「領収書をスマホで撮影するとその場で申請カードが1件作成される」",
+     "why_not_derivable": "手渡しJSONでは実装形態を「Excel/スプレッドシート」と決定しており、スマホ撮影機能や申請カードの作成はスプレッドシートの典型的な機能範囲を超える。依頼文にもスマホ撮影に関する記述はない。"
+    },
+    {
+     "fact": "「金額・日付・店舗名は撮影画像から自動で読み取り、申請者は科目だけ選べばよい」",
+     "why_not_derivable": "同様に、OCR機能や自動読み取りは手渡しJSONの「Excel/スプレッドシート」という実装形態と矛盾する。依頼文にも記載なし。"
+    },
+    {
+     "fact": "「承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる」",
+     "why_not_derivable": "依頼文や手渡しJSONには「承認者」や「承認フロー」に関する記述は一切なく、この具体的な承認処理の記述は導出できない。"
+    },
+    {
+     "fact": "「差し戻し理由は定型文から選ぶ形にし、文章を書かせない」",
+     "why_not_derivable": "同上。承認・差し戻しの具体的なUI仕様（定型文選択）はどこにも記載されていない。"
+    },
+    {
+     "fact": "「申請者側は、撮影ボタンひとつだけが大きく置かれた画面から始まる」",
+     "why_not_derivable": "画面イメージの具体的な記述（撮影ボタン一つだけの画面）は依頼文・手渡しJSONのいずれにも存在しない。"
+    },
+    {
+     "fact": "「承認者側は縦に積み上がるカードを上から順にさばく形とし、保留や後回しの状態は作らない」",
+     "why_not_derivable": "同上。承認者側のUIについての具体的な記述は一切ない。"
+    },
+    {
+     "fact": "「PC向けの入力フォーム — スマホ撮影のみに絞り、二重の入力経路を作らない」",
+     "why_not_derivable": "「使わないと決めたもの」としてPC向け入力を除外しているが、これはスマホ撮影機能を前提とした判断であり、そもそもスマホ撮影機能自体が依頼文・手渡しJSONから導出できない。"
+    },
+    {
+     "fact": "「承認フローの多段階化 — 金額によらず承認者は一人とし、差し戻し理由の自由記述も持たせない」",
+     "why_not_derivable": "承認フローの具体的な設計（承認者一人、差し戻し理由自由記述なし）はどこにも記載されていない。"
+    },
+    {
+     "fact": "「月次レポートやグラフ機能 — 集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う」",
+     "why_not_derivable": "手渡しJSONでは「完全独立ツール」「他システム接続なし」と決定されているのに、「集計は既存の会計システム側に任せ」るという外部連携を前提とした記述は矛盾する。依頼文にもこの記述はない。"
+    },
+    {
+     "fact": "「数値・対象部署・承認者役職などは発注内容に明記がないため〈プレースホルダ〉としている」",
+     "why_not_derivable": "このメタ記述自体は事実ではなく、成果物中のプレースホルダについての説明。しかし「発注内容に明記がない」という主張は、依頼文や手渡しJSONに「発注内容」という概念がないため導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "月次を止めていたのは入力ではなく、突合と締めの手作業だった。",
+     "why_not_derivable": "依頼文には現状の問題点に関する記述がなく、手渡しJSONの決定事項（集計・経理処理の自動化）からも、問題の原因が「入力ではなく突合と締めの手作業」であるという具体的な因果関係は導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "まだ名前しかない、コーヒー豆ブランドの話。",
+     "why_not_derivable": "依頼文には「新しいコーヒー豆ブランド」とあるが、ブランドが「名前しかない」状態であることは書かれておらず、JSONからも導出できない。"
+    },
+    {
+     "fact": "〈ブランド名〉は、これから豆を選び、焙煎の方針を決め、味の輪郭を描いていくところから始まる。",
+     "why_not_derivable": "依頼文とJSONにはブランドがこれから始まる段階であるという具体的な記述はない。"
+    },
+    {
+     "fact": "まだ多くを語れる段階にはない。決まっているのは、〈ブランド名〉という名前と、コーヒー豆を届けるという一点だけだ。",
+     "why_not_derivable": "ブランドの決定事項について、依頼文やJSONからは導出できない。"
+    },
+    {
+     "fact": "最初の一杯を、まだ誰も知らない。",
+     "why_not_derivable": "この表現はブランドの未認知状態を主張するが、依頼文やJSONにはない。"
+    },
+    {
+     "fact": "〈焙煎方針〉を検討中。浅煎りか深煎りか、これから固めていく。",
+     "why_not_derivable": "焙煎方針の検討状況や具体的な選択肢は依頼文やJSONに記載されていない。"
+    },
+    {
+     "fact": "〈選定基準〉は未定。誰が、どう選ぶかを含めて設計段階にある。",
+     "why_not_derivable": "選定基準の状況について依頼文やJSONからは何もわからない。"
+    },
+    {
+     "fact": "取り扱いや発売時期は現時点で未定。詳細が決まり次第、あらためてお知らせする。",
+     "why_not_derivable": "発売時期に関する情報は依頼文やJSONに一切ない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ }
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>経費精算 集計自動化シート 仕様メモ</title>
+<style>
+/* GYAKUMON-CHOICE: 仕様メモの詳細度・用途 = 要件概要レベル */
+/*
+  タイプスケール(本文16pxを基準に×1.25階調)
+  --step0: 16px 本文
+  --step1: 20px 小見出し
+  --step2: 28px 見出し
+  --step3: 34px 表題
+*/
+:root{
+  --bg:#1f2a24;
+  --mid:#2f6b4f;
+  --accent:#c9a24b;
+  --ink:#eef1ec;
+  --sub:#b9c4bc;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  padding:64px 24px;
+}
+main{
+  max-width:720px;
+  margin:0 auto;
+  background:#233329;
+  border:1px solid #33473b;
+}
+header{
+  padding:40px 40px 32px;
+  border-bottom:2px solid var(--accent);
+}
+.kicker{
+  font-size:13px;
+  letter-spacing:.14em;
+  color:var(--accent);
+  font-weight:700;
+  margin:0 0 12px;
+}
+h1{
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:-.01em;
+  margin:0;
+  color:var(--ink);
+}
+.lead{
+  margin:16px 0 0;
+  color:var(--sub);
+  font-size:16px;
+}
+section{
+  padding:32px 40px;
+  border-bottom:1px solid #33473b;
+}
+section:last-of-type{border-bottom:none;}
+h2{
+  font-size:15px;
+  letter-spacing:.08em;
+  color:var(--accent);
+  font-weight:700;
+  margin:0 0 12px;
+  text-transform:uppercase;
+}
+p{margin:0;color:var(--ink);}
+ul{margin:0;padding-left:20px;}
+li{margin:0 0 8px;color:var(--ink);}
+li:last-child{margin-bottom:0;}
+</style>
+</head>
+<body>
+<main>
+<header>
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<p class="kicker">経費精算ツール仕様メモ</p>
+<h1>経費、自動で締まる。</h1>
+<p class="lead">申請フォームは変えない。変えるのは、そこから先の集計と経理処理。月次を止めていたのは入力ではなく、突合と締めの手作業だった。</p>
+</header>
+
+<section>
+<h2>目的</h2>
+<!-- GYAKUMON-CHOICE: 「ラクにする」対象工程 = 集計・経理処理の自動化 -->
+<p>経費申請データを部門別・勘定科目別に自動集計し、経理担当者の月次締め作業(突合・仕訳準備)にかかる時間を短縮する。申請入力の手間削減は対象外とする。</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 想定利用者の層 = 経理担当者向け -->
+<h2>対象ユーザー</h2>
+<p>経理担当者。申請者本人は入力者としてのみ関与し、画面設計・操作性の検討基準にはしない。想定利用人数・部署範囲は〈未確定〉。</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 「小さなツール」の実装形態 = Excel/スプレッドシート -->
+<h2>主要機能</h2>
+<ul>
+<li>各行に日付・部門・勘定科目・金額・摘要を入力するだけの明細シート</li>
+<li>部門別・科目別の自動集計表(関数・ピボットで自動更新)</li>
+<li>月次締めチェック用の合計突合欄(〈会計システム〉側の合計と手入力で照合)</li>
+<li>締め後は行をロックし、修正履歴が分かるようにする</li>
+</ul>
+</section>
+
+<section>
+<h2>画面イメージ</h2>
+<p>1枚目のシートに明細を入力欄として並べ、2枚目のシートに部門・科目ごとの集計表を自動表示する。経理担当者はまず集計シートを開き、異常値だけ明細シートに戻って確認する、という順で使う想定。</p>
+</section>
+
+<section>
+<!-- GYAKUMON-CHOICE: 既存業務フローとの接続範囲 = 完全独立ツール -->
+<h2>使わないと決めたもの</h2>
+<p>〈会計システム〉や勤怠システムとの自動連携は持たない。このシート単体で完結させ、他システムへの接続・API連携は行わない。専用アプリの開発も行わない。</p>
+</section>
+</main>
+</body>
+</html>

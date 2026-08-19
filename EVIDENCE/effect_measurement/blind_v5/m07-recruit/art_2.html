@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用情報 | 〈会社名〉</title>
+<style>
+  /*
+    タイプスケール(基準16px, 比率 1.333):
+    --fs-0: 16px 本文 / --fs-1: 21px / --fs-2: 28px / --fs-3: 38px / --fs-4: 50px
+    書体: 見出し=Yu Mincho系(明朝) / 本文=Hiragino Sans系(ゴシック)
+    配色: 基調=墨(#1f2420系)+紙色(#eceae4)、アクセント=錆朱(#b5502e) 一色のみ
+  */
+  :root{
+    --ink:#22261f;
+    --paper:#eceae4;
+    --accent:#b5502e;
+    --fs-0:1rem; --fs-1:1.313rem; --fs-2:1.75rem; --fs-3:2.375rem; --fs-4:3.125rem;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hiragino Sans","Yu Gothic",sans-serif;
+    font-size:var(--fs-0);
+    line-height:1.9;
+  }
+  h1,h2,h3{
+    font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+    margin:0;
+    color:var(--ink);
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 32px;}
+
+  .hero{
+    padding:120px 0 96px;
+    border-bottom:1px solid var(--ink);
+  }
+  .hero .eyebrow{
+    font-size:.8rem;
+    letter-spacing:.28em;
+    color:var(--accent);
+    font-weight:600;
+  }
+  .hero h1{
+    font-size:var(--fs-4);
+    font-weight:600;
+    letter-spacing:.04em;
+    line-height:1.5;
+    margin-top:24px;
+  }
+  .hero p{
+    margin-top:32px;
+    font-size:var(--fs-1);
+    max-width:36em;
+    color:#4a4f43;
+  }
+
+  section{padding:96px 0;}
+  section + section{border-top:1px solid #cfccc0;}
+
+  .label{
+    font-size:.78rem;
+    letter-spacing:.24em;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  h2{
+    font-size:var(--fs-3);
+    font-weight:600;
+    letter-spacing:.03em;
+    margin-bottom:40px;
+  }
+
+  .intro p{margin:0 0 24px; max-width:38em;}
+  .intro p:last-child{margin-bottom:0;}
+
+  .voice{
+    padding:32px 0;
+    border-top:1px dashed #c3bfaf;
+  }
+  .voice:first-of-type{border-top:none;}
+  .voice .who{
+    font-size:.85rem;
+    letter-spacing:.08em;
+    color:var(--accent);
+    margin-bottom:12px;
+  }
+  .voice p{margin:0; font-size:var(--fs-1); max-width:38em;}
+
+  .values{list-style:none; margin:0; padding:0;}
+  .values li{
+    display:flex;
+    gap:24px;
+    padding:24px 0;
+    border-top:1px solid #cfccc0;
+  }
+  .values li:first-child{border-top:none;}
+  .values .num{
+    font-family:"Yu Mincho",serif;
+    font-size:var(--fs-2);
+    color:var(--accent);
+    flex:0 0 auto;
+    width:1.4em;
+  }
+  .values .body h3{
+    font-size:var(--fs-1);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .values .body p{margin:0; color:#4a4f43;}
+
+  .cta{
+    text-align:left;
+    padding-bottom:120px;
+  }
+  .cta p{max-width:36em; margin-bottom:40px; color:#4a4f43; font-size:var(--fs-1);}
+  .cta a{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--paper);
+    text-decoration:none;
+    font-size:var(--fs-1);
+    letter-spacing:.06em;
+    padding:20px 40px;
+  }
+  .cta .note{
+    margin-top:24px;
+    font-size:.85rem;
+    color:#7a7666;
+    max-width:36em;
+  }
+
+  footer{
+    padding:32px;
+    text-align:center;
+    font-size:.78rem;
+    color:#8a8676;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">RECRUIT — 〈会社名〉</div>
+    <h1>飾る言葉より、<br>続けてきた仕事で語りたい。</h1>
+    <p>〈会社名〉は、〈事業内容〉を〈創業年/年数〉続けてきた会社です。派手な看板は持っていません。代わりに、日々の仕事に手を抜かなかった時間があります。ここでは、その積み重ねをそのまま伝えます。</p>
+  </section>
+
+  <section class="intro">
+    <div class="label">ABOUT</div>
+    <h2>会社の紹介</h2>
+    <p>〈会社名〉が向き合っているのは〈事業内容/扱う商品・サービス〉です。〈拠点〉を拠点に、〈従業員数〉ほどの規模で、〈事業の特徴・強み〉を大切にしながら仕事をしています。</p>
+    <p>大きな会社ではありませんが、その分ひとりひとりの判断が仕事の質に直結します。〈会社の成り立ち・背景〉があって、今の私たちがあります。</p>
+  </section>
+
+  <section class="voices">
+    <div class="label">VOICE</div>
+    <h2>働く人の声</h2>
+    <div class="voice">
+      <div class="who">〈部署名〉 〈氏名/イニシャル〉</div>
+      <p>「〈仕事内容についての一言。日々の業務で感じていることを本人の言葉で〉」</p>
+    </div>
+    <div class="voice">
+      <div class="who">〈部署名〉 〈氏名/イニシャル〉</div>
+      <p>「〈入社の決め手や、働く中で見えてきたことなど〉」</p>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="label">VALUES</div>
+    <h2>大事にしていること</h2>
+    <ul class="values">
+      <li>
+        <div class="num">一</div>
+        <div class="body">
+          <h3>〈大事にしていること・その1〉</h3>
+          <p>〈具体的にどういう場面でそれを大事にしているか〉</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">二</div>
+        <div class="body">
+          <h3>〈大事にしていること・その2〉</h3>
+          <p>〈具体的にどういう場面でそれを大事にしているか〉</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">三</div>
+        <div class="body">
+          <h3>〈大事にしていること・その3〉</h3>
+          <p>〈具体的にどういう場面でそれを大事にしているか〉</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="cta">
+    <div class="label">ENTRY</div>
+    <h2>応募について</h2>
+    <p>ここまで読んでくださった方に、まず一度お話しできたらと思っています。募集職種や条件の詳細は下記からご確認ください。</p>
+    <a href="〈応募フォームURL〉">応募・お問い合わせはこちら</a>
+    <p class="note">募集職種・雇用形態・待遇などの詳細は〈募集要項ページ〉をご覧ください。ご不明点は〈連絡先〉までお気軽にどうぞ。</p>
+  </section>
+</div>
+
+<footer>&copy; 〈会社名〉</footer>
+
+</body>
+</html>

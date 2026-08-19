@@ -1,0 +1,159 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談",
+     "why_not_derivable": "依頼文及び手渡しJSONには面談の時間についての指示はなく、『30分』という具体的な数値は導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月も後半だというのに",
+     "why_not_derivable": "手渡しJSONのcompiled_atは2026-08-10（8月上旬）を示すが、本文は「8月も後半」と主張している。依頼文には月や時期の指定がなく、decision「近況・季節雑談」も特定の月や時期を決めていない。したがって「8月も後半」という具体的な時期は依頼文・JSONから導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "8月に入り",
+     "why_not_derivable": "依頼文には月の指定がなく、手渡しJSONのcompiled_atは資料作成日時であり社内報の発行月を特定するものではない。またdecisionsで「季節雑談」が選ばれているが具体的な月までは指定されていないため、「8月」という事実は導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "当初お伝えしていたお届け予定に間に合わず",
+     "why_not_derivable": "依頼文は「発送遅延のお詫びメール」とだけ指定しており、手渡しJSONにも「当初お伝えしていたお届け予定」の存在を裏付ける記述はない。発送遅延という一般概念から、顧客に事前に予定を伝えていたという具体的事実は直接導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される",
+     "why_not_derivable": "手渡しJSONでは実装形態をExcel/スプレッドシート、対象工程を集計・経理処理の自動化と決定しており、スマホ撮影による申請入力機能は想定されていない。依頼文にもそのような機能はない。"
+    },
+    {
+     "fact": "金額・日付・店舗名は撮影画像から自動で読み取り、申請者は科目だけ選べばよい",
+     "why_not_derivable": "OCRによる自動読み取りの詳細は手渡しJSONのいずれの決定からも導出できない。特に実装形態がExcel/スプレッドシートであることと両立しない。"
+    },
+    {
+     "fact": "承認者には申請が来た順に1件ずつ表示され、承認・差し戻しをその場で選べる。差し戻し理由は定型文から選ぶ形",
+     "why_not_derivable": "承認フローの具体的な表示順序や操作方式、定型文選択のUIは手渡しJSONに一切記載がなく、依頼文からも導出できない。"
+    },
+    {
+     "fact": "月次レポートやグラフ機能は使わず、集計は既存の会計システム側に任せ、本ツールは申請と承認だけを担う",
+     "why_not_derivable": "手渡しJSONでは対象工程を「集計・経理処理の自動化」と決定し、ツールが集計機能を持つことを意図しているが、成果物は集計を外部システムに委ねると主張しており、手渡しJSONから導出できない。"
+    }
+   ],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "deepseek-ai/DeepSeek-V4-Flash"
+  }
+ }
+}

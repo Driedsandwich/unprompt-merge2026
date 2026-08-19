@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>スカウトメール</title>
+<style>
+  /*
+    GYAKUMON-CHOICE: 文面のトーン = カジュアル
+    タイプスケール(基準16px, 比率1.25):
+    --fs-body: 16px / --fs-lead: 20px / --fs-h2: 25px / --fs-h1: 31px
+  */
+  :root{
+    --bg:#1a1a24;
+    --accent:#5b4fe8;
+    --spark:#3dffc0;
+    --ink:#eceaf5;
+    --sub:#a9a6c2;
+    --fs-body:16px;
+    --fs-lead:20px;
+    --fs-h2:25px;
+    --fs-h1:31px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Hiragino Maru Gothic ProN","Yu Gothic UI","BIZ UDPGothic",sans-serif;
+    font-size:var(--fs-body);
+    line-height:1.9;
+    padding:64px 16px;
+  }
+  .doc{
+    max-width:720px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:96px;
+  }
+  section{display:flex;flex-direction:column;gap:24px;}
+
+  .subject-block{
+    padding-bottom:48px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.12em;
+    color:var(--spark);
+    font-weight:700;
+    text-transform:uppercase;
+  }
+  h1.subject{
+    font-family:"Hiragino Maru Gothic ProN","Yu Gothic UI",sans-serif;
+    font-size:var(--fs-h1);
+    font-weight:800;
+    letter-spacing:0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+  .subject .hl{color:var(--spark);}
+
+  .greeting{
+    font-size:var(--fs-lead);
+    font-weight:700;
+    color:var(--ink);
+    margin:0;
+  }
+
+  .body p{
+    margin:0 0 24px 0;
+    color:var(--ink);
+  }
+  .body p:last-child{margin-bottom:0;}
+  .body strong{
+    color:var(--spark);
+    font-weight:700;
+  }
+
+  .closing{
+    background:rgba(91,79,232,0.12);
+    border:1px solid rgba(61,255,192,0.25);
+    border-radius:20px;
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .closing h2{
+    font-size:var(--fs-h2);
+    font-weight:800;
+    margin:0;
+    color:var(--ink);
+  }
+  .closing p{margin:0;color:var(--sub);}
+  .cta{
+    display:inline-block;
+    align-self:flex-start;
+    margin-top:8px;
+    padding:14px 28px;
+    background:var(--spark);
+    color:#0d0d14;
+    font-weight:800;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:var(--fs-body);
+  }
+
+  .sign{
+    font-size:14px;
+    color:var(--sub);
+    line-height:1.8;
+  }
+  .sign .name{
+    font-size:var(--fs-lead);
+    font-weight:700;
+    color:var(--ink);
+    display:block;
+    margin-bottom:8px;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- GYAKUMON-CHOICE: 送付チャネルの前提 = 直接メール送付 -->
+  <!-- GYAKUMON-CHOICE: 「刺さる」の訴求軸 = 裁量・自由度訴求 -->
+  <section class="subject-block">
+    <div class="eyebrow">個別スカウト / To 〈候補者名〉様</div>
+    <h1 class="subject">コード書く時間、<span class="hl">誰かに決められてませんか。</span></h1>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 読み手との温度感 = 親近感重視 -->
+  <section>
+    <p class="greeting">〈候補者名〉さん、はじめまして。</p>
+  </section>
+
+  <!-- GYAKUMON-CHOICE: 「若手エンジニア」の経験層 = 実務2〜5年 -->
+  <section class="body">
+    <p>
+      いきなりですが、率直に聞きたくて連絡しました。
+      今のチーム、技術選定は自分で決められていますか。実装の進め方、優先順位、働く時間や場所——そのあたり、誰かの承認待ちになっていませんか。
+    </p>
+    <p>
+      〈候補者名〉さんのプロフィールを拝見して、実務2〜5年目という今の時期は、
+      任せてもらえる裁量の広さで伸びしろがいちばん変わるタイミングだと思っています。
+      〈会社名〉では、技術選定・設計・進め方の裁量をエンジニア本人に渡す働き方を大事にしていて、
+      <strong>「やり方まで決められる」</strong> 環境を用意しています。
+    </p>
+    <p>
+      具体的な技術スタックや条件については、まず〈候補者名〉さんの興味やこれまでの経験を伺いながらすり合わせたいので、
+      この段階では詳細をお約束できません。ただ、指示待ちではなく自分の裁量でエンジニア人生を進めたい方には、話す価値があると思っています。
+    </p>
+  </section>
+
+  <section class="closing">
+    <h2>まずは、気軽に話しませんか</h2>
+    <p>選考のようなかしこまった場ではなく、〈候補者名〉さんの今の関心や、
+      裁量についてどう感じているかを聞かせてもらえたら嬉しいです。オンラインで30分ほど、〈日程調整リンク〉から都合の良い時間を選んでください。</p>
+    <a class="cta" href="#">〈日程調整リンク〉で話してみる</a>
+  </section>
+
+  <section class="sign">
+    <span class="name">〈担当者名〉</span>
+    〈会社名〉 採用担当<br>
+    Mail: 〈担当者メールアドレス〉<br>
+    このメールは〈候補者名〉さんへ個別にお送りしています。
+  </section>
+
+</div>
+</body>
+</html>

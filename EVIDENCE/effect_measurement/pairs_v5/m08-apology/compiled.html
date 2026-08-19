@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>発送遅延のお詫び</title>
+<style>
+  /*
+    タイプスケール(基準16px, 比率 約1.25):
+    --fs-body: 16px
+    --fs-lead: 20px
+    --fs-h1: 25px
+    行間は airy 密度に合わせ広め(1.9)。
+  */
+  :root {
+    --bg: #fff7f0;
+    --main: #e8825c;
+    --accent: #f2b79a;
+    --ink: #4a3a30;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #f1e4d8;
+    font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+  }
+
+  .sheet {
+    max-width: 720px;
+    margin: 64px auto;
+    background: var(--bg);
+    border-radius: 28px;
+    padding: 88px 72px;
+  }
+
+  /* GYAKUMON-CHOICE: 謝罪の宛先(誰への遅延か) = 個人客向け */
+  .kicker {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--main);
+    font-weight: 600;
+    margin: 0 0 16px;
+  }
+
+  h1 {
+    font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Rounded Mplus 1c", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin: 0 0 56px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .addressee {
+    font-size: 16px;
+    margin: 0 0 40px;
+  }
+
+  section {
+    margin: 0 0 48px;
+  }
+
+  section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  p {
+    font-size: 16px;
+    margin: 0 0 16px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .highlight-box {
+    background: var(--accent);
+    border-radius: 16px;
+    padding: 24px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .closing {
+    margin-top: 64px;
+    font-size: 16px;
+  }
+
+  .signoff {
+    margin-top: 32px;
+    color: #8a6f5c;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="kicker">SHIPPING UPDATE</p>
+  <h1>発送遅延のお詫び。お荷物、もう少しだけお待ちください。</h1>
+
+  <p class="addressee">〈お客様名〉様</p>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 遅延の原因説明の有無 = 原因に触れない -->
+    <p>いつも〈店舗名〉をご利用いただき、ありがとうございます。</p>
+    <p>ご注文いただいておりました〈商品名〉につきまして、発送が予定より遅れておりますことをお詫び申し上げます。楽しみにお待ちいただいていたところ、ご不便をおかけし申し訳ございません。</p>
+  </section>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 新たな発送時期の明示有無 = 目安のみ示す -->
+    <p class="highlight-box">発送は〈新しいお届け予定〉頃を見込んでおります。</p>
+    <p>状況に変化がございましたら、あらためてご連絡いたします。今しばらくお待ちいただけますと幸いです。</p>
+  </section>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 代替措置・補償の言及有無 = 謝罪のみで完結 -->
+    <p>この度はご迷惑をおかけしましたこと、重ねてお詫び申し上げます。ご不明な点がございましたら、いつでもお気軽にお問い合わせください。</p>
+  </section>
+
+  <p class="closing">〈お客様名〉様のお手元に無事お届けできる日を、私どもも心待ちにしております。今後ともどうぞよろしくお願いいたします。</p>
+
+  <p class="signoff">〈店舗名〉 カスタマーサポート</p>
+
+</div>
+</body>
+</html>

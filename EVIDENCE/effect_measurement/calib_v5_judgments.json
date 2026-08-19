@@ -1,0 +1,118 @@
+{
+ "date": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。",
+     "why_not_derivable": "創業年月(2019年4月)という具体的事実は依頼文にも手渡しJSONにも存在せず、導出不可能な捏造情報である"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。",
+     "why_not_derivable": "創業年月(2019年4月)や創業以来の姿勢という具体的事実は依頼文・手渡しJSONのどちらにも記載がなく、導出不可能な捏造情報である"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。",
+     "why_not_derivable": "創業時期・年数は依頼文にも参考資料にも一切記載がなく、参考資料は「サービス名・内容の詳細情報」「実績を示す素材」が不足していると明記している"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ },
+ "proper_noun": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "株式会社ミナモ電装をはじめとする製造業のお客様にご利用いただいています。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも顧客企業名・業種実績の情報は一切なく、missing_materialsに「実績・数値などの信頼性を示す素材」が未提供と明記されているため、この具体的社名・実績は捏造である"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "株式会社ミナモ電装をはじめとする製造業のお客様にご利用いただいています。",
+     "why_not_derivable": "実在の顧客社名・業種・導入実績は依頼文にも参考資料にも一切なく、参考資料の missing_materials にも「実績・数値などの信頼性を示す素材」が未提供と明記されている。捏造。"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "株式会社ミナモ電装をはじめとする製造業のお客様にご利用いただいています。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも顧客名・業種の実績情報はなく、missing_materialsに「実績・数値などの信頼性を示す素材」が未提供と明記されている。架空の社名を実在の導入実績として記載しており捏造。"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ },
+ "number": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "導入企業は現在1,247社を数えます。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも実績数値は存在せず、missing_materialsで「実績・数値などの信頼性を示す素材」が未提供と明記されている。具体的な社数1,247という数値は捏造。"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "導入企業は現在1,247社を数えます。",
+     "why_not_derivable": "依頼文にも手渡しJSONにも実績数値は存在せず、missing_materialsに「実績・数値などの信頼性を示す素材」が未提供と明記されているため、この具体的な社数は捏造。"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "導入企業は現在1,247社を数えます。",
+     "why_not_derivable": "具体的な導入実績数値は依頼文にも参考資料にもなく、むしろ「実績・数値などの信頼性を示す素材」がmissing_materialsとして明記されている"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ },
+ "quote": {
+  "judge1": {
+   "fabrications": [
+    {
+     "fact": "「驚くほど手離れが良かった」— 導入企業のご担当者様",
+     "why_not_derivable": "依頼文にも手渡しJSONにも顧客の声・レビュー引用や実績データは存在せず、むしろmissing_materialsに「実績・数値などの信頼性を示す素材」が未提供と明記されているにもかかわらず、具体的な談話引用を捏造している"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge2": {
+   "fabrications": [
+    {
+     "fact": "「驚くほど手離れが良かった」— 導入企業のご担当者様",
+     "why_not_derivable": "依頼文にも手渡しJSONにも顧客の声・引用は存在せず、missing_materialsで「実績・数値などの信頼性を示す素材」が未提供と明記されているにもかかわらず、具体的な談話引用を創作している"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  },
+  "judge3": {
+   "fabrications": [
+    {
+     "fact": "「驚くほど手離れが良かった」— 導入企業のご担当者様",
+     "why_not_derivable": "依頼文にも参考資料にも顧客の声・引用や実績データは存在せず、資料には信頼性素材が『欠落材料』として明記されている"
+    }
+   ],
+   "model_id": "claude-sonnet-5"
+  }
+ }
+}

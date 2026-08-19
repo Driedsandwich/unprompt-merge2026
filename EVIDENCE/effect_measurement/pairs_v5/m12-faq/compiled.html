@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>返品について|よくあるご質問</title>
+<style>
+/*
+  type scale (base 16px, ratio ~1.25)
+  --fs-body: 16px / --fs-lead: 18px / --fs-h3: 20px / --fs-h2: 26px / --fs-h1: 34px
+*/
+:root{
+  --bg:#f4f1ea;
+  --main:#2b4a45;
+  --accent:#c8a24a;
+  --fs-body:16px;
+  --fs-lead:18px;
+  --fs-h3:20px;
+  --fs-h2:26px;
+  --fs-h1:34px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--main);
+  font-family:"Hiragino Sans","Yu Gothic UI","Noto Sans JP",system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.75;
+}
+.wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px;}
+
+/* GYAKUMON-CHOICE: 探しやすさの実現方法 = カテゴリ分類型 */
+header{margin-bottom:56px;}
+h1{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:var(--fs-h1);
+  font-weight:700;
+  letter-spacing:0.04em;
+  margin:0 0 12px;
+  color:var(--main);
+}
+.lead{
+  font-size:var(--fs-lead);
+  color:#4a635d;
+  margin:0;
+}
+
+/* GYAKUMON-CHOICE: ページの読後の距離感 = 丁寧・寄り添い型 */
+.assure{
+  background:#fff;
+  border-left:4px solid var(--accent);
+  border-radius:4px 12px 12px 4px;
+  padding:20px 24px;
+  margin:32px 0 64px;
+  font-size:var(--fs-lead);
+}
+.assure strong{color:var(--accent);}
+
+section.category{margin-bottom:56px;}
+h2{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  font-size:var(--fs-h2);
+  font-weight:600;
+  letter-spacing:0.03em;
+  border-bottom:1px solid #d8d0c0;
+  padding-bottom:8px;
+  margin:0 0 24px;
+}
+
+/* GYAKUMON-CHOICE: 読者の状況 = 両方混在 */
+.qa{
+  background:#fff;
+  border-radius:4px;
+  padding:20px 24px;
+  margin-bottom:16px;
+}
+.qa .q{
+  font-size:var(--fs-h3);
+  font-weight:700;
+  margin:0 0 8px;
+  display:flex;
+  gap:8px;
+}
+.qa .q::before{content:"Q";color:var(--accent);}
+.qa .a{
+  margin:0;
+  padding-left:24px;
+  border-left:2px solid #e3ddc9;
+}
+
+/* GYAKUMON-CHOICE: 安心感の演出方法 = 透明性・条件明示 */
+.terms{
+  list-style:none;
+  margin:12px 0 0;
+  padding:0;
+  padding-left:24px;
+}
+.terms li{margin-bottom:6px;}
+.terms li::before{content:"・";color:var(--accent);margin-right:4px;}
+
+/* GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 */
+.contact{
+  margin-top:64px;
+  background:var(--main);
+  color:var(--bg);
+  border-radius:12px;
+  padding:32px 28px;
+}
+.contact h2{
+  color:var(--bg);
+  border-bottom:1px solid rgba(244,241,234,0.3);
+}
+.contact p{margin:0 0 16px;}
+.contact a{
+  display:inline-block;
+  background:var(--accent);
+  color:var(--main);
+  font-weight:700;
+  text-decoration:none;
+  padding:12px 20px;
+  border-radius:8px;
+}
+.contact .sub{font-size:14px;opacity:0.8;margin-top:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1>返品についてのよくあるご質問</h1>
+<p class="lead">返品できるか迷っている方も、すでにお手続き中の方も、こちらで順にご確認いただけます。</p>
+</header>
+
+<div class="assure">
+<strong>ご案内</strong>：対象となる条件・期限・送料負担は、あいまいにせず下記に明記しています。わかりにくい点があれば、いつでもお問い合わせください。
+</div>
+
+<section class="category">
+<h2>返品できるかどうか知りたい方へ</h2>
+
+<div class="qa">
+<p class="q">どんな商品でも返品できますか?</p>
+<p class="a">対象となるのは〈返品対象条件〉を満たす商品です。〈対象外となる商品カテゴリ〉は返品をお受けできません。詳しくは商品ページの表示もあわせてご確認ください。</p>
+</div>
+
+<div class="qa">
+<p class="q">返品の期限はいつまでですか?</p>
+<p class="a">商品到着日から〈返品受付期限〉以内にご連絡ください。期限を過ぎたご相談は、状況により個別対応となる場合があります。</p>
+</div>
+
+<div class="qa">
+<p class="q">返送の送料は誰が負担しますか?</p>
+<ul class="terms">
+<li>不良品・誤配送の場合：〈ショップ名〉負担</li>
+<li>お客様都合の場合：お客様負担（〈送料負担額の目安〉）</li>
+</ul>
+</div>
+
+</section>
+
+<section class="category">
+<h2>すでに手続き中の方へ</h2>
+
+<div class="qa">
+<p class="q">返品を申し込んだあと、どのくらいで返金されますか?</p>
+<p class="a">商品到着・検品確認後、〈返金までの日数目安〉を目安にご登録のお支払い方法へご返金します。ご状況は〈マイページ等の確認手段〉からもご確認いただけます。</p>
+</div>
+
+<div class="qa">
+<p class="q">返品の手続きはどこから進められますか?</p>
+<p class="a">〈返品手続きページのリンク先〉より、ご注文番号とご返品理由を入力してお申し込みください。手続き完了後、確認のご連絡をお送りします。</p>
+</div>
+
+</section>
+
+<section class="contact">
+<!-- GYAKUMON-CHOICE: 問い合わせが多い理由への対応姿勢 = 問合せ導線も維持 -->
+<h2>ここまでで解決しなかった場合</h2>
+<p>個別の状況によってご案内が異なることもあります。無理に読み解こうとせず、お気軽にご連絡ください。</p>
+<a href="#">お問い合わせはこちら</a>
+<p class="sub">受付時間：〈対応時間〉／連絡先：〈電話番号またはメールアドレス〉</p>
+</section>
+
+</div>
+</body>
+</html>

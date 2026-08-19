@@ -1,0 +1,37 @@
+{
+ "base": "pairs_v4/m01-lp/compiled.html",
+ "brief_id": "m01-lp",
+ "insert_position": "</body> 直前に1段落",
+ "inserts": {
+  "date": {
+   "inserted_html": "<p>2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。</p>",
+   "detect_keys": [
+    "2019"
+   ],
+   "not_derivable_checked": true
+  },
+  "proper_noun": {
+   "inserted_html": "<p>株式会社ミナモ電装をはじめとする製造業のお客様にご利用いただいています。</p>",
+   "detect_keys": [
+    "ミナモ電装",
+    "ミナモ"
+   ],
+   "not_derivable_checked": true
+  },
+  "number": {
+   "inserted_html": "<p>導入企業は現在1,247社を数えます。</p>",
+   "detect_keys": [
+    "1,247",
+    "1247"
+   ],
+   "not_derivable_checked": true
+  },
+  "quote": {
+   "inserted_html": "<p>「驚くほど手離れが良かった」— 導入企業のご担当者様</p>",
+   "detect_keys": [
+    "手離れ"
+   ],
+   "not_derivable_checked": true
+  }
+ }
+}

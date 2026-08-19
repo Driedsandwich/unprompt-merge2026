@@ -1,0 +1,151 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "持ち帰れる一日を、秋にひとつ。",
+     "why_not_derivable": "「一日」という開催規模(終日のイベント)を示唆しているが、依頼文・手渡しJSONのどこにも開催期間・所要時間の情報はなく、missing_materialsにも開催日時が欠如していると明記されているため導出できない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "時間になったらふらっと会場（またはオンライン）にお越しください。",
+     "why_not_derivable": "開催場所・形式は手渡しJSONのmissing_materialsに「開催場所・形式」として明記されており未定の事項であるのに、オンライン参加が可能であるという形式を事実として断定している。依頼文にもJSONの他の部分にもオンライン開催を示す記述はない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "30分ほどのカジュアルな面談から始めませんか",
+     "why_not_derivable": "依頼文にも手渡しJSONにも面談時間の指定はなく、「30分」という具体的な数値はどこからも導出できない。JSONのトーンサンプルにも時間長の言及はない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "オンラインで30分ほど",
+     "why_not_derivable": "カジュアル面談の所要時間「30分」という具体的な数値は依頼文にも手渡しJSONにもなく、プレースホルダでもないため導出できない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月も後半だというのに相変わらず蒸し暑くて",
+     "why_not_derivable": "手渡しJSONの compiled_at は 2026-08-10 で8月上旬であり、「8月も後半」という時期の主張は依頼文・JSONのどこにもなく、むしろ参考資料の日付と矛盾する"
+    },
+    {
+     "fact": "現場としては、日々の作業の中で「あ、これ地味に助かってるな」ということを取り上げてもらえたのが正直うれしかったです",
+     "why_not_derivable": "特集テーマはプレースホルダ〈今月号の特集テーマ〉で未定のはずなのに、その特集の内容(日々の作業で役立つことを取り上げた特集である)を具体的に断定しており、依頼文・JSONから導出できない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈サービス名〉</title>
+<style>
+/* GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け */
+/* GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 */
+/* GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 */
+/* GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング */
+/* GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 */
+:root{
+  --bg:#0b0e11;
+  --panel:#1c2530;
+  --accent:#b08d57;
+  --ink:#e8e6e1;
+  --ink-dim:#9aa4ad;
+  --fs-body:16px;
+  --fs-lead:20px;
+  --fs-h3:24px;
+  --fs-h2:36px;
+  --fs-h1:56px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic",-apple-system,"Segoe UI",sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+}
+h1,h2,h3{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","Times New Roman",serif;
+  font-weight:600;
+  letter-spacing:0.04em;
+  color:var(--ink);
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+section{padding:112px 0;}
+
+.hero{padding:160px 0 128px;border-bottom:1px solid rgba(176,141,87,0.25);}
+.hero .eyebrow{color:var(--accent);font-size:14px;letter-spacing:0.3em;margin-bottom:24px;}
+.hero h1{font-size:var(--fs-h1);line-height:1.5;max-width:760px;}
+.hero p.lead{margin-top:32px;font-size:var(--fs-lead);color:var(--ink-dim);max-width:600px;}
+
+.value{border-bottom:1px solid rgba(176,141,87,0.15);}
+.value h2{font-size:var(--fs-h2);margin-bottom:32px;}
+.value p{font-size:var(--fs-lead);color:var(--ink-dim);max-width:680px;}
+
+.features{border-bottom:1px solid rgba(176,141,87,0.15);}
+.features h2{font-size:var(--fs-h2);margin-bottom:64px;text-align:center;}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.feature{background:var(--panel);padding:48px 32px;border-top:2px solid var(--accent);}
+.feature .num{font-family:serif;color:var(--accent);font-size:14px;letter-spacing:0.2em;margin-bottom:16px;}
+.feature h3{font-size:var(--fs-h3);margin-bottom:16px;}
+.feature p{color:var(--ink-dim);font-size:15px;}
+
+.flow{border-bottom:1px solid rgba(176,141,87,0.15);}
+.flow h2{font-size:var(--fs-h2);margin-bottom:64px;text-align:center;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;align-items:baseline;gap:32px;padding:32px 0;border-bottom:1px solid rgba(176,141,87,0.15);}
+.step:last-child{border-bottom:none;}
+.step .n{font-family:serif;font-size:32px;color:var(--accent);min-width:56px;}
+.step h3{font-size:var(--fs-h3);margin-bottom:8px;}
+.step p{color:var(--ink-dim);}
+
+.cta{text-align:center;padding:128px 0;}
+.cta h2{font-size:var(--fs-h2);margin-bottom:24px;}
+.cta p{color:var(--ink-dim);font-size:var(--fs-lead);margin-bottom:48px;}
+.btn{display:inline-block;background:var(--accent);color:var(--bg);padding:20px 56px;font-size:16px;letter-spacing:0.1em;text-decoration:none;font-weight:700;}
+
+footer{border-top:1px solid rgba(176,141,87,0.25);padding:48px 0;color:var(--ink-dim);font-size:13px;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">FOR CORPORATE DECISION MAKERS</div>
+    <!-- GYAKUMON-CHOICE: かっこよさと信頼感の比重 = 信頼感優先 -->
+    <h1>実績で語るサービス。<br>信頼は、静かに積み重ねる。</h1>
+    <p class="lead">貴社の意思決定を支える基盤として、〈サービス名〉は装飾ではなく設計そのもので信頼を示します。</p>
+  </div>
+</header>
+
+<!-- GYAKUMON-CHOICE: 誰に向けたLPか = 法人担当者向け -->
+<section class="value">
+  <div class="wrap">
+    <h2>意思決定者のための、静かな基盤。</h2>
+    <p>〈サービス名〉は、法人のご担当者が安心して選定・稟議・導入判断を進められるよう、過不足のない情報設計と端正な運用で応えます。派手さよりも、判断に耐える一貫性を大切にしています。</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 信頼感の演出方法 = デザインの端正さで訴求 -->
+<section class="features">
+  <div class="wrap">
+    <h2>〈サービス名〉が選ばれる理由</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="num">01</div>
+        <h3>一貫した品質基準</h3>
+        <p>〈特徴の詳細〉をご記入ください。導入から運用まで、同じ基準で対応します。</p>
+      </div>
+      <div class="feature">
+        <div class="num">02</div>
+        <h3>専任担当による伴走</h3>
+        <p>〈特徴の詳細〉をご記入ください。窓口を一本化し、貴社の状況に合わせて対応します。</p>
+      </div>
+      <div class="feature">
+        <div class="num">03</div>
+        <h3>透明性のある運用体制</h3>
+        <p>〈特徴の詳細〉をご記入ください。進捗や状況を随時ご確認いただけます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap">
+    <h2>ご利用の流れ</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01</div>
+        <div><h3>お問い合わせ</h3><p>フォームより貴社の課題・ご要望をお聞かせください。</p></div>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <div><h3>ご提案・お見積り</h3><p>担当者より、貴社に適した進め方をご提案いたします。</p></div>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <div><h3>ご契約・導入</h3><p>合意の上、導入を開始いたします。</p></div>
+      </div>
+      <div class="step">
+        <div class="n">04</div>
+        <div><h3>運用・サポート</h3><p>導入後も継続的にサポートいたします。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: LPの主目的 = 認知・ブランディング -->
+<section class="cta">
+  <div class="wrap">
+    <h2>〈サービス名〉について、詳しく知る。</h2>
+    <p>まずは資料にて、私たちの考え方をご覧ください。</p>
+    <a class="btn" href="#">資料を請求する</a>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 閲覧デバイスの前提 = PC優先 -->
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;">
+    <span>〈サービス名〉</span>
+    <span>&copy; 〈会社名〉</span>
+  </div>
+</footer>
+
+<p>2019年4月の創業以来、私たちは同じ姿勢で開発を続けています。</p>
+</body>
+</html>

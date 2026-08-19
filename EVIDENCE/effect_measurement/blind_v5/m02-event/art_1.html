@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>社内勉強会のご案内</title>
+<style>
+/*
+  Type scale (base 16px, ratio ~1.333)
+  --step0: 16px  本文
+  --step1: 21px  小見出し
+  --step2: 28px  セクション見出し
+  --step3: 37px  主見出し(控えめに使用)
+  --step4: 56px  ヒーロー
+*/
+:root{
+  --bg:#221d19;
+  --bg-soft:#2c261f;
+  --ink:#efe7da;
+  --ink-dim:#b8ac99;
+  --accent:#c9922f;
+  --line: rgba(239,231,218,0.14);
+  --serif: "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --gothic: "Hiragino Sans","Yu Gothic UI","Helvetica Neue",sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--gothic);
+  font-size:16px;
+  line-height:1.85;
+  letter-spacing:0.02em;
+}
+.page{
+  max-width:760px;
+  margin:0 auto;
+  padding:0 32px 128px;
+}
+
+/* ---- hero ---- */
+.hero{
+  padding:112px 0 88px;
+  border-bottom:1px solid var(--line);
+}
+.hero .eyebrow{
+  font-family:var(--gothic);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.32em;
+  color:var(--accent);
+  margin:0 0 24px;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:44px;
+  font-weight:700;
+  letter-spacing:0.06em;
+  line-height:1.5;
+  margin:0 0 20px;
+}
+.hero p.lead{
+  font-size:17px;
+  color:var(--ink-dim);
+  max-width:520px;
+  margin:0;
+}
+
+/* ---- section ---- */
+section{
+  padding:96px 0;
+  border-bottom:1px solid var(--line);
+}
+section:last-of-type{border-bottom:none;}
+.label{
+  font-family:var(--gothic);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.28em;
+  color:var(--accent);
+  margin:0 0 20px;
+}
+h2{
+  font-family:var(--serif);
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:0.04em;
+  margin:0 0 32px;
+}
+
+/* 日時・場所 */
+.info-grid{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  row-gap:20px;
+  column-gap:24px;
+}
+.info-grid dt{
+  color:var(--ink-dim);
+  font-size:14px;
+  padding-top:2px;
+}
+.info-grid dd{
+  margin:0;
+  font-size:17px;
+}
+
+/* 内容説明 */
+.desc p{
+  font-size:16px;
+  color:var(--ink-dim);
+  margin:0 0 16px;
+}
+.desc p:last-child{margin-bottom:0;}
+
+/* 見どころ */
+.points{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+}
+.points li{
+  display:flex;
+  gap:20px;
+  align-items:baseline;
+}
+.points .num{
+  font-family:var(--serif);
+  font-size:21px;
+  color:var(--accent);
+  flex:none;
+  width:32px;
+}
+.points .txt{
+  font-size:16px;
+}
+.points .txt b{
+  display:block;
+  font-size:17px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+/* 参加方法 */
+.howto{
+  background:var(--bg-soft);
+  padding:40px 32px;
+  border-radius:2px;
+}
+.howto p{
+  margin:0 0 12px;
+  font-size:16px;
+}
+.howto p:last-child{margin-bottom:0;}
+.howto .accent-tag{
+  display:inline-block;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  color:var(--bg);
+  background:var(--accent);
+  padding:4px 10px;
+  margin-bottom:16px;
+}
+
+footer{
+  padding-top:80px;
+  font-size:13px;
+  color:var(--ink-dim);
+  letter-spacing:0.08em;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <p class="eyebrow">AUTUMN STUDY SESSION</p>
+    <h1>持ち帰れる一日を、<br>秋にひとつ。</h1>
+    <p class="lead">今期の学びを共有し、明日の仕事にすぐ活かせる形で持ち帰ってもらうための社内勉強会です。</p>
+  </div>
+
+  <section>
+    <p class="label">日時・場所</p>
+    <h2>開催概要</h2>
+    <dl class="info-grid">
+      <dt>日時</dt><dd>〈開催日〉〈開始時刻〉〜〈終了時刻〉</dd>
+      <dt>会場</dt><dd>〈会場名〉</dd>
+      <dt>形式</dt><dd>〈対面 / オンライン / ハイブリッド〉</dd>
+      <dt>対象</dt><dd>〈対象部署・対象者〉</dd>
+    </dl>
+  </section>
+
+  <section class="desc">
+    <p class="label">内容の説明</p>
+    <h2>何を学ぶ会か</h2>
+    <p>〈テーマ〉について、実務での知見を持ち寄り共有する社内勉強会です。座学だけで終わらせず、当日の議論から得たものをそのまま業務に持ち帰れることを目指します。</p>
+    <p>詳しい構成やタイムテーブルは〈プログラム詳細〉としてあらためて案内します。</p>
+  </section>
+
+  <section>
+    <p class="label">見どころ</p>
+    <h2>今回のポイント</h2>
+    <ul class="points">
+      <li>
+        <span class="num">01</span>
+        <span class="txt"><b>〈見どころ1のタイトル〉</b>〈見どころ1の説明文をここに記載〉</span>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <span class="txt"><b>〈見どころ2のタイトル〉</b>〈見どころ2の説明文をここに記載〉</span>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <span class="txt"><b>〈見どころ3のタイトル〉</b>〈見どころ3の説明文をここに記載〉</span>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="label">参加方法</p>
+    <h2>申し込み</h2>
+    <div class="howto">
+      <span class="accent-tag">ENTRY</span>
+      <p>参加を希望する方は〈申込方法・申込フォームURL〉よりお申し込みください。</p>
+      <p>申込締切：〈締切日〉</p>
+      <p>ご不明点は〈問い合わせ先〉までご連絡ください。</p>
+    </div>
+  </section>
+
+  <footer>
+    主催：〈主催部署〉
+  </footer>
+
+</div>
+</body>
+</html>

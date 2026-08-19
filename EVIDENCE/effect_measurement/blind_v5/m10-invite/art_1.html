@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>同窓会のお知らせ</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間
+  GYAKUMON-CHOICE: 文面のトーン = くだけたノリ
+  palette: #1b2a4a / #3b5ba5 / #f2a93b, heading: sans, density: dense, corner: soft
+*/
+:root{
+  --bg:#1b2a4a;
+  --panel:#22345c;
+  --blue:#3b5ba5;
+  --accent:#f2a93b;
+  --ink:#eef1f8;
+  --sub:#b9c4de;
+
+  --fs-base:16px;
+  --scale:1.28;
+  --fs-lead: calc(var(--fs-base) * var(--scale) * var(--scale));
+  --fs-h1: calc(var(--fs-base) * var(--scale) * var(--scale) * var(--scale));
+  --fs-h2: calc(var(--fs-base) * var(--scale));
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background: var(--bg);
+  font-family: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", sans-serif;
+  color: var(--ink);
+  display:flex;
+  justify-content:center;
+  padding: 48px 16px;
+}
+
+.sheet{
+  width:720px;
+  max-width:100%;
+  background: var(--panel);
+  border-radius: 20px;
+  padding: 48px 40px;
+  border: 1px solid rgba(242,169,59,0.25);
+}
+
+/* GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 */
+h1{
+  font-family: "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-weight: 800;
+  font-size: var(--fs-h1);
+  letter-spacing: 0.02em;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.lead{
+  font-size: var(--fs-lead);
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+h2{
+  font-family: "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 0 0 12px;
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  border-radius: 2px;
+}
+
+section{
+  margin-top: 40px;
+}
+
+p{
+  font-size: var(--fs-base);
+  line-height: 1.9;
+  color: var(--sub);
+  margin: 0;
+}
+
+.info dl{
+  display:grid;
+  grid-template-columns: 88px 1fr;
+  row-gap: 8px;
+  column-gap: 12px;
+  margin:0;
+}
+.info dt{ color: var(--accent); font-weight:700; }
+.info dd{ margin:0; color: var(--ink); }
+
+/* GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり */
+.venue-note{
+  font-size: 14px;
+  color: var(--sub);
+  margin-top: 8px;
+}
+
+/* GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 */
+.reassure{
+  margin-top: 12px;
+  padding: 16px;
+  background: rgba(59,91,165,0.35);
+  border-radius: 12px;
+}
+
+.closing{
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(242,169,59,0.25);
+}
+
+.signature{
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--sub);
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- GYAKUMON-CHOICE: 想定読者=誰との同窓会か = サークル・部活仲間 -->
+  <!-- GYAKUMON-CHOICE: 呼びかけの範囲・久しぶり感の強さ = 十年以上ぶり想定 -->
+  <h1>あの部室、まだ覚えてる?</h1>
+  <p class="lead">十年ぶりのサークル同窓会、そろそろやりませんか。</p>
+
+  <section>
+    <!-- GYAKUMON-CHOICE: 文面のトーン = くだけたノリ -->
+    <p>連絡先も分からなくなってた人、久しぶりすぎて気まずい人、大歓迎です。あの頃のノリのまま、また集まりましょう。</p>
+  </section>
+
+  <section class="info">
+    <h2>開催概要</h2>
+    <dl>
+      <dt>日時</dt><dd>〈開催日〉</dd>
+      <dt>場所</dt><dd>〈会場〉</dd>
+    </dl>
+    <!-- GYAKUMON-CHOICE: 開催形式の前提(対面/オンライン) = 対面での集まり -->
+    <p class="venue-note">今回は現地集合・対面での開催です。顔を見て、あの頃みたいに話しましょう。</p>
+  </section>
+
+  <section>
+    <h2>どんな会にしたいか</h2>
+    <p>近況報告も、思い出話も、特にオチのない世間話も。真面目な進行は無しで、あの部活のノリで一杯やる、それだけの会にしたいです。</p>
+    <!-- GYAKUMON-CHOICE: 「気軽に来たくなる」の障壁対象 = 疎遠さへの配慮 -->
+    <div class="reassure">
+      <p>しばらく連絡を取っていなかった人も、遠慮はいりません。久しぶりでも、会えばきっとあの頃のまま話せます。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>出欠の連絡方法</h2>
+    <p>参加・不参加、迷い中でも構いません。〈幹事名〉まで、〈幹事の連絡先〉宛にひとことだけ送ってください。会費は〈会費〉を予定しています。</p>
+  </section>
+
+  <div class="closing">
+    <p>じゃあ、〈開催日〉に。待ってます。</p>
+    <p class="signature">幹事:〈幹事名〉</p>
+  </div>
+
+</div>
+</body>
+</html>

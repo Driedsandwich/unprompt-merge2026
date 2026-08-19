@@ -1,0 +1,501 @@
+{
+ "format": "unprompt.effect_tally.v5ext",
+ "models": {
+  "deepseek-v4-flash": {
+   "per_brief": {
+    "m01-lp": {
+     "rework_mean": {
+      "compiled": 2.0,
+      "raw": 0.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m02-event": {
+     "rework_mean": {
+      "compiled": 0.0,
+      "raw": 2.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m03-scout": {
+     "rework_mean": {
+      "compiled": 2.6666666666666665,
+      "raw": 1.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.6666666666666666,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "raw"
+    },
+    "m04-ec": {
+     "rework_mean": {
+      "compiled": 4.333333333333333,
+      "raw": 3.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.3333333333333333
+     },
+     "rework_winner": "raw"
+    },
+    "m05-portfolio": {
+     "rework_mean": {
+      "compiled": 2.0,
+      "raw": 2.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m06-news": {
+     "rework_mean": {
+      "compiled": 2.3333333333333335,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 1.6666666666666667,
+      "raw": 0.3333333333333333
+     },
+     "rework_winner": "compiled"
+    },
+    "m07-recruit": {
+     "rework_mean": {
+      "compiled": 4.0,
+      "raw": 2.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m08-apology": {
+     "rework_mean": {
+      "compiled": 3.6666666666666665,
+      "raw": 3.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.3333333333333333
+     },
+     "rework_winner": "raw"
+    },
+    "m09-spec": {
+     "rework_mean": {
+      "compiled": 4.666666666666667,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.3333333333333333,
+      "raw": 7.333333333333333
+     },
+     "rework_winner": "raw"
+    },
+    "m10-invite": {
+     "rework_mean": {
+      "compiled": 3.0,
+      "raw": 3.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "tie"
+    },
+    "m11-brand": {
+     "rework_mean": {
+      "compiled": 3.6666666666666665,
+      "raw": 3.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 2.3333333333333335
+     },
+     "rework_winner": "raw"
+    },
+    "m12-faq": {
+     "rework_mean": {
+      "compiled": 3.3333333333333335,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    }
+   },
+   "missing_slots": 0,
+   "summary": {
+    "rework_wins": {
+     "compiled": 4,
+     "raw": 7,
+     "tie": 1
+    },
+    "rework_mean_per_artifact": {
+     "compiled": 2.9722222222222223,
+     "raw": 2.611111111111111
+    },
+    "fabrication_total": {
+     "compiled": 8,
+     "raw": 34
+    }
+   },
+   "known_fab_overlap": {},
+   "concordance_vs_sonnet": {
+    "direction_rework_match": false,
+    "direction_fabrication_match": true,
+    "per_brief_winner_match": "8/12"
+   }
+  },
+  "glm-5.2": {
+   "per_brief": {
+    "m01-lp": {
+     "rework_mean": {
+      "compiled": 1.3333333333333333,
+      "raw": 1.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m02-event": {
+     "rework_mean": {
+      "compiled": 0.3333333333333333,
+      "raw": 2.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 0.3333333333333333,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m03-scout": {
+     "rework_mean": {
+      "compiled": 2.3333333333333335,
+      "raw": 2.0
+     },
+     "fabrication_mean": {
+      "compiled": 1.0,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "raw"
+    },
+    "m04-ec": {
+     "rework_mean": {
+      "compiled": 4.0,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "raw"
+    },
+    "m05-portfolio": {
+     "rework_mean": {
+      "compiled": 3.3333333333333335,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m06-news": {
+     "rework_mean": {
+      "compiled": 2.0,
+      "raw": 2.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.6666666666666666,
+      "raw": 0.3333333333333333
+     },
+     "rework_winner": "compiled"
+    },
+    "m07-recruit": {
+     "rework_mean": {
+      "compiled": 3.6666666666666665,
+      "raw": 3.0
+     },
+     "fabrication_mean": {
+      "compiled": 1.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m08-apology": {
+     "rework_mean": {
+      "compiled": 3.6666666666666665,
+      "raw": 4.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m09-spec": {
+     "rework_mean": {
+      "compiled": 4.333333333333333,
+      "raw": 4.333333333333333
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 7.666666666666667
+     },
+     "rework_winner": "tie"
+    },
+    "m10-invite": {
+     "rework_mean": {
+      "compiled": 3.6666666666666665,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "tie"
+    },
+    "m11-brand": {
+     "rework_mean": {
+      "compiled": 5.333333333333333,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.6666666666666666
+     },
+     "rework_winner": "raw"
+    },
+    "m12-faq": {
+     "rework_mean": {
+      "compiled": 2.3333333333333335,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    }
+   },
+   "missing_slots": 0,
+   "summary": {
+    "rework_wins": {
+     "compiled": 5,
+     "raw": 5,
+     "tie": 2
+    },
+    "rework_mean_per_artifact": {
+     "compiled": 3.0277777777777777,
+     "raw": 3.138888888888889
+    },
+    "fabrication_total": {
+     "compiled": 9,
+     "raw": 30
+    }
+   },
+   "known_fab_overlap": {},
+   "concordance_vs_sonnet": {
+    "direction_rework_match": true,
+    "direction_fabrication_match": true,
+    "per_brief_winner_match": "10/12"
+   }
+  },
+  "kimi-k3": {
+   "per_brief": {
+    "m01-lp": {
+     "rework_mean": {
+      "compiled": 3.6666666666666665,
+      "raw": 2.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m02-event": {
+     "rework_mean": {
+      "compiled": 1.6666666666666667,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 2.0,
+      "raw": 0.3333333333333333
+     },
+     "rework_winner": "compiled"
+    },
+    "m03-scout": {
+     "rework_mean": {
+      "compiled": 4.0,
+      "raw": 2.3333333333333335
+     },
+     "fabrication_mean": {
+      "compiled": 1.0,
+      "raw": 1.0
+     },
+     "rework_winner": "raw"
+    },
+    "m04-ec": {
+     "rework_mean": {
+      "compiled": 5.333333333333333,
+      "raw": 5.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m05-portfolio": {
+     "rework_mean": {
+      "compiled": 5.0,
+      "raw": 6.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m06-news": {
+     "rework_mean": {
+      "compiled": 3.0,
+      "raw": 5.0
+     },
+     "fabrication_mean": {
+      "compiled": 1.3333333333333333,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m07-recruit": {
+     "rework_mean": {
+      "compiled": 5.666666666666667,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.3333333333333333,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m08-apology": {
+     "rework_mean": {
+      "compiled": 4.333333333333333,
+      "raw": 5.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    },
+    "m09-spec": {
+     "rework_mean": {
+      "compiled": 5.333333333333333,
+      "raw": 5.666666666666667
+     },
+     "fabrication_mean": {
+      "compiled": 0.3333333333333333,
+      "raw": 1.3333333333333333
+     },
+     "rework_winner": "compiled"
+    },
+    "m10-invite": {
+     "rework_mean": {
+      "compiled": 4.0,
+      "raw": 3.6666666666666665
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m11-brand": {
+     "rework_mean": {
+      "compiled": 5.666666666666667,
+      "raw": 5.0
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "raw"
+    },
+    "m12-faq": {
+     "rework_mean": {
+      "compiled": 4.0,
+      "raw": 4.333333333333333
+     },
+     "fabrication_mean": {
+      "compiled": 0.0,
+      "raw": 0.0
+     },
+     "rework_winner": "compiled"
+    }
+   },
+   "missing_slots": 0,
+   "summary": {
+    "rework_wins": {
+     "compiled": 6,
+     "raw": 6,
+     "tie": 0
+    },
+    "rework_mean_per_artifact": {
+     "compiled": 4.305555555555555,
+     "raw": 4.277777777777778
+    },
+    "fabrication_total": {
+     "compiled": 15,
+     "raw": 8
+    }
+   },
+   "known_fab_overlap": {},
+   "concordance_vs_sonnet": {
+    "direction_rework_match": false,
+    "direction_fabrication_match": false,
+    "per_brief_winner_match": "10/12"
+   }
+  }
+ },
+ "costs": {
+  "per_model": {
+   "deepseek-v4-flash": {
+    "calls": 147,
+    "errors": 0,
+    "jpy": 19.44
+   },
+   "glm-5.2": {
+    "calls": 144,
+    "errors": 0,
+    "jpy": 160.42
+   },
+   "kimi-k3": {
+    "calls": 144,
+    "errors": 0,
+    "jpy": 332.03
+   }
+  },
+  "billed_calls": 435,
+  "errored_calls": 0,
+  "total_jpy": 511.88
+ }
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>巻頭あいさつ</title>
+<style>
+  /*
+    タイプスケール（基準16px、比率1.25）
+    --fs-base: 16px
+    --fs-lead: 20px
+    --fs-h1:   28px
+    見出し: rounded系（丸ゴシック）× 本文: sans（ゴシック）
+  */
+  :root {
+    --fs-base: 16px;
+    --fs-lead: 20px;
+    --fs-h1: 28px;
+    --bg: #fff6e8;
+    --main: #e8965a;
+    --accent: #c4472b;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #f2e4cf;
+    font-family: -apple-system, "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: #3a2c22;
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px;
+  }
+
+  /* GYAKUMON-CHOICE: 「堅すぎない」の具体的な温度感 = 親しみ雑談調 */
+  .sheet {
+    width: 720px;
+    max-width: 100%;
+    background: var(--bg);
+    border-radius: 24px;
+    padding: 64px 56px;
+  }
+
+  /* GYAKUMON-CHOICE: 書き手の立場 = 現場社員目線 */
+  .kicker {
+    font-family: "Rounded Mplus 1c", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+
+  h1 {
+    font-family: "Rounded Mplus 1c", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", sans-serif;
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #4a2f1e;
+    margin: 0 0 40px;
+    line-height: 1.4;
+  }
+
+  section {
+    margin-bottom: 32px;
+  }
+
+  section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  p {
+    font-size: var(--fs-base);
+    line-height: 1.9;
+    margin: 0;
+  }
+
+  .lead {
+    font-size: var(--fs-lead);
+    line-height: 1.8;
+    font-weight: 500;
+    color: #4a2f1e;
+  }
+
+  .topic-label {
+    display: inline-block;
+    font-family: "Rounded Mplus 1c", "Hiragino Maru Gothic ProN", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--main);
+    border-radius: 999px;
+    padding: 4px 14px;
+    margin-bottom: 12px;
+  }
+
+  .sign {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(196, 71, 43, 0.25);
+    font-size: 14px;
+    color: #6b5240;
+  }
+
+  .placeholder {
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="kicker">現場から、今月のひとこと</p>
+
+  <!-- GYAKUMON-CHOICE: 読み手との距離感 = 部署間温度差配慮 -->
+  <h1>各部署のみなさん、<br>今月もそれぞれのペースで<br>お疲れさまでした。</h1>
+
+  <!-- GYAKUMON-CHOICE: あいさつの主題・切り口 = 近況・季節雑談 -->
+  <section>
+    <p class="lead">おつかれさまです、〈執筆者名〉です。8月も後半だというのに相変わらず蒸し暑くて、最近は毎日のように冷たい麺類で乗り切ってます。忙しい部署もあれば、少し落ち着いている部署もあると思いますが、まずは一息どうぞ。</p>
+  </section>
+
+  <section>
+    <p class="topic-label">今月の話題</p>
+    <p>今号の特集は〈今月号の特集テーマ〉。現場としては、日々の作業の中で「あ、これ地味に助かってるな」ということを取り上げてもらえたのが正直うれしかったです。詳しくは本編で。まだの方はぜひ覗いてみてください。</p>
+  </section>
+
+  <section>
+    <p>暑さもまだしばらく続きそうですが、無理せずいきましょう。それでは、今月号もどうぞ気楽にお楽しみください。</p>
+  </section>
+
+  <p class="sign">〈会社名〉社内報　編集：〈発行者名〉</p>
+
+</div>
+</body>
+</html>

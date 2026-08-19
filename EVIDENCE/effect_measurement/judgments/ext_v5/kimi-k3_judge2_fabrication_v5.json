@@ -1,0 +1,167 @@
+{
+ "m01-lp": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m02-event": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "途中参加・途中退室も自由です",
+     "why_not_derivable": "参加・退室に関する運営方針は依頼文にもJSONにも記載がなく、「気軽に参加歓迎」というトーン指定からは具体的な運用ルールは直接導出できない"
+    },
+    {
+     "fact": "事前準備は不要です",
+     "why_not_derivable": "事前準備の要否という具体的な参加条件は依頼文・JSONのいずれにもなく、決定事項（トーンや訴求強度）からも導出できない"
+    },
+    {
+     "fact": "会場（またはオンライン）にお越しください",
+     "why_not_derivable": "JSONでは「開催場所・形式」がmissing_materialsに挙げられ未決定であり、オンライン開催の可能性という具体的事実は導出できない（プレースホルダではなく断定表現）"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m03-scout": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "ご興味があれば、30分ほどのカジュアルな面談から始めませんか。",
+     "why_not_derivable": "面談時間「30分」という具体的な数値は依頼文にも手渡しJSONにも存在せず、そこから導出もできない。JSONには面談の提案自体の指定もない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [
+    {
+     "fact": "オンラインで30分ほど、〈日程調整リンク〉から都合の良い時間を選んでください。",
+     "why_not_derivable": "面談時間が「30分」という具体的な数値は依頼文にも手渡しJSONにも記載がなく、決定事項 (実務2〜5年・裁量訴求・カジュアル・直接メール・親近感重視) からも導出できない。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m04-ec": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m05-portfolio": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m06-news": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "8月も後半だというのに相変わらず蒸し暑くて",
+     "why_not_derivable": "依頼文には時期の指定がなく、手渡しJSONのcompiled_atは2026-08-10 (8月上旬) であり「8月も後半」という時期の主張は導出できない"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m07-recruit": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m08-apology": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m09-spec": {
+  "art_1": {
+   "fabrications": [
+    {
+     "fact": "領収書をスマホで撮影するとその場で申請カードが1件作成される／金額・日付・店舗名は撮影画像から自動で読み取り",
+     "why_not_derivable": "依頼文は実装形態を指定しておらず、手渡しJSONは実装形態をExcel/スプレッドシート、対象工程を集計・経理処理の自動化と決定しているため、スマホ撮影・OCR・申請カード即時生成は導出できない。"
+    },
+    {
+     "fact": "対象ユーザーは日常的に経費が発生する部署メンバーと、その申請を確認する承認者",
+     "why_not_derivable": "手渡しJSONは想定利用者を経理担当者向けと決定しており、申請者/承認者を主軸にする利用者構成は依頼文・JSONから導出できない。"
+    },
+    {
+     "fact": "金額によらず承認者は一人",
+     "why_not_derivable": "承認者数や承認段数の根拠は依頼文・JSONに存在せず、経理担当者向けの集計自動化という決定からも導出できない具体的運用ルール。"
+    },
+    {
+     "fact": "集計は既存の会計システム側に任せる",
+     "why_not_derivable": "手渡しJSONは完全独立ツール・他システム接続なしと決定し、既存の会計/勤怠システム名は未提供のmissing materialなのに、既存会計システムの存在と役割分担を断定している。"
+    }
+   ],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m10-invite": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m11-brand": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ },
+ "m12-faq": {
+  "art_1": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  },
+  "art_2": {
+   "fabrications": [],
+   "model_id": "moonshotai/Kimi-K3"
+  }
+ }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〈氏名〉 | Portfolio</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 読み手(採用担当)の職種軸 = デザイナー採用向け
+  GYAKUMON-CHOICE: 「印象に残る」の方向性 = 作品の質で記憶させる
+  タイプスケール(基準16px):
+  --fs-body:16px / --fs-lead:20px / --fs-h3:24px / --fs-h2:32px / --fs-h1:56px
+*/
+:root{
+  --bg:#0d0d0d;
+  --fg:#f2f0eb;
+  --accent:#ff3b1f;
+  --fs-body:16px;
+  --fs-lead:20px;
+  --fs-h3:24px;
+  --fs-h2:32px;
+  --fs-h1:56px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:"Hiragino Sans","Yu Gothic UI","Segoe UI",system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:"Hiragino Sans","Yu Gothic UI",system-ui,sans-serif;
+  font-weight:800;
+  letter-spacing:0.02em;
+}
+section{
+  max-width:760px;
+  margin:0 auto;
+  padding:96px 32px;
+}
+/* GYAKUMON-CHOICE: 「シンプル」の解釈 = ミニマルな視覚表現 */
+.hero{
+  padding:128px 32px 96px;
+  border-bottom:1px solid rgba(242,240,235,0.15);
+}
+.hero .eyebrow{
+  font-size:14px;
+  letter-spacing:0.2em;
+  color:var(--accent);
+  text-transform:uppercase;
+}
+/* GYAKUMON-CHOICE: 閲覧者の初回接触タイミング = 応募前の第一印象用 */
+.hero h1{
+  font-size:var(--fs-h1);
+  line-height:1.25;
+  margin-top:24px;
+  max-width:14ch;
+}
+.hero p.lead{
+  font-size:var(--fs-lead);
+  margin-top:32px;
+  max-width:36ch;
+  color:rgba(242,240,235,0.85);
+}
+.hero .role{
+  margin-top:16px;
+  font-size:var(--fs-body);
+  color:rgba(242,240,235,0.6);
+}
+h2{
+  font-size:var(--fs-h2);
+  margin-bottom:8px;
+}
+.section-note{
+  font-size:14px;
+  color:rgba(242,240,235,0.5);
+  margin-bottom:48px;
+}
+.about p{
+  font-size:var(--fs-lead);
+  color:rgba(242,240,235,0.85);
+  max-width:44ch;
+}
+/* GYAKUMON-CHOICE: サイト構成の重心 = プロセス・思考解説中心 */
+.work{
+  border-top:1px solid rgba(242,240,235,0.15);
+  padding-top:64px;
+  margin-top:32px;
+}
+.work-item{
+  margin-bottom:64px;
+}
+.work-thumb{
+  width:100%;
+  aspect-ratio:16/9;
+  background:linear-gradient(135deg, rgba(255,59,31,0.15), rgba(255,59,31,0.02));
+  border:1px solid rgba(255,59,31,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  color:rgba(242,240,235,0.5);
+  letter-spacing:0.1em;
+  margin-bottom:24px;
+}
+.work-item h3{
+  font-size:var(--fs-h3);
+  margin-bottom:8px;
+}
+.work-item .role-tag{
+  font-size:13px;
+  color:var(--accent);
+  letter-spacing:0.05em;
+  margin-bottom:16px;
+  display:block;
+}
+.work-item .process dt{
+  font-size:13px;
+  color:rgba(242,240,235,0.5);
+  margin-top:16px;
+}
+.work-item .process dd{
+  font-size:15px;
+  color:rgba(242,240,235,0.85);
+  margin-top:4px;
+}
+.skills ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.skills li{
+  border:1px solid rgba(242,240,235,0.3);
+  padding:8px 16px;
+  font-size:14px;
+}
+.contact{
+  border-top:1px solid rgba(242,240,235,0.15);
+}
+.contact a{
+  color:var(--accent);
+  text-decoration:none;
+  font-size:var(--fs-h3);
+  font-weight:800;
+}
+.contact .items{
+  margin-top:24px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  font-size:var(--fs-body);
+  color:rgba(242,240,235,0.7);
+}
+footer{
+  text-align:center;
+  padding:48px 32px;
+  font-size:12px;
+  color:rgba(242,240,235,0.35);
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Design Portfolio</div>
+  <h1>見た人の記憶に残るのは、<br>余白と一手だけでいい。</h1>
+  <p class="lead">派手さではなく、ひとつひとつの制作物そのもので語ります。ここに置いたのは完成形だけでなく、そこに至るまでの判断です。</p>
+  <p class="role">〈氏名〉 / 〈現職の肩書き、例: UIデザイナー〉</p>
+</header>
+
+<section class="about">
+  <h2>自己紹介</h2>
+  <div class="section-note">Profile</div>
+  <p>〈経歴の要約。担当領域、得意な制作物の種類、デザインへの向き合い方などを1〜2文で。詳細な職務経歴は現時点で未確定のためプレースホルダとする〉</p>
+</section>
+
+<section class="work">
+  <h2>作品</h2>
+  <div class="section-note">なぜこの設計にしたか、判断の過程を辿る3点</div>
+
+  <article class="work-item">
+    <div class="work-thumb">〈作品1 サムネイル〉</div>
+    <h3>〈作品タイトル 1〉</h3>
+    <span class="role-tag">〈担当領域、例: UI設計 / ビジュアルデザイン〉</span>
+    <dl class="process">
+      <dt>課題</dt><dd>〈解決しようとした課題〉</dd>
+      <dt>判断</dt><dd>〈なぜこの構成・配色・レイアウトを選んだか〉</dd>
+      <dt>結果</dt><dd>〈得られた成果や変化。数値は未確定のためプレースホルダ〉</dd>
+    </dl>
+  </article>
+
+  <article class="work-item">
+    <div class="work-thumb">〈作品2 サムネイル〉</div>
+    <h3>〈作品タイトル 2〉</h3>
+    <span class="role-tag">〈担当領域〉</span>
+    <dl class="process">
+      <dt>課題</dt><dd>〈解決しようとした課題〉</dd>
+      <dt>判断</dt><dd>〈設計上の意思決定〉</dd>
+      <dt>結果</dt><dd>〈成果〉</dd>
+    </dl>
+  </article>
+
+  <article class="work-item">
+    <div class="work-thumb">〈作品3 サムネイル〉</div>
+    <h3>〈作品タイトル 3〉</h3>
+    <span class="role-tag">〈担当領域〉</span>
+    <dl class="process">
+      <dt>課題</dt><dd>〈解決しようとした課題〉</dd>
+      <dt>判断</dt><dd>〈設計上の意思決定〉</dd>
+      <dt>結果</dt><dd>〈成果〉</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="skills">
+  <h2>スキル</h2>
+  <div class="section-note">Skills</div>
+  <ul>
+    <li>〈UIデザイン〉</li>
+    <li>〈プロトタイピング〉</li>
+    <li>〈デザインツール名〉</li>
+    <li>〈チーム協働 / ディレクション〉</li>
+    <li>〈その他〉</li>
+  </ul>
+</section>
+
+<section class="contact">
+  <h2>連絡先</h2>
+  <div class="section-note">3秒で伝わる、その先の一歩へ</div>
+  <a href="mailto:〈メールアドレス〉">〈メールアドレス〉</a>
+  <div class="items">
+    <span>〈電話番号〉</span>
+    <span>〈ポートフォリオ用SNS / Webサイト〉</span>
+  </div>
+</section>
+
+<footer>&copy; 〈氏名〉</footer>
+
+</body>
+</html>

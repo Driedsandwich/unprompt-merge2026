@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>採用ページ | 会社紹介</title>
+<style>
+/*
+  GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験
+  GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階
+  基調色は #fff8ec、テキストは #1a1a1a、アクセントは #ff9a3c に統一(単色運用)。
+*/
+:root{
+  --bg:#fff8ec;
+  --ink:#1a1a1a;
+  --accent:#ff9a3c;
+  --line:#e7dcc7;
+  /* タイプスケール(本文16pxを基準に1.25比) */
+  --fs-body:16px;
+  --fs-lead:20px;
+  --fs-h2:28px;
+  --fs-h1:40px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.9;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+section{padding:96px 0;}
+section + section{border-top:1px solid var(--line);}
+h1,h2,h3{
+  /* GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 */
+  font-family:"Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
+  font-weight:800;
+  letter-spacing:0.02em;
+  margin:0 0 24px;
+}
+h1{font-size:var(--fs-h1);line-height:1.4;}
+h2{font-size:var(--fs-h2);color:var(--accent);}
+p{margin:0 0 20px;}
+.eyebrow{
+  display:inline-block;
+  font-size:13px;
+  letter-spacing:0.15em;
+  color:var(--accent);
+  font-weight:700;
+  margin-bottom:16px;
+}
+.hero{padding-top:120px;}
+.hero p.lead{font-size:var(--fs-lead);}
+.badge{
+  width:64px;height:64px;border-radius:20px;
+  background:linear-gradient(135deg,var(--accent),#ffb877);
+  margin-bottom:32px;
+}
+/* GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 */
+.voice{
+  background:#fffdf8;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:32px;
+  margin-bottom:24px;
+}
+.voice p{margin:0 0 12px;font-size:17px;}
+.voice .who{
+  font-size:13px;
+  color:#7a6a52;
+  font-weight:700;
+}
+/* GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 */
+.values{
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+}
+.value-item{
+  padding-left:24px;
+  border-left:3px solid var(--accent);
+}
+.value-item h3{font-size:19px;margin-bottom:8px;}
+.cta{
+  text-align:center;
+}
+.cta-box{
+  background:var(--ink);
+  color:var(--bg);
+  border-radius:24px;
+  padding:56px 32px;
+}
+.cta-box h2{color:var(--accent);}
+.cta-box p{opacity:0.85;}
+.btn{
+  display:inline-block;
+  margin-top:16px;
+  background:var(--accent);
+  color:var(--ink);
+  font-weight:800;
+  padding:16px 40px;
+  border-radius:999px;
+  text-decoration:none;
+}
+.note{font-size:13px;color:#8a7a60;margin-top:24px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- GYAKUMON-CHOICE: 応募検討段階との距離感 = 認知・興味喚起段階 -->
+<section class="hero">
+  <div class="badge"></div>
+  <span class="eyebrow">〈会社名〉採用ページ</span>
+  <h1>隣にいる人の顔が、見える会社です。</h1>
+  <p class="lead">まだ応募までは考えていない、という方へ。まずは私たちの日常を、少しだけ覗いてみませんか。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 文章の構成・分量 = ストーリー形式の長文 -->
+<section>
+  <span class="eyebrow">会社の紹介</span>
+  <h2>ここに来るまでの、まわり道</h2>
+  <p>〈会社名〉は、〈設立年〉に〈事業内容のプレースホルダ〉として始まりました。最初から順調だったわけではありません。〈創業当初のエピソード〉を経て、少しずつ今の形になってきました。</p>
+  <p>特別大きな会社ではありません。でも、一人ひとりの名前と顔がちゃんと一致する規模で、〈従業員数〉ほどのメンバーが日々〈事業内容〉に向き合っています。誰かの背中を見て育ち、誰かの背中を見せて育てる。そんな循環がこの会社の歴史そのものです。</p>
+  <p>今も〈現在の事業フェーズ・取り組み〉に力を入れながら、次の一歩を探しています。その一歩を、これから入る人と一緒に踏み出したいと思っています。</p>
+</section>
+
+<!-- GYAKUMON-CHOICE: 「飾らない」の具体的な現れ方 = 社員の生の声中心 -->
+<!-- GYAKUMON-CHOICE: 想定読み手の経験層 = 新卒・未経験 -->
+<section>
+  <span class="eyebrow">働く人の声</span>
+  <h2>「正直、こう思ってます」</h2>
+
+  <div class="voice">
+    <p>「入社したときは〈職種〉の知識もほとんどなくて、正直不安でした。でも分からないことを聞いたら、誰かしら手を止めて教えてくれる。それだけで随分と救われました。」</p>
+    <p class="who">〈氏名・役職プレースホルダ〉/ 入社〈年数〉年目</p>
+  </div>
+
+  <div class="voice">
+    <p>「未経験からのスタートだったので、最初の〈期間〉は覚えることばかりでした。今振り返ると、隣の先輩が毎日声をかけてくれたことが一番大きかったです。」</p>
+    <p class="who">〈氏名・役職プレースホルダ〉/ 入社〈年数〉年目</p>
+  </div>
+
+  <div class="voice">
+    <p>「派手な実績を語れるタイプの会社ではないと思います。でも、困っている人を見過ごさないところは、ちゃんとあります。」</p>
+    <p class="who">〈氏名・役職プレースホルダ〉/ 入社〈年数〉年目</p>
+  </div>
+</section>
+
+<!-- GYAKUMON-CHOICE: 熱意の訴求軸 = チーム・人への熱意 -->
+<section>
+  <span class="eyebrow">大事にしていること</span>
+  <h2>数字より先に、人を見る</h2>
+  <div class="values">
+    <div class="value-item">
+      <h3>名前を覚える、から始める</h3>
+      <p>新しく入った人の名前と得意なことを、周りが自然と覚えようとする空気があります。仕事の速さより先に、まず居場所をつくることを大事にしています。</p>
+    </div>
+    <div class="value-item">
+      <h3>助けを求めやすい距離感</h3>
+      <p>「聞くのが恥ずかしい」を減らすのは、聞かれる側の姿勢だと考えています。忙しくても手を止めて答える、という当たり前を積み重ねています。</p>
+    </div>
+    <div class="value-item">
+      <h3>誰かの成長を、自分ごとにする</h3>
+      <p>後輩の一歩を、まるで自分のことのように喜べるチームでありたい。数字の達成よりも、そういう瞬間が長く記憶に残っています。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <span class="eyebrow">応募への導線</span>
+  <div class="cta-box">
+    <h2>まずは、知るところから</h2>
+    <p>今すぐの応募でなくても大丈夫です。募集職種や条件は、下のページで少しずつ紹介していきます。</p>
+    <a class="btn" href="#">募集職種を見てみる〈リンク先URL〉</a>
+    <p class="note">〈募集職種・ポジション情報は現在準備中です〉</p>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

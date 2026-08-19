@@ -32,10 +32,18 @@ from measure_v4_build import IDS, memo_of  # noqa: E402
 from judge_v4 import REWORK_SYS, FABRICATION_SYS  # noqa: E402
 
 SESS = HERE / "sessions"
-BLIND4 = HERE / "blind_v4"
-EXT = HERE / "judgments" / "ext"
-COSTS = EXT / "costs_v4ext.jsonl"
 API = "https://api.aiand.com/v1/chat/completions"
+# --suffix で v4/v5 を切り替える (main で束縛)。handoff は両版とも v4 固定再利用 (追補6)
+BLIND = None
+EXT = None
+COSTS = None
+
+
+def bind_paths(suffix):
+    global BLIND, EXT, COSTS
+    BLIND = HERE / f"blind_{suffix}"
+    EXT = HERE / "judgments" / ("ext" if suffix == "v4" else f"ext_{suffix}")
+    COSTS = EXT / f"costs_{suffix}ext.jsonl"
 
 
 def api_key():
@@ -81,8 +89,8 @@ def call_api(key, model, system, user, max_tokens, timeout):
 
 
 def build_messages(metric, jid, bid, art):
-    brief = (BLIND4 / bid / "brief.txt").read_text(encoding="utf-8").strip()
-    html = (BLIND4 / bid / f"{art}.html").read_text(encoding="utf-8")
+    brief = (BLIND / bid / "brief.txt").read_text(encoding="utf-8").strip()
+    html = (BLIND / bid / f"{art}.html").read_text(encoding="utf-8")
     if metric == "rework":
         system = REWORK_SYS.replace("{jid}", str(jid))
         user = ("## 発注者の意図メモ\n%s\n\n## 依頼文\n%s\n\n## 成果物 (HTML全文)\n%s"
@@ -111,13 +119,15 @@ def main():
     ap.add_argument("--limit", type=int, default=None, help="新規呼び出し数の上限 (較正走用)")
     ap.add_argument("--max-tokens", type=int, default=6000)
     ap.add_argument("--timeout", type=int, default=420)
+    ap.add_argument("--suffix", choices=["v4", "v5"], default="v4", help="blind/出力の版")
     args = ap.parse_args()
 
+    bind_paths(args.suffix)
     EXT.mkdir(parents=True, exist_ok=True)
     short = args.model.split("/")[-1]
     # 指標ごとに別ファイル。rework/fabrication を同一ファイルに並行書き込みすると
     # 後勝ちで片方が消える事故を実際に起こした (2026-08-19・216判定を再実行した)
-    out_path = EXT / f"{short}_judge{args.judge}_{args.metric}_v4.json"
+    out_path = EXT / f"{short}_judge{args.judge}_{args.metric}_{args.suffix}.json"
     data = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() else {}
     key = api_key()
     done = 0
